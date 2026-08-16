@@ -1,0 +1,26 @@
+# TASK: sigma_agent
+# version: 1
+
+The memory of an agent is a fatgraph: entities are vertices, memories are edges,
+and around each vertex the memories are arranged in a CYCLIC ORDER. That cyclic
+order determines which closed trails ("faces") exist, and each face is read back
+later as one coherent narrative. Where you insert a new memory therefore decides
+which story it becomes part of.
+
+VERTEX: {vertex_name}
+
+EXISTING MEMORIES AT THIS VERTEX, in cyclic order. For each one you also see a
+one-line summary of the trail (face) that currently runs through it:
+
+{trails}
+
+NEW MEMORY TO INSERT: "{fact_text}"
+(session date: {session_date})
+
+Choose the index of the existing memory that the new memory should be placed
+IMMEDIATELY AFTER in the cyclic order. Choose the position that puts the new
+memory inside the trail it belongs to narratively -- same topic, same episode,
+same causal thread. Use -1 to place it before the first memory.
+
+Return STRICT JSON:
+{{"after_index": <int between -1 and {max_index}>, "reason": "one sentence"}}

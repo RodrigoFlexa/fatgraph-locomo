@@ -1,0 +1,10 @@
+# G2 (spec id "F2") -- fatgraph-cur: sigma-time + curation + consolidation.
+extends: base.yaml
+condition: G2-fatgraph-cur
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: true
+  consolidation: true
+  min_face_len: 4
+  min_stable_sessions: 2

@@ -1,0 +1,77 @@
+# Base configuration shared by every experimental condition.
+# Condition files use `extends: base.yaml` and override only what differs.
+#
+# Secrets are NEVER read from here. The Azure client reads
+# AZURE_OPENAI_ENDPOINT / AZURE_OPENAI_API_KEY / AZURE_OPENAI_API_VERSION
+# from the environment. Only the *deployment name* lives in this file.
+
+seed: 1234
+
+llm:
+  provider: azure          # azure | fake  (fake = offline, deterministic)
+  deployment: gpt-4o-mini  # Azure deployment name
+  temperature: 0.0
+  max_tokens: 512
+  seed: 1234
+  request_timeout: 60.0
+  max_retries: 6
+  backoff_base: 2.0
+  backoff_max: 60.0
+  cache_dir: .cache/llm
+  cache_enabled: true
+
+embeddings:
+  provider: sentence-transformers   # sentence-transformers | azure | hashing
+  model: all-MiniLM-L6-v2
+  azure_deployment: text-embedding-3-small
+  dim: 384
+  batch_size: 64
+  cache_dir: .cache/embeddings
+  normalize: true
+
+index:
+  backend: numpy   # numpy | faiss  (falls back to numpy if faiss is missing)
+  metric: cosine
+
+entities:
+  match_threshold: 0.85
+  llm_threshold: 0.70
+  max_candidates: 5
+
+ingest:
+  sigma_policy: sigma-time   # sigma-time | sigma-agent
+  detect_incongruence: true
+  max_facts_per_session: 0
+  allow_self_loops: false
+  sigma_agent_max_trails: 8
+  sigma_agent_trail_chars: 160
+
+curation:
+  curation: false
+  consolidation: false
+  min_face_len: 4        # L
+  min_stable_sessions: 2 # k
+  whitehead_flip: false  # phase 2
+
+retrieval:
+  top_m_anchors: 5
+  budget_tokens: 2000
+  level2_boost: 0.05
+  shadowed_penalty: 0.10
+  incongruent_abstain: true
+  recall_ks: [5, 10]
+  max_facts_in_prompt: 40
+
+baselines:
+  rag_top_k: 10
+  full_context_max_tokens: 110000
+  full_context_truncate: head
+
+paths:
+  locomo_repo: data/external/locomo
+  data_file: data/external/locomo/data/locomo10.json
+  prompts_dir: prompts
+  results_dir: results
+  graphs_dir: artifacts/graphs
+  facts_cache: artifacts/facts
+  logs_dir: artifacts/logs

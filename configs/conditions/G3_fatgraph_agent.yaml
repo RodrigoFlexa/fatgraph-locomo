@@ -1,0 +1,8 @@
+# G3 (spec id "F3") -- fatgraph-agent: sigma-agent + curation + consolidation.
+extends: base.yaml
+condition: G3-fatgraph-agent
+ingest:
+  sigma_policy: sigma-agent
+curation:
+  curation: true
+  consolidation: true

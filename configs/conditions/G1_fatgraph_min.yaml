@@ -1,0 +1,9 @@
+# G1 (spec id "F1") -- fatgraph-min: sigma-time, no curation, no consolidation.
+# Renamed G1 to avoid colliding with the F1 metric (COERENCIA.md item C5).
+extends: base.yaml
+condition: G1-fatgraph-min
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false

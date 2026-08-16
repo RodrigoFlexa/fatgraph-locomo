@@ -1,0 +1,18 @@
+# TASK: entity_match
+# version: 1
+
+Decide whether two entity mentions from the same long-running conversation
+refer to the SAME real-world entity.
+
+MENTION A: "{mention}"
+MENTION B: "{candidate}"
+KNOWN ALIASES OF B: {aliases}
+EXAMPLE FACTS ALREADY ATTACHED TO B:
+{context}
+
+Answer "same": true only if they are the same entity (nickname, abbreviation,
+alternative spelling, or the same referent described differently).
+Different people who share a first name, or a general category versus a
+specific instance, are NOT the same.
+
+Return STRICT JSON: {{"same": true|false, "reason": "one short sentence"}}

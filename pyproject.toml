@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fgl"
+version = "2.0.0"
+description = "Fatgraph-based long-term memory for LLM agents, benchmarked on LoCoMo"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Rodrigo" }]
+keywords = ["fatgraph", "ribbon-graph", "llm-memory", "locomo", "rag"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "PyYAML>=6.0",
+    "typer>=0.12",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+# Real runs against Azure OpenAI with the default local embedder.
+azure = ["openai>=1.0"]
+embeddings = ["sentence-transformers>=2.2"]
+# The official LoCoMo F1 uses NLTK's Porter stemmer. Without it the scorer
+# falls back to an identity stemmer AND records that fact in metrics.json.
+metrics = ["nltk>=3.8"]
+speed = ["tiktoken>=0.5", "faiss-cpu>=1.7"]
+notebooks = ["jupyter>=1.0", "pandas>=2.0", "matplotlib>=3.7", "nbformat>=5.9"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.4"]
+# Everything needed to reproduce the published numbers.
+all = [
+    "openai>=1.0", "sentence-transformers>=2.2", "nltk>=3.8",
+    "tiktoken>=0.5", "jupyter>=1.0", "pandas>=2.0", "matplotlib>=3.7",
+    "nbformat>=5.9", "pytest>=7.0", "ruff>=0.4",
+]
+
+[project.scripts]
+fgl = "fgl.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/snap-research/locomo"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "dataset: needs the LoCoMo dataset (run `fgl setup`)",
+    "slow: takes more than a couple of seconds",
+]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 92
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501", "B008"]  # B008: typer.Option() defaults are the idiom
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]

@@ -1,0 +1,3 @@
+# B1 -- full-context baseline: the whole conversation goes into the prompt.
+extends: base.yaml
+condition: B1-full-context

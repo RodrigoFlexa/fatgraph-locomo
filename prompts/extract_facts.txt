@@ -1,0 +1,35 @@
+# TASK: extract_facts
+# version: 1
+
+You are extracting atomic memories from one session of a long-running
+conversation between {speaker_a} and {speaker_b}.
+
+DATE OF THIS SESSION: {session_date}
+
+TRANSCRIPT (each line is prefixed with its turn id):
+{transcript}
+
+Extract every atomic fact that is worth remembering long-term. Rules:
+
+1. One fact = one relation between exactly TWO entities.
+2. Facts must be SELF-CONTAINED: resolve every pronoun and every ellipsis using
+   the session context. A reader who sees only `fact_text` must understand it.
+3. Use the speakers' proper names, never "I", "you", "he", "she", "they".
+4. `entity_1` and `entity_2` must be short canonical noun phrases (a person, a
+   place, an organisation, an event, an object, an activity, a preference).
+   Never a whole sentence.
+5. `relation` is a short lowercase verb phrase, e.g. "works at", "adopted",
+   "feels about", "visited", "plans to".
+6. `fact_text` is ONE sentence, past or present tense, stating the fact with
+   both entities named. Include dates or quantities that appear in the turn.
+7. `turn_ids` lists every turn id that supports the fact (usually one or two).
+8. Do NOT invent anything. Do NOT extract small talk, greetings or questions
+   that carry no durable information.
+9. If a turn only shares an image, use its caption as the content.
+
+Return STRICT JSON, no prose, in this shape:
+
+{{"facts": [
+  {{"entity_1": "...", "relation": "...", "entity_2": "...",
+    "fact_text": "...", "turn_ids": ["D1:3"]}}
+]}}

@@ -1,0 +1,20 @@
+# TASK: incongruence
+# version: 1
+
+Two memories about the same entities were recorded at different moments of a
+long conversation. Decide whether the NEW one CONTRADICTS the OLD one.
+
+OLD MEMORY [{old_timestamp}]: {old_text}
+NEW MEMORY [{new_timestamp}]: {new_text}
+
+Rules:
+- A contradiction means both cannot be true of the same entities at the same
+  time (e.g. "lives in Boston" vs "lives in Tokyo", "adopted a dog" vs "never
+  had a pet").
+- A legitimate CHANGE OVER TIME is NOT a contradiction (people move, opinions
+  evolve, plans are fulfilled). Use the timestamps.
+- Extra detail, rephrasing, or a different aspect of the same situation is NOT
+  a contradiction.
+
+Return STRICT JSON:
+{{"contradiction": true|false, "reason": "one short sentence"}}

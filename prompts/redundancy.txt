@@ -1,0 +1,19 @@
+# TASK: redundancy
+# version: 1
+
+Two memories connect the SAME pair of entities and sit next to each other in the
+memory graph. Decide whether they are REDUNDANT, i.e. whether keeping only one
+(possibly rewritten) loses no information.
+
+MEMORY A [{a_timestamp}]: {a_text}
+MEMORY B [{b_timestamp}]: {b_text}
+
+They are redundant only if one restates the other, or one is fully contained in
+the other. Two different facts about the same pair of entities (different event,
+different date, different attribute) are NOT redundant.
+
+If redundant, write `merged_text`: a single self-contained sentence preserving
+every detail of both. If not redundant, leave `merged_text` empty.
+
+Return STRICT JSON:
+{{"redundant": true|false, "merged_text": "...", "reason": "one short sentence"}}

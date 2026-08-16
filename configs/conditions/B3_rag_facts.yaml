@@ -1,0 +1,7 @@
+# B3 -- critical ablation: k-NN over EXACTLY the same extracted facts used by
+# G1, with no graph. Facts come from the shared extraction cache, so B3 and G1
+# differ only in topology.
+extends: base.yaml
+condition: B3-rag-facts
+baselines:
+  rag_top_k: 10

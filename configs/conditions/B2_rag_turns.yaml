@@ -1,0 +1,5 @@
+# B2 -- k-NN over raw dialogue turns, top-10, ordered by score.
+extends: base.yaml
+condition: B2-rag-turns
+baselines:
+  rag_top_k: 10

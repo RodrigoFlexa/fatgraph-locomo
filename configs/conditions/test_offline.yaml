@@ -1,0 +1,11 @@
+# Offline configuration used by pytest and by `--dry-run`: no network, no
+# model download, fully deterministic.
+extends: base.yaml
+condition: TEST-offline
+llm:
+  provider: fake
+  cache_enabled: false
+embeddings:
+  provider: hashing
+  dim: 256
+  cache_dir: .cache/embeddings-test

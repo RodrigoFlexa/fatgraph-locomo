@@ -1,0 +1,23 @@
+# TASK: answer
+# version: 1
+
+You are answering a question about a long-running conversation between
+{speaker_a} and {speaker_b}, using ONLY the memories retrieved below. Each
+memory is prefixed with the date of the session it came from. Memories are
+grouped by narrative trail and listed in trail order.
+
+MEMORIES:
+{context}
+
+QUESTION: {question}
+
+Rules:
+1. Answer with a SHORT extractive phrase -- a few words, no full sentence, no
+   explanation, no restating of the question. The metric is token-level F1.
+2. Reuse the exact words of the memories whenever possible.
+3. For a "when" question, answer with a date, using the session dates above.
+4. If the memories do not contain the information needed, answer EXACTLY:
+   Not mentioned in the conversation
+5. Never guess and never use outside knowledge.
+
+SHORT ANSWER:

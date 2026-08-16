@@ -1,0 +1,16 @@
+# TASK: consolidate
+# version: 1
+
+Below is a closed trail of memories from an agent's memory graph. It has been
+stable across several conversation sessions, which suggests it is a recurring
+narrative rather than an accident of ordering.
+
+TRAIL (in traversal order, each line prefixed with the session date):
+{facts}
+
+Write ONE self-contained summary sentence (at most 40 words) capturing what this
+trail says about the relationship between "{v_start}" and "{v_end}". Keep every
+named entity, date and quantity that a later question could ask about. Do not
+add anything that is not in the trail.
+
+Return STRICT JSON: {{"summary": "..."}}
