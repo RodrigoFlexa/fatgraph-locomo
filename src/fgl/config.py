@@ -52,6 +52,21 @@ class LLMConfig:
     #: tolerated fraction of empty completions past that point
     max_empty_rate: float = 0.2
 
+    # --- model family ------------------------------------------------------
+    #: auto | chat | reasoning. Reasoning deployments (o1/o3/o4-mini, gpt-5)
+    #: take max_completion_tokens, reject a custom temperature, and burn the
+    #: token budget on internal reasoning before emitting anything.
+    api_style: str = "auto"
+    #: floor applied to the token budget for reasoning models; 0 omits the cap
+    #: entirely, which is what a working notebook against gpt-5 usually does
+    reasoning_min_tokens: int = 4000
+    #: some gateways reject an explicit temperature even on chat models
+    send_temperature: bool = True
+    #: reasoning budget hint: minimal | low | medium | high | "" to omit.
+    #: LoCoMo answers are short and extractive, so "low" keeps the reasoning
+    #: tokens (which are billed) from dominating the cost.
+    reasoning_effort: str = "low"
+
 
 @dataclass
 class EmbeddingConfig:
@@ -271,6 +286,10 @@ class Config:
             raise ConfigError(f"llm.provider must be azure|fake, got {self.llm.provider!r}")
         if self.embeddings.provider not in ("sentence-transformers", "azure", "hashing"):
             raise ConfigError(f"unknown embeddings.provider {self.embeddings.provider!r}")
+        if self.llm.api_style not in ("auto", "chat", "reasoning"):
+            raise ConfigError(
+                f"llm.api_style must be auto|chat|reasoning, got {self.llm.api_style!r}"
+            )
         if self.index.backend not in ("numpy", "faiss"):
             raise ConfigError(f"index.backend must be numpy|faiss")
         if self.ingest.sigma_policy not in ("sigma-time", "sigma-agent"):

@@ -28,14 +28,32 @@ MANAGED_ENV = (
     "FGL_EMBEDDING_PROVIDER",
     "FGL_EMBEDDING_MODEL",
     "FGL_EMBEDDING_AZURE_DEPLOYMENT",
+    # corporate-gateway settings; a real .env pointing at a config.ini used to
+    # leak straight into the suite and fail the credential tests
+    "FGL_AZURE_CONFIG_INI",
+    "FGL_AZURE_CONFIG_SECTION",
+    "FGL_CA_BUNDLE",
+    "FGL_AZURE_USE_BASE_URL",
 )
 
 
 @pytest.fixture(autouse=True)
-def isolated_env(monkeypatch):
-    """Every test starts from a clean, credential-free environment."""
+def isolated_env(monkeypatch, tmp_path_factory):
+    """Every test starts from a clean, credential-free environment.
+
+    Two leaks to plug: ``load_dotenv`` writes into ``os.environ`` process-wide,
+    and ``Settings.load()`` with no argument reads the *developer's real*
+    ``.env`` at the project root. Without this fixture the suite would pass or
+    fail depending on whether the machine happens to have credentials.
+    """
     for name in MANAGED_ENV:
         monkeypatch.delenv(name, raising=False)
+    # make the default `.env` lookup land somewhere empty
+    empty = tmp_path_factory.mktemp("no-project-env")
+    monkeypatch.setenv("FGL_PROJECT_ROOT", str(ROOT))
+    monkeypatch.setattr(
+        "fgl.settings.project_root", lambda: empty, raising=False
+    )
 
 
 @pytest.fixture

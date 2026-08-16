@@ -210,6 +210,8 @@ def info() -> None:
         if k == "dotenv_found":
             continue
         e.add_row(k, str(v) if v is not None else "[dim]unset[/]")
+    if settings.ini_path:
+        e.add_row("config.ini", settings.ini_path)
     e.add_row(
         "azure ready",
         "[green]yes[/]" if settings.azure_ready
@@ -255,6 +257,34 @@ def doctor(
     cfg = _load(condition, set_, dry_run=False)
     ok = True
 
+    # ---- 0. what we are about to send --------------------------------------
+    from fgl.llm.azure import is_reasoning_deployment
+
+    settings = load_settings()
+    reasoning = (
+        is_reasoning_deployment(cfg.llm.deployment)
+        if cfg.llm.api_style == "auto"
+        else cfg.llm.api_style == "reasoning"
+    )
+    t0 = Table(show_header=False, box=None, padding=(0, 2))
+    t0.add_column(style="bold cyan")
+    t0.add_row("deployment", cfg.llm.deployment)
+    t0.add_row("família", "[magenta]reasoning[/]" if reasoning else "chat")
+    t0.add_row(
+        "limite de tokens",
+        (f"max_completion_tokens={max(cfg.retrieval.answer_max_tokens, cfg.llm.reasoning_min_tokens)}"
+         if reasoning and cfg.llm.reasoning_min_tokens > 0
+         else "(omitido)" if reasoning
+         else f"max_tokens={cfg.retrieval.answer_max_tokens}"),
+    )
+    t0.add_row("temperature", "(não enviada)" if reasoning else str(cfg.llm.temperature))
+    if reasoning and cfg.llm.reasoning_effort:
+        t0.add_row("reasoning_effort", cfg.llm.reasoning_effort)
+    t0.add_row("endpoint como", "base_url" if settings.use_base_url else "azure_endpoint")
+    t0.add_row("CA bundle", settings.ca_bundle or "(padrão do sistema)")
+    t0.add_row("config.ini", settings.ini_path or "(usando .env/ambiente)")
+    console.print(Panel(t0, title="[bold]0. forma da requisição", border_style="cyan"))
+
     # ---- 1. chat completion ------------------------------------------------
     cfg.llm.cache_enabled = False  # always hit the real backend
     cfg.llm.fail_on_empty = False  # we want to *see* the empty, not raise on it
@@ -266,6 +296,7 @@ def doctor(
     )
     if show_prompt:
         console.print(Panel(prompt, border_style="dim"))
+    llm = None
     try:
         llm = build_llm(cfg.llm)
         text = llm.complete(prompt, purpose="doctor", max_tokens=32)
@@ -276,6 +307,10 @@ def doctor(
         t.add_row("comprimento", str(len(text or "")))
         t.add_row("prompt_tokens", str(u.prompt_tokens))
         t.add_row("completion_tokens", str(u.completion_tokens))
+        t.add_row("finish_reason", str(getattr(llm, "last_finish_reason", None)))
+        rt = getattr(llm, "last_reasoning_tokens", 0)
+        if rt:
+            t.add_row("reasoning_tokens", str(rt))
         console.print(t)
         if not (text or "").strip():
             ok = False
@@ -312,23 +347,26 @@ def doctor(
 
     # ---- 2. JSON mode ------------------------------------------------------
     console.print("\n[bold]2. JSON mode[/] (a extração de fatos depende disso)")
-    try:
-        raw = llm.complete(
-            '# TASK: doctor\nReturn STRICT JSON: {"ok": true}',
-            purpose="doctor", json_mode=True, max_tokens=32,
-        )
-        console.print(f"  bruto: {raw[:160]!r}")
-        from fgl.llm import parse_json_loose
+    if llm is None:
+        console.print("[dim]pulado — a chamada de chat não chegou a funcionar[/]")
+    else:
+        try:
+            raw = llm.complete(
+                '# TASK: doctor\nReturn STRICT JSON: {"ok": true}',
+                purpose="doctor", json_mode=True, max_tokens=32,
+            )
+            console.print(f"  bruto: {raw[:160]!r}")
+            from fgl.llm import parse_json_loose
 
-        parse_json_loose(raw)
-        console.print("[green]✓[/] JSON parseável")
-    except Exception as exc:  # noqa: BLE001
-        ok = False
-        console.print(f"[red]✗[/] {type(exc).__name__}: {exc}")
-        console.print(
-            "[yellow]  sem JSON válido a extração devolve zero fatos, "
-            "o grafo fica vazio e tudo vira abstenção[/]"
-        )
+            parse_json_loose(raw)
+            console.print("[green]✓[/] JSON parseável")
+        except Exception as exc:  # noqa: BLE001
+            ok = False
+            console.print(f"[red]✗[/] {type(exc).__name__}: {exc}")
+            console.print(
+                "[yellow]  sem JSON válido a extração devolve zero fatos, "
+                "o grafo fica vazio e tudo vira abstenção[/]"
+            )
 
     # ---- 3. embeddings -----------------------------------------------------
     console.print(f"\n[bold]3. embeddings[/] · provider=[cyan]{cfg.embeddings.provider}[/]")

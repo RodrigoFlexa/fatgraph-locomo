@@ -369,140 +369,6 @@ class LLMClient:
 # --------------------------------------------------------------------------- #
 
 
-class AzureLLM(LLMClient):
-    """Azure OpenAI chat completions with exponential backoff."""
-
-    def __init__(self, cfg: LLMConfig) -> None:
-        super().__init__(cfg)
-        try:
-            from openai import AzureOpenAI
-        except ImportError as exc:  # pragma: no cover
-            raise LLMError(
-                "the 'openai' package (>=1.x) is required for the azure backend"
-            ) from exc
-
-        endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
-        api_key = os.environ.get("AZURE_OPENAI_API_KEY")
-        api_version = os.environ.get("AZURE_OPENAI_API_VERSION")
-        missing = [
-            name
-            for name, val in [
-                ("AZURE_OPENAI_ENDPOINT", endpoint),
-                ("AZURE_OPENAI_API_KEY", api_key),
-                ("AZURE_OPENAI_API_VERSION", api_version),
-            ]
-            if not val
-        ]
-        if missing:
-            raise LLMError(f"missing environment variables: {', '.join(missing)}")
-
-
-        import httpx
-
-        ca = _resolve_ca_bundle(os.environ.get("FGL_CA_BUNDLE", "petrobras-ca-root.pem"))
-        http_client = httpx.Client(verify=ca) if ca else httpx.Client()
-        self._client = AzureOpenAI(
-            base_url=endpoint,
-            api_key=api_key,
-            api_version=api_version,
-            http_client=http_client,
-        )
-        #: diagnostics for the last response -- read by `fgl doctor` and by the
-        #: empty-completion error, because `finish_reason` is what distinguishes
-        #: "model refused" from "budget consumed by reasoning tokens".
-        self.last_finish_reason: str | None = None
-        self.last_reasoning_tokens: int = 0
-
-    def _call(self, prompt, system, json_mode, max_tokens, temperature):
-        messages = []
-        if system:
-            messages.append({"role": "system", "content": system})
-        messages.append({"role": "user", "content": prompt})
-
-        kwargs: dict[str, Any] = dict(
-            model=self.cfg.deployment,
-            messages=messages,
-            # temperature=temperature,
-            max_completion_tokens=max_tokens,
-        )
-        if self.cfg.seed is not None:
-            kwargs["seed"] = self.cfg.seed
-        if json_mode:
-            kwargs["response_format"] = {"type": "json_object"}
-
-        last_exc: Exception | None = None
-        for attempt in range(self.cfg.max_retries):
-            try:
-                resp = self._client.chat.completions.create(**kwargs)
-                choice = resp.choices[0]
-                text = (choice.message.content or "").strip()
-                usage = getattr(resp, "usage", None)
-                self.last_finish_reason = getattr(choice, "finish_reason", None)
-                details = getattr(usage, "completion_tokens_details", None)
-                self.last_reasoning_tokens = getattr(details, "reasoning_tokens", 0) or 0
-                return (
-                    text,
-                    getattr(usage, "prompt_tokens", 0) or 0,
-                    getattr(usage, "completion_tokens", 0) or 0,
-                )
-            except Exception as exc:  # noqa: BLE001 - we classify below
-                last_exc = exc
-                if not _is_retryable(exc) or attempt == self.cfg.max_retries - 1:
-                    break
-                delay = min(
-                    self.cfg.backoff_max, self.cfg.backoff_base ** attempt
-                ) * (0.5 + random.random())
-                retry_after = _retry_after_seconds(exc)
-                time.sleep(max(delay, retry_after))
-        raise LLMError(f"Azure OpenAI call failed: {last_exc}") from last_exc
-
-
-def _resolve_ca_bundle(name: str) -> str | None:
-    """Find a CA bundle without depending on the current working directory.
-
-    A bare ``verify='petrobras-ca-root.pem'`` only works when the process happens
-    to be started from the directory holding the file. Look next to this module,
-    at the project root, and finally treat it as a literal path.
-    """
-    from fgl.paths import project_root
-
-    p = Path(name)
-    if p.is_absolute():
-        return str(p) if p.exists() else None
-    for base in (Path(__file__).resolve().parent, project_root(), Path.cwd()):
-        candidate = base / name
-        if candidate.exists():
-            return str(candidate)
-    return None
-
-
-def _is_retryable(exc: Exception) -> bool:
-    status = getattr(exc, "status_code", None) or getattr(exc, "status", None)
-    if status in (408, 409, 429, 500, 502, 503, 504):
-        return True
-    name = type(exc).__name__
-    return any(
-        tok in name
-        for tok in ("RateLimit", "Timeout", "APIConnection", "InternalServer", "ServiceUnavailable")
-    )
-
-
-def _retry_after_seconds(exc: Exception) -> float:
-    headers = getattr(getattr(exc, "response", None), "headers", None) or {}
-    for key in ("retry-after-ms", "Retry-After-Ms"):
-        if key in headers:
-            try:
-                return float(headers[key]) / 1000.0
-            except (TypeError, ValueError):
-                pass
-    for key in ("retry-after", "Retry-After"):
-        if key in headers:
-            try:
-                return float(headers[key])
-            except (TypeError, ValueError):
-                pass
-    return 0.0
-
 
 # --------------------------------------------------------------------------- #
 # Fake backend (tests / dry runs)                                              #
@@ -606,6 +472,8 @@ def _fake_answer(prompt: str) -> str:
 
 def build_llm(cfg: LLMConfig) -> LLMClient:
     if cfg.provider == "azure":
+        from fgl.llm.azure import AzureLLM  # lazy: keeps openai optional
+
         return AzureLLM(cfg)
     if cfg.provider == "fake":
         return FakeLLM(cfg)

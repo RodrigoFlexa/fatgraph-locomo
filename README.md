@@ -125,6 +125,51 @@ numpy, PyYAML, typer e rich, ~20 MB. As 6 condições em modo offline rodam em
 | **todas as condições com o MESMO F1 e adversarial = 1.000** | o backend devolveu respostas vazias; toda pergunta virou abstenção | `fgl doctor` |
 | `fgl doctor` mostra resposta vazia com `finish_reason='length'` | deployment de *reasoning*: o orçamento de tokens acabou no raciocínio interno | `--set retrieval.answer_max_tokens=3000 --set llm.max_tokens=8000` |
 
+### Gateway corporativo (credenciais num `.ini`, CA própria)
+
+Se o seu acesso é por gateway — credenciais num `config.ini`, certificado
+privado, `base_url` em vez de `azure_endpoint` — não é preciso editar código.
+Três variáveis no `.env`:
+
+```bash
+FGL_AZURE_CONFIG_INI=config-v1.x.ini     # ConfigParser, seção [OPENAI]
+FGL_CA_BUNDLE=petrobras-ca-root.pem      # resolvido a partir da raiz do projeto
+FGL_LLM_DEPLOYMENT=gpt-5-mini-petrobras
+```
+
+O `.ini` é lido com `ExtendedInterpolation` e aceita as chaves
+`OPENAI_API_KEY`, `OPENAI_API_VERSION` e `AZURE_OPENAI_BASE_URL`. Um endpoint
+que já contém caminho (`.../openai/v1`) é passado como `base_url`
+automaticamente. `fgl info` mostra o que foi reconhecido; `fgl doctor` mostra a
+requisição exata antes de enviá-la.
+
+### Deployments de reasoning (gpt-5, o1, o3, o4-mini)
+
+Detectados pelo nome do deployment e configurados sozinhos:
+
+| | chat (gpt-4o) | reasoning (gpt-5, o*) |
+|---|---|---|
+| limite de tokens | `max_tokens` | `max_completion_tokens`, piso de 4000 |
+| `temperature` | enviada | **não enviada** (só aceitam o padrão) |
+| `seed` | enviada | não enviada |
+| `reasoning_effort` | — | `low` (respostas do LoCoMo são curtas) |
+
+O piso importa: esses modelos gastam o orçamento **pensando antes de emitir
+qualquer coisa**. Um limite de 64 tokens — suficiente para uma resposta
+extractiva — é consumido inteiro pelo raciocínio e a API devolve `content=""`.
+
+Ajuste em `configs/base.yaml` ou pela linha de comando:
+
+```bash
+fgl run G1 --set llm.reasoning_min_tokens=8000 --set llm.reasoning_effort=minimal
+fgl run G1 --set llm.reasoning_min_tokens=0     # não envia limite algum
+fgl run G1 --set llm.api_style=chat             # força o formato antigo
+```
+
+Se o gateway rejeitar algum parâmetro opcional (`seed`, `reasoning_effort`,
+`response_format`…), ele é descartado e a chamada refeita automaticamente — uma
+vez por parâmetro, e a lição fica registrada para as chamadas seguintes.
+
 ### Se o LLM devolver respostas vazias
 
 Um deployment de reasoning (o1/o3/o4-mini, família gpt-5) trata

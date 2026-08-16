@@ -20,6 +20,18 @@ llm:
   cache_dir: .cache/llm
   cache_enabled: true
 
+  # Aborta em vez de transformar resposta vazia em abstenção silenciosa.
+  fail_on_empty: true
+
+  # auto | chat | reasoning. 'auto' detecta pelo nome do deployment
+  # (gpt-5*, o1*, o3*, o4* => reasoning).
+  api_style: auto
+  # Modelos de reasoning gastam este orçamento pensando ANTES de responder.
+  # 0 = não enviar limite algum (como no notebook que funciona).
+  reasoning_min_tokens: 4000
+  # minimal | low | medium | high | "" para omitir
+  reasoning_effort: low
+
 embeddings:
   provider: sentence-transformers   # sentence-transformers | azure | hashing
   model: all-MiniLM-L6-v2
