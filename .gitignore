@@ -30,10 +30,8 @@ config-v1.x.ini
 config.ini
 .gitignore
 petrobras-ca-root.pem:Zone.Identifier
-src/fgl/llm/client.py
+
 src/fgl/llm/petrobras-ca-root.pem
 petrobras-ca-root.pem
-src/fgl/llm/client.py
 config.ini:Zone.Identifier
 config-v1.x.ini:Zone.Identifier
-src/fgl/llm/client.py
