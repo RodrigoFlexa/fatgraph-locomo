@@ -1,0 +1,5 @@
+warming the shared fact cache over 10 conversation(s)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 37/103 [00:00<00:00, 366.46it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 521.32it/s]
+/home/gbs2/fatgraph-locomo/src/fgl/retrieval/embeddings.py:86: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  self.dim = int(self._model.get_sentence_embedding_dimension())

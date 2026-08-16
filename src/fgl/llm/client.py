@@ -29,7 +29,11 @@ from pathlib import Path
 from typing import Any, Callable, Optional
 
 from fgl.config import LLMConfig
-
+import base64
+from openai import AzureOpenAI
+from configparser import ConfigParser, ExtendedInterpolation
+import httpx
+import numpy as np
 
 # --------------------------------------------------------------------------- #
 # Usage accounting                                                             #
@@ -251,12 +255,14 @@ class AzureLLM(LLMClient):
         if missing:
             raise LLMError(f"missing environment variables: {', '.join(missing)}")
 
+
+        http_client = httpx.Client(verify='petrobras-ca-root.pem')
         self._client = AzureOpenAI(
-            azure_endpoint=endpoint,
+            base_url=endpoint,
             api_key=api_key,
             api_version=api_version,
-            timeout=cfg.request_timeout,
-            max_retries=0,  # we do our own backoff so we can log and jitter
+            http_client=http_client
+
         )
 
     def _call(self, prompt, system, json_mode, max_tokens, temperature):
@@ -268,8 +274,8 @@ class AzureLLM(LLMClient):
         kwargs: dict[str, Any] = dict(
             model=self.cfg.deployment,
             messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
+            # temperature=temperature,
+            max_completion_tokens=max_tokens,
         )
         if self.cfg.seed is not None:
             kwargs["seed"] = self.cfg.seed
