@@ -105,6 +105,7 @@ class Runner:
             "cost": self.llm.usage.to_dict(),
             "wall_seconds": round(time.time() - started, 1),
         }
+        metrics["sanity"] = self._sanity(outcomes)
         self._write(metrics, outcomes)
         if isinstance(self.embedder, CachedEmbedder):
             self.embedder.flush()
@@ -273,6 +274,53 @@ class Runner:
         with (out_dir / "predictions.jsonl").open("w", encoding="utf-8") as fh:
             for o in outcomes:
                 fh.write(json.dumps(o.to_dict(), ensure_ascii=False) + "\n")
+
+    def _sanity(self, outcomes: Sequence[QAOutcome]) -> dict:
+        """Detect the failure modes that still produce a plausible-looking table.
+
+        The one that actually bit us: a broken backend makes every answer the
+        abstention string, which scores 1.0 on adversarial and ~0.01 elsewhere --
+        identical across all six conditions. Numbers alone look like a result;
+        they are not.
+        """
+        checks: list[str] = []
+        n = len(outcomes)
+        if not n:
+            return {"ok": False, "warnings": ["nenhuma pergunta foi respondida"]}
+
+        checks.extend(self.llm.usage.warnings())
+
+        abstained = sum(o.abstained for o in outcomes)
+        non_adv = [o for o in outcomes if o.category != 5]
+        abstained_non_adv = sum(o.abstained for o in non_adv)
+        if non_adv and abstained_non_adv / len(non_adv) > 0.95:
+            checks.append(
+                f"{abstained_non_adv}/{len(non_adv)} perguntas NÃO adversariais "
+                "foram respondidas com a string de abstenção — provável backend "
+                "quebrado ou recuperação vazia (rode: fgl doctor)"
+            )
+
+        distinct = {o.prediction.strip().lower() for o in outcomes}
+        if len(distinct) <= 2 and n > 20:
+            checks.append(
+                f"apenas {len(distinct)} resposta(s) distinta(s) em {n} perguntas — "
+                "o modelo não está de fato respondendo"
+            )
+
+        if self.cfg.condition not in BASELINE_CONDITIONS:
+            empty_ctx = sum(1 for o in outcomes if o.n_facts == 0)
+            if empty_ctx / n > 0.5:
+                checks.append(
+                    f"{empty_ctx}/{n} perguntas recuperaram ZERO fatos — o grafo de "
+                    "memória provavelmente está vazio (extração falhou?)"
+                )
+
+        return {
+            "ok": not checks,
+            "warnings": checks,
+            "abstention_rate": round(abstained / n, 4),
+            "distinct_predictions": len(distinct),
+        }
 
     def _manifest(self) -> dict:
         from fgl import __version__

@@ -44,6 +44,14 @@ class LLMConfig:
     cache_dir: str = ".cache/llm"
     cache_enabled: bool = True
 
+    # --- health guards ----------------------------------------------------
+    #: abort instead of silently turning empty completions into abstentions
+    fail_on_empty: bool = True
+    #: how many live calls before the sustained-empty check kicks in
+    health_check_calls: int = 5
+    #: tolerated fraction of empty completions past that point
+    max_empty_rate: float = 0.2
+
 
 @dataclass
 class EmbeddingConfig:
@@ -97,6 +105,10 @@ class RetrievalConfig:
     incongruent_abstain: bool = True
     recall_ks: tuple[int, ...] = (5, 10)
     max_facts_in_prompt: int = 40
+    #: token budget for the answer itself. 64 is plenty for an extractive
+    #: phrase, but a *reasoning* deployment spends this budget on internal
+    #: reasoning first and then returns an empty string -- give it thousands.
+    answer_max_tokens: int = 64
 
 
 @dataclass

@@ -238,6 +238,117 @@ def info() -> None:
 
 
 @app.command()
+def doctor(
+    condition: str = typer.Option("G1", "--condition", "-C", help="Config to test with."),
+    set_: Optional[list[str]] = OptSet,
+    show_prompt: bool = typer.Option(False, "--show-prompt", help="Print the full prompt."),
+) -> None:
+    """Make ONE real LLM call and one embedding, and show exactly what came back.
+
+    This is the command to reach for when every condition scores the same, or
+    when the answers are all "Not mentioned in the conversation": it separates
+    "the backend is broken" from "the retrieval is bad".
+    """
+    from fgl.llm import LLMError, build_llm
+    from fgl.retrieval import build_embedder
+
+    cfg = _load(condition, set_, dry_run=False)
+    ok = True
+
+    # ---- 1. chat completion ------------------------------------------------
+    cfg.llm.cache_enabled = False  # always hit the real backend
+    cfg.llm.fail_on_empty = False  # we want to *see* the empty, not raise on it
+    console.print(f"[bold]1. chat completion[/] · deployment=[cyan]{cfg.llm.deployment}[/]")
+    prompt = (
+        "Answer with a short phrase, nothing else.\n\n"
+        "CONTEXT: Caroline attended the LGBTQ support group on 7 May 2023.\n"
+        "QUESTION: When did Caroline attend the support group? Short answer:"
+    )
+    if show_prompt:
+        console.print(Panel(prompt, border_style="dim"))
+    try:
+        llm = build_llm(cfg.llm)
+        text = llm.complete(prompt, purpose="doctor", max_tokens=32)
+        u = llm.usage
+        t = Table(show_header=False, box=None, padding=(0, 2))
+        t.add_column(style="bold cyan")
+        t.add_row("resposta (repr)", repr(text)[:300])
+        t.add_row("comprimento", str(len(text or "")))
+        t.add_row("prompt_tokens", str(u.prompt_tokens))
+        t.add_row("completion_tokens", str(u.completion_tokens))
+        console.print(t)
+        if not (text or "").strip():
+            ok = False
+            console.print(
+                Panel(
+                    "A resposta veio [red]VAZIA[/].\n\n"
+                    "É exatamente isso que faz todas as condições empatarem com\n"
+                    "adversarial=1.000: cada pergunta vira uma abstenção.\n\n"
+                    "Verifique, nesta ordem:\n"
+                    "  1. o nome do deployment existe no seu recurso Azure?\n"
+                    "  2. o gateway/proxy corporativo devolve o corpo da resposta?\n"
+                    "  3. o filtro de conteúdo está zerando 'content'?\n"
+                    "  4. sua adaptação de src/fgl/llm/client.py devolve "
+                    "resp.choices[0].message.content?",
+                    title="[red]backend não utilizável",
+                    border_style="red",
+                )
+            )
+        elif u.completion_tokens == 0:
+            console.print(
+                "[yellow]![/] texto veio, mas completion_tokens=0 — o gateway "
+                "provavelmente não repassa o bloco 'usage' (só afeta o relatório de custo)"
+            )
+        else:
+            console.print("[green]✓[/] o backend responde normalmente")
+    except LLMError as exc:
+        ok = False
+        console.print(Panel(str(exc), title="[red]falha na chamada", border_style="red"))
+    except Exception as exc:  # noqa: BLE001
+        ok = False
+        console.print(
+            Panel(f"{type(exc).__name__}: {exc}", title="[red]erro", border_style="red")
+        )
+
+    # ---- 2. JSON mode ------------------------------------------------------
+    console.print("\n[bold]2. JSON mode[/] (a extração de fatos depende disso)")
+    try:
+        raw = llm.complete(
+            '# TASK: doctor\nReturn STRICT JSON: {"ok": true}',
+            purpose="doctor", json_mode=True, max_tokens=32,
+        )
+        console.print(f"  bruto: {raw[:160]!r}")
+        from fgl.llm import parse_json_loose
+
+        parse_json_loose(raw)
+        console.print("[green]✓[/] JSON parseável")
+    except Exception as exc:  # noqa: BLE001
+        ok = False
+        console.print(f"[red]✗[/] {type(exc).__name__}: {exc}")
+        console.print(
+            "[yellow]  sem JSON válido a extração devolve zero fatos, "
+            "o grafo fica vazio e tudo vira abstenção[/]"
+        )
+
+    # ---- 3. embeddings -----------------------------------------------------
+    console.print(f"\n[bold]3. embeddings[/] · provider=[cyan]{cfg.embeddings.provider}[/]")
+    try:
+        emb = build_embedder(cfg.embeddings)
+        v = emb.encode_one("Caroline attended the support group.")
+        console.print(f"[green]✓[/] dim={len(v)}  norma={float((v @ v) ** 0.5):.3f}")
+    except Exception as exc:  # noqa: BLE001
+        ok = False
+        console.print(f"[red]✗[/] {type(exc).__name__}: {exc}")
+
+    console.print()
+    if ok:
+        console.print("[green]tudo certo — pode rodar `fgl run G1 -n 1`[/]")
+    else:
+        console.print("[red]corrija os itens acima antes de rodar o estudo[/]")
+    raise typer.Exit(0 if ok else 1)
+
+
+@app.command()
 def setup(
     force: bool = typer.Option(False, "--force", help="Re-clone even if present."),
 ) -> None:
@@ -492,6 +603,7 @@ def _run_condition(condition, set_, conversation, limit_conversations,
     console.print()
     console.print(markdown_table({cfg.condition: metrics}))
     console.print()
+    _print_sanity(metrics)
     _print_cost(runner)
     console.print(f"results → [cyan]{runner.results_dir() / 'metrics.json'}[/]")
     return metrics
@@ -597,6 +709,22 @@ def report(
     console.print(build_report(results))
     written = write_report(results, out or (rd / "report.md"))
     console.print(f"\nreport → [cyan]{written}[/]")
+
+
+def _print_sanity(metrics: dict) -> None:
+    """Loudly refuse to let a degenerate run pass for a result."""
+    sanity = metrics.get("sanity") or {}
+    if sanity.get("ok", True):
+        return
+    console.print(
+        Panel(
+            "\n".join(f"• {w}" for w in sanity.get("warnings", []))
+            + "\n\n[bold]Estes números não devem ser interpretados.[/]\n"
+            "Diagnostique com [cyan]fgl doctor[/].",
+            title="[red]corrida suspeita",
+            border_style="red",
+        )
+    )
 
 
 def _print_cost(runner) -> None:

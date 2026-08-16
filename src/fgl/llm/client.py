@@ -29,11 +29,11 @@ from pathlib import Path
 from typing import Any, Callable, Optional
 
 from fgl.config import LLMConfig
-import base64
-from openai import AzureOpenAI
-from configparser import ConfigParser, ExtendedInterpolation
-import httpx
-import numpy as np
+
+# NOTE: openai / httpx are imported lazily inside AzureLLM on purpose.
+# Importing them at module scope makes `import fgl.llm` -- and therefore the
+# whole test suite and `--dry-run` -- hard-require the Azure stack on machines
+# that only want the offline backends.
 
 # --------------------------------------------------------------------------- #
 # Usage accounting                                                             #
@@ -48,6 +48,11 @@ class Usage:
     cached_calls: int = 0
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    #: completions that came back empty -- never a legitimate answer, always a
+    #: broken backend (bad deployment, content filter, gateway swallowing the body)
+    empty_responses: int = 0
+    #: JSON completions that failed to parse and fell back to a default
+    json_failures: int = 0
     by_purpose: dict = field(default_factory=dict)
 
     def add(
@@ -56,24 +61,67 @@ class Usage:
         prompt_tokens: int,
         completion_tokens: int,
         cached: bool = False,
+        empty: bool = False,
     ) -> None:
         self.calls += 1
         if cached:
             self.cached_calls += 1
+        if empty:
+            self.empty_responses += 1
         self.prompt_tokens += prompt_tokens
         self.completion_tokens += completion_tokens
         slot = self.by_purpose.setdefault(
             purpose,
-            {"calls": 0, "cached_calls": 0, "prompt_tokens": 0, "completion_tokens": 0},
+            {
+                "calls": 0, "cached_calls": 0, "prompt_tokens": 0,
+                "completion_tokens": 0, "empty_responses": 0, "json_failures": 0,
+            },
         )
         slot["calls"] += 1
         slot["cached_calls"] += int(cached)
+        slot["empty_responses"] += int(empty)
         slot["prompt_tokens"] += prompt_tokens
         slot["completion_tokens"] += completion_tokens
+
+    def add_json_failure(self, purpose: str) -> None:
+        self.json_failures += 1
+        slot = self.by_purpose.setdefault(
+            purpose,
+            {
+                "calls": 0, "cached_calls": 0, "prompt_tokens": 0,
+                "completion_tokens": 0, "empty_responses": 0, "json_failures": 0,
+            },
+        )
+        slot["json_failures"] = slot.get("json_failures", 0) + 1
 
     @property
     def total_tokens(self) -> int:
         return self.prompt_tokens + self.completion_tokens
+
+    @property
+    def healthy(self) -> bool:
+        """False when the backend is systematically returning nothing."""
+        live = self.calls - self.cached_calls
+        return not live or (self.empty_responses / live) < 0.5
+
+    def warnings(self) -> list[str]:
+        out = []
+        if self.empty_responses:
+            out.append(
+                f"{self.empty_responses}/{self.calls} respostas do LLM vieram VAZIAS"
+            )
+        if self.json_failures:
+            out.append(
+                f"{self.json_failures} respostas JSON não puderam ser parseadas "
+                "(usou-se o valor padrão)"
+            )
+        live = self.calls - self.cached_calls
+        if live and self.completion_tokens == 0:
+            out.append(
+                "o backend não gerou nenhum token de completion — "
+                "os resultados não têm significado"
+            )
+        return out
 
     def to_dict(self) -> dict:
         return {
@@ -82,12 +130,19 @@ class Usage:
             "prompt_tokens": self.prompt_tokens,
             "completion_tokens": self.completion_tokens,
             "total_tokens": self.total_tokens,
+            "empty_responses": self.empty_responses,
+            "json_failures": self.json_failures,
+            "healthy": self.healthy,
             "by_purpose": self.by_purpose,
         }
 
 
 class LLMError(RuntimeError):
     pass
+
+
+class LLMUnhealthy(LLMError):
+    """The backend answers, but with nothing usable. Fail fast, do not pretend."""
 
 
 # --------------------------------------------------------------------------- #
@@ -104,6 +159,8 @@ class LLMClient:
         self._cache_dir = Path(cfg.cache_dir)
         if cfg.cache_enabled:
             self._cache_dir.mkdir(parents=True, exist_ok=True)
+        #: last raw response, kept for the error message when things go wrong
+        self.last_raw: dict = {}
 
     # -- public ------------------------------------------------------------
     def complete(
@@ -132,18 +189,96 @@ class LLMClient:
         text, ptok, ctok = self._call(
             prompt, system, json_mode, max_tokens, temperature
         )
-        self.usage.add(purpose, ptok, ctok, cached=False)
-        self._cache_write(
-            key,
-            {
-                "text": text,
-                "prompt_tokens": ptok,
-                "completion_tokens": ctok,
-                "purpose": purpose,
-                "model": self.cfg.deployment,
-            },
-        )
+        empty = not (text or "").strip()
+        self.usage.add(purpose, ptok, ctok, cached=False, empty=empty)
+        self.last_raw = {
+            "purpose": purpose,
+            "text": text,
+            "prompt_tokens": ptok,
+            "completion_tokens": ctok,
+            "prompt_head": prompt[:300],
+        }
+        if empty:
+            self._on_empty(purpose, prompt, ptok, ctok, max_tokens)
+        else:
+            self._cache_write(
+                key,
+                {
+                    "text": text,
+                    "prompt_tokens": ptok,
+                    "completion_tokens": ctok,
+                    "purpose": purpose,
+                    "model": self.cfg.deployment,
+                },
+            )
         return text
+
+    # -- health ------------------------------------------------------------
+    def _on_empty(
+        self, purpose: str, prompt: str, ptok: int, ctok: int, max_tokens: int
+    ) -> None:
+        """An empty completion is never a valid answer -- decide whether to abort.
+
+        Silently treating it as an abstention is what turns a broken backend into
+        a full, plausible-looking results table where every condition scores the
+        same. We refuse to do that: the very first empty response aborts the run,
+        and so does a sustained empty rate.
+        """
+        if not self.cfg.fail_on_empty:
+            return
+        live = self.usage.calls - self.usage.cached_calls
+        first = live <= 1
+        sustained = (
+            live >= self.cfg.health_check_calls
+            and self.usage.empty_responses / live > self.cfg.max_empty_rate
+        )
+        if not (first or sustained):
+            return
+        finish = getattr(self, "last_finish_reason", None)
+        reasoning = getattr(self, "last_reasoning_tokens", 0)
+
+        if finish == "length" or (reasoning and reasoning >= ctok > 0):
+            cause = (
+                f"\n[CAUSA MAIS PROVÁVEL] finish_reason={finish!r}"
+                + (f", reasoning_tokens={reasoning}" if reasoning else "")
+                + f", orçamento pedido={max_tokens}.\n"
+                "Este é o comportamento clássico de um modelo de *reasoning* "
+                "(o1/o3/o4-mini, família gpt-5): `max_completion_tokens` é um\n"
+                "orçamento COMPARTILHADO entre os tokens de raciocínio internos e a "
+                "resposta visível. Se ele acaba durante o raciocínio,\n"
+                "a API devolve content=\"\" com finish_reason=\"length\".\n"
+                f"\nCorreção: aumente o orçamento. Para responder perguntas o padrão "
+                f"é {max_tokens} tokens, curto demais para reasoning:\n"
+                "    fgl run G1 --set retrieval.answer_max_tokens=3000 "
+                "--set llm.max_tokens=8000\n"
+                "Ou aponte para um deployment sem reasoning (gpt-4o-mini) em "
+                "FGL_LLM_DEPLOYMENT."
+            )
+        else:
+            cause = (
+                "\nCausas comuns:\n"
+                "  • orçamento de tokens curto demais para um modelo de reasoning\n"
+                "    (finish_reason='length' → --set retrieval.answer_max_tokens=3000)\n"
+                "  • nome de deployment errado em llm.deployment / FGL_LLM_DEPLOYMENT\n"
+                "  • filtro de conteúdo do Azure devolvendo content=None\n"
+                "  • gateway/proxy corporativo engolindo o corpo da resposta"
+            )
+
+        raise LLMUnhealthy(
+            f"O backend devolveu uma resposta VAZIA "
+            f"({self.usage.empty_responses}/{live} chamadas até agora), "
+            f"propósito={purpose!r}, deployment={self.cfg.deployment!r}, "
+            f"prompt_tokens={ptok}, completion_tokens={ctok}, "
+            f"finish_reason={finish!r}.\n"
+            "\nUma resposta vazia nunca é uma resposta válida. Continuar produziria "
+            "uma tabela de resultados sem significado: toda pergunta viraria\n"
+            "'Not mentioned in the conversation', o que dá adversarial=1.000 e "
+            "~0.01 no resto, igual em todas as condições.\n"
+            + cause
+            + "\n\nDiagnostique com:  fgl doctor\n"
+            "Para tolerar respostas vazias mesmo assim (não recomendado): "
+            "--set llm.fail_on_empty=false"
+        )
 
     def complete_json(
         self,
@@ -154,13 +289,19 @@ class LLMClient:
         max_tokens: int | None = None,
         default: Any = None,
     ) -> Any:
-        """:meth:`complete` in JSON mode, tolerant of fenced/notated output."""
+        """:meth:`complete` in JSON mode, tolerant of fenced/notated output.
+
+        A parse failure that falls back to ``default`` is **counted**, so a
+        backend that never produces valid JSON shows up in ``metrics.json``
+        instead of quietly yielding an empty knowledge graph.
+        """
         raw = self.complete(
             prompt, system=system, purpose=purpose, json_mode=True, max_tokens=max_tokens
         )
         try:
             return parse_json_loose(raw)
         except ValueError:
+            self.usage.add_json_failure(purpose)
             if default is not None:
                 return default
             raise
@@ -256,14 +397,21 @@ class AzureLLM(LLMClient):
             raise LLMError(f"missing environment variables: {', '.join(missing)}")
 
 
-        http_client = httpx.Client(verify='petrobras-ca-root.pem')
+        import httpx
+
+        ca = _resolve_ca_bundle(os.environ.get("FGL_CA_BUNDLE", "petrobras-ca-root.pem"))
+        http_client = httpx.Client(verify=ca) if ca else httpx.Client()
         self._client = AzureOpenAI(
             base_url=endpoint,
             api_key=api_key,
             api_version=api_version,
-            http_client=http_client
-
+            http_client=http_client,
         )
+        #: diagnostics for the last response -- read by `fgl doctor` and by the
+        #: empty-completion error, because `finish_reason` is what distinguishes
+        #: "model refused" from "budget consumed by reasoning tokens".
+        self.last_finish_reason: str | None = None
+        self.last_reasoning_tokens: int = 0
 
     def _call(self, prompt, system, json_mode, max_tokens, temperature):
         messages = []
@@ -286,8 +434,12 @@ class AzureLLM(LLMClient):
         for attempt in range(self.cfg.max_retries):
             try:
                 resp = self._client.chat.completions.create(**kwargs)
-                text = (resp.choices[0].message.content or "").strip()
+                choice = resp.choices[0]
+                text = (choice.message.content or "").strip()
                 usage = getattr(resp, "usage", None)
+                self.last_finish_reason = getattr(choice, "finish_reason", None)
+                details = getattr(usage, "completion_tokens_details", None)
+                self.last_reasoning_tokens = getattr(details, "reasoning_tokens", 0) or 0
                 return (
                     text,
                     getattr(usage, "prompt_tokens", 0) or 0,
@@ -303,6 +455,25 @@ class AzureLLM(LLMClient):
                 retry_after = _retry_after_seconds(exc)
                 time.sleep(max(delay, retry_after))
         raise LLMError(f"Azure OpenAI call failed: {last_exc}") from last_exc
+
+
+def _resolve_ca_bundle(name: str) -> str | None:
+    """Find a CA bundle without depending on the current working directory.
+
+    A bare ``verify='petrobras-ca-root.pem'`` only works when the process happens
+    to be started from the directory holding the file. Look next to this module,
+    at the project root, and finally treat it as a literal path.
+    """
+    from fgl.paths import project_root
+
+    p = Path(name)
+    if p.is_absolute():
+        return str(p) if p.exists() else None
+    for base in (Path(__file__).resolve().parent, project_root(), Path.cwd()):
+        candidate = base / name
+        if candidate.exists():
+            return str(candidate)
+    return None
 
 
 def _is_retryable(exc: Exception) -> bool:

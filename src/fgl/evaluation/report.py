@@ -182,6 +182,20 @@ def comparison_table(results: Mapping[str, dict]) -> str:
 # --------------------------------------------------------------------------- #
 
 
+def sanity_banner(results: Mapping[str, dict]) -> str:
+    """A run whose answers are all identical is not a result."""
+    bad = {c: (r.get("sanity") or {}) for c, r in results.items()}
+    bad = {c: s for c, s in bad.items() if s and not s.get("ok", True)}
+    if not bad:
+        return ""
+    lines = ["", "> ## ⚠️ Corrida suspeita — não interprete estes números", ">"]
+    for cond, s in bad.items():
+        lines.append(f"> **{cond}**")
+        lines += [f">   - {w}" for w in s.get("warnings", [])]
+    lines += [">", "> Diagnostique com `fgl doctor`.", ""]
+    return "\n".join(lines)
+
+
 def build_report(results: Mapping[str, dict]) -> str:
     stemmers = {r.get("stemmer") for r in results.values()}
     warn = (
@@ -198,6 +212,7 @@ def build_report(results: Mapping[str, dict]) -> str:
             "reportada para **todas** as categorias, inclusive adversarial. "
             "Nada foi filtrado nem subamostrado.",
             warn,
+            sanity_banner(results),
             "## F1 por categoria",
             "",
             markdown_table(results),

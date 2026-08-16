@@ -48,7 +48,7 @@ class RagTurnsBaseline(Baseline):
             system="You answer questions about a conversation with a short "
             "extractive phrase and nothing else.",
             purpose="qa/answer",
-            max_tokens=64,
+            max_tokens=self.cfg.retrieval.answer_max_tokens,
         )
         return BaselineAnswer(
             prediction=clean_answer(out),

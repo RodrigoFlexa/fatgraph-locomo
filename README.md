@@ -122,6 +122,28 @@ numpy, PyYAML, typer e rich, ~20 MB. As 6 condições em modo offline rodam em
 | exit 4, dataset ausente | LoCoMo não baixado | `fgl setup` |
 | `No module named venv` | Ubuntu sem o pacote | `sudo apt install python3-venv` |
 | tudo dá F1 = 0 | você está em `--dry-run` (LLM falso) | tire o `-d` |
+| **todas as condições com o MESMO F1 e adversarial = 1.000** | o backend devolveu respostas vazias; toda pergunta virou abstenção | `fgl doctor` |
+| `fgl doctor` mostra resposta vazia com `finish_reason='length'` | deployment de *reasoning*: o orçamento de tokens acabou no raciocínio interno | `--set retrieval.answer_max_tokens=3000 --set llm.max_tokens=8000` |
+
+### Se o LLM devolver respostas vazias
+
+Um deployment de reasoning (o1/o3/o4-mini, família gpt-5) trata
+`max_completion_tokens` como um orçamento **compartilhado** entre o raciocínio
+interno e a resposta visível. O padrão de 64 tokens para responder uma pergunta
+é consumido inteiro pelo raciocínio, e a API devolve `content=""`.
+
+O framework agora **aborta na primeira resposta vazia** em vez de transformá-la
+em abstenção — porque isso produziria uma tabela completa e sem significado, com
+adversarial exatamente 1.000 e todas as condições idênticas.
+
+```bash
+fgl doctor                                    # mostra a resposta crua e o finish_reason
+fgl run G1 -n 1 --set retrieval.answer_max_tokens=3000 --set llm.max_tokens=8000
+```
+
+Cada `metrics.json` traz um bloco `sanity` com esses diagnósticos, e o
+`fgl report` estampa um aviso no topo quando a corrida é suspeita.
+
 
 ## Configuração
 

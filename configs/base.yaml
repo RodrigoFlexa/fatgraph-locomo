@@ -61,6 +61,9 @@ retrieval:
   incongruent_abstain: true
   recall_ks: [5, 10]
   max_facts_in_prompt: 40
+  # Modelos de reasoning (o1/o3/o4-mini, gpt-5) gastam este orçamento com
+  # raciocínio interno e devolvem vazio se ele acabar. Nesses casos: 3000+.
+  answer_max_tokens: 64
 
 baselines:
   rag_top_k: 10

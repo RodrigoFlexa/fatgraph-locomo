@@ -229,7 +229,8 @@ class Answerer:
             question=question.prompt_question(),
         )
         out = self.llm.complete(
-            prompt, system=SYSTEM_ANSWERER, purpose="qa/answer", max_tokens=64
+            prompt, system=SYSTEM_ANSWERER, purpose="qa/answer",
+            max_tokens=self.cfg.retrieval.answer_max_tokens,
         )
         return clean_answer(out)
 
