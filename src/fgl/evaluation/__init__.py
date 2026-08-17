@@ -9,6 +9,7 @@ from fgl.evaluation.report import (
     comparison_table,
     coverage_table,
     graph_identity_table,
+    judge_table,
     cost_table,
     graph_table,
     load_results,

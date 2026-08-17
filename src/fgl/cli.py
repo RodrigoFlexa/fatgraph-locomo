@@ -607,6 +607,117 @@ def qa(
 
 
 @app.command()
+def judge(
+    condition: Optional[list[str]] = typer.Option(
+        None, "--condition", "-C", help="Restrict to these conditions (repeatable)."
+    ),
+    set_: Optional[list[str]] = OptSet,
+    dry_run: bool = OptDry,
+    limit: int = typer.Option(0, "--limit", "-n", help="Judge only the first N rows."),
+    show: int = typer.Option(
+        12, "--show", help="How many judge/F1 disagreements to print for inspection."
+    ),
+) -> None:
+    """Re-score saved predictions with an LLM judge (does not re-answer).
+
+    Token-overlap F1 punishes paraphrase, and the ceiling analysis showed why
+    that matters: on questions whose retrieval already put every evidence turn
+    in the prompt, F1 is only 0.515. This separates "the answerer is wrong"
+    from "the metric says wrong".
+
+    Runs over `results/<condition>/predictions.jsonl`, so no question is
+    answered again and every condition already on disk can be re-scored.
+    """
+    from fgl.evaluation import load_results
+    from fgl.evaluation.judge import (
+        Judge, disagreements, judge_metrics, load_predictions, write_judged,
+    )
+    from fgl.pipeline import Runner
+
+    cfg = _load(condition[0] if condition else "G1", set_, dry_run)
+    runner = Runner(cfg)
+    results_dir = runner.paths.resolve(cfg.paths.results_dir)
+    wanted = condition or sorted(
+        p.name for p in results_dir.iterdir() if (p / "predictions.jsonl").exists()
+    )
+
+    judge_obj = Judge(runner.llm, runner.prompts)
+    for name in wanted:
+        try:
+            cond_cfg = _load(name, set_, dry_run)
+        except typer.Exit:
+            cond_cfg = cfg
+        path = results_dir / cond_cfg.condition / "predictions.jsonl"
+        if not path.exists():
+            err.print(f"[yellow]sem predições para {cond_cfg.condition}, pulando")
+            continue
+
+        rows = load_predictions(path)
+        if limit:
+            rows = rows[:limit]
+        console.print(f"[bold]julgando[/] {cond_cfg.condition} — {len(rows)} respostas")
+        with _progress() as bar:
+            task = bar.add_task("judge", total=len(rows))
+            judged = judge_obj.judge_all(
+                rows, progress=lambda i, n: bar.update(task, completed=i)
+            )
+        write_judged(path, judged)
+
+        block = judge_metrics(judged)
+        mpath = path.with_name("metrics.json")
+        if mpath.exists():
+            metrics = json.loads(mpath.read_text(encoding="utf-8"))
+            metrics.setdefault("overall", {}).update(
+                {k: v for k, v in block.items() if k != "judge_per_category"}
+            )
+            for cat, entry in block.get("judge_per_category", {}).items():
+                metrics.setdefault("per_category", {}).setdefault(cat, {})["judge"] = (
+                    entry["judge"]
+                )
+            mpath.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+        console.print(
+            f"  F1 {block.get('judge_micro', 0):.4f} (juiz) vs "
+            f"{np_mean_f1(judged):.4f} (tokens)   "
+            f"concordância {block.get('judge_f1_agreement', 0):.1%}   "
+            f"juiz aceita/F1 rejeita: {block.get('judge_yes_f1_low', 0)}   "
+            f"juiz rejeita/F1 aceita: {block.get('judge_no_f1_high', 0)}"
+        )
+        if show:
+            _print_disagreements(disagreements(judged, limit=show))
+
+    console.print(
+        "\n[dim]Leia as discordâncias acima antes de citar o número do juiz. "
+        "Se as da coluna 'juiz rejeita' parecerem corretas, ele está severo "
+        "demais e o prompt precisa de ajuste.[/]"
+    )
+
+
+def np_mean_f1(judged) -> float:
+    import numpy as np
+
+    return float(np.mean([j.f1 for j in judged])) if judged else 0.0
+
+
+def _print_disagreements(rows: list[dict]) -> None:
+    if not rows:
+        console.print("  [dim](sem discordâncias)")
+        return
+    t = Table(show_lines=False)
+    for col in ("cat", "F1", "juiz", "gold", "predição"):
+        t.add_column(col, overflow="fold")
+    for r in rows:
+        verdict = "[green]aceita[/]" if r["judge"] else "[red]rejeita[/]"
+        t.add_row(
+            str(r["category"])[:10], f"{r['f1']:.2f}", verdict,
+            r["gold"][:60], r["prediction"][:60],
+        )
+    console.print(t)
+
+
+@app.command()
 def run(
     condition: str = typer.Argument(..., help="Condition name, id or prefix."),
     set_: Optional[list[str]] = OptSet,
@@ -675,7 +786,9 @@ def run_all(
     # G7/G8 junto de G4: reusam os grafos da G1 e são as duas condições de
     # decisão (sigma sem passeio; e o teste de ordem). G9 constrói os seus, por
     # reescrever sigma. B1 por último: de longe a mais cara.
-    order = ["G1", "G4", "G7", "G8", "G5", "G6", "B3", "B2", "G2", "G3", "G9", "B1"]
+    # G10 (a proposta) e B3 (o alvo) primeiro: é a comparação que decide.
+    # B1 por último, de longe a mais cara.
+    order = ["G10", "B3", "G9", "G1", "G4", "G7", "G8", "G5", "G6", "B2", "G2", "G3", "B1"]
     wanted = condition or order
     cfgs = []
     for name in wanted:

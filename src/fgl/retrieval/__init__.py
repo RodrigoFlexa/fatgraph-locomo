@@ -15,6 +15,7 @@ from fgl.retrieval.faces import (
     JOIN_SOURCES,
     SOURCE_COVERAGE,
     SOURCE_FACE,
+    SOURCE_FACE_UNIT,
     SOURCE_GEODESIC,
     SOURCE_SIGMA,
     Answerer,
@@ -31,5 +32,6 @@ __all__ = [
     "SentenceTransformerEmbedder", "VectorIndex", "build_embedder", "build_index",
     "cosine", "Answerer", "FaceRetriever", "RetrievalResult", "RetrievedFact",
     "clean_answer", "render_context", "SOURCE_FACE", "SOURCE_SIGMA",
-    "SOURCE_COVERAGE", "SOURCE_GEODESIC", "JOIN_SOURCES", "QuestionLinker",
+    "SOURCE_COVERAGE", "SOURCE_GEODESIC", "SOURCE_FACE_UNIT",
+    "JOIN_SOURCES", "QuestionLinker",
 ]

@@ -187,6 +187,28 @@ class RetrievalConfig:
     #: 0 = no cap, matching sigma_expand_max_anchors and max_facts_per_session.
     sigma_max_orbit_scan: int = 64
 
+    # --- face as the unit of retrieval (G10) -------------------------------
+    # One line of difference from the k-NN baseline: B3 returns the top-k
+    # facts, this returns the *faces containing* them, whole. What a face adds
+    # is the memory that does not match the question but belongs to the same
+    # narrative unit as one that does -- corroboration, which k independent
+    # matches cannot produce.
+    #
+    # A face is a SET here, not a path. Three measurements forced that: walking
+    # phi lost 0.21 of multi-hop recall; picking faces by entity coverage was
+    # null (coverage saturated at 0.955); and permuting the prompt was null in
+    # multi-hop, so sequence never carried the signal. Membership did.
+    #
+    # PRECONDITION: curation.maximize_faces. Under the clock-ordered rotation
+    # 19 faces hold 75% of the memory and the median half-edge sits in a face
+    # of 263 -- there is no "unit" to retrieve. After the genus search the
+    # distribution is unimodal with median 36. The unit only exists there.
+    #
+    # Ranking is max member similarity, on purpose: a face containing a
+    # relevant fact IS the coverage signal, with no linker, threshold,
+    # aggregation mode or weight to tune.
+    face_units: bool = False
+
     # --- face-first retrieval by entity coverage (multi-hop) ---------------
     # The anchor ranking asks "which fact looks like the question?", which is
     # what every RAG does and what makes single-hop easy. A multi-hop question
@@ -441,6 +463,21 @@ class Config:
                 raise ConfigError(
                     "retrieval.sigma_max_orbit_scan must be >= 0 (0 = no cap)"
                 )
+        if self.retrieval.face_units:
+            for flag in ("sigma_expand", "face_coverage"):
+                if getattr(self.retrieval, flag):
+                    raise ConfigError(
+                        f"retrieval.face_units retrieves whole faces; "
+                        f"retrieval.{flag} is a different retrieval policy and "
+                        "combining them would measure neither"
+                    )
+            if not self.curation.maximize_faces:
+                raise ConfigError(
+                    "retrieval.face_units requires curation.maximize_faces: "
+                    "under the clock-ordered rotation a handful of faces hold "
+                    "most of the memory (median half-edge in a face of 263), "
+                    "so there is no unit to retrieve"
+                )
         if self.retrieval.face_coverage:
             if self.retrieval.coverage_sim_aggregate not in ("max", "top2", "mean"):
                 raise ConfigError(
@@ -556,6 +593,14 @@ def resolve_condition(condition: str | Path, root: Path | None = None) -> Path:
     exact = [e for e in entries if e[0].lower() == key or e[1].lower().replace("-", "_") == key]
     if len(exact) == 1:
         return exact[0][2]
+
+    # The leading id segment, matched whole: `G1` names G1_fatgraph_min and not
+    # G10_face_units. Without this a plain prefix search makes every short id
+    # ambiguous the moment a tenth condition exists -- which is a property of
+    # the numbering, not of the user's request.
+    ident = [e for e in entries if e[0].split("_")[0].lower() == key]
+    if len(ident) == 1:
+        return ident[0][2]
 
     prefix = [e for e in entries if e[0].lower().startswith(key) or
               e[1].lower().replace("-", "_").startswith(key)]

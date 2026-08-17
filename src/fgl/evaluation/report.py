@@ -25,6 +25,7 @@ CONDITION_ORDER = [
     "G7-rag-sigma",
     "G8-shuffled",
     "G9-genus",
+    "G10-face-units",
 ]
 #: The comparisons the study is built around.
 KEY_PAIRS = [
@@ -39,6 +40,10 @@ KEY_PAIRS = [
     ("G4-fatgraph-sigma", "G8-shuffled", "A ORDEM IMPORTA? (mesmo conteúdo, permutado)"),
     ("B3-rag-facts", "G7-rag-sigma", "sigma ACRESCENTA ao k-NN puro?"),
     ("G1-fatgraph-min", "G9-genus", "sigma escolhida por gênero mínimo vs pelo relógio"),
+    # a proposta: a face como UNIDADE, contra o alvo e contra a mesma
+    # superfície percorrida como caminho
+    ("B3-rag-facts", "G10-face-units", "FACE COMO UNIDADE vs k-NN puro (o alvo)"),
+    ("G9-genus", "G10-face-units", "face como conjunto vs face como caminho"),
 ]
 
 
@@ -339,6 +344,44 @@ def graph_identity_table(results: Mapping[str, dict]) -> str:
     )
 
 
+def judge_table(results: Mapping[str, dict]) -> str:
+    """Token-F1 next to the LLM judge, plus how far apart they are.
+
+    Never replaces the F1 column.  The two measure different things -- one asks
+    whether the words overlap, the other whether the claim matches -- and the
+    gap between them is itself a finding, so both are quoted or neither is.
+    """
+    rows = []
+    for cond in CONDITION_ORDER:
+        r = results.get(cond)
+        if not r or "judge_micro" not in (r.get("overall") or {}):
+            continue
+        o = r["overall"]
+        rows.append([
+            cond,
+            f"{o.get('f1_micro', 0):.4f}",
+            f"{o.get('judge_micro', 0):.4f}",
+            f"{o.get('f1_substantive', 0):.4f}",
+            f"{o.get('judge_substantive', 0):.4f}",
+            f"{o.get('judge_f1_agreement', 0):.1%}",
+            str(o.get("judge_yes_f1_low", 0)),
+            str(o.get("judge_no_f1_high", 0)),
+        ])
+    if not rows:
+        return "_(rode `fgl judge` para pontuar as predições com o juiz LLM)_"
+    note = (
+        "\n`juiz aceita / F1 rejeita` é paráfrase que a métrica de tokens perdia. "
+        "`juiz rejeita / F1 aceita` é o erro oposto e tem de ser pequeno — se não "
+        "for, o juiz está severo demais e o número não deve ser citado antes de "
+        "ler as discordâncias à mão.\n\n"
+    )
+    return note + _table(
+        ["condição", "F1", "juiz", "F1 subst.", "juiz subst.",
+         "concord.", "juiz aceita / F1 rejeita", "juiz rejeita / F1 aceita"],
+        rows,
+    )
+
+
 def sanity_banner(results: Mapping[str, dict]) -> str:
     """A run whose answers are all identical is not a result."""
     bad = {c: (r.get("sanity") or {}) for c, r in results.items()}
@@ -373,6 +416,10 @@ def build_report(results: Mapping[str, dict]) -> str:
             "## F1 por categoria",
             "",
             markdown_table(results),
+            "",
+            "## Métrica: sobreposição de tokens vs juiz LLM",
+            "",
+            judge_table(results),
             "",
             "## Comparações-chave",
             "",

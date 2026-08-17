@@ -195,6 +195,14 @@ class QAOutcome:
     #: evidence turns reached only via coverage/geodesic
     coverage_only_turn_ids: list[str] = field(default_factory=list)
 
+    # --- face-as-a-unit audit (G10) ---------------------------------------
+    face_units: bool = False
+    #: whole faces that fitted in the budget; 1 means the memory did not split
+    face_units_used: int = 0
+    #: facts a k-NN over the same facts would not have returned -- the method's
+    #: claim in one number
+    corroborating_facts: int = 0
+
     def to_dict(self) -> dict:
         return {
             "question": self.question,
@@ -227,6 +235,9 @@ class QAOutcome:
             "geodesic_len": self.geodesic_len,
             "coverage_tokens": self.coverage_tokens,
             "coverage_only_turn_ids": self.coverage_only_turn_ids,
+            "face_units": self.face_units,
+            "face_units_used": self.face_units_used,
+            "corroborating_facts": self.corroborating_facts,
         }
 
 
@@ -265,6 +276,7 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
                 entry[key] = round(float(np.mean(vals)), 4)
         entry.update(_sigma_stats(items))
         entry.update(_coverage_stats(items))
+        entry.update(_face_unit_stats(items))
         per_category[CATEGORY_NAMES.get(cat, str(cat))] = entry
 
     # Category 5 is scored 1.0 exactly when the model abstained, so its "F1" is
@@ -313,6 +325,7 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
     }
     overall.update(_sigma_stats(outcomes))
     overall.update(_coverage_stats(outcomes))
+    overall.update(_face_unit_stats(outcomes))
     return {
         "overall": overall,
         "per_category": per_category,
@@ -368,6 +381,32 @@ def _sigma_stats(outcomes: Sequence[QAOutcome]) -> dict:
                 / max(1, np.sum([o.sigma_scanned for o in on]))
             ),
             4,
+        ),
+    }
+
+
+def _face_unit_stats(outcomes: Sequence[QAOutcome]) -> dict:
+    """Audit block for face-as-a-unit retrieval.  ``{}`` when it never ran."""
+    on = [o for o in outcomes if o.face_units]
+    if not on:
+        return {}
+    return {
+        "face_units": True,
+        #: mean whole faces per prompt. Near 1 means the memory never split
+        #: into units and the method degenerated into "one big face" -- the
+        #: check G5's saturated coverage needed and did not have.
+        "face_units_mean": round(float(np.mean([o.face_units_used for o in on])), 2),
+        "face_units_single_rate": round(
+            float(np.mean([o.face_units_used <= 1 for o in on])), 4
+        ),
+        #: facts a k-NN over the same facts would not have returned. If this is
+        #: ~0 the faces contribute nothing and G10 is B3 with extra steps,
+        #: whatever the F1 happens to say.
+        "corroborating_facts_mean": round(
+            float(np.mean([o.corroborating_facts for o in on])), 2
+        ),
+        "corroboration_rate": round(
+            float(np.mean([o.corroborating_facts / max(o.n_facts, 1) for o in on])), 4
         ),
     }
 

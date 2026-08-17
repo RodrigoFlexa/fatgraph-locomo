@@ -50,6 +50,7 @@ FATGRAPH_CONDITIONS = (
     "G7-rag-sigma",
     "G8-shuffled",
     "G9-genus",
+    "G10-face-units",
 )
 BASELINE_CONDITIONS = ("B1-full-context", "B2-rag-turns", "B3-rag-facts")
 
@@ -287,6 +288,9 @@ class Runner:
                     geodesic_len=result.geodesic_len,
                     coverage_tokens=result.coverage_tokens,
                     coverage_only_turn_ids=result.coverage_turn_ids,
+                    face_units=result.face_units,
+                    face_units_used=result.face_units_used,
+                    corroborating_facts=result.corroborating_facts,
                 )
             )
         qa_usage = _usage_delta(_add(usage_before, ingest_usage), self.llm.usage.to_dict())

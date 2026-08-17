@@ -54,6 +54,7 @@ SOURCE_FACE = "face"  # phi-orbit walk from an anchor (the original path)
 SOURCE_SIGMA = "sigma"  # sigma-orbit neighbour of an anchor (the multi-hop join)
 SOURCE_COVERAGE = "coverage"  # face selected for covering the question's entities
 SOURCE_GEODESIC = "geodesic"  # shortest path between two of those entities
+SOURCE_FACE_UNIT = "face_unit"  # whole face containing a top-ranked fact (G10)
 
 #: sources that only exist because of a multi-hop mechanism; used by the
 #: counterfactual recalls and by the truncation guard.
@@ -129,6 +130,22 @@ class RetrievalResult:
     #: tokens spent on sigma facts (subset of ``tokens_used``)
     sigma_tokens: int = 0
 
+    # --- face-as-a-unit telemetry (G10) -------------------------------------
+    face_units: bool = False
+    #: how many whole faces fitted in the budget. 1 means the method degenerated
+    #: into "one big face", i.e. the genus search did not separate the memory
+    #: and the unit is not a unit -- the check that G5's saturated coverage
+    #: needed and did not have.
+    face_units_used: int = 0
+    #: best-member similarity of each retrieved face, in retrieval order
+    face_unit_scores: list[float] = field(default_factory=list)
+    #: Facts in the prompt that a k-NN over the same facts would NOT have
+    #: returned: they do not resemble the question, they merely belong to the
+    #: same narrative unit as something that does. This is the method's claim
+    #: reduced to one number -- if it is ~0 the faces are adding nothing and
+    #: G10 is B3 with extra steps, whatever the F1 says.
+    corroborating_facts: int = 0
+
     @property
     def turn_ids(self) -> list[str]:
         out: list[str] = []
@@ -160,6 +177,10 @@ class RetrievalResult:
     @property
     def n_geodesic_facts(self) -> int:
         return sum(1 for f in self.facts if f.source == SOURCE_GEODESIC)
+
+    @property
+    def n_face_unit_facts(self) -> int:
+        return sum(1 for f in self.facts if f.source == SOURCE_FACE_UNIT)
 
     def turn_ids_excluding(self, *sources: str) -> list[str]:
         """Turns the context would have had without those retrieval sources."""
@@ -383,7 +404,10 @@ class FaceRetriever:
             all_anchor_ranking=scored,
             sigma_expand=r.sigma_expand,
             face_coverage=r.face_coverage,
+            face_units=r.face_units,
         )
+        if r.face_units:
+            return self._retrieve_face_units(result, anchors, qvec)
         if not anchors and not r.face_coverage:
             return result
 
@@ -455,6 +479,108 @@ class FaceRetriever:
 
         result.tokens_used = used
         self._truncate(result, r.max_facts_in_prompt)
+        return result
+
+    # ------------------------------------------------------ face-as-a-unit ---
+    def _retrieve_face_units(
+        self,
+        result: RetrievalResult,
+        anchors: Sequence[tuple[str, str]],
+        qvec: np.ndarray,
+    ) -> RetrievalResult:
+        """Retrieve the *faces containing* the top facts, whole.
+
+        One line of difference from the k-NN baseline:
+
+            B3   -> return the top-k facts
+            here -> return the faces those facts belong to
+
+        and that line is where the ribbon structure enters.  What a face adds is
+        the memory that does **not** match the question but belongs to the same
+        narrative unit as one that does -- corroboration, which k independent
+        matches cannot produce by construction.
+
+        A face is treated as a *set*, not as a path.  Three measurements forced
+        that reading: walking phi from an anchor lost 0.21 of multi-hop recall;
+        choosing which face to walk by entity coverage was null because coverage
+        saturated at 0.955; and permuting the prompt was null in multi-hop, so
+        the sequence never carried the signal.  What survives is membership --
+        and membership only became meaningful once the genus search turned 19
+        monster faces holding 75% of the memory into a unimodal distribution
+        (median face 263 -> 36 half-edges).  Hence the precondition below.
+
+        Ranking is ``max`` similarity over the face's members, deliberately: a
+        face containing a relevant fact *is* the entity-coverage signal, without
+        an entity linker, a threshold, an aggregation mode or a geodesic
+        fallback.  No weights, nothing to tune.
+        """
+        r = self.cfg.retrieval
+        budget = r.budget_tokens
+        seen_facts: set[str] = set()
+        used = 0
+
+        # dedup faces first: several top anchors usually share one face
+        ranked: list[tuple[float, str, Face]] = []
+        by_id: dict[str, Face] = {}
+        for hid, _score in anchors:
+            face = self.face_of(hid)
+            if face.id in by_id:
+                continue
+            by_id[face.id] = face
+            sims = [
+                float(np.dot(qvec, self.graph.H[h].embedding))
+                for h in face.half_edges
+                if self.graph.H[h].embedding is not None
+            ]
+            ranked.append((max(sims) if sims else -1.0, face.id, face))
+        ranked.sort(key=lambda t: (-t[0], t[1]))
+
+        for score, _fid, face in ranked:
+            if used >= budget:
+                break
+            # one half-edge per edge, in face order; the walk is only a
+            # traversal device here, the unit is the whole face
+            members = []
+            seen_edges: set[str] = set()
+            for h in face.half_edges:
+                he = self.graph.H[h]
+                if he.edge_id in seen_edges:
+                    continue
+                seen_edges.add(he.edge_id)
+                members.append(he)
+            # If the best face alone overflows the budget, keep its most
+            # relevant memories rather than an arbitrary prefix of the cycle.
+            cost = sum(self.graph._token_counter(m.text) for m in members)  # noqa: SLF001
+            if cost > budget - used:
+                members.sort(
+                    key=lambda m: (
+                        -float(np.dot(qvec, m.embedding))
+                        if m.embedding is not None
+                        else 1.0,
+                        m.edge_id,
+                    )
+                )
+            result.faces.append(face.id)
+            result.face_unit_scores.append(round(float(score), 4))
+            used += self._collect(
+                result, members, seen_facts=seen_facts, budget=budget - used,
+                face_id=face.id, source=SOURCE_FACE_UNIT, coverage=score,
+                # the best-ranked unit plays the role rank-0 plays elsewhere, so
+                # the incongruence rule keeps applying to "the top evidence"
+                anchor_rank=0 if not result.faces[:-1] else 1,
+            )
+        result.tokens_used = used
+        result.face_units_used = len(result.faces)
+        self._truncate(result, r.max_facts_in_prompt)
+
+        # what a k-NN over the same facts could not have produced: the k best
+        # matches are what B3 would return, so anything else in the prompt is
+        # there purely by face membership
+        knn = {
+            self.graph.H[h].edge_id
+            for h, _ in self.index.search(qvec, max(r.top_m_anchors * 2, 20))
+        }
+        result.corroborating_facts = sum(1 for f in result.facts if f.edge_id not in knn)
         return result
 
     # ---------------------------------------------------- coverage retrieval --
@@ -656,6 +782,7 @@ class FaceRetriever:
         coverage: float = 0.0,
         via_entity: str = "",
         max_facts: int = 0,
+        anchor_rank: int = -1,
     ) -> int:
         """Append half-edges as facts, honouring dedup, budget and fact cap."""
         used = 0
@@ -676,7 +803,8 @@ class FaceRetriever:
             result.facts.append(
                 self._make_fact(
                     he,
-                    anchor_rank=-1,  # not an anchor: selected structurally
+                    # -1 = selected structurally, not by the anchor ranking
+                    anchor_rank=anchor_rank,
                     anchor_score=coverage,
                     face_id=face_id,
                     position_in_face=pos,
@@ -923,6 +1051,9 @@ def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) 
                 lines.append(f"--- other memories about {f.via_entity} ---")
             elif f.source == SOURCE_GEODESIC:
                 lines.append(f"--- chain linking {f.via_entity} ---")
+            elif f.source == SOURCE_FACE_UNIT:
+                trail_no += 1
+                lines.append(f"--- related memories, group {trail_no} ---")
             else:
                 trail_no += 1
                 lines.append(f"--- trail {trail_no} ---")

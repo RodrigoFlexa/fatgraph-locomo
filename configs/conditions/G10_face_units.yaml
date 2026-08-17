@@ -1,0 +1,63 @@
+# G10 -- face-units: a face é a UNIDADE recuperada, não um caminho percorrido.
+#
+# Uma linha de diferença para o k-NN puro:
+#
+#     B3   -> devolve os top-k fatos
+#     G10  -> devolve as FACES que os contêm, inteiras
+#
+# e é nessa linha que a estrutura de ribbon entra. O que a face acrescenta é a
+# memória que NÃO casa com a pergunta mas pertence à mesma unidade narrativa de
+# uma que casa — corroboração, que k casamentos independentes não produzem por
+# construção.
+#
+# Aqui a face é CONJUNTO, não percurso. Três medições forçaram essa leitura:
+#   - percorrer φ a partir da âncora (G1) perdeu 0.21 de recall multi-hop;
+#   - escolher qual face por cobertura de entidades (G5) deu nulo, com
+#     `coverage_best_mean` saturando em 0.955;
+#   - permutar o prompt (G8) deu nulo em multi-hop, p=0.499 — a sequência nunca
+#     carregou o sinal. A PERTENÇA carregou.
+#
+# PRÉ-REQUISITO ESTRUTURAL: curation.maximize_faces. Sob a rotação por relógio,
+# 19 faces seguram 75% da memória e a meia-aresta mediana cai numa face de 263 —
+# não existe unidade a recuperar. Depois da busca de gênero a distribuição fica
+# unimodal com mediana 36. A unidade só existe do outro lado dessa operação, e
+# é por isso que a validação da config exige as duas juntas.
+#
+# Ranqueamento: max da similaridade entre os membros. De propósito — uma face
+# que contém um fato relevante É o sinal de cobertura, sem entity linker, sem
+# limiar, sem modo de agregação, sem peso para ajustar.
+#
+# PREVISÃO REGISTRADA ANTES DE RODAR: o ganho tem de aparecer em MULTI-HOP, que
+# é onde corroboração paga. Se subir só em single-hop, o método está apenas
+# devolvendo mais fatos parecidos e o argumento topológico não se sustenta.
+#
+# Comparar contra B3 (o alvo) e contra G9 (mesma superfície, percorrida como
+# caminho em vez de conjunto — isola exatamente a mudança de unidade).
+extends: base.yaml
+condition: G10-face-units
+
+ingest:
+  sigma_policy: sigma-time   # rotação inicial; a busca de gênero a substitui
+
+curation:
+  curation: false
+  consolidation: false
+  # a face só vira unidade depois disto
+  maximize_faces: true
+  maximize_faces_passes: 6
+  maximize_faces_degree_scan: 48
+
+retrieval:
+  face_units: true
+  # tudo o mais DESLIGADO: o método é uma operação, não um ensemble
+  sigma_expand: false
+  face_coverage: false
+
+  # regime de eficiência da B3 (250 tokens medidos), não os 2000 que
+  # sustentavam o passeio e perdiam 10x por ponto de F1
+  budget_tokens: 600
+  top_m_anchors: 8
+  max_facts_in_prompt: 30
+
+paths:
+  graphs_condition: ""

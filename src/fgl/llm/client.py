@@ -421,8 +421,10 @@ def default_fake_responder(prompt: str, system: str | None) -> str:
         )
     if marker == "consolidate":
         return json.dumps({"summary": "fake consolidation of the face"})
-    if marker == "answer":
+    if marker == "answer" or marker == "answer_open":
         return _fake_answer(prompt)
+    if marker == "judge":
+        return json.dumps(_fake_judge(prompt))
     return "Not mentioned in the conversation"
 
 
@@ -512,6 +514,38 @@ def _fake_extract(prompt: str) -> list[dict]:
             }
         )
     return facts[:8]
+
+
+def _fake_judge(prompt: str) -> dict:
+    """Stand-in verdict, strict enough not to look like a measurement.
+
+    The naive version -- any shared token -- accepted "Not mentioned in the
+    conversation" against "The week before 27 June 2023" because both contain
+    "the", which is the same failure the first `_fake_extract` had: an offline
+    number that looks like a result and is an artefact of the stub. So content
+    words only, and an abstention is never right unless the reference is one.
+    """
+    def field(name: str) -> str:
+        m = re.search(rf"^{name}:\s*(.+)$", prompt, flags=re.MULTILINE)
+        return m.group(1).strip() if m else ""
+
+    gold, pred = field("REFERENCE ANSWER"), field("CANDIDATE ANSWER")
+    abstained = "not mentioned" in pred.lower() or "no information" in pred.lower()
+    gold_abstains = "not mentioned" in gold.lower() or "no information" in gold.lower()
+    if abstained or gold_abstains:
+        return {"correct": abstained and gold_abstains, "reason": "fake: abstenção"}
+
+    content = lambda s: {  # noqa: E731
+        w.strip(".,!?;:'\"") for w in s.lower().split()
+        if len(w) > 3 and w not in _FAKE_STOPWORDS
+    }
+    g, p = content(gold), content(pred)
+    if not g:
+        return {"correct": g == p, "reason": "fake: referência sem conteúdo"}
+    return {
+        "correct": len(g & p) / len(g) >= 0.5,
+        "reason": "fake: sobreposição de palavras de conteúdo",
+    }
 
 
 def _fake_answer(prompt: str) -> str:

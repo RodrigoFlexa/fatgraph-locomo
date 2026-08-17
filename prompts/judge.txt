@@ -1,0 +1,33 @@
+# TASK: judge
+# version: 1
+
+You are grading one answer to a question about a long conversation.
+
+QUESTION: {question}
+REFERENCE ANSWER: {gold}
+CANDIDATE ANSWER: {prediction}
+
+Decide whether the CANDIDATE conveys the same information as the REFERENCE.
+
+Count it CORRECT when:
+- it states the same fact in different words ("counseling" vs "a counselor");
+- it is more specific than the reference but consistent with it;
+- it gives the same date, quantity or name in another format
+  ("8 May 2023" vs "May 8th, 2023", "two" vs "2");
+- it adds a brief correct justification the reference omits.
+
+Count it INCORRECT when:
+- it states a different fact, name, date or quantity;
+- it says the information is absent while the reference gives an answer;
+- it answers a different question than the one asked;
+- it is so vague that it does not commit to the reference's claim;
+- it lists several alternatives without choosing, and the reference chooses;
+- it contradicts the reference in any part, even if another part matches.
+
+Judge ONLY whether the candidate matches the reference. You do not have the
+conversation, and you must not reason about whether the reference is itself
+right. Wording, length, style and punctuation are irrelevant; only the
+information counts. When genuinely undecidable, answer false.
+
+Answer with JSON and nothing else:
+{{"correct": true or false, "reason": "at most 12 words"}}
