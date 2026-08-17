@@ -157,6 +157,44 @@ class QAOutcome:
     tokens_context: int = 0
     abstained: bool = False
 
+    # --- sigma expansion audit (see fgl.retrieval.faces) -------------------
+    # These columns exist so a results directory can be *proved* to have used
+    # (or not used) the expansion, instead of being trusted. On every run that
+    # predates it, and on every condition with the flag off, they are
+    # false/0/[] -- which is itself the check.
+    #: retrieval.sigma_expand was on for this question
+    sigma_expand: bool = False
+    #: facts in the prompt that came from a sigma orbit
+    n_sigma_facts: int = 0
+    #: bridging entities whose orbit contributed
+    sigma_vertices: list[str] = field(default_factory=list)
+    #: tokens spent on those facts
+    sigma_tokens: int = 0
+    #: evidence turns reached *only* via sigma -- the marginal contribution
+    sigma_only_turn_ids: list[str] = field(default_factory=list)
+    #: orbit candidates examined, and why they were dropped
+    sigma_scanned: int = 0
+    sigma_dup: int = 0
+    sigma_over_budget: int = 0
+
+    # --- coverage retrieval audit -----------------------------------------
+    #: retrieval.face_coverage was on for this question
+    face_coverage: bool = False
+    #: entities the question was linked to (names, for eyeballing)
+    question_entities: list[str] = field(default_factory=list)
+    #: best fraction of those entities covered by a single face
+    coverage_best: float = 0.0
+    #: faces covering 2+ of them -- the actual bridges
+    coverage_faces_multi: int = 0
+    #: facts retrieved because their trail covered the question's entities
+    n_coverage_facts: int = 0
+    #: of those, how many came from the geodesic fallback
+    n_geodesic_facts: int = 0
+    geodesic_len: int = 0
+    coverage_tokens: int = 0
+    #: evidence turns reached only via coverage/geodesic
+    coverage_only_turn_ids: list[str] = field(default_factory=list)
+
     def to_dict(self) -> dict:
         return {
             "question": self.question,
@@ -172,6 +210,23 @@ class QAOutcome:
             "n_faces": self.n_faces,
             "tokens_context": self.tokens_context,
             "abstained": self.abstained,
+            "sigma_expand": self.sigma_expand,
+            "n_sigma_facts": self.n_sigma_facts,
+            "sigma_vertices": self.sigma_vertices,
+            "sigma_tokens": self.sigma_tokens,
+            "sigma_only_turn_ids": self.sigma_only_turn_ids,
+            "sigma_scanned": self.sigma_scanned,
+            "sigma_dup": self.sigma_dup,
+            "sigma_over_budget": self.sigma_over_budget,
+            "face_coverage": self.face_coverage,
+            "question_entities": self.question_entities,
+            "coverage_best": round(self.coverage_best, 4),
+            "coverage_faces_multi": self.coverage_faces_multi,
+            "n_coverage_facts": self.n_coverage_facts,
+            "n_geodesic_facts": self.n_geodesic_facts,
+            "geodesic_len": self.geodesic_len,
+            "coverage_tokens": self.coverage_tokens,
+            "coverage_only_turn_ids": self.coverage_only_turn_ids,
         }
 
 
@@ -196,6 +251,8 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
             vals = [o.recall[key] for o in items if key in o.recall]
             if vals:
                 entry[key] = round(float(np.mean(vals)), 4)
+        entry.update(_sigma_stats(items))
+        entry.update(_coverage_stats(items))
         per_category[CATEGORY_NAMES.get(cat, str(cat))] = entry
 
     overall = {
@@ -219,8 +276,103 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
         if outcomes
         else 0.0,
     }
+    overall.update(_sigma_stats(outcomes))
+    overall.update(_coverage_stats(outcomes))
     return {
         "overall": overall,
         "per_category": per_category,
         "stemmer": STEMMER_NAME,
+    }
+
+
+def _sigma_stats(outcomes: Sequence[QAOutcome]) -> dict:
+    """Audit block for the sigma expansion.
+
+    Returns ``{}`` when the expansion was off for every question, so metrics
+    files of runs that predate it stay shape-compatible.
+    """
+    on = [o for o in outcomes if o.sigma_expand]
+    if not on:
+        return {}
+    used = [o for o in on if o.n_sigma_facts > 0]
+    return {
+        "sigma_expand": True,
+        # questions where the expansion actually contributed a fact
+        "sigma_use_rate": round(len(used) / len(on), 4),
+        "sigma_facts_mean": round(float(np.mean([o.n_sigma_facts for o in on])), 2),
+        "sigma_tokens_mean": round(float(np.mean([o.sigma_tokens for o in on])), 1),
+        # questions where sigma reached an evidence turn nothing else reached:
+        # the marginal contribution of the join, not just its activity
+        "sigma_evidence_rate": round(
+            float(
+                np.mean(
+                    [
+                        any(t in set(o.evidence) for t in o.sigma_only_turn_ids)
+                        for o in on
+                    ]
+                )
+            ),
+            4,
+        ),
+        "sigma_bridges_mean": round(
+            float(np.mean([len(o.sigma_vertices) for o in on])), 2
+        ),
+        # diagnóstico de uma expansão inerte: 'scanned' alto com 'dup' alto =
+        # a face já cobria a órbita; 'scanned' baixo = as órbitas estão vazias
+        "sigma_scanned_mean": round(float(np.mean([o.sigma_scanned for o in on])), 2),
+        "sigma_dup_rate": round(
+            float(
+                np.sum([o.sigma_dup for o in on])
+                / max(1, np.sum([o.sigma_scanned for o in on]))
+            ),
+            4,
+        ),
+        "sigma_over_budget_rate": round(
+            float(
+                np.sum([o.sigma_over_budget for o in on])
+                / max(1, np.sum([o.sigma_scanned for o in on]))
+            ),
+            4,
+        ),
+    }
+
+
+def _coverage_stats(outcomes: Sequence[QAOutcome]) -> dict:
+    """Audit block for the coverage retrieval.  ``{}`` when it never ran."""
+    on = [o for o in outcomes if o.face_coverage]
+    if not on:
+        return {}
+    linked = [o for o in on if o.question_entities]
+    return {
+        "face_coverage": True,
+        # the linker is the precondition for everything else: no entities
+        # linked, no coverage signal, and the condition degrades to G1
+        "coverage_link_rate": round(len(linked) / len(on), 4),
+        "coverage_entities_mean": round(
+            float(np.mean([len(o.question_entities) for o in on])), 2
+        ),
+        # how often a single trail covered *all* the entities named
+        "coverage_best_mean": round(float(np.mean([o.coverage_best for o in on])), 4),
+        "coverage_bridge_rate": round(
+            float(np.mean([o.coverage_faces_multi > 0 for o in on])), 4
+        ),
+        "coverage_use_rate": round(
+            float(np.mean([o.n_coverage_facts > 0 for o in on])), 4
+        ),
+        "coverage_facts_mean": round(
+            float(np.mean([o.n_coverage_facts for o in on])), 2
+        ),
+        "geodesic_rate": round(float(np.mean([o.n_geodesic_facts > 0 for o in on])), 4),
+        # marginal contribution: an evidence turn no other mechanism reached
+        "coverage_evidence_rate": round(
+            float(
+                np.mean(
+                    [
+                        any(t in set(o.evidence) for t in o.coverage_only_turn_ids)
+                        for o in on
+                    ]
+                )
+            ),
+            4,
+        ),
     }

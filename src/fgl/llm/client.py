@@ -24,6 +24,7 @@ import os
 import random
 import re
 import time
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Optional
@@ -430,23 +431,83 @@ def _task_marker(prompt: str) -> str:
     return m.group(1) if m else ""
 
 
+#: closed-class tokens that are never entities.  Short and blunt on purpose:
+#: this is a test double, not a tagger.
+_FAKE_STOPWORDS = frozenset(
+    """
+    about above after again against because before being below between both
+    could doing during each further having other should still their theirs
+    them then there these thing things this those through under until very
+    what when where which while with would your yours yeah okay thanks sure
+    really thats gonna wanna just like well been have were also into over
+    that they from than some more will only even most such here much many
+    going know think want said tell told make made take took come came
+    """.split()
+)
+
+
+def _fake_entities(text: str) -> list[str]:
+    """Entity-ish tokens of one turn, lower-cased and deduplicated.
+
+    Contractions are dropped wholesale: capitalisation cannot separate a proper
+    noun from a sentence-initial ``It's``/``That``/``I've`` without a tagger,
+    and those were the tokens that ended up as high-degree hubs.
+    """
+    out = []
+    for raw in text.split():
+        w = raw.strip(".,!?;:'\"()[]").lower()
+        if len(w) <= 3 or "'" in w or not w.isalpha():
+            continue
+        if w in _FAKE_STOPWORDS:
+            continue
+        out.append(w)
+    return list(dict.fromkeys(out))
+
+
 def _fake_extract(prompt: str) -> list[dict]:
-    """Turn each ``D<i>:<j> <speaker>: <text>`` line into one toy triple."""
-    facts = []
+    """Turn each ``[D<i>:<j>] <speaker>: <text>`` line into one toy triple.
+
+    The pairing is **entity-to-entity**, and the speaker is only one endpoint
+    when the turn offers nothing else.  That matters more than it looks: the
+    obvious version -- ``(speaker, first_long_word)`` -- makes every fact hang
+    off a speaker, and the graph comes out a double star of stopwords, degree 1
+    on 77% of its vertices and two faces total.  On that shape sigma is
+    *provably* redundant with phi (in a star, phi = sigma o alpha just walks the
+    hub's own orbit) and face coverage cannot discriminate, so G4/G5/G6 measure
+    zero by construction and `--dry-run` reports a degeneracy that belongs to
+    the test double rather than to LoCoMo.  A vocabulary that recurs across
+    turns is what gives both endpoints degree > 1 and the surface more than one
+    face -- i.e. the only regime in which the offline smoke test says anything.
+    """
+    turns: list[tuple[str, str, list[str]]] = []
+    seen: Counter[str] = Counter()
     for line in prompt.splitlines():
         m = re.match(r"^\[(D\d+:\d+)\]\s*([^:]+):\s*(.+)$", line.strip())
         if not m:
             continue
         turn, speaker, text = m.groups()
-        words = [w.strip(".,!?'\"") for w in text.split() if len(w) > 4]
-        if not words:
+        ents = _fake_entities(text)
+        turns.append((turn, speaker.strip(), ents))
+        seen.update(ents)
+
+    facts: list[dict] = []
+    for turn, speaker, ents in turns:
+        ents = [e for e in ents if e != speaker.lower()]
+        if not ents:
             continue
+        # Prefer the tokens that RECUR across the prompt. Picking the first two
+        # of each turn would mostly pick hapaxes, and a vertex named once has
+        # degree 1 -- the very shape this function exists to avoid. Frequency
+        # is the cheapest stand-in for "this is an entity the conversation
+        # keeps coming back to", which is what a real extractor yields.
+        ents.sort(key=lambda w: (-seen[w], w))
+        e1, e2 = (ents[0], ents[1]) if len(ents) > 1 else (speaker, ents[0])
         facts.append(
             {
-                "entity_1": speaker.strip(),
+                "entity_1": e1,
                 "relation": "mentions",
-                "entity_2": words[0],
-                "fact_text": f"{speaker.strip()} mentioned {words[0]}.",
+                "entity_2": e2,
+                "fact_text": f"{e1} and {e2} came up when {speaker} was talking.",
                 "turn_ids": [turn],
             }
         )

@@ -199,3 +199,101 @@ depois da correção (grafos aleatórios):
 
 Há um teste de regressão (`test_faces_is_linear_in_the_number_of_half_edges`)
 que falha se o comportamento voltar a ser quadrático.
+
+## D22 — Expansão por sigma na recuperação (condição G4)
+
+**Problema.** A recuperação era inteiramente *anchor-centric*: âncoras por
+cosseno e, como única expansão, `walk_face`. Isso basta para single-hop — a
+resposta está no fato mais parecido com a pergunta — mas o segundo salto de uma
+pergunta multi-hop é, por construção, *não* parecido com a pergunta: ele só se
+torna relevante depois que o primeiro fato revela a entidade-ponte. Nenhuma
+etapa do pipeline reconsultava o grafo condicionada ao primeiro salto.
+
+**Observação.** No formalismo, "duas memórias que compartilham uma entidade" é
+exatamente "duas meias-arestas na mesma órbita de `sigma`". O salto já estava no
+grafo, em `sigma_next`, e não era consultado. `phi = sigma∘alpha` contém esses
+vizinhos, mas sai do vértice a cada passo: só volta à entidade depois de uma
+volta na superfície, em geral além de `budget_tokens`.
+
+**Implementação.** `FaceRetriever.sigma_neighborhood` percorre a órbita nos
+**dois** vértices da aresta-âncora (a ponte pode estar em qualquer um dos dois),
+opcionalmente reordenada por similaridade com a pergunta — reordenar importa
+porque sob `sigma-time` o sucessor cíclico é apenas o fato cronologicamente
+adjacente. Note que isso **não** é o k-NN global: os candidatos são restritos à
+órbita, isto é, pergunta-se "dentre os fatos *sobre esta entidade*, qual
+responde?", que é o ponto todo.
+
+O orçamento de sigma é separado *antes* do laço de faces (`sigma_budget_frac`),
+senão a face do âncora 0 consome tudo e o salto nunca roda; e o truncamento por
+`max_facts_in_prompt` protege os fatos de sigma, que entram por último e seriam
+os primeiros a cair.
+
+**Degenerescência encontrada ao testar.** Numa **estrela**, a expansão é inútil:
+vértices de grau 1 devolvem `sigma` a si mesmos, então `phi` degenera em marchar
+pela órbita do próprio hub e a face já entrega os vizinhos em ordem. O ganho
+existe quando os vizinhos têm grau > 1 — que é o caso quando as entidades de
+fato se repetem entre memórias. Por isso `sigma_dup` e `sigma_scanned` são
+contados e reportados: `dup/scanned` alto significa "a face já cobria a órbita"
+(problema de topologia), `scanned ≈ 0` significa "as órbitas estão vazias"
+(problema de ingest). Pedem correções opostas, e sem os dois contadores um
+resultado nulo seria indistinguível de um bug. Fixado em
+`test_star_graph_gains_nothing_from_sigma`.
+
+**Isolamento experimental.** G4 difere da G1 em três chaves e nada mais
+(`condition`, `retrieval.sigma_expand`, `paths.graphs_condition`), verificado em
+`test_g4_differs_from_g1_only_in_retrieval_and_graph_reuse`. `graphs_condition`
+faz a G4 ler os grafos **da G1**, byte a byte, de modo que o delta não pode ser
+atribuído a variação de extração ou de resolução de entidades. Com o flag
+desligado, o caminho de código é o antigo e G1–G3 continuam reproduzindo os
+números guardados.
+
+## D23 — Recuperação por cobertura de entidades (G5) e a combinação (G6)
+
+**Problema.** Mesmo com D22, o `argmax` continuava sendo sobre meia-aresta: a
+unidade de decisão era o fato solto e a face vinha de brinde como expansão. A
+pergunta que o sistema fazia era "que fato PARECE a pergunta?" — a pergunta de
+qualquer RAG, e a razão de o single-hop ser fácil.
+
+**Inversão.** A face passa a ser a unidade recuperada e as meias-arestas apenas
+a pontuam:
+
+    score(f) = agg_sim(f, q) + w · cobertura(f, Q)
+
+onde `Q` são os vértices que a pergunta nomeia. A parcela de cobertura é
+**estrutural**: uma face que passa por `Melanie` e por `Bangkok` é candidata a
+conter a ponte mesmo que nenhum fato dela se pareça com a pergunta — que é
+exatamente o que o cosseno não pode expressar, e exatamente o motivo de o
+multi-hop falhar. `faces_through_vertex` torna o conjunto candidato barato:
+limitado pelo grau dos vértices, não pelo tamanho do grafo.
+
+`agg_sim` é `max`/`top2`, nunca `mean`: a média penaliza faces longas, que são
+justamente as que atravessam sessões.
+
+**Linker próprio, não o `EntityResolver`.** O resolver **cria** um vértice
+quando nada casa, e durante o QA só se pode LER a memória (spec seção 5). O
+`QuestionLinker` é read-only e sem chamada de LLM: n-gramas normalizados contra
+nomes e aliases, e só então vizinhos por embedding acima de um limiar. Um miss
+é um miss. Fixado em `test_linker_never_creates_a_vertex`.
+
+**Geodésica.** Quando nenhuma face cobre 2+ entidades, o que encadeia as duas é,
+por definição, um caminho entre seus vértices — comprimento 2 sendo o caso
+dominante. BFS com profundidade máxima 3.
+
+**Teto de fatos por face, medido e não suposto.** Faces têm 200+ memórias
+(C9). Sem teto, uma única trilha coberta enche `max_facts_in_prompt` sozinha e
+sufoca tanto o caminho dos âncoras quanto a expansão por sigma — observado numa
+corrida offline em que a G6 aparecia com sigma zerado. Daí
+`coverage_max_facts_per_face`, e daí ele ser menor na G6 (12) do que na G5 (20):
+lá a cobertura divide o prompt com dois outros mecanismos.
+
+**Ortogonalidade (G6).** Os dois mecanismos atacam falhas diferentes: sigma
+expande A PARTIR de um âncora certo ao qual falta o segundo salto; a cobertura
+escolhe QUAL trilha recuperar quando o âncora é irrelevante. Ordem dentro do
+orçamento: cobertura, âncoras, sigma — cada um com fatia reservada ANTES do
+laço, senão a face do âncora 0 consome tudo. `validate()` recusa fatias que
+somem ≥ 1, o que deixaria o caminho clássico sem contexto.
+
+**Contrafactuais.** Cada mecanismo reporta o recall que o contexto teria SEM
+ele (`recall_context_no_sigma`, `recall_context_no_coverage`,
+`recall_context_anchors_only`). A diferença contra `recall_context` é o efeito,
+por categoria, sem precisar de uma corrida extra.

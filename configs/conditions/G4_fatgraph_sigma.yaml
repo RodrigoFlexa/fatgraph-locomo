@@ -1,0 +1,34 @@
+# G4 -- fatgraph-sigma: G1 + expansão pela órbita de sigma na recuperação.
+#
+# Hipótese: uma pergunta multi-hop é, no fatgraph, duas memórias na MESMA
+# órbita de sigma (duas arestas incidentes no mesmo vértice). O salto é sigma.
+# phi = sigma∘alpha sai do vértice a cada passo, então a face só reencontra a
+# entidade-ponte depois de uma volta inteira, em geral além do budget_tokens.
+#
+# Esta condição difere da G1 em EXATAMENTE um bloco: retrieval.sigma_*.
+# O ingest é idêntico e os grafos são REUTILIZADOS da G1 (graphs_condition),
+# de modo que o delta G4 − G1 não pode ser atribuído a nada além da
+# recuperação — nem a variação de extração, nem a resolução de entidades.
+#
+# Pré-requisito:  fgl ingest G1     (a G4 se recusa a construir grafo próprio)
+# Resultados vão para results/G4-fatgraph-sigma/, sem tocar em G1/G2/G3.
+extends: base.yaml
+condition: G4-fatgraph-sigma
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  sigma_expand: true
+  sigma_expand_k: 4
+  sigma_expand_both_ends: true
+  sigma_expand_max_anchors: 2
+  sigma_budget_frac: 0.4
+  sigma_rerank: true
+
+paths:
+  # lê artifacts/graphs/G1-fatgraph-min/ — mesmos grafos, byte a byte
+  graphs_condition: G1-fatgraph-min
