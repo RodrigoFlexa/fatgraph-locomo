@@ -5,10 +5,31 @@ For each LoCoMo question:
 1. top-``m`` anchor half-edges by cosine similarity to the question, with a
    boost for level-2 (consolidation) edges and a penalty for shadowed ones;
 2. ``walk_face`` from every anchor, sharing a single global token budget;
-3. the answer prompt lists the facts **in face order**, each prefixed with the
+3. optionally, **sigma expansion** of the top anchors (see below);
+4. the answer prompt lists the facts **in face order**, each prefixed with the
    session date, deduplicated across faces;
-4. short extractive answer, or the abstention string when the faces do not
+5. short extractive answer, or the abstention string when the faces do not
    contain the information (or when the anchors are ``incongruente``).
+
+Sigma expansion (``retrieval.sigma_expand``, condition G4)
+----------------------------------------------------------
+A multi-hop question needs two memories that **share an entity**.  In a
+fatgraph that is, exactly, two half-edges in the same ``sigma``-orbit -- the
+cyclic order around one vertex.  The second memory is by construction *not*
+similar to the question (it only becomes relevant once the first hop names the
+bridging entity), so the cosine anchor ranking cannot find it, which is why
+single-hop can be strong while multi-hop is weak.
+
+``phi = sigma o alpha`` *leaves* the vertex at every step, so a face does
+contain the sigma-neighbours -- but only after a full lap around the surface,
+usually past ``budget_tokens``.  Walking ``sigma`` directly from the anchor (and
+from ``alpha(anchor)``, i.e. from both entities of the anchor memory) is the
+join operation itself, costs no LLM call, and puts the bridge first instead of
+last.
+
+Everything here is inert unless ``retrieval.sigma_expand`` is true: with the
+flag off, :meth:`FaceRetriever.retrieve` walks exactly the same code path as
+before, so G1/G2/G3 keep producing byte-identical numbers.
 """
 
 from __future__ import annotations
@@ -19,11 +40,22 @@ from typing import Optional, Sequence
 import numpy as np
 
 from fgl.config import Config
-from fgl.core import STATE_INCONGRUENT, FatGraph, HalfEdge
+from fgl.core import STATE_INCONGRUENT, Face, FatGraph, HalfEdge
 from fgl.retrieval.embeddings import Embedder, VectorIndex, build_index
 from fgl.llm import LLMClient
 from fgl.data.locomo import ABSTAIN_ANSWER, Conversation, Question
 from fgl.llm.prompts import SYSTEM_ANSWERER, PromptLibrary
+
+
+#: ``RetrievedFact.source`` values -- how a fact entered the context.
+SOURCE_FACE = "face"  # phi-orbit walk from an anchor (the original path)
+SOURCE_SIGMA = "sigma"  # sigma-orbit neighbour of an anchor (the multi-hop join)
+SOURCE_COVERAGE = "coverage"  # face selected for covering the question's entities
+SOURCE_GEODESIC = "geodesic"  # shortest path between two of those entities
+
+#: sources that only exist because of a multi-hop mechanism; used by the
+#: counterfactual recalls and by the truncation guard.
+JOIN_SOURCES = (SOURCE_SIGMA, SOURCE_COVERAGE, SOURCE_GEODESIC)
 
 
 @dataclass
@@ -40,6 +72,12 @@ class RetrievedFact:
     anchor_score: float
     face_id: str
     position_in_face: int
+    #: provenance, so a run can be audited fact by fact
+    source: str = SOURCE_FACE
+    #: for ``SOURCE_SIGMA``: the vertex whose orbit produced this fact
+    via_vertex: str = ""
+    #: display name of ``via_vertex`` -- the bridging entity
+    via_entity: str = ""
 
 
 @dataclass
@@ -51,6 +89,44 @@ class RetrievalResult:
     tokens_used: int = 0
     any_incongruent: bool = False
 
+    # --- sigma expansion telemetry (all zero when the flag is off) ---------
+    #: whether the retriever ran with ``retrieval.sigma_expand`` on
+    sigma_expand: bool = False
+    #: half-edges scored while scanning the orbits (cost of the expansion)
+    sigma_scanned: int = 0
+    #: candidates dropped because the face walk had already retrieved them.
+    #: ``scanned`` high + ``facts`` low + this high means the orbit adds
+    #: nothing *because phi already covered it* -- which happens exactly when
+    #: the neighbouring vertices have degree 1 (phi then marches along the
+    #: hub's own orbit). ``scanned`` near zero instead means the orbits are
+    #: empty: the entities are not being shared, an ingest problem, not a
+    #: retrieval one. The two call for opposite fixes, hence two counters.
+    sigma_dup: int = 0
+    #: candidates dropped for lack of budget
+    sigma_over_budget: int = 0
+
+    # --- coverage retrieval telemetry (all zero when the flag is off) ------
+    face_coverage: bool = False
+    #: vertices the question was linked to, in link order
+    question_vertices: list[str] = field(default_factory=list)
+    #: their display names -- what the audit column actually shows
+    question_entities: list[str] = field(default_factory=list)
+    #: best coverage achieved by a single face, in [0, 1]
+    coverage_best: float = 0.0
+    #: candidate faces scored
+    coverage_faces_scored: int = 0
+    #: faces that covered 2+ of the question's entities: the real bridges
+    coverage_faces_multi: int = 0
+    #: the geodesic fallback ran (no face covered 2+)
+    geodesic_used: bool = False
+    #: hops of the retrieved shortest path (0 = none)
+    geodesic_len: int = 0
+    coverage_tokens: int = 0
+    #: vertices whose orbit contributed at least one fact -- the bridges
+    sigma_vertices: list[str] = field(default_factory=list)
+    #: tokens spent on sigma facts (subset of ``tokens_used``)
+    sigma_tokens: int = 0
+
     @property
     def turn_ids(self) -> list[str]:
         out: list[str] = []
@@ -59,6 +135,159 @@ class RetrievalResult:
                 if t not in out:
                     out.append(t)
         return out
+
+    @property
+    def sigma_facts(self) -> list[RetrievedFact]:
+        """Facts that only the sigma expansion could have brought in."""
+        return [f for f in self.facts if f.source == SOURCE_SIGMA]
+
+    @property
+    def n_sigma_facts(self) -> int:
+        return len(self.sigma_facts)
+
+    @property
+    def coverage_facts(self) -> list[RetrievedFact]:
+        return [
+            f for f in self.facts if f.source in (SOURCE_COVERAGE, SOURCE_GEODESIC)
+        ]
+
+    @property
+    def n_coverage_facts(self) -> int:
+        return len(self.coverage_facts)
+
+    @property
+    def n_geodesic_facts(self) -> int:
+        return sum(1 for f in self.facts if f.source == SOURCE_GEODESIC)
+
+    def turn_ids_excluding(self, *sources: str) -> list[str]:
+        """Turns the context would have had without those retrieval sources."""
+        out: list[str] = []
+        for f in self.facts:
+            if f.source in sources:
+                continue
+            for t in f.turn_ids:
+                if t not in out:
+                    out.append(t)
+        return out
+
+    def turn_ids_only_from(self, *sources: str) -> list[str]:
+        """Turns reached *only* by those sources -- the marginal contribution.
+
+        Turns another source already retrieved are excluded, so this measures
+        what the mechanism added, not merely what it touched.
+        """
+        others = {
+            t for f in self.facts if f.source not in sources for t in f.turn_ids
+        }
+        out: list[str] = []
+        for f in self.facts:
+            if f.source not in sources:
+                continue
+            for t in f.turn_ids:
+                if t not in others and t not in out:
+                    out.append(t)
+        return out
+
+    @property
+    def sigma_turn_ids(self) -> list[str]:
+        """Evidence turns reachable *only* through the sigma expansion."""
+        return self.turn_ids_only_from(SOURCE_SIGMA)
+
+    @property
+    def coverage_turn_ids(self) -> list[str]:
+        """Evidence turns reachable *only* through coverage/geodesic."""
+        return self.turn_ids_only_from(SOURCE_COVERAGE, SOURCE_GEODESIC)
+
+
+# --------------------------------------------------------------------------- #
+# Question -> vertices                                                         #
+# --------------------------------------------------------------------------- #
+
+
+class QuestionLinker:
+    """Maps a question to the vertices it names.  Read-only, no LLM call.
+
+    Deliberately *not* :class:`fgl.memory.entities.EntityResolver`: that one
+    creates a vertex when nothing matches, which during QA would mutate the
+    memory the protocol says we may only read (spec section 5).  Here a miss is
+    simply a miss.
+
+    Two passes, cheapest first: literal surface match of the question's n-grams
+    against vertex names and aliases, then -- only if that found little -- the
+    nearest vertices by embedding above a threshold.  Surface match carries
+    score 1.0 because in LoCoMo the entities are mostly proper names, which the
+    ingest already canonicalised.
+    """
+
+    def __init__(self, graph: FatGraph, embedder: Embedder, threshold: float = 0.75):
+        self.graph = graph
+        self.embedder = embedder
+        self.threshold = threshold
+        self._by_surface: dict[str, str] = {}
+        ids: list[str] = []
+        rows: list[np.ndarray] = []
+        for vid, vx in graph.vertices.items():
+            for surface in (vx.name, *vx.aliases):
+                key = normalize_name(surface)
+                if key:
+                    self._by_surface.setdefault(key, vid)
+            if vx.embedding is not None:
+                ids.append(vid)
+                rows.append(_unit(vx.embedding))
+        self._ids = ids
+        self._matrix = np.vstack(rows) if rows else None
+
+    def link(self, question: str, max_entities: int = 4) -> list[tuple[str, float]]:
+        """``[(vertex_id, score), ...]``, best first, deduplicated."""
+        found: dict[str, float] = {}
+        for gram in _ngrams(normalize_name(question), 3):
+            vid = self._by_surface.get(gram)
+            if vid is not None:
+                # longer surface wins ties: "support group" over "group"
+                found[vid] = max(found.get(vid, 0.0), 1.0 + 0.01 * gram.count(" "))
+
+        if len(found) < max_entities and self._matrix is not None:
+            sims = self._matrix @ _unit(self.embedder.encode_one(question))
+            for i in np.argsort(-sims)[: max_entities * 4]:
+                score = float(sims[int(i)])
+                if score < self.threshold:
+                    break
+                found.setdefault(self._ids[int(i)], score)
+
+        ranked = sorted(found.items(), key=lambda kv: -kv[1])
+        return ranked[:max_entities]
+
+
+def _ngrams(text: str, n: int) -> list[str]:
+    words = text.split()
+    out = []
+    for size in range(min(n, len(words)), 0, -1):  # longest first
+        out += [" ".join(words[i : i + size]) for i in range(len(words) - size + 1)]
+    return out
+
+
+def normalize_name(name: str) -> str:
+    """Same normalisation the ingest used, imported lazily to avoid a cycle."""
+    from fgl.memory.entities import normalize_name as _n
+
+    return _n(name)
+
+
+def _unit(vec: np.ndarray) -> np.ndarray:
+    v = np.asarray(vec, dtype=np.float32).reshape(-1)
+    return v / max(float(np.linalg.norm(v)), 1e-12)
+
+
+def _aggregate(values: Sequence[float], how: str) -> float:
+    """Face-level similarity from its members'.  ``mean`` punishes long faces."""
+    if not values:
+        return 0.0
+    if how == "mean":
+        return float(np.mean(values))
+    top = sorted(values, reverse=True)
+    if how == "max":
+        return float(top[0])
+    return float(np.mean(top[:2]))
 
 
 # --------------------------------------------------------------------------- #
@@ -87,6 +316,45 @@ class FaceRetriever:
             vecs.append(he.embedding)
         if ids:
             self.index.add(ids, np.vstack(vecs))
+        self.linker = (
+            QuestionLinker(graph, embedder, cfg.retrieval.coverage_entity_threshold)
+            if cfg.retrieval.face_coverage
+            else None
+        )
+        self._adjacency: dict[str, list[tuple[str, str]]] | None = None
+        self._face_by_half_edge: dict[str, Face] | None = None
+
+    # -------------------------------------------------------- face lookup ----
+    def face_of(self, half_edge_id: str) -> Face:
+        """``graph.face_of`` memoised for the lifetime of this retriever.
+
+        ``face_of`` walks the whole phi-cycle, and LoCoMo faces run to hundreds
+        of half-edges (COERENCIA C9), so ``faces_through_vertex`` on a hub costs
+        ``degree x |face|`` -- measured at 200x a single full decomposition on a
+        degree-400 vertex. The graph is *read-only* during QA (spec section 5),
+        which is exactly the precondition that makes memoising it sound.
+
+        The cached ``Face`` is the canonical one, so ``half_edges`` may start at
+        a different rotation than a fresh ``face_of(h)`` would.  Everything used
+        downstream -- ``id``, the touched-vertex set, the member similarities --
+        is rotation-invariant.
+        """
+        cache = self._face_by_half_edge
+        if cache is None:
+            cache = {}
+            for face in self.graph.faces():
+                for h in face.half_edges:
+                    cache[h] = face
+            self._face_by_half_edge = cache
+        face = cache.get(half_edge_id)
+        return face if face is not None else self.graph.face_of(half_edge_id)
+
+    def faces_through_vertex(self, vertex_id: str) -> list[Face]:
+        seen: dict[str, Face] = {}
+        for h in self.graph.sigma.get(vertex_id, ()):
+            f = self.face_of(h)
+            seen.setdefault(f.id, f)
+        return list(seen.values())
 
     # ------------------------------------------------------------------ api --
     def retrieve(self, question: str) -> RetrievalResult:
@@ -108,20 +376,46 @@ class FaceRetriever:
             if len(anchors) >= r.top_m_anchors:
                 break
 
-        result = RetrievalResult(anchors=anchors, all_anchor_ranking=scored)
-        if not anchors:
+        result = RetrievalResult(
+            anchors=anchors,
+            all_anchor_ranking=scored,
+            sigma_expand=r.sigma_expand,
+            face_coverage=r.face_coverage,
+        )
+        if not anchors and not r.face_coverage:
             return result
 
+        # Each mechanism gets its slice carved out *up front*, otherwise the
+        # face walk of anchor 0 eats the whole budget and the joins never run.
+        # With both flags off the slices are zero and the loop below sees the
+        # original budget, byte for byte as before.
         budget = r.budget_tokens
+        sigma_budget = int(budget * r.sigma_budget_frac) if r.sigma_expand else 0
+        cov_budget = int(budget * r.coverage_budget_frac) if r.face_coverage else 0
+        face_budget = budget - sigma_budget - cov_budget
+
         used = 0
         seen_facts: set[str] = set()
+
+        # Coverage runs FIRST: its facts are the ones selected for naming the
+        # question's entities, so they belong at the head of the prompt, and
+        # whatever they leave unspent rolls into the anchor walk.
+        if r.face_coverage:
+            used += self._expand_coverage(
+                result, question=question, qvec=qvec,
+                seen_facts=seen_facts, budget=cov_budget,
+            )
+            face_budget += max(0, cov_budget - used)
+
+        # the anchor walk spends `face_budget` on top of whatever coverage used
+        face_limit = used + face_budget
         for rank, (hid, score) in enumerate(anchors):
-            if used >= budget:
+            if used >= face_limit:
                 break
             if self.graph.H[hid].state == STATE_INCONGRUENT:
                 result.any_incongruent = True
-            face = self.graph.face_of(hid)
-            walk = self.graph.walk_face(hid, budget_tokens=budget - used)
+            face = self.face_of(hid)
+            walk = self.graph.walk_face(hid, budget_tokens=face_limit - used)
             result.faces.append(face.id)
             for pos, he in enumerate(walk):
                 used += self.graph._token_counter(he.text)  # noqa: SLF001
@@ -131,25 +425,432 @@ class FaceRetriever:
                 if he.state == STATE_INCONGRUENT:
                     result.any_incongruent = True
                 result.facts.append(
-                    RetrievedFact(
-                        edge_id=he.edge_id,
-                        text=he.text,
-                        timestamp=he.timestamp,
-                        date_raw=self.dates.get(he.session_id, he.timestamp),
-                        session_id=he.session_id,
-                        turn_ids=list(he.turn_ids),
-                        state=he.state,
-                        level=he.level,
+                    self._make_fact(
+                        he,
                         anchor_rank=rank,
                         anchor_score=score,
                         face_id=face.id,
                         position_in_face=pos,
+                        source=SOURCE_FACE,
                     )
                 )
+
+        if r.sigma_expand:
+            # unspent face budget rolls into the expansion, never the reverse;
+            # and the total is clamped so the expansion can never push a run
+            # over budget_tokens (walk_face may already have overshot it by one
+            # fact, since it always returns at least one).
+            used += self._expand_sigma(
+                result,
+                anchors=anchors,
+                qvec=qvec,
+                seen_facts=seen_facts,
+                budget=min(
+                    sigma_budget + max(0, face_limit - used),
+                    max(0, budget - used),
+                ),
+            )
+
         result.tokens_used = used
-        if len(result.facts) > r.max_facts_in_prompt:
-            result.facts = result.facts[: r.max_facts_in_prompt]
+        self._truncate(result, r.max_facts_in_prompt)
         return result
+
+    # ---------------------------------------------------- coverage retrieval --
+    def score_faces(
+        self, question_vertices: Sequence[str], qvec: np.ndarray
+    ) -> list[tuple[Face, float, float]]:
+        """``[(face, score, coverage), ...]`` best first.
+
+        The unit of retrieval is the *trail*, not the fact.  Two terms:
+
+        ``sim``       aggregated similarity of the face's memories to the
+                      question -- ``max``/``top2`` rather than ``mean``, since
+                      the mean punishes long faces and those are exactly the
+                      cross-session ones a multi-hop question needs;
+        ``coverage``  fraction of the question's entities the face touches.
+
+        Coverage is the term that cosine cannot produce: a face through both
+        ``Melanie`` and ``Bangkok`` is a candidate bridge even when none of its
+        individual facts resembles the question.  ``faces_through_vertex`` makes
+        the candidate set cheap -- it is bounded by the vertices' degree, not by
+        the size of the graph.
+        """
+        r = self.cfg.retrieval
+        if not question_vertices:
+            return []
+        wanted = list(dict.fromkeys(question_vertices))
+        wanted_set = set(wanted)
+
+        # Round-robin, not entity-by-entity: a bridge face is by definition one
+        # that appears under more than one of the question's entities, and
+        # draining the first entity's list would spend the whole cap before the
+        # second one is ever consulted -- which is precisely the face we want.
+        per_vertex = [iter(self.faces_through_vertex(vid)) for vid in wanted]
+        candidates: dict[str, Face] = {}
+        while per_vertex and len(candidates) < r.coverage_max_faces:
+            alive = []
+            for it in per_vertex:
+                if len(candidates) >= r.coverage_max_faces:
+                    break
+                face = next(it, None)
+                if face is None:
+                    continue
+                candidates.setdefault(face.id, face)
+                alive.append(it)
+            if not alive:
+                break
+            per_vertex = alive
+
+        out: list[tuple[Face, float, float]] = []
+        for face in candidates.values():
+            touched = {self.graph.H[h].vertex_id for h in face.half_edges}
+            coverage = len(touched & wanted_set) / len(wanted)
+            sims = [
+                float(np.dot(qvec, self.graph.H[h].embedding))
+                for h in face.half_edges
+                if self.graph.H[h].embedding is not None
+            ]
+            sim = _aggregate(sims, r.coverage_sim_aggregate)
+            out.append((face, sim + r.coverage_weight * coverage, coverage))
+        out.sort(key=lambda t: (-t[1], t[0].id))
+        return out
+
+    def geodesic(self, source: str, target: str, max_depth: int) -> list[str]:
+        """Edge ids of a shortest path between two vertices (``[]`` if none).
+
+        When no single face covers both entities, the memories that chain them
+        are, by definition, a path between their vertices -- length 2 being the
+        dominant case: ``A -- m1 -- B -- m2 -- C``.
+        """
+        if source == target:
+            return []
+        adj = self._adjacency_map()
+        seen = {source}
+        frontier = [(source, [])]
+        for _ in range(max_depth):
+            nxt = []
+            for vid, path in frontier:
+                for neighbour, edge_id in adj.get(vid, ()):
+                    if neighbour in seen:
+                        continue
+                    if neighbour == target:
+                        return [*path, edge_id]
+                    seen.add(neighbour)
+                    nxt.append((neighbour, [*path, edge_id]))
+            if not nxt:
+                break
+            frontier = nxt
+        return []
+
+    def _adjacency_map(self) -> dict[str, list[tuple[str, str]]]:
+        if self._adjacency is None:
+            adj: dict[str, list[tuple[str, str]]] = {}
+            for vid, halves in self.graph.sigma.items():
+                adj[vid] = [
+                    (self.graph.H[self.graph.alpha[h]].vertex_id, self.graph.H[h].edge_id)
+                    for h in halves
+                ]
+            self._adjacency = adj
+        return self._adjacency
+
+    def _expand_coverage(
+        self,
+        result: RetrievalResult,
+        question: str,
+        qvec: np.ndarray,
+        seen_facts: set[str],
+        budget: int,
+    ) -> int:
+        """Retrieve whole trails chosen for covering the question's entities."""
+        r = self.cfg.retrieval
+        linked = self.linker.link(question, r.coverage_max_entities) if self.linker else []
+        result.question_vertices = [v for v, _ in linked]
+        result.question_entities = [
+            self.graph.vertices[v].name for v, _ in linked if v in self.graph.vertices
+        ]
+        if not linked:
+            return 0
+
+        ranked = self.score_faces(result.question_vertices, qvec)
+        n_wanted = len(result.question_vertices)
+        result.coverage_faces_scored = len(ranked)
+        # `cov` is a fraction; count entities as an integer rather than trusting
+        # `cov * n >= 2` not to land a hair under the boundary
+        result.coverage_faces_multi = sum(
+            1 for _, _, cov in ranked if round(cov * n_wanted) >= 2
+        )
+        result.coverage_best = round(max((c for _, _, c in ranked), default=0.0), 4)
+
+        used = 0
+        for face, _score, coverage in ranked:
+            if used >= budget:
+                break
+            if coverage <= 0:
+                continue
+            # start the walk at the face's most relevant memory, not at an
+            # arbitrary half-edge: the budget cut should keep what matters.
+            # The half-edge id breaks ties so the choice does not depend on the
+            # rotation the face happens to be cached in.
+            start = max(
+                face.half_edges,
+                key=lambda h: (
+                    float(np.dot(qvec, self.graph.H[h].embedding))
+                    if self.graph.H[h].embedding is not None
+                    else -1.0,
+                    h,
+                ),
+            )
+            result.faces.append(face.id)
+            used += self._collect(
+                result, self.graph.walk_face(start, budget_tokens=budget - used),
+                seen_facts=seen_facts, budget=budget - used,
+                face_id=face.id, source=SOURCE_COVERAGE, coverage=coverage,
+                max_facts=r.coverage_max_facts_per_face,
+            )
+
+        if r.coverage_geodesic_fallback and result.coverage_faces_multi == 0:
+            used += self._expand_geodesic(
+                result, seen_facts=seen_facts, budget=max(0, budget - used)
+            )
+        result.coverage_tokens = used
+        return used
+
+    def _expand_geodesic(
+        self, result: RetrievalResult, seen_facts: set[str], budget: int
+    ) -> int:
+        """Fallback: the shortest chain between two of the question's entities."""
+        r = self.cfg.retrieval
+        vertices = result.question_vertices
+        for i, a in enumerate(vertices):
+            for b in vertices[i + 1 :]:
+                path = self.geodesic(a, b, r.coverage_geodesic_max_depth)
+                if not path:
+                    continue
+                halves = []
+                for eid in path:
+                    h1, _ = self.graph.edge_half_edges(eid)
+                    halves.append(self.graph.H[h1])
+                result.geodesic_used = True
+                result.geodesic_len = len(path)
+                return self._collect(
+                    result, halves, seen_facts=seen_facts, budget=budget,
+                    face_id=f"geodesic:{a}:{b}", source=SOURCE_GEODESIC,
+                    coverage=1.0,
+                    via_entity=" → ".join(
+                        self.graph.vertices[x].name for x in (a, b)
+                        if x in self.graph.vertices
+                    ),
+                )
+        return 0
+
+    def _collect(
+        self,
+        result: RetrievalResult,
+        half_edges: Sequence[HalfEdge],
+        seen_facts: set[str],
+        budget: int,
+        face_id: str,
+        source: str,
+        coverage: float = 0.0,
+        via_entity: str = "",
+        max_facts: int = 0,
+    ) -> int:
+        """Append half-edges as facts, honouring dedup, budget and fact cap."""
+        used = 0
+        taken = 0
+        for pos, he in enumerate(half_edges):
+            if max_facts and taken >= max_facts:
+                break
+            if he.edge_id in seen_facts:
+                continue
+            cost = self.graph._token_counter(he.text)  # noqa: SLF001
+            if used + cost > budget:
+                break
+            used += cost
+            taken += 1
+            seen_facts.add(he.edge_id)
+            if he.state == STATE_INCONGRUENT:
+                result.any_incongruent = True
+            result.facts.append(
+                self._make_fact(
+                    he,
+                    anchor_rank=-1,  # not an anchor: selected structurally
+                    anchor_score=coverage,
+                    face_id=face_id,
+                    position_in_face=pos,
+                    source=source,
+                    via_entity=via_entity,
+                )
+            )
+        return used
+
+    # ------------------------------------------------------- sigma expansion --
+    def sigma_neighborhood(
+        self, half_edge_id: str, qvec: Optional[np.ndarray] = None
+    ) -> list[tuple[str, str]]:
+        """``[(half_edge_id, via_vertex_id), ...]`` -- the join candidates.
+
+        The orbit of ``sigma`` at a vertex is the set of memories touching that
+        entity, so these are exactly the facts that share an entity with the
+        anchor memory: the second hop.  Both ends of the anchor edge are
+        scanned when ``sigma_expand_both_ends`` is on, because the bridge may
+        live on either entity of the anchor.
+
+        With ``sigma_rerank`` the orbit is ranked by similarity to the question
+        rather than taken in cyclic order -- under ``sigma-time`` the cyclic
+        successor is merely the chronologically adjacent fact.  Note this is
+        *not* the global k-NN: candidates are constrained to the orbit, i.e. we
+        ask "which fact **about this entity** answers the question", which is
+        the whole point.
+        """
+        r = self.cfg.retrieval
+        starts = [half_edge_id]
+        if r.sigma_expand_both_ends:
+            twin = self.graph.alpha.get(half_edge_id)
+            if twin is not None:
+                starts.append(twin)
+
+        out: list[tuple[str, str]] = []
+        for start in starts:
+            vid = self.graph.H[start].vertex_id
+            orbit = self._orbit(start, r.sigma_max_orbit_scan)
+            if r.sigma_rerank and qvec is not None:
+                orbit = self._rank_by_query(orbit, qvec)
+            out.extend((h, vid) for h in orbit[: r.sigma_expand_k])
+        return out
+
+    def _orbit(self, start: str, cap: int) -> list[str]:
+        """Half-edges of ``sigma`` at ``start``'s vertex, excluding ``start``.
+
+        ``cap <= 0`` means no cap, consistent with ``sigma_expand_max_anchors``
+        and ``ingest.max_facts_per_session``.  (It used to clamp to one, so a
+        configured 0 silently crippled the expansion instead of widening it.)
+        """
+        limit = cap if cap > 0 else self.graph.degree(self.graph.H[start].vertex_id)
+        out: list[str] = []
+        cur = start
+        while len(out) < limit:
+            cur = self.graph.sigma_next(cur)
+            if cur == start:
+                break
+            out.append(cur)
+        return out
+
+    def _rank_by_query(self, half_edges: Sequence[str], qvec: np.ndarray) -> list[str]:
+        scored: list[tuple[str, float]] = []
+        for h in half_edges:
+            emb = self.graph.H[h].embedding
+            if emb is None:
+                continue
+            scored.append((h, self._adjust(h, float(np.dot(qvec, emb)))))
+        scored.sort(key=lambda kv: -kv[1])
+        return [h for h, _ in scored]
+
+    def _expand_sigma(
+        self,
+        result: RetrievalResult,
+        anchors: Sequence[tuple[str, float]],
+        qvec: np.ndarray,
+        seen_facts: set[str],
+        budget: int,
+    ) -> int:
+        """Add sigma-orbit neighbours of the top anchors.  Returns tokens used."""
+        r = self.cfg.retrieval
+        limit = r.sigma_expand_max_anchors or len(anchors)
+        used = 0
+        for rank, (hid, score) in enumerate(anchors[:limit]):
+            for h, vid in self.sigma_neighborhood(hid, qvec):
+                result.sigma_scanned += 1
+                he = self.graph.H[h]
+                if he.edge_id in seen_facts:
+                    result.sigma_dup += 1
+                    continue
+                cost = self.graph._token_counter(he.text)  # noqa: SLF001
+                if used + cost > budget:
+                    result.sigma_over_budget += 1
+                    continue
+                used += cost
+                seen_facts.add(he.edge_id)
+                if he.state == STATE_INCONGRUENT:
+                    result.any_incongruent = True
+                if vid not in result.sigma_vertices:
+                    result.sigma_vertices.append(vid)
+                vertex = self.graph.vertices.get(vid)
+                result.facts.append(
+                    self._make_fact(
+                        he,
+                        anchor_rank=rank,
+                        anchor_score=score,
+                        face_id=f"sigma:{vid}",
+                        position_in_face=len(result.sigma_vertices),
+                        source=SOURCE_SIGMA,
+                        via_vertex=vid,
+                        via_entity=vertex.name if vertex else vid,
+                    )
+                )
+        result.sigma_tokens = used
+        return used
+
+    # ------------------------------------------------------------ internals --
+    def _make_fact(
+        self,
+        he: HalfEdge,
+        *,
+        anchor_rank: int,
+        anchor_score: float,
+        face_id: str,
+        position_in_face: int,
+        source: str,
+        via_vertex: str = "",
+        via_entity: str = "",
+    ) -> RetrievedFact:
+        return RetrievedFact(
+            edge_id=he.edge_id,
+            text=he.text,
+            timestamp=he.timestamp,
+            date_raw=self.dates.get(he.session_id, he.timestamp),
+            session_id=he.session_id,
+            turn_ids=list(he.turn_ids),
+            state=he.state,
+            level=he.level,
+            anchor_rank=anchor_rank,
+            anchor_score=anchor_score,
+            face_id=face_id,
+            position_in_face=position_in_face,
+            source=source,
+            via_vertex=via_vertex,
+            via_entity=via_entity,
+        )
+
+    def _truncate(self, result: RetrievalResult, max_facts: int) -> None:
+        """Cap the prompt size without either pool starving the other.
+
+        The blunt ``facts[:max]`` would silently drop whatever the multi-hop
+        mechanisms contributed, and the ablation would then measure nothing.
+        But absolute priority for the joins is the same mistake mirrored: with a
+        long covering trail the joins alone overflow ``max_facts`` and *every*
+        anchor fact is evicted, so G5/G6 stop being supersets of G1 and the
+        comparison the conditions exist to make quietly stops holding.
+
+        So each pool is guaranteed its share and only the *unused* part of a
+        share is lent to the other -- the same discipline the token budget
+        already follows.
+        """
+        if len(result.facts) <= max_facts:
+            return
+        if not (result.sigma_expand or result.face_coverage):
+            result.facts = result.facts[:max_facts]
+            return
+
+        joins = [f for f in result.facts if f.source in JOIN_SOURCES]
+        faces = [f for f in result.facts if f.source not in JOIN_SOURCES]
+        # at least one slot each, whenever that pool has anything to offer
+        join_quota = max(1, int(max_facts * self.cfg.retrieval.max_facts_join_frac))
+        n_joins = min(len(joins), max(join_quota, max_facts - len(faces)))
+        n_faces = min(len(faces), max_facts - n_joins)
+
+        keep = {id(f) for f in joins[:n_joins]} | {id(f) for f in faces[:n_faces]}
+        result.facts = [f for f in result.facts if id(f) in keep]  # order preserved
 
     def top_edges(self, question: str, k: int) -> list[str]:
         """Top-k *edges* by anchor score -- used for the recall@k metric."""
@@ -187,15 +888,25 @@ class FaceRetriever:
 
 
 def render_context(result: RetrievalResult) -> str:
-    """Facts grouped by trail, in face order, each prefixed with its date."""
+    """Facts grouped by trail, in face order, each prefixed with its date.
+
+    Sigma groups are labelled with the entity they hinge on: telling the model
+    *where* two trails meet is exactly the composition step a multi-hop
+    question asks for, and it is free -- the retriever already knows it.
+    """
     lines: list[str] = []
     current_face: Optional[str] = None
     trail_no = 0
     for f in result.facts:
         if f.face_id != current_face:
             current_face = f.face_id
-            trail_no += 1
-            lines.append(f"--- trail {trail_no} ---")
+            if f.source == SOURCE_SIGMA:
+                lines.append(f"--- other memories about {f.via_entity} ---")
+            elif f.source == SOURCE_GEODESIC:
+                lines.append(f"--- chain linking {f.via_entity} ---")
+            else:
+                trail_no += 1
+                lines.append(f"--- trail {trail_no} ---")
         marker = " (summary)" if f.level == 2 else ""
         flag = " [INCONSISTENT]" if f.state == STATE_INCONGRUENT else ""
         lines.append(f"[{f.date_raw or f.timestamp}]{marker}{flag} {f.text}")
@@ -214,12 +925,20 @@ class Answerer:
         if not result.facts:
             return ABSTAIN_ANSWER
         if self.cfg.retrieval.incongruent_abstain and result.any_incongruent:
-            anchors_incongruent = all(
-                f.state == STATE_INCONGRUENT
+            # The rule is about the *anchors'* faces; join facts are extra
+            # evidence and must not dilute it either way. Note the guard on the
+            # empty list: under G5/G6 the anchor walk can legitimately
+            # contribute nothing (coverage spent the budget, or truncation kept
+            # only joins), and `all([])` is True -- which used to abstain on a
+            # context whose every surviving fact was perfectly congruent.
+            anchor_facts = [
+                f
                 for f in result.facts
-                if f.anchor_rank == 0
-            )
-            if anchors_incongruent:
+                if f.anchor_rank == 0 and f.source not in JOIN_SOURCES
+            ]
+            if anchor_facts and all(
+                f.state == STATE_INCONGRUENT for f in anchor_facts
+            ):
                 return ABSTAIN_ANSWER
         prompt = self.prompts.render(
             "answer",

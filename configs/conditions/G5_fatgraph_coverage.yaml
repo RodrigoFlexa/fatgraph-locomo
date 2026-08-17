@@ -1,0 +1,35 @@
+# G5 -- fatgraph-coverage: G1 + recuperação por face com cobertura de entidades.
+#
+# Hipótese: hoje o argmax é sobre meia-aresta e a face vem de brinde; a unidade
+# de decisão é o fato solto e a estrutura é decoração. Invertendo, a FACE é a
+# unidade recuperada e as meias-arestas só a pontuam. O sinal que faz isso
+# funcionar é ESTRUTURAL, não semântico: uma pergunta multi-hop nomeia duas
+# entidades, e uma face que passa pelos dois vértices é candidata a conter a
+# ponte mesmo que nenhum fato dela pareça com a pergunta — que é exatamente o
+# que o cosseno não consegue expressar.
+#
+# Quando nenhuma face cobre 2+ entidades, cai para a geodésica entre elas: um
+# caminho de comprimento 2 É o par de memórias que encadeia as duas.
+#
+# Difere da G1 apenas em retrieval.face_coverage (+ paths.graphs_condition).
+# Pré-requisito:  fgl ingest G1
+extends: base.yaml
+condition: G5-fatgraph-coverage
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  face_coverage: true
+  coverage_weight: 1.0
+  coverage_sim_aggregate: top2
+  coverage_budget_frac: 0.4
+  coverage_max_entities: 4
+  coverage_max_facts_per_face: 20
+  coverage_geodesic_fallback: true
+
+paths:
+  graphs_condition: G1-fatgraph-min

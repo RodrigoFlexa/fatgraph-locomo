@@ -1,0 +1,46 @@
+# G6 -- fatgraph-join: G4 + G5, os dois mecanismos de multi-hop juntos.
+#
+# São ortogonais, e é por isso que somam:
+#
+#   sigma (G4)     expande A PARTIR do âncora — o âncora está certo e falta o
+#                  segundo salto pela entidade que ele nomeia;
+#   cobertura (G5) escolhe QUAL trilha recuperar — o âncora está errado, ou
+#                  irrelevante, e a evidência está numa face que nenhum fato
+#                  isolado denuncia.
+#
+# Um cobre a falha do outro. Ordem de execução dentro do orçamento: cobertura,
+# depois as faces dos âncoras, depois sigma. Cada mecanismo tem sua fatia
+# reservada ANTES do laço, senão a face do âncora 0 consome tudo.
+#
+# Com as fatias abaixo sobram 40% do budget para o caminho clássico, o que
+# mantém a G6 comparável às demais em tokens de contexto.
+# Pré-requisito:  fgl ingest G1
+extends: base.yaml
+condition: G6-fatgraph-join
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  sigma_expand: true
+  sigma_expand_k: 4
+  sigma_expand_both_ends: true
+  sigma_expand_max_anchors: 2
+  sigma_budget_frac: 0.25
+  sigma_rerank: true
+
+  face_coverage: true
+  coverage_weight: 1.0
+  coverage_sim_aggregate: top2
+  coverage_budget_frac: 0.35
+  coverage_max_entities: 4
+  # menor que na G5: aqui a cobertura divide o prompt com sigma e com o
+  # caminho dos âncoras, e uma face longa sozinha sufocaria os dois
+  coverage_max_facts_per_face: 12
+  coverage_geodesic_fallback: true
+
+paths:
+  graphs_condition: G1-fatgraph-min

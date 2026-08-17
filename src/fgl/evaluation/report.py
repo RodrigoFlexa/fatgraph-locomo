@@ -19,12 +19,19 @@ CONDITION_ORDER = [
     "G1-fatgraph-min",
     "G2-fatgraph-cur",
     "G3-fatgraph-agent",
+    "G4-fatgraph-sigma",
+    "G5-fatgraph-coverage",
+    "G6-fatgraph-join",
 ]
-#: The three comparisons the study is built around.
+#: The comparisons the study is built around.
 KEY_PAIRS = [
     ("B3-rag-facts", "G1-fatgraph-min", "valor das faces (mesmos fatos)"),
     ("G1-fatgraph-min", "G2-fatgraph-cur", "valor da curadoria + consolidação"),
     ("G2-fatgraph-cur", "G3-fatgraph-agent", "valor do sigma-agent"),
+    ("G1-fatgraph-min", "G4-fatgraph-sigma", "valor da expansão por sigma (mesmo grafo)"),
+    ("G1-fatgraph-min", "G5-fatgraph-coverage", "valor da cobertura de entidades"),
+    ("G4-fatgraph-sigma", "G6-fatgraph-join", "cobertura ADICIONADA a sigma"),
+    ("G5-fatgraph-coverage", "G6-fatgraph-join", "sigma ADICIONADO à cobertura"),
 ]
 
 
@@ -162,6 +169,84 @@ def graph_table(results: Mapping[str, dict]) -> str:
     )
 
 
+def sigma_table(results: Mapping[str, dict]) -> str:
+    """Was the sigma expansion actually used, and did it bring new evidence?
+
+    A condition that claims the expansion but shows ``uso 0.000`` never joined
+    anything, and its F1 is just G1's with extra steps. This table is the
+    audit: it reads the per-question columns, not the config.
+    """
+    rows = []
+    for cond in order_conditions(results):
+        r = results[cond]
+        cats = r.get("per_category", {})
+        overall = r.get("overall", {})
+        if not overall.get("sigma_expand"):
+            continue
+        mh = cats.get("multi-hop", {})
+        rows.append(
+            [
+                cond,
+                f"{overall.get('sigma_use_rate', 0):.3f}",
+                f"{overall.get('sigma_facts_mean', 0):.2f}",
+                f"{overall.get('sigma_bridges_mean', 0):.2f}",
+                f"{overall.get('sigma_tokens_mean', 0):.0f}",
+                f"{overall.get('sigma_evidence_rate', 0):.3f}",
+                f"{mh.get('sigma_use_rate', float('nan')):.3f}" if mh else "-",
+                f"{mh.get('recall_context_no_sigma', float('nan')):.3f}" if mh else "-",
+                f"{mh.get('recall_context', float('nan')):.3f}" if mh else "-",
+            ]
+        )
+    if not rows:
+        return (
+            "_(nenhuma condição rodou com `retrieval.sigma_expand` — as colunas "
+            "de auditoria estão ausentes/zeradas, como esperado para G1–G3)_"
+        )
+    return _table(
+        [
+            "condition", "uso", "fatos σ", "pontes", "tokens σ", "evidência só via σ",
+            "uso (multi-hop)", "recall MH sem σ", "recall MH com σ",
+        ],
+        rows,
+    )
+
+
+def coverage_table(results: Mapping[str, dict]) -> str:
+    """A recuperação por cobertura foi usada, e trouxe evidência nova?
+
+    `ligadas` é a pré-condição de tudo: sem entidade ligada não há sinal de
+    cobertura e a condição degenera em G1.
+    """
+    rows = []
+    for cond in order_conditions(results):
+        overall = results[cond].get("overall", {})
+        if not overall.get("face_coverage"):
+            continue
+        mh = results[cond].get("per_category", {}).get("multi-hop", {})
+        rows.append(
+            [
+                cond,
+                f"{overall.get('coverage_link_rate', 0):.3f}",
+                f"{overall.get('coverage_entities_mean', 0):.2f}",
+                f"{overall.get('coverage_best_mean', 0):.3f}",
+                f"{overall.get('coverage_bridge_rate', 0):.3f}",
+                f"{overall.get('coverage_use_rate', 0):.3f}",
+                f"{overall.get('geodesic_rate', 0):.3f}",
+                f"{overall.get('coverage_evidence_rate', 0):.3f}",
+                f"{mh.get('recall_context_no_coverage', float('nan')):.3f}" if mh else "-",
+                f"{mh.get('recall_context', float('nan')):.3f}" if mh else "-",
+            ]
+        )
+    if not rows:
+        return "_(nenhuma condição rodou com `retrieval.face_coverage`)_"
+    return _table(
+        ["condition", "ligadas", "entidades", "cobertura máx", "faces-ponte",
+         "uso", "geodésica", "evidência só via cobertura",
+         "recall MH sem cob.", "recall MH com cob."],
+        rows,
+    )
+
+
 def comparison_table(results: Mapping[str, dict]) -> str:
     rows = []
     for a, b, label in KEY_PAIRS:
@@ -224,6 +309,19 @@ def build_report(results: Mapping[str, dict]) -> str:
             "## Recall da recuperação (evidências anotadas)",
             "",
             recall_table(results),
+            "",
+            "## Expansão por sigma (auditoria)",
+            "",
+            "`uso` = fração de perguntas em que a órbita de sigma contribuiu com "
+            "pelo menos um fato. `evidência só via σ` = fração em que sigma "
+            "alcançou um turno de evidência que nenhuma face alcançou — a "
+            "contribuição marginal do salto, não só sua atividade.",
+            "",
+            sigma_table(results),
+            "",
+            "## Recuperação por cobertura de entidades (auditoria)",
+            "",
+            coverage_table(results),
             "",
             "## Estatísticas do grafo",
             "",

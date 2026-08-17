@@ -670,7 +670,9 @@ def run_all(
     from fgl.memory.ingest import FactExtractor
     from fgl.pipeline import Runner
 
-    order = ["G1", "B3", "B2", "G2", "G3", "B1"]  # B1 last: by far the priciest
+    # G4/G5/G6 right after G1: they reuse G1's graphs, so G1 must build them
+    # first. B1 last: by far the priciest.
+    order = ["G1", "G4", "G5", "G6", "B3", "B2", "G2", "G3", "B1"]
     wanted = condition or order
     cfgs = []
     for name in wanted:

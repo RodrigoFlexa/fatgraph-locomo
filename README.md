@@ -256,7 +256,7 @@ fatgraph-locomo/
 ├── Makefile
 ├── configs/
 │   ├── base.yaml
-│   └── conditions/           # B1 B2 B3 G1 G2 G3 + test_offline
+│   └── conditions/           # B1 B2 B3 G1..G6 + test_offline
 ├── data/external/locomo/     # dataset oficial (fgl setup)
 ├── docs/
 │   ├── COERENCIA.md          # auditoria da especificação
@@ -312,16 +312,51 @@ Para inspecionar um smoke run offline: `setup(dry=True)`.
 | G1 | `fatgraph-min` | `sigma-time`, sem curadoria nem consolidação |
 | G2 | `fatgraph-cur` | `sigma-time` + curadoria + consolidação |
 | G3 | `fatgraph-agent` | `sigma-agent` + curadoria + consolidação |
+| G4 | `fatgraph-sigma` | G1 + expansão pela órbita de σ na recuperação |
+| G5 | `fatgraph-coverage` | G1 + face escolhida por cobertura das entidades da pergunta |
+| G6 | `fatgraph-join` | G4 + G5, os dois mecanismos de multi-hop juntos |
 
 G1/G2/G3 são os `F1`/`F2`/`F3` da especificação, renomeados para não colidir com
 a métrica F1 (`COERENCIA.md` C5).
+
+**G4 ataca o multi-hop.** Uma pergunta multi-hop é, no fatgraph, duas memórias na
+mesma órbita de σ — duas arestas incidentes no mesmo vértice. `φ = σ∘α` sai do
+vértice a cada passo, então a face só reencontra a entidade-ponte depois de uma
+volta na superfície, em geral além do `budget_tokens`. A G4 percorre σ direto, a
+partir das **duas** entidades da memória-âncora. Custo: zero chamadas de LLM.
+
+**G5 inverte a unidade de recuperação.** Em vez de `argmax` sobre meia-aresta
+com a face vindo de brinde, a **face** é o que se recupera, pontuada por
+similaridade agregada **mais a cobertura das entidades que a pergunta nomeia**.
+Cobertura é sinal estrutural: uma face que passa pelos dois vértices é candidata
+a ponte mesmo que nenhum fato dela pareça com a pergunta — o que o cosseno não
+consegue expressar. Sem face cobrindo duas entidades, cai para a geodésica entre
+elas.
+
+**G6 = G4 + G5.** São ortogonais: σ expande a partir de um âncora certo ao qual
+falta o segundo salto; a cobertura escolhe qual trilha recuperar quando o âncora
+é irrelevante.
+
+```bash
+fgl ingest G1                        # obrigatório: G4/G5/G6 REUTILIZAM os grafos da G1
+fgl run G4 && fgl run G5 && fgl run G6
+fgl report                           # tabelas comparativas + auditoria
+```
+
+Cada uma difere da G1 apenas no bloco de recuperação (`fgl config diff G1 G5`) e
+lê os grafos da G1 byte a byte — então o delta isola a recuperação, e não a
+extração nem a resolução de entidades. Com os dois flags em `false` (o default) o
+caminho de código é o antigo, de modo que resultados já guardados de G1–G3
+continuam reproduzíveis.
 
 **B3 é a ablação crítica**: B3 e G1 consomem fatos byte-a-byte idênticos, lidos
 do mesmo cache de extração — que não depende da condição, e há um teste que trava
 isso. A única diferença entre os dois é a topologia.
 
 Comparações: **B3 → G1** (valor das faces), **G1 → G2** (curadoria/consolidação),
-**G2 → G3** (o agente escolhendo σ).
+**G2 → G3** (o agente escolhendo σ), **G1 → G4** (o salto por σ, mesmo grafo),
+**G1 → G5** (cobertura de entidades), **G4 → G6** e **G5 → G6** (cada mecanismo
+adicionado ao outro — é o par que mostra se eles somam ou se se sobrepõem).
 
 ## O que sai de cada corrida
 
@@ -335,7 +370,17 @@ Comparações: **B3 → G1** (valor das faces), **G1 → G2** (curadoria/consoli
   incongruências;
 * **custo** em tokens separado entre ingestão e QA, e por propósito de chamada;
 * **manifesto**: config completa, hash de cada prompt, ambiente redigido, versão
-  do Python, commit do git, e qual stemmer o scorer usou.
+  do Python, commit do git, e qual stemmer o scorer usou;
+* **auditoria da cobertura** (só quando ligada): `coverage_link_rate` (a
+  pré-condição de tudo — sem entidade ligada não há sinal e a condição vira G1),
+  `coverage_bridge_rate` (faces cobrindo 2+ entidades), `coverage_evidence_rate`,
+  `geodesic_rate` e `recall_context_no_coverage`;
+* **auditoria da expansão por σ** (só quando ligada): `sigma_use_rate`,
+  `sigma_evidence_rate` (fração de perguntas em que σ alcançou uma evidência que
+  nenhuma face alcançou), `recall_context_no_sigma` — o mesmo recall calculado
+  como se a expansão não tivesse rodado — e `sigma_dup_rate`, que distingue
+  "a face já cobria a órbita" de "as órbitas estão vazias". Corridas antigas e
+  condições com o flag desligado simplesmente não têm esse bloco.
 
 `results/<condição>/predictions.jsonl` tem uma linha por pergunta.
 Decisões do agente (posição de inserção, justificativa, julgamentos de curadoria

@@ -845,6 +845,40 @@ class FatGraph:
             "degree_mean": (
                 float(np.mean([len(v) for v in self.sigma.values()])) if self.sigma else 0.0
             ),
+            **self.star_stats(),
+        }
+
+    def star_stats(self) -> dict:
+        """How close this graph is to a star -- the shape that kills multi-hop.
+
+        Both retrieval mechanisms downstream have a topological precondition,
+        and it is the *same* one, so it is worth one number rather than a
+        post-mortem:
+
+        * sigma expansion (G4) is redundant exactly when the anchor's
+          neighbours have degree 1.  There ``sigma(alpha(h)) = alpha(h)``, so
+          ``phi`` degenerates into marching along the hub's own orbit and the
+          face already delivers every sigma-neighbour, in order.  Nothing to
+          expand -- this is a theorem about the shape, not a tuning problem.
+        * face coverage (G5) needs faces to *differ* in which entities they
+          touch.  A star has a handful of enormous faces that touch nearly
+          every vertex, so coverage is ~1 for all of them and ranks nothing.
+
+        ``degree_1_frac`` catches the first, ``hub_share`` (the share of
+        half-edges sitting on the two highest-degree vertices) catches the
+        second: in a dialogue graph those two are the speakers, and a high
+        share means facts are being attached to whoever *said* them instead of
+        to what they are *about*.
+        """
+        degrees = sorted((len(v) for v in self.sigma.values()), reverse=True)
+        n_h = len(self.H)
+        return {
+            "degree_1_frac": (
+                round(sum(1 for d in degrees if d == 1) / len(degrees), 4)
+                if degrees
+                else 0.0
+            ),
+            "hub_share": round(sum(degrees[:2]) / n_h, 4) if n_h else 0.0,
         }
 
     # --------------------------------------------------------- persistence --

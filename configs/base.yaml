@@ -73,9 +73,55 @@ retrieval:
   incongruent_abstain: true
   recall_ks: [5, 10]
   max_facts_in_prompt: 40
+  # Teto da fatia do prompt que os mecanismos de multi-hop (sigma/cobertura/
+  # geodésica) podem ocupar quando os dois competem. Prioridade ABSOLUTA para
+  # os joins deixava uma trilha de cobertura longa evacuar TODO fato de âncora,
+  # e aí G5/G6 deixam de ser superconjuntos da G1 — a comparação para a qual as
+  # condições existem. É piso e teto ao mesmo tempo: o que uma parte não usa a
+  # outra aproveita. Ignorado quando os dois flags estão desligados.
+  max_facts_join_frac: 0.5
   # Modelos de reasoning (o1/o3/o4-mini, gpt-5) gastam este orçamento com
   # raciocínio interno e devolvem vazio se ele acabar. Nesses casos: 3000+.
   answer_max_tokens: 64
+
+  # --- expansão por sigma (multi-hop) ------------------------------------
+  # Pergunta multi-hop = duas memórias que compartilham uma entidade = duas
+  # meias-arestas na MESMA órbita de sigma. phi = sigma∘alpha sai do vértice a
+  # cada passo, então a face só reencontra aquela entidade depois de uma volta
+  # inteira — em geral além do budget. Percorrer sigma direto É o salto.
+  # DESLIGADO por padrão: G1/G2/G3 têm de continuar produzindo os mesmos
+  # números de antes. A condição G4 liga isto e só isto.
+  sigma_expand: false
+  sigma_expand_k: 4              # vizinhos mantidos por órbita
+  sigma_expand_both_ends: true   # expande de h e de alpha(h)
+  sigma_expand_max_anchors: 2    # só os N primeiros âncoras (0 = todos)
+  sigma_budget_frac: 0.4         # fatia de budget_tokens reservada a sigma
+  sigma_rerank: true             # ordena a órbita por similaridade, não por ciclo
+  sigma_max_orbit_scan: 64       # teto de meias-arestas pontuadas num hub
+
+  # --- recuperação por face com cobertura de entidades (multi-hop) --------
+  # O ranking de âncoras pergunta "que fato PARECE a pergunta?" — é o que todo
+  # RAG faz e é o que torna o single-hop fácil. Uma pergunta multi-hop nomeia
+  # duas entidades e a resposta está numa trilha ENTRE elas, então a pergunta
+  # útil é "que face cobre as entidades que a pergunta nomeia?". Cobertura é
+  # sinal estrutural: uma face que passa pelos dois vértices é candidata a
+  # ponte mesmo que nenhum fato dela pareça com a pergunta.
+  # DESLIGADO por padrão. G5 liga isto; G6 liga isto e a expansão por sigma.
+  face_coverage: false
+  coverage_weight: 1.0             # peso da cobertura contra a similaridade
+  coverage_sim_aggregate: top2     # max | top2 | mean (mean penaliza face longa)
+  coverage_budget_frac: 0.4        # fatia de budget_tokens para as faces cobertas
+  coverage_max_entities: 4         # entidades linkadas a partir da pergunta
+  coverage_max_faces: 24           # teto de faces candidatas pontuadas
+  # Faces são LONGAS (200+ é normal, COERENCIA C9). Sem este teto uma única
+  # trilha enche max_facts_in_prompt sozinha e sufoca o caminho dos âncoras e a
+  # expansão por sigma — medido, não suposto. Metade do teto do prompt é o
+  # compromisso entre profundidade numa trilha e diversidade entre trilhas;
+  # é o primeiro knob a varrer se a G5 render menos que o esperado.
+  coverage_max_facts_per_face: 20
+  coverage_entity_threshold: 0.75  # cosseno mínimo p/ aceitar vértice sem match literal
+  coverage_geodesic_fallback: true # caminho mínimo quando nenhuma face cobre 2+
+  coverage_geodesic_max_depth: 3
 
 baselines:
   rag_top_k: 10
@@ -90,3 +136,7 @@ paths:
   graphs_dir: artifacts/graphs
   facts_cache: artifacts/facts
   logs_dir: artifacts/logs
+  # Vazio = cada condição lê/escreve graphs_dir/<condition>. Preenchido, a
+  # condição REUTILIZA os grafos de outra (usado por G4 para rodar sobre os
+  # grafos idênticos da G1, isolando a recuperação).
+  graphs_condition: ""

@@ -120,10 +120,77 @@ class RetrievalConfig:
     incongruent_abstain: bool = True
     recall_ks: tuple[int, ...] = (5, 10)
     max_facts_in_prompt: int = 40
+    #: ceiling on the share of ``max_facts_in_prompt`` the multi-hop mechanisms
+    #: (sigma / coverage / geodesic) may occupy when the two compete. Absolute
+    #: priority for the joins would let coverage evict *every* anchor fact, and
+    #: G5/G6 would then stop being supersets of G1 -- the very comparison the
+    #: conditions exist to make. Ignored when both flags are off.
+    max_facts_join_frac: float = 0.5
     #: token budget for the answer itself. 64 is plenty for an extractive
     #: phrase, but a *reasoning* deployment spends this budget on internal
     #: reasoning first and then returns an empty string -- give it thousands.
     answer_max_tokens: int = 64
+
+    # --- sigma expansion (multi-hop) --------------------------------------
+    # A multi-hop question needs two memories that *share an entity*, i.e. two
+    # half-edges in the same sigma-orbit. phi = sigma o alpha leaves the vertex
+    # at every step, so the face only comes back to that entity after a full
+    # lap -- usually past the token budget. Walking sigma directly is the join.
+    # Off by default: G1/G2/G3 must keep producing byte-identical numbers.
+    #: master switch. False => retrieve() behaves exactly as before.
+    sigma_expand: bool = False
+    #: how many neighbours to keep per orbit (after reranking)
+    sigma_expand_k: int = 4
+    #: expand from alpha(h) too, i.e. from *both* entities of the anchor memory
+    sigma_expand_both_ends: bool = True
+    #: only the top-N anchors get expanded (0 = all of them)
+    sigma_expand_max_anchors: int = 2
+    #: fraction of budget_tokens reserved for sigma neighbours
+    sigma_budget_frac: float = 0.4
+    #: rank the whole orbit by similarity to the question instead of taking the
+    #: cyclic successors. Under sigma-time the successor is merely the
+    #: chronologically adjacent fact, which is rarely the bridge.
+    sigma_rerank: bool = True
+    #: cap on how many half-edges of one orbit get scored (high-degree hubs).
+    #: 0 = no cap, matching sigma_expand_max_anchors and max_facts_per_session.
+    sigma_max_orbit_scan: int = 64
+
+    # --- face-first retrieval by entity coverage (multi-hop) ---------------
+    # The anchor ranking asks "which fact looks like the question?", which is
+    # what every RAG does and what makes single-hop easy. A multi-hop question
+    # names two entities and the answer lies on a trail *between* them, so the
+    # useful question is "which face covers the entities the question names?".
+    # Coverage is a structural signal: a face through both vertices is a
+    # candidate bridge even when none of its facts resembles the question --
+    # precisely what cosine cannot express.
+    # Off by default, for the same reason as sigma_expand.
+    face_coverage: bool = False
+    #: weight of the coverage term against the similarity term
+    coverage_weight: float = 1.0
+    #: how to aggregate member similarity into a face score: max | top2 | mean.
+    #: mean penalises long faces, which are exactly the cross-session ones.
+    coverage_sim_aggregate: str = "top2"
+    #: fraction of budget_tokens reserved for the covering faces
+    coverage_budget_frac: float = 0.4
+    #: at most this many entities are linked from the question
+    coverage_max_entities: int = 4
+    #: at most this many candidate faces get scored, *in total*. The candidates
+    #: are drawn round-robin across the question's entities: taking them entity
+    #: by entity would let the first one exhaust the cap, and a bridge face is
+    #: by definition one that shows up under more than one of them.
+    coverage_max_faces: int = 24
+    #: at most this many memories taken from *each* covering face. Faces are
+    #: long (200+ is normal, see COERENCIA C9), so without this cap a single
+    #: trail fills max_facts_in_prompt on its own and starves both the anchor
+    #: walk and the sigma expansion -- measured, not hypothesised.
+    coverage_max_facts_per_face: int = 20
+    #: minimum cosine to accept a vertex as "named by the question" when the
+    #: match is not a literal surface match
+    coverage_entity_threshold: float = 0.75
+    #: when no face covers 2+ of the question's entities, retrieve the shortest
+    #: path between them instead: a length-2 path *is* the bridging memory pair
+    coverage_geodesic_fallback: bool = True
+    coverage_geodesic_max_depth: int = 3
 
 
 @dataclass
@@ -142,6 +209,11 @@ class PathsConfig:
     graphs_dir: str = "artifacts/graphs"
     facts_cache: str = "artifacts/facts"
     logs_dir: str = "artifacts/logs"
+    #: read the memory graphs from *another* condition's directory instead of
+    #: ``graphs_dir/<condition>``. Empty = use this condition's own name.
+    #: Lets a retrieval-only ablation (G4) run on G1's byte-identical graphs,
+    #: so the delta isolates retrieval and costs no LLM calls.
+    graphs_condition: str = ""
 
 
 SECTIONS: dict[str, type] = {
@@ -307,6 +379,63 @@ class Config:
             raise ConfigError("retrieval.budget_tokens must be >= 1")
         if self.curation.min_face_len < 2:
             raise ConfigError("curation.min_face_len must be >= 2")
+        if self.retrieval.sigma_expand:
+            if self.retrieval.sigma_expand_k < 1:
+                raise ConfigError("retrieval.sigma_expand_k must be >= 1")
+            if not 0.0 <= self.retrieval.sigma_budget_frac < 1.0:
+                raise ConfigError(
+                    "retrieval.sigma_budget_frac must be in [0, 1) -- the face "
+                    "walk needs what is left of the budget"
+                )
+            if self.retrieval.sigma_expand_max_anchors < 0:
+                raise ConfigError(
+                    "retrieval.sigma_expand_max_anchors must be >= 0 (0 = all anchors)"
+                )
+            if self.retrieval.sigma_max_orbit_scan < 0:
+                raise ConfigError(
+                    "retrieval.sigma_max_orbit_scan must be >= 0 (0 = no cap)"
+                )
+        if self.retrieval.face_coverage:
+            if self.retrieval.coverage_sim_aggregate not in ("max", "top2", "mean"):
+                raise ConfigError(
+                    "retrieval.coverage_sim_aggregate must be max|top2|mean, got "
+                    f"{self.retrieval.coverage_sim_aggregate!r}"
+                )
+            if not 0.0 <= self.retrieval.coverage_budget_frac < 1.0:
+                raise ConfigError(
+                    "retrieval.coverage_budget_frac must be in [0, 1)"
+                )
+            if self.retrieval.coverage_max_entities < 1:
+                raise ConfigError("retrieval.coverage_max_entities must be >= 1")
+            if self.retrieval.coverage_max_faces < 1:
+                raise ConfigError("retrieval.coverage_max_faces must be >= 1")
+            if self.retrieval.coverage_geodesic_max_depth < 1:
+                raise ConfigError("retrieval.coverage_geodesic_max_depth must be >= 1")
+        if self.retrieval.sigma_expand or self.retrieval.face_coverage:
+            if not 0.0 < self.retrieval.max_facts_join_frac <= 1.0:
+                raise ConfigError(
+                    "retrieval.max_facts_join_frac must be in (0, 1]"
+                )
+            # The anchor index L2-normalises internally, so anchors are cosine
+            # either way; the coverage and sigma scorers dot the raw vectors.
+            # With normalisation off, `sim` leaves [-1, 1] and the
+            # `sim + coverage_weight * coverage` sum stops meaning anything.
+            if not self.embeddings.normalize:
+                raise ConfigError(
+                    "retrieval.sigma_expand / face_coverage require "
+                    "embeddings.normalize=true: they score half-edges by raw "
+                    "dot product, which is only cosine on unit vectors"
+                )
+        reserved = 0.0
+        if self.retrieval.sigma_expand:
+            reserved += self.retrieval.sigma_budget_frac
+        if self.retrieval.face_coverage:
+            reserved += self.retrieval.coverage_budget_frac
+        if reserved >= 1.0:
+            raise ConfigError(
+                f"sigma_budget_frac + coverage_budget_frac = {reserved:.2f} >= 1: "
+                "nothing would be left for the anchor face walk"
+            )
         return self
 
     def requires_azure(self) -> bool:
