@@ -16,7 +16,14 @@
         "backoff_base": 2.0,
         "backoff_max": 60.0,
         "cache_dir": "/home/gbs2/fatgraph-locomo/.cache/llm",
-        "cache_enabled": true
+        "cache_enabled": true,
+        "fail_on_empty": true,
+        "health_check_calls": 5,
+        "max_empty_rate": 0.2,
+        "api_style": "auto",
+        "reasoning_min_tokens": 4000,
+        "send_temperature": true,
+        "reasoning_effort": "low"
       },
       "embeddings": {
         "provider": "sentence-transformers",
@@ -61,7 +68,8 @@
           5,
           10
         ],
-        "max_facts_in_prompt": 40
+        "max_facts_in_prompt": 40,
+        "answer_max_tokens": 64
       },
       "baselines": {
         "rag_top_k": 10,
@@ -97,56 +105,58 @@
       "embedding_provider": "sentence-transformers",
       "embedding_model": "all-MiniLM-L6-v2",
       "embedding_azure_deployment": "text-embedding-3-small",
+      "ca_bundle": null,
+      "use_base_url": true,
       "dotenv_found": true
     },
     "python": "3.10.12",
     "platform": "Linux-5.15.153.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
-    "git_commit": "4375f1f"
+    "git_commit": "e94a95c"
   },
   "overall": {
     "n": 1986,
-    "f1_micro": 0.233,
-    "f1_macro": 0.2103,
-    "abstention_rate": 1.0,
+    "f1_micro": 0.3993,
+    "f1_macro": 0.3288,
+    "abstention_rate": 0.4013,
     "mean_context_tokens": 421.4
   },
   "per_category": {
     "multi-hop": {
       "n": 282,
-      "f1": 0.0046,
-      "abstention_rate": 1.0,
+      "f1": 0.1774,
+      "abstention_rate": 0.2979,
       "recall@10": 0.2521,
       "recall@5": 0.1875,
       "recall_context": 0.2521
     },
     "temporal": {
       "n": 321,
-      "f1": 0.0137,
-      "abstention_rate": 1.0,
+      "f1": 0.3302,
+      "abstention_rate": 0.3458,
       "recall@10": 0.4987,
       "recall@5": 0.4172,
       "recall_context": 0.4987
     },
     "open-domain": {
       "n": 96,
-      "f1": 0.0229,
-      "abstention_rate": 1.0,
+      "f1": 0.0416,
+      "abstention_rate": 0.5208,
       "recall@10": 0.3103,
       "recall@5": 0.2326,
       "recall_context": 0.3103
     },
     "single-hop": {
       "n": 841,
-      "f1": 0.0104,
-      "abstention_rate": 1.0,
+      "f1": 0.3662,
+      "abstention_rate": 0.2699,
       "recall@10": 0.5163,
       "recall@5": 0.4199,
       "recall_context": 0.5163
     },
     "adversarial": {
       "n": 446,
-      "f1": 1.0,
-      "abstention_rate": 1.0,
+      "f1": 0.7287,
+      "abstention_rate": 0.7287,
       "recall@10": 0.3408,
       "recall@5": 0.2253,
       "recall_context": 0.3408
@@ -159,7 +169,7 @@
       "n_sessions": 19,
       "n_turns": 419,
       "n_questions": 199,
-      "f1": 0.2423,
+      "f1": 0.3922,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -172,8 +182,8 @@
         "calls": 199,
         "cached_calls": 0,
         "prompt_tokens": 130171,
-        "completion_tokens": 12736,
-        "total_tokens": 142907,
+        "completion_tokens": 27599,
+        "total_tokens": 157770,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -189,7 +199,7 @@
       "n_sessions": 19,
       "n_turns": 369,
       "n_questions": 105,
-      "f1": 0.2286,
+      "f1": 0.4414,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -209,8 +219,8 @@
         "calls": 105,
         "cached_calls": 1,
         "prompt_tokens": 60971,
-        "completion_tokens": 6720,
-        "total_tokens": 67691,
+        "completion_tokens": 14061,
+        "total_tokens": 75032,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -226,7 +236,7 @@
       "n_sessions": 32,
       "n_turns": 663,
       "n_questions": 193,
-      "f1": 0.222,
+      "f1": 0.4462,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -246,8 +256,8 @@
         "calls": 193,
         "cached_calls": 0,
         "prompt_tokens": 131311,
-        "completion_tokens": 12352,
-        "total_tokens": 143663,
+        "completion_tokens": 27283,
+        "total_tokens": 158594,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -263,7 +273,7 @@
       "n_sessions": 29,
       "n_turns": 629,
       "n_questions": 260,
-      "f1": 0.2385,
+      "f1": 0.3769,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -283,8 +293,8 @@
         "calls": 260,
         "cached_calls": 0,
         "prompt_tokens": 158487,
-        "completion_tokens": 16640,
-        "total_tokens": 175127,
+        "completion_tokens": 36630,
+        "total_tokens": 195117,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -300,7 +310,7 @@
       "n_sessions": 29,
       "n_turns": 680,
       "n_questions": 242,
-      "f1": 0.2708,
+      "f1": 0.4928,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -320,8 +330,8 @@
         "calls": 242,
         "cached_calls": 0,
         "prompt_tokens": 159710,
-        "completion_tokens": 15488,
-        "total_tokens": 175198,
+        "completion_tokens": 33102,
+        "total_tokens": 192812,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -337,7 +347,7 @@
       "n_sessions": 28,
       "n_turns": 675,
       "n_questions": 158,
-      "f1": 0.2302,
+      "f1": 0.3816,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -357,8 +367,8 @@
         "calls": 158,
         "cached_calls": 0,
         "prompt_tokens": 103067,
-        "completion_tokens": 10112,
-        "total_tokens": 113179,
+        "completion_tokens": 22053,
+        "total_tokens": 125120,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -374,7 +384,7 @@
       "n_sessions": 31,
       "n_turns": 689,
       "n_questions": 190,
-      "f1": 0.2235,
+      "f1": 0.3777,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -394,8 +404,8 @@
         "calls": 190,
         "cached_calls": 0,
         "prompt_tokens": 113225,
-        "completion_tokens": 12160,
-        "total_tokens": 125385,
+        "completion_tokens": 25030,
+        "total_tokens": 138255,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -411,7 +421,7 @@
       "n_sessions": 30,
       "n_turns": 681,
       "n_questions": 239,
-      "f1": 0.2203,
+      "f1": 0.3387,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -431,8 +441,8 @@
         "calls": 239,
         "cached_calls": 11,
         "prompt_tokens": 132347,
-        "completion_tokens": 15296,
-        "total_tokens": 147643,
+        "completion_tokens": 36414,
+        "total_tokens": 168761,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -448,7 +458,7 @@
       "n_sessions": 25,
       "n_turns": 509,
       "n_questions": 196,
-      "f1": 0.2126,
+      "f1": 0.3488,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -468,8 +478,8 @@
         "calls": 196,
         "cached_calls": 0,
         "prompt_tokens": 126262,
-        "completion_tokens": 12544,
-        "total_tokens": 138806,
+        "completion_tokens": 29378,
+        "total_tokens": 155640,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -485,7 +495,7 @@
       "n_sessions": 30,
       "n_turns": 568,
       "n_questions": 204,
-      "f1": 0.2299,
+      "f1": 0.4108,
       "cost_ingest": {
         "calls": 0,
         "cached_calls": 0,
@@ -505,8 +515,8 @@
         "calls": 204,
         "cached_calls": 0,
         "prompt_tokens": 140468,
-        "completion_tokens": 13056,
-        "total_tokens": 153524,
+        "completion_tokens": 28072,
+        "total_tokens": 168540,
         "by_purpose": {
           "qa/answer": {
             "calls": 0,
@@ -522,16 +532,27 @@
     "calls": 1986,
     "cached_calls": 12,
     "prompt_tokens": 1256019,
-    "completion_tokens": 127104,
-    "total_tokens": 1383123,
+    "completion_tokens": 279622,
+    "total_tokens": 1535641,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
     "by_purpose": {
       "qa/answer": {
         "calls": 1986,
         "cached_calls": 12,
         "prompt_tokens": 1256019,
-        "completion_tokens": 127104
+        "completion_tokens": 279622,
+        "empty_responses": 0,
+        "json_failures": 0
       }
     }
   },
-  "wall_seconds": 2877.3
+  "wall_seconds": 4593.2,
+  "sanity": {
+    "ok": true,
+    "warnings": [],
+    "abstention_rate": 0.4013,
+    "distinct_predictions": 1055
+  }
 }
