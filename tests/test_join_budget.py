@@ -105,6 +105,9 @@ class _Prompts:
 
 
 class _Question:
+    question = "q?"
+    category = 1  # multi-hop: fora da rota de inferência de open-domain
+
     def prompt_question(self):  # noqa: D102
         return "q?"
 

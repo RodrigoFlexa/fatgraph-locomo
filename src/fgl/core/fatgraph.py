@@ -771,6 +771,156 @@ class FatGraph:
             )
         return new_edge
 
+    # ----------------------------------------------------------- identity ----
+    def fingerprint(self) -> str:
+        """Content hash of the ribbon graph: same memory *and* same rotation.
+
+        Exists so that "these two conditions differ only in retrieval" can be a
+        *measured* claim instead of a trusted one.  Sharing a graph directory
+        (``paths.graphs_condition``) enforced it by construction, at the price of
+        making one condition's results an artefact of another's run.  A
+        fingerprint decouples them: every condition builds its own graph, and
+        equality of the hash proves the ingest agreed.
+
+        Deliberately content-addressed, not id-addressed: ``V3``/``E17`` depend
+        on insertion order, so hashing them would report a difference whenever
+        two runs merely numbered the same graph differently.  What is hashed is
+
+        * each vertex by normalised name;
+        * each edge by its text and the *names* of its endpoints;
+        * the cyclic order of sigma at each vertex, as edge texts, reduced to
+          its least rotation -- because a rotation is a cyclic object and any
+          starting point denotes the same embedding.
+
+        Embeddings are excluded: they are floats, and a rebuild on another BLAS
+        would differ in the last bits without the memory having changed.
+        Including sigma is what makes a genus-optimised graph hash *differently*
+        from the one it came from, which is correct -- it is a different ribbon
+        graph over the same memory.
+        """
+        name_of = {vid: vx.name for vid, vx in self.vertices.items()}
+        parts: list[str] = []
+
+        parts.append("V:" + "|".join(sorted(name_of.values())))
+
+        edges = []
+        for eid in self.edges():
+            h1, h2 = self.edge_half_edges(eid)
+            ends = tuple(sorted((name_of[self.H[h1].vertex_id],
+                                 name_of[self.H[h2].vertex_id])))
+            edges.append(f"{self.H[h1].text}\x1f{ends[0]}\x1f{ends[1]}")
+        parts.append("E:" + "|".join(sorted(edges)))
+
+        rotations = []
+        for vid in sorted(self.sigma, key=lambda v: name_of.get(v, v)):
+            texts = [self.H[h].text for h in self.sigma[vid]]
+            if texts:
+                start = _least_rotation(texts + texts, len(texts))
+                texts = texts[start:] + texts[:start]
+            rotations.append(name_of.get(vid, vid) + "\x1e" + "\x1f".join(texts))
+        parts.append("S:" + "|".join(rotations))
+
+        return hashlib.sha256("\x00".join(parts).encode("utf-8")).hexdigest()[:32]
+
+    # ------------------------------------------------- rotation local search --
+    def count_faces(self) -> int:
+        """Number of ``phi``-orbits.  O(|H|), no ``Face`` objects allocated.
+
+        ``faces()`` builds ids, edge tuples and a union-find partition; the
+        local search below evaluates this once per candidate move, so it needs
+        the bare count and nothing else.
+        """
+        visited: set[str] = set()
+        n = 0
+        for start in self.H:
+            if start in visited:
+                continue
+            n += 1
+            h = start
+            while h not in visited:
+                visited.add(h)
+                h = self.phi(h)
+        return n
+
+    def transpose_sigma(self, vertex_id: str, i: int, j: int) -> None:
+        """Swap two half-edges in the cyclic order at ``vertex_id``.
+
+        This is the move that changes the *surface*.  Whitehead flips do not:
+        contracting and re-expanding an edge is a spine move, which is why
+        :meth:`whitehead_flip` asserts that genus and ``F`` are unchanged.  To
+        alter the embedding you have to alter a rotation, and the smallest such
+        alteration is a transposition -- the standard local move on rotation
+        systems.
+        """
+        lst = self.sigma[vertex_id]
+        if not (0 <= i < len(lst) and 0 <= j < len(lst)):
+            raise FatGraphError(
+                f"transposition ({i}, {j}) out of range at {vertex_id!r} "
+                f"(degree {len(lst)})"
+            )
+        lst[i], lst[j] = lst[j], lst[i]
+        self._reindex_vertex(vertex_id)
+
+    def maximize_faces(self, max_passes: int = 4, max_degree_scan: int = 48) -> dict:
+        """Hill-climb on ``sigma`` to maximise ``F``, i.e. to minimise genus.
+
+        Why this is the principled objective, and not a knob: for a connected
+        ribbon graph Euler gives ``F = 2 - 2g + E - V``, so with ``V`` and ``E``
+        fixed by the extracted memory, **more faces is exactly less genus**, and
+        more faces over the same half-edges means *shorter* faces.
+
+        That matters because the measured failure of face-based retrieval was
+        face *length*: ordering sigma by timestamp yields a high-genus embedding
+        with a handful of enormous boundary walks (310-348 half-edges on real
+        LoCoMo graphs), and a walk that long is a budget sink rather than a
+        narrative unit.  Nothing about the memory requires that shape -- it is
+        an artefact of having picked the rotation by clock time.  sigma is a
+        free parameter of the ribbon structure, and this is the theory's own
+        objective for choosing it.
+
+        Vertices of degree <= 2 are skipped: every rotation on them is the same
+        cyclic order, so no transposition there can change anything.
+
+        The neighbourhood is *all* pairs within a vertex, not just adjacent
+        ones -- adjacent-only converges within a handful of moves on these
+        graphs, far short of the Euler ceiling.  ``max_degree_scan`` bounds the
+        pair enumeration on the speaker hubs, whose degree runs into the
+        hundreds and would otherwise dominate the cost quadratically.
+
+        Returns a report; the graph is mutated in place.
+        """
+        before = self.count_faces()
+        best = before
+        moves = 0
+        evaluated = 0
+        for _ in range(max(1, max_passes)):
+            improved = False
+            for vid in list(self.sigma):
+                deg = len(self.sigma[vid])
+                if deg <= 2:
+                    continue
+                span = min(deg, max_degree_scan) if max_degree_scan else deg
+                for i in range(span):
+                    for j in range(i + 1, deg):
+                        self.transpose_sigma(vid, i, j)
+                        evaluated += 1
+                        got = self.count_faces()
+                        if got > best:
+                            best = got
+                            moves += 1
+                            improved = True
+                        else:
+                            self.transpose_sigma(vid, i, j)  # revert
+            if not improved:
+                break
+        self._components_cache = None
+        return {
+            "faces_before": before,
+            "faces_after": best,
+            "moves_applied": moves,
+            "transpositions_evaluated": evaluated,
+        }
+
     # --------------------------------------------------------- invariants ---
     def check_invariants(self) -> None:
         """Raise :class:`InvariantError` if the combinatorial structure broke."""
@@ -846,6 +996,8 @@ class FatGraph:
                 float(np.mean([len(v) for v in self.sigma.values()])) if self.sigma else 0.0
             ),
             **self.star_stats(),
+            #: lets "differs only in retrieval" be verified rather than assumed
+            "fingerprint": self.fingerprint(),
         }
 
     def star_stats(self) -> dict:

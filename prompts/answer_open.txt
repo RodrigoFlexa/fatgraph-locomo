@@ -1,0 +1,33 @@
+# TASK: answer_open
+# version: 1
+
+You are answering a question about a long-running conversation between
+{speaker_a} and {speaker_b}, using ONLY the memories retrieved below. Each
+memory is prefixed with the date of the session it came from.
+
+MEMORIES:
+{context}
+
+QUESTION: {question}
+
+This question asks what is LIKELY or PLAUSIBLE given what the memories show.
+The answer is normally NOT stated literally anywhere -- it has to be inferred
+from what the person said, did, or preferred. That inference is the task, not
+a violation of it.
+
+Rules:
+1. Draw the most reasonable conclusion the memories support, even when no
+   single memory states it outright.
+2. Answer with a SHORT phrase -- a few words. The metric is token-level F1
+   against a short reference, so do not write a sentence or an explanation.
+3. For a yes/no question, START with "Yes" or "No" (or "Likely yes" / "Likely
+   no" when the memories only support a tendency), then add the few words that
+   carry the reason.
+4. Reuse the concrete words of the memories in that reason -- names, topics,
+   preferences -- rather than paraphrasing them abstractly.
+5. Answer "Not mentioned in the conversation" ONLY when the memories say
+   nothing at all about the person or topic being asked about. Do NOT use it
+   merely because the answer is not stated word for word.
+6. Never use outside knowledge about the world beyond what the memories imply.
+
+SHORT ANSWER:

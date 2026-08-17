@@ -43,4 +43,7 @@ retrieval:
   coverage_geodesic_fallback: true
 
 paths:
-  graphs_condition: G1-fatgraph-min
+  # Grafos PRÓPRIOS. Ingest identico ao da G1 + mesmo cache de fatos => mesmo
+  # grafo, agora VERIFICADO por `graph_stats.fingerprint` em vez de imposto
+  # por compartilhamento de diretorio.
+  graphs_condition: ""

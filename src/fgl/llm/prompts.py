@@ -49,3 +49,14 @@ SYSTEM_ANSWERER = (
     "You answer questions about a conversation using only the memories you are "
     "given. You reply with a short extractive phrase and nothing else."
 )
+#: LoCoMo category 3 (open-domain) asks what is *plausible* given the memories,
+#: so its answer is almost never stated literally.  Under SYSTEM_ANSWERER the
+#: model correctly concludes the text is not there and abstains: measured at
+#: F1 0.069 for the full-context baseline, which had 97% of the evidence in its
+#: prompt.  That is the instruction refusing the task, not retrieval failing.
+SYSTEM_ANSWERER_OPEN = (
+    "You answer questions about a conversation using only the memories you are "
+    "given. When a question asks what is likely or plausible, you infer the "
+    "answer from those memories instead of refusing. You reply with a short "
+    "phrase and nothing else."
+)

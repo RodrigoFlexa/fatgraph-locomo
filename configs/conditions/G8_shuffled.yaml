@@ -1,0 +1,45 @@
+# G8 -- shuffled: a G4 com os fatos do contexto EMBARALHADOS.
+#
+# A ablation que decide se a tese tem fundação. Tudo que um ribbon graph
+# acrescenta a um grafo comum é ORDEM: σ é uma ordenação cíclica, φ é o passeio
+# que ela induz, e as faces são as trilhas desse passeio. O conteúdo do contexto
+# aqui é byte a byte o da G4 — os mesmos fatos, recuperados pelo mesmo caminho —
+# e só a ordem de apresentação é destruída (headers de trilha incluídos).
+#
+# Leitura do resultado:
+#
+#   G8 ≈ G4   =>  a ordem não carrega sinal para o leitor. Nenhuma otimização de
+#                 σ pode pagar, e isso inclui a G9 (gênero) e os movimentos de
+#                 Whitehead. A tese cai, mas cai limpa e por 2000 chamadas.
+#   G8 <  G4  =>  a ordem importa, e "serialização canônica de uma vizinhança de
+#                 grafo para consumo por LLM" passa a ser uma contribuição
+#                 defensável — é o que GraphRAG e HippoRAG não fazem, porque
+#                 recuperam CONJUNTOS de nós e os despejam sem ordem.
+#
+# Rode esta ANTES de investir em G9. Ela é o ponto de decisão.
+# Pré-requisito:  fgl ingest G1
+extends: base.yaml
+condition: G8-shuffled
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  # idêntico à G4 em tudo que não seja a permutação
+  sigma_expand: true
+  sigma_expand_k: 4
+  sigma_expand_both_ends: true
+  sigma_expand_max_anchors: 2
+  sigma_budget_frac: 0.4
+  sigma_rerank: true
+
+  shuffle_context: true
+
+paths:
+  # Grafos PRÓPRIOS. Ingest identico ao da G1 + mesmo cache de fatos => mesmo
+  # grafo, agora VERIFICADO por `graph_stats.fingerprint` em vez de imposto
+  # por compartilhamento de diretorio.
+  graphs_condition: ""

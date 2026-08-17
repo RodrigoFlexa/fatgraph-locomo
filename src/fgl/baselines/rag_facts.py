@@ -44,22 +44,8 @@ class RagFactsBaseline(Baseline):
         context = "\n".join(
             f"[{self._facts[i].date_raw}] {self._facts[i].fact_text}" for i in chosen
         ) or "(no facts retrieved)"
-        prompt = self.prompts.render(
-            "answer",
-            speaker_a=conv.speaker_a,
-            speaker_b=conv.speaker_b,
-            context=context,
-            question=question.prompt_question(),
-        )
-        out = self.llm.complete(
-            prompt,
-            system="You answer questions about a conversation with a short "
-            "extractive phrase and nothing else.",
-            purpose="qa/answer",
-            max_tokens=self.cfg.retrieval.answer_max_tokens,
-        )
         return BaselineAnswer(
-            prediction=clean_answer(out),
+            prediction=self.complete_answer(conv, question, context),
             retrieved_turn_ids=_turns(self._facts, chosen),
             ranked_turn_ids=_turns(self._facts, ranked_idx),
             n_items=len(chosen),

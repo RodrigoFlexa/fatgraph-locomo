@@ -202,11 +202,16 @@ def test_star_graph_gains_nothing_from_sigma(embedder):
 # --------------------------------------------------------------------------- #
 
 
-def test_g4_differs_from_g1_only_in_retrieval_and_graph_reuse():
-    """O delta G4 − G1 tem de ser atribuível só à recuperação."""
+def test_g4_differs_from_g1_only_in_retrieval():
+    """O delta G4 − G1 tem de ser atribuível só à recuperação.
+
+    A G4 constrói o próprio grafo (nada de `graphs_condition`), então esta
+    igualdade de configuração é metade da garantia; a outra metade é o
+    fingerprint do grafo, verificado em ``test_graph_identity.py``.
+    """
     diff = Config.load("G1").diff(Config.load("G4"))
-    assert set(diff) == {"condition", "retrieval.sigma_expand", "paths.graphs_condition"}
-    assert Config.load("G4").paths.graphs_condition == "G1-fatgraph-min"
+    assert set(diff) == {"condition", "retrieval.sigma_expand"}
+    assert Config.load("G4").paths.graphs_condition == ""
 
 
 def test_sigma_is_off_in_every_other_condition():

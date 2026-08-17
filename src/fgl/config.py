@@ -108,7 +108,22 @@ class CurationConfig:
     consolidation: bool = False
     min_face_len: int = 4  # L
     min_stable_sessions: int = 2  # k
+    #: Whitehead moves preserve the surface -- `FatGraph.whitehead_flip` asserts
+    #: that genus and F are unchanged, because contracting and re-expanding an
+    #: edge is a spine move. They therefore cannot reshape faces; the move that
+    #: does is a transposition in sigma, below.
     whitehead_flip: bool = False  # phase 2
+    #: After ingest, hill-climb on sigma to maximise the face count. By Euler
+    #: (F = 2C - 2g + E - V) that is exactly minimising genus, and over fixed V
+    #: and E more faces means shorter ones -- which attacks the measured failure
+    #: of face retrieval, namely boundary walks of 300+ half-edges produced by
+    #: ordering sigma by the clock. Needs its own graphs: a different sigma is a
+    #: different ribbon graph, so such a condition cannot borrow G1's.
+    maximize_faces: bool = False
+    maximize_faces_passes: int = 6
+    #: bound on the pair enumeration inside one vertex; the speaker hubs reach
+    #: degree in the hundreds and would dominate the cost quadratically
+    maximize_faces_degree_scan: int = 48
 
 
 @dataclass
@@ -130,6 +145,23 @@ class RetrievalConfig:
     #: phrase, but a *reasoning* deployment spends this budget on internal
     #: reasoning first and then returns an empty string -- give it thousands.
     answer_max_tokens: int = 64
+
+    #: Route LoCoMo category 3 (open-domain) to a prompt that permits
+    #: inference. Those questions ask what is *likely*, so under the extractive
+    #: instruction the model abstains on a prompt that already holds the
+    #: evidence -- measured at F1 0.069 for full-context, whose evidence recall
+    #: in that category was 0.97. Applies to the baselines too, so the arms
+    #: stay comparable.
+    open_domain_inference: bool = True
+
+    #: Shuffle the retrieved facts before rendering the prompt.
+    #: The entire distinctive content of a ribbon graph over a plain graph is
+    #: *order* -- sigma is a cyclic ordering, phi is the walk it induces. So
+    #: this is the load-bearing ablation for the whole thesis: if F1 does not
+    #: move when the order is destroyed, then no amount of sigma optimisation
+    #: can help, and the honest conclusion is that ordering carries no signal
+    #: for the reader. Deterministic, seeded from `seed`.
+    shuffle_context: bool = False
 
     # --- sigma expansion (multi-hop) --------------------------------------
     # A multi-hop question needs two memories that *share an entity*, i.e. two
@@ -379,6 +411,20 @@ class Config:
             raise ConfigError("retrieval.budget_tokens must be >= 1")
         if self.curation.min_face_len < 2:
             raise ConfigError("curation.min_face_len must be >= 2")
+        if self.curation.maximize_faces:
+            if self.curation.maximize_faces_passes < 1:
+                raise ConfigError("curation.maximize_faces_passes must be >= 1")
+            if self.curation.maximize_faces_degree_scan < 0:
+                raise ConfigError(
+                    "curation.maximize_faces_degree_scan must be >= 0 (0 = no bound)"
+                )
+            if self.paths.graphs_condition:
+                raise ConfigError(
+                    "curation.maximize_faces rewrites sigma, so the graph is a "
+                    "different ribbon graph and cannot be borrowed: leave "
+                    f"paths.graphs_condition empty (got "
+                    f"{self.paths.graphs_condition!r})"
+                )
         if self.retrieval.sigma_expand:
             if self.retrieval.sigma_expand_k < 1:
                 raise ConfigError("retrieval.sigma_expand_k must be >= 1")

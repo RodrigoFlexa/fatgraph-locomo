@@ -36,22 +36,8 @@ class RagTurnsBaseline(Baseline):
         context = "\n".join(
             f"[{self._date.get(d, '')}] {self._turns[d].rendered}" for d in chosen
         ) or "(no turns retrieved)"
-        prompt = self.prompts.render(
-            "answer",
-            speaker_a=conv.speaker_a,
-            speaker_b=conv.speaker_b,
-            context=context,
-            question=question.prompt_question(),
-        )
-        out = self.llm.complete(
-            prompt,
-            system="You answer questions about a conversation with a short "
-            "extractive phrase and nothing else.",
-            purpose="qa/answer",
-            max_tokens=self.cfg.retrieval.answer_max_tokens,
-        )
         return BaselineAnswer(
-            prediction=clean_answer(out),
+            prediction=self.complete_answer(conv, question, context),
             retrieved_turn_ids=chosen,
             ranked_turn_ids=ranked,
             n_items=len(chosen),

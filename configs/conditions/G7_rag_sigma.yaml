@@ -1,0 +1,54 @@
+# G7 -- rag-sigma: o ranking da B3 + a expansão por sigma da G4, sem passeio.
+#
+# Motivado pelos resultados, não pela hipótese original. Duas medições:
+#
+#   1. `recall@10` é idêntico entre B3 e G1 (0.478 vs 0.490 em multi-hop) —
+#      mesmos fatos, mesmo ranking. A divergência aparece só no
+#      `recall_context` (0.492 vs 0.283): o passeio pela face GASTA o orçamento
+#      caminhando para longe dos fatos que o ranking já tinha em primeiro lugar.
+#   2. σ, ao contrário, ACRESCENTA: `recall_context_no_sigma` mostra a G4
+#      voltando de 0.391 para 0.281 quando se removem os fatos de σ. +0.11 de
+#      evidência multi-hop por 48 tokens.
+#
+# Se φ sempre tira e σ sempre põe, a condição a rodar é σ sem φ: top-m âncoras
+# por cosseno, expansão pela órbita, e NENHUM passeio pela face. Operacionalizado
+# com budget_tokens pequeno — o orçamento do passeio é o que o limita, então
+# cortá-lo para ~o tamanho da B3 deixa os âncoras e σ com o prompt inteiro.
+#
+# É também a condição teoricamente mais honesta: preserva σ (a vizinhança por
+# entidade, que é estrutura de ribbon) e descarta φ (a ordenação, que sigma-time
+# impõe arbitrariamente).
+#
+# Pré-requisito:  fgl ingest G1
+extends: base.yaml
+condition: G7-rag-sigma
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  # orçamento no nível da B3 (250 tokens de contexto medidos), de modo que o
+  # passeio pela face termine depois de um ou dois fatos por âncora
+  budget_tokens: 320
+  top_m_anchors: 8
+  max_facts_in_prompt: 14
+
+  sigma_expand: true
+  sigma_expand_k: 4
+  sigma_expand_both_ends: true
+  sigma_expand_max_anchors: 4
+  # metade do prompt para σ: é o mecanismo que mede ganho, e é barato
+  sigma_budget_frac: 0.5
+  sigma_rerank: true
+  max_facts_join_frac: 0.5
+
+  face_coverage: false
+
+paths:
+  # Grafos PRÓPRIOS. Ingest identico ao da G1 + mesmo cache de fatos => mesmo
+  # grafo, agora VERIFICADO por `graph_stats.fingerprint` em vez de imposto
+  # por compartilhamento de diretorio.
+  graphs_condition: ""

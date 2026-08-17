@@ -230,6 +230,18 @@ class QAOutcome:
         }
 
 
+def _per_point(
+    outcomes: Sequence[QAOutcome], substantive: Sequence[QAOutcome]
+) -> float:
+    """Mean context tokens per point of substantive F1 (0.0 if unscored)."""
+    if not outcomes or not substantive:
+        return 0.0
+    f1 = float(np.mean([o.f1 for o in substantive]))
+    if f1 < 1e-6:
+        return 0.0
+    return round(float(np.mean([o.tokens_context for o in outcomes])) / f1, 1)
+
+
 def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
     """F1 per category + macro/micro aggregates + recall@k per category."""
     by_cat: dict[int, list[QAOutcome]] = {}
@@ -255,6 +267,12 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
         entry.update(_coverage_stats(items))
         per_category[CATEGORY_NAMES.get(cat, str(cat))] = entry
 
+    # Category 5 is scored 1.0 exactly when the model abstained, so its "F1" is
+    # a pure measure of timidity -- and it is 22% of LoCoMo. A condition that
+    # abstains more scores higher overall while answering nothing better, which
+    # is why the headline f1_micro must never be quoted on its own. Reported
+    # here rather than left for the reader to derive.
+    substantive = [o for o in outcomes if o.category != 5]
     overall = {
         "n": len(outcomes),
         "f1_micro": round(float(np.mean([o.f1 for o in outcomes])), 4)
@@ -265,16 +283,33 @@ def aggregate(outcomes: Sequence[QAOutcome]) -> dict:
         )
         if per_category
         else 0.0,
+        #: f1_micro over everything EXCEPT adversarial: the comparison that
+        #: reflects retrieval quality rather than abstention propensity
+        "f1_substantive": round(float(np.mean([o.f1 for o in substantive])), 4)
+        if substantive
+        else 0.0,
+        "n_substantive": len(substantive),
         "abstention_rate": round(
             float(np.mean([o.abstained for o in outcomes])), 4
         )
         if outcomes
+        else 0.0,
+        #: abstention outside category 5, where abstaining is simply a miss
+        "abstention_rate_substantive": round(
+            float(np.mean([o.abstained for o in substantive])), 4
+        )
+        if substantive
         else 0.0,
         "mean_context_tokens": round(
             float(np.mean([o.tokens_context for o in outcomes])), 1
         )
         if outcomes
         else 0.0,
+        #: context tokens spent per point of substantive F1 -- the axis on which
+        #: a memory method competes once quality alone stops separating arms.
+        #: 0.0 when the run scored nothing: a ratio over a zero denominator
+        #: would print an astronomical number and read like a real measurement.
+        "tokens_per_f1_point": _per_point(outcomes, substantive),
     }
     overall.update(_sigma_stats(outcomes))
     overall.update(_coverage_stats(outcomes))

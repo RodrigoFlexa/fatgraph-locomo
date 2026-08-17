@@ -318,6 +318,9 @@ class IngestReport:
     per_session: list[dict] = field(default_factory=list)
     graph_stats: dict = field(default_factory=dict)
     llm_usage: dict = field(default_factory=dict)
+    #: faces before/after, and how many transpositions it took (empty when the
+    #: rotation search is off)
+    genus_optimization: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -410,6 +413,19 @@ class Ingestor:
                     "face_length_hist": stats["face_length_hist"],
                 }
             )
+
+        # ---- choose the rotation, instead of inheriting the clock's ----------
+        # sigma is a free parameter of the ribbon structure, and ordering it by
+        # timestamp is a choice, not a given -- one that produces a high-genus
+        # embedding whose boundary walks run to hundreds of half-edges. Euler
+        # (F = 2C - 2g + E - V) says maximising the face count IS minimising the
+        # genus, and over fixed V and E more faces means shorter ones.
+        if self.cfg.curation.maximize_faces:
+            report.genus_optimization = graph.maximize_faces(
+                max_passes=self.cfg.curation.maximize_faces_passes,
+                max_degree_scan=self.cfg.curation.maximize_faces_degree_scan,
+            )
+            graph.check_invariants()
 
         report.graph_stats = graph.stats()
         report.llm_usage = self.llm.usage.to_dict()

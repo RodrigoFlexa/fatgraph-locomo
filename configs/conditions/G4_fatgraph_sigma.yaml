@@ -6,12 +6,16 @@
 # entidade-ponte depois de uma volta inteira, em geral além do budget_tokens.
 #
 # Esta condição difere da G1 em EXATAMENTE um bloco: retrieval.sigma_*.
-# O ingest é idêntico e os grafos são REUTILIZADOS da G1 (graphs_condition),
-# de modo que o delta G4 − G1 não pode ser atribuído a nada além da
-# recuperação — nem a variação de extração, nem a resolução de entidades.
+# O ingest é idêntico, então o delta G4 − G1 não pode ser atribuído a nada além
+# da recuperação — nem a variação de extração, nem a resolução de entidades.
 #
-# Pré-requisito:  fgl ingest G1     (a G4 se recusa a construir grafo próprio)
-# Resultados vão para results/G4-fatgraph-sigma/, sem tocar em G1/G2/G3.
+# Essa igualdade é VERIFICADA, não imposta: a G4 constrói o próprio grafo, e
+# `graph_stats.fingerprint` (hash de conteúdo do ribbon graph) tem de bater com
+# o da G1. Emprestar o diretório da G1 garantiria a igualdade por construção,
+# mas ao custo de tornar estes resultados um artefato da rodada dela.
+#
+# Autossuficiente: constrói grafo e resultados próprios, sem depender de rodada
+# anterior. Resultados em results/G4-fatgraph-sigma/.
 extends: base.yaml
 condition: G4-fatgraph-sigma
 
@@ -30,5 +34,10 @@ retrieval:
   sigma_rerank: true
 
 paths:
-  # lê artifacts/graphs/G1-fatgraph-min/ — mesmos grafos, byte a byte
-  graphs_condition: G1-fatgraph-min
+  # Constrói os SEUS PRÓPRIOS grafos. O ingest é idêntico ao da G1 e os fatos
+  # vêm do mesmo cache condition-independent, então o grafo sai igual — e isso
+  # agora é VERIFICADO em vez de imposto: `graph_stats.fingerprint` é um hash de
+  # conteúdo do ribbon graph, e o report compara os das condições que alegam
+  # diferir só na recuperação. Emprestar o diretório da G1 tornaria estes
+  # resultados um artefato da rodada dela.
+  graphs_condition: ""

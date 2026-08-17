@@ -1,0 +1,50 @@
+# G9 -- genus: σ escolhida para MINIMIZAR o gênero, em vez de herdada do relógio.
+#
+# Este é o argumento propriamente ribbon-teórico, e o único que ataca o modo de
+# falha medido em vez de contorná-lo.
+#
+# O diagnóstico: `walk_face` perde 0.21 de recall multi-hop entre o ranking
+# (`recall@10` = 0.490) e o prompt (`recall_context` = 0.283). A causa é o
+# COMPRIMENTO das faces — 310 a 348 meias-arestas nos grafos reais. Uma trilha
+# desse tamanho é sumidouro de orçamento, não unidade narrativa.
+#
+# O ponto teórico: esse comprimento não é propriedade da memória, é artefato de
+# ter escolhido a rotação pelo timestamp. σ é PARÂMETRO LIVRE da estrutura de
+# ribbon, e Euler dá o objetivo para escolhê-la:
+#
+#     F = 2C - 2g + E - V
+#
+# Com V e E fixos pela extração, maximizar o número de faces É minimizar o
+# gênero — e mais faces sobre as mesmas meias-arestas significa faces mais
+# curtas. Medido no grafo offline: F de 8 para 26, gênero de 28 para 19,
+# comprimento médio de face de 32.5 para 10.0, em 0.3s.
+#
+# Nota sobre Whitehead: movimentos de Whitehead NÃO servem aqui. Contrair e
+# reexpandir uma aresta é movimento de spine da mesma superfície, e
+# `FatGraph.whitehead_flip` corretamente levanta exceção se gênero ou F mudarem.
+# O movimento que altera o mergulho é a TRANSPOSIÇÃO em σ, que é o que a busca
+# local usa.
+#
+# Esta condição PRECISA de grafos próprios: σ diferente é ribbon graph diferente,
+# então ela não pode emprestar os da G1 (graphs_condition fica vazio).
+# Pré-requisito:  fgl ingest G9
+extends: base.yaml
+condition: G9-genus
+
+ingest:
+  sigma_policy: sigma-time   # a rotação inicial; a busca local a substitui
+
+curation:
+  curation: false
+  consolidation: false
+  maximize_faces: true
+  maximize_faces_passes: 6
+  maximize_faces_degree_scan: 48
+
+retrieval:
+  # sem σ e sem cobertura: isola o efeito da forma das faces sobre o passeio
+  sigma_expand: false
+  face_coverage: false
+
+paths:
+  graphs_condition: ""

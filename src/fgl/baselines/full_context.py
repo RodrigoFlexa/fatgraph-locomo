@@ -43,22 +43,8 @@ class FullContextBaseline(Baseline):
         self._n_turns = sum(len(s.turns) for s in sessions)
 
     def answer(self, conv: Conversation, question: Question) -> BaselineAnswer:
-        prompt = self.prompts.render(
-            "answer",
-            speaker_a=conv.speaker_a,
-            speaker_b=conv.speaker_b,
-            context=self._context,
-            question=question.prompt_question(),
-        )
-        out = self.llm.complete(
-            prompt,
-            system="You answer questions about a conversation with a short "
-            "extractive phrase and nothing else.",
-            purpose="qa/answer",
-            max_tokens=self.cfg.retrieval.answer_max_tokens,
-        )
         return BaselineAnswer(
-            prediction=clean_answer(out),
+            prediction=self.complete_answer(conv, question, self._context),
             retrieved_turn_ids=[t.dia_id for t in conv.turns()],
             n_items=self._n_turns,
             tokens_context=default_token_counter(self._context),

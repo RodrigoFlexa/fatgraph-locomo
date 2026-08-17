@@ -34,6 +34,8 @@ before, so G1/G2/G3 keep producing byte-identical numbers.
 
 from __future__ import annotations
 
+import random
+import zlib
 from dataclasses import dataclass, field
 from typing import Optional, Sequence
 
@@ -44,7 +46,7 @@ from fgl.core import STATE_INCONGRUENT, Face, FatGraph, HalfEdge
 from fgl.retrieval.embeddings import Embedder, VectorIndex, build_index
 from fgl.llm import LLMClient
 from fgl.data.locomo import ABSTAIN_ANSWER, Conversation, Question
-from fgl.llm.prompts import SYSTEM_ANSWERER, PromptLibrary
+from fgl.llm.prompts import SYSTEM_ANSWERER, SYSTEM_ANSWERER_OPEN, PromptLibrary
 
 
 #: ``RetrievedFact.source`` values -- how a fact entered the context.
@@ -887,13 +889,30 @@ class FaceRetriever:
 # --------------------------------------------------------------------------- #
 
 
-def render_context(result: RetrievalResult) -> str:
+def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) -> str:
     """Facts grouped by trail, in face order, each prefixed with its date.
 
     Sigma groups are labelled with the entity they hinge on: telling the model
     *where* two trails meet is exactly the composition step a multi-hop
     question asks for, and it is free -- the retriever already knows it.
+
+    With ``shuffle_seed`` the facts are permuted and the trail headers dropped,
+    which keeps the *content* of the context byte-identical while destroying its
+    *order*.  That isolates the one thing a ribbon graph contributes over a
+    plain graph: sigma is an ordering, phi is the walk it induces, and faces are
+    the trails that walk produces.  If the score does not move under this
+    permutation, ordering carries no signal and optimising sigma cannot pay.
     """
+    if shuffle_seed is not None:
+        facts = list(result.facts)
+        random.Random(shuffle_seed).shuffle(facts)
+        return "\n".join(
+            f"[{f.date_raw or f.timestamp}]"
+            f"{' (summary)' if f.level == 2 else ''}"
+            f"{' [INCONSISTENT]' if f.state == STATE_INCONGRUENT else ''} {f.text}"
+            for f in facts
+        ) or "(no memories retrieved)"
+
     lines: list[str] = []
     current_face: Optional[str] = None
     trail_no = 0
@@ -940,15 +959,34 @@ class Answerer:
                 f.state == STATE_INCONGRUENT for f in anchor_facts
             ):
                 return ABSTAIN_ANSWER
+        # Open-domain (category 3) asks what is *likely*, so the extractive
+        # instruction actively forbids the task and the model abstains on a
+        # prompt that already holds the evidence. Routed to its own prompt when
+        # `retrieval.open_domain_inference` is on.
+        open_domain = (
+            self.cfg.retrieval.open_domain_inference and question.category == 3
+        )
+        # Seeded per question, so the permutation is fixed across runs but not
+        # identical for every question. `crc32`, not `hash()`: string hashing is
+        # salted per process, which would make the ablation unreproducible --
+        # exactly the property it needs most, since its whole claim rests on
+        # comparing two runs that differ in nothing but order.
+        seed = (
+            self.cfg.seed + zlib.crc32(question.question.encode())
+            if self.cfg.retrieval.shuffle_context
+            else None
+        )
         prompt = self.prompts.render(
-            "answer",
+            "answer_open" if open_domain else "answer",
             speaker_a=conv.speaker_a,
             speaker_b=conv.speaker_b,
-            context=render_context(result),
+            context=render_context(result, shuffle_seed=seed),
             question=question.prompt_question(),
         )
         out = self.llm.complete(
-            prompt, system=SYSTEM_ANSWERER, purpose="qa/answer",
+            prompt,
+            system=SYSTEM_ANSWERER_OPEN if open_domain else SYSTEM_ANSWERER,
+            purpose="qa/answer_open" if open_domain else "qa/answer",
             max_tokens=self.cfg.retrieval.answer_max_tokens,
         )
         return clean_answer(out)

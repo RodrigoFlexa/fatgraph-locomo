@@ -63,7 +63,21 @@ curation:
   consolidation: false
   min_face_len: 4        # L
   min_stable_sessions: 2 # k
+  # Movimentos de Whitehead PRESERVAM a superfície: contrair e reexpandir uma
+  # aresta é movimento de spine, e whitehead_flip levanta exceção se gênero ou F
+  # mudarem. Logo eles não podem reformar faces. O movimento que reforma é a
+  # transposição em sigma, abaixo.
   whitehead_flip: false  # phase 2
+
+  # Depois do ingest, busca local em sigma maximizando o número de faces. Por
+  # Euler (F = 2C - 2g + E - V), com V e E fixos, maximizar F É minimizar o
+  # gênero — e mais faces sobre as mesmas meias-arestas significa faces mais
+  # CURTAS, que é exatamente o modo de falha medido (trilhas de 300+
+  # meias-arestas produzidas por ordenar sigma pelo relógio).
+  # Exige grafos próprios: sigma diferente é ribbon graph diferente.
+  maximize_faces: false
+  maximize_faces_passes: 6
+  maximize_faces_degree_scan: 48
 
 retrieval:
   top_m_anchors: 5
@@ -83,6 +97,20 @@ retrieval:
   # Modelos de reasoning (o1/o3/o4-mini, gpt-5) gastam este orçamento com
   # raciocínio interno e devolvem vazio se ele acabar. Nesses casos: 3000+.
   answer_max_tokens: 64
+
+  # Categoria 3 (open-domain) pergunta o que é PROVÁVEL, então a resposta quase
+  # nunca está literal no contexto. Sob a instrução extrativa o modelo conclui
+  # corretamente que o texto não está lá e abstém: medido em F1 0.069 para a
+  # baseline full-context, cujo recall de evidência nessa categoria era 0.97.
+  # Isso é a instrução recusando a tarefa, não a recuperação falhando.
+  # Vale para as baselines também, para os braços seguirem comparáveis.
+  open_domain_inference: true
+
+  # Embaralha os fatos antes de renderizar o prompt. Tudo que um ribbon graph
+  # acrescenta a um grafo comum é ORDEM, então esta é a ablation que sustenta a
+  # tese inteira: se o F1 não se mover com a ordem destruída, otimizar sigma não
+  # pode pagar. Ligado só pela condição G8.
+  shuffle_context: false
 
   # --- expansão por sigma (multi-hop) ------------------------------------
   # Pergunta multi-hop = duas memórias que compartilham uma entidade = duas

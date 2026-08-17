@@ -241,7 +241,7 @@ def test_coverage_is_deterministic(linked_graph, embedder):
 def test_conditions_isolate_one_mechanism_each():
     g1 = Config.load("G1")
     assert set(g1.diff(Config.load("G5"))) == {
-        "condition", "retrieval.face_coverage", "paths.graphs_condition",
+        "condition", "retrieval.face_coverage",
     }
     # G6 difere da G4 pela cobertura; o resto são as fatias de contexto, que
     # PRECISAM encolher quando os dois mecanismos dividem o mesmo prompt

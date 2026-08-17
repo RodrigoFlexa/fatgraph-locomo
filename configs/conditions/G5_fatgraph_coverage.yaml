@@ -11,8 +11,8 @@
 # Quando nenhuma face cobre 2+ entidades, cai para a geodésica entre elas: um
 # caminho de comprimento 2 É o par de memórias que encadeia as duas.
 #
-# Difere da G1 apenas em retrieval.face_coverage (+ paths.graphs_condition).
-# Pré-requisito:  fgl ingest G1
+# Difere da G1 apenas em retrieval.face_coverage. Constrói o próprio grafo; a
+# igualdade com o da G1 é verificada por `graph_stats.fingerprint`.
 extends: base.yaml
 condition: G5-fatgraph-coverage
 
@@ -32,4 +32,7 @@ retrieval:
   coverage_geodesic_fallback: true
 
 paths:
-  graphs_condition: G1-fatgraph-min
+  # Grafos PRÓPRIOS. Ingest identico ao da G1 + mesmo cache de fatos => mesmo
+  # grafo, agora VERIFICADO por `graph_stats.fingerprint` em vez de imposto
+  # por compartilhamento de diretorio.
+  graphs_condition: ""

@@ -672,7 +672,10 @@ def run_all(
 
     # G4/G5/G6 right after G1: they reuse G1's graphs, so G1 must build them
     # first. B1 last: by far the priciest.
-    order = ["G1", "G4", "G5", "G6", "B3", "B2", "G2", "G3", "B1"]
+    # G7/G8 junto de G4: reusam os grafos da G1 e são as duas condições de
+    # decisão (sigma sem passeio; e o teste de ordem). G9 constrói os seus, por
+    # reescrever sigma. B1 por último: de longe a mais cara.
+    order = ["G1", "G4", "G7", "G8", "G5", "G6", "B3", "B2", "G2", "G3", "G9", "B1"]
     wanted = condition or order
     cfgs = []
     for name in wanted:

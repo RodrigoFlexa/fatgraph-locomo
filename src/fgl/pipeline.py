@@ -47,6 +47,9 @@ FATGRAPH_CONDITIONS = (
     "G4-fatgraph-sigma",
     "G5-fatgraph-coverage",
     "G6-fatgraph-join",
+    "G7-rag-sigma",
+    "G8-shuffled",
+    "G9-genus",
 )
 BASELINE_CONDITIONS = ("B1-full-context", "B2-rag-turns", "B3-rag-facts")
 

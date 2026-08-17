@@ -22,6 +22,9 @@ CONDITION_ORDER = [
     "G4-fatgraph-sigma",
     "G5-fatgraph-coverage",
     "G6-fatgraph-join",
+    "G7-rag-sigma",
+    "G8-shuffled",
+    "G9-genus",
 ]
 #: The comparisons the study is built around.
 KEY_PAIRS = [
@@ -32,6 +35,10 @@ KEY_PAIRS = [
     ("G1-fatgraph-min", "G5-fatgraph-coverage", "valor da cobertura de entidades"),
     ("G4-fatgraph-sigma", "G6-fatgraph-join", "cobertura ADICIONADA a sigma"),
     ("G5-fatgraph-coverage", "G6-fatgraph-join", "sigma ADICIONADO à cobertura"),
+    # as três que os resultados motivaram, em ordem de poder de decisão
+    ("G4-fatgraph-sigma", "G8-shuffled", "A ORDEM IMPORTA? (mesmo conteúdo, permutado)"),
+    ("B3-rag-facts", "G7-rag-sigma", "sigma ACRESCENTA ao k-NN puro?"),
+    ("G1-fatgraph-min", "G9-genus", "sigma escolhida por gênero mínimo vs pelo relógio"),
 ]
 
 
@@ -267,6 +274,71 @@ def comparison_table(results: Mapping[str, dict]) -> str:
 # --------------------------------------------------------------------------- #
 
 
+#: Conditions whose ingest is byte-for-byte G1's, so their graphs MUST hash
+#: equal to G1's. They differ from it only in how the memory is queried.
+RETRIEVAL_ONLY = [
+    "G4-fatgraph-sigma",
+    "G5-fatgraph-coverage",
+    "G6-fatgraph-join",
+    "G7-rag-sigma",
+    "G8-shuffled",
+]
+
+
+def _fingerprints(metrics: dict) -> dict[str, str]:
+    """``sample_id -> graph fingerprint`` for one condition's run."""
+    out = {}
+    for row in metrics.get("per_conversation", []):
+        fp = (row.get("graph") or {}).get("fingerprint")
+        if fp:
+            out[row.get("sample_id", "?")] = fp
+    return out
+
+
+def graph_identity_table(results: Mapping[str, dict]) -> str:
+    """Do the retrieval-only conditions really share G1's memory?
+
+    They used to guarantee it by reading G1's graph directory, which made their
+    numbers an artefact of G1's run.  Each now builds its own, so the guarantee
+    has to be *checked*: identical ingest over the same fact cache must produce
+    the same ribbon graph, and `FatGraph.fingerprint` is content-addressed, so
+    equality here is equality of memory and rotation both.
+
+    A mismatch invalidates the corresponding delta -- it would no longer isolate
+    retrieval, because the two arms would be remembering different things.
+    """
+    base = _fingerprints(results.get("G1-fatgraph-min", {}))
+    if not base:
+        return "_(rode a G1 para comparar as impressões digitais dos grafos)_"
+
+    rows = []
+    for cond in RETRIEVAL_ONLY:
+        if cond not in results:
+            continue
+        got = _fingerprints(results[cond])
+        shared = sorted(set(base) & set(got))
+        if not shared:
+            rows.append([cond, "-", "-", "sem conversas em comum"])
+            continue
+        same = [s for s in shared if got[s] == base[s]]
+        verdict = (
+            "idêntico à G1"
+            if len(same) == len(shared)
+            else f"**DIVERGE** em {len(shared) - len(same)} — o delta não isola recuperação"
+        )
+        rows.append([cond, f"{len(same)}/{len(shared)}", base[shared[0]][:12], verdict])
+
+    if not rows:
+        return "_(nenhuma condição de recuperação-apenas nos resultados)_"
+    note = (
+        "\nCada condição constrói o próprio grafo; a igualdade abaixo é medida, "
+        "não imposta por compartilhamento de diretório.\n\n"
+    )
+    return note + _table(
+        ["condição", "grafos iguais", "fingerprint G1", "veredito"], rows
+    )
+
+
 def sanity_banner(results: Mapping[str, dict]) -> str:
     """A run whose answers are all identical is not a result."""
     bad = {c: (r.get("sanity") or {}) for c, r in results.items()}
@@ -305,6 +377,10 @@ def build_report(results: Mapping[str, dict]) -> str:
             "## Comparações-chave",
             "",
             comparison_table(results),
+            "",
+            "## Identidade dos grafos (as ablations isolam o que dizem isolar?)",
+            "",
+            graph_identity_table(results),
             "",
             "## Recall da recuperação (evidências anotadas)",
             "",
