@@ -35,3 +35,5 @@ src/fgl/llm/petrobras-ca-root.pem
 petrobras-ca-root.pem
 config.ini:Zone.Identifier
 config-v1.x.ini:Zone.Identifier
+results/*
+results_v3/*
