@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Missing swimming, frisbee catching, and skateboard balancing.\"}", "prompt_tokens": 382, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

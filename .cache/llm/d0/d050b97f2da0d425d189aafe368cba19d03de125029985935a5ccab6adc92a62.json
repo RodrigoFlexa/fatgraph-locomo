@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: both indicate increased confidence.\"}", "prompt_tokens": 372, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

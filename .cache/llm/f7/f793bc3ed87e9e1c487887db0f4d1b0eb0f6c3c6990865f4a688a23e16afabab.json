@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A possessive group 'Deborah's family' refers to multiple relatives, not the individual person Deborah.\"}", "prompt_tokens": 227, "completion_tokens": 41, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same animals—'dogs' and 'pups' describing Audrey's dogs who are taken to the park.\"}", "prompt_tokens": 216, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The note about Andrew considering another dog fits the broader narrative about Audrey's household and Andrew being kept informed, so it belongs after the summary that mentions Andrew and the dogs.\"}", "prompt_tokens": 465, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

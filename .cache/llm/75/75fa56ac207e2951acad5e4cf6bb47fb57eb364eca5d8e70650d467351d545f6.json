@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate gives a date, not the duration of three weeks.\"}", "prompt_tokens": 368, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

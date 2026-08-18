@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"Both memories describe Nate meeting new people (social encounters), so placing the tournament meeting right after the memory of meeting a nearby couple groups similar social-meeting events together.\"}", "prompt_tokens": 853, "completion_tokens": 311, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

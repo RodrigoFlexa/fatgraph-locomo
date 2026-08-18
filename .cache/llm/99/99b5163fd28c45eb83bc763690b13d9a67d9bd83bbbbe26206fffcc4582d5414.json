@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is part of the same audition episode and fits best immediately after the audition event so the face reads: audition -> felt excited -> felt mixed emotions.\"}", "prompt_tokens": 748, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

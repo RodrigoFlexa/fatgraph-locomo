@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Paraphrases 'being in nature' with same meaning.\"}", "prompt_tokens": 364, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

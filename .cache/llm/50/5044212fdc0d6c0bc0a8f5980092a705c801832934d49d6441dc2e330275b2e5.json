@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Harry Potter and Game of Thrones\\\" refers to a combined/paired mention of two works, not solely the entity \\\"Harry Potter.\\\"\"}", "prompt_tokens": 177, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

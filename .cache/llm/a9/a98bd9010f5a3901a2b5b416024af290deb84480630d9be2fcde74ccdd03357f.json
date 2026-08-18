@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence linking the generic description 'a small town in Japan' to the specific 'a nice place in Japan' where Calvin will stay, so they cannot be assumed the same.\"}", "prompt_tokens": 227, "completion_tokens": 122, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

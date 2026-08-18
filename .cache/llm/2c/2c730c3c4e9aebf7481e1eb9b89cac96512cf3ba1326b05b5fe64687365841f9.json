@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Seeing the scenery is part of Joanna's visit narrative, so it should be inserted directly after the 'Joanna visited Woodhaven' memory.\"}", "prompt_tokens": 388, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

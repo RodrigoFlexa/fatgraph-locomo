@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This statement is part of the concrete training advice Audrey will give Andrew, so it belongs immediately after the memory about her telling Andrew tips on training his future dog.\"}", "prompt_tokens": 746, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

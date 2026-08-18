@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory describes a direct outcome of Jolene’s internship and belongs in the same causal thread immediately after 'Jolene is interning at a well-known engineering firm.'\"}", "prompt_tokens": 771, "completion_tokens": 248, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

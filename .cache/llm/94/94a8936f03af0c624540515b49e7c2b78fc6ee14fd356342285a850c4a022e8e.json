@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"Physical therapy daily is part of John's recovery from the recent injury, so it belongs directly after the memory noting he sustained an injury.\"}", "prompt_tokens": 796, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"“Evan's ownership” denotes possession by Evan and therefore refers to the same person Evan.\"}", "prompt_tokens": 239, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

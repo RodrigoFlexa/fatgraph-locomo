@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"More specific (city) while matching the country Colombia.\"}", "prompt_tokens": 361, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

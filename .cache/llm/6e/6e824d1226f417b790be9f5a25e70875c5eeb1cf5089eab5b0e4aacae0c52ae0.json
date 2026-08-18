@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The two statements refer to different times (she missed a parade around 2023-07-20 but attended one on 2023-08-14), so they can both be true.\"}", "prompt_tokens": 242, "completion_tokens": 125, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

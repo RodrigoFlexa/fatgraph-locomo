@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This memory continues the tournament thread (outcome of the event mentioned in the upcoming/pushed-back tournament memory), so it belongs right after the tournament memory at index 6.\"}", "prompt_tokens": 763, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

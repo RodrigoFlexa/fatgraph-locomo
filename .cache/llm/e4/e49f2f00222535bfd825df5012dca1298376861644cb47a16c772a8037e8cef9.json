@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory restates the timing of the same parade attendance and belongs in the same narrative chain that begins with memory 0 about Caroline attending the pride parade.\"}", "prompt_tokens": 449, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

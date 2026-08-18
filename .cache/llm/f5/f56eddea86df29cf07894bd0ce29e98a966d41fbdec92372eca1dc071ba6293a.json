@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This directly continues the outdoor-gear narrative tied to the deal signed by John on or before 19 Dec 2023, so it belongs immediately after memory 2.\"}", "prompt_tokens": 777, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

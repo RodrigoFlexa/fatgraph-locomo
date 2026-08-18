@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a specific fantasy book by Patrick Rothfuss and the other is the general category 'fantasy novels', so they are not the same entity.\"}", "prompt_tokens": 181, "completion_tokens": 51, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a specific mentorship program event, the other refers to the broader LGBTQ community.\"}", "prompt_tokens": 209, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

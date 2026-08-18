@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This statement about his effort during games logically follows 'John played in a recent basketball game' and continues the same basketball-playing narrative.\"}", "prompt_tokens": 760, "completion_tokens": 240, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

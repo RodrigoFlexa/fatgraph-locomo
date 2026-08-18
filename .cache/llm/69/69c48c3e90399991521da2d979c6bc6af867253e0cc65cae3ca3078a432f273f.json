@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Deborah's support\\\" refers to the support provided by Deborah, not the person Deborah herself.\"}", "prompt_tokens": 239, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

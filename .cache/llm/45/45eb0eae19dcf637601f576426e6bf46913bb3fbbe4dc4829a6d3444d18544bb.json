@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A mansion is a building while the view from a living room is a scene, so they are different entities.\"}", "prompt_tokens": 190, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

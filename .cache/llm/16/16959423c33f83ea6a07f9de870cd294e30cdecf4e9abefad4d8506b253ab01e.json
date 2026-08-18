@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They describe different photos because one has the books on a wooden floor while the other has them on a table.\"}", "prompt_tokens": 202, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

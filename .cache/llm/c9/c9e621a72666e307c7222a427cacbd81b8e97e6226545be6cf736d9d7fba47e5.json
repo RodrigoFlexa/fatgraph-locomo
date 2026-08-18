@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The impression about the brigade’s dedication and teamwork fits the joining/training/first-call-out narrative (memory 0) rather than the school-mentoring thread (memory 1).\"}", "prompt_tokens": 406, "completion_tokens": 315, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

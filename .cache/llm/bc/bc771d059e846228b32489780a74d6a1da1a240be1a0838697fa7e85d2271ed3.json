@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to her paintings (the artworks), while B refers to the art show event, so they are different entities.\"}", "prompt_tokens": 200, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

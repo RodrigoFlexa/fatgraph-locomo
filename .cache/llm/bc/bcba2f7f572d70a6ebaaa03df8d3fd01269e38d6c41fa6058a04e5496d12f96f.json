@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They state different facts: one describes enjoyment, the other specifies playing online, so neither fully contains the other.\"}", "prompt_tokens": 230, "completion_tokens": 113, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

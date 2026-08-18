@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A yoga studio is a place while a yoga instructor is a person, so they are different entities.\"}", "prompt_tokens": 195, "completion_tokens": 40, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

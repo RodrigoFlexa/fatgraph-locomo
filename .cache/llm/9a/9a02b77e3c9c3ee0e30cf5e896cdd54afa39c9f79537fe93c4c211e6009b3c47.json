@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory directly continues the episode about Audrey training her pups (agility classes and park practice) so it belongs immediately after the agility-classes memory.\"}", "prompt_tokens": 777, "completion_tokens": 116, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

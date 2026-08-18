@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The ginger-snap limit is directly related to the photo of cookies and fits the same snack/cookie narrative, so it should be placed immediately after the cookie photo (index 0).\"}", "prompt_tokens": 757, "completion_tokens": 507, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

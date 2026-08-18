@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"‘Nate’s place’ denotes a location owned by the person referred to as Nate, so both mentions point to the same individual.\"}", "prompt_tokens": 250, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements can be true simultaneously: making friends through teaching yoga does not conflict with organizing a yoga event later.\"}", "prompt_tokens": 242, "completion_tokens": 44, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

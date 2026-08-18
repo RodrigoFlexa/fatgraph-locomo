@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to abstract 'support' for a petition while B refers to 'buddies' (people), so they are different entities.\"}", "prompt_tokens": 183, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

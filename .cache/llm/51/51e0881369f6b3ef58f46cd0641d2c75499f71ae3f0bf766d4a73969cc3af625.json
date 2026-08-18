@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same drumming activity (James playing drums) described at different times.\"}", "prompt_tokens": 182, "completion_tokens": 295, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

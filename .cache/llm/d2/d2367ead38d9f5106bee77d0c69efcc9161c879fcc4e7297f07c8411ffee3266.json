@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"John and Max\\\" is a plural mention including two people, not identical to the single person \\\"John\\\".\"}", "prompt_tokens": 210, "completion_tokens": 170, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

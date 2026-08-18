@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This memory describes Ned interacting with James (a dog behavior episode) and fits the ongoing Ned/adoption face, so it should be placed immediately after the 'James adopted Ned' memory.\"}", "prompt_tokens": 784, "completion_tokens": 443, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

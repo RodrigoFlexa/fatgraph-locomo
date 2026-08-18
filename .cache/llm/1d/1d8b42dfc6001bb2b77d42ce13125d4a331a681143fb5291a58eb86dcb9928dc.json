@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same conclusion; candidate gives consistent, specific justification.\"}", "prompt_tokens": 372, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

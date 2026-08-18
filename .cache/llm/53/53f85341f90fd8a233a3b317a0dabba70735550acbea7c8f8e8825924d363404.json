@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions could refer to different photos (one emphasizes a court with a crowd, the other a game in a gym) and there is no evidence they are the same image.\"}", "prompt_tokens": 201, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

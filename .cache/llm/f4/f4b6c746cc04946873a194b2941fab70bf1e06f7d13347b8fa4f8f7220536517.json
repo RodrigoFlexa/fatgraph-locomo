@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same pair/group composed of Audrey and her dogs (the volunteer's dog is part of that outing).\"}", "prompt_tokens": 212, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

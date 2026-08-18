@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Dave's father refers to Dave's parent, a different person than Dave.\"}", "prompt_tokens": 237, "completion_tokens": 35, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

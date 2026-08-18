@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"John's team\\\" refers to the team associated with John, while \\\"John\\\" is the person, so they are different entities.\"}", "prompt_tokens": 232, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

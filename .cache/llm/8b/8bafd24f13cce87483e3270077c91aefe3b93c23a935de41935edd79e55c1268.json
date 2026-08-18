@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different quantities: reference three, candidate two\"}", "prompt_tokens": 360, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

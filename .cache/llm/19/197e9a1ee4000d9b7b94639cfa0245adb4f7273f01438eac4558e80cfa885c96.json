@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches all three listed qualities.\"}", "prompt_tokens": 362, "completion_tokens": 90, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The vegan ice cream teaching is part of the same dairy-free/cooking thread as Nate's recommendation about dairy-free fats and checking labels, so it belongs immediately after that memory.\"}", "prompt_tokens": 799, "completion_tokens": 377, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

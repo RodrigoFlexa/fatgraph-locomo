@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A yoga pose is a specific posture, while yoga refers to the broader practice, so they are not the same entity.\"}", "prompt_tokens": 283, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

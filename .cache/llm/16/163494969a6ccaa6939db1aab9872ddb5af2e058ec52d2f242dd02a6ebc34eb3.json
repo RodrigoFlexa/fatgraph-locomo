@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory directly continues the yoga episode described in memory 0 about starting a weekend yoga class and fits the same immediate topic and time.\"}", "prompt_tokens": 716, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

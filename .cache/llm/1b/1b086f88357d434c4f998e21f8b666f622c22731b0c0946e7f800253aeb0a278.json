@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference lists family activities; candidate incorrectly claims none mentioned.\"}", "prompt_tokens": 380, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

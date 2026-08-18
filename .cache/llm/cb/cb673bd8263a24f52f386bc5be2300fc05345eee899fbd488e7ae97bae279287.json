@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Audrey busy\\\" is a mention of the same person Audrey (the trailing word 'busy' is a descriptor), so they refer to the same individual.\"}", "prompt_tokens": 224, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

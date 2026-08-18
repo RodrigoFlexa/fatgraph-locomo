@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Jon the person (about his studio success) while Mention B refers to his dance crew, a separate group entity.\"}", "prompt_tokens": 245, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

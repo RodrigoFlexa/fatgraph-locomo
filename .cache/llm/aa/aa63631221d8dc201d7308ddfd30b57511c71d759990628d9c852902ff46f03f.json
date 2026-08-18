@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A person's mother is a different individual than that person, so James's mother is not the same as James.\"}", "prompt_tokens": 262, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

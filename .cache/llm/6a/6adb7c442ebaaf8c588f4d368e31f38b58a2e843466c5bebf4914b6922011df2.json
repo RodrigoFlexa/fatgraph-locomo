@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"one mention is a plural group ('snakes') and the other is a singular individual ('a snake'); no evidence they refer to the same specific snake\"}", "prompt_tokens": 175, "completion_tokens": 242, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

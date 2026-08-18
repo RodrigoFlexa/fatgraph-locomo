@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same concept of yoga (the general practice and its kinds/backgrounds).\"}", "prompt_tokens": 293, "completion_tokens": 167, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

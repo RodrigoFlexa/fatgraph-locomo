@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"It belongs in the same road-trip sequence right after 'Evan saw glaciers on the road trip,' connecting the sequence of sights (glaciers → lakes → visited the Rockies).\"}", "prompt_tokens": 732, "completion_tokens": 314, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

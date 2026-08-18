@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Deborah's support\\\" refers to support associated with Deborah, while \\\"Deborah of people she has lost\\\" refers to Deborah the person, so they are different entities.\"}", "prompt_tokens": 184, "completion_tokens": 182, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

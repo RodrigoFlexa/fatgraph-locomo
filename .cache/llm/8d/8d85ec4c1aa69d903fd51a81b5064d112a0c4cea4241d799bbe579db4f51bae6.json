@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"nearby parks\\\" refers to parks in the immediate area, while \\\"parks and trails\\\" is a broader category that includes trails and not necessarily only nearby parks.\"}", "prompt_tokens": 178, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

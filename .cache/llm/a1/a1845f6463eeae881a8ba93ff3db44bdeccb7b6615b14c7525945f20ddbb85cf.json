@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate denies mention though reference states Maria said 'like a fairy tale'.\"}", "prompt_tokens": 369, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

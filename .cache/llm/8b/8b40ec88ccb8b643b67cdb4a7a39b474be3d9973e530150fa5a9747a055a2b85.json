@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to a general concept/rights (LGBTQ rights) versus a specific organization/event (an LGBTQ support group), so they are different entities.\"}", "prompt_tokens": 260, "completion_tokens": 51, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

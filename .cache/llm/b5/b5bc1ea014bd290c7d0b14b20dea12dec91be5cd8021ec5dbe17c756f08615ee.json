@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This fact about owning The Hobbit is directly tied to his bookshelf and reading preferences, so it belongs with the narrative that begins with reorganizing his bookshelf.\"}", "prompt_tokens": 758, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

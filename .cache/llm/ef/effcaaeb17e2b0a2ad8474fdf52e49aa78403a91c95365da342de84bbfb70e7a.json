@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"James\\\" in the single mention refers to the same individual who is the 'James' part of the compound mention 'James and Max'.\"}", "prompt_tokens": 245, "completion_tokens": 240, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

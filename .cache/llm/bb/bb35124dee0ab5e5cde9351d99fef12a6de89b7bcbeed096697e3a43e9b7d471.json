@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"It follows naturally after 'Toby is a puppy' as part of the same episode about Toby and his relationship with Andrew, so place it after index 1.\"}", "prompt_tokens": 385, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

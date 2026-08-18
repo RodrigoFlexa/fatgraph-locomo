@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to a run in his neighborhood and B is a specific 5K for a homeless shelter (with Maria), so there is no evidence they are the same event.\"}", "prompt_tokens": 268, "completion_tokens": 119, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

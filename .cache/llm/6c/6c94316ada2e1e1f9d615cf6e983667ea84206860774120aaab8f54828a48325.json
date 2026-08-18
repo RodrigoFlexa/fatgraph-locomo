@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"It directly continues the Prius episode following 'Evan bought a new Prius,' fitting the causal narrative about the new car breaking down.\"}", "prompt_tokens": 763, "completion_tokens": 240, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

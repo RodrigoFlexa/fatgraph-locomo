@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions describe the same set of leisure activities (hiking, movie nights, and game/board nights), so they refer to the same activities.\"}", "prompt_tokens": 211, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

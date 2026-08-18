@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This new memory is about a business setback related to Dave's car restoration job, so it belongs in the same job-centered trail immediately after the memory that states he works in car restoration.\"}", "prompt_tokens": 768, "completion_tokens": 187, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

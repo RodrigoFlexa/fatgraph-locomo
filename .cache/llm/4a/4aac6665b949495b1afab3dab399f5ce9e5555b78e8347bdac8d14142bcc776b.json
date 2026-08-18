@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate is vaguer; lacks outdoor gear company specification.\"}", "prompt_tokens": 364, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

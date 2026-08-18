@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits that volunteers are engineers.\"}", "prompt_tokens": 391, "completion_tokens": 156, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too vague; doesn't specify Sweden.\"}", "prompt_tokens": 359, "completion_tokens": 155, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

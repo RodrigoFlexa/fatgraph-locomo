@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person named Calvin (A explicitly names Calvin as recipient).\"}", "prompt_tokens": 353, "completion_tokens": 101, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

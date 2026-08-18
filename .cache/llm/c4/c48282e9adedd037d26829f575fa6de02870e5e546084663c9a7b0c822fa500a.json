@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The photo documents Jon performing dance moves and best continues the narrative around his invitation for Gina to see his dancing, so it belongs immediately after the invitation memory.\"}", "prompt_tokens": 642, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is the physical sign itself while the other is a photograph of that sign, so they are distinct entities.\"}", "prompt_tokens": 190, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

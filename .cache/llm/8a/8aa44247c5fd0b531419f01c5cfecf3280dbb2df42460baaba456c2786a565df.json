@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory describes visiting a place with strong personal memories, matching the face that includes 'Deborah visited Deborah's mother's old house', so it belongs in the same narrative thread right after memory 2.\"}", "prompt_tokens": 757, "completion_tokens": 127, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

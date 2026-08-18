@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The phrase refers to a group of Maria's friends, not Maria herself.\"}", "prompt_tokens": 218, "completion_tokens": 35, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

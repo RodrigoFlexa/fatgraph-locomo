@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They are different duration expressions (seven years vs five years) and thus not the same entity.\"}", "prompt_tokens": 176, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

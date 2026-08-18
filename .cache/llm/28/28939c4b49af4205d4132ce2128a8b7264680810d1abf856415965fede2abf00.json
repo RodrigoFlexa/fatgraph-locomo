@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is insufficient evidence linking the specific 'hiking trip last week' to the general mention 'going on a hike' as the same single event.\"}", "prompt_tokens": 221, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

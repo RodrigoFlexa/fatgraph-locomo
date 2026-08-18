@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Saying Jon is starting a dance studio business does not contradict that he ran his own dance studio earlier, as this could be planning, formalizing, or a new venture.\"}", "prompt_tokens": 241, "completion_tokens": 249, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

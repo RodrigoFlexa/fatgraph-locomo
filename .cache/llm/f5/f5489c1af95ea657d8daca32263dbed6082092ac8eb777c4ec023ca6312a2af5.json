@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to an event/attribute (Caroline's gender transition) while the other is the person Caroline, so they are different entity types.\"}", "prompt_tokens": 275, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

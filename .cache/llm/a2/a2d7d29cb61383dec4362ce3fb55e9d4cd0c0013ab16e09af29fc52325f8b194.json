@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This new routine mirrors the same episode about adding small daily habits to recharge (like grabbing a morning coffee) and fits directly after the entry about adding a coffee to relax.\"}", "prompt_tokens": 764, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

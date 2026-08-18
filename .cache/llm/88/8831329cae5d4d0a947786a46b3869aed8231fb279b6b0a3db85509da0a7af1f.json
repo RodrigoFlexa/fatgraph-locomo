@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a conjunction including John and the group, while Mention B describes a feeling experienced with the group, so they are not the same single entity.\"}", "prompt_tokens": 198, "completion_tokens": 179, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A road trip is a specific type of travel, not the same single entity as the general concept of travel.\"}", "prompt_tokens": 172, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different things owned or provided by Nate (an image versus emotional support), not the same entity.\"}", "prompt_tokens": 194, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

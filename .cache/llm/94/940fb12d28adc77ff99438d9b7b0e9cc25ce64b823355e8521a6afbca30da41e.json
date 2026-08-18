@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same week: week starting Oct 6 is before Oct 13.\"}", "prompt_tokens": 376, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

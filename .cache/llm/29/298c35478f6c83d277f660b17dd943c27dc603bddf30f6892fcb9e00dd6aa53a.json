@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to a team (an organization) while the other refers to rounds (matches) in the tournament, so they are different entities.\"}", "prompt_tokens": 195, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

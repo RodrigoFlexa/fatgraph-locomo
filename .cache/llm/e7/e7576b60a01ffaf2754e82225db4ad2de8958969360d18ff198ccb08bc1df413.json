@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Both answers give the same name.\"}", "prompt_tokens": 359, "completion_tokens": 27, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

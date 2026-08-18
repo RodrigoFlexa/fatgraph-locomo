@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information; only difference is inclusion of 'in'.\"}", "prompt_tokens": 365, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

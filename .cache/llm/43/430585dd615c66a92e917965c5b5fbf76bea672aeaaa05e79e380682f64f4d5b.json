@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches reference: adopted two years ago due to loneliness/wanting company.\"}", "prompt_tokens": 381, "completion_tokens": 99, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

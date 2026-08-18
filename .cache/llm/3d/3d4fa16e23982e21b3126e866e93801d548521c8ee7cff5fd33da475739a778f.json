@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": true, \"merged_text\": \"Andrew tried and enjoyed the sushi at the new spot in town.\", \"reason\": \"Both refer to the same event; combined sentence preserves trying and enjoying without losing information.\"}", "prompt_tokens": 239, "completion_tokens": 313, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

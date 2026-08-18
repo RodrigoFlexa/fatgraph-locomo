@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory is the same ER-visit episode that currently connects memory 4 to 5, so inserting it after 4 keeps it in the same face (4 -> new -> 5 -> 6) and preserves the causal narrative.\"}", "prompt_tokens": 858, "completion_tokens": 262, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B refers to Caroline recently trying abstract painting (an activity or unspecified recent work), while A describes a specific painting with a blue background, so they are not clearly the same entity.\"}", "prompt_tokens": 186, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

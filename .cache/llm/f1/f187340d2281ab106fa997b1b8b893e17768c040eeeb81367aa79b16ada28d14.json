@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"Visiting London is a separate travel/personal detail unrelated to the ongoing volunteering and family-loss narratives, so place it at the start to form its own trail.\"}", "prompt_tokens": 740, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

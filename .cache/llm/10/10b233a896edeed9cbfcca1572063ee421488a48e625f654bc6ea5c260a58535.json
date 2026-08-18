@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory is about upcoming exams and fits the studying-focused trail, so insert it immediately after the existing study-related memory to keep the academic episode coherent.\"}", "prompt_tokens": 758, "completion_tokens": 116, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

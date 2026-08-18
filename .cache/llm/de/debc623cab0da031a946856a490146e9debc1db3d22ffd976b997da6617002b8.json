@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Missing most items from the reference list.\"}", "prompt_tokens": 425, "completion_tokens": 220, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

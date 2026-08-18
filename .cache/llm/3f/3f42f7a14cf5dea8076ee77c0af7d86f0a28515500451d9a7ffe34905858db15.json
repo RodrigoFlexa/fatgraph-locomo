@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Missing activist group membership and pride parade participation.\"}", "prompt_tokens": 400, "completion_tokens": 157, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

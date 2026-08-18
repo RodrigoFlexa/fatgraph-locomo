@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Restoring a car is directly related to visiting a car workshop and continues that same car-repair narrative, so it should be placed immediately after the car workshop memory.\"}", "prompt_tokens": 719, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

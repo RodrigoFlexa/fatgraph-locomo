@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"An LGBTQ+ youth center is a specific place/organization, while the LGBTQ+ community refers to the broader group of people and is not the same entity.\"}", "prompt_tokens": 206, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

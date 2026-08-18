@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a place (a workshop in San Francisco) and the other is an activity/project (a car project), so they are different entities.\"}", "prompt_tokens": 200, "completion_tokens": 49, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

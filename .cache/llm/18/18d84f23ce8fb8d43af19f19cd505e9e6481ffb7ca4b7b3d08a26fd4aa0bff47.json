@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different forum: fantasy literature vs travel club.\"}", "prompt_tokens": 357, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Having a dog named Toby does not contradict planning to go camping with Toby (the dog could be the camping companion).\"}", "prompt_tokens": 241, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

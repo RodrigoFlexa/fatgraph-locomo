@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This memory fits the same episode as the plan to hike with Audrey and her dogs and expresses Andrew's longing for hiking freedom, so it should follow the planning memory.\"}", "prompt_tokens": 782, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Maria's family\\\" refers to relatives while \\\"Maria's support\\\" refers to assistance or people providing support, so they are different entities.\"}", "prompt_tokens": 176, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

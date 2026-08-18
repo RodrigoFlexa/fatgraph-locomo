@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"Old says Dave had already restored a car by 2023-10-08 but the new memory says he found and restored it around late October, which is temporally inconsistent.\"}", "prompt_tokens": 247, "completion_tokens": 314, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

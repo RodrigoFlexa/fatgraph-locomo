@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This new note about taking care of her mental health continues the same episode about stress and mindfulness that follows 'needs to be more mindful of her stress levels.'\"}", "prompt_tokens": 731, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

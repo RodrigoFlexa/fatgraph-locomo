@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"an injury\\\" and \\\"his injury\\\" refer to the same injury (the injury belonging to John) in the conversation.\"}", "prompt_tokens": 176, "completion_tokens": 172, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The memories concern different facts (Andrew appreciating Audrey's assistance vs both appreciating animals) and can both be true.\"}", "prompt_tokens": 239, "completion_tokens": 108, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

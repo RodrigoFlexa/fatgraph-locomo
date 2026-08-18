@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says unspecified while reference states No.\"}", "prompt_tokens": 365, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

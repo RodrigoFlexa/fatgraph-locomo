@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory continues the same camping/outdoor photo episode (forest, lake, campfire), so it belongs directly after the campfire memory in that trail.\"}", "prompt_tokens": 751, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

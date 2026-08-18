@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory names the two Chihuahua mixes and therefore continues the same factual episode that begins with 'Two of Audrey's dogs are Chihuahua mixes.'\"}", "prompt_tokens": 395, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

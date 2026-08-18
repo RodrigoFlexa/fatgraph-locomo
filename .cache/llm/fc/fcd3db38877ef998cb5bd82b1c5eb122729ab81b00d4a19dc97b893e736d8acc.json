@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"No existing memories concern work or stress, so this new, unrelated work-stress memory should start its own narrative cycle and be placed before the first memory.\"}", "prompt_tokens": 774, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

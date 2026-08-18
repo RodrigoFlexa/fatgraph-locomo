@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Having a dog named Toby is consistent with planning to explore outdoors with Toby.\"}", "prompt_tokens": 241, "completion_tokens": 37, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

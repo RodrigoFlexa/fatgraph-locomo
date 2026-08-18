@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Both Deborah and Jolene are stated to have visited Rio.\"}", "prompt_tokens": 371, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

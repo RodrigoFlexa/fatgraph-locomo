@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Ambiguous: 'last year' doesn't specify 2021 without context.\"}", "prompt_tokens": 356, "completion_tokens": 227, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

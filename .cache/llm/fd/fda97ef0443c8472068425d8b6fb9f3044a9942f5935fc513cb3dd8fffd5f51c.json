@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first is the activity (hiking) while the second is a person's motivation/desire for interesting hikes, so they are different concepts.\"}", "prompt_tokens": 185, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

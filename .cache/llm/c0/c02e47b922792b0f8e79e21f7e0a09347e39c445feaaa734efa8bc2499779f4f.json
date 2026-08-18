@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The chili cook-off is a specific plan for the upcoming fundraiser and best follows 'Maria is preparing a fundraiser next week' to keep the preparation/details in the same narrative episode.\"}", "prompt_tokens": 395, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

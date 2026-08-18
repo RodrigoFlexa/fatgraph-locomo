@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same two options expressed with minor wording change.\"}", "prompt_tokens": 370, "completion_tokens": 29, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

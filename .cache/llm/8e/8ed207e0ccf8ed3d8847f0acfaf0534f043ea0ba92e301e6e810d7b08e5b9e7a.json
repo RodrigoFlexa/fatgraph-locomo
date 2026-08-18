@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":5,\"reason\":\"It belongs with the outdoor-activities planning thread (matches 'plans to do more outdoor activities like rock climbing'), so insert it immediately after memory 5.\"}", "prompt_tokens": 765, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

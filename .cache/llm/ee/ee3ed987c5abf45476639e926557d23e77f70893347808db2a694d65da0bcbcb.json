@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements can be true because the couple could have gone fishing and also attended a wine tasting on the same weekend.\"}", "prompt_tokens": 249, "completion_tokens": 173, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

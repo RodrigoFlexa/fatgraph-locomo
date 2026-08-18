@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same actions; more specific about which recipe is mailed.\"}", "prompt_tokens": 376, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Travelling to Nuuk is consistent with staying there for a while, so the statements do not conflict.\"}", "prompt_tokens": 239, "completion_tokens": 106, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

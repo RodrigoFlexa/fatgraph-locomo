@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The new memory directly continues the August 19 thread about organizing the yoga event (fitting the step about coordinating vendors/businesses), so it belongs after memory 2.\"}", "prompt_tokens": 497, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

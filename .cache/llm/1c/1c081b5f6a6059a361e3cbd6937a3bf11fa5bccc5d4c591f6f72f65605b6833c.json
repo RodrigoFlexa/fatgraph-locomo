@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different activities: adoption research vs special outing with Melanie.\"}", "prompt_tokens": 362, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

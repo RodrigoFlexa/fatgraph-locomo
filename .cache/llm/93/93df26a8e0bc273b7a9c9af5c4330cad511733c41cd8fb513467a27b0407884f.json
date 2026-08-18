@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These statements describe compatible preferences (enjoys watching turtles eat fruit vs enjoys holding them), not mutually exclusive facts.\"}", "prompt_tokens": 240, "completion_tokens": 45, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

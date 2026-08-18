@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This political/support memory best fits the personal/family thread (relying on family for strength), so place it after the memory about Maria relying on her family for strength.\"}", "prompt_tokens": 775, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

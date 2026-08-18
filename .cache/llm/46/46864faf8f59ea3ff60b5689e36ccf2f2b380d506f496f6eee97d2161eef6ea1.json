@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"An engineering school is an institution, while engineering assignments are tasks or coursework, so they are different entities.\"}", "prompt_tokens": 174, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

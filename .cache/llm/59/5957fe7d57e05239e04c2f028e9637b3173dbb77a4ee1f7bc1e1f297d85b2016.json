@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This new memory continues the same causal thread as memory 4—hearing stories reminded Deborah of how fortunate she was, leading her to appreciate her mother more.\"}", "prompt_tokens": 595, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

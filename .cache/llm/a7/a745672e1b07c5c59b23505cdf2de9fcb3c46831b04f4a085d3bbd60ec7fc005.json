@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Deborah's support\\\" is a role/phrase and could be any supporter, not demonstrated to be the specific person 'Deborah's husband'.\"}", "prompt_tokens": 237, "completion_tokens": 179, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

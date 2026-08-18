@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This memory is an outdoor recreational detail closely related to the mountaineering summit episode and best fits the same outdoors/trip narrative following the summit memory.\"}", "prompt_tokens": 775, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

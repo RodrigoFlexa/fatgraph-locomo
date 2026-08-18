@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits dog beds from the listed items.\"}", "prompt_tokens": 376, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

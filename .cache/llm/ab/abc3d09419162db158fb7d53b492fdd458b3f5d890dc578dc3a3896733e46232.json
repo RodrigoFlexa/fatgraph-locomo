@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate mentions only 'lack of education', omits infrastructure and misstates.\"}", "prompt_tokens": 361, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

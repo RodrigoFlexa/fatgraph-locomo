@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to photos belonging to or of Deborah's mother (plural/owner), while B is a specific single image shared by Deborah, so they are not the same entity.\"}", "prompt_tokens": 207, "completion_tokens": 183, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is an individual member (Melanie's youngest child) while the other is the group (Melanie and her family), so they are not the same entity.\"}", "prompt_tokens": 266, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

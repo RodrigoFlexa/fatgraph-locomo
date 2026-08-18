@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": true, \"merged_text\": \"On 2023-06-21, Calvin's insurance process was a hassle and took one week to sort out.\", \"reason\": \"Memory B restates Memory A and adds the date and that it was a hassle, so A is fully contained in B.\"}", "prompt_tokens": 254, "completion_tokens": 204, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

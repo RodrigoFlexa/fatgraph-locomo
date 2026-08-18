@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different identity: partner vs person James brought souvenirs for.\"}", "prompt_tokens": 357, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

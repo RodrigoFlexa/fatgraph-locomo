@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They attribute the photo to different people (shared by Jolene vs from Deborah), so they are different entities.\"}", "prompt_tokens": 187, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

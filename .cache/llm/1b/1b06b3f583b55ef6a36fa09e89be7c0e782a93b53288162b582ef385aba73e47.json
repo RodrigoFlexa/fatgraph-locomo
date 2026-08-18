@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory adds that support is mutual but does not conflict with Maria offering support to John.\"}", "prompt_tokens": 243, "completion_tokens": 105, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Starting a petition is part of the veterans-support initiative and naturally follows John deciding to take on a project to support military veterans.\"}", "prompt_tokens": 736, "completion_tokens": 175, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

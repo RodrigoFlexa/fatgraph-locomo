@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Scheduling a meeting earlier and later attending it are consistent (a permissible change over time).\"}", "prompt_tokens": 241, "completion_tokens": 103, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different: reference says tough opponents, candidate says teammates' belief.\"}", "prompt_tokens": 364, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

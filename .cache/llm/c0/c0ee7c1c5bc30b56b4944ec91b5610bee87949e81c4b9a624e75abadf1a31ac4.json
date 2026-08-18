@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches main reasons; omits explicit goal of change.\"}", "prompt_tokens": 368, "completion_tokens": 223, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

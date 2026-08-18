@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a pair (Deborah and Jolene) while Mention B refers to only the single person Jolene.\"}", "prompt_tokens": 304, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

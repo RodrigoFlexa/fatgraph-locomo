@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits the toy drive for kids in need.\"}", "prompt_tokens": 393, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

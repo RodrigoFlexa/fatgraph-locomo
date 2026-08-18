@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The photo matches the concert/festival episode (attending a rock concert and sharing concert photos) dated just before 15 Sept, so it belongs right after the memory about attending the concert.\"}", "prompt_tokens": 819, "completion_tokens": 316, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

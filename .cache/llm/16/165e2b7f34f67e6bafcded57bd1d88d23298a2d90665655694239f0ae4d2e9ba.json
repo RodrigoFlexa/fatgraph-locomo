@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to physical rental spots, while B refers to websites used to find such places, so they are different entity types.\"}", "prompt_tokens": 187, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

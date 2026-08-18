@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Pronouns differ in gender—'her' vs 'his'—so they refer to different people (B is Jon, male).\"}", "prompt_tokens": 185, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Refurbishing cars is a broader general activity and may include partial or non-classic work, while B specifies full restorations of classic cars.\"}", "prompt_tokens": 186, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

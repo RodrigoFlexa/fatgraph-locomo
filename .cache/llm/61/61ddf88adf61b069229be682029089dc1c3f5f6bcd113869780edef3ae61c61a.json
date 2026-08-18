@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Insufficient evidence: A specifies location (San Francisco) and could be a shop or event, while B describes a car modification workshop with no location, so they may be different.\"}", "prompt_tokens": 196, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

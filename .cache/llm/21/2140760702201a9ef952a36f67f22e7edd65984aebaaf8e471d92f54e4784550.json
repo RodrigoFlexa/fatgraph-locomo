@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"losing her job\\\" describes the event of losing employment, while \\\"her job\\\" refers to the job itself, so they are different types of entities.\"}", "prompt_tokens": 181, "completion_tokens": 243, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

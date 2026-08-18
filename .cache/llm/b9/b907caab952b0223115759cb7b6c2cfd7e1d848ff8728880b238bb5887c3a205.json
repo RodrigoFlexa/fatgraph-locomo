@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A mentorship program and an LGBTQ+ counseling workshop are different types of events and the workshop is described as occurring last Friday, not necessarily the weekend.\"}", "prompt_tokens": 206, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

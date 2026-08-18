@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is directly part of the glacier episode and should follow 'Evan saw glaciers on the road trip,' fitting into that same road-trip/photo trail.\"}", "prompt_tokens": 729, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

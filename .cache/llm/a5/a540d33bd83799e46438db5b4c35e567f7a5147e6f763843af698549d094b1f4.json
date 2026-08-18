@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The possessive phrase 'Gina's creativity' refers to an attribute of the same person Gina described in the facts.\"}", "prompt_tokens": 233, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

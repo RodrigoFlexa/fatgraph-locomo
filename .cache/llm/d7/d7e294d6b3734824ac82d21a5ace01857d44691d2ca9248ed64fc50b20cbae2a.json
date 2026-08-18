@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different objects: yellow cup with message vs person with surfboard.\"}", "prompt_tokens": 380, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

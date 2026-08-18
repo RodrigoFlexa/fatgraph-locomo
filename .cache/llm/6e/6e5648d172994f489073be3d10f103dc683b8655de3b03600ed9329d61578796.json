@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Names match; candidate explicitly names John Williams.\"}", "prompt_tokens": 370, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

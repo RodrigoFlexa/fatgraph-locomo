@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory continues the cooking-class episode begun by the signing-up memory, describing what happened at his first lesson (making a great omelette).\"}", "prompt_tokens": 773, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

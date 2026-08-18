@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"More specific date/time within July 2023.\"}", "prompt_tokens": 371, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

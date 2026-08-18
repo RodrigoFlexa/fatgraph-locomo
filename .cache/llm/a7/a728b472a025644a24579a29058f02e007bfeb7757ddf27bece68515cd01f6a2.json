@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate claims missing despite reference stating they volunteered at a pet shelter\"}", "prompt_tokens": 373, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory is a direct elaboration of the wine-tasting event already recorded at index 2, so it belongs immediately after that memory in the same narrative thread.\"}", "prompt_tokens": 787, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

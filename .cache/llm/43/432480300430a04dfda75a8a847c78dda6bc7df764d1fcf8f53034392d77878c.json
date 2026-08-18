@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory continues the retail/customer-experience thread (offers and promotions leading customers to return), so it belongs immediately after the cozy/shop experience memory.\"}", "prompt_tokens": 389, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

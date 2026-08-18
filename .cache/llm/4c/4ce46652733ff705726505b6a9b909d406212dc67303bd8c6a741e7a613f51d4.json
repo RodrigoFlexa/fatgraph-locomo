@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Evan and Sam\\\" is a compound mention including two people, not identical to the single person Sam.\"}", "prompt_tokens": 266, "completion_tokens": 169, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

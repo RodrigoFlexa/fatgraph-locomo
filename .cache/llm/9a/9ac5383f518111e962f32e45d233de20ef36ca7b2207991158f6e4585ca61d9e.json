@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information; candidate restates 'dough' as how to make it.\"}", "prompt_tokens": 367, "completion_tokens": 36, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

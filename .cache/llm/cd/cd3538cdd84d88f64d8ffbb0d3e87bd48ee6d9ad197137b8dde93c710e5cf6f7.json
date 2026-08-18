@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A setback is an incident within the tournament, while B refers to the tournament itself, so they are different entities.\"}", "prompt_tokens": 198, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

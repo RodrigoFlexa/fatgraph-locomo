@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Gina's business is the business owned/started by Gina, a separate organization rather than the person herself.\"}", "prompt_tokens": 234, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

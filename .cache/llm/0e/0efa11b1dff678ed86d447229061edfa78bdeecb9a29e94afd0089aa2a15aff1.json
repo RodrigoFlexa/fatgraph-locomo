@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits Laura; only lists Cindy.\"}", "prompt_tokens": 357, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

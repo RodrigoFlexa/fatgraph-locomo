@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Doesn't mention candles, music, or essential oils.\"}", "prompt_tokens": 380, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

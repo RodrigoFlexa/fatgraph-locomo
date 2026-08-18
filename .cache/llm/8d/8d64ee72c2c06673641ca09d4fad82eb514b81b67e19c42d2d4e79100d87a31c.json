@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"Visiting Italy is a distinct travel event unrelated to gaming, pets, or programming, so place it at the start (before index 0) to keep it in its own narrative.\"}", "prompt_tokens": 768, "completion_tokens": 123, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

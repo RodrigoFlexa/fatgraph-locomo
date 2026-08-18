@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory explains a support experience that directly influenced her interest in counseling/mental health jobs, so it belongs immediately after the memory about her looking into that career path.\"}", "prompt_tokens": 703, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

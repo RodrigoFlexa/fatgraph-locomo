@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The possessive phrase refers to experiences belonging to the same person Joanna, so they denote the same entity.\"}", "prompt_tokens": 202, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

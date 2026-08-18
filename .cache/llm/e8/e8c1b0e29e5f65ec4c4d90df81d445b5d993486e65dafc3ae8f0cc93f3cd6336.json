@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"It continues the same episode of Audrey helping Andrew find a pet-friendly spot by actively requesting Andrew's criteria via email, so it belongs directly after the memory where she offered to help.\"}", "prompt_tokens": 763, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

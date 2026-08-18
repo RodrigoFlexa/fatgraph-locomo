@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"A dairy restriction is most relevant to social situations and eating with friends, so it belongs in the same social/hanging-out trail after 'Joanna enjoys hanging with friends.'\"}", "prompt_tokens": 708, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

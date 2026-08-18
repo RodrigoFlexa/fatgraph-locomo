@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements are compatible—hosting a yoga class for neighbors on Friday can be the same event as starting a neighborhood yoga class.\"}", "prompt_tokens": 246, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

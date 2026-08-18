@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both describe the same tart with raspberries (a chocolate raspberry tart/photo of a chocolate tart with raspberries) likely the same item.\"}", "prompt_tokens": 225, "completion_tokens": 175, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

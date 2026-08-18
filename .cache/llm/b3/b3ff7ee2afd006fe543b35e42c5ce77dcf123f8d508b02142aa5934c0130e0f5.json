@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements say Maria volunteers at a homeless shelter; the second is just a minor rephrasing with no conflict.\"}", "prompt_tokens": 240, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

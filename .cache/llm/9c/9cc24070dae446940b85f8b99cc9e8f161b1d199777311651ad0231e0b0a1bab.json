@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Both state she received a medal from the shelter.\"}", "prompt_tokens": 370, "completion_tokens": 286, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"the last basket in the game\\\" refers to a specific play within a match, while \\\"a recent basketball game\\\" refers to the game as an event, so they are different entities.\"}", "prompt_tokens": 194, "completion_tokens": 121, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

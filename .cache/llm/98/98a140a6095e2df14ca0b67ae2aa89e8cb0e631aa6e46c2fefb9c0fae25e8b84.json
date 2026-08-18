@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different times—one is next week and the charity event occurred last Friday—so they are different events.\"}", "prompt_tokens": 187, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

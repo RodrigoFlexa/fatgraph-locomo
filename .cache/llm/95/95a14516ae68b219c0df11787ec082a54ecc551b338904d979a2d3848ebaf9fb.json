@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"her engineering project\\\" clearly refers to the same engineering project mentioned earlier (the project belonging to Jolene).\"}", "prompt_tokens": 229, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

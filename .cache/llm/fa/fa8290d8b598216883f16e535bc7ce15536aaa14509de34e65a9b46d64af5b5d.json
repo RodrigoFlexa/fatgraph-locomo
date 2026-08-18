@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The possessive phrase clearly refers to the same individual 'Caroline' described in the facts and aliases.\"}", "prompt_tokens": 273, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

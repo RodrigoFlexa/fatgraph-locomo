@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new crowd photo is the same event and day as memory 0 (another concert crowd photo) so it should follow that memory to stay in the same concert/tour narrative.\"}", "prompt_tokens": 772, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

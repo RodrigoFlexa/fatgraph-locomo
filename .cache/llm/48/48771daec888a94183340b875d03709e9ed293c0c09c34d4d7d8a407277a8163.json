@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'any Harry Potter character' is a category of characters, while 'Harry Potter' is a specific character/name, so they are not the same entity.\"}", "prompt_tokens": 175, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

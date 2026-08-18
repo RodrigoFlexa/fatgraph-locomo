@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same pride event/parade occurring a few weeks/last month and the aliases match the parade described in the facts.\"}", "prompt_tokens": 257, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

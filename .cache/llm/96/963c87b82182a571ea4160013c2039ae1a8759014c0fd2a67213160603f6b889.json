@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory continues the same screenplay thread—while waiting for responses about her first screenplay (mentioned in memory 2), she began writing another, so it belongs immediately after that memory.\"}", "prompt_tokens": 736, "completion_tokens": 378, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

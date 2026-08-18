@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Jon happy\\\" is a descriptive mention of the same person referred to as \\\"Jon\\\" in the conversation.\"}", "prompt_tokens": 269, "completion_tokens": 41, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

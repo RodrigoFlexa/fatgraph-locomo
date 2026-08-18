@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first is a singular regional video game tournament while the second refers to three previous tournaments (plural/past), so they are not the same entity.\"}", "prompt_tokens": 263, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

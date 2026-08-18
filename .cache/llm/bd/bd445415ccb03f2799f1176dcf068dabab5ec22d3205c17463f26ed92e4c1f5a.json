@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"Memory A reports they met in California and discussed characters; Memory B adds a separate fact that Tim may collaborate with that fan, which is not contained in A.\"}", "prompt_tokens": 262, "completion_tokens": 187, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

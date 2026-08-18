@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true simultaneously: John supported James on the game while James offered emotional support to John, so there is no conflict.\"}", "prompt_tokens": 258, "completion_tokens": 112, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

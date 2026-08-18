@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory is part of the same marriage/story arc (falling in love leading to marrying the Canadian woman on 2023-12-26), so it should be placed adjacent to the 12/26 marriage memory.\"}", "prompt_tokens": 414, "completion_tokens": 324, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

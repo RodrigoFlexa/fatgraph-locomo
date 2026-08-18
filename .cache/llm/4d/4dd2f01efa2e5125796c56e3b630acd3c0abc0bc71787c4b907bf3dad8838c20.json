@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different types of pets (fish vs turtles), not the same entity.\"}", "prompt_tokens": 196, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

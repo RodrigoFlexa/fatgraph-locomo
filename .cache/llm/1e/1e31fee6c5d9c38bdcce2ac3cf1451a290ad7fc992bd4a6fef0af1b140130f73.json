@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions could match but lack definitive overlap (one specifies a game in a large arena, the other generically a court with crowd), so they are not confirmed to be the same.\"}", "prompt_tokens": 217, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":7,\"reason\":\"The new memory directly explains a consequence of Andrew's work stress on 6 September, so it belongs in the same trail as the existing work-stress memory (index 7).\"}", "prompt_tokens": 780, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

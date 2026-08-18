@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a specific red car on a lift while B is a more general photo of a car being worked on, so they may not be the same instance.\"}", "prompt_tokens": 221, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

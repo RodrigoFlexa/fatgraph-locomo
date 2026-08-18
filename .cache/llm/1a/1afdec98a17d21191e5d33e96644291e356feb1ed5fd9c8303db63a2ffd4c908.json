@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Sunday before May 25, 2023 is May 21, 2023, not May 20.\"}", "prompt_tokens": 368, "completion_tokens": 235, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

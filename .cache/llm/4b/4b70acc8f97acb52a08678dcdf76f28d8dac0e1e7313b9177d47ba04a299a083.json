@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A implies a Deborah who is one of the people the speaker has lost (deceased/absent), whereas Mention B is the living Deborah described in the facts.\"}", "prompt_tokens": 265, "completion_tokens": 182, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

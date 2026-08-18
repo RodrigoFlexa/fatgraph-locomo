@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The descriptions show different visual content (church on a mountain vs horse grazing on a mountain range), so they are different photos.\"}", "prompt_tokens": 206, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

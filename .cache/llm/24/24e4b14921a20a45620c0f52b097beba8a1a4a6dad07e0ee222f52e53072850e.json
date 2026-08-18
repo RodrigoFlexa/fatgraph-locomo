@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions describe the same vehicle (an old/classic car) referenced as the car restored last year, so they refer to the same entity.\"}", "prompt_tokens": 180, "completion_tokens": 177, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

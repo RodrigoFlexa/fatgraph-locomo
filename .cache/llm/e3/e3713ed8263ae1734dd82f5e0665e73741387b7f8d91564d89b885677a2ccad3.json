@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"Reading The Lean Startup fits the episode where Jon lost his job and began preparing to start a dance studio, so it should follow the memory about losing his job as part of the startup-motivation thread.\"}", "prompt_tokens": 769, "completion_tokens": 255, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

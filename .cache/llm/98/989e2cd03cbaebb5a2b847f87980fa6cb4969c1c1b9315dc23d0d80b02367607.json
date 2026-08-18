@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"“John's family” refers to a group related to John, not the individual John himself.\"}", "prompt_tokens": 237, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

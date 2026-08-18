@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different subject: horse vs sunset.\"}", "prompt_tokens": 354, "completion_tokens": 91, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

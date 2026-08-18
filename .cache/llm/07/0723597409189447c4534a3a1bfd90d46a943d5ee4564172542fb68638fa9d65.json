@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same depicted person performing yoga on the beach, i.e., Deborah.\"}", "prompt_tokens": 196, "completion_tokens": 359, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

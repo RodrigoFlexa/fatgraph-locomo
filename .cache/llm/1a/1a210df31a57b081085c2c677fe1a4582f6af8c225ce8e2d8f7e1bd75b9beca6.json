@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They are related but describe different actions/goals (making healthier meals vs eating healthier).\"}", "prompt_tokens": 182, "completion_tokens": 165, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

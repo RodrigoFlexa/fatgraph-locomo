@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The OLD states she was working on a project in April and the NEW reports a loss that happened later in July, which is a plausible change over time.\"}", "prompt_tokens": 247, "completion_tokens": 117, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

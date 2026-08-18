@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"One states ownership while the other states that caring for the bonsai motivates Evan; they are different facts.\"}", "prompt_tokens": 242, "completion_tokens": 112, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Art and design\\\" refers to a combined category whereas \\\"art\\\" is only one part of that category, so they are not the same entity.\"}", "prompt_tokens": 195, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

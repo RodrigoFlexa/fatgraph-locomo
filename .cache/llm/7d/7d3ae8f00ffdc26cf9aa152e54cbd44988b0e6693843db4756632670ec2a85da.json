@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory about painting is a different episode (art activity with her kids) not connected to the camping-travel thread, so place it after the most recent memory to start a new narrative segment.\"}", "prompt_tokens": 449, "completion_tokens": 126, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

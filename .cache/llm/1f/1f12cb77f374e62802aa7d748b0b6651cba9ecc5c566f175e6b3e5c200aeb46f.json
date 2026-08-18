@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"Self-doubt fits the causal arc after being promoted and before encountering workplace-related hurdles, so it belongs immediately after the promotion memory.\"}", "prompt_tokens": 708, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The memory about sharing a team photo fits the Wolves/team involvement trail (same topic and episode) so it should follow the memory that states John supports the Wolves basketball team.\"}", "prompt_tokens": 734, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This planning directly follows the car-with-broken-engine memory and continues the same car-restoration episode, so it should be inserted immediately after memory 0.\"}", "prompt_tokens": 737, "completion_tokens": 117, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

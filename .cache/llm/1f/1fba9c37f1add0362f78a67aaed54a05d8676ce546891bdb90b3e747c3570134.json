@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A 'custom car' is a general description and not necessarily the specific 'new luxury car' owned by Calvin, so there is no evidence they are the same entity.\"}", "prompt_tokens": 178, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

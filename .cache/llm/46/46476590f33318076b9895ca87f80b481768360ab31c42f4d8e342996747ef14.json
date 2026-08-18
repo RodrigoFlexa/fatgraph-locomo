@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Saying Maria loves volunteering is compatible with her doing volunteering and enjoying banana splits afterward; no conflict between the statements.\"}", "prompt_tokens": 248, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

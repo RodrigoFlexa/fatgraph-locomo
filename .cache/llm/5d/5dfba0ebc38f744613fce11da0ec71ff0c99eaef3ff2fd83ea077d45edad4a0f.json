@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both memories state the same fact about Jon losing his job and are consistent with each other.\"}", "prompt_tokens": 236, "completion_tokens": 40, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

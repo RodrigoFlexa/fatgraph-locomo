@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This new memory is part of the same charity-event episode as 'Maria did a charity event last Friday,' so it should be inserted immediately after that memory.\"}", "prompt_tokens": 731, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

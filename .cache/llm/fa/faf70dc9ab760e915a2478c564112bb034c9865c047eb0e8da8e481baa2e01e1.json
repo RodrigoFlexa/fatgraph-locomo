@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"A photo of basketball jerseys fits the personal-gear/collection narrative with his sneaker collection, so it belongs directly after the sneaker-collection memory.\"}", "prompt_tokens": 684, "completion_tokens": 243, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

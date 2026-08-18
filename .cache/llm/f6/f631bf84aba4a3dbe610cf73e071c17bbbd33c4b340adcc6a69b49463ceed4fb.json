@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Booking a flight to Boston is compatible with and may support a plan to perform there, not contradictory.\"}", "prompt_tokens": 248, "completion_tokens": 106, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

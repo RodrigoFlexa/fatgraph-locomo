@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory names Toby as Andrew's dog, so it belongs directly in the same Toby-focused thread following the note about taking Toby on a hike.\"}", "prompt_tokens": 752, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

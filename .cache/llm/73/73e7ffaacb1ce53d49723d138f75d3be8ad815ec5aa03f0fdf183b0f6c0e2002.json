@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The two statements can both be true (they can refer to the same house and the new memory adds that the mother has passed away or frames a current visit), so there is no direct contradiction.\"}", "prompt_tokens": 252, "completion_tokens": 317, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

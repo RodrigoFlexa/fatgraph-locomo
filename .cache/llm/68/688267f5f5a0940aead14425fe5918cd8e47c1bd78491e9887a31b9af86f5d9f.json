@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says none mentioned though reference lists specific foods.\"}", "prompt_tokens": 395, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

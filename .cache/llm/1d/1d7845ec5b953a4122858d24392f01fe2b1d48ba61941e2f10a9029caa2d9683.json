@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches: both state it was a transgender poetry reading.\"}", "prompt_tokens": 369, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

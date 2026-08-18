@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to physical trails (places) while the other refers to the activity of hiking, so they are different entity types.\"}", "prompt_tokens": 215, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

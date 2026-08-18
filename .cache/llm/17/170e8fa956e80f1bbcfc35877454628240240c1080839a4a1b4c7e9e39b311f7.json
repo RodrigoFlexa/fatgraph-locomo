@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘a car’ refers to the vehicle while ‘a car project’ refers to the project about that vehicle, so they are different entities.\"}", "prompt_tokens": 196, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

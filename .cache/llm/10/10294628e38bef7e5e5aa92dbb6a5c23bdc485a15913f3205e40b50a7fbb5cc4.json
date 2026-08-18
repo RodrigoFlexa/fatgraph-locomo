@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both descriptions refer to the same fantasy book series characterized by exciting battles/adventures and strong characters.\"}", "prompt_tokens": 215, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

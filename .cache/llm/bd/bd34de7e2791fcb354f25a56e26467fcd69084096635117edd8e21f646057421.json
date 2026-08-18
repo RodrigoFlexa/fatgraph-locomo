@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory explains the origin of Gina's online store and causally belongs just before the existing memory about her working on and growing the store (index 6).\"}", "prompt_tokens": 768, "completion_tokens": 374, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

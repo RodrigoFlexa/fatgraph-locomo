@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Deborah's support\\\" refers to a role or source of support, not explicitly Deborah's mother, so they are not necessarily the same person.\"}", "prompt_tokens": 281, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

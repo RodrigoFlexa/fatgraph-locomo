@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"The memories state different facts: one says she is passionate about yoga, the other that she teaches yoga and spends much of her time doing so; neither fully contains the other.\"}", "prompt_tokens": 238, "completion_tokens": 190, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

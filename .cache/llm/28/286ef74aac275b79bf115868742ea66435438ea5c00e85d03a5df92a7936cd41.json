@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to photos owned by/about Deborah's mother, while Mention B is the person (Deborah's mother) herself.\"}", "prompt_tokens": 330, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

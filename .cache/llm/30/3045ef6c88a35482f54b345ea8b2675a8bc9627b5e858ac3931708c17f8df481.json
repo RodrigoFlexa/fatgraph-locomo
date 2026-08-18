@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"movies\\\" is a general category while \\\"action movies\\\" is a specific genre, so they are not the exact same entity.\"}", "prompt_tokens": 172, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

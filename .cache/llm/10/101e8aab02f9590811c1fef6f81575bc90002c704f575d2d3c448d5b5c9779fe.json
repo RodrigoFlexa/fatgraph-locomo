@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Networking to get input is part of the same thread as John planning to chat with local leaders to get support and ideas, so it should come immediately after that memory.\"}", "prompt_tokens": 726, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This new memory fits Deborah's everyday self-care and routine activities (like her calming studio and workshops), so it belongs next to the personal-routine memory about her favorite studio.\"}", "prompt_tokens": 767, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

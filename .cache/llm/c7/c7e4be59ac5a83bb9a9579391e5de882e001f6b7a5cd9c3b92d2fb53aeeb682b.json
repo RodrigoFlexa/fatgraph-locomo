@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory is John responding to Maria's offer of support, so it belongs directly after the memory about Maria offering support to keep the same conversational thread together.\"}", "prompt_tokens": 750, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

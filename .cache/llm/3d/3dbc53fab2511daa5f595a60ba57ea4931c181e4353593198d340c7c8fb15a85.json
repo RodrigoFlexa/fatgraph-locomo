@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"An online platform for the dance studio is a digital service related to the studio, not the physical dance studio itself.\"}", "prompt_tokens": 258, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

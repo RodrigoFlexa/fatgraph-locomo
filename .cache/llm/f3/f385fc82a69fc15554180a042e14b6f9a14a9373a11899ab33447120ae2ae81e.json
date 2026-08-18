@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This memory is part of the same Canada vacation episode (alongside biking and hiking), so it should be inserted immediately after the hiking memory to keep the trip-related memories contiguous.\"}", "prompt_tokens": 752, "completion_tokens": 377, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

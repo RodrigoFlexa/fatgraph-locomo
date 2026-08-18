@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This recovery status is part of the same post-accident care and healing thread, so it belongs immediately after the memory that Evan looked after his son after the soccer accident.\"}", "prompt_tokens": 404, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

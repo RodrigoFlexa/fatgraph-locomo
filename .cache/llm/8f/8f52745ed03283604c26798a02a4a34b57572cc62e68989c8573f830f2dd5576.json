@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"dates disagree: summer 2022 vs Feb 4, 2023\"}", "prompt_tokens": 364, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

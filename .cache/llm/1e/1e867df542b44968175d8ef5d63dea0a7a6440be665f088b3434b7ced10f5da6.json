@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits apartment/pet-friendly open space problem.\"}", "prompt_tokens": 375, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

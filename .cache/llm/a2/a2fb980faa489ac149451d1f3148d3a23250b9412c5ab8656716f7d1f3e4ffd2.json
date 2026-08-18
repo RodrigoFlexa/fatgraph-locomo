@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: apartment near McGee's bar.\"}", "prompt_tokens": 379, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

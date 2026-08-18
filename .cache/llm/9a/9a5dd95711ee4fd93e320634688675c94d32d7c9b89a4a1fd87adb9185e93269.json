@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This memory is a different topic (movies, not gaming/tournament episode), so place it before the first memory to keep it out of the existing gaming trail.\"}", "prompt_tokens": 436, "completion_tokens": 310, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

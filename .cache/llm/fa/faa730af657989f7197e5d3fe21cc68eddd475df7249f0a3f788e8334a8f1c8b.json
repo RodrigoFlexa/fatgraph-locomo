@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a specific computer while B refers to his broader home gaming equipment collection, so they are not the identical single entity.\"}", "prompt_tokens": 181, "completion_tokens": 237, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

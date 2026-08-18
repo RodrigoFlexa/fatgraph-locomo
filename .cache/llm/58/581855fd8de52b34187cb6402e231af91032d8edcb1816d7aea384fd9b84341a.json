@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits kickboxing; only lists taekwondo.\"}", "prompt_tokens": 360, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

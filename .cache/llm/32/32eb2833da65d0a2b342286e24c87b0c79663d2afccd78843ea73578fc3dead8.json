@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"A photo of a computer screen showing a game menu most naturally belongs to the gaming-tournament narrative (e.g., screenshots from games played during the tournament) rather than the seminar or Cyberpunk play entries.\"}", "prompt_tokens": 742, "completion_tokens": 255, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

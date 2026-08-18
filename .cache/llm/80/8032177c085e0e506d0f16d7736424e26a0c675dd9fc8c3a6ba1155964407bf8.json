@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference specifies action and sci-fi; candidate says not mentioned.\"}", "prompt_tokens": 364, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

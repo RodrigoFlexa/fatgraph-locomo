@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":5,\"reason\":\"This insight directly follows from their conversation about how yoga has improved their lives and sense of community, so it belongs in the same narrative thread about mutual inspiration and yoga.\"}", "prompt_tokens": 619, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

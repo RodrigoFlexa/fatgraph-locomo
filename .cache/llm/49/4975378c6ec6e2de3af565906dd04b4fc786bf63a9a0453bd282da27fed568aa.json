@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The weighted-blanket suggestion continues the same 'comfy living room' thread immediately after the couch suggestion, keeping the cozy-decor recommendations together.\"}", "prompt_tokens": 781, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

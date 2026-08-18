@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Sharing an image of a plate of salmon and vegetables does not contradict having made grilled salmon with vegetables.\"}", "prompt_tokens": 246, "completion_tokens": 42, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

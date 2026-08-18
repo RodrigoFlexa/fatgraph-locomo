@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions clearly refer to the same football club Manchester City.\"}", "prompt_tokens": 191, "completion_tokens": 32, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

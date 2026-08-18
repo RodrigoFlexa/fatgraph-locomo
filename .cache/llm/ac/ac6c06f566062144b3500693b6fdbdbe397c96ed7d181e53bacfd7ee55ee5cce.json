@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Evan and Evan's partner\\\" refers to two people (Evan plus partner) while \\\"Evan's new significant other\\\" refers to only the partner.\"}", "prompt_tokens": 242, "completion_tokens": 180, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

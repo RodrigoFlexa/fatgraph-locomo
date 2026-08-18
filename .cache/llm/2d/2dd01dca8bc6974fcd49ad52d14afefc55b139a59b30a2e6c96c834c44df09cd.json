@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same offer: to help John find a pet (equivalent).\"}", "prompt_tokens": 365, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

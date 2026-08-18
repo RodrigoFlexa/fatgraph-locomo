@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The plan to find a trainer logically follows Sam's interest in getting into lifting weights and stays within the same fitness/doctor-advice episode.\"}", "prompt_tokens": 819, "completion_tokens": 242, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

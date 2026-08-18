@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This directly continues the thread about low-impact exercise options and fits immediately after Sam planning to ask a doctor about low-impact exercises.\"}", "prompt_tokens": 776, "completion_tokens": 239, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

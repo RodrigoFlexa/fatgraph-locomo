@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This memory belongs to the same narrative about James and Samantha renting an apartment near McGee's (it explains the choice criterion) so it should follow the memory that links their visit to renting the apartment.\"}", "prompt_tokens": 500, "completion_tokens": 190, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

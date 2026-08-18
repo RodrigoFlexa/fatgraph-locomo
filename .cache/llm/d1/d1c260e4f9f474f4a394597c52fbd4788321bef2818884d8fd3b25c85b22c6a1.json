@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Creating a game avatar is part of the same game-development episode as inviting John to help with HTML for his game, so it belongs immediately after that memory.\"}", "prompt_tokens": 764, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

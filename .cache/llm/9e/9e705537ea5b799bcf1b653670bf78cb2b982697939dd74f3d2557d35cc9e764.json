@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a specific new challenging restoration project, while B refers to full restorations or restored classic cars in general, not the same single entity.\"}", "prompt_tokens": 205, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a homemade dessert\\\" is a specific instance while \\\"desserts\\\" is a general category, so they are not the same entity.\"}", "prompt_tokens": 174, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

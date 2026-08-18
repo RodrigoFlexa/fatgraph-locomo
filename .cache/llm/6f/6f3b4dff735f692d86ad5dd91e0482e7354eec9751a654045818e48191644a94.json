@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a specific pottery plate object from a class, the other is the pottery workshop event, so they are different entity types.\"}", "prompt_tokens": 215, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

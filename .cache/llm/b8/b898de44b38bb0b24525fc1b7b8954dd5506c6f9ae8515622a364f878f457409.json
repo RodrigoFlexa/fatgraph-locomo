@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new memory continues the same 'team as family' theme and fits narratively between 'John considers his team like a family' and his community involvement with the team.\"}", "prompt_tokens": 768, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

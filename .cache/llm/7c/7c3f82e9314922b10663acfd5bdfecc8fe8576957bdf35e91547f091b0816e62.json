@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A father is a single parent and 'siblings' (or 'parents') refers to different people/groups, so they are not the same entity.\"}", "prompt_tokens": 194, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

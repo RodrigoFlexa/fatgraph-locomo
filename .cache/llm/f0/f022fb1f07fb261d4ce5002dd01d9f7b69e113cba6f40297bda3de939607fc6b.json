@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions joining church, omits buying a cross necklace.\"}", "prompt_tokens": 376, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

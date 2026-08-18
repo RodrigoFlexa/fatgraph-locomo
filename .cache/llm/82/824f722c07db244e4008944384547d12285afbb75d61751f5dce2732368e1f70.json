@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory adds a later incident at a park and does not conflict with a prior visit; both can be true.\"}", "prompt_tokens": 245, "completion_tokens": 110, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

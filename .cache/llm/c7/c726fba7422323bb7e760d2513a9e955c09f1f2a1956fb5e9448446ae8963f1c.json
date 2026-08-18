@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a photo (an image of an ideal waterfront studio), while B refers to a dance studio as a place (Jon's planned studio), so they are different referents.\"}", "prompt_tokens": 185, "completion_tokens": 185, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

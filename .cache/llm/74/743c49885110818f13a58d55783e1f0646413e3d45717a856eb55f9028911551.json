@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a generic dairy-free recipe that could use coconut milk, while B is a specific coconut milk ice cream dish, so they are not the same entity.\"}", "prompt_tokens": 210, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

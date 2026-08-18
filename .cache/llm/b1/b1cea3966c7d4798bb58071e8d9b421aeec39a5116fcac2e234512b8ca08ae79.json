@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Response omits that Melanie specifically made the bowl.\"}", "prompt_tokens": 367, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

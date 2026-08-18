@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same city Rio de Janeiro, with the first including a time modifier only.\"}", "prompt_tokens": 180, "completion_tokens": 40, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

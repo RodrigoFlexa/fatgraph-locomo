@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions include the same proper name and 'every day' is a modifier indicating frequency, not a different person.\"}", "prompt_tokens": 197, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

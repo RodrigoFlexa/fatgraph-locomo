@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same pair (James and Samantha), with A adding the specific context of the baseball game next Sunday.\"}", "prompt_tokens": 206, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

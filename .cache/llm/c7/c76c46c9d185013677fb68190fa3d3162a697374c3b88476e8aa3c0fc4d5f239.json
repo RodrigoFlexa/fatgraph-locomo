@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits Seattle and Paris from the reference list.\"}", "prompt_tokens": 365, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

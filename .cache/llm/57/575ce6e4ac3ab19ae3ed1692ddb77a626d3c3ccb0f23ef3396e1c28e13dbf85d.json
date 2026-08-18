@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first describes a gym photo with cones (likely not a game), while the second specifically shows a basketball game being played, so they are different photos.\"}", "prompt_tokens": 200, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

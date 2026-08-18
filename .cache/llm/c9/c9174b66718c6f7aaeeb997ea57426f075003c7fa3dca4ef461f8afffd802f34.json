@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to a group of people (veterans and their families) while the other refers to a concept/policy (veterans' rights).\"}", "prompt_tokens": 183, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

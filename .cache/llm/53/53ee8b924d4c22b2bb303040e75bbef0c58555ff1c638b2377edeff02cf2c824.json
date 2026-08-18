@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"people Joanna knows\\\" refers to others known by Joanna, not Joanna herself.\"}", "prompt_tokens": 224, "completion_tokens": 35, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same date: Friday, October 7, 2022.\"}", "prompt_tokens": 372, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

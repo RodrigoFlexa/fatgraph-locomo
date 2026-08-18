@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: feeling stressed about work.\"}", "prompt_tokens": 358, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

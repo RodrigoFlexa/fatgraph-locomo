@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This sentence explicitly links the loss of her job to starting the online store, so it belongs immediately after the memory that records Gina losing her job to join that same causal narrative.\"}", "prompt_tokens": 754, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They state different facts: one reports a plan to team up to run workshops and the other reports she has not reached out yet, so neither restates nor fully contains the other.\"}", "prompt_tokens": 247, "completion_tokens": 191, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

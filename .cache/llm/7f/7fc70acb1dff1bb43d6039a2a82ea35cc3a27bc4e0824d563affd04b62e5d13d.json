@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states Nate shared coconut milk ice cream photo.\"}", "prompt_tokens": 375, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

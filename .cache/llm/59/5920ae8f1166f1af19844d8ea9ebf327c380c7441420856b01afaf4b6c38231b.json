@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Notes (plural) differ from a single handwritten letter in form.\"}", "prompt_tokens": 362, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

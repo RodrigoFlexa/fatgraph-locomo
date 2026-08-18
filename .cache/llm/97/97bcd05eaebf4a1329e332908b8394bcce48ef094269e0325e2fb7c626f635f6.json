@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions doggy daycare; reference lists many different places.\"}", "prompt_tokens": 393, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

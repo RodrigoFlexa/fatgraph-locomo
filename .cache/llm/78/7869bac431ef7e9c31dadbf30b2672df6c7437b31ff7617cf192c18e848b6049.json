@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same item: a stuffed toy pup is a stuffed animal.\"}", "prompt_tokens": 365, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

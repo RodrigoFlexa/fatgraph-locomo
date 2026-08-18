@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same fire-fighting brigade (the possessive phrase describes that brigade's qualities).\"}", "prompt_tokens": 194, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

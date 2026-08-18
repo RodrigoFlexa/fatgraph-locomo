@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":6,\"reason\":\"This memory is part of the same Dave–Calvin Boston episode that follows ‘Dave offered to show Calvin around Boston,’ so inserting it immediately after index 6 keeps it in that narrative thread.\"}", "prompt_tokens": 749, "completion_tokens": 506, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

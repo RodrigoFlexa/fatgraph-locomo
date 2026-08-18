@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This memory ties directly to John’s admiration for Aragorn and the theme of leadership introduced in the favorite-character trail, so it belongs immediately after that memory.\"}", "prompt_tokens": 768, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

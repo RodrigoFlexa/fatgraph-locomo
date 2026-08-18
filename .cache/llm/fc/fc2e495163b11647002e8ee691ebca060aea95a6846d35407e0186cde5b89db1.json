@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same sum earned from the video game tournament (the money he earned = a large amount of money from the tournament).\"}", "prompt_tokens": 198, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

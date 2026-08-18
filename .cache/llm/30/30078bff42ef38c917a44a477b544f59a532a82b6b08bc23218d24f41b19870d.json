@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to activities ('non-profit work') while the other is an organization entity, so they are different types of referents.\"}", "prompt_tokens": 197, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

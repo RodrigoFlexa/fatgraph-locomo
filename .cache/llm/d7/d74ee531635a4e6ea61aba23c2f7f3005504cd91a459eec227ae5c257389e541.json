@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a theme/quality of Joanna's writing, B describes Joanna's desire to write a drama — different referents.\"}", "prompt_tokens": 192, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: a blog post about a difficult moment.\"}", "prompt_tokens": 377, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

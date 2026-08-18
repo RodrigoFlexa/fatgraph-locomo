@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence links the young artist to the well-known artist and the descriptions alone are insufficient to conclude they are the same person.\"}", "prompt_tokens": 179, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

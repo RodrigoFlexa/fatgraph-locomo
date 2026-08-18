@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a specific pottery project (a bowl) made in or as a result of an activity, while the other is the pottery workshop event where projects are made, so they are different entities.\"}", "prompt_tokens": 218, "completion_tokens": 59, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

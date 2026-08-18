@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They record different facts (one about making the ice cream, the other about sharing it), so neither fully contains the other.\"}", "prompt_tokens": 242, "completion_tokens": 116, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

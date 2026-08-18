@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Implies proximity to bar was a reason they wanted together time.\"}", "prompt_tokens": 376, "completion_tokens": 225, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

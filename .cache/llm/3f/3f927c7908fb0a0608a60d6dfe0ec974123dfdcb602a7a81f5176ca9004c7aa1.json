@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same individual Toby (the puppy) described elsewhere as going on outings like trips to the local trail.\"}", "prompt_tokens": 211, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements indicate Calvin will go to Boston after a trip (stay in Japan / tour) and are consistent over time.\"}", "prompt_tokens": 248, "completion_tokens": 110, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

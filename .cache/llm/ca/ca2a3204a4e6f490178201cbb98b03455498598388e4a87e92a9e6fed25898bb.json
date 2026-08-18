@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The memory about saving a family fits the same call-out episode as 'responded to a first call-out on Sunday,' so it should follow that memory in the firefighting narrative.\"}", "prompt_tokens": 758, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

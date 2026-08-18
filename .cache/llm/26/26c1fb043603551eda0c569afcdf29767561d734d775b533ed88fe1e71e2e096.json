@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'pets' is a general category and not necessarily the same specific entity as 'dogs' (subset vs. specific)\"}", "prompt_tokens": 178, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same breed stated in a full sentence.\"}", "prompt_tokens": 360, "completion_tokens": 28, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to a single person (Melanie's youngest child) while the other refers to the whole family including Melanie, so they are not the same entity.\"}", "prompt_tokens": 266, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same fact: pets considered family.\"}", "prompt_tokens": 358, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

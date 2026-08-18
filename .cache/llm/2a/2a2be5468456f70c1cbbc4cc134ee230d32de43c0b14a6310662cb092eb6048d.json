@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Connected LGBTQ Activists\\\" appears to be an organization/name, while \\\"LGBTQ support group\\\" is a generic/support event and there is no evidence they are the same entity.\"}", "prompt_tokens": 216, "completion_tokens": 120, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"Narratively it follows John staying calm and asking for assistance during the incident and precedes sharing the photo of the damaged car, completing that episode of returning home safely.\"}", "prompt_tokens": 755, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

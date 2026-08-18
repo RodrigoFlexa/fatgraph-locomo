@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is an object (a medal) while B refers to the activity/experience of volunteering, so they are different entities.\"}", "prompt_tokens": 232, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

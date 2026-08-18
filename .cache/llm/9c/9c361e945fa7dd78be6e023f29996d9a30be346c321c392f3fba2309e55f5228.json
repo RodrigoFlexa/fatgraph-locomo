@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A yoga retreat with buddies is a different type of event than Deborah's local neighborhood yoga class, so they are not the same entity.\"}", "prompt_tokens": 215, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

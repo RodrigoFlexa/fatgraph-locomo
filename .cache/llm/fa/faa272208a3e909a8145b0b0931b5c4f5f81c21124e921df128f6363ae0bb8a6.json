@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory is a direct causal follow-up to becoming allergic and belongs in the same episode, so it should come immediately after the 'became allergic' memory.\"}", "prompt_tokens": 405, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

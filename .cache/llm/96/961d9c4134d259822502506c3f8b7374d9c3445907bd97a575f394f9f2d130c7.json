@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is the place itself while B refers to websites used to find a dog-friendly place.\"}", "prompt_tokens": 188, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

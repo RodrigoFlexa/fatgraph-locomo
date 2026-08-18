@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Evan's son’ is an individual, while ‘Evan and his family’ refers to the group including Evan and members of his family, not the same single entity.\"}", "prompt_tokens": 184, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

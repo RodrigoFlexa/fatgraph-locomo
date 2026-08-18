@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"light beers\\\" and \\\"dark beer\\\" refer to different types/styles of beer, not the same entity.\"}", "prompt_tokens": 173, "completion_tokens": 41, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

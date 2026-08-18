@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory continues the Woodhaven episode directly after 'Joanna visited Woodhaven,' describing what she saw there, so it belongs immediately after index 4.\"}", "prompt_tokens": 774, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

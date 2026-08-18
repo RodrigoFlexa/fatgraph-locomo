@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the restored car itself while the other refers to a photo of that car's engine, which are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

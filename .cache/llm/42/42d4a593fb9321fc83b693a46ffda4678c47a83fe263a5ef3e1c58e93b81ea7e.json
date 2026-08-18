@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence that the mentioned 'Japanese mansion' and the generic 'nice place in Japan' refer to the same specific location.\"}", "prompt_tokens": 186, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

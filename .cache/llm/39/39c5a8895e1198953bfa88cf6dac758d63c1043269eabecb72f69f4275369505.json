@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to rounds (parts) of a tournament, while Mention B names the tournament instance on 2022-04-03, so they are different entity types.\"}", "prompt_tokens": 197, "completion_tokens": 119, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

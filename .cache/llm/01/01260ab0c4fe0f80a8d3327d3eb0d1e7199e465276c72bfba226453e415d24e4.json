@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":6,\"reason\":\"This new memory directly continues the pride parade episode and belongs in the same narrative thread immediately after the existing memory that notes she attended the parade.\"}", "prompt_tokens": 742, "completion_tokens": 111, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

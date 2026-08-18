@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first refers to the dance studio as an entity, the second refers to a place/location to open that studio, so they are different.\"}", "prompt_tokens": 187, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

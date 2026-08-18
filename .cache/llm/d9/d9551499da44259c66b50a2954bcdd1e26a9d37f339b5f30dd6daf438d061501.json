@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The party is a concrete activity within his ongoing project to support military veterans, so it belongs immediately after the memory that he works on that project.\"}", "prompt_tokens": 744, "completion_tokens": 243, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

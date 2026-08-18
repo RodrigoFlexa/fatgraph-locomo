@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This detail is an event-specific fact about the same tournament that raised money and leads into the James/team interactions, so it fits into the tournament narrative after memory 1.\"}", "prompt_tokens": 535, "completion_tokens": 376, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

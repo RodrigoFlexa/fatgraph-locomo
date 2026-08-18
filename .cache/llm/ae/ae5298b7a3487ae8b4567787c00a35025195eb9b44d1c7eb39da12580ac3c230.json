@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory is the same yoga-practice music episode as memory 0 (listening to Nils Frahm) and should be placed directly after it to keep that narrative together.\"}", "prompt_tokens": 775, "completion_tokens": 123, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

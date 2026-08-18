@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is insufficient evidence—'this month' may not be July 10, 2023 and a transgender conference, while related, is not necessarily the same event as an LGBTQ conference on that date.\"}", "prompt_tokens": 190, "completion_tokens": 189, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to an unspecified one of Joanna's scripts becoming her third movie, while B refers specifically to her upcoming/next script, which is not explicitly stated to be that same script.\"}", "prompt_tokens": 224, "completion_tokens": 249, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

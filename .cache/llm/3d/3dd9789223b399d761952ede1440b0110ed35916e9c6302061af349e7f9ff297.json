@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Mention A includes Caroline as a referent ('Caroline and her mentee'), so it refers to the same Caroline in B.\"}", "prompt_tokens": 331, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

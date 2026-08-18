@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a physical metal portable smoker (a device) and the other is a startup company that makes portable smokers, so they are different entity types.\"}", "prompt_tokens": 186, "completion_tokens": 50, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

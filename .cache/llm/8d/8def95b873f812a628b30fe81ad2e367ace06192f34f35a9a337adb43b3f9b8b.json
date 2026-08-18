@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions clearly refer to the same Sam associated with starting painting and participating in a painting session.\"}", "prompt_tokens": 207, "completion_tokens": 167, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

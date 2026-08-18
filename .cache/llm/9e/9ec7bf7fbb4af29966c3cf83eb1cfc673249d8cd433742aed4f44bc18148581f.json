@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: her dogs loving the park does not conflict with Audrey having an accident there while playing with them.\"}", "prompt_tokens": 247, "completion_tokens": 110, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

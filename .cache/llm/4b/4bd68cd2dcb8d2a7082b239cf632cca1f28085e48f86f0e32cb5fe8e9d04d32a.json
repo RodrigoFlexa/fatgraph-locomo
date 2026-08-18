@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A chess club is an organization or group around the activity, while chess refers to the game itself, so they are different entities.\"}", "prompt_tokens": 190, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

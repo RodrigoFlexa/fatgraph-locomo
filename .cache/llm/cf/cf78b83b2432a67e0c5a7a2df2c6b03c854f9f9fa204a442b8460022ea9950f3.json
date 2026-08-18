@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These statements are compatible—linking David to a homeless services organization and Maria volunteering at a shelter can both be true.\"}", "prompt_tokens": 249, "completion_tokens": 110, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

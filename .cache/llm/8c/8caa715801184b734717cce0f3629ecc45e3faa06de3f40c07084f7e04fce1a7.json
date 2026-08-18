@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"yoga\\\" refers to the general practice, while \\\"each yoga session\\\" refers to individual occurrences of that practice.\"}", "prompt_tokens": 180, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

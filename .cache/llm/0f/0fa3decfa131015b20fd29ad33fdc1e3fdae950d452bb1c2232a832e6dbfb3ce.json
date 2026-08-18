@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the tattoos of her dogs located on her arm (pups = dogs, one arm = on her arm).\"}", "prompt_tokens": 240, "completion_tokens": 238, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

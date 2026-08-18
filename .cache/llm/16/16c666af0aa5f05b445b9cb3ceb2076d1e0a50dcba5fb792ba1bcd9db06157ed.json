@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new volunteer note (22 Dec) narratively follows the 21 Dec car donation, so inserting it immediately after the 'donated her old car' memory keeps the causal episode intact.\"}", "prompt_tokens": 497, "completion_tokens": 316, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

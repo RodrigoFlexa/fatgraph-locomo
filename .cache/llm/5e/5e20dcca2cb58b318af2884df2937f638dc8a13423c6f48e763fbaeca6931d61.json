@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"More specific but consistent: painting is a form of abstract art.\"}", "prompt_tokens": 356, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

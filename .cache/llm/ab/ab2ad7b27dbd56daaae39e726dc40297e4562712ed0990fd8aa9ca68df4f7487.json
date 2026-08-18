@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information expressed in different words.\"}", "prompt_tokens": 365, "completion_tokens": 27, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

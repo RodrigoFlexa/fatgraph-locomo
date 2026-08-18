@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"the CS:GO tournament\\\" in mention A refers to the specific CS:GO tournament described in B (the gaming convention event).\"}", "prompt_tokens": 254, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

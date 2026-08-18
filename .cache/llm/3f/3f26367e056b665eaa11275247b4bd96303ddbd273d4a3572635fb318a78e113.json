@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Andrew involved with walking dogs in the conversation.\"}", "prompt_tokens": 197, "completion_tokens": 100, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"If she already had an online store on 2023-03-23 she could not have started it later on 2023-04-25, so the statements conflict.\"}", "prompt_tokens": 240, "completion_tokens": 186, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

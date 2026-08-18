@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same tour with Frank Ocean (the end/finishing of that tour).\"}", "prompt_tokens": 191, "completion_tokens": 168, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

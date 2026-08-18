@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"creating stories\\\" is an activity phrase, while \\\"stories and sketches\\\" refers to a set of written works in a book, so they are not the same entity.\"}", "prompt_tokens": 182, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

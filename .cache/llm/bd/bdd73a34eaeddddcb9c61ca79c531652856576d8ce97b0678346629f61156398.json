@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a new RPG\\\" is a single specific game while \\\"RPGs\\\" refers to the general/plural category, not the same specific entity.\"}", "prompt_tokens": 177, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

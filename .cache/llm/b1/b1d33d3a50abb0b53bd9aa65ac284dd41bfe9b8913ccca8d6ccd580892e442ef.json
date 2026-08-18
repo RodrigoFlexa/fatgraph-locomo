@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Offering to show someone around Boston does not conflict with planning to grab food there; both can be true.\"}", "prompt_tokens": 244, "completion_tokens": 107, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

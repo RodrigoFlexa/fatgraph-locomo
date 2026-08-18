@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This directly continues the same injury-related thread (staying positive about his leg injury), so it should follow the memory about John having a leg injury.\"}", "prompt_tokens": 777, "completion_tokens": 116, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory is a detail about the grilled chicken and veggie stir-fry recipe, so it belongs immediately after the memory that states Sam likes that recipe.\"}", "prompt_tokens": 754, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

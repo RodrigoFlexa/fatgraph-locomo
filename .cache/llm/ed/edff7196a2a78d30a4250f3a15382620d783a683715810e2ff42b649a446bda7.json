@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The phrases are synonymous activities referring to the same action (fixing cars = working on cars).\"}", "prompt_tokens": 178, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

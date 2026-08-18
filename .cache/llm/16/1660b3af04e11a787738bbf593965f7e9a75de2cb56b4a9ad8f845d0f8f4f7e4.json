@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The notebook photo documents his workout plan created in the schedule entry, so it fits directly after the schedule creation and before the gym photo narrative.\"}", "prompt_tokens": 731, "completion_tokens": 306, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

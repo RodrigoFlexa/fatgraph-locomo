@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory directly continues the same episode about exams and stress, so it belongs immediately after 'Jolene is dealing with studies and exams.' to keep that causal/stress narrative together.\"}", "prompt_tokens": 730, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

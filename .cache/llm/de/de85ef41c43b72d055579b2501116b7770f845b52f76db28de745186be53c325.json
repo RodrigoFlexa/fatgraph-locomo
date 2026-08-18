@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This statement about Maria working at a shelter belongs with the cluster summarizing her volunteering and involvement (index 5) and continues that same narrative thread about her role at the shelter.\"}", "prompt_tokens": 819, "completion_tokens": 378, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

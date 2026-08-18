@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The new memory concerns John's work and deadlines, which connects to the 'motivation to work further' thread in memory 2 and fits that causal topic.\"}", "prompt_tokens": 754, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

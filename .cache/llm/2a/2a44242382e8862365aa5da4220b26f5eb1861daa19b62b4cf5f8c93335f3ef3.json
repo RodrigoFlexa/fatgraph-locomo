@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different: motive vs how she learned about workshop.\"}", "prompt_tokens": 373, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

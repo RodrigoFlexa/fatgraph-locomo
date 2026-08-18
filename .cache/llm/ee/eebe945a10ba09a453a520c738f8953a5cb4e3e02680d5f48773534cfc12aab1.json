@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"More specific form of 'chicken' and consistent with reference.\"}", "prompt_tokens": 358, "completion_tokens": 33, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘workshop’ and ‘class’ are similar but could be different events or formats, so they are not guaranteed to be the same entity.\"}", "prompt_tokens": 179, "completion_tokens": 177, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

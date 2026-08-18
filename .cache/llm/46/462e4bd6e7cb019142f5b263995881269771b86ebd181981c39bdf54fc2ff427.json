@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This new memory is about the same card game episode and who she'll play it with, so it belongs directly after the memory describing the card game to keep that narrative together.\"}", "prompt_tokens": 769, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

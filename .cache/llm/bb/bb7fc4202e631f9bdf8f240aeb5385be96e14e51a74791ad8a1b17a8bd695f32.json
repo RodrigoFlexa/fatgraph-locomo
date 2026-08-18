@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This detail is part of the same episode about organizing the yoga event and naturally follows the memory that Deborah organized a yoga event last month.\"}", "prompt_tokens": 729, "completion_tokens": 113, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

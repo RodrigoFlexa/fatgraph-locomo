@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They are different statements about strength training (one claims increased power, the other claims muscle building), not the same entity or identical referent.\"}", "prompt_tokens": 180, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new supportive detail continues the 'family has been a rock' narrative, so it belongs immediately after memory 1 in the same causal/support thread.\"}", "prompt_tokens": 357, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a single individual (Melanie's youngest child) while the other refers to the collective group (Melanie and her family).\"}", "prompt_tokens": 236, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

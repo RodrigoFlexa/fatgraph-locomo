@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to engagement/employment in the non-profit sector and thus denote the same concept (working in non-profit organizations).\"}", "prompt_tokens": 185, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

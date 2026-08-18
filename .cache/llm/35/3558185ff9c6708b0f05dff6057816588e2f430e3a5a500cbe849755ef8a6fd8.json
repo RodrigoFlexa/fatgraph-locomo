@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same city—'Boston after Japan' is Boston with a temporal modifier specifying when.\"}", "prompt_tokens": 179, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

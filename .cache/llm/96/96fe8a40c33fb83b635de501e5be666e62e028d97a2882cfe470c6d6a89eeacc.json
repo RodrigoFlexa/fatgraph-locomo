@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"A fancy gala in Boston is another artist-focused event and fits the same narrative thread as attending a networking event for artists, so it should be inserted immediately after that memory.\"}", "prompt_tokens": 759, "completion_tokens": 248, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

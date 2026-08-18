@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory continues the episode about stress and coping, so it belongs directly after the 'feels overwhelmed and stressed' memory to keep the narrative about balancing personal and professional life together.\"}", "prompt_tokens": 728, "completion_tokens": 187, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

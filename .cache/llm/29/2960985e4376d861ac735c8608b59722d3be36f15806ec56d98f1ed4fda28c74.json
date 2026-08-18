@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory continues the thread where Maria linked David and then John and the service group became involved, so offering to help John with networking/future events belongs directly after that memory.\"}", "prompt_tokens": 744, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

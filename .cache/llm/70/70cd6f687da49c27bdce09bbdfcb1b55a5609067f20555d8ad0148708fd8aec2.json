@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory refines the existing fact 'Andrew lives in the city' so it belongs directly after that memory in the same narrative about where he lives.\"}", "prompt_tokens": 755, "completion_tokens": 117, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

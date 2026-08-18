@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Volunteering at a homeless shelter is compatible with previously working at a shelter (either extra detail or a possible change over time), so not a contradiction.\"}", "prompt_tokens": 239, "completion_tokens": 181, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

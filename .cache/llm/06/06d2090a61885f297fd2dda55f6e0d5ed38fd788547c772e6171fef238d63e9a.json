@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This memory starts a new social/hobby narrative distinct from the vacation and key-search episodes, so place it before the first existing memory to form its own face.\"}", "prompt_tokens": 763, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

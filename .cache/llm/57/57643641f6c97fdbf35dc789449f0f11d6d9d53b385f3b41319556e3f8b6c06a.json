@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This dinner table photo is part of the same family-trip/photo sequence that follows the swing picture and logically fits before the 'returned from a family road trip' memory in that trail.\"}", "prompt_tokens": 737, "completion_tokens": 314, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

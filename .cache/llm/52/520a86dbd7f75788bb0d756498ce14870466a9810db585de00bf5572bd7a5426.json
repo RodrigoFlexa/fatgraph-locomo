@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A 'volunteer gig' refers to a role or opportunity, while 'the volunteer organization' refers to the organization itself, so they are different entities.\"}", "prompt_tokens": 184, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

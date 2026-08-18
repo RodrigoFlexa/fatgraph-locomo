@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The phrases refer to different actions/goals (one mixes eating more vegetables with sugary snacks, the other is a goal to eat less processed food and sugary snacks).\"}", "prompt_tokens": 194, "completion_tokens": 244, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

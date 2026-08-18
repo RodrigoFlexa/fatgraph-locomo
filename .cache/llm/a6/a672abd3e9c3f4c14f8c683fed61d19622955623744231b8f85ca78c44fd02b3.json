@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits expressing herself through dance; only mentions freedom.\"}", "prompt_tokens": 360, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

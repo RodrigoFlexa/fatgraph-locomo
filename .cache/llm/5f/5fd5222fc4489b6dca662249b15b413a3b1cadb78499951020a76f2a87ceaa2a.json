@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"The memories report different (and conflicting) facts: one says she attended a pride event last month, the other says she missed the pride parade last weekend.\"}", "prompt_tokens": 240, "completion_tokens": 186, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

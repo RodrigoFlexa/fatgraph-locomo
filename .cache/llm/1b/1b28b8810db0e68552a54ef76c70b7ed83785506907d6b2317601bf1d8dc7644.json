@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence they refer to the same specific vehicle—'old car' and 'custom car' are only overlapping categories, not confirmed to be the same entity.\"}", "prompt_tokens": 195, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

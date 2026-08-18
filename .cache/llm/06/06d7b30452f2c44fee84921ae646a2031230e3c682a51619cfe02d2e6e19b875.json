@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory narratively follows the search-and-business thread (searching, effort, obstacles) and represents the outcome of running the studio, so it belongs after the search/business memory.\"}", "prompt_tokens": 522, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A cousin and a father are different familial roles and refer to different people in the family.\"}", "prompt_tokens": 184, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

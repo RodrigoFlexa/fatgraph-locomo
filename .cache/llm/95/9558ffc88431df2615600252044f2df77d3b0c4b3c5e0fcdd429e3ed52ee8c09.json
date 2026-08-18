@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate names different yoga style (Power/Vinyasa) than Hatha.\"}", "prompt_tokens": 371, "completion_tokens": 35, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

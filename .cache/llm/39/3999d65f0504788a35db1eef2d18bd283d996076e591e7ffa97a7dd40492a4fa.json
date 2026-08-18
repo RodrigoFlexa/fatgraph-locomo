@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference specifies CS:GO; candidate claims absent.\"}", "prompt_tokens": 371, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

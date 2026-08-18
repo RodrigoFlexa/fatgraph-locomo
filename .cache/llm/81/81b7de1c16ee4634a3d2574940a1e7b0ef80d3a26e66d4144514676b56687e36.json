@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘engineering projects’ refers to specific projects within the field, while ‘engineering’ denotes the broader discipline, so they are not the same entity.\"}", "prompt_tokens": 189, "completion_tokens": 49, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

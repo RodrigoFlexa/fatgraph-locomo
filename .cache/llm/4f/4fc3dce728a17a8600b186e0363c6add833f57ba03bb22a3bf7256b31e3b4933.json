@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes coconut cupcakes with raspberry frosting while B describes a dairy-free chocolate cake with berries/strawberries, so they are different desserts.\"}", "prompt_tokens": 216, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

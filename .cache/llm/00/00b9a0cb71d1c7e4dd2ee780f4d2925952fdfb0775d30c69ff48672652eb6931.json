@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This memory is the same offer-to-help/teach painting episode and continues the supply/getting-started thread, so it belongs directly after the existing offer to help (index 0).\"}", "prompt_tokens": 400, "completion_tokens": 123, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

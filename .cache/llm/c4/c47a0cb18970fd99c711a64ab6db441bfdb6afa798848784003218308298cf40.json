@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the event (attending a dance class) and the other to a photo of people in a class, which are distinct entities.\"}", "prompt_tokens": 199, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

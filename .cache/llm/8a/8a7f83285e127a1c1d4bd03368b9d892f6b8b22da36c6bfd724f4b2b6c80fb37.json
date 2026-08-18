@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same activities: preparing the meal and discussing thanks (equivalent).\"}", "prompt_tokens": 377, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

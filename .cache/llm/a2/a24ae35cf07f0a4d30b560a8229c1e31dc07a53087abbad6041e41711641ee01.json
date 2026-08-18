@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A friend of Deborah is an individual person, while Deborah's family refers to her relatives/group, so they are different entities.\"}", "prompt_tokens": 236, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

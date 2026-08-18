@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements are consistent—Sam was already living healthier on Aug 19 and is described as continuing to work on becoming healthier on Aug 27.\"}", "prompt_tokens": 255, "completion_tokens": 115, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

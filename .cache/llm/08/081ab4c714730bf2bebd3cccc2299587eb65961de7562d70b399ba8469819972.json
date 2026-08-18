@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the complete Harry Potter movie set/series (the full movie collection).\"}", "prompt_tokens": 188, "completion_tokens": 166, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

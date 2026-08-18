@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The two statements are compatible (both involve Audrey, Andrew, and her dogs going together); differences in phrasing (walk vs hike, who invited whom) can reflect planning changes, not a logical contradiction.\"}", "prompt_tokens": 255, "completion_tokens": 191, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

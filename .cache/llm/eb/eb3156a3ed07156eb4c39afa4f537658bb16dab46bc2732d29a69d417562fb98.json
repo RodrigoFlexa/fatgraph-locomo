@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a writing project\\\" refers to a specific project while \\\"writing\\\" refers to the general activity or craft, so they are different.\"}", "prompt_tokens": 192, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

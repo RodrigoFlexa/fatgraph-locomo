@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both descriptions refer to the same physical bowl—a hand-painted pottery bowl with a colorful design owned by Caroline.\"}", "prompt_tokens": 224, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

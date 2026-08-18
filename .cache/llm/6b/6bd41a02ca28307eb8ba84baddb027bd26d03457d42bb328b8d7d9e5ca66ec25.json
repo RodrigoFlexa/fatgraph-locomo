@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This detail is about his work habits and naturally follows 'John usually works regular work hours,' fitting the same topic and causal thread about his work-life routine.\"}", "prompt_tokens": 701, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

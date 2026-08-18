@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions are generic and compatible but there is no evidence they refer to the same specific place.\"}", "prompt_tokens": 188, "completion_tokens": 166, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

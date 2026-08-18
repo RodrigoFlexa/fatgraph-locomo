@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Aerial yoga is a specific style of yoga, not the identical entity as the general practice 'yoga'.\"}", "prompt_tokens": 174, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

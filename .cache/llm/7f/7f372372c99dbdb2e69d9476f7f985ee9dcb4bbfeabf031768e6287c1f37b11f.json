@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same country stated (France equals In France).\"}", "prompt_tokens": 360, "completion_tokens": 29, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

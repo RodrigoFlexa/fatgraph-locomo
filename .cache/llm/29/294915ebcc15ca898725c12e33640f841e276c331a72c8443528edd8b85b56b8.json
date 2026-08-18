@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"A photo of a car with a broken windshield most naturally continues the thread about John’s unexpected incident on his way home, fitting into the same episode before Maria's support appears.\"}", "prompt_tokens": 761, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

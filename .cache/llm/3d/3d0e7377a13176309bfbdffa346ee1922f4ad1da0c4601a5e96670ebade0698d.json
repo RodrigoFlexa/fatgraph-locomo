@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory is a detail about the wedding ceremony itself, so it belongs immediately after the memory that states John held the wedding ceremony at a greenhouse venue.\"}", "prompt_tokens": 750, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

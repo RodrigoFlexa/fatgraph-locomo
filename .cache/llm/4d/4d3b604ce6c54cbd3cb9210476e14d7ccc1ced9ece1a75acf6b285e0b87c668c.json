@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to an event (a benefit basketball game) and the other refers to a physical signed basketball, so they are different entities.\"}", "prompt_tokens": 186, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

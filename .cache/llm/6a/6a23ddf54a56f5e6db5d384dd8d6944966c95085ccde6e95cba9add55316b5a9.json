@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One describes a long-term practice over three years, the other a specific instance last Friday, so they are different events.\"}", "prompt_tokens": 197, "completion_tokens": 172, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

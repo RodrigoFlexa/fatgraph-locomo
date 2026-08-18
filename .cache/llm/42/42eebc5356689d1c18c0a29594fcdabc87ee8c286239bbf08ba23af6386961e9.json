@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Exact same year as the reference.\"}", "prompt_tokens": 362, "completion_tokens": 27, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

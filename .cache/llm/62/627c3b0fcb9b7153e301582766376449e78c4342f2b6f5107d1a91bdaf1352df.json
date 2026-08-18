@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory is a direct consequence of his previous campaign (index 5) and explains why he is running again, fitting the causal thread linking his last run to renewed political engagement.\"}", "prompt_tokens": 761, "completion_tokens": 122, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

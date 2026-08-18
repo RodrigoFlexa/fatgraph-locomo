@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It directly continues the sushi episode described in memory 2 (trying a new sushi spot) by stating that Andrew enjoyed that sushi, so it belongs immediately after it in the same narrative thread.\"}", "prompt_tokens": 775, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"One states that Gina was accepted, the other describes her feelings about it, so they are distinct facts.\"}", "prompt_tokens": 237, "completion_tokens": 112, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

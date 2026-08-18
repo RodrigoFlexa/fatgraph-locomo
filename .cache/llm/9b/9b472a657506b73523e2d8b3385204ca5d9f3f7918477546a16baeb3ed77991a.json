@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to Deborah actually doing yoga on the beach (an activity), the other refers to the cancellation of her planned yoga getaway (a different event).\"}", "prompt_tokens": 191, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

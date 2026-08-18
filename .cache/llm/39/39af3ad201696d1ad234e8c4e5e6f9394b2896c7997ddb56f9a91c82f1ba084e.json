@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A bank account is a financial account, whereas a business is an enterprise, so they are distinct entities.\"}", "prompt_tokens": 192, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

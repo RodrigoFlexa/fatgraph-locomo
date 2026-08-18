@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same specific yoga retreat (B even lists 'the yoga retreat' as an alias).\"}", "prompt_tokens": 208, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

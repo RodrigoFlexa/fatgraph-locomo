@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This directly continues the gift episode—Jolene bought a console on Aug 17 and then her partner played that console, so it belongs immediately after the purchase memory.\"}", "prompt_tokens": 798, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

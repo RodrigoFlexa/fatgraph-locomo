@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Pronouns indicate different owners (his vs her), and B is explicitly Audrey's dogs, so they are different referents.\"}", "prompt_tokens": 258, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

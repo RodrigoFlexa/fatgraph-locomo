@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": true, \"merged_text\": \"Last week, on a trip to Canada, Evan met a Canadian woman and feels alive with her.\", \"reason\": \"Both memories describe the same meeting and emotional response and can be combined without losing details.\"}", "prompt_tokens": 247, "completion_tokens": 576, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

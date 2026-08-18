@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Andrew's girlfriend (a person) while B refers to Andrew's puppy dog named Toby, so they are different entities.\"}", "prompt_tokens": 219, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

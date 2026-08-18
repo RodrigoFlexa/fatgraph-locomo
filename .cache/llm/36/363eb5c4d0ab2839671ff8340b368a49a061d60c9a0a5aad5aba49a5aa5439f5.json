@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence that Evan's close friend is the same person as Evan's new significant other; the roles are distinct and B has specific facts (partner, pregnancy) not linked to the friend.\"}", "prompt_tokens": 241, "completion_tokens": 188, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

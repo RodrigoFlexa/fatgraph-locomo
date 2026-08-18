@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The phrase 'Calvin's car accident' refers to an event involving the person 'Calvin', so both mentions denote the same individual.\"}", "prompt_tokens": 247, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

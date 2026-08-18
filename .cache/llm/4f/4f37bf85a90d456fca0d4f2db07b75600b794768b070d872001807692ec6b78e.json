@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"The beach photo is another social/photo post from the same night/outing episode (fits the sequence of images and events that follow the night Evan drank too much).\"}", "prompt_tokens": 802, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Being in an accident and being okay afterward are compatible statements about the same event.\"}", "prompt_tokens": 250, "completion_tokens": 102, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

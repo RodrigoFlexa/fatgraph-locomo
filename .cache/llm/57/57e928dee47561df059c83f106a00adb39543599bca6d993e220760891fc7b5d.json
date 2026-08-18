@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Deborah's mother's old friends are acquaintances of her mother, not the family unit referred to as Deborah's family.\"}", "prompt_tokens": 238, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

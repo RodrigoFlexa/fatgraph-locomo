@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is James's interest (a passion) and the other is a specific gaming system he owned, so they are different entities.\"}", "prompt_tokens": 182, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

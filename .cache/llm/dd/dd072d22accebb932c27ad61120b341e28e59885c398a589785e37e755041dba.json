@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Mention A is a contextual phrase referring to the same individual James described by B (aliases include similar phrases about James playing a game).\"}", "prompt_tokens": 246, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

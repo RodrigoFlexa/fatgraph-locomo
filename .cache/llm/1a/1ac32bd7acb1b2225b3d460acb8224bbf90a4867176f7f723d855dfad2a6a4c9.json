@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Violin is an instrument, more specific but consistent.\"}", "prompt_tokens": 370, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

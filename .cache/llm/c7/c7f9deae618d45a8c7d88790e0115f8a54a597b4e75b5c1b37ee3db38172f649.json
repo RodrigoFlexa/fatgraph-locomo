@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Reading and running are distinct me-time activities and refer to different activities, not the same entity.\"}", "prompt_tokens": 185, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

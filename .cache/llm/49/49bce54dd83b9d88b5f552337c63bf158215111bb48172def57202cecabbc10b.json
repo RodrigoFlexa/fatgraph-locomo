@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states doctor said it's not too serious; candidate denies it.\"}", "prompt_tokens": 372, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

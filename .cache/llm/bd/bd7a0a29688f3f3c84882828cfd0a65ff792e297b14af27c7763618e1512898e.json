@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The photo of people around a table of food fits directly after 'Maria organized a meal for the shelter residents' as part of the same shelter-meal episode and narrative.\"}", "prompt_tokens": 751, "completion_tokens": 376, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

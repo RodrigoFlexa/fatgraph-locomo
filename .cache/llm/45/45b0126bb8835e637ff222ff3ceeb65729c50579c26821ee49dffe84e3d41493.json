@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory about a sweet treat belongs in the dietary-changes narrative immediately after the note that Evan cut down on sugary snacks, explaining a continuing temptation.\"}", "prompt_tokens": 775, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

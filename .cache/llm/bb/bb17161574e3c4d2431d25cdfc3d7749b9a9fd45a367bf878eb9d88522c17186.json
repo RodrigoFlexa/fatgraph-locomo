@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first is the character/franchise 'Harry Potter' while the second is a fan project about it, a distinct entity.\"}", "prompt_tokens": 202, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

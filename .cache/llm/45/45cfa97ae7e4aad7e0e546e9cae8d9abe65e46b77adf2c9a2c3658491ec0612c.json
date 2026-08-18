@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first phrase describes a blend of drama and romance genres, while 'dramas' refers specifically to the drama genre and is not the same entity.\"}", "prompt_tokens": 176, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

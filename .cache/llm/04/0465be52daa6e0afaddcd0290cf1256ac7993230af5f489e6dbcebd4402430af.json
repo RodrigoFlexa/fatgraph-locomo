@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Nearby parks’ refers specifically to local parks, while ‘parks and trails’ is a broader category including trails, so they are not the same single entity.\"}", "prompt_tokens": 196, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

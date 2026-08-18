@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is the whole car from a junkyard and the other is the car's engine (a part), so they are different entities unless explicitly stated to be the same.\"}", "prompt_tokens": 186, "completion_tokens": 183, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

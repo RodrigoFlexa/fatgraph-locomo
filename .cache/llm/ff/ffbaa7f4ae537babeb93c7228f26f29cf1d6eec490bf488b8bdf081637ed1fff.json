@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Sam's health refers to the health of Sam, the same person described by 'Sam'.\"}", "prompt_tokens": 226, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

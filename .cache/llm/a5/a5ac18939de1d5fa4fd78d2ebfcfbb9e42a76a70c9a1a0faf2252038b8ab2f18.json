@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"the trail\\\" refers to a single specific trail while \\\"parks and trails\\\" is a plural category and not the same entity.\"}", "prompt_tokens": 195, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"If John has not looked for a non-profit yet, it is consistent that he also has not found one.\"}", "prompt_tokens": 251, "completion_tokens": 108, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

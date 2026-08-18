@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The dog training course continues the same dog-care episode (planning to use daycare and improving dogs' behavior), so it belongs directly after the memory about taking her dogs to daycare.\"}", "prompt_tokens": 789, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

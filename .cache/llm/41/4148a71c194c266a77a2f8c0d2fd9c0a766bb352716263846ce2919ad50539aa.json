@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same quantity expressed with different capitalization.\"}", "prompt_tokens": 362, "completion_tokens": 91, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

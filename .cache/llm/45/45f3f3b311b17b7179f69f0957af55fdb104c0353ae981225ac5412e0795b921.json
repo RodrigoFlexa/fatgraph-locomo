@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is another note about Deborah visiting her mother's old house (same visit episode) and belongs in the narrative immediately following the existing visit memory.\"}", "prompt_tokens": 402, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

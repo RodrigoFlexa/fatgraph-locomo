@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The new memory is a family-related event (loss of a grandmother) and best fits the existing family/childhood thread connected to the memory about relying on her aunt for help.\"}", "prompt_tokens": 732, "completion_tokens": 250, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

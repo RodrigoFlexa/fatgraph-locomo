@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to a hardware system James owned, the other to a programming/game project he created, so they are different entities.\"}", "prompt_tokens": 207, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

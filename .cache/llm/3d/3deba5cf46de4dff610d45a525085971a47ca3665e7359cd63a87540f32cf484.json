@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Candidate indicates John lacks pets, so answer is No.\"}", "prompt_tokens": 363, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

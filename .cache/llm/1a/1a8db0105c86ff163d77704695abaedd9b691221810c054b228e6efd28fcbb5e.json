@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This note continues the tour-to-Boston story (Calvin heading to Boston when the tour ends), so it belongs after the memory about performing on the tour with Frank Ocean.\"}", "prompt_tokens": 405, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

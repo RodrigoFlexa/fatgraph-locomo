@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory is a personal conversation about loved ones and fits the relational/support thread connected to Deborah supporting Jolene, so it should follow the memory about Deborah's support.\"}", "prompt_tokens": 751, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

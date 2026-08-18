@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a general description of a painting inspired by sunsets while B is a specific painting of a sunset over a lake, so they are not necessarily the same entity.\"}", "prompt_tokens": 191, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

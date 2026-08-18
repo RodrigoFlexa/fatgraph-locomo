@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It belongs with the movie-related thread (same topic as 'Joanna enjoys watching movies'), so insert it immediately after index 2 to keep the film/drama narrative together.\"}", "prompt_tokens": 475, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

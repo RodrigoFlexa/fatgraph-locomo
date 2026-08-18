@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same fact: cousin needed a new place urgently.\"}", "prompt_tokens": 381, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

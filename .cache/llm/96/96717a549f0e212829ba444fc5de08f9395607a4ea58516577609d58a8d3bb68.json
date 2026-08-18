@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory continues Andrew's cooking narrative (his involvement, rookie status, activities and feelings), so it belongs directly after the Andrew cooking memory to remain in the same trail.\"}", "prompt_tokens": 386, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

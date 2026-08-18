@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a theme within one of Joanna's scripts, while B refers to a specific script (Joanna's next script) with no evidence they are the same.\"}", "prompt_tokens": 216, "completion_tokens": 181, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

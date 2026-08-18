@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Sam’s friends’ refers to other people associated with Sam, not Sam themself.\"}", "prompt_tokens": 226, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

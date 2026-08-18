@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Planning to go camping and later going on a bike ride are compatible (plan may have changed or both occurred at different times).\"}", "prompt_tokens": 248, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

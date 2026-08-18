@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"'Calvin and the artists' includes the individual Calvin mentioned in B, so they refer to the same person.\"}", "prompt_tokens": 277, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

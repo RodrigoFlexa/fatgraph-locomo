@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same event—Caroline's gender transition and its bodily changes.\"}", "prompt_tokens": 210, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

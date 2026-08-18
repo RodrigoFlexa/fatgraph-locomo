@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory is another item on the meeting agenda (like the education item) and so belongs immediately after the memory about the meeting discussing education in the same topical episode.\"}", "prompt_tokens": 386, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

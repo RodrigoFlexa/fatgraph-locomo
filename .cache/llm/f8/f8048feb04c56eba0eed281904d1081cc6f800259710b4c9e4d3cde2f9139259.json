@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This personal, leisure activity fits the same personal-life thread as 'Deborah spent time with the community' and nearby items about visiting family, so it belongs in that face.\"}", "prompt_tokens": 732, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

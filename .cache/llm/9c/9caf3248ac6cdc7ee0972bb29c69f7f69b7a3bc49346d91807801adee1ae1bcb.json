@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too vague; does not name Good Sports or give supporting details.\"}", "prompt_tokens": 405, "completion_tokens": 289, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

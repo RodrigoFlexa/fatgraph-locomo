@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"‘game tournament’ is a shorthand reference to the same specific video game tournament described as intense.\"}", "prompt_tokens": 212, "completion_tokens": 167, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

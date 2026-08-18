@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It continues the thread about John's non-profit job search directly after considering a non-profit career and before noting he hasn't found an organization that aligns with his values.\"}", "prompt_tokens": 747, "completion_tokens": 117, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

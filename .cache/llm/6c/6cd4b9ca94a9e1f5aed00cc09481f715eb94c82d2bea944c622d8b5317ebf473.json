@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions differ in location and direction (trail vs street, walking up vs down), so they are not the same photo.\"}", "prompt_tokens": 254, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

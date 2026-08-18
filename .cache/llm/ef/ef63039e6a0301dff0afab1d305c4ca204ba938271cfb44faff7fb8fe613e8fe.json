@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to meetings (events) involving movie producers, while Mention B refers to the people (movie producers) themselves, so they are different entities.\"}", "prompt_tokens": 194, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

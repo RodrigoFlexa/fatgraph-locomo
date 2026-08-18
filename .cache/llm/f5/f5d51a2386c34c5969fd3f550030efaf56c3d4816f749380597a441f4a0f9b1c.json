@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a generic genre description while Mention B refers to a specific romantic drama about memory and relationships, so they are not the same entity.\"}", "prompt_tokens": 274, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

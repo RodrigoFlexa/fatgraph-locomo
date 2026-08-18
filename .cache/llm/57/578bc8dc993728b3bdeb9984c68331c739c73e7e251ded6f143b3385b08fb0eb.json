@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A bathroom is a different room/space than Jolene's room in her mother's house, so they are distinct entities.\"}", "prompt_tokens": 194, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

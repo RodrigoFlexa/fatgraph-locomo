@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One describes a bookshelf with a picture, the other describes a table with books, so they refer to different photos/objects.\"}", "prompt_tokens": 203, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

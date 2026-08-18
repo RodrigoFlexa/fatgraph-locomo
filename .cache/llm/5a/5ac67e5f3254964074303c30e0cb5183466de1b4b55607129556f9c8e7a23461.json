@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to two things ('insurance and repairs') while B specifically refers to the insurance needed to start repairs, so they are not the same single entity.\"}", "prompt_tokens": 184, "completion_tokens": 243, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

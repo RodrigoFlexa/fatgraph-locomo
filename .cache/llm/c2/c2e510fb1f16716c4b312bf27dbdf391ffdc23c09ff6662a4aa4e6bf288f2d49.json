@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same fact: her mom attended Deborah's yoga classes.\"}", "prompt_tokens": 369, "completion_tokens": 33, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

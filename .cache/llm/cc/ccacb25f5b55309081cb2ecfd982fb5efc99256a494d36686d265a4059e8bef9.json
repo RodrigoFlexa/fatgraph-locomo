@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"Both are images Tim shared of personal items (a bookshelf and now shoes), so placing the new memory after the bookshelf image keeps similar social-post artifacts together in the same narrative episode.\"}", "prompt_tokens": 789, "completion_tokens": 378, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

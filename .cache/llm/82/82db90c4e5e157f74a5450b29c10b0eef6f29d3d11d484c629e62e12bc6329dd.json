@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"A photo of horses seen in a field fits the same outdoor hike/peak scene described in memory 0, so it should be placed immediately after that memory in the narrative.\"}", "prompt_tokens": 770, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

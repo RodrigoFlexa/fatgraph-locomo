@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The dirt-road photo fits the camping/nature episode, so it should follow the memory about Melanie going camping with her kids to keep the outdoor trip narrative together.\"}", "prompt_tokens": 770, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

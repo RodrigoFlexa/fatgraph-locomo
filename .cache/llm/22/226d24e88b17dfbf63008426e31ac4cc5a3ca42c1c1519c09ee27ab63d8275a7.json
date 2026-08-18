@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first mention refers to Evan plus Sam specifically, while the second refers to Evan and his family, which is a different group.\"}", "prompt_tokens": 184, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

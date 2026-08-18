@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory directly continues the unexpected-incident narrative (occurring during the incident) and belongs between the incident report (index 5) and the subsequent car-photo/support trail entries.\"}", "prompt_tokens": 760, "completion_tokens": 122, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

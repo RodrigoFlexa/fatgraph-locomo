@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the person John while the other refers to his team, a distinct organization rather than the same individual.\"}", "prompt_tokens": 234, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Both describe a cactus painting but the first says it was inspired by a recent road trip while the second only describes a cactus in the desert, so there is insufficient evidence they are the identical painting.\"}", "prompt_tokens": 196, "completion_tokens": 187, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

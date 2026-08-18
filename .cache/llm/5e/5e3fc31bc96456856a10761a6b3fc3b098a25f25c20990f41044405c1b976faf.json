@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"The first describes an ongoing action and location; the second asserts the mechanic's knowledge/ability—distinct facts.\"}", "prompt_tokens": 243, "completion_tokens": 177, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

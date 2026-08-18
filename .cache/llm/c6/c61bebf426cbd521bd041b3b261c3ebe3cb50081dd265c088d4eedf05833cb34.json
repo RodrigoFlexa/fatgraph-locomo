@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same shelter (pet/animal shelter) and aliases explicitly include 'an animal shelter' for B.\"}", "prompt_tokens": 207, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

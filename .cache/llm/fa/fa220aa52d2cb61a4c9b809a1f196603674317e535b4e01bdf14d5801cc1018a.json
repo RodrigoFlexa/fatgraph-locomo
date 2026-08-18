@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches reference; more specific and consistent with 'liberal'.\"}", "prompt_tokens": 366, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

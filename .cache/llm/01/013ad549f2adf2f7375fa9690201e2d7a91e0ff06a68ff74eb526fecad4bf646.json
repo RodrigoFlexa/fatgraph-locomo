@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention denotes the city associated with Caroline (a place), the other denotes Caroline (a person), so they are different entities.\"}", "prompt_tokens": 282, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

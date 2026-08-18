@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Nate's image\\\" refers to a picture or visual, while \\\"Nate's fish\\\" is a living pet; there's no evidence they are the same referent.\"}", "prompt_tokens": 180, "completion_tokens": 182, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

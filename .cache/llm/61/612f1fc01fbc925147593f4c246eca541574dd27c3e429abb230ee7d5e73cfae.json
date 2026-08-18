@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new photo of children playing in ocean waves fits the vacation narrative and should follow the memory about John recalling a vacation to California with Maria.\"}", "prompt_tokens": 739, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

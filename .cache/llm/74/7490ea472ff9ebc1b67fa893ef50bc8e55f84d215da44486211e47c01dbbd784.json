@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a specific story based on Tim's UK experiences, the other is Tim's writing in general, so they are different entity types.\"}", "prompt_tokens": 222, "completion_tokens": 176, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

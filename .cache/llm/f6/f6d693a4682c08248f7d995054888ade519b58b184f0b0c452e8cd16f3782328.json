@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This directly continues the John-related thread where Maria encouraged him about tech opportunities, so it belongs immediately after the memory about John (index 7).\"}", "prompt_tokens": 762, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

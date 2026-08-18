@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Joanna to his place\\\" includes the same person named Joanna referenced by \\\"Joanna.\\\"\"}", "prompt_tokens": 226, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

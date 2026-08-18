@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Says she can't have dairy, equivalent to lactose intolerance.\"}", "prompt_tokens": 363, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

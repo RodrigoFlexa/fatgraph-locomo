@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The temporal expressions differ (yesterday vs last Friday) and there is no evidence they refer to the same visit or place.\"}", "prompt_tokens": 182, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

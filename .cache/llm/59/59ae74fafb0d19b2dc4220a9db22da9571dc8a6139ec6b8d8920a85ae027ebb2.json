@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Mention A explicitly identifies Toby as 'Andrew's girlfriend', which is the same referent as B's 'Andrew's girlfriend'.\"}", "prompt_tokens": 244, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

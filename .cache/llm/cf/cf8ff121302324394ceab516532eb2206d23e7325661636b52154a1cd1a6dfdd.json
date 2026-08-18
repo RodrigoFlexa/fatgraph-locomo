@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first is a specific local class instance while B is the general activity 'yoga', so they are not the same entity.\"}", "prompt_tokens": 283, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

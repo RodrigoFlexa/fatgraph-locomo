@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This image of grease-stained hands belongs to the car-maintenance episode that begins with the shared photo of a car engine, fitting naturally before the later note about hearing a weird noise.\"}", "prompt_tokens": 816, "completion_tokens": 379, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

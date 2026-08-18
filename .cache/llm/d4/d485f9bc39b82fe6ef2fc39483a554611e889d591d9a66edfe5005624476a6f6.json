@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different event: council meeting for adoption doesn't match mentoring or school speech.\"}", "prompt_tokens": 368, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

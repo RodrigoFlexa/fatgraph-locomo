@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory about planning to take Toby to a park is consistent with Andrew owning Toby and adds a plan, not a conflicting fact.\"}", "prompt_tokens": 245, "completion_tokens": 113, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

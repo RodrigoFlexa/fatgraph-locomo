@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The financial strain is a direct consequence of John's car breaking down, so it belongs immediately after the car breakdown memory in that same episode.\"}", "prompt_tokens": 723, "completion_tokens": 177, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

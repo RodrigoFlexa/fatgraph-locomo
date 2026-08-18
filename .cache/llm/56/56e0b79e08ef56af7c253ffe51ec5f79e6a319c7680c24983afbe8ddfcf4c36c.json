@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to people who own cars, the other refers to the cars themselves, so they are different types of entities.\"}", "prompt_tokens": 182, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

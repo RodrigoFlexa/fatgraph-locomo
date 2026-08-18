@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory explains context for the flood in John's old area, so it belongs immediately after the flood memory in the same episodic thread.\"}", "prompt_tokens": 383, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

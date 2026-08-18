@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These statements are compatible: Jon appreciating Gina's support and Gina believing in Jon can both be true.\"}", "prompt_tokens": 237, "completion_tokens": 42, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

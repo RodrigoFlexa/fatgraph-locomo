@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference indicates the Saturday before 7 Nov (i.e. Nov 5), not Nov 7.\"}", "prompt_tokens": 372, "completion_tokens": 105, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

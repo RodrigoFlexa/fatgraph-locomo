@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different flavors: coconut milk vs chocolate/vanilla swirl.\"}", "prompt_tokens": 367, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new memory is part of the same transgender-related episode as the poetry reading and fits naturally after 'attended a transgender poetry reading last Friday' in that narrative strand.\"}", "prompt_tokens": 725, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

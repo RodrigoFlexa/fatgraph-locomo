@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory directly continues the same narrative about veterans—mirroring and elaborating on 'John works on a project to support military veterans'—so it belongs immediately after index 6.\"}", "prompt_tokens": 742, "completion_tokens": 124, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

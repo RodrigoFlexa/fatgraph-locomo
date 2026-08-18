@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same group of dogs belonging to Audrey, with the first simply adding a description (healthy and happy).\"}", "prompt_tokens": 296, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory continues the local-politics thread (Maria's notebook with notes about local politics) by recording a specific advocacy action for school funding, so it fits best immediately after index 5.\"}", "prompt_tokens": 713, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

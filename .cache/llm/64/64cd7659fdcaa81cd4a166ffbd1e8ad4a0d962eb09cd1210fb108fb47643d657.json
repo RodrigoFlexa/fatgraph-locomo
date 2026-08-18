@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Tokyo is a city and Japan is the country (and the times differ), so they are not the same entity.\"}", "prompt_tokens": 239, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

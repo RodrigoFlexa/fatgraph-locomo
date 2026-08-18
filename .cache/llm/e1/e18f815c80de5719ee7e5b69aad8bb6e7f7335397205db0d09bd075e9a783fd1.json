@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"live music\\\" is a subtype/instance of music (a specific kind), not the identical entity \\\"music\\\".\"}", "prompt_tokens": 177, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

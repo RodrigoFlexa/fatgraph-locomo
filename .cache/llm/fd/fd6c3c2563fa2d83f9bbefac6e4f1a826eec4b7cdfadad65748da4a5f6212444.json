@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different: photo of stuffed animals vs visiting parks and trails.\"}", "prompt_tokens": 371, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

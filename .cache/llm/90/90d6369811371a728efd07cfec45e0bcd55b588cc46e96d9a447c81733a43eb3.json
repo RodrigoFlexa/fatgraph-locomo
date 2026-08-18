@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"Lactose intolerance explains why Joanna would tweak a dessert recipe for accessibility, so it should appear immediately before the memory about altering the dessert (index 0).\"}", "prompt_tokens": 751, "completion_tokens": 310, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

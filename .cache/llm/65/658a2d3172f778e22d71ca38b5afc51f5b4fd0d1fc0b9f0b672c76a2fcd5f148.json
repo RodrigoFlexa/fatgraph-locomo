@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory logically follows 'plans to speak up for the community' and precedes 'attended community meetings,' so it belongs in that community-involvement narrative.\"}", "prompt_tokens": 712, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

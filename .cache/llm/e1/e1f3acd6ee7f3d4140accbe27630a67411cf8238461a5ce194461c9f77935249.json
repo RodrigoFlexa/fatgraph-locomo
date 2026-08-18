@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory about having a husband belongs with the family/kids narrative (the trail through the charity race and being swamped with the kids), so insert it after memory 7 to keep it in that face.\"}", "prompt_tokens": 752, "completion_tokens": 321, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

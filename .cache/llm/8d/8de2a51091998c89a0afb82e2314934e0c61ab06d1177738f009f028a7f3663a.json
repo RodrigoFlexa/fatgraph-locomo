@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to the natural environment at a retreat, while Mention B refers to the retreat event/location itself, so they are different entities.\"}", "prompt_tokens": 194, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

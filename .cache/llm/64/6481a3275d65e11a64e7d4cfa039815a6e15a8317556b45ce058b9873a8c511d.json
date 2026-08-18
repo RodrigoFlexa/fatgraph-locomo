@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Audrey’s dogs’ refers to the animals owned by Audrey, not the person Audrey herself.\"}", "prompt_tokens": 219, "completion_tokens": 40, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

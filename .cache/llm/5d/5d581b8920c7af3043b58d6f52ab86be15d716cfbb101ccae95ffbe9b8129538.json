@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence the described camping trip (outdoors to connect with nature) is the same event as the identified yoga retreat with buddies; their descriptions differ and no linking details are provided.\"}", "prompt_tokens": 228, "completion_tokens": 186, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

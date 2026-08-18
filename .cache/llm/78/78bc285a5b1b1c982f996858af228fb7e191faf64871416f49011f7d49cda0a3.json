@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"Earlier memory says Jon already runs a dance studio, but the later memory says he is starting one, which cannot both be true for the same business at those times.\"}", "prompt_tokens": 240, "completion_tokens": 247, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory is consistent with the old one—both state John supports improving education and infrastructure, not mutually exclusive facts.\"}", "prompt_tokens": 247, "completion_tokens": 110, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

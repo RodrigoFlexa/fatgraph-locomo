@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Attendance is part of the tournament episode and supports the fundraising/charity narrative already passing through memory 2, so insert it after memory 2 to keep that face coherent.\"}", "prompt_tokens": 470, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence that the close friend and the new significant other are the same person and the roles imply different relationships.\"}", "prompt_tokens": 205, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

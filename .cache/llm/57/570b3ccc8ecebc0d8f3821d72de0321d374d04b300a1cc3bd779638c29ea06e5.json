@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same object—a single cutting-edge gaming computer/system (a gaming PC with a powerful graphics card).\"}", "prompt_tokens": 185, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

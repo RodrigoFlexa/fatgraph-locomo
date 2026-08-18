@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both statements say Jon's business is difficult/has obstacles, so they are consistent.\"}", "prompt_tokens": 245, "completion_tokens": 103, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

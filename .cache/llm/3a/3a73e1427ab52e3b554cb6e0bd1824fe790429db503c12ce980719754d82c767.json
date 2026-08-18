@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The pet-snake detail fits the same personal-life narrative as the partner/gaming and yoga memories in that trail, so place it after the memory about her partner helping with gaming.\"}", "prompt_tokens": 796, "completion_tokens": 314, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

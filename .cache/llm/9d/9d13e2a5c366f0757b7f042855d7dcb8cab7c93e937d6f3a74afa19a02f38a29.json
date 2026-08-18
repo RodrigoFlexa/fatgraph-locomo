@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate claims absence though reference states Melanie's supportive opinion.\"}", "prompt_tokens": 373, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

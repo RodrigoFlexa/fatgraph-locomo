@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first refers to an online platform associated with the studio, while the second refers to the physical dance studio itself, so they are different entities.\"}", "prompt_tokens": 258, "completion_tokens": 49, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

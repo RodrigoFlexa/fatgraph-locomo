@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Visiting the bar and later choosing an apartment near it are compatible and not mutually exclusive.\"}", "prompt_tokens": 255, "completion_tokens": 104, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

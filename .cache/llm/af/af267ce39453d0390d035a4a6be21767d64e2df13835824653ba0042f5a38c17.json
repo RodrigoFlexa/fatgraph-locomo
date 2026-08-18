@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate is vague and does not state the specific count of four.\"}", "prompt_tokens": 363, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

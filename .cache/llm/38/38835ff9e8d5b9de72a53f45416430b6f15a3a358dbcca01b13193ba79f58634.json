@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Sam's phone is an object owned by Sam, not the person Sam themself.\"}", "prompt_tokens": 231, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

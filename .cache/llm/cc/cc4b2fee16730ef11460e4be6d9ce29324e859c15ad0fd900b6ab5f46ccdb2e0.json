@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Fortnite is the video game while Fortnite competitions are events held for that game, so they are different types of entities.\"}", "prompt_tokens": 175, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

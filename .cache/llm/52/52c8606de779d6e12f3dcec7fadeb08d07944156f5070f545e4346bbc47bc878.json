@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a specific recipe using coconut milk while B lists flavors (coconut milk, chocolate, mixed berry), so they are different kinds of entities.\"}", "prompt_tokens": 197, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

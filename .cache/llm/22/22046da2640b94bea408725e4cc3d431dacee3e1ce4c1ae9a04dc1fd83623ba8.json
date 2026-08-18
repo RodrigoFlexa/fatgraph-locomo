@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a group of Evan's work friends while the other is Evan's son (a specific child), so they are different entities.\"}", "prompt_tokens": 235, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

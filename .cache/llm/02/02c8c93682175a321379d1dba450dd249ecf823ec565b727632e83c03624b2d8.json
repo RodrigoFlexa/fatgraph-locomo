@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A close friend and a son are distinct relationship roles and the facts about Evan's son (injuries, care) identify a child, not a friend.\"}", "prompt_tokens": 235, "completion_tokens": 51, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

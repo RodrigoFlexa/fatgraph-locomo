@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says absent while reference states fundraising for children's hospital.\"}", "prompt_tokens": 376, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

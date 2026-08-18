@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Caroline plus her mentee (two people), whereas Mention B is a single distinct person (Caroline's grandmother).\"}", "prompt_tokens": 194, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

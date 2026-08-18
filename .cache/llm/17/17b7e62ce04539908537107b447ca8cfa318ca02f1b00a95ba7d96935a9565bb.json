@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase describes paying attention to detail in the activity, while the other describes car restoration as an occupation, so they are different senses of the concept.\"}", "prompt_tokens": 186, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

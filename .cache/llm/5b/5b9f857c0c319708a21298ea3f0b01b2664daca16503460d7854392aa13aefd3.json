@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The ingredient list directly supports the recipe/flavor narrative (Mediterranean flavors), so it belongs immediately after the memory about Roasted Chicken's Mediterranean basis.\"}", "prompt_tokens": 396, "completion_tokens": 117, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different items: one is the Harry Potter books while the other is the Harry Potter movie collection (different media).\"}", "prompt_tokens": 199, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

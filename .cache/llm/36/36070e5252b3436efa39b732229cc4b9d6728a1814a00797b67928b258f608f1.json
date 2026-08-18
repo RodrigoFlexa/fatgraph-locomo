@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"It is a direct detail about the game he created, so it belongs immediately after the 'John created his first mobile game' memory in the same creation/work narrative.\"}", "prompt_tokens": 718, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

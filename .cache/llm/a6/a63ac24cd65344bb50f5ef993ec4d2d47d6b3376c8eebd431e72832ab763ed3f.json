@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Jolene's goals\\\" refers to objectives or aims, while \\\"Jolene's partner\\\" refers to a person, so they are different entities.\"}", "prompt_tokens": 254, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

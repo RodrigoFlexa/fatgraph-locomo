@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Many specific items from reference are missing or mismatched.\"}", "prompt_tokens": 424, "completion_tokens": 223, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

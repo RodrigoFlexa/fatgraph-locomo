@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This causal detail explains why Gina started her online clothing store and belongs in the same narrative thread immediately before the memory that states she started the store.\"}", "prompt_tokens": 747, "completion_tokens": 307, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

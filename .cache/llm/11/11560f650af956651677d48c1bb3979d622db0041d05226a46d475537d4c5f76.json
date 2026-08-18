@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This is Jon's overall reaction to attending the fair on 24 April 2023, so it belongs directly after the memory that notes he attended the fair.\"}", "prompt_tokens": 802, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

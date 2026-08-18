@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This practice note continues the participation/preparation narrative (same episode of training and tournament involvement) so it belongs after the memory about Nate participating in a tournament.\"}", "prompt_tokens": 395, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

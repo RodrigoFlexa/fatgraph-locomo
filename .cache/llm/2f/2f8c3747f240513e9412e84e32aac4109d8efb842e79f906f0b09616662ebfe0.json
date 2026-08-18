@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory is a leisure activity with Andrew's girlfriend and fits the same social/leisure episode as the fishing trip memory, so it should follow index 1.\"}", "prompt_tokens": 393, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

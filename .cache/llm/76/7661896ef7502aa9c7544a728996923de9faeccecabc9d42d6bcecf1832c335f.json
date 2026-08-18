@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":5,\"reason\":\"This memory continues the same outdoor/garden episode (dogs enjoying the garden and exploring), so it belongs directly after the garden-exploring memory.\"}", "prompt_tokens": 750, "completion_tokens": 112, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

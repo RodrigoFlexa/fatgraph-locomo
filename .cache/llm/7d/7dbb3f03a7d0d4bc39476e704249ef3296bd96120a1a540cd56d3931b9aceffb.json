@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The plan to get into local politics is more plausibly a decision made after returning from the family road trip, so place it immediately after the trip memory in the cycle.\"}", "prompt_tokens": 365, "completion_tokens": 632, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

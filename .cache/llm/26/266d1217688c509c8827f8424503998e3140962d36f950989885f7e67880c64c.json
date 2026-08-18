@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A passion is an abstract trait while gaming sessions are specific events, so they are different entities.\"}", "prompt_tokens": 187, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

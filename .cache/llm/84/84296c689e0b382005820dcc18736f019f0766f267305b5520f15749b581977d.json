@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same date in equivalent format.\"}", "prompt_tokens": 361, "completion_tokens": 90, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

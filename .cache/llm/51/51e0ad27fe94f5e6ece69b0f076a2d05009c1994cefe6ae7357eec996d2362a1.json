@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Adds compatible extra detail (great characters) to same genres.\"}", "prompt_tokens": 362, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

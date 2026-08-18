@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Pets are a subset of animals (animals kept as companions), not the identical referent.\"}", "prompt_tokens": 173, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

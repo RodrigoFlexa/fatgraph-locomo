@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory describes the couple hosting a small gathering (similar to the intimate wedding-related hosting in memory 0) and thus belongs directly in that wedding/hosting narrative.\"}", "prompt_tokens": 433, "completion_tokens": 248, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

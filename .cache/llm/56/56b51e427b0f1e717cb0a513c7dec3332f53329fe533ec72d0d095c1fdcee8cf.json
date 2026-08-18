@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different activities: running group versus a yoga class.\"}", "prompt_tokens": 358, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

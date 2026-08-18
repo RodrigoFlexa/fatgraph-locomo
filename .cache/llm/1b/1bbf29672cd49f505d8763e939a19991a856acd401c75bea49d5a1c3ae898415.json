@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"memories for Deborah\\\" refers to memories belonging to or intended for the same person named Deborah mentioned elsewhere.\"}", "prompt_tokens": 247, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"yoga and meditation\\\" refers to two activities together while \\\"meditation\\\" is only one of those activities, so they are not the same single entity.\"}", "prompt_tokens": 227, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

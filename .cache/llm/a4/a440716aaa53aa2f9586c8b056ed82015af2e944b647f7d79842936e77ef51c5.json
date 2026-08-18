@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory is part of the honeymoon planning thread (activities to do in Canada) so it should follow the general honeymoon plan entry and sit before the specific ski plan.\"}", "prompt_tokens": 490, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

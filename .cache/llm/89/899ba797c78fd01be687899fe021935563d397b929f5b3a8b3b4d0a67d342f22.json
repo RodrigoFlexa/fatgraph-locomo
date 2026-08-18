@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to Sam's phone (an object) and the other to Sam's friends (people), so they are different entities.\"}", "prompt_tokens": 180, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

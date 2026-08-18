@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The second mention specifies a particular time/context (programming in college) while the first is the general activity, so they are not the same entity.\"}", "prompt_tokens": 176, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This follows directly from 'John created his first mobile game' and continues the same release/launch narrative about that game.\"}", "prompt_tokens": 739, "completion_tokens": 174, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

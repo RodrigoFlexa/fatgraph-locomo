@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"adopting\\\" is an action/verb while \\\"adoption agencies\\\" refers to organizations, so they are not the same entity.\"}", "prompt_tokens": 183, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

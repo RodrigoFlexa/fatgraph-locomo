@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A counseling workshop is an event format while a support group is an ongoing group, so they are different types of entities.\"}", "prompt_tokens": 217, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

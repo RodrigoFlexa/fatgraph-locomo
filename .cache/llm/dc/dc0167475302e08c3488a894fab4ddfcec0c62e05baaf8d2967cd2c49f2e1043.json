@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This is a social/outings memory tied to the same thread about John’s plans and shared activities with James (and others) that runs through the gaming/night/outings trail, so it belongs after the gaming-night memory.\"}", "prompt_tokens": 726, "completion_tokens": 258, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

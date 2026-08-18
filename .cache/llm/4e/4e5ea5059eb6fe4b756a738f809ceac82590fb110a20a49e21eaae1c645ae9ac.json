@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This new, general-value statement doesn't fit the existing topical trails about books, games, or football, so it should start a new narrative before the first memory.\"}", "prompt_tokens": 733, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

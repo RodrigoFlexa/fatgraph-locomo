@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a rock for Maria\\\" refers to something/someone that supports or is for Maria, not Maria herself\"}", "prompt_tokens": 214, "completion_tokens": 169, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

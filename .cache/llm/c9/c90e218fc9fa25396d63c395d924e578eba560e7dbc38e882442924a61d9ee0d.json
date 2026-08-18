@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits Jolene's pendant and says it's not mentioned.\"}", "prompt_tokens": 373, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

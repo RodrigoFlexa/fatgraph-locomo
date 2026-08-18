@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This general fact about Audrey owning dogs is foundational to the other dog-related memories, so it should appear before the existing specific episodes.\"}", "prompt_tokens": 390, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

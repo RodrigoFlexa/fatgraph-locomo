@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Mentions only inventory, omits resources and donations.\"}", "prompt_tokens": 368, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

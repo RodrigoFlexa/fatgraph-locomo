@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits Max's age (8 years).\"}", "prompt_tokens": 370, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

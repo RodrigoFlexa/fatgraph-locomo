@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Showing a studio at a fair does not conflict with learning that one’s business is difficult; both can be true.\"}", "prompt_tokens": 254, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"A bullet journal is a specific planner that supports those strategies.\"}", "prompt_tokens": 378, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

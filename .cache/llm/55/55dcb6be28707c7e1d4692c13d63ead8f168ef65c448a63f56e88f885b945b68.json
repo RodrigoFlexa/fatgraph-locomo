@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This memory explains why John bought many books and fits the same book-related narrative (books and bookcase), so it should follow the purchase memory.\"}", "prompt_tokens": 728, "completion_tokens": 179, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

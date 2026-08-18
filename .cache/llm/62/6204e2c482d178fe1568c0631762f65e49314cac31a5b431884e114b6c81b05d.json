@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory explains the origin of Max and belongs in the same episode as 'Deborah owns Max (a cat)', so it should follow that memory in the cycle.\"}", "prompt_tokens": 727, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

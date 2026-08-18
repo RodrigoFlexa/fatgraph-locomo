@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Deborah (a person lost), while Mention B is Deborah's mother; they are different individuals.\"}", "prompt_tokens": 308, "completion_tokens": 235, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

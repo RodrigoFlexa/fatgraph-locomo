@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B refers to Andrew's girlfriend (also called Toby) while A names Audrey, a different person with a different name.\"}", "prompt_tokens": 259, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

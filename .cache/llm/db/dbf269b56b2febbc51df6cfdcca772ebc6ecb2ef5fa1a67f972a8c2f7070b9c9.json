@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information phrased with an article; exact match.\"}", "prompt_tokens": 373, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

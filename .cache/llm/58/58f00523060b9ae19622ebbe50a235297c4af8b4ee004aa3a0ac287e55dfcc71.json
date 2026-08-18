@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This new memory belongs to the same group-yoga event narrative (photos of a group doing yoga and Deborah organizing a yoga event), so it should sit immediately after the group photo memory.\"}", "prompt_tokens": 744, "completion_tokens": 315, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

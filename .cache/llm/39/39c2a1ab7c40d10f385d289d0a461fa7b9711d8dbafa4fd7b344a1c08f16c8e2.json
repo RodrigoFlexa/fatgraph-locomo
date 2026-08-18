@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":0,\"reason\":\"Knowing Spanish explains a practical skill John uses in the seminars he started doing, so it belongs immediately after the memory about him starting those seminars.\"}", "prompt_tokens": 755, "completion_tokens": 175, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

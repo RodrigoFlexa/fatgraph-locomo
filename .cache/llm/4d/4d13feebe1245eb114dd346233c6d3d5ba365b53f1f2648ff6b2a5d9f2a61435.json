@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory is another event about John organizing game/competition activities and fits directly after the online competition memory in the same organizational thread.\"}", "prompt_tokens": 746, "completion_tokens": 113, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

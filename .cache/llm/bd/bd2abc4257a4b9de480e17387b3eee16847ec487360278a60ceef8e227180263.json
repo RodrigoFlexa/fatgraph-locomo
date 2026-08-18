@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase denotes a category/location of buildings (castles in Europe) and the other denotes the activity of visiting castles, so they are different kinds of entities.\"}", "prompt_tokens": 180, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

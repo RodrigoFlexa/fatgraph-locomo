@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to an organization (an entity), the other to a career/sector (a job/field), so they are different types and not the same entity.\"}", "prompt_tokens": 186, "completion_tokens": 54, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

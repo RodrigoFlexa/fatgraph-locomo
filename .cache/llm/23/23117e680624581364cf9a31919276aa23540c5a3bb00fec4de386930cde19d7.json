@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"It belongs in the family/children thread directly after 'John has a wife' and before the specific child memory (one-year-old son Kyle), providing the general statement before the specific detail.\"}", "prompt_tokens": 760, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

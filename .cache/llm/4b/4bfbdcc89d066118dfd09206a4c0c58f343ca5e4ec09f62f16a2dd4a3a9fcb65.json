@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This new purchase is directly part of Gina running her store (adds inventory/merchandise) and continues that retail-focused narrative, so it belongs immediately after the memory that she runs her store.\"}", "prompt_tokens": 738, "completion_tokens": 317, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

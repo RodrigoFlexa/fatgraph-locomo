@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The road trip with his wife is a personal/family event that continues the thread about John’s family and personal life described in the memory at index 7.\"}", "prompt_tokens": 771, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

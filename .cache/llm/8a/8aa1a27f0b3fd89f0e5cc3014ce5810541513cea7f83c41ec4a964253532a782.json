@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Misses customer relationships and branding; only mentions perseverance.\"}", "prompt_tokens": 379, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

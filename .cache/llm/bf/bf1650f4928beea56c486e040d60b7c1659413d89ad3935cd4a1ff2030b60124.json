@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Evan's support\\\" refers to assistance or support related to Evan, while \\\"Evan's son\\\" is a specific person; they are different types of referents.\"}", "prompt_tokens": 207, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

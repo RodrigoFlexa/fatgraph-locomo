@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same date; candidate gives consistent time-of-day detail.\"}", "prompt_tokens": 376, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

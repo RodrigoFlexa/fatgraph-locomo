@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"The basketball-court photo is a distinct social snapshot unrelated to the ongoing nature/camping and fantasy-reading narratives, so inserting it before the first memory keeps it as its own separate narrative.\"}", "prompt_tokens": 765, "completion_tokens": 251, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

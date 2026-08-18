@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions painting, omits kayaking, hiking, cooking, running\"}", "prompt_tokens": 365, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

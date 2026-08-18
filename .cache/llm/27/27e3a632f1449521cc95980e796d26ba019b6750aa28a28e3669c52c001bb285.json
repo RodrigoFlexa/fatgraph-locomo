@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A body (the whole person) and an injury (a specific harm to that person) are different entities.\"}", "prompt_tokens": 181, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

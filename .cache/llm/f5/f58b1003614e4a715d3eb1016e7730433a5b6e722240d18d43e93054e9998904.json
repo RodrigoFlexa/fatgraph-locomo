@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Taking dogs to the vet does not conflict with grooming them herself; both can be true.\"}", "prompt_tokens": 242, "completion_tokens": 104, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

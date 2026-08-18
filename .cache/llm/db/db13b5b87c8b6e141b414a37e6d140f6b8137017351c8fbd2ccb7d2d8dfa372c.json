@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a specific seat feature whereas B is the whole living room, so they are different entities.\"}", "prompt_tokens": 208, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

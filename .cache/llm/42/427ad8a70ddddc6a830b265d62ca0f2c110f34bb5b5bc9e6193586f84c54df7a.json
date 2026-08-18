@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both memories assert the same fact (Andrew lives in the city) at different times, so there is no contradiction.\"}", "prompt_tokens": 238, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

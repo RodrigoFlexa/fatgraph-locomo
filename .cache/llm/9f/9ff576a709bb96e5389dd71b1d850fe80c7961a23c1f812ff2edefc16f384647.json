@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Boston history\\\" refers to the topic/history of Boston, while \\\"Boston after Japan\\\" (alias Boston) refers to the city itself, so they are not the same entity.\"}", "prompt_tokens": 251, "completion_tokens": 183, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

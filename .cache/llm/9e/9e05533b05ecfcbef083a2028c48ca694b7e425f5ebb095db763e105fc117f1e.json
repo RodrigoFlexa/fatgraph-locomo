@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Candidate affirms C.S. Lewis, matching the reference.\"}", "prompt_tokens": 386, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

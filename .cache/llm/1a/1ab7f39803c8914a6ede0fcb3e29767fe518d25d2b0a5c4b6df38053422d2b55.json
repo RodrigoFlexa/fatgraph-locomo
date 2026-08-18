@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory is about a recent injury tied to John's ongoing basketball life, so it belongs in the same basketball-focused narrative after the note that basketball is a significant part of his life.\"}", "prompt_tokens": 797, "completion_tokens": 251, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

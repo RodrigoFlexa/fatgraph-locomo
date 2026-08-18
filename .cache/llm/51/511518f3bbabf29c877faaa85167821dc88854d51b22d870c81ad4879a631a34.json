@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase denotes the trail itself while the other denotes a park that contains a trail, so they are different entities.\"}", "prompt_tokens": 189, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

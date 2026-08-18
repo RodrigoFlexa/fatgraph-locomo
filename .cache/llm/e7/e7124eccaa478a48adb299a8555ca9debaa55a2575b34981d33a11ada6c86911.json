@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The yoga-room image fits the topic of Deborah organizing mindfulness and self-care workshops, so it belongs directly after the memory about her organizing workshops.\"}", "prompt_tokens": 746, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

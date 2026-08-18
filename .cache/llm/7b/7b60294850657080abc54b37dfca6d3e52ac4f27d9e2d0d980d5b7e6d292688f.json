@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"being in a video game\\\" is a state or situation phrase, while \\\"video games\\\" is the general category/activity; they are not the same entity.\"}", "prompt_tokens": 258, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

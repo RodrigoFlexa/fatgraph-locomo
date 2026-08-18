@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to the contest (an event) while the other refers to a screenplay submitted to that contest, so they are different entities.\"}", "prompt_tokens": 197, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory directly continues the library episode—finding an old book fits naturally after 'Joanna checked out the library in Woodhaven' in the same Woodhaven/library trail.\"}", "prompt_tokens": 747, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

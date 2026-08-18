@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A toy Iron Man is a physical toy representing the character, not the character/person Iron Man itself.\"}", "prompt_tokens": 175, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

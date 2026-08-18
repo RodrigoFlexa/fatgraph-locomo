@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A reads like an entry in 'people she has lost' (a deceased person), while Mention B is an active individual with present-tense activities, so they are different.\"}", "prompt_tokens": 236, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

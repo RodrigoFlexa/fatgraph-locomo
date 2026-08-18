@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a specific online board game (singular) while the other is the general category/hobby of board games (plural), so they are different.\"}", "prompt_tokens": 177, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

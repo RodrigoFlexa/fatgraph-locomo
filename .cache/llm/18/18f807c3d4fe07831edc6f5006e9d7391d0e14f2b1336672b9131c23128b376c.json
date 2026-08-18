@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference lists career-high points and assists; candidate says not mentioned.\"}", "prompt_tokens": 367, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

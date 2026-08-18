@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same dance style; wording differs.\"}", "prompt_tokens": 356, "completion_tokens": 91, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

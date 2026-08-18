@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A cousin is a different relative than a sibling (and the provided aliases indicate B refers to parents), so they are not the same person.\"}", "prompt_tokens": 194, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

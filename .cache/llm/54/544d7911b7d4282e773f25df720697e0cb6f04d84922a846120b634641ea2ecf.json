@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to the group of dancers, while B refers to the physical dance studio location/business, so they are different entities.\"}", "prompt_tokens": 260, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

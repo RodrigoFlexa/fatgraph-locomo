@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These statements describe different actions at different times and can both be true (no mutually exclusive facts).\"}", "prompt_tokens": 255, "completion_tokens": 105, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

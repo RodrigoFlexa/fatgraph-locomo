@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"States same start year, with consistent contextual date.\"}", "prompt_tokens": 369, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

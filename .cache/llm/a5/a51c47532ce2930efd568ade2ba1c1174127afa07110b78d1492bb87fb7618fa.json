@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Art and design\\\" is a broader combined phrase while \\\"art\\\" refers only to the art component, so they are not identical entities.\"}", "prompt_tokens": 249, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

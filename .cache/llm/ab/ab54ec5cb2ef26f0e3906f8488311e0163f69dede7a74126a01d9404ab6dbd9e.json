@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Being a Weight Watchers coach is directly related to Sam's health and check-up narrative, so it belongs in the same thread that references his recent doctor visit and follow-up routines.\"}", "prompt_tokens": 838, "completion_tokens": 250, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

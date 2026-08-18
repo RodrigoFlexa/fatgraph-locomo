@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"policies\\\" refers to specific rules or decisions while \\\"policymaking\\\" refers to the process or field of creating those policies, so they are different concepts.\"}", "prompt_tokens": 178, "completion_tokens": 53, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

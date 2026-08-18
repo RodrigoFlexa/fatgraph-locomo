@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The two phrases are synonyms referring to the same activity of repairing/fixing items.\"}", "prompt_tokens": 189, "completion_tokens": 100, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

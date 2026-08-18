@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'his kids' refers specifically to his children while 'his family' is a broader group and not the identical referent.\"}", "prompt_tokens": 184, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

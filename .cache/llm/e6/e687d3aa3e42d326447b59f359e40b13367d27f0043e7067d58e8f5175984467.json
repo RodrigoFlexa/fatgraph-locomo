@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same date expressed with a preposition.\"}", "prompt_tokens": 365, "completion_tokens": 28, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

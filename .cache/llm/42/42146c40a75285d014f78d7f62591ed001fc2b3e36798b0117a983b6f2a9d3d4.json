@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate gives a different nickname than reference.\"}", "prompt_tokens": 354, "completion_tokens": 28, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

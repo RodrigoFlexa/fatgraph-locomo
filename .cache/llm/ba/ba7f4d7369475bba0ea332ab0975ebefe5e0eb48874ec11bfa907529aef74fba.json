@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Expecting a team to win is compatible with supporting that team, so both can be true simultaneously.\"}", "prompt_tokens": 240, "completion_tokens": 42, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

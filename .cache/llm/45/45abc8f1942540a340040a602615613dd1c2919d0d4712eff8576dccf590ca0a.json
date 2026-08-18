@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Harry Potter books\\\" refers to the book works/series while \\\"Harry Potter\\\" refers to the character/franchise, so they are different entities.\"}", "prompt_tokens": 174, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

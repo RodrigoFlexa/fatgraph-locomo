@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This new memory is a specific instance of the family offering emotional support and reassurance, so it belongs directly after 'Maria's family gave words of encouragement to Maria' in the same narrative thread.\"}", "prompt_tokens": 431, "completion_tokens": 124, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

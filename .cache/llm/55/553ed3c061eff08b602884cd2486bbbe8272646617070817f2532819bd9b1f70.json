@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to general dairy-free dessert recipes for a group, while B is a specific coconut-milk dairy-free recipe (Nate's).\"}", "prompt_tokens": 231, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

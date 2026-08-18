@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a yoga retreat near Deborah’s mom’s place while B is a single meditation yoga session at a care home—different event types and locations.\"}", "prompt_tokens": 204, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

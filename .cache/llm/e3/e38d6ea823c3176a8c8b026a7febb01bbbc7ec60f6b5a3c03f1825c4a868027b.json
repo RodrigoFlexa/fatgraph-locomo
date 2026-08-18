@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This specifies when the ankle injury occurred and therefore belongs directly after the existing memory describing the ankle injury that required time off and physical therapy.\"}", "prompt_tokens": 734, "completion_tokens": 177, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

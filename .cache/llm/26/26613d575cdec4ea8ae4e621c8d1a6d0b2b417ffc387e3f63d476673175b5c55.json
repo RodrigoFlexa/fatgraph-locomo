@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Joanna's brother refers to a different person (a sibling), not Joanna herself.\"}", "prompt_tokens": 225, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

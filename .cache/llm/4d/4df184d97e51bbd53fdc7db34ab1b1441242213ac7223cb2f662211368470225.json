@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"The cast-on-foot photo is a distinct, unrelated episode (medical/personal) and should start a new narrative before the existing basketball/hoop cycle.\"}", "prompt_tokens": 411, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

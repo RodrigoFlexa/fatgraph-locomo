@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This directly continues the same episode about Caroline painting a self-portrait by describing her emotional experience while painting, so it belongs immediately after the self-portrait memory.\"}", "prompt_tokens": 711, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Stout differs from lager; candidate states a different beer type.\"}", "prompt_tokens": 364, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

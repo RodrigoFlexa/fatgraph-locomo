@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A trivia contest is an event while Tim's Harry Potter fan project is a broader project; they are different types of entities and not explicitly the same.\"}", "prompt_tokens": 205, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

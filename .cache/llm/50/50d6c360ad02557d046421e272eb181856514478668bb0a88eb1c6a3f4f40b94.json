@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They describe different flavors and components (chocolate coconut cupcakes with raspberry frosting vs vanilla with strawberry filling and coconut cream frosting).\"}", "prompt_tokens": 198, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A community is a social group, while a conference is a specific event, so they are different kinds of entities.\"}", "prompt_tokens": 182, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

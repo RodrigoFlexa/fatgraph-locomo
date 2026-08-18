@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This belongs with the personal/living-in-the-city thread (relationships and household details like dogs/apartment), so it fits narratively after the memory about living in the city.\"}", "prompt_tokens": 796, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

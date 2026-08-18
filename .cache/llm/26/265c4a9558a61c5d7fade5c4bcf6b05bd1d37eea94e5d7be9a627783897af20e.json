@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This personal detail about Deborah's mother's evening habit belongs with other biographical notes about her (e.g., that she passed away) and fits the same narrative thread about Deborah's mother.\"}", "prompt_tokens": 593, "completion_tokens": 315, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

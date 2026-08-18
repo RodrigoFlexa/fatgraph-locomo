@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same petition (\\\"his petition\\\" is the petition John started).\"}", "prompt_tokens": 175, "completion_tokens": 166, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

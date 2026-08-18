@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory continues the narrative about the tournament itself and naturally follows the memory that John organized a gaming tournament, keeping the same episode and causal thread.\"}", "prompt_tokens": 478, "completion_tokens": 116, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

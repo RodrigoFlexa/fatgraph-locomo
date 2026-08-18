@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes Deborah doing yoga on the beach (an activity/scene) while B is a separate event (a yoga retreat); there is no evidence they are the same instance.\"}", "prompt_tokens": 196, "completion_tokens": 183, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

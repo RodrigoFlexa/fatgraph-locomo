@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"They refer to the same pet salon location, with B adding a time modifier (last Friday).\"}", "prompt_tokens": 185, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

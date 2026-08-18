@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both descriptions refer to the same coconut milk–based dairy-free ice cream recipe/result.\"}", "prompt_tokens": 289, "completion_tokens": 101, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

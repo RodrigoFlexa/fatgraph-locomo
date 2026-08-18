@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory is another activity from the same Canada vacation and should sit immediately after the vacation entry so the activity memories (biking and hiking) stay together in that episode.\"}", "prompt_tokens": 769, "completion_tokens": 313, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

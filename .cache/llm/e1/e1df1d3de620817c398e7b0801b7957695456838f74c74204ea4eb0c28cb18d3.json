@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a single basketball player posing while B describes a basketball game in progress, so they are different photos/entities.\"}", "prompt_tokens": 205, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

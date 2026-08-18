@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"Details about pets are often noted when applying to adoption agencies, so placing it after the memory about applying to adoption agencies keeps it in the same adoption/home-environment thread.\"}", "prompt_tokens": 699, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

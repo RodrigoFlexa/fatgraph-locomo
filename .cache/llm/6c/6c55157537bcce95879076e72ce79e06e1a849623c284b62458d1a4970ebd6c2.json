@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A friend of Deborah is a distinct relationship role and is not the same as Deborah's mother, who is explicitly described as her parent and deceased.\"}", "prompt_tokens": 286, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new memory fits the same 23 July episode where Jon was rehearsing and then dealing with business planning stress, so placing it after the 'Jon was rehearsing' memory keeps it in that causal narrative.\"}", "prompt_tokens": 726, "completion_tokens": 320, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

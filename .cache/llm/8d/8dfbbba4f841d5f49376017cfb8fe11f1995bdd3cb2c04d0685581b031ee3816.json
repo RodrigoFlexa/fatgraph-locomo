@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This mountain lake memory describes a past trip with friends rather than a dog- or Max-focused episode, so it should start a new narrative separate from the existing dog-centered trails.\"}", "prompt_tokens": 780, "completion_tokens": 377, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

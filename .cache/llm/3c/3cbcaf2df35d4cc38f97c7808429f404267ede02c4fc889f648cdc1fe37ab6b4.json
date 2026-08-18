@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different groups: one is John’s family and the other is John plus his colleagues, not the same entity.\"}", "prompt_tokens": 186, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

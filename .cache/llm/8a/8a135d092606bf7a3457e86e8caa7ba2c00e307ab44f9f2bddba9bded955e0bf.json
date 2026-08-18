@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"new dance routines\\\" refers to recently created choreographies or pieces, while \\\"contemporary dance\\\" is a specific dance genre, so they are different concepts.\"}", "prompt_tokens": 181, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

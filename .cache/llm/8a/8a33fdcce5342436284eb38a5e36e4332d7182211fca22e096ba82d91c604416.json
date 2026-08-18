@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a specific hike event last weekend while the other refers to the general activity of going on hikes.\"}", "prompt_tokens": 186, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

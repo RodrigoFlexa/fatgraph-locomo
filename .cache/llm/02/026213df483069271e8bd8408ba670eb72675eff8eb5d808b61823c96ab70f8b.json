@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the people at the hospital while B refers to the hospital itself, so they are different entity types.\"}", "prompt_tokens": 187, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

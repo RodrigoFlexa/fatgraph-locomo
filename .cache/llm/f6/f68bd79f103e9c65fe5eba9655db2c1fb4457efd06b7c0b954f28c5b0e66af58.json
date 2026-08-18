@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to her paintings (artworks) while B refers to the LGBTQ+ community being supported through her art, which are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 304, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

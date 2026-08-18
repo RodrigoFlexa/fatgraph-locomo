@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"scenery in Woodhaven\\\" refers to the scenery located in the town of Woodhaven, so both mention the same place.\"}", "prompt_tokens": 187, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"2019 ≠ around three years ago (dates do not match).\"}", "prompt_tokens": 367, "completion_tokens": 98, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

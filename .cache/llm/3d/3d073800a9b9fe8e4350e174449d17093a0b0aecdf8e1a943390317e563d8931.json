@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Pepper and Panda\\\" refers to a pair (Pepper plus Panda), not the single entity Panda alone.\"}", "prompt_tokens": 178, "completion_tokens": 234, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

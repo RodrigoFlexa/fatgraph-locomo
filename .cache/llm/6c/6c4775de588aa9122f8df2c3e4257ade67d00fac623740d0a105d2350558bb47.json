@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘a yoga event’ is a specific event instance while ‘yoga’ refers to the general activity/practice, so they are not the same entity.\"}", "prompt_tokens": 229, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

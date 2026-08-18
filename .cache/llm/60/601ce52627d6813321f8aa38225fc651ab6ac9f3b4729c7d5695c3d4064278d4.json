@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory is part of the same garage work episode where Dave shares knowledge and interacts with patrons, so it belongs immediately after the note about sharing his knowledge while working at the garage.\"}", "prompt_tokens": 915, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new diet-related memory best continues the ongoing health/diet thread that begins in memory 0, so place it right after that memory to join the same narrative.\"}", "prompt_tokens": 734, "completion_tokens": 311, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

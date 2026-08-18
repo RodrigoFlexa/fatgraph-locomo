@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"John's body refers to John himself (or his corpse), while John's father is a different person (John's parent).\"}", "prompt_tokens": 178, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

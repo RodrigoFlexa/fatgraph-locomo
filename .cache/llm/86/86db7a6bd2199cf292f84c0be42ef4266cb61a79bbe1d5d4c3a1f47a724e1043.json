@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a yoga pose\\\" is a specific posture, while \\\"yoga\\\" refers to the overall practice/activity, so they are different types of entities.\"}", "prompt_tokens": 289, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

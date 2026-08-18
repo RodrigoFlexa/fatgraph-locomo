@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a photo depicting the coconut milk ice cream, while B is the ice cream itself, so they are different entity types.\"}", "prompt_tokens": 345, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

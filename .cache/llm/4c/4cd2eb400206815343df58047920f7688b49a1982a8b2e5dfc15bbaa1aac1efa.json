@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A business and a team are different types of entities (organization vs group/activity) despite sharing the same owner/member Gina.\"}", "prompt_tokens": 200, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

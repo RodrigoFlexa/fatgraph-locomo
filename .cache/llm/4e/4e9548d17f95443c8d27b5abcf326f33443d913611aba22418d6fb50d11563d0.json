@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only lists Witcher 3; misses other games named.\"}", "prompt_tokens": 389, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

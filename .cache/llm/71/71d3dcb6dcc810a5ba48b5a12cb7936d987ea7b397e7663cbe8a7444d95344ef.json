@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory continues the same narrative thread about John's difficult times that follows memory 1, showing James offering support in response.\"}", "prompt_tokens": 778, "completion_tokens": 175, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

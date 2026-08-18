@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"She could have been a volunteer earlier and later taken a job at the shelter, so the two statements are compatible over time.\"}", "prompt_tokens": 245, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory directly continues the episode described in memory 6 (Tim had a tough exam last week), forming the same causal narrative about studying after the exam.\"}", "prompt_tokens": 757, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

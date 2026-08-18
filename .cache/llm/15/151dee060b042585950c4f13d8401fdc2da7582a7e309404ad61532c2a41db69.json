@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Candidate states John attended a live music event (matches).\"}", "prompt_tokens": 361, "completion_tokens": 351, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

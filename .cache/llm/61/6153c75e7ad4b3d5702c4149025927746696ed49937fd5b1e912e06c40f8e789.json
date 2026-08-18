@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Exact same information; merely different article/capitalization.\"}", "prompt_tokens": 361, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

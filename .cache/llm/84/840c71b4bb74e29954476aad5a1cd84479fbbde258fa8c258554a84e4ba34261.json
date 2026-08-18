@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The mention 'Deborah relax' is a contextual variant referring to the same Deborah described in the conversation.\"}", "prompt_tokens": 267, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a single woman while B describes a group photo, so they are different entities unless additional evidence links the single person to that group.\"}", "prompt_tokens": 199, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

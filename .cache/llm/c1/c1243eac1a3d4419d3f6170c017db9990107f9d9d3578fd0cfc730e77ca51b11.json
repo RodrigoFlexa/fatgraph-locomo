@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This new note is a concrete follow-up to John planning to get into local politics, describing his next steps of meeting local leaders and organizations so it belongs immediately after that memory.\"}", "prompt_tokens": 668, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

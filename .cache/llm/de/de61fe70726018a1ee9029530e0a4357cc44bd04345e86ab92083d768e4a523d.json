@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same movie named; phrasing differs only.\"}", "prompt_tokens": 362, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

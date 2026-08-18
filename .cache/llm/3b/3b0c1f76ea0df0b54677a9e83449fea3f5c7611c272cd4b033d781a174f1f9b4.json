@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They convey different facts: one states John currently works on the project, the other states he decided to take it on last week, so neither fully contains the other.\"}", "prompt_tokens": 243, "completion_tokens": 188, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Evan and his family\\\" is a group that includes Evan but is not the same single individual Evan.\"}", "prompt_tokens": 215, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'his' implies a different person than Joanna, and 'another screenplay' in facts refers to Joanna's screenplay, so they are different entities.\"}", "prompt_tokens": 194, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

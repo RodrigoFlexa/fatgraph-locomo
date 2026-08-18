@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Melanie (or an adoption listing for her) while Mention B refers to Melanie's children, different entities.\"}", "prompt_tokens": 261, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

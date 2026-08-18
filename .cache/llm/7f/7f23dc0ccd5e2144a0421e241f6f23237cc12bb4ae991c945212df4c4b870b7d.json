@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases denote the same group—the friends from church who belong to Maria (’her’ refers to Maria).\"}", "prompt_tokens": 183, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

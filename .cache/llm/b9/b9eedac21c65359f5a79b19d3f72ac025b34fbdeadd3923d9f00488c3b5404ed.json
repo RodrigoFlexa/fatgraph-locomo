@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"people at the homeless shelter\\\" refers to individuals, while \\\"homeless shelter\\\" refers to the facility itself.\"}", "prompt_tokens": 231, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to friends (people) while the other refers to a specific tournament event, so they are different entities.\"}", "prompt_tokens": 198, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

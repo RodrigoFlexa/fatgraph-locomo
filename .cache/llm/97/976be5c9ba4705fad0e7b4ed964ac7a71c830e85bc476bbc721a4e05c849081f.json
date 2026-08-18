@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Lists Bali, which does not match Thailand and Brazil\"}", "prompt_tokens": 355, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

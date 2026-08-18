@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They describe different facts: one is a conditional about finding an off-leash place and notifying Audrey, the other is a plan to meet Audrey and her dogs for a hike.\"}", "prompt_tokens": 252, "completion_tokens": 126, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

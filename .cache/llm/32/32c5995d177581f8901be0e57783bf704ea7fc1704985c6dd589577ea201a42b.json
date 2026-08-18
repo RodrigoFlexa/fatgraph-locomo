@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This fact directly supports and precedes the narrative about Audrey taking her dogs to the park and then playing fetch, so it belongs immediately after the memory about finding walks in the park recharging her.\"}", "prompt_tokens": 812, "completion_tokens": 189, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

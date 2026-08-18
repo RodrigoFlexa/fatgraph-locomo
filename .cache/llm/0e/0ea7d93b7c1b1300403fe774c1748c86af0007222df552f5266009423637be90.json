@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes Audrey's affection and appreciation of nature, while B refers to the dogs themselves, so they are different entities.\"}", "prompt_tokens": 240, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This directly continues the adoption episode (he named the pup Ned), so it belongs immediately after the memory about adopting a pup from the shelter.\"}", "prompt_tokens": 752, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

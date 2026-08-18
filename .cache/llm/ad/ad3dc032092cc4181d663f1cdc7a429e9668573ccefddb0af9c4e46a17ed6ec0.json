@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to photos belonging to Deborah's mother while the other refers to Deborah's family as people, so they are different entities.\"}", "prompt_tokens": 237, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

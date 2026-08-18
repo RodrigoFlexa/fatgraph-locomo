@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different events listed; no parade, school speech, or support group.\"}", "prompt_tokens": 390, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

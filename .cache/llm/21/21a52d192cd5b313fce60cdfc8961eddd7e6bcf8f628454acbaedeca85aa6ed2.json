@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The timeframes differ (this weekend vs last weekend) and descriptions don't uniquely identify the same cafe, so they likely refer to different instances.\"}", "prompt_tokens": 188, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

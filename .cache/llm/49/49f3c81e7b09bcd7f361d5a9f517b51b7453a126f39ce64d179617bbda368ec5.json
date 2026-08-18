@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information: pepperoni pizza equals pepperoni.\"}", "prompt_tokens": 358, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

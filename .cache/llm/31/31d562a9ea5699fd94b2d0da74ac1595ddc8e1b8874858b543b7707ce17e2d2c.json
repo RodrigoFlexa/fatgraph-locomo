@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Audrey's assistance’ refers to help provided by Audrey (an action/attribute), not the person Audrey herself.\"}", "prompt_tokens": 218, "completion_tokens": 236, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too vague; omits the fantasy/sci-fi specificity.\"}", "prompt_tokens": 366, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

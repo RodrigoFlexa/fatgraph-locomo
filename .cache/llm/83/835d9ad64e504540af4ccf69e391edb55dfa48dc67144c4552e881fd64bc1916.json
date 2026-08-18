@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This observation is part of the same caregiving episode as 'Audrey is caring for her pups with one arm' and naturally follows that memory in the same narrative thread.\"}", "prompt_tokens": 779, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}
