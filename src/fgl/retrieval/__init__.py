@@ -26,6 +26,13 @@ from fgl.retrieval.faces import (
     clean_answer,
     render_context,
 )
+from fgl.retrieval.bipartite import (
+    BIPARTITE_SOURCES,
+    SOURCE_BP_BRIDGE,
+    SOURCE_BP_DENSE,
+    SOURCE_BP_ENTITY,
+    BipartiteRetriever,
+)
 
 __all__ = [
     "AzureEmbedder", "CachedEmbedder", "Embedder", "HashingEmbedder",
@@ -34,4 +41,6 @@ __all__ = [
     "clean_answer", "render_context", "SOURCE_FACE", "SOURCE_SIGMA",
     "SOURCE_COVERAGE", "SOURCE_GEODESIC", "SOURCE_FACE_UNIT",
     "JOIN_SOURCES", "QuestionLinker",
+    "BipartiteRetriever", "SOURCE_BP_ENTITY", "SOURCE_BP_BRIDGE", "SOURCE_BP_DENSE",
+    "BIPARTITE_SOURCES",
 ]

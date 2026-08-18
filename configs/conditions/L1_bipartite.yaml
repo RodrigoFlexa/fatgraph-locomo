@@ -1,0 +1,117 @@
+# L1 -- bipartite: no triples, no LLM in the memory. A vertex per turn, a
+# vertex per canonical entity, an edge for every mention. Degree-aware
+# retrieval instead of walk_face.
+#
+# Why this exists: T1 already tried to fix the star-graph diagnosis (81%
+# degree-1, speakers at degree ~200, sigma's orbit covering the real bridge
+# in 7.3% of cases) from INSIDE the triples paradigm -- reprompt the same
+# generative extractor to pick better entities. That is a probabilistic fix:
+# the LLM either follows the instruction or it does not, fact by fact, and
+# it still has to invent consistent phrasing for an entity to recur at all.
+# L1 removes the LLM from that decision entirely. A vertex per turn and per
+# canonical entity, an edge for every OBSERVED mention (spaCy NER + noun
+# chunks, fgl.memory.ner) -- deterministic, so an entity's degree becomes a
+# real, load-bearing signal instead of an artefact of extraction phrasing.
+# This is the same move Zero-Mem (arXiv:2607.29377) makes for its
+# entity-context graph; here it stays inside the ribbon-graph formalism:
+# sigma at a turn vertex falls out as reading order, sigma at an entity
+# vertex falls out as chronological order, both for free from processing
+# order (see fgl.memory.ingest_bipartite for why no SigmaPolicy is needed).
+#
+# What retrieval does with that degree signal (fgl.retrieval.bipartite):
+#   degree 1            -> direct hit, no walk
+#   2 <= degree < bridge_max_degree -> real entity, whole orbit enumerated
+#   degree >= bridge_max_degree     -> hub, used only as a filter, never walked
+# plus a two-entity bridge found by intersecting neighbourhoods (no cosine
+# needed to find it -- incidence itself is the signal), and a dense/cosine
+# backstop over turn embeddings running the whole time, not as a fallback of
+# last resort -- NER misses adjectives, feelings, and open-domain questions.
+#
+# A deterministic temporal resolver (fgl.memory.temporal) separately
+# resolves relative dates ("last Saturday") against the session timestamp at
+# ingest time. Measured: 69.5% of LoCoMo's temporal-category evidence turns
+# contain one, and nothing in the existing pipeline resolves it -- this is
+# orthogonal to the graph change and would help any condition, scoped here
+# because L1 is where it was designed alongside the rest.
+#
+# Measured trade-off, not swept under the rug: this reads MOST LoCoMo
+# "multi-hop" questions correctly on inspection (222/282, 79%) as one
+# person's own facts scattered across sessions -- answered by a single
+# entity's sigma-orbit, no bridge needed. The genuine two-speaker bridge
+# pattern ("what did X and Y both do") is the minority, 50/282 (18%), which
+# is why bridge_weight and speaker_filter exist but are not the centrepiece.
+# Adversarial (category 5, the largest single category at 22.5% of the
+# benchmark) is barely touched by this design: only 4/446 adversarial
+# questions have literally no vocabulary overlap with the conversation, so a
+# "nothing linked -> abstain" signal fires on well under 1% of them. This
+# condition does not attempt evidence-support calibration (Zero-Mem's
+# strongest lever against a plausible-but-false question) -- flagged as the
+# most promising next step, not implemented here.
+#
+# Known limitation, stated rather than hidden: no incongruence detection.
+# The triples pipeline judges contradiction between sibling facts with an
+# LLM call; doing the same here would reintroduce exactly the LLM dependency
+# this condition exists to remove, so `any_incongruent` is always false for
+# L1 and STATE_INCONGRUENT never appears. A deterministic negation heuristic
+# is the natural follow-up, not attempted in this first cut.
+#
+# `bridge_max_degree` is NOT a guess: measure it fresh on this graph's own
+# degree distribution before trusting the number below (a triples-graph
+# threshold, e.g. sigma_skip_hub_degree's 60, does not transfer -- the two
+# graphs are not the same shape, and E here is roughly one edge per mention
+# rather than one per extracted fact). Run `fgl ingest L1 -n 10` (zero LLM
+# calls, costs nothing) and inspect the degree histogram in graph_stats
+# before the first real `fgl run L1`.
+extends: base.yaml
+condition: L1-bipartite
+
+ingest:
+  mode: bipartite
+  # unused by this ingest path (no SigmaPolicy, no incongruence judge, no
+  # extractor prompt) -- left at their defaults rather than repurposed, so a
+  # stray `--set ingest.sigma_policy=...` on this condition is a visible
+  # no-op instead of a silent one.
+  detect_incongruence: false
+
+entities:
+  # closes the [llm_threshold, match_threshold) tie-break window entirely:
+  # with llm=None passed to EntityResolver (see BipartiteIngestor), the
+  # tie-break is already structurally unreachable, but setting the two
+  # thresholds equal makes that guarantee visible in config too, not just in
+  # code -- true zero LLM calls in ingest, not "zero calls because llm=None
+  # happens to be passed today".
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: bipartite
+  # dense backstop breadth and prompt budget: reuse the same knobs G1 uses,
+  # so a comparison at equal budget is apples to apples.
+  top_m_anchors: 8
+  budget_tokens: 2000
+  max_facts_in_prompt: 40
+
+bipartite:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  speaker_filter: true
+  # Measured, not guessed: `fgl ingest L1 -n 10` (all 10 conversations, zero
+  # LLM cost) gives entity-vertex degree percentiles p50=1, p75=2, p90=4,
+  # p95=7, p99=17, p99.9=44, max=128. The distribution decays fast and then
+  # has a long thin tail of genuinely common topics ("dog" 128, "difference"
+  # 77, "community"/"family" 44) that still discriminate less than a rare
+  # one -- 18 sits just past p99, keeping real but frequent topics
+  # (up to ~20 mentions across a ~600-turn conversation) walkable as
+  # bridges while the handful of outliers above that become filter-only.
+  # First knob to revisit if L1 underperforms on multi-hop: this threshold
+  # decides how much of the bridge search even runs.
+  bridge_max_degree: 18
+
+paths:
+  # builds its own graphs: a bipartite graph has different vertices, edges,
+  # and V/E counts entirely, so it is not the sort of thing that could be
+  # "the same ribbon graph as G1" -- there is nothing to borrow.
+  graphs_condition: ""

@@ -112,6 +112,14 @@ Só para explorar a CLI e o `--dry-run`, o núcleo basta (`pip install -e .`):
 numpy, PyYAML, typer e rich, ~20 MB. As 6 condições em modo offline rodam em
 ~2 s nessa instalação mínima.
 
+A condição L1 precisa do extra `bipartite` **e** do download do modelo — o
+pacote pip sozinho não traz o modelo:
+
+```bash
+pip install -e ".[bipartite]"
+python -m spacy download en_core_web_sm
+```
+
 ### Se algo der errado
 
 | sintoma | causa | solução |
@@ -256,7 +264,7 @@ fatgraph-locomo/
 ├── Makefile
 ├── configs/
 │   ├── base.yaml
-│   └── conditions/           # B1 B2 B3 G1..G6 + test_offline
+│   └── conditions/           # B1 B2 B3 G1..G11 T1 L1 + test_offline
 ├── data/external/locomo/     # dataset oficial (fgl setup)
 ├── docs/
 │   ├── COERENCIA.md          # auditoria da especificação
@@ -315,6 +323,7 @@ Para inspecionar um smoke run offline: `setup(dry=True)`.
 | G4 | `fatgraph-sigma` | G1 + expansão pela órbita de σ na recuperação |
 | G5 | `fatgraph-coverage` | G1 + face escolhida por cobertura das entidades da pergunta |
 | G6 | `fatgraph-join` | G4 + G5, os dois mecanismos de multi-hop juntos |
+| L1 | `bipartite` | grafo turno×entidade, ingestão sem LLM, recuperação sensível a grau |
 
 G1/G2/G3 são os `F1`/`F2`/`F3` da especificação, renomeados para não colidir com
 a métrica F1 (`COERENCIA.md` C5).
@@ -357,6 +366,30 @@ Comparações: **B3 → G1** (valor das faces), **G1 → G2** (curadoria/consoli
 **G2 → G3** (o agente escolhendo σ), **G1 → G4** (o salto por σ, mesmo grafo),
 **G1 → G5** (cobertura de entidades), **G4 → G6** e **G5 → G6** (cada mecanismo
 adicionado ao outro — é o par que mostra se eles somam ou se se sobrepõem).
+
+**L1 muda a ingestão, não a recuperação sobre o mesmo grafo.** G4–G6 herdam o
+diagnóstico da estrela (81% dos vértices em grau 1, os dois falantes como os
+vértices de maior grau) porque leem os grafos da G1 byte a byte — o extrator de
+triplas, generativo, raramente reusa frase para a "outra" entidade, então quase
+nada recorre para a resolução de entidade fundir. L1 não extrai triplas: um
+vértice por turno, um vértice por entidade canônica (spaCy NER + noun-chunks,
+determinístico, `fgl.memory.ner`), uma aresta por menção observada — zero
+chamadas de LLM na ingestão. `sigma` sai de graça da ordem de processamento nos
+dois vértices (leitura no turno, cronologia na entidade), sem precisar de
+`SigmaPolicy`. O falante nunca é vértice — decidido contando o LoCoMo real
+(79% do multi-hop é uma pessoa só, sem ponte nenhuma; só 18% precisa da ponte
+entre dois falantes) — e a recuperação (`fgl.retrieval.bipartite`) classifica
+cada entidade ligada pelo grau: grau 1 é acerto direto, grau intermediário tem
+a órbita inteira enumerada, hub vira só filtro/bônus, nunca caminhado. Medido
+em `fgl ingest L1 -n 10`: `degree_1_frac` cai de 81% para 51,3%, `hub_share` de
+~45% para 2,09%. Detalhes, degenerescências encontradas ao medir e o que essa
+condição ainda não faz (sem detecção de incongruência, pouca cobertura de
+adversarial) em `docs/DECISIONS.md` D24.
+
+```bash
+fgl ingest L1 -n 10    # constrói SEUS PRÓPRIOS grafos, não reaproveita a G1
+fgl run L1
+```
 
 ## O que sai de cada corrida
 

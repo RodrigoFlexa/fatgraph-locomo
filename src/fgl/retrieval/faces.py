@@ -1078,6 +1078,14 @@ def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) 
             elif f.source == SOURCE_FACE_UNIT:
                 trail_no += 1
                 lines.append(f"--- related memories, group {trail_no} ---")
+            elif f.source == "bp_entity":  # fgl.retrieval.bipartite.SOURCE_BP_ENTITY
+                # (string literals here, not imported: bipartite.py imports
+                # FROM this module, so importing back would be circular)
+                lines.append(f"--- also about {f.via_entity} ---")
+            elif f.source == "bp_bridge":
+                lines.append(f"--- links back to {f.via_entity} ---")
+            elif f.source == "bp_dense":
+                lines.append("--- similar memories ---")
             else:
                 trail_no += 1
                 lines.append(f"--- trail {trail_no} ---")

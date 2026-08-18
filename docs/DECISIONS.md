@@ -297,3 +297,143 @@ somem ≥ 1, o que deixaria o caminho clássico sem contexto.
 ele (`recall_context_no_sigma`, `recall_context_no_coverage`,
 `recall_context_anchors_only`). A diferença contra `recall_context` é o efeito,
 por categoria, sem precisar de uma corrida extra.
+
+## D24 — Grafo bipartido turno×entidade sem LLM na ingestão (condição L1)
+
+**Problema.** O diagnóstico da estrela (`docs/COERENCIA.md`, `T1_topical.yaml`)
+é medido, não hipotético: 81% dos vértices com grau 1, os dois falantes como
+os dois vértices de maior grau em toda conversa. Causa: o extrator de triplas é
+generativo — inventa frase nova para a "outra" entidade quase toda vez, e sem
+frase recorrente a resolução de entidade não tem o que fundir. T1 tentou
+corrigir isso de DENTRO do paradigma de triplas, reprompting o mesmo extrator
+para escolher entidades melhores. É uma correção probabilística: o LLM segue a
+instrução ou não, fato a fato, e mesmo seguindo ainda precisa inventar frase
+consistente para a entidade recorrer. G4–G10 foram todos testados sobre esse
+substrato e não tinham topologia real para caminhar.
+
+**Desenho.** L1 não extrai triplas. Constrói o grafo do jeito que um índice
+construiria: um vértice por TURNO, um vértice por ENTIDADE canônica, uma aresta
+por "entidade E foi mencionada no turno T" — achado deterministicamente por
+`fgl.memory.ner.NonGenerativeExtractor` (spaCy `en_core_web_sm`, NER +
+noun-chunks), zero chamadas de LLM na ingestão. Mesma jogada que o Zero-Mem
+(arXiv:2607.29377) faz para seu grafo entidade-contexto, adaptada ao
+formalismo de ribbon graph. Consequência direta: grau de entidade volta a ser
+sinal real — grau 1 significa "mencionada uma vez", não "o extrator nunca
+reusou uma frase para isto".
+
+`sigma` não precisa de `SigmaPolicy`: no vértice-turno, ordem de leitura cai de
+graça da ordem em que `NonGenerativeExtractor` devolve os candidatos (ordem do
+documento); no vértice-entidade, ordem cronológica cai de graça da ordem em que
+sessões/turnos são visitados (já ordenados). Ao contrário de `SigmaTime`, que
+busca a posição de inserção entre timestamps fora de ordem, aqui basta
+`add_edge(pos1=None, pos2=None)` (append) nos dois lados — ver
+`fgl.memory.ingest_bipartite`.
+
+**Falante nunca é vértice, decidido por dado e não por intuição.** Este ponto
+mudou de posição ao longo da conversa que levou a este design (registrado
+porque a mudança não foi assinalada na hora, e deveria ter sido). A decisão
+final veio de contar o LoCoMo real: dos 282 exemplos de categoria 1
+(multi-hop), 222 (79%) são fatos de UMA pessoa espalhados entre sessões —
+respondidos pela órbita de sigma de uma única entidade, sem ponte nenhuma. Só
+50 (18%) são o padrão genuíno de ponte entre dois falantes ("o que X e Y
+fizeram"). Excluir o falante do grafo inteiramente (nunca um vértice, apenas
+metadado no vértice-turno) evita recriar o hub por outro caminho, e o caso
+minoritário é coberto à parte por `_boost_speaker_coverage`
+(`fgl.retrieval.bipartite`): quando a pergunta nomeia os dois falantes, garante
+que ao menos um turno de cada sobreviva ao corte por orçamento — sem precisar
+que o falante seja um vértice para isso.
+
+**Recuperação sensível a grau.** `BipartiteRetriever` classifica cada entidade
+ligada pela sua degree antes de decidir o que fazer com ela: grau 1 é acerto
+direto; `2 ≤ grau < bridge_max_degree` é entidade real, órbita inteira
+enumerada; `grau ≥ bridge_max_degree` é hub, nunca enumerado, só usado como
+filtro/bônus — a mesma distinção que `retrieval.sigma_skip_hub_degree` já fazia
+para expansão de sigma no grafo de triplas, mas medida fresca na distribuição
+DESTE grafo (`bridge_max_degree=18`, logo após p99 medido em `fgl ingest L1 -n
+10`: p50=1, p75=2, p90=4, p95=7, p99=17, max=128) — o limiar do grafo de
+triplas não transfere, os dois grafos não têm a mesma forma (aqui é ~1 aresta
+por menção, lá é ~1 por fato extraído). A ponte entre duas entidades ("o que
+Caroline pintou na praia e o que Melanie pintou com aquarela") é achada por
+interseção de vizinhança — os turnos candidatos de cada entidade ligada, olhando
+as OUTRAS entidades de cada um; a que aparece nos dois lados é a ponte. Nenhum
+cosseno necessário para achá-la: a própria incidência é o sinal. A busca densa
+(embeddings de turno) roda em pé de igualdade desde o início, não como
+fallback: NER não pega adjetivo, sentimento, nem o que a categoria 3
+(open-domain) pergunta.
+
+**Resolução temporal determinística.** `fgl.memory.temporal` resolve datas
+relativas ("last Saturday") contra o timestamp da sessão, no momento da
+ingestão. Medido: 69,5% dos turnos-evidência da categoria 2 (temporal) contêm
+uma frase desse tipo, e nada no pipeline existente resolvia isso antes.
+`dateparser` sozinho não é confiável apontado direto para o texto do turno —
+verificado empiricamente: `dateparser.search.search_dates` numa frase inteira
+produz falso positivo em palavras curtas ("an", "a"); `dateparser.parse` numa
+frase JÁ isolada falha para "last/next + dia da semana" mesmo funcionando para
+o nome do dia isolado. Por isso o módulo só resolve span que o spaCy já isolou
+como DATE/TIME, tenta o caminho rápido primeiro, cai para `search_dates` só no
+caso qualificado por dia da semana, e nunca reporta uma resolução que não
+moveu a data (`dt.date() == base.date()` é rejeitado, exceto "today"/"this
+day") — sem esse último filtro, "this week"/"this month" voltam exatamente na
+data-base e seriam reportados como se tivessem resolvido algo.
+
+**Degenerescências encontradas ao medir, não supostas.** `fgl ingest L1 -n 10`
+(10 conversas reais, custo zero) expôs duas antes de qualquer QA rodar:
+
+1. Em toda conversa, o vértice de maior grau era "thank" (74–115) seguido de
+   "photo" (70–112) — LoCoMo tem agradecimento e compartilhamento de imagem
+   constantes, um ato comunicativo, não um tópico, mesma categoria de "thing"/
+   "lot". Corrigido acrescentando esses termos a `_GENERIC_NOUNS`
+   (`fgl.memory.ner`) — medido, não suposto de antemão.
+2. "Mel" (apelido de Melanie, usado como vocativo o tempo todo) virava vértice
+   próprio de grau 58 em conv-26 — réplica mais branda do problema exato que
+   este design existe para evitar, com outra grafia. `_is_speaker_mention`
+   (`fgl.memory.ingest_bipartite`) passou a excluir também prefixo/sufixo de
+   comprimento ≥ 3 do nome de qualquer falante, não só igualdade exata.
+3. `doc.noun_chunks` do spaCy descarta silenciosamente frases cujo parser de
+   dependência degenera num turno sem sujeito — caso real, turno D2:8 da
+   conv-1: "Researching adoption agencies — it's been a dream...". "agencies"
+   recebe `dep_="dep"` (fora do conjunto fixo de padrões que `noun_chunks`
+   reconhece), e a frase inteira ("adoption agencies", a resposta-ouro da
+   pergunta associada) nunca vira candidato. Como as arestas de dependência
+   `compound` continuam corretas mesmo quando o parse acima do substantivo é
+   ruim, `_compound_fallback` (`fgl.memory.ner`) percorre essas arestas
+   diretamente para recuperar a frase — restrito a resultado com 2+ tokens
+   (medido: sem essa restrição, 251/1451 turnos = 17,3% ganhavam candidato
+   espúrio, interjeição maiúscula mal-rotulada NOUN pelo spaCy; com a
+   restrição, 13/2760 = 0,5%, e o que sobra é majoritariamente real —
+   "adoption agencies", "ice cream", "coconut milk"). O resíduo era
+   vocativo — "Thanks Nate" como composto de dois tokens — capturado à parte
+   por `_mentions_speaker`, que agora testa cada palavra do candidato contra
+   o nome dos falantes, não só a string inteira.
+
+**Medido após as três correções**, `fgl ingest L1 -n 10`: `degree_1_frac` médio
+51,3% (era 81% no grafo de triplas), `hub_share` médio 2,09% (era ~45%) — abaixo
+dos limiares de alerta do próprio projeto (`STAR_DEGREE1_FRAC=0.6`,
+`STAR_HUB_SHARE=0.35`); zero chamadas de LLM confirmado pela própria saída do
+CLI ("LLM: 0 calls"); os vértices de maior grau em cada conversa passaram a ser
+tópicos reais ("dog", "painting", "yoga", "photography"), não ruído.
+
+**Verificado, não descartado como bug**: no smoke test offline
+(`llm.provider=fake`, `embeddings.provider=hashing`), duas perguntas sem
+sobreposição lexical com nenhuma entidade do grafo ("What did Caroline
+research?", categoria 1; uma pergunta open-domain de categoria 3) vieram com
+`recall_context=0.0`. Rodar a mesma pergunta sob G1 com o mesmo harness offline
+reproduz exatamente o mesmo `recall_context=0.0` — confirmando que a causa é o
+`HashingEmbedder` não ter sinal semântico real (nem para o fallback do linker
+de entidade, nem para o backstop denso), não um defeito específico da L1. G1
+inclusive falha numa pergunta temporal onde a L1 acerta
+(`recall_context=1.0`) no mesmo smoke test. Validação de qualidade real desta
+classe de pergunta depende de um embedder semântico de verdade, a mesma
+limitação que toda outra condição já tem sob este harness.
+
+**Limitação declarada, não escondida.** Sem detecção de incongruência: fazer
+igual ao caminho de triplas reintroduziria exatamente a dependência de LLM que
+esta condição existe para remover; heurística determinística de negação é o
+próximo passo natural, não tentado aqui. Categoria 5 (adversarial, 22,5% do
+benchmark) é pouco tocada: só 4/446 perguntas adversariais não têm sobreposição
+de vocabulário nenhuma com a conversa, então um sinal "nada ligou → abster" 
+dispara em bem menos de 1% delas. `bridge_max_degree` não é um número fixo do
+código — é recomendado medir de novo (`fgl diagnose --bipartite` ou `fgl ingest
+L1 -n 10` e inspecionar `graph_stats`) antes de confiar nele numa base de dados
+diferente, porque a forma do grafo bipartido depende de quanto texto informal
+tem cada conversa.

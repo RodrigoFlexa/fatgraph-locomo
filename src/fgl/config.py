@@ -94,6 +94,12 @@ class EntityConfig:
 
 @dataclass
 class IngestConfig:
+    #: triples | bipartite. "triples" is every existing condition (B3, G1-G11,
+    #: T1): an LLM extracts (entity_1, relation, entity_2) and each becomes an
+    #: edge between two content vertices. "bipartite" is L1: no LLM, a vertex
+    #: per turn and per canonical entity, an edge per observed mention -- see
+    #: fgl.memory.ingest_bipartite and docs/DECISIONS.md item L1.
+    mode: str = "triples"
     sigma_policy: str = "sigma-time"  # sigma-time | sigma-agent
     #: Which extraction prompt to use.
     #:
@@ -144,6 +150,11 @@ class CurationConfig:
 
 @dataclass
 class RetrievalConfig:
+    #: walk | bipartite. "walk" is every existing condition: anchor by
+    #: cosine, walk_face from each anchor. "bipartite" is L1's degree-aware
+    #: retriever (fgl.retrieval.bipartite.BipartiteRetriever) and only makes
+    #: sense paired with ingest.mode=bipartite.
+    mode: str = "walk"
     top_m_anchors: int = 5
     budget_tokens: int = 2000
     level2_boost: float = 0.05
@@ -288,6 +299,62 @@ class RetrievalConfig:
 
 
 @dataclass
+class BipartiteConfig:
+    """Knobs for condition L1 (``ingest.mode=retrieval.mode=bipartite``).
+
+    Inert for every other condition, the same way ``retrieval.sigma_*`` is
+    inert unless ``sigma_expand`` is on.
+    """
+
+    # --- extraction (fgl.memory.ner) ---------------------------------------
+    #: spaCy pipeline. Needs a parser (for noun_chunks), not just an NER
+    #: component -- "en_core_web_sm" has one; a bare NER-only model would not.
+    ner_model: str = "en_core_web_sm"
+    max_chunk_words: int = 6
+    min_entity_chars: int = 3
+    #: resolve relative dates ("last Saturday") against the session timestamp
+    #: at ingest time (fgl.memory.temporal). Measured: 69.5% of LoCoMo's
+    #: temporal-category evidence turns contain one.
+    resolve_temporal: bool = True
+
+    # --- retrieval (fgl.retrieval.bipartite) --------------------------------
+    #: degree at or above which an entity vertex is a hub: never enumerated
+    #: into the walk (it would join everything to everything), only used as a
+    #: filter/intersection signal. Same "do not index a stopword" reasoning
+    #: as retrieval.sigma_skip_hub_degree, but measured fresh on THIS graph's
+    #: degree distribution -- a triples-graph threshold does not transfer,
+    #: because the two graphs are not the same shape. Set from
+    #: `fgl diagnose --bipartite` before the first real run, not guessed.
+    bridge_max_degree: int = 20
+    #: weight of the dense/cosine backstop against the question. Kept as a
+    #: full participant, not a last resort: NER misses adjectives, feelings,
+    #: and anything category 3 (open-domain) asks about, and B3/G1 already
+    #: show dense retrieval alone gets single-hop to a reasonable place.
+    dense_weight: float = 1.0
+    #: weight of "this turn is incident to a linked non-hub entity"
+    entity_weight: float = 1.0
+    #: weight of "this turn is incident to a bridge entity found by
+    #: intersecting two linked entities' neighbourhoods" -- the multi-hop
+    #: mechanism proper, weighted above a plain entity hit because a bridge
+    #: is evidence of a JOIN, which a single incident entity is not.
+    bridge_weight: float = 1.5
+    #: weight of "this turn is also incident to a linked HUB entity" -- a
+    #: filter bonus, deliberately smaller than entity_weight: a hub match
+    #: alone (e.g. both turns are just about the same speaker) is the
+    #: pattern this design exists to stop treating as a bridge.
+    hub_weight: float = 0.5
+    #: cap on how many of a candidate turn's OTHER entities get scanned when
+    #: looking for a bridge -- bounds the cost on turns incident to a hub.
+    max_bridge_scan: int = 12
+    #: when the question names both speakers explicitly, boost turns so the
+    #: final candidate set includes at least one from each -- the
+    #: "Caroline and Melanie" pattern (measured: 50/282 multi-hop questions,
+    #: i.e. the minority; most multi-hop in LoCoMo is one person's own facts
+    #: spread across sessions, which needs no speaker logic at all).
+    speaker_filter: bool = True
+
+
+@dataclass
 class BaselineConfig:
     rag_top_k: int = 10
     full_context_max_tokens: int = 110_000
@@ -318,6 +385,7 @@ SECTIONS: dict[str, type] = {
     "ingest": IngestConfig,
     "curation": CurationConfig,
     "retrieval": RetrievalConfig,
+    "bipartite": BipartiteConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
 }
@@ -343,6 +411,7 @@ class Config:
     ingest: IngestConfig = field(default_factory=IngestConfig)
     curation: CurationConfig = field(default_factory=CurationConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
+    bipartite: BipartiteConfig = field(default_factory=BipartiteConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
 
@@ -458,6 +527,29 @@ class Config:
             )
         if self.index.backend not in ("numpy", "faiss"):
             raise ConfigError(f"index.backend must be numpy|faiss")
+        if self.ingest.mode not in ("triples", "bipartite"):
+            raise ConfigError(
+                f"ingest.mode must be triples|bipartite, got {self.ingest.mode!r}"
+            )
+        if self.retrieval.mode not in ("walk", "bipartite"):
+            raise ConfigError(
+                f"retrieval.mode must be walk|bipartite, got {self.retrieval.mode!r}"
+            )
+        if (self.ingest.mode == "bipartite") != (self.retrieval.mode == "bipartite"):
+            raise ConfigError(
+                "ingest.mode=bipartite builds turn/entity vertices that "
+                "retrieval.mode=walk cannot interpret (and vice versa): the "
+                "two must be switched together"
+            )
+        if self.ingest.mode == "bipartite":
+            if self.bipartite.bridge_max_degree < 2:
+                raise ConfigError("bipartite.bridge_max_degree must be >= 2")
+            if self.bipartite.max_chunk_words < 1:
+                raise ConfigError("bipartite.max_chunk_words must be >= 1")
+            if self.bipartite.min_entity_chars < 1:
+                raise ConfigError("bipartite.min_entity_chars must be >= 1")
+            if self.bipartite.max_bridge_scan < 1:
+                raise ConfigError("bipartite.max_bridge_scan must be >= 1")
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(
                 "ingest.extract_prompt must be extract_facts|extract_facts_topical, "

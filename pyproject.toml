@@ -34,11 +34,19 @@ metrics = ["nltk>=3.8"]
 speed = ["tiktoken>=0.5", "faiss-cpu>=1.7"]
 notebooks = ["jupyter>=1.0", "pandas>=2.0", "matplotlib>=3.7", "nbformat>=5.9"]
 dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.4"]
+# Condition L1 (fgl.memory.ner, fgl.memory.temporal): the zero-LLM extractor
+# and the relative-date resolver. `en_core_web_sm` needs a parser (for
+# noun_chunks), not just an NER component, so it is not optional -- but it is
+# a model download, not a pip package, hence the separate `pip install` step
+# below rather than a pin here (`pip install fgl[bipartite]` alone leaves L1
+# unable to load the model).
+bipartite = ["spacy>=3.7", "dateparser>=1.2"]
 # Everything needed to reproduce the published numbers.
 all = [
     "openai>=1.0", "sentence-transformers>=2.2", "nltk>=3.8",
     "tiktoken>=0.5", "jupyter>=1.0", "pandas>=2.0", "matplotlib>=3.7",
     "nbformat>=5.9", "pytest>=7.0", "ruff>=0.4",
+    "spacy>=3.7", "dateparser>=1.2",
 ]
 
 [project.scripts]
