@@ -1,0 +1,63 @@
+# G11 -- sigma sem hub: a G4 com os falantes tratados como STOPWORD do grafo.
+#
+# A pergunta que esta condição fecha: existem pontes semânticas nestes dados?
+#
+# O diagnóstico mediu que a ponte entre dois fatos de evidência tem grau mediano
+# 115 e que 86% das arestas tocam um dos dois falantes. Ou seja, "estas duas
+# memórias compartilham uma entidade" quase sempre quer dizer "as duas são sobre
+# a Caroline" — verdade para metade do grafo. A órbita de sigma contém a ponte
+# real em 7.7% dos casos, e subir k satura em 11% porque os graus chegam a 229.
+#
+# Recuperação de informação resolveu isso nos anos 60: não se indexa stopword.
+# Um vértice-hub não discrimina nada, então a órbita através dele é ruído com
+# formato de ponte. Aqui ela é pulada, e a ponte passa a ter que ser uma
+# entidade real — ou a não existir.
+#
+# LIMIAR = 60, e ele não é chute. Os graus são bimodais com uma banda vazia:
+# nas dez conversas os falantes nunca ficam abaixo de 95 e o terceiro vértice
+# nunca passa de 50. Um corte em 60 remove exatamente os 20 vértices de falante
+# e mais nada — 100% de precisão, medida.
+#
+#   conv-26  falantes [135, 95]   3o lugar  9
+#   conv-47  falantes [215, 192]  3o lugar  7
+#   conv-48  falantes [229, 173]  3o lugar 24
+#
+# POR QUE ESTA É A CONDIÇÃO DECISIVA: roda sobre os grafos da G1 que já existem.
+# Zero extração, zero reingest, zero custo de ingest. Se pular os hubs não faz
+# sigma funcionar, então não há pontes semânticas nestes dados e a hipótese
+# estrutural morre — independentemente do prompt de extração, que só conseguiu
+# levar as arestas com falante de 86% para 61%.
+#
+# COMO LER O RESULTADO (`sigma_hubs_skipped_mean` ao lado de `sigma_use_rate`):
+#
+#   pulou muito E sigma ainda traz fatos  -> a junção achou entidade real assim
+#                                            que os falantes saíram da frente
+#   pulou muito E sigma não traz nada     -> o falante ERA a única coisa em
+#                                            comum entre as duas memórias, e é
+#                                            a hipótese morrendo, não o filtro
+#                                            errando
+#
+# Difere da G4 em exatamente um campo.
+extends: base.yaml
+condition: G11-sigma-nohub
+
+ingest:
+  sigma_policy: sigma-time
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  # idêntico à G4
+  sigma_expand: true
+  sigma_expand_k: 4
+  sigma_expand_both_ends: true
+  sigma_expand_max_anchors: 2
+  sigma_budget_frac: 0.4
+  sigma_rerank: true
+
+  # a única diferença
+  sigma_skip_hub_degree: 60
+
+paths:
+  graphs_condition: ""

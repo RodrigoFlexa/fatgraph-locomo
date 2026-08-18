@@ -107,6 +107,13 @@ class RetrievalResult:
     sigma_dup: int = 0
     #: candidates dropped for lack of budget
     sigma_over_budget: int = 0
+    #: orbits skipped for belonging to a hub vertex (the stopword rule).
+    #: Read together with ``n_sigma_facts``: high skips AND facts still arriving
+    #: means the join found a real entity once the speakers were out of the way;
+    #: high skips and no facts means the speaker WAS the only thing the two
+    #: memories had in common, which is the hypothesis dying rather than the
+    #: filter misfiring.
+    sigma_hubs_skipped: int = 0
 
     # --- coverage retrieval telemetry (all zero when the flag is off) ------
     face_coverage: bool = False
@@ -346,6 +353,7 @@ class FaceRetriever:
         )
         self._adjacency: dict[str, list[tuple[str, str]]] | None = None
         self._face_by_half_edge: dict[str, Face] | None = None
+        self._hubs_skipped = 0
 
     # -------------------------------------------------------- face lookup ----
     def face_of(self, half_edge_id: str) -> Face:
@@ -382,6 +390,7 @@ class FaceRetriever:
     # ------------------------------------------------------------------ api --
     def retrieve(self, question: str) -> RetrievalResult:
         r = self.cfg.retrieval
+        self._hubs_skipped = 0  # per question, not per retriever
         qvec = self.embedder.encode_one(question)
         raw = self.index.search(qvec, max(r.top_m_anchors * 8, 32))
         scored = [(hid, self._adjust(hid, s)) for hid, s in raw]
@@ -832,6 +841,12 @@ class FaceRetriever:
         *not* the global k-NN: candidates are constrained to the orbit, i.e. we
         ask "which fact **about this entity** answers the question", which is
         the whole point.
+
+        With ``sigma_skip_hub_degree`` a vertex above that degree is skipped
+        entirely, the way an index skips a stopword: the two speakers touch 86%
+        of the edges, so their orbit is not "memories about this entity", it is
+        "memories from this conversation", and the join through them is noise
+        wearing the shape of a bridge.
         """
         r = self.cfg.retrieval
         starts = [half_edge_id]
@@ -843,11 +858,19 @@ class FaceRetriever:
         out: list[tuple[str, str]] = []
         for start in starts:
             vid = self.graph.H[start].vertex_id
+            if self._is_hub(vid):
+                self._hubs_skipped += 1
+                continue
             orbit = self._orbit(start, r.sigma_max_orbit_scan)
             if r.sigma_rerank and qvec is not None:
                 orbit = self._rank_by_query(orbit, qvec)
             out.extend((h, vid) for h in orbit[: r.sigma_expand_k])
         return out
+
+    def _is_hub(self, vertex_id: str) -> bool:
+        """Is this vertex the graph's equivalent of a stopword?"""
+        limit = self.cfg.retrieval.sigma_skip_hub_degree
+        return bool(limit) and self.graph.degree(vertex_id) >= limit
 
     def _orbit(self, start: str, cap: int) -> list[str]:
         """Half-edges of ``sigma`` at ``start``'s vertex, excluding ``start``.
@@ -919,6 +942,7 @@ class FaceRetriever:
                     )
                 )
         result.sigma_tokens = used
+        result.sigma_hubs_skipped = self._hubs_skipped
         return used
 
     # ------------------------------------------------------------ internals --

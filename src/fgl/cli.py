@@ -685,36 +685,58 @@ def verify_topical(
     t.add_column("métrica")
     for r in rows:
         t.add_column(r["cond"], justify="right")
-    t.add_column("veredito", style="dim")
 
-    def row(label, key, fmt, good):
-        cells = [fmt.format(r[key]) for r in rows]
-        t.add_row(label, *cells, good(rows[0][key], rows[-1][key]))
+    # Relative movement, not a pass/fail against a guessed threshold. An
+    # earlier version of this command called a 29% reduction in the speaker
+    # hub a failure, because the bar had been set by intuition rather than by
+    # the data. Direction and magnitude are what a one-conversation probe can
+    # honestly report; the verdict belongs to the full run.
+    def row(label, key, fmt, better: str):
+        a, b = rows[0][key], rows[-1][key]
+        if a:
+            delta = (b - a) / abs(a)
+            arrow = f"{delta:+.0%}"
+        else:
+            arrow = "-"
+        moved_right = (b < a) if better == "down" else (b > a)
+        style = "green" if moved_right else "dim"
+        t.add_row(label, fmt.format(a), fmt.format(b), f"[{style}]{arrow}[/]")
 
-    row("arestas tocando um falante", "speaker_edges", "{:.1%}",
-        lambda a, b: "[green]caiu[/]" if b < a * 0.75 else "[red]não caiu[/]")
-    row("grau mediano do vértice-ponte", "bridge_median", "{:.0f}",
-        lambda a, b: "[green]ok[/]" if b < 30 else "[red]ainda é hub[/]")
-    row("órbita coberta com k=4", "orbit_k4", "{:.1%}",
-        lambda a, b: "[green]sigma viável[/]" if b > 0.40 else "[red]agulha no palheiro[/]")
-    row("grau do 3º maior vértice", "third_degree", "{:.0f}",
-        lambda a, b: "[green]subiu[/]" if b > a else "[yellow]igual[/]")
-    row("vértices de grau 1", "degree_1_frac", "{:.1%}",
-        lambda a, b: "[red]RISCO: subiu[/]" if b > a + 0.05 else "[green]ok[/]")
+    t.add_column("Δ", justify="right")
+    row("arestas tocando um falante", "speaker_edges", "{:.1%}", "down")
+    row("grau mediano do vértice-ponte", "bridge_median", "{:.0f}", "down")
+    row("órbita coberta com k=4", "orbit_k4", "{:.1%}", "up")
+    row("grau do 3º maior vértice", "third_degree", "{:.0f}", "up")
+    row("vértices de grau 1 (risco)", "degree_1_frac", "{:.1%}", "down")
     console.print(t)
     console.print(
         f"[dim]pontes medidas: {rows[0]['bridge_n']} vs {rows[-1]['bridge_n']} "
-        "pares de evidência[/]"
+        "pares de evidência. Se esse número CAIR, veja `fgl diagnose T1`: pode "
+        "ser ponte espúria via falante sumindo (bom) ou par de evidência "
+        "desconectando (ruim), e só o histograma de distância separa os dois.[/]"
     )
-    if rows[-1]["bridge_median"] >= 30 or rows[-1]["orbit_k4"] <= 0.40:
+
+    moved = rows[-1]["speaker_edges"] < rows[0]["speaker_edges"] * 0.9
+    safe = rows[-1]["degree_1_frac"] <= rows[0]["degree_1_frac"] + 0.05
+    if moved and safe:
         console.print(
-            "\n[yellow]O prompt não entregou o que prometia nesta conversa. "
-            "Reingerir as dez compraria o mesmo grafo dez vezes mais caro.[/]"
+            "\n[green]O prompt mexeu no substrato e não fragmentou.[/] Vale "
+            "reingerir: [cyan]fgl run-all -C T1 -C G1 -C B3[/]\n"
+            "[dim]Se o hub do falante persistir, ele pode ser propriedade do "
+            "dataset e não do prompt — nesse caso G11 (hub como stopword) "
+            "ataca o mesmo problema sem reingest nenhum.[/]"
+        )
+    elif not safe:
+        console.print(
+            "\n[red]O grau 1 subiu:[/] trocamos um hub por um campo de folhas. "
+            "A resolução de entidades precisa unificar variantes antes disto "
+            "valer a pena."
         )
     else:
         console.print(
-            "\n[green]Passou. Vale reingerir tudo:[/] "
-            "[cyan]fgl run-all -C T1 -C G1 -C B3[/]"
+            "\n[yellow]O substrato mal se moveu nesta conversa.[/] Antes de "
+            "reingerir as dez, rode [cyan]fgl run-all -C G11[/]: ela ataca o "
+            "mesmo hub em tempo de recuperação, sobre os grafos que já existem."
         )
 
 
@@ -727,6 +749,10 @@ def diagnose(
     dry_run: bool = OptDry,
     show: int = typer.Option(6, "--show", help="Concrete failing cases to print."),
     out: str = typer.Option("", "--out", help="Also write the numbers to this JSON."),
+    allow_ingest: bool = typer.Option(
+        False, "--allow-ingest",
+        help="Build the graphs if missing (costs a full extraction).",
+    ),
 ) -> None:
     """Where does the answer stop being reachable in the memory graph?
 
@@ -739,7 +765,8 @@ def diagnose(
     Only the last rung is something a retrieval policy can fix. A drop before it
     is an ingest problem wearing a retrieval costume.
 
-    Costs no LLM calls: it reads graphs that already exist.
+    Costs no LLM calls -- it reads graphs that already exist, and refuses to
+    run when they do not rather than quietly building them.
     """
     import json as _json
 
@@ -752,6 +779,28 @@ def diagnose(
     cfg = _load(condition, set_, dry_run)
     runner = Runner(cfg)
     convs = _dataset(cfg, conversation, limit_conversations)
+
+    # A diagnostic must not silently become an ingest. `_ingest` builds the
+    # graph when it is missing, so pointing this at a condition that was never
+    # ingested turns a free read into a paid extraction over every
+    # conversation -- which is exactly what happened the first time, half an
+    # hour of Azure calls behind a command documented as costing nothing.
+    missing = [
+        conv.sample_id
+        for conv in convs
+        if not runner._graph_path(conv).with_suffix(".json").exists()  # noqa: SLF001
+    ]
+    if missing and not allow_ingest:
+        err.print(
+            f"[red]{cfg.condition} não tem grafo para "
+            f"{len(missing)}/{len(convs)} conversas[/] "
+            f"({', '.join(missing[:4])}{'...' if len(missing) > 4 else ''})\n"
+            "Este comando LÊ grafos, não os constrói — deixá-lo construir "
+            "custaria uma extração completa.\n\n"
+            f"  Construa antes:  [cyan]fgl ingest {cfg.condition}[/]\n"
+            f"  Ou aceite o custo: [cyan]fgl diagnose {condition} --allow-ingest[/]"
+        )
+        raise typer.Exit(2)
 
     traces = []
     for conv in convs:

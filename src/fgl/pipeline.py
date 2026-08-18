@@ -279,6 +279,7 @@ class Runner:
                     sigma_scanned=result.sigma_scanned,
                     sigma_dup=result.sigma_dup,
                     sigma_over_budget=result.sigma_over_budget,
+                    sigma_hubs_skipped=result.sigma_hubs_skipped,
                     face_coverage=result.face_coverage,
                     question_entities=list(result.question_entities),
                     coverage_best=result.coverage_best,
