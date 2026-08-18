@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This memory continues the causal thread from Jon losing his job and starting a dance studio (memory 7) by describing his role teaching others there.\"}", "prompt_tokens": 762, "completion_tokens": 179, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

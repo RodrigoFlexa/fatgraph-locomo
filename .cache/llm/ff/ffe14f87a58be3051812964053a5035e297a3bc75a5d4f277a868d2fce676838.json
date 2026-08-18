@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The memory relates directly to John's military history and fits the existing trail about his prior service, so it should be placed immediately after the 'previously served in the military' memory.\"}", "prompt_tokens": 752, "completion_tokens": 122, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

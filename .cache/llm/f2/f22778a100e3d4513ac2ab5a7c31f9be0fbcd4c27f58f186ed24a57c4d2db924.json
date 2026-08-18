@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Saying Andrew loves Toby does not conflict with planning to hike with Toby later and noting Toby is still very young.\"}", "prompt_tokens": 248, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

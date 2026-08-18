@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same pet snake Seraphim, with the first adding a time qualifier (2022).\"}", "prompt_tokens": 213, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

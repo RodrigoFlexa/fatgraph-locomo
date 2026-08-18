@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Audrey with an adjective describing her current state, matching the pattern of known aliases like 'Audrey busy'.\"}", "prompt_tokens": 239, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A store's style (an attribute) is different from an ad campaign for the store (a promotional event).\"}", "prompt_tokens": 195, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

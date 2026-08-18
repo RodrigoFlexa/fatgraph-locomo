@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a general category of places, while Mention B refers to a specific place in London within that category.\"}", "prompt_tokens": 192, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

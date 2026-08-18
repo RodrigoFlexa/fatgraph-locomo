@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This is a caregiving/health episode that continues the narrative of Audrey taking care of and spending time with her dogs, so it belongs immediately after the memory about her caring for them.\"}", "prompt_tokens": 565, "completion_tokens": 379, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory adds context (she lost her job) to the same event and does not conflict with the original statement that she started the store.\"}", "prompt_tokens": 245, "completion_tokens": 51, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Buying toys at a pet store fits the same episode of acquiring dog items (dog bed, collars/tags) described in the trail that starts with the shared photo of a dog on the new bed, so it should go after memory 7.\"}", "prompt_tokens": 793, "completion_tokens": 263, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

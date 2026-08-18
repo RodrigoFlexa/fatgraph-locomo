@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a single well-known artist while B refers to multiple other artists, so they are not the same entity.\"}", "prompt_tokens": 183, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

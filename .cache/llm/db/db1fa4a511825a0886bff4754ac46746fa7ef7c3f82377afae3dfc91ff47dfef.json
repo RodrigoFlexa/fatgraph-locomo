@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This belongs directly after 'Nate supports Joanna' as part of the same supportive/creative thread about Nate's opinion of her screenplay.\"}", "prompt_tokens": 755, "completion_tokens": 177, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

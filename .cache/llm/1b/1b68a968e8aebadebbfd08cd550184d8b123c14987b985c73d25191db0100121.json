@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Caroline's city\\\" refers to a location belonging to Caroline, not to Caroline the person.\"}", "prompt_tokens": 335, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

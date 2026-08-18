@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Having used a new Prius on a trip in May and it breaking down by December is a plausible change over time, not a contradiction.\"}", "prompt_tokens": 247, "completion_tokens": 113, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

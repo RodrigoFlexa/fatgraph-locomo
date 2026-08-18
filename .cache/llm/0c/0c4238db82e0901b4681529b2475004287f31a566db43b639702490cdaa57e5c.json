@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This sentence elaborates on the parade episode and causally links to feeling of belonging, so it belongs directly after the memory about attending the parade.\"}", "prompt_tokens": 399, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

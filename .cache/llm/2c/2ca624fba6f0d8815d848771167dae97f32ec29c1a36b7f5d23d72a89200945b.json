@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Adds compatible advice 'stay true' while keeping 'be a leader'.\"}", "prompt_tokens": 371, "completion_tokens": 99, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

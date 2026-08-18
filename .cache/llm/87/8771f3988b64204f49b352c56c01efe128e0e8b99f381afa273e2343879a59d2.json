@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Notifying James about testing readiness is part of the launch/preparation episode closely tied to John planning to launch his first mobile game next month.\"}", "prompt_tokens": 726, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

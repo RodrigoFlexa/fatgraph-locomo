@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits 'little keepsakes' present in the reference.\"}", "prompt_tokens": 370, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

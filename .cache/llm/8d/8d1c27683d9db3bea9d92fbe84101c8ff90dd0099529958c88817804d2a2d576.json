@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"other chess players\\\" refers to people whereas \\\"chess\\\" refers to the game, so they are different entities.\"}", "prompt_tokens": 190, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

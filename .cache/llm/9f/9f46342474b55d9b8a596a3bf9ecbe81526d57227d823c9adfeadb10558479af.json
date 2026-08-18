@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"It logically follows 'Jon is aiming to turn his dancing passion into a business' as the concrete step of having started that business, fitting the same episode of turning dancing into a venture.\"}", "prompt_tokens": 772, "completion_tokens": 443, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

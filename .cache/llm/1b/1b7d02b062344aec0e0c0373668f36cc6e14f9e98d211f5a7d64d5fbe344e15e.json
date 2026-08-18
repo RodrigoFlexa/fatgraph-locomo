@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions describe the same film — a romantic drama that mixes drama and romance (the one about memory and relationships).\"}", "prompt_tokens": 274, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

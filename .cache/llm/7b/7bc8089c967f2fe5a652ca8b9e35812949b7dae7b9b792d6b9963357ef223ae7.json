@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits submitting screenplay to film festivals.\"}", "prompt_tokens": 381, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Placing it after the memory about getting new collars keeps the sequence as a single dog-related episode (got collars -> who the dogs are -> shared their photo), preserving the causal/narrative flow.\"}", "prompt_tokens": 387, "completion_tokens": 254, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

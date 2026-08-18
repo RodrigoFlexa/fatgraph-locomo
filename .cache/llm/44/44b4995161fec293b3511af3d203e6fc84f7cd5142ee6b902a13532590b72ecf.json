@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only vague fantasy mentions; misses The Alchemist, Dune, non-fiction.\"}", "prompt_tokens": 384, "completion_tokens": 164, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

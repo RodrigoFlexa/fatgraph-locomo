@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This fact about owning three dogs belongs in the same pet-related narrative right after 'considers his pets a source of joy', supporting why he values his pets.\"}", "prompt_tokens": 728, "completion_tokens": 310, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a game last year while Mention B/its aliases refer to a recent/last-week game, so they are different events.\"}", "prompt_tokens": 198, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

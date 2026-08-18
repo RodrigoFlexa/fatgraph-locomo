@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They conflict: A describes a cancelled getaway while B states Deborah attended the yoga retreat, so they cannot be the same event.\"}", "prompt_tokens": 196, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

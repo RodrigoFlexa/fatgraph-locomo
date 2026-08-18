@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same activity (skateboarding), with A specifying the age (10) when that skateboarding occurred.\"}", "prompt_tokens": 185, "completion_tokens": 174, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

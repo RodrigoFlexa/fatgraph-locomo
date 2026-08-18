@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The photo (21 June 2023) fits the same episode as acquiring new unique pieces for her store that day, so it belongs directly after the 21 June acquisition memory.\"}", "prompt_tokens": 767, "completion_tokens": 250, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

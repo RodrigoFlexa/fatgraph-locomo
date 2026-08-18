@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"his siblings\\\" is a plural group and not the same single individual referred to by \\\"his sister.\\\"\"}", "prompt_tokens": 222, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

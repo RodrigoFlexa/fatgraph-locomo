@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the people (friends), while B refers to the camping trip event involving those friends, so they are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

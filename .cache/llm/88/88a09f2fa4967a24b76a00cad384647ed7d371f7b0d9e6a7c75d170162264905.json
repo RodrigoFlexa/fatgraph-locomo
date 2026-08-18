@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"An image of a lake with rocks and mountains is part of the Rockies visit narrative, so place it immediately after the 'Evan visited the Rockies' memory.\"}", "prompt_tokens": 582, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

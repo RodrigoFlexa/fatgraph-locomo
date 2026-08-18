@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same activity (yoga and meditation), with B adding the duration of about three years.\"}", "prompt_tokens": 193, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

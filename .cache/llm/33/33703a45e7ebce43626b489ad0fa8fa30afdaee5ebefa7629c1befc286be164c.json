@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is an event (a trivia contest about the franchise) and the other is the character/franchise itself, so they are different entities.\"}", "prompt_tokens": 176, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

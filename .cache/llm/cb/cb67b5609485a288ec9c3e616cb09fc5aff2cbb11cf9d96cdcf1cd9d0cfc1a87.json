@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different companies: candidate says REI, reference says Under Armour.\"}", "prompt_tokens": 361, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

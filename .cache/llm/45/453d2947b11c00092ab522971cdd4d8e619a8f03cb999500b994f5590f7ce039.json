@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same group involved in the hiking incident/trip last week.\"}", "prompt_tokens": 194, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

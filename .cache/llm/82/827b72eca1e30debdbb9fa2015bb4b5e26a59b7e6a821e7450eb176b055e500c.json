@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This belongs to the Bali/Jolene narrative thread connected to memory 1 (the face that mentions Jolene), so place it immediately after that memory.\"}", "prompt_tokens": 721, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is the game/title 'Street Fighter' while the other is a specific local tournament event for that game, so they are different entities.\"}", "prompt_tokens": 182, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

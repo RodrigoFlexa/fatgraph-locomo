@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a compound referring to both Evan and his partner, while B refers only to the partner (the single person).\"}", "prompt_tokens": 198, "completion_tokens": 237, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

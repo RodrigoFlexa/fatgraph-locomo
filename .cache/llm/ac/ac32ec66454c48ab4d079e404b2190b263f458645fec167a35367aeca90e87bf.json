@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to his fourth tournament (on Friday) while the other refers to his first, so they cannot be the same event.\"}", "prompt_tokens": 198, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

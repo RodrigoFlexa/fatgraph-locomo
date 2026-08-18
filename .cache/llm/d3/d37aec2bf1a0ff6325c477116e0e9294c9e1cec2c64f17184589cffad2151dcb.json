@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same timeframe: late June equals the week before July 6, 2023.\"}", "prompt_tokens": 365, "completion_tokens": 229, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

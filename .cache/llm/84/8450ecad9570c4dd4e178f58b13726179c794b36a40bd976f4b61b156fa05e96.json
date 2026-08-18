@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They convey different facts: one says Calvin is connected to world events, the other says those events influence his music, so neither fully contains the other.\"}", "prompt_tokens": 233, "completion_tokens": 121, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to a group (work friends) while the other is a single individual (close friend), so they are not the same entity.\"}", "prompt_tokens": 188, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

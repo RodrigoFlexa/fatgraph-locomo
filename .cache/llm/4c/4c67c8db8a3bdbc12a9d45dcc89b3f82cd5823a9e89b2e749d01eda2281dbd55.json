@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Calvin's music refers to his musical output or art, while Calvin's guitar is a specific physical instrument, so they are different entities.\"}", "prompt_tokens": 214, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

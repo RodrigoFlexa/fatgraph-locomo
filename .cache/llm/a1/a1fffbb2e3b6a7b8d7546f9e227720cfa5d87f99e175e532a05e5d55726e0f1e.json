@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Possessive phrase refers to a different person (Andrew's girlfriend) rather than Andrew himself.\"}", "prompt_tokens": 270, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This recommendation is a book/reading preference closely related to 'John likes The Kingkiller Chronicle' and fits into the same books/bookcase narrative.\"}", "prompt_tokens": 728, "completion_tokens": 179, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

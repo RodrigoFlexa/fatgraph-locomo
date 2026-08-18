@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"“Volunteering” is the general activity while “volunteer roles” refers to specific positions, so they are not the same entity.\"}", "prompt_tokens": 179, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

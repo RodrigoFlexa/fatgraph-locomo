@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"Rehearsing is part of Jon's active dance practice and directly supports his plan to mentor aspiring dancers, so it belongs immediately after the memory about mentoring.\"}", "prompt_tokens": 758, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

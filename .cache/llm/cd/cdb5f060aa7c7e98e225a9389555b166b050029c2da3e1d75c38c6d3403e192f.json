@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"It logically follows the March note that Calvin was leaving for Japan next month, closing that episode by recording that he visited Japan.\"}", "prompt_tokens": 516, "completion_tokens": 367, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

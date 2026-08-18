@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is a specific yoga pose that explains how John built strength (and balance), so it belongs directly after the memory about improving strength through yoga.\"}", "prompt_tokens": 715, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

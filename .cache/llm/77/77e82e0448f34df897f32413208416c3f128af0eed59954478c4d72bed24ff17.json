@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is the single person (the mother's army friend); Mention B is a coordinated mention of two people (his mother and her army friend), not the same single entity.\"}", "prompt_tokens": 196, "completion_tokens": 375, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same game title Overcooked 2, with the first adding context about who played it.\"}", "prompt_tokens": 190, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

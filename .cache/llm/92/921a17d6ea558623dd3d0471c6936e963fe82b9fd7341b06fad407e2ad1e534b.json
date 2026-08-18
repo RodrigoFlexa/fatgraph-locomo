@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These can both be true: hosting a Friday neighbor class and organizing a yoga event last month are compatible (different phrasing or separate events).\"}", "prompt_tokens": 245, "completion_tokens": 178, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

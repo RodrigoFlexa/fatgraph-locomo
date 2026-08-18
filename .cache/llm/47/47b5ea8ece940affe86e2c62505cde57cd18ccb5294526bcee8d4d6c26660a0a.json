@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same subgroup (younger players) on John's/his team and thus refer to the same entity.\"}", "prompt_tokens": 186, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

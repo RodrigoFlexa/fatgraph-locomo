@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new mountaineering trip with workmates continues the same episode as the hiking-trip photo, so it belongs immediately after memory 0 in the workmates/hiking trail.\"}", "prompt_tokens": 780, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

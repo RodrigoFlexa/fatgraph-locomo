@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The photo of a bowl of soup directly continues the cooking episode and specifically matches 'John made a tasty soup recently,' so it belongs immediately after that memory.\"}", "prompt_tokens": 744, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The venues differ—a large arena versus a gym—so these describe different photos/instances.\"}", "prompt_tokens": 199, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

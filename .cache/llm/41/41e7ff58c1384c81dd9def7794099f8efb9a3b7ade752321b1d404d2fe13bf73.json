@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Sam next month\\\" is the same person 'Sam' with an added temporal modifier, not a different entity.\"}", "prompt_tokens": 261, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

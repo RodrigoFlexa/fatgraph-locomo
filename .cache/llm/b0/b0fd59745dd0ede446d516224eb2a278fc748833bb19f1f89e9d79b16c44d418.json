@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a specific Unity-made strategy game instance while B is the general category of strategy games, so they are not the same entity.\"}", "prompt_tokens": 177, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

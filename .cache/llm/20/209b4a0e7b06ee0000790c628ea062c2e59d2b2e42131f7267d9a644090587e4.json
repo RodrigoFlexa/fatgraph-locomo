@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"A living-room detail about candles and a TV fits the home-decor/DIY thread that follows the 'Joanna loves DIYs' memory, so placing it after index 7 keeps it in the same narrative about her home and crafts.\"}", "prompt_tokens": 782, "completion_tokens": 262, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

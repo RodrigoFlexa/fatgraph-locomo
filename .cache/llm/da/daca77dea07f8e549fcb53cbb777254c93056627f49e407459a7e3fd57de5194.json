@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the actual online store while B refers to the store's style, which is a different attribute not the same entity.\"}", "prompt_tokens": 205, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

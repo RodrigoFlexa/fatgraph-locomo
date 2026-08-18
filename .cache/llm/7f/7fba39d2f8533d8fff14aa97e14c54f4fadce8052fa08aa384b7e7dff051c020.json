@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"VR gaming is directly related to the video-game–motivated trail that begins with 'James likes bowling' and mentions John as a fan of video games and James being motivated by video games.\"}", "prompt_tokens": 747, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

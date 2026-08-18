@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Exact same date phrasing differing only in capitalization\"}", "prompt_tokens": 368, "completion_tokens": 157, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

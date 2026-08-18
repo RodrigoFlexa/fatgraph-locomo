@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different game types: strategy game vs football simulator and virtual world.\"}", "prompt_tokens": 368, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

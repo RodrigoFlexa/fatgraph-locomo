@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"James and John\\\" includes the same individual 'James', so both mentions refer to the same person.\"}", "prompt_tokens": 207, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This fact about Max’s long membership is background context that precedes and belongs to the same family narrative about their routines and support, so it should be placed before the first memory.\"}", "prompt_tokens": 480, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

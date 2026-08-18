@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The photo of a bowl of coconut milk ice cream refers to the same coconut milk ice cream described in B.\"}", "prompt_tokens": 307, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

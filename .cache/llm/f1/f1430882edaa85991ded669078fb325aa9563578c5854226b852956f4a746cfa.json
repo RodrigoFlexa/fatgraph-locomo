@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Not contradictory: selling his old Prius is compatible with owning a new Prius (they can both be true).\"}", "prompt_tokens": 240, "completion_tokens": 235, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

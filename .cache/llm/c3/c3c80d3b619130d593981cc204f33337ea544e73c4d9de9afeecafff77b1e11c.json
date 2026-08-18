@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too general—'baked goods' may not specifically be cakes.\"}", "prompt_tokens": 359, "completion_tokens": 290, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

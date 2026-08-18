@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": true, \"merged_text\": \"Sam is thinking about and keen to try painting.\", \"reason\": \"Both statements express the same interest: Sam intends/has inclination to try painting; one rephrases the other.\"}", "prompt_tokens": 233, "completion_tokens": 124, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

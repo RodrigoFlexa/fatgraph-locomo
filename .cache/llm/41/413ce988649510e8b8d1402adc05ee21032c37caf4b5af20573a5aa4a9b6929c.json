@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase specifies the game's engine (Unity) while the other specifies its genre/play style (Civilization-like), so they are not necessarily the same entity.\"}", "prompt_tokens": 183, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

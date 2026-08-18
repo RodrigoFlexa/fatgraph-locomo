@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Engineering assignments’ refers to tasks or coursework, while ‘engineering’ is the field or profession, so they are related but not the same entity.\"}", "prompt_tokens": 189, "completion_tokens": 50, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

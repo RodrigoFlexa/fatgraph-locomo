@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a general label while Mention B refers to a specific transgender teen, so they are not the same entity.\"}", "prompt_tokens": 175, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

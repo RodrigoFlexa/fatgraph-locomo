@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to the outcome (success) and the other to the exam itself, so they are different entities.\"}", "prompt_tokens": 183, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

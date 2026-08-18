@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Audrey (the conversationally discussed Audrey), with the first adding locative detail 'of her grandma's kitchen'.\"}", "prompt_tokens": 280, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It continues the ownership/behavior thread (James owns Daisy -> Daisy likes to play with her toys -> Daisy lay down next to James), so place it after the 'James owns a dog named Daisy' memory.\"}", "prompt_tokens": 623, "completion_tokens": 320, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It belongs with the thread about her pets and fits naturally into the narrative starting with 'Deborah owns Max (a cat).'.\"}", "prompt_tokens": 732, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

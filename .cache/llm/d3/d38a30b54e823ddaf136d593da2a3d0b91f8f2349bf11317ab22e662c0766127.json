@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Focusing on education fits the same political/agenda thread as 'John plans to get into local politics,' so insert it immediately after that memory to include it in that face.\"}", "prompt_tokens": 431, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

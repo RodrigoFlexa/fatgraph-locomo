@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a specific adoption agency (singular, agency providing support) while B is a general plural category 'adoption agencies', so they are not the same entity.\"}", "prompt_tokens": 182, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

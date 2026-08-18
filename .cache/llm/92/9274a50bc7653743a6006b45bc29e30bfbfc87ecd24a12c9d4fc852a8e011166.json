@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions attending a group; misses research, agency, documents, preparation.\"}", "prompt_tokens": 380, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

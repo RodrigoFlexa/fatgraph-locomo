@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to the mother's house itself and the other refers to a nearby waterside spot, so they are different places.\"}", "prompt_tokens": 198, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

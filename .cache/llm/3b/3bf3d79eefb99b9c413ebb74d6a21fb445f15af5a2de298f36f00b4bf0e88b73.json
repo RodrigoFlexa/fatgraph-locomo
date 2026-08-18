@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate claims about one week, contradicts reference two weeks.\"}", "prompt_tokens": 373, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

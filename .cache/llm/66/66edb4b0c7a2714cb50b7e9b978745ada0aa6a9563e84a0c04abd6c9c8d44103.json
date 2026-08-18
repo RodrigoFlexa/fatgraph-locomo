@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate gives 2023 date, contradicts 2022 reference.\"}", "prompt_tokens": 365, "completion_tokens": 98, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

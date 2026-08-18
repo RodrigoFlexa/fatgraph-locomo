@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention B is a software tool associated with a charitable foundation, not the foundation itself.\"}", "prompt_tokens": 184, "completion_tokens": 101, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

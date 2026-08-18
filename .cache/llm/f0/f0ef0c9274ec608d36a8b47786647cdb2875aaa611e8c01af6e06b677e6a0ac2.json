@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is part of Deborah's meditation/mindfulness episode that flows from leading a meditation session into broader mindfulness activities and then creating a guide, so it fits best immediately after memory 0.\"}", "prompt_tokens": 762, "completion_tokens": 510, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the competing shop (the actor) while B refers to the deal itself, so they are different entities.\"}", "prompt_tokens": 206, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'John's girlfriend' denotes a different person related to John, not John himself.\"}", "prompt_tokens": 232, "completion_tokens": 100, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

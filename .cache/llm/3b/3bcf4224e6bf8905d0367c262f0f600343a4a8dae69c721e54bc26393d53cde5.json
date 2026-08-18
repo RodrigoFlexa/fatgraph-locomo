@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Mentions leadership/truth but omits selflessness and humility.\"}", "prompt_tokens": 374, "completion_tokens": 225, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

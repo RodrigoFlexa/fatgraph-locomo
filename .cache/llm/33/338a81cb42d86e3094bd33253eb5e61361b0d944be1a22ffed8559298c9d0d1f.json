@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"finishing her second script\\\" and \\\"second script\\\" refer to the same specific script (her second script).\"}", "prompt_tokens": 185, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

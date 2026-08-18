@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"'Joanna's face' refers to a part of the person Joanna, so both mentions denote the same individual.\"}", "prompt_tokens": 197, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory continues the same narrative about Andrew's difficulty finding a pet-friendly place and best fits directly after the existing memory about his search for a pet-friendly home.\"}", "prompt_tokens": 798, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

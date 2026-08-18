@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The earlier note was a future plan in May 2023 and the later note reports the performance occurred, which is a plausible change over time.\"}", "prompt_tokens": 244, "completion_tokens": 115, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

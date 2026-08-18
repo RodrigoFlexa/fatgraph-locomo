@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states positive reinforcement training; candidate says it's not mentioned.\"}", "prompt_tokens": 369, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

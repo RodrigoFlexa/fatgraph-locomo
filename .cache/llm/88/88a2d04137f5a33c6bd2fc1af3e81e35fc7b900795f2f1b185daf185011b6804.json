@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to a specific person's dogs while B refers to pets in general, so they are not the same entity.\"}", "prompt_tokens": 190, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

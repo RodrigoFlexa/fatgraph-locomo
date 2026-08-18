@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This restates the core fact that Andrew owns Toby and fits directly after the memory saying Andrew has a puppy named Toby, keeping the ownership/identity thread together.\"}", "prompt_tokens": 604, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

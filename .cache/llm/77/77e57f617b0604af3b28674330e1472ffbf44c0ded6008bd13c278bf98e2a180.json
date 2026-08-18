@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory is a factual statement about ownership that continues the 'Audrey has four dogs' / grooming-related thread, so it belongs immediately after memory 1.\"}", "prompt_tokens": 391, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

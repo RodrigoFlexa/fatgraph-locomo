@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: issues with self-checkout machines.\"}", "prompt_tokens": 367, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"Someone offering Tim assistance fits narratively with the episode about his trip last summer (help planning or during the trip).\"}", "prompt_tokens": 763, "completion_tokens": 237, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

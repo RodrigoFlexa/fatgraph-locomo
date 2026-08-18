@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence links the regional chess tournament to the unspecified local tournament and the scope ('regional' vs 'local') and game ('chess' unspecified) differ.\"}", "prompt_tokens": 179, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

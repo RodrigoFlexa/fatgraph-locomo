@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Jon's business refers to an entity owned by Jon (the business), not the person Jon himself.\"}", "prompt_tokens": 257, "completion_tokens": 40, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

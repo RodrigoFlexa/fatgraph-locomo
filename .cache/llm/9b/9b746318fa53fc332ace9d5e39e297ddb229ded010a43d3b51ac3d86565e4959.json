@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to a part of Audrey's day (an event/time) while the other refers to Audrey's assistance (help she gives), so they are different entities.\"}", "prompt_tokens": 181, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

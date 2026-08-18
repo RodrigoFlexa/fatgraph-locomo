@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same specific lake in the mountains that Audrey and friends discovered and sat by.\"}", "prompt_tokens": 209, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same restored vehicle (vintage/classic/old car) referenced as the classic car Dave restored last year.\"}", "prompt_tokens": 194, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

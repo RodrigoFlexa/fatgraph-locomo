@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to a group of people (Maria's family) and the other to an event/meal (Maria's dinner), so they are different entities.\"}", "prompt_tokens": 182, "completion_tokens": 51, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

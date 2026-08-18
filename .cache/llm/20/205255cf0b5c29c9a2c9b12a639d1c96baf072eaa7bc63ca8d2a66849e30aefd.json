@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The memories are compatible—one says Calvin will contact Dave upon arriving in Boston and the other says Dave plans a jam session with Calvin, which can both be true.\"}", "prompt_tokens": 247, "completion_tokens": 119, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

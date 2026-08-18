@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Customers’ is a general term while ‘her customers’ specifically refers to Gina’s customers, so they are not the same entity.\"}", "prompt_tokens": 233, "completion_tokens": 239, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

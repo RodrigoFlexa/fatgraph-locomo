@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: reaching the top allows sharing a photo of the view, so they are compatible.\"}", "prompt_tokens": 253, "completion_tokens": 107, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

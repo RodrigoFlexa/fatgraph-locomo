@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This recommendation is part of the same dairy-free recipe/advice thread (follows sending the recipe to Joanna and adds practical substitution and label-checking tips).\"}", "prompt_tokens": 794, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

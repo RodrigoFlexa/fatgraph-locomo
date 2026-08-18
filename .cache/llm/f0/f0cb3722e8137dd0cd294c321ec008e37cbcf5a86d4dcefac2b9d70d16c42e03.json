@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"They can both be true: she was motivated by dancing in April and by June she ‘used to’ dance (indicating she stopped), which is a change over time.\"}", "prompt_tokens": 237, "completion_tokens": 249, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

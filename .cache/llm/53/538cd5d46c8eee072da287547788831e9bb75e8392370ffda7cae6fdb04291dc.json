@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The shared image is a concrete detail from the picnic episode and belongs in the narrative right after ‘Maria had a picnic with friends from church last weekend,’ before the scavenger-hunt and charades memories.\"}", "prompt_tokens": 753, "completion_tokens": 191, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

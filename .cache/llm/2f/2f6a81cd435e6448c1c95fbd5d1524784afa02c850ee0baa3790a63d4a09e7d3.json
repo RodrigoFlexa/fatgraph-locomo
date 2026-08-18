@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"The page Joanna shared\\\" refers to a page (an object) not the person Joanna, so they are different entities.\"}", "prompt_tokens": 220, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

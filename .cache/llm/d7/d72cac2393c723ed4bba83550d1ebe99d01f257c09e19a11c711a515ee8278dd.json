@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B is described as chocolate and vanilla swirl while A is coconut, so they refer to different ice cream.\"}", "prompt_tokens": 197, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

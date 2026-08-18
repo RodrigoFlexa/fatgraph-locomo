@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"A yoga class is a type of yoga event and the described neighborhood class matches that event description.\"}", "prompt_tokens": 212, "completion_tokens": 231, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

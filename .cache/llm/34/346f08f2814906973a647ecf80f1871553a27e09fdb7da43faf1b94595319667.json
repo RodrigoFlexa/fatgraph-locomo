@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same idea; 'cozy' implies comfortable.\"}", "prompt_tokens": 361, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

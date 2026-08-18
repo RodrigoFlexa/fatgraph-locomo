@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This memory explains why Evan acquired a new Prius (his old Prius broke down), so it belongs immediately before the 'Evan owns a new Prius' memory in the causal episode.\"}", "prompt_tokens": 361, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

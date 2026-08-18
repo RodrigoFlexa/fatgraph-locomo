@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to his progress/status in a tournament, the other refers to a specific tournament event (his second tournament last week), so they are different entities.\"}", "prompt_tokens": 180, "completion_tokens": 244, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

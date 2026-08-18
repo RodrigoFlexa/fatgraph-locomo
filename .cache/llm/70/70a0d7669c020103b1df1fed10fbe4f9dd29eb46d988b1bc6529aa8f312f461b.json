@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This sentence follows naturally from the emergency-response claim and fits the causal thread that the surveillance system will improve safety and thus make the world better.\"}", "prompt_tokens": 504, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

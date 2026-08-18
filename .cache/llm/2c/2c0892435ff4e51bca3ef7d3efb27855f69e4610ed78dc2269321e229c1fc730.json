@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"City living\\\" refers to a concept or phrase about urban lifestyle, while \\\"the city\\\" refers to a specific place where Andrew lives, so they are not the same entity.\"}", "prompt_tokens": 174, "completion_tokens": 119, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

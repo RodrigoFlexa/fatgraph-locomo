@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to giving Joanna a vegan ice cream recipe tomorrow (a plan/person), while B refers to a specific vegan ice cream made and shared by Nate last Friday.\"}", "prompt_tokens": 212, "completion_tokens": 245, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Strength\\\" is only one component of the combined concept \\\"strength and resilience,\\\" so they are not the same single entity.\"}", "prompt_tokens": 177, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

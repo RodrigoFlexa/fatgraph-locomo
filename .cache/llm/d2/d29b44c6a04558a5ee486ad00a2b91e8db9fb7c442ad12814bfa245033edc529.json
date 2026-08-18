@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This memory continues the episode about the dogs as a cohesive pack who enjoy outings together, so it belongs after the 'dogs get along as a great pack' memory.\"}", "prompt_tokens": 765, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

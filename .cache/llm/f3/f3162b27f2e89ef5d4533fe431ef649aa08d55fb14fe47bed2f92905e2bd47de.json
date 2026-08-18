@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"Placing it immediately after the existing 'Jon is working on his business' memory ties the concrete action of opening a dance studio into the same business-startup narrative about promoting and building his business.\"}", "prompt_tokens": 771, "completion_tokens": 317, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

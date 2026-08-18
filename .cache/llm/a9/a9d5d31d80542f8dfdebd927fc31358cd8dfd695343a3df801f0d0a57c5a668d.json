@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They describe different outings (a hike vs a beach trip) with different attendees (Buddy vs his girlfriend) despite both involving Toby next month.\"}", "prompt_tokens": 195, "completion_tokens": 176, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

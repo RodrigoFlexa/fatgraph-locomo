@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Being observed searching for keys once does not conflict with a later statement that they lose their keys weekly.\"}", "prompt_tokens": 245, "completion_tokens": 106, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

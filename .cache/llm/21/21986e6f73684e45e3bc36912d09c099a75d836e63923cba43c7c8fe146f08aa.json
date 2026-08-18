@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Visiting the veteran's hospital is part of the same veterans/military episode that follows the marching event and leads into his expressed respect for the military.\"}", "prompt_tokens": 702, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

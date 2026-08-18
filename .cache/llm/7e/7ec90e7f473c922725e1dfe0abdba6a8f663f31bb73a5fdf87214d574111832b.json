@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a general/plural mention of music festivals while B refers to a specific music festival instance, so they are not the same entity.\"}", "prompt_tokens": 186, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to drumming at different times (when he was younger vs a few days ago), so they are distinct occurrences, not the same entity.\"}", "prompt_tokens": 198, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

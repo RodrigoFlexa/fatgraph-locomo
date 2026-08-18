@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both refer to the same physical house — Deborah's old home is Deborah's mother's old house, and the window seat is a feature of that house.\"}", "prompt_tokens": 229, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

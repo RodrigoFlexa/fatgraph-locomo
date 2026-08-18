@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the clothing store itself while the other refers to an ad campaign for that store, which are different entities.\"}", "prompt_tokens": 195, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

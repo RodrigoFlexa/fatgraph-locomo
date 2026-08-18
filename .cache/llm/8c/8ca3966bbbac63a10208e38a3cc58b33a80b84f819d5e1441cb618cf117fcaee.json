@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is the activity 'surfing' and the other is a specific guide about that activity, so they are different entities.\"}", "prompt_tokens": 182, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

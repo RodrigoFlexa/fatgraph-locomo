@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory is consistent with the old one—Joanna working on a screenplay does not contradict that she started another while waiting on the first.\"}", "prompt_tokens": 250, "completion_tokens": 115, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

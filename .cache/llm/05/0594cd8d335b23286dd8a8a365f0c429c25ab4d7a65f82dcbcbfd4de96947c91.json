@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Includes the same state (Connecticut), with a more specific city.\"}", "prompt_tokens": 361, "completion_tokens": 34, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both refer to the same place (Universal Studios), with B adding a temporal detail about a September 2023 visit.\"}", "prompt_tokens": 185, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

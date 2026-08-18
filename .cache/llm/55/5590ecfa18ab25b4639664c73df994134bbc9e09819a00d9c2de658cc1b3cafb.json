@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both refer to the same practice of meditation, with the first specifying the context (when overwhelmed).\"}", "prompt_tokens": 175, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory fits the same artist-support and mentorship narrative as the 2023-11-13 entry about valuing supportive people, so insert it immediately after that node.\"}", "prompt_tokens": 753, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

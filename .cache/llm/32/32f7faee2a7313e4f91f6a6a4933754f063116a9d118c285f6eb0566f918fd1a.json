@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Vague: omits that memories are of conversations with her mom.\"}", "prompt_tokens": 372, "completion_tokens": 226, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

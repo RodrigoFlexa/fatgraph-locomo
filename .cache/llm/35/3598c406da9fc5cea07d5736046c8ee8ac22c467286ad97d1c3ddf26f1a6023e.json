@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":5,\"reason\":\"It belongs with the family-related episode (picnic and children), so inserting it right after the memory about the picnic with his wife and kids keeps the family narrative together.\"}", "prompt_tokens": 753, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

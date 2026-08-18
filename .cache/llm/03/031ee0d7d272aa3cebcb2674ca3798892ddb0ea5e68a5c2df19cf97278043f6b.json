@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This memory is part of the same episode about Nate improving his home gaming setup—it's a direct detail following his upgrade and belonging to the 'upgraded home gaming equipment -> uses computer for gaming' thread.\"}", "prompt_tokens": 720, "completion_tokens": 191, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

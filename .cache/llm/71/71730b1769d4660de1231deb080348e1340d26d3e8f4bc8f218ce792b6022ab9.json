@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Audrey, with 'joy and happiness' as descriptive phrase similar to known alias 'Audrey happy'.\"}", "prompt_tokens": 244, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

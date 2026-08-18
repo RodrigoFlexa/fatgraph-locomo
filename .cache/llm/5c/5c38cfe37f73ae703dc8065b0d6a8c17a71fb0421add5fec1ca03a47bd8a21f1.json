@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No explicit evidence links the pottery project bowl to Caroline's hand-painted bowl; similarity in description is insufficient to confirm they are the same.\"}", "prompt_tokens": 224, "completion_tokens": 239, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This directly continues the volunteering thread (after 'John is looking into volunteering') and fits the same episode about moving toward nonprofit/volunteer roles.\"}", "prompt_tokens": 720, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

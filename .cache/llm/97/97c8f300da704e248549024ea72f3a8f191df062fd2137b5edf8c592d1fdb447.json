@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This memory directly continues the narrative of starting and using the dance studio, so it belongs immediately after the 'Jon is starting a dance studio business' memory.\"}", "prompt_tokens": 779, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

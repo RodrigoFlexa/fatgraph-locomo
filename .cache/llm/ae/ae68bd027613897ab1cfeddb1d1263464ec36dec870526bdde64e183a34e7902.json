@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"It explains a change from 'used to hike a lot' to difficulty finding open natural spaces in the city, fitting that causal thread about reduced access to outdoor areas.\"}", "prompt_tokens": 749, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

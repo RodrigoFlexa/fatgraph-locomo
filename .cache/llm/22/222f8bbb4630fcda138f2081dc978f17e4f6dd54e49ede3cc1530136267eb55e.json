@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This detail belongs to the same apology episode about the drunken night (clarifying partner's reaction to the rose bushes incident) and thus should follow the apology memory.\"}", "prompt_tokens": 472, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The apology is part of the partner/pregnancy relationship thread (occurring after the Dec 9 pregnancy memory) so it belongs directly after that memory in the same narrative.\"}", "prompt_tokens": 401, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

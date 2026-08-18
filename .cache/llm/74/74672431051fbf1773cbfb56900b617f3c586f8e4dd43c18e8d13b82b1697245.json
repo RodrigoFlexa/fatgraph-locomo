@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"Peruvian lilies belong to Audrey’s small garden narrative, so inserting it right after 'Audrey has a small garden' keeps the plant detail in the same garden → veggie-patch trail.\"}", "prompt_tokens": 785, "completion_tokens": 316, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

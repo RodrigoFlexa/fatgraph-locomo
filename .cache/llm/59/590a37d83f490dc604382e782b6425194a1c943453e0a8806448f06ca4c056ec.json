@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"'Jolene's clarity' is an attribute/possession of Jolene and thus refers to the same person.\"}", "prompt_tokens": 291, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"An 'achievement' is a result or accomplishment, while 'a local tournament' is the event itself, so they are different entities.\"}", "prompt_tokens": 178, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

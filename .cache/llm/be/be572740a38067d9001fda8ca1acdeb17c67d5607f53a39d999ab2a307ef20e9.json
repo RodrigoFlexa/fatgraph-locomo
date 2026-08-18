@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The camping trip is a family outing and fits the thread about family activities and outings (e.g., swimming with the kids) that continues from the memory at index 7.\"}", "prompt_tokens": 756, "completion_tokens": 441, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

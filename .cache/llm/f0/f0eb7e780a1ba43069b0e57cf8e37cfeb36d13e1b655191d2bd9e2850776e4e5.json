@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says absent while reference provides explicit advice.\"}", "prompt_tokens": 371, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"These are two different facts: one about lack of experience (has not tried mindfulness) and one about attitude (is keen to try), so neither restates or fully contains the other.\"}", "prompt_tokens": 235, "completion_tokens": 128, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

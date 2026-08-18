@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\":\"Engine swaps are a hands-on refurbishing activity and belong in the same narrative thread about restoring/refurbishing cars, so place it immediately after the refurbishing memory.\"}", "prompt_tokens": 766, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

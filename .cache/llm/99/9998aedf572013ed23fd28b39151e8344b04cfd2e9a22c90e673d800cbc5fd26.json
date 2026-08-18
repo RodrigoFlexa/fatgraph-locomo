@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Consistent and adds a specific pet name.\"}", "prompt_tokens": 365, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

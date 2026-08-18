@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory about being motivated to make positive changes continues the health-concern → motivation thread, so it belongs directly after the memory that says Sam is somewhat concerned about his health.\"}", "prompt_tokens": 804, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

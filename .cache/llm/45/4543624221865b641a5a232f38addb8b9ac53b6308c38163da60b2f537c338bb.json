@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The second mention specifies Sam's weight at a particular time (last Friday), while the first is a general property and may refer to a different time or value.\"}", "prompt_tokens": 182, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

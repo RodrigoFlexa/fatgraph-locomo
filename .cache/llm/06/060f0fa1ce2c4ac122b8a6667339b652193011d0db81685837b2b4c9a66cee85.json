@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This sentiment directly follows the episode of saving the family and explains why John values serving/protecting the community, fitting the same firefighting/Service narrative.\"}", "prompt_tokens": 747, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

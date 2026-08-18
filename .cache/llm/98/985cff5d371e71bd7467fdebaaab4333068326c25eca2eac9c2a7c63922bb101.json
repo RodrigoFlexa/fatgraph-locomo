@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Friend not identified as Karlie; lacks required specificity.\"}", "prompt_tokens": 373, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

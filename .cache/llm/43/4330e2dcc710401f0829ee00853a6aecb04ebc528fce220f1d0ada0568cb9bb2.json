@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"painting and pottery\\\" refers to activities in general, while \\\"a pottery workshop\\\" is a specific event instance, so they are not the same entity.\"}", "prompt_tokens": 211, "completion_tokens": 50, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

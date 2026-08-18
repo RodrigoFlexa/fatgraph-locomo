@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same self-portrait instance (the one Caroline painted last week).\"}", "prompt_tokens": 184, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

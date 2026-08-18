@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions yoga; omits photos, flowers, and nature.\"}", "prompt_tokens": 374, "completion_tokens": 225, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

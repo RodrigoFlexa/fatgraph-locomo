@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is Calvin's old high school buddy (a friend), while B refers to Calvin performing; they are different people/roles.\"}", "prompt_tokens": 198, "completion_tokens": 174, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

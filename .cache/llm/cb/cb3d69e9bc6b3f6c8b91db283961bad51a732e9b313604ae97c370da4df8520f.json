@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Narratively it fits between 'Jon wrote down all his plans' and 'Jon is updating his business plan...', describing the intermediate work of developing those business plans.\"}", "prompt_tokens": 764, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mentions Sam's weight at a specific time while the other refers to Sam's diet recently, so they are different attributes of Sam, not the same entity.\"}", "prompt_tokens": 184, "completion_tokens": 52, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

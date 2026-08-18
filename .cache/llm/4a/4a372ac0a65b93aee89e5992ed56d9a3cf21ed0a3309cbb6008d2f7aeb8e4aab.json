@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"An engineering school is an institution, while engineering refers to the field or profession, so they are different entities.\"}", "prompt_tokens": 189, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

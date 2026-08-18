@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to multiple bowls as a group, while Mention B is a single specific bowl pottery project, so they are different entities.\"}", "prompt_tokens": 193, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

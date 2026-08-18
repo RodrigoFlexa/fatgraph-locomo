@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: he could have decided last week and now be working on the project.\"}", "prompt_tokens": 250, "completion_tokens": 105, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

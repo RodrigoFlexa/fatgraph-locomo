@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"It belongs in the same football/game-design episode as 'started a course' and should come after that to explain why he then works on the simulator.\"}", "prompt_tokens": 720, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

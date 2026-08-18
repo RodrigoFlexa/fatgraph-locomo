@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"It continues the same Boston music-venues thread right after the mention of House of Blues, fitting into the sequence listing local venues before the festival attendance.\"}", "prompt_tokens": 737, "completion_tokens": 308, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Gina's support\\\" refers to support or supporters, while \\\"Gina's team\\\" is a specific team and thus a different entity.\"}", "prompt_tokens": 222, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

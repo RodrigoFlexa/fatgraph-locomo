@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It continues the hiking-trails/walking narrative with Buddy (and mentions Toby) so it belongs directly after the memory about Andrew going on walks with Buddy.\"}", "prompt_tokens": 754, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

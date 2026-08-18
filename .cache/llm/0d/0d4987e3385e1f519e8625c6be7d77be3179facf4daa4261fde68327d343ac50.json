@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"a shelter\\\" in this context refers to the homeless shelter described in the conversation, so they are the same entity.\"}", "prompt_tokens": 267, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":4,\"reason\":\"This memory is part of the same outing/planning thread about Andrew taking Toby on outdoor trips (like taking Buddy and Toby to hiking trails), so it belongs immediately after the hiking-trails plan.\"}", "prompt_tokens": 829, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

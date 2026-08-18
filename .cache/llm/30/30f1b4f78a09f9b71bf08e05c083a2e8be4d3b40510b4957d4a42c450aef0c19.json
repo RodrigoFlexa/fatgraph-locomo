@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They describe different facts—one says Deborah recently played the game (past, with rules), the other says she plans to play it with Jolene (future)—so neither fully contains the other.\"}", "prompt_tokens": 256, "completion_tokens": 130, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

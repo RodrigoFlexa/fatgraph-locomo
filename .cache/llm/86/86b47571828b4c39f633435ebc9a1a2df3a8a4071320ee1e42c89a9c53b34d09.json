@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Memory 7's trail already mentions Gina losing her DoorDash job in January 2023, so inserting the new memory immediately after keeps it within the same narrative episode about that job loss.\"}", "prompt_tokens": 735, "completion_tokens": 124, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

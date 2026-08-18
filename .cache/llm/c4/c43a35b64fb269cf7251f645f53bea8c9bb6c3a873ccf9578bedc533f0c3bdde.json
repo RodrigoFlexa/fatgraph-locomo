@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate lists different locations (neighborhood, Bali) than reference.\"}", "prompt_tokens": 369, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

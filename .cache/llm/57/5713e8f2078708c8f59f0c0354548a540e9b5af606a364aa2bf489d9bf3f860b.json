@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Relative phrase 'three years ago' is ambiguous without reference date.\"}", "prompt_tokens": 360, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

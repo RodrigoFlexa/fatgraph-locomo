@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Known alias 'Audrey's pups' matches mention A and the temporal 'last week' does not change the entity identity.\"}", "prompt_tokens": 241, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

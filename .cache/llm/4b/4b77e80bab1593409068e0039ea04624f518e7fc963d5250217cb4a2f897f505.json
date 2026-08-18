@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"A planned baseball game is another social outing more closely related to their bar/pub outing thread than the theater visit.\"}", "prompt_tokens": 403, "completion_tokens": 172, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

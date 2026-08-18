@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Getting the job now and starting it next month are compatible (offer accepted now with a future start date).\"}", "prompt_tokens": 240, "completion_tokens": 171, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They record different facts about the same pair (an adoption event two years ago versus Susie helping Jolene when times are tough), so neither restates or fully contains the other.\"}", "prompt_tokens": 247, "completion_tokens": 127, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

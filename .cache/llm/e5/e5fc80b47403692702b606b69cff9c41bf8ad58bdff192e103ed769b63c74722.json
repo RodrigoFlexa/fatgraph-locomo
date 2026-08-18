@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory references 'friends from church last weekend,' so it best continues the same church-friends episode directly after the picnic memory which shares that phrasing.\"}", "prompt_tokens": 755, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B refers to a vegan ice cream recipe to be given to Joanna, while A refers to Joanna's preferred dairy-free treat; they may be related but are not explicitly the same entity.\"}", "prompt_tokens": 191, "completion_tokens": 185, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

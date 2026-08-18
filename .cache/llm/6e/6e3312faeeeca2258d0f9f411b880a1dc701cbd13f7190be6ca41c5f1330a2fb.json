@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":0,\"reason\":\"This memory is part of the same narrative about Deborah's mother and childhood recollections, so it should follow the memory about appreciating her mother after hearing stories.\"}", "prompt_tokens": 742, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

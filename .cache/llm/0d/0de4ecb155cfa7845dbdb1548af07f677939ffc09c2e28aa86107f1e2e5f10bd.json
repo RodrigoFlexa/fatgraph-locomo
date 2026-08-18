@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The wine-tasting with his girlfriend is another recent social outing ('last weekend') and fits the same outing/trip narrative as the fishing memory, so it should follow memory 1.\"}", "prompt_tokens": 452, "completion_tokens": 123, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

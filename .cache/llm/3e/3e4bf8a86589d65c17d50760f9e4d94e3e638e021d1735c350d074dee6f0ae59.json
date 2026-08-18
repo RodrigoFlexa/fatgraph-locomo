@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a photograph of a painting while the other is the painting itself (and describes a palm tree), so they are different entities.\"}", "prompt_tokens": 207, "completion_tokens": 240, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

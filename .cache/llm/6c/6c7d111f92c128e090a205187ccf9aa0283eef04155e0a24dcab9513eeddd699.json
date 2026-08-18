@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They record different facts: one describes his feelings about the film, the other describes who he watched it with.\"}", "prompt_tokens": 253, "completion_tokens": 113, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

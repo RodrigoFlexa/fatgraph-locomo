@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The booking updates the concrete travel plan that continues the August 22 note that he's heading to Boston after his tour, so it best fits immediately after memory 2.\"}", "prompt_tokens": 463, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

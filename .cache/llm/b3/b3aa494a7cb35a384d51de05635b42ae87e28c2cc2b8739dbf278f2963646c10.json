@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"The candidate says 'the game', not explicitly a tough win.\"}", "prompt_tokens": 359, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

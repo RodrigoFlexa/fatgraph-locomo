@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Insufficient evidence: 'other dog' is ambiguous and does not necessarily refer to the puppy (no explicit link provided).\"}", "prompt_tokens": 186, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

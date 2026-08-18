@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This detail continues the episode about designing the store interior (cozy and inviting), so it belongs immediately after the memory that states Gina designed the store interior.\"}", "prompt_tokens": 762, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

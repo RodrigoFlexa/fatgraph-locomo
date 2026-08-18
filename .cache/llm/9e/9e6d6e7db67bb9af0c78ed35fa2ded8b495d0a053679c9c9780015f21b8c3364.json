@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This expresses Gina's deep attachment to dance and continues the same thread as 'Gina uses dance as a stress fix,' so it should follow memory 0 in the dance-related narrative.\"}", "prompt_tokens": 756, "completion_tokens": 187, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

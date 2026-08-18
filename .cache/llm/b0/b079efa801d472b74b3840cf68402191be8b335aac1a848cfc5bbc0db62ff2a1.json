@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The album described as \\\"Calvin's album\\\" refers to the same individual Calvin who owns possessions and is mentioned in the aliases and facts.\"}", "prompt_tokens": 349, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

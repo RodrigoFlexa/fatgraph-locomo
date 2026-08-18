@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the specific festival being discussed (the nearby festival happening next month), so they denote the same event.\"}", "prompt_tokens": 200, "completion_tokens": 172, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

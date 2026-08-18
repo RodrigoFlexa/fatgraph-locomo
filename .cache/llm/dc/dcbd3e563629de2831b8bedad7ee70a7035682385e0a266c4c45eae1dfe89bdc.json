@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Evan’s support’ refers to something belonging to or associated with Evan (a support), not the person Evan himself.\"}", "prompt_tokens": 226, "completion_tokens": 237, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

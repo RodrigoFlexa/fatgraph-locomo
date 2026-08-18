@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Turtles are reptiles, consistent subset of the listed allergens.\"}", "prompt_tokens": 363, "completion_tokens": 224, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

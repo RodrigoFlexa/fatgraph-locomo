@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Owning a Prius in May and buying a (new) Prius in December can both be true (e.g., he owned one earlier and later purchased another).\"}", "prompt_tokens": 238, "completion_tokens": 310, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

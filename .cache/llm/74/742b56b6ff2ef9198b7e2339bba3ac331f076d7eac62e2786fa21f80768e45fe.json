@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"It generalizes from enjoying chess into a broader love of games, so it fits naturally after 'John is enjoying playing chess.'\"}", "prompt_tokens": 682, "completion_tokens": 303, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

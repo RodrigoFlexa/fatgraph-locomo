@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This photo of a bookshelf is the same episode as the shared photo of a table of books, so it should follow that memory to keep the book-photo narrative together.\"}", "prompt_tokens": 687, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

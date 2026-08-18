@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"mental health\\\" is a general field/concept while B refers to counseling or working within that field, so they are not the identical entity.\"}", "prompt_tokens": 262, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

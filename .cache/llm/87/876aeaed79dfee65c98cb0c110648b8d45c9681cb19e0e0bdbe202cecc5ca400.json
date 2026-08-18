@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a group including Melanie and others, while Mention B refers specifically to the individual Melanie.\"}", "prompt_tokens": 238, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

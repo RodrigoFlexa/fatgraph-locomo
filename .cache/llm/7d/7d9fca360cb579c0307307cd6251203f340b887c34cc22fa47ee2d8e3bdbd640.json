@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"B is described as the yoga studio that John attends and A explicitly names the yoga studio John goes to, so they refer to the same studio.\"}", "prompt_tokens": 180, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

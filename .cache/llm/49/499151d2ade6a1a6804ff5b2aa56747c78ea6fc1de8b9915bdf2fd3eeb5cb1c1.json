@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory is part of the same episode as the visit to her mother's old house and expresses a feeling experienced during that visit, so it should be placed immediately after the visit memory.\"}", "prompt_tokens": 745, "completion_tokens": 122, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

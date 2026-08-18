@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Evan's support’ refers to assistance or backing, while ‘a reminder of Evan's commitment’ refers to a physical reminder (e.g., his gym membership card), so they are different entities.\"}", "prompt_tokens": 188, "completion_tokens": 189, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

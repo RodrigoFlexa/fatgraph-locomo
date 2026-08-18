@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"It belongs in the injury/season thread as the event during a big game that led to his ankle injury last season, so insert it right after the memory about that injury.\"}", "prompt_tokens": 726, "completion_tokens": 185, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

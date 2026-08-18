@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This memory belongs to the same sushi episode about Andrew trying and sharing sushi (ties naturally to Audrey planning sushi and prompting Andrew to show his sushi photos).\"}", "prompt_tokens": 787, "completion_tokens": 308, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

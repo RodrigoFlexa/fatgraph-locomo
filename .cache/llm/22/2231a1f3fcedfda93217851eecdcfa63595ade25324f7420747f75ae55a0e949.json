@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory is a general personal-hobbies entry (leisure and fitness-adjacent) and fits narratively after 'Maria is keeping fit' as part of her personal lifestyle activities.\"}", "prompt_tokens": 577, "completion_tokens": 252, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

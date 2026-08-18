@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the combined group activity 'yoga and meditation with others' while B is the general activity 'meditation', so they are related but not the same entity.\"}", "prompt_tokens": 229, "completion_tokens": 119, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

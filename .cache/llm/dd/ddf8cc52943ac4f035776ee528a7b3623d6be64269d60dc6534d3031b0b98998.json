@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Both are said to have started businesses, matching 'Yes'.\"}", "prompt_tokens": 368, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

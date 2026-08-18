@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a specific event (a single session at a care home last week) while B describes a general ongoing practice of yoga and meditation over three years, so they are different entities.\"}", "prompt_tokens": 230, "completion_tokens": 122, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

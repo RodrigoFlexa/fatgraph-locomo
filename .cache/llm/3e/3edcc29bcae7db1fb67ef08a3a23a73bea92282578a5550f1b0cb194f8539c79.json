@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to Deborah performing the activity while B is the activity itself, so they are different entity types.\"}", "prompt_tokens": 186, "completion_tokens": 169, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

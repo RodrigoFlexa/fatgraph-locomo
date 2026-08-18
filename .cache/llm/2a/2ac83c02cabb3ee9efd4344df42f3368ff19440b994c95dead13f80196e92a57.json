@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The photo of a freshly groomed dog belongs in the grooming narrative and naturally follows 'Audrey grooms her pups herself.'\"}", "prompt_tokens": 768, "completion_tokens": 239, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

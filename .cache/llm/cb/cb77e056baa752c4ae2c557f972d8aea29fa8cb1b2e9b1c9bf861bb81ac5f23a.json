@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Saturday and Friday night are different days/times and cannot be the same event.\"}", "prompt_tokens": 177, "completion_tokens": 36, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

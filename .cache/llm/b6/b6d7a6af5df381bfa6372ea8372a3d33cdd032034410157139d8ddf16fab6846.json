@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same date exactly matches the reference.\"}", "prompt_tokens": 365, "completion_tokens": 91, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

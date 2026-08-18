@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The detail about his usual work hours belongs to his work-life context tied to his promotion and fits naturally after the memory that he was promoted to assistant manager.\"}", "prompt_tokens": 706, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

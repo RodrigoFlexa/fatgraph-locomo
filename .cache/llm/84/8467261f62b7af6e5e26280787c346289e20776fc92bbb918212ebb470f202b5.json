@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is an event (the tournament) and the other is a participant (the gaming team), so they are different entities.\"}", "prompt_tokens": 209, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

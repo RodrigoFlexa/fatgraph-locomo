@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to Audrey accompanied by her dogs (the same person and her dogs).\"}", "prompt_tokens": 276, "completion_tokens": 165, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

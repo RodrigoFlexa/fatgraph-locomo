@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"It continues the same gaming-with-partner episode, following the memory that they played Detroit last week and so belongs directly after that memory.\"}", "prompt_tokens": 835, "completion_tokens": 113, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

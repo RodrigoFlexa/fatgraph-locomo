@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This memory follows naturally from 'John grew up seeing lack of education affect his neighborhood' and continues the causal thread explaining his motivation to improve local education.\"}", "prompt_tokens": 725, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

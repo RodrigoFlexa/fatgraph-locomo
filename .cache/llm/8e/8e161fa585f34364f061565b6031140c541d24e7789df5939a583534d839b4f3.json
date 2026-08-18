@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states they moved in together; candidate claims not mentioned.\"}", "prompt_tokens": 379, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

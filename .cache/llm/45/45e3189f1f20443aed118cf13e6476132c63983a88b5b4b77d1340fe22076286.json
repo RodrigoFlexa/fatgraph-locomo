@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"This puppy clinic visit is a new, unrelated pet episode and should start its own face, so place it before the first memory to form a separate narrative.\"}", "prompt_tokens": 736, "completion_tokens": 245, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

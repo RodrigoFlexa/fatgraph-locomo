@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory continues the same Deborah-support thread already captured by memory 7, so inserting it after index 7 keeps it within that causal narrative.\"}", "prompt_tokens": 772, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

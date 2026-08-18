@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory reports John saying he appreciates Maria's support, which is consistent with the old memory that he appreciates her support.\"}", "prompt_tokens": 240, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

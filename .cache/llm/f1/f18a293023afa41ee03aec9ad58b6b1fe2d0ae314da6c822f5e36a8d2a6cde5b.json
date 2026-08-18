@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory is a direct restatement of John's motivation from his family and continues the same narrative thread about why he perseveres, so it belongs immediately after the John-centric memory at index 0.\"}", "prompt_tokens": 449, "completion_tokens": 126, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

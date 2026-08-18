@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new picnic photo is a family/outing image that continues the same episode as the man-and-child waterfall photo, so it belongs directly after memory 7 in that narrative.\"}", "prompt_tokens": 743, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

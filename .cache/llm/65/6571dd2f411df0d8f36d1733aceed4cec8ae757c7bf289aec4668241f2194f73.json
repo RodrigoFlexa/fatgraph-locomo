@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Balance in life’ is a broader concept than ‘relaxation/self-care’, so they are different concepts.\"}", "prompt_tokens": 210, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

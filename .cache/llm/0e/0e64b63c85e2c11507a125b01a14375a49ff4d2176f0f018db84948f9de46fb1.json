@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence that 'her' refers to Deborah or that the retreat mentioned was the same event described as near Deborah's mom's place last week.\"}", "prompt_tokens": 195, "completion_tokens": 179, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

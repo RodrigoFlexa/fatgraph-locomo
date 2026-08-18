@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A husband and a mother are distinct familial roles and the facts indicate Deborah's mother is deceased and separate from Deborah's husband.\"}", "prompt_tokens": 233, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Narratively the purchase follows repairing/selling the old Prius and should come before 'Evan owns a new Prius,' so insert it immediately after memory 2 to keep that causal thread.\"}", "prompt_tokens": 455, "completion_tokens": 379, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

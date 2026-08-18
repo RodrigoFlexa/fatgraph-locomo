@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"A photo of camera equipment on a beach most directly continues the episode about Calvin starting to shoot a video for a new album, so it belongs immediately after memory 4.\"}", "prompt_tokens": 769, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

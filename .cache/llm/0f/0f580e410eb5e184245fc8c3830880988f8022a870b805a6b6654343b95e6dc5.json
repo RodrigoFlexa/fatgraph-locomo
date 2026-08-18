@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A includes the person Audrey (and a volunteer's dog), while Mention B refers to Audrey's dogs (animals), so they are not the same entity.\"}", "prompt_tokens": 248, "completion_tokens": 180, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

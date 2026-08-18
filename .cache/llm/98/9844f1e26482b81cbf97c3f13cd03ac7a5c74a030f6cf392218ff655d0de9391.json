@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention specifies a yoga retreat and the other a meditation retreat, so they refer to different activities and thus different events.\"}", "prompt_tokens": 195, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

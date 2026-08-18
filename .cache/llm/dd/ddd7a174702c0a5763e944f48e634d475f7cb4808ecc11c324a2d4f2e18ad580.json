@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the retreat as a life-changing experience while B refers specifically to the nature at the retreat, which is a distinct aspect, not the same entity.\"}", "prompt_tokens": 182, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

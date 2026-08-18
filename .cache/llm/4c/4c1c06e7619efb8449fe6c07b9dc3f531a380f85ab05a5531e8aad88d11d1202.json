@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The new memory reflects John's emotional bond formed through the firefighting episode and best fits right after the 'helped save a family' memory in that same firefighting narrative.\"}", "prompt_tokens": 762, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

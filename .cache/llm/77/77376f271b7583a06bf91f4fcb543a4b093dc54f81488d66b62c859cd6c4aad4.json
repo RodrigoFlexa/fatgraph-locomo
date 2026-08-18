@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same group of people—Gina's customers (the customer base).\"}", "prompt_tokens": 202, "completion_tokens": 39, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

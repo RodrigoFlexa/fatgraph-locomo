@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They report two distinct facts about the same event (attendance and inspiration), so neither fully restates or contains the other.\"}", "prompt_tokens": 238, "completion_tokens": 115, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

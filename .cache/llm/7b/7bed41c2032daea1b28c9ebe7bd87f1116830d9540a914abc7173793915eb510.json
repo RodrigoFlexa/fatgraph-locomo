@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both memories state the same fact (Joanna is lactose intolerant), so there is no contradiction.\"}", "prompt_tokens": 238, "completion_tokens": 42, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

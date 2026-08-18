@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The belief about meditation directly continues the meditation-signup episode, so it belongs immediately after the memory about signing up for the retreat.\"}", "prompt_tokens": 771, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

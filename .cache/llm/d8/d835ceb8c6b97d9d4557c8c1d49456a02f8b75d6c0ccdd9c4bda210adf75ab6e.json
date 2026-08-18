@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same local yoga class (for her neighbors/in the neighborhood) and no conflicting details exist.\"}", "prompt_tokens": 187, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

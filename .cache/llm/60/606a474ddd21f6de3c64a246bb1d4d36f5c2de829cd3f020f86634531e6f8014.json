@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Deborah's family\\\" refers to a group of relatives, while \\\"Deborah's mother\\\" refers to a single specific person.\"}", "prompt_tokens": 218, "completion_tokens": 46, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

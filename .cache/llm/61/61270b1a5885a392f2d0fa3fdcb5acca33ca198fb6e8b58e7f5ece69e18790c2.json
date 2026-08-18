@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"No contradiction — the new memory is a more specific instance of Maria offering support to John.\"}", "prompt_tokens": 246, "completion_tokens": 104, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

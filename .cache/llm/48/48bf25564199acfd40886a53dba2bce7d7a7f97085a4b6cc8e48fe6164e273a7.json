@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":7,\"reason\":\"The new memory continues the local politics thread directly following 'John is looking into local politics,' so it belongs immediately after memory 7 to preserve the causal narrative.\"}", "prompt_tokens": 734, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

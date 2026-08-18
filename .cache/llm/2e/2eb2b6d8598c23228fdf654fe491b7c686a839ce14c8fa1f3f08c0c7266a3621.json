@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a friend of Deborah\\\" refers to another person related to Deborah, not Deborah herself.\"}", "prompt_tokens": 227, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

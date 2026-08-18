@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference gives Harry Potter; candidate says not mentioned.\"}", "prompt_tokens": 358, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

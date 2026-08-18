@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to Calvin's music (a possession/creative work) while the other refers to a group including Calvin and other artists, so they are different entities.\"}", "prompt_tokens": 185, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

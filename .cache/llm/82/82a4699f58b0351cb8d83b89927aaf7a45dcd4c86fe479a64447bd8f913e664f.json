@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a photo depiction of the dessert while B is the dessert itself, so they are not the same entity.\"}", "prompt_tokens": 338, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This statement fits immediately after the photo of her doing a yoga pose, continuing the same episode about her teaching and demonstrating yoga before mentioning sending tutorial videos.\"}", "prompt_tokens": 756, "completion_tokens": 180, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

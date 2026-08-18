@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same place (Bali), with B adding a time modifier 'last year'.\"}", "prompt_tokens": 176, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

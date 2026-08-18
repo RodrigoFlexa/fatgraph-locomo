@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits dragons; lists adventures, magic, and characters instead.\"}", "prompt_tokens": 361, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

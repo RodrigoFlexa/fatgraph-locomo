@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes a close-up photo of a ball on the ground with a hoop, while B describes a photo of a basketball game in a large arena, which are different scenes.\"}", "prompt_tokens": 204, "completion_tokens": 119, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same fact: Luna came from the shelter via adoption.\"}", "prompt_tokens": 364, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

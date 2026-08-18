@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Evan and Sam\\\" denotes a pair including Evan, not the single entity 'Evan' by itself.\"}", "prompt_tokens": 230, "completion_tokens": 170, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

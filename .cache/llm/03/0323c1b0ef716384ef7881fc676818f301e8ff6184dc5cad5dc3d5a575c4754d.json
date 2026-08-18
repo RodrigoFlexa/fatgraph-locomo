@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"Scheduling a community meeting naturally follows John talking to community leaders as part of his local politics work, continuing the same episode about organizing and outreach.\"}", "prompt_tokens": 725, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

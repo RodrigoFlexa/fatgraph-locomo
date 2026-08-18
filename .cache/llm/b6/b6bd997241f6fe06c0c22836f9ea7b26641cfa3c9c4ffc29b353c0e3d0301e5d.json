@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"another shelter\\\" implies a different shelter than the previously mentioned pet shelter, so they are not the same entity.\"}", "prompt_tokens": 177, "completion_tokens": 170, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

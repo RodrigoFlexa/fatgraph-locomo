@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory is a direct follow-up to attending the yoga retreat (same episode and causal impact), so it belongs immediately after the 'attended a yoga retreat' memory.\"}", "prompt_tokens": 730, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

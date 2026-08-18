@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Jon's business\\\" refers to a business owned by Jon, whereas \\\"Jon\\\" is the person, so they are different entities.\"}", "prompt_tokens": 227, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

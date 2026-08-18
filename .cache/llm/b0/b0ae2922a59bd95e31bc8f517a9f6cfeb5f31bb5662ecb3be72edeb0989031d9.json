@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"It belongs to the same bowling episode as memory 7 about James going bowling and fits naturally right after that memory in the narrative.\"}", "prompt_tokens": 741, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

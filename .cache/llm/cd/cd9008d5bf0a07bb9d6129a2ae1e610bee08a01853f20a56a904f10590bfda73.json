@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The photo of a chocolate tart with raspberries directly continues the episode about Joanna's dairy-free chocolate desserts with raspberries, so it belongs immediately after the memory about her making that cake.\"}", "prompt_tokens": 765, "completion_tokens": 187, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

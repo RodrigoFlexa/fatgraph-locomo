@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to multiple work friends while the other refers to a single new romantic partner, so they are different entities.\"}", "prompt_tokens": 241, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

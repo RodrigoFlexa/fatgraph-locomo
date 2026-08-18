@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Sam's weight is a property of the same person Sam (alias Sam's health) described in the facts.\"}", "prompt_tokens": 228, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

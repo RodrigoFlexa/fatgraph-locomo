@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Watching a film ~3 years ago does not conflict with later or earlier acquiring a physical copy, so both can be true.\"}", "prompt_tokens": 256, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

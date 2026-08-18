@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mention the person's allergies that prevent getting pets, so they refer to the same condition.\"}", "prompt_tokens": 188, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

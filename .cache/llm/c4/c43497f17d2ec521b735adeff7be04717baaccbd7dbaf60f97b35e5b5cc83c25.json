@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions clearly refer to the same dog named Toby (Andrew's puppy).\"}", "prompt_tokens": 212, "completion_tokens": 99, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

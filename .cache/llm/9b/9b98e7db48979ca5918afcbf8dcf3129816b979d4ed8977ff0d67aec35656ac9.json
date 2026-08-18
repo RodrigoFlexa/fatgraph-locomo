@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"The bicycle accident is a separate, later incident (different date and mechanism) and should start a new narrative rather than join the August soccer-accident trail.\"}", "prompt_tokens": 478, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

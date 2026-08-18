@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"No existing trail mentions travel, so placing it before the first memory keeps it as a separate travel narrative without breaking current story cycles.\"}", "prompt_tokens": 766, "completion_tokens": 176, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

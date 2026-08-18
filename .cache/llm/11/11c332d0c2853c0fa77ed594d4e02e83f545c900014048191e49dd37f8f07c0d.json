@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The old memory says Deborah's father died; the new memory says Deborah's mother is deceased—these can both be true and do not conflict.\"}", "prompt_tokens": 260, "completion_tokens": 179, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

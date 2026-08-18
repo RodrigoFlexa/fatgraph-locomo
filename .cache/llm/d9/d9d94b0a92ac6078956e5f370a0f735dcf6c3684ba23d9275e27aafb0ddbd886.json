@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate gives August 21, 2022, not September 2022.\"}", "prompt_tokens": 374, "completion_tokens": 101, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

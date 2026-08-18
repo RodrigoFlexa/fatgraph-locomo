@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both memories describe the same scene with no conflicting details.\"}", "prompt_tokens": 262, "completion_tokens": 33, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

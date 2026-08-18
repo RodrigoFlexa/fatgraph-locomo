@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A describes having seen the movies (an activity), while B refers to the physical whole movie collection (possession), so they are different entities.\"}", "prompt_tokens": 205, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

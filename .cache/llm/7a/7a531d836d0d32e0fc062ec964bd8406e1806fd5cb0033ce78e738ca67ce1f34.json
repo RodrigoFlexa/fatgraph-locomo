@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the brigade's members (people), while B refers to the brigade as an organization, so they are different referents.\"}", "prompt_tokens": 184, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

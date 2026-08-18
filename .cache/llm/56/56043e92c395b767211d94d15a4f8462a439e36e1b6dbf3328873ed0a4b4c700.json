@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions describe the same specific pendant that Jolene's mother gave her and which reminds her of her mother.\"}", "prompt_tokens": 190, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

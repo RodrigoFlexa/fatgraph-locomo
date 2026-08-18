@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too vague; doesn't give the specific title or authors.\"}", "prompt_tokens": 389, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

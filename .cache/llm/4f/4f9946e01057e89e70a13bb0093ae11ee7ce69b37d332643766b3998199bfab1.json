@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mention the same event—a dance competition next month; B just adds that it is near him, so they refer to the same competition.\"}", "prompt_tokens": 189, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Contradicts reference; candidate denies loneliness despite reference asserting it.\"}", "prompt_tokens": 386, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

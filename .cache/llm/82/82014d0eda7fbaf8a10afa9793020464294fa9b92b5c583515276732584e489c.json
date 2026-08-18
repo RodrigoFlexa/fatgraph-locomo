@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"At the same timestamp the memory asserts two different emotional states (excited vs anxious) that cannot both be the single recorded state.\"}", "prompt_tokens": 248, "completion_tokens": 176, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

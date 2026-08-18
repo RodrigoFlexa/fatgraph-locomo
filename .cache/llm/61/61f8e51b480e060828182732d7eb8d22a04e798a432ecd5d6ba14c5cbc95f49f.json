@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The lists overlap but are not the same set of items (A includes almond flour and coconut oil, B lists coconut and lacks almond flour).\"}", "prompt_tokens": 194, "completion_tokens": 240, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

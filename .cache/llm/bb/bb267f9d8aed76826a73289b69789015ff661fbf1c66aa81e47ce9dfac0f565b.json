@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a person (a friend of Deborah) while the other is a photo shared by Deborah, so they cannot be the same entity.\"}", "prompt_tokens": 185, "completion_tokens": 49, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

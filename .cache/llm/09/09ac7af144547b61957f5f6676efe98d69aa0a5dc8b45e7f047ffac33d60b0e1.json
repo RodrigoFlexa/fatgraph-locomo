@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Dates span about two months, not nearly three months.\"}", "prompt_tokens": 377, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

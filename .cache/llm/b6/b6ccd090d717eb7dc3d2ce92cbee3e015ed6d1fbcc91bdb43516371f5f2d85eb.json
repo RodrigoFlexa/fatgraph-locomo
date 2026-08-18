@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory continues the same episode about Deborah's yoga—after she started a yoga class, she then shares the exercise with her neighbors, fitting the causal/threaded yoga trail.\"}", "prompt_tokens": 768, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

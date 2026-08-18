@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Adds studying as an additional reason; reference only cites video games.\"}", "prompt_tokens": 368, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

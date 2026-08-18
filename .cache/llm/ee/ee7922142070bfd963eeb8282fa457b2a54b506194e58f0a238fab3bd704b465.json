@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new memory directly continues the cooking class thread (Sam learning to make healthier meals), so it belongs immediately after the existing 'Sam is taking a cooking class' memory.\"}", "prompt_tokens": 832, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate mentions only bouquet, omits letter and quote.\"}", "prompt_tokens": 374, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

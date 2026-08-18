@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory adds detail (lactose-free) and past tense but still involves coconut milk, so it does not contradict the old memory.\"}", "prompt_tokens": 243, "completion_tokens": 115, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

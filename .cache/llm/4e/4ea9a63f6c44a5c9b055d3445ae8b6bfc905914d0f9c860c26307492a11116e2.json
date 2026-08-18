@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"tournaments\\\" refers to the same set of three previous gaming tournaments already described.\"}", "prompt_tokens": 194, "completion_tokens": 164, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

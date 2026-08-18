@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a set of cafes located in the city, not the city itself (Rio de Janeiro).\"}", "prompt_tokens": 180, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Sam's note\\\" is an object belonging to Sam, not the person Sam themselves.\"}", "prompt_tokens": 227, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

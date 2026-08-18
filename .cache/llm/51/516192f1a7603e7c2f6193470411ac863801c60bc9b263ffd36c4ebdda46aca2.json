@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to the theme (self-discovery) within Joanna's script while B refers to the script itself, so they are different entities.\"}", "prompt_tokens": 184, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

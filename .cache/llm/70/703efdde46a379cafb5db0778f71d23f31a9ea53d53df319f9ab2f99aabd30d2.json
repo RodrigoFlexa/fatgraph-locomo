@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A childhood tinkering in his dad's garage refers to a place/activity (or engines there), not the specific neighbor's car engine mentioned later.\"}", "prompt_tokens": 189, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

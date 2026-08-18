@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate names a game, not a woman seen on a walk.\"}", "prompt_tokens": 371, "completion_tokens": 33, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

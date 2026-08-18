@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This statement directly qualifies the plan to team up with local schools and centers, so it belongs immediately after the memory about her planning to run workshops.\"}", "prompt_tokens": 776, "completion_tokens": 115, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a general plural category of meetings while the other is a specific single meeting next week, so they are not the same entity.\"}", "prompt_tokens": 205, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

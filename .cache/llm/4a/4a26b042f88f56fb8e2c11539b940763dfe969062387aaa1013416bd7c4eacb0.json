@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory mentions Maria and family support, matching the trail that follows memory 1 about John recalling a vacation with Maria and family support.\"}", "prompt_tokens": 394, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

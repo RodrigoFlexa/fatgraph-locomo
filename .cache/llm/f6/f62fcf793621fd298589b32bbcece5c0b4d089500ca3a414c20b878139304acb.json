@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The hummingbird sighting is a nature/hike moment that continues the same episode of finding renewal in outdoor walks described in memory 5, so it belongs directly after that memory.\"}", "prompt_tokens": 768, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to photos (images) while the other refers to a physical house, so they are different entities.\"}", "prompt_tokens": 303, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

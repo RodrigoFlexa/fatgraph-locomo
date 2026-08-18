@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"A living room owned by or associated with Calvin refers to the same person named Calvin.\"}", "prompt_tokens": 252, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

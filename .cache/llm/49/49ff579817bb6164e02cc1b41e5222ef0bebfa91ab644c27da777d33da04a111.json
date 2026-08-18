@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"The new memory is about attending a yoga retreat, which continues the same yoga/meditation thread that follows memory 3 about Deborah practicing yoga and meditation.\"}", "prompt_tokens": 749, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits the game design course; only mentions cooking class.\"}", "prompt_tokens": 361, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to Audrey's affection (an abstract sentiment), while Mention B refers to the actual dogs (concrete animals), so they are different entities.\"}", "prompt_tokens": 240, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

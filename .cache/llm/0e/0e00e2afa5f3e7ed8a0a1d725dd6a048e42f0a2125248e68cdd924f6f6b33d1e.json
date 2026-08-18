@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate date is one day later than reference.\"}", "prompt_tokens": 369, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

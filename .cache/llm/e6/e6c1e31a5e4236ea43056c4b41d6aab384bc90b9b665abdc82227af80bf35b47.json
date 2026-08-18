@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘nature at the yoga retreat’ refers to experiencing nature at a retreat, while ‘yoga on the beach’ is a specific yoga activity in a beach setting, so they are different referents.\"}", "prompt_tokens": 184, "completion_tokens": 124, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

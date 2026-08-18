@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions describe the same project (different adjectival descriptions of the same project referenced in the conversation).\"}", "prompt_tokens": 217, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

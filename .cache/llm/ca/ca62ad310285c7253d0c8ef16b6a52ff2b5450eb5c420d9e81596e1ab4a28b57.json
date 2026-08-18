@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory references John and fits the trail that already connects Maria's volunteering plans to John's related beliefs, so it belongs after memory 4.\"}", "prompt_tokens": 690, "completion_tokens": 179, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

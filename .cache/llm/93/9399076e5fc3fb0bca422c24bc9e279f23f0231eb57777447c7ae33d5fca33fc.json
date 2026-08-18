@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence linking the generic 'a lake in the mountains' to the specific 'nearby lake' mentioned, so they cannot be assumed to be the same.\"}", "prompt_tokens": 182, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

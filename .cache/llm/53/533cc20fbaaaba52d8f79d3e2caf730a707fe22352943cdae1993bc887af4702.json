@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same event (military memorial visit) and timing.\"}", "prompt_tokens": 376, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

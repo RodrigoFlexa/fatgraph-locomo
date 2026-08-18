@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"pets\\\" is a general category while \\\"cats instead of dogs\\\" refers to a specific type of pet, not the same single entity.\"}", "prompt_tokens": 182, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

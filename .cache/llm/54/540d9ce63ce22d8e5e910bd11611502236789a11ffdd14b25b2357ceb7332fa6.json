@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same first game John released to the gaming community, which is his first mobile game.\"}", "prompt_tokens": 222, "completion_tokens": 170, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

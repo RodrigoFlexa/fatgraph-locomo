@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same Jon, as facts state Jon has been into dancing since he was a kid, matching 'Jon since childhood'.\"}", "prompt_tokens": 230, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

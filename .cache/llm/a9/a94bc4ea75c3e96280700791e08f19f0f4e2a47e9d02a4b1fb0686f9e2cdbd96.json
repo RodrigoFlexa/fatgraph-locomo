@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different facts: stuffed animal Tilly versus nature; not matching.\"}", "prompt_tokens": 368, "completion_tokens": 33, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

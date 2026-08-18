@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The promotion is a work/career event that continues the thread about John being motivated by his workmates and professional developments, so it fits narratively immediately after that memory.\"}", "prompt_tokens": 749, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same item: a painting of a castle.\"}", "prompt_tokens": 372, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

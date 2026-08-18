@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A son is a different person from Evan, not an alias or alternate name for him.\"}", "prompt_tokens": 224, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

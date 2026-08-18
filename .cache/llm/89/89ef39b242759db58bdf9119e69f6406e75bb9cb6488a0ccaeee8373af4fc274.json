@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The possessive phrase refers to an attribute of the same person Jolene, so both mention the same entity.\"}", "prompt_tokens": 263, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

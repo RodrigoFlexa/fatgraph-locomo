@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"encouraging and inspiring\\\" is an adjectival description, while \\\"words of encouragement\\\" refers to the actual supportive utterances, so they are different mentions.\"}", "prompt_tokens": 182, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

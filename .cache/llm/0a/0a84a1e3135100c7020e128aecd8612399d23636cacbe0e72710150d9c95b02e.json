@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is a statement by John about school children, while B refers to the school children's dreams (the concept) and not the speaker.\"}", "prompt_tokens": 195, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

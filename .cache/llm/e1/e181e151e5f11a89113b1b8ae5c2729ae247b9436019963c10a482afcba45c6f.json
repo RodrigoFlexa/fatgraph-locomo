@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":7,\"reason\":\"A trophy commemorating his journey fits the narrative of his promotion and subsequent milestones (the trail starting at 'John was promoted to assistant manager'), so it should be placed immediately after that memory.\"}", "prompt_tokens": 741, "completion_tokens": 313, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

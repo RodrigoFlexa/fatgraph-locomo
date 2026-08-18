@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"A photograph of a group looking at a map suggests trip planning and naturally connects to a subsequent narrative about Maria going on a camping trip with friends, keeping the social/outdoor episode together.\"}", "prompt_tokens": 781, "completion_tokens": 251, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

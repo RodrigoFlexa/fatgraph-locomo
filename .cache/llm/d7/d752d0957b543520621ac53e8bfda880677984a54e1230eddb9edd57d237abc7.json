@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same name given; adds consistent age and relation.\"}", "prompt_tokens": 362, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

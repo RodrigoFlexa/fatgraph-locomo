@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a car project\\\" refers to a specific project, while \\\"cars\\\" is a general category and not the same entity.\"}", "prompt_tokens": 196, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

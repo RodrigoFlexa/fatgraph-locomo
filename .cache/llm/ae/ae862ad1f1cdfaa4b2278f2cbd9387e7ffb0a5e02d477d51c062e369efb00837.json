@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is the concept 'strength training' while B is a full claim about it ('strength training builds muscle'), so they are not the same entity.\"}", "prompt_tokens": 178, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

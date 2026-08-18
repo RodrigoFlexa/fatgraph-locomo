@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Gina's support\\\" refers to something possessed or provided by the person Gina, so both mentions denote the same individual Gina.\"}", "prompt_tokens": 229, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A youth center is an organization/place while a counseling workshop is a specific event, so they are different kinds of entities.\"}", "prompt_tokens": 203, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

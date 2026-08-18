@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":0,\"reason\":\"A photo of champagne implies a celebratory moment tied to Jon starting his business, so it belongs immediately after the memory that he started a business.\"}", "prompt_tokens": 783, "completion_tokens": 240, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

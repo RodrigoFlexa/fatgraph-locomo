@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory is a direct consequence of Sam being mocked last Friday and continues that same emotional/behavioral thread, so it belongs immediately after memory 6 in the trail.\"}", "prompt_tokens": 765, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

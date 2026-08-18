@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a group of Evan's colleagues (work friends) and the other is a single romantic partner, so they are different entities.\"}", "prompt_tokens": 205, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

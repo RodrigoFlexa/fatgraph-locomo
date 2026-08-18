@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"local education\\\" is a specific subset/qualifier of the general concept \\\"education\\\", not an alias of the same entity.\"}", "prompt_tokens": 172, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

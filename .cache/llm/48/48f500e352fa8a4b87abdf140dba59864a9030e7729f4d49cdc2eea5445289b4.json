@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both descriptions refer to the same signed basketball (the basketball signed by his favorite player).\"}", "prompt_tokens": 201, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

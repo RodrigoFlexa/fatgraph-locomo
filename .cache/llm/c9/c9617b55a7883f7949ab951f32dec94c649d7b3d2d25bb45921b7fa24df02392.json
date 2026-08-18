@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":0,\"reason\":\"This new memory continues the same pet ownership narrative (adopting a dog connects directly to the existing memory that Andrew owns two dogs) so it belongs immediately after memory 0.\"}", "prompt_tokens": 798, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

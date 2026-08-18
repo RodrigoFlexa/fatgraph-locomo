@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory adds context (lost her job) but does not conflict with the original fact that Gina opened an online clothes store.\"}", "prompt_tokens": 245, "completion_tokens": 112, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

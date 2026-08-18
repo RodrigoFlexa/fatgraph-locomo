@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The dog photo was shared during the same May 8 support-group session and fits the social/episodic thread about that meeting (group reactions and moments), so insert it after memory 4.\"}", "prompt_tokens": 608, "completion_tokens": 254, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

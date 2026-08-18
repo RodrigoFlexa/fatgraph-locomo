@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to multiple parks that allow leashed dogs, while B is a single specific dog park, so they are not the same entity.\"}", "prompt_tokens": 188, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

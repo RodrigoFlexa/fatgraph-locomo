@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"States the same duration: five years (just different wording).\"}", "prompt_tokens": 358, "completion_tokens": 32, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

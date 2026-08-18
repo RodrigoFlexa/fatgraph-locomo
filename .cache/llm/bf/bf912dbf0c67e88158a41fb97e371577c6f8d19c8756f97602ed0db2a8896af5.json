@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The earlier note that Jon is starting a dance studio can legitimately lead to him having one later, so this is a change over time rather than a contradiction.\"}", "prompt_tokens": 240, "completion_tokens": 117, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

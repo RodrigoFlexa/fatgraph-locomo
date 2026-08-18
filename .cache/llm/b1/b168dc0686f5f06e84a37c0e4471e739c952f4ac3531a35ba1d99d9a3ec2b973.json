@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Last year refers to 2025, not 2022.\"}", "prompt_tokens": 359, "completion_tokens": 289, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

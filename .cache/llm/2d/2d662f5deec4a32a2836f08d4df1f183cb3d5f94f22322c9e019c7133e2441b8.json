@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"'Jon joy' is a variant/epithet of 'Jon' (similar to known alias 'Jon happy'), so they refer to the same person\"}", "prompt_tokens": 226, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

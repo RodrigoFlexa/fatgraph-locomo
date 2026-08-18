@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A neighborhood 5K and a 5K benefiting a homeless shelter could be different events and there is no explicit link asserting they are the same.\"}", "prompt_tokens": 219, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

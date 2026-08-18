@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The Marley flooring detail directly follows finding a studio with great natural light on 29 Jan and belongs to the same studio-planning narrative, so insert it immediately after memory 0.\"}", "prompt_tokens": 786, "completion_tokens": 251, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

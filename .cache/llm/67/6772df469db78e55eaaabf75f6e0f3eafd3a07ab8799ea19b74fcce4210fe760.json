@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says absent though reference gives 'Winning a championship'.\"}", "prompt_tokens": 363, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

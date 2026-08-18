@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"It fits the ongoing Joanna episode (invitation -> acceptance -> Nate supporting Joanna) so it belongs directly after the acceptance in that causal/social thread.\"}", "prompt_tokens": 744, "completion_tokens": 179, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The new memory reports John saying what matches the old fact, so it does not contradict it.\"}", "prompt_tokens": 240, "completion_tokens": 41, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

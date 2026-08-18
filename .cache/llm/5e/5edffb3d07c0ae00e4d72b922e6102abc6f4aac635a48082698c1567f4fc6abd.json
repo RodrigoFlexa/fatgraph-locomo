@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions daily brushing; omits baths, nail trims, and love.\"}", "prompt_tokens": 376, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

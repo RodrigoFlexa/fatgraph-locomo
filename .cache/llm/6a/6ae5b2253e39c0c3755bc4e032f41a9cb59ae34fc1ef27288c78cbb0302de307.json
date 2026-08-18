@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This detail directly continues the finished-screenplay episode (3 June) by reporting that parts of that script appeared on the big screen on 4 June, so it belongs right after the 'Joanna finished a screenplay' memory.\"}", "prompt_tokens": 754, "completion_tokens": 259, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

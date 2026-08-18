@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a group of three (Max, Daisy, and Ned) while B refers only to the two dogs Max and Daisy, so the mentions are not the same entity.\"}", "prompt_tokens": 187, "completion_tokens": 313, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

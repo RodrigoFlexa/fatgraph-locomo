@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This memory belongs to the same 'watching movies' narrative as the existing 'Nate unwinds by watching movies' entry, so insert it right after index 2.\"}", "prompt_tokens": 748, "completion_tokens": 313, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

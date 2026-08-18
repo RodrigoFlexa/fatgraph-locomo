@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to an apartment located near the bar while the other is the bar (McGee's Pub) itself, so they are different entities.\"}", "prompt_tokens": 205, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

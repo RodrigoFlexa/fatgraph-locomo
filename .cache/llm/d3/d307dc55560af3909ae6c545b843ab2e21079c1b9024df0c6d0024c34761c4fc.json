@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"A marching event for veterans' rights is a public gathering like the live music event and fits the same episode of John attending community/family events.\"}", "prompt_tokens": 731, "completion_tokens": 243, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

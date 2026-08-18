@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same ingredients; 'pinch of salt' is consistent with salt.\"}", "prompt_tokens": 380, "completion_tokens": 98, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

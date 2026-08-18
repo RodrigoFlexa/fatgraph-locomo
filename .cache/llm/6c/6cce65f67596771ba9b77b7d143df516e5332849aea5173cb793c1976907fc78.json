@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This new memory continues the adoption-related episode (attending an adoption advice/assistance group follows logically after applying to and researching adoption agencies).\"}", "prompt_tokens": 687, "completion_tokens": 114, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

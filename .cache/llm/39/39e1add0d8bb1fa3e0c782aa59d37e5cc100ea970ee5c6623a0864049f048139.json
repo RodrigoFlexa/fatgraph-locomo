@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to recurring activities (gaming sessions) while the other refers to a specific project combining programming and gaming, so they are different entities.\"}", "prompt_tokens": 190, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

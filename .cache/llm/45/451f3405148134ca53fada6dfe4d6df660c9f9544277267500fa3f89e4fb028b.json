@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions clearly refer to the same individual James (the phrasing in A is simply a situational description of James).\"}", "prompt_tokens": 254, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

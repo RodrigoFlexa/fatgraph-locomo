@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory is a specific moment from the same beach outing with her kids, so it belongs directly after 'Melanie went to the beach recently with her kids.' in the narrative.\"}", "prompt_tokens": 747, "completion_tokens": 123, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

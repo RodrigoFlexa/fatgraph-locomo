@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to Nate's pet fish, the other to Nate the person, so they are different entities.\"}", "prompt_tokens": 249, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: Deborah's mother could have sung lullabies during her life and later passed away when Deborah took in Max.\"}", "prompt_tokens": 252, "completion_tokens": 176, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

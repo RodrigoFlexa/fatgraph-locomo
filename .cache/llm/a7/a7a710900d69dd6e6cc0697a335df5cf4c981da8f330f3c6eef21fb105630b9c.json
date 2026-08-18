@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits walks and exploring; only mentions worries and hopes.\"}", "prompt_tokens": 379, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

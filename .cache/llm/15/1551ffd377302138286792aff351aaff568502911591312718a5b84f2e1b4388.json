@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The events occur at different times and can both be true (no logical conflict).\"}", "prompt_tokens": 256, "completion_tokens": 166, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

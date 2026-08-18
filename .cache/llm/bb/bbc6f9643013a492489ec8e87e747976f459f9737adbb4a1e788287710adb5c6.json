@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to Calvin's music (a creative work) while the other refers to Calvin performing (the person/event), so they are different entities.\"}", "prompt_tokens": 189, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same activity—discussing current events and politics with neighbors, just worded differently.\"}", "prompt_tokens": 190, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

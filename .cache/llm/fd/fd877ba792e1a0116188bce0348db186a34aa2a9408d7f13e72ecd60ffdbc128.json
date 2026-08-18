@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"At the same timestamp one memory says Jon is only aiming to make his dancing a business while the other says he is already running a business, which cannot both be true.\"}", "prompt_tokens": 248, "completion_tokens": 248, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The new memory is a heartfelt reflection tied to recent family events (dinner, making pizza, road trip), so it belongs in the family narrative immediately after 'John made pizza with his family.'\"}", "prompt_tokens": 755, "completion_tokens": 253, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

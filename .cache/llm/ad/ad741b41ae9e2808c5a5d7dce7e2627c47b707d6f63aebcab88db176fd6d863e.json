@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Sending a recipe to Joanna does not conflict with Nate supporting her and can co-occur or reflect additional detail.\"}", "prompt_tokens": 242, "completion_tokens": 44, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

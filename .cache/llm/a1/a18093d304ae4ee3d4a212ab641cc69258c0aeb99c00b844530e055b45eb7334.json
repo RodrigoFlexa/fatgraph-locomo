@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new memory causally precedes John joining the fire‑fighting brigade and links Maria's shelter work to that action, so placing it before memory 2 (i.e., after index 1) keeps the causal thread intact.\"}", "prompt_tokens": 764, "completion_tokens": 517, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

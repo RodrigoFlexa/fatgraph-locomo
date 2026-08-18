@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The photo of a desk documents John's workspace and fits the thread about him bringing work home and his home-office setup.\"}", "prompt_tokens": 707, "completion_tokens": 173, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

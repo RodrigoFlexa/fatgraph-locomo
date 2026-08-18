@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"healthier\\\" is a shorthand mention of the same state/activity described as \\\"a diet and living healthier\\\" (becoming/staying healthier).\"}", "prompt_tokens": 206, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

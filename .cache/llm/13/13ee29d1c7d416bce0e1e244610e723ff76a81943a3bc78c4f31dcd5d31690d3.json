@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They state different ages (5 vs 8) and B is identified as Max age 8, so they cannot be the same entity.\"}", "prompt_tokens": 177, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

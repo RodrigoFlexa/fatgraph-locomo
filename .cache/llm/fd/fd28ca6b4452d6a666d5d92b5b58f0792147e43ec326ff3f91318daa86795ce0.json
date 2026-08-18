@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This detail about preferring a smaller dog is part of the dog-adoption episode that follows 'has been looking for a dog to adopt' and naturally precedes the specific shared photograph memory.\"}", "prompt_tokens": 755, "completion_tokens": 124, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

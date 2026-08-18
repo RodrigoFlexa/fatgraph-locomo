@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning: both indicate dancing as destressing activity.\"}", "prompt_tokens": 358, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

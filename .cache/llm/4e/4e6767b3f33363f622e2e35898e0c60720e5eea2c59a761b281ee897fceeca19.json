@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The yoga photo continues the fitness/exercise thread directly after 'John has done weight training,' so it fits narratively in that trail.\"}", "prompt_tokens": 760, "completion_tokens": 177, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

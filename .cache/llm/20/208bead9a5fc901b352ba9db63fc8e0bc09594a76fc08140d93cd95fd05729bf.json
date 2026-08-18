@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new memory is part of the same volunteering-at-a-homeless-shelter episode as memory 6, so placing it immediately after 'Maria volunteers at a homeless shelter' keeps that causal/narrative thread together.\"}", "prompt_tokens": 744, "completion_tokens": 259, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

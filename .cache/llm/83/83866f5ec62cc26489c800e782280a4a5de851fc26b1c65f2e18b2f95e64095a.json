@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence that Dave is Calvin's old high school buddy who will see him perform in Boston.\"}", "prompt_tokens": 195, "completion_tokens": 169, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

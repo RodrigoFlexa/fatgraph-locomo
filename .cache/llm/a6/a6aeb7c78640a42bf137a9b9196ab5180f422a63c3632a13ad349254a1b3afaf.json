@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"Organizing the tournament is causally prior to and contextually part of the same tournament episode (leading into James meeting the team and getting autographs), so place it before the first memory.\"}", "prompt_tokens": 430, "completion_tokens": 252, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

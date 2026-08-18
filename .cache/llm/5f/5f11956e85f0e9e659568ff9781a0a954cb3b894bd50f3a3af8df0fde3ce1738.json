@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Vague: doesn't specify she is a transgender woman.\"}", "prompt_tokens": 358, "completion_tokens": 223, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

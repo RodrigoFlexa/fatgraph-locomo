@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘charitable foundation’ is a specific type/organization while ‘charity’ is a general term and not necessarily the same entity.\"}", "prompt_tokens": 179, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new self-care detail continues the same thread from the initial note that she has been practicing yoga and meditation and naturally fits between the statement of practice (0) and finding it helpful (1).\"}", "prompt_tokens": 408, "completion_tokens": 189, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

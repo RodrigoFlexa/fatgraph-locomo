@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"Not redundant because 'has not looked yet' implies 'has not found' but not vice versa, so they convey different information.\"}", "prompt_tokens": 244, "completion_tokens": 181, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

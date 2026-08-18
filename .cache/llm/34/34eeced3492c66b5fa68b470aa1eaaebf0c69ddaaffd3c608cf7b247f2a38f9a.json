@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It continues the family-outdoors thread (values family -> walked a trail -> loves camping trips with family), so placing it after the walking-on-trail memory keeps the narrative coherent.\"}", "prompt_tokens": 758, "completion_tokens": 314, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

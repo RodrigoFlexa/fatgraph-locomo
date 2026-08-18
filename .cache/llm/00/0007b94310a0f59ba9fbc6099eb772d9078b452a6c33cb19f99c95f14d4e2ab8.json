@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": -1, \"reason\": \"The visit is a separate event (who visited when) unrelated to the existing beer-reporting trail, so insert it before the first memory to start its own narrative.\"}", "prompt_tokens": 492, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

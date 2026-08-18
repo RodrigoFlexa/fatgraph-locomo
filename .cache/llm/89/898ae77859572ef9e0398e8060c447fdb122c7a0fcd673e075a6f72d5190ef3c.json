@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The picnic is a family episode that fits the same family-return narrative (the face mentioning the family road trip), so place it adjacent to memories (6/7) that reference returning from a family trip.\"}", "prompt_tokens": 746, "completion_tokens": 511, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

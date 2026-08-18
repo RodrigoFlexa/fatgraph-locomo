@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"amazing tour\\\" is a described instance of the same 'tour' entity mentioned.\"}", "prompt_tokens": 176, "completion_tokens": 37, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

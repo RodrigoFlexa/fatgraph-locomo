@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The fire pit photo is most naturally part of the same camping trip narrative, so place it immediately after the memory that states she went on a camping trip with her family.\"}", "prompt_tokens": 751, "completion_tokens": 440, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Reaching the top is part of the same hike episode that follows Maria wanting to make connections and precedes her sharing photos, so it belongs immediately after memory 1.\"}", "prompt_tokens": 379, "completion_tokens": 376, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

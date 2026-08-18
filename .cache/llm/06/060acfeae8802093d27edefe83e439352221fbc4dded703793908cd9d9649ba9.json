@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too vague; doesn't mention roasting marshmallows or telling stories.\"}", "prompt_tokens": 367, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

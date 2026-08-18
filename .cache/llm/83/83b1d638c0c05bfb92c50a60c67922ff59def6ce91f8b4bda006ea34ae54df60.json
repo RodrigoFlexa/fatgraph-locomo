@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A names the business (the store) while Mention B refers to the style/attribute of that store, not the business itself.\"}", "prompt_tokens": 203, "completion_tokens": 367, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

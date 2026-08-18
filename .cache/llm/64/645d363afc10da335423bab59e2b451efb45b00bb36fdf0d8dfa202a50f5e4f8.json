@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They record different facts: one notes seeing glaciers on a road trip, the other documents photographing and sharing an image of a glacier.\"}", "prompt_tokens": 236, "completion_tokens": 181, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

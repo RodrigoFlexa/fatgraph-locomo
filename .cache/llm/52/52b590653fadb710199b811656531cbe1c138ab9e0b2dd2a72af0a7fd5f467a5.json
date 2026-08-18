@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information phrased as a full sentence.\"}", "prompt_tokens": 359, "completion_tokens": 29, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

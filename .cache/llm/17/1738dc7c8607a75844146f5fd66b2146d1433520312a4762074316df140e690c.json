@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"The first is a specific promise to send a tutorial video, while the second is a general statement that Deborah teaches yoga, so they convey different information.\"}", "prompt_tokens": 240, "completion_tokens": 185, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

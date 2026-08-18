@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is insufficient evidence to link the specific date 18 August 2023 to the vague time phrase 'last weekend', so they cannot be confirmed as the same.\"}", "prompt_tokens": 193, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

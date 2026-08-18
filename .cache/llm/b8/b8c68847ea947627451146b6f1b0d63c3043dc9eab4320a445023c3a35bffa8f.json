@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The photo of a basketball game fits the same basketball episode as 'Last week John had a basketball game' and belongs directly after that memory in the game-focused narrative.\"}", "prompt_tokens": 724, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

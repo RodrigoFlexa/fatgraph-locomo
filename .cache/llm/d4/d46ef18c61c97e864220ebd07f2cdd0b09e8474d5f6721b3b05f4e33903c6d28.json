@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate is vague; doesn't mention dance and fashion explicitly.\"}", "prompt_tokens": 368, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

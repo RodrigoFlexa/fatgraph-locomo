@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They state different facts: one that John obtained the job and one that his start date is next month.\"}", "prompt_tokens": 233, "completion_tokens": 176, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

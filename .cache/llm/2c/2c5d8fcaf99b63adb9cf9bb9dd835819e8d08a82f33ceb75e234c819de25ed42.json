@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory is about an event at the same homeless shelter and fits naturally after the note that Maria volunteers there, keeping related shelter activities together.\"}", "prompt_tokens": 466, "completion_tokens": 307, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

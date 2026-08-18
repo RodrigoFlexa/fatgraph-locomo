@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This thought is part of the same art-show episode linking the visit to reflections about her deceased mother, so it should follow the 'visited an art show' memory and lead into being reminded of her mother.\"}", "prompt_tokens": 778, "completion_tokens": 255, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

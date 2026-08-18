@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This memory causally precedes and explains why John would respond to the email about the volunteer gig, so it belongs immediately before the receipt-of-email memory in that trail.\"}", "prompt_tokens": 755, "completion_tokens": 312, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

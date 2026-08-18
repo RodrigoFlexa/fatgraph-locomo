@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"B includes additional information about a (different-dated) community event and attributes not present in A, so they are not fully redundant.\"}", "prompt_tokens": 274, "completion_tokens": 374, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

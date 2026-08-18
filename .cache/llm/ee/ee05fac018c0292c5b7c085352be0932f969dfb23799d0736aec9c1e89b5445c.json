@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A therapy is the treatment type while a therapy appointment is a specific scheduled event, so they are different entities.\"}", "prompt_tokens": 178, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

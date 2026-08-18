@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states she joined a dog owners group; candidate denies it.\"}", "prompt_tokens": 371, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

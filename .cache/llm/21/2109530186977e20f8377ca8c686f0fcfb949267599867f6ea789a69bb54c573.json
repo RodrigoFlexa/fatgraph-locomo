@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A photo is an object depicting John’s family, not the family itself.\"}", "prompt_tokens": 223, "completion_tokens": 35, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

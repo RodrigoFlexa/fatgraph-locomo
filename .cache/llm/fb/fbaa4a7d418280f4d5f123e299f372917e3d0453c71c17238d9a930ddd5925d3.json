@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence they are the same event — one is described as a camping trip, the other as a yoga retreat with buddies, which may overlap but are not confirmed identical.\"}", "prompt_tokens": 228, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

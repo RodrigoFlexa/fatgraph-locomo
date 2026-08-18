@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches meaning: Evan loses his keys weekly.\"}", "prompt_tokens": 365, "completion_tokens": 157, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

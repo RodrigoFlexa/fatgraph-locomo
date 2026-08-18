@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different gift type — outdoor gear versus healthy-cooking/meal service.\"}", "prompt_tokens": 391, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

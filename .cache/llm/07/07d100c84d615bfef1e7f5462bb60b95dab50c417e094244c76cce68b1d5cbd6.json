@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The second person differs (Samantha vs Max), so the two mentions refer to different entities.\"}", "prompt_tokens": 186, "completion_tokens": 103, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

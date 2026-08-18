@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same card game about cats, with A adding the extra context that Jolene played it.\"}", "prompt_tokens": 201, "completion_tokens": 43, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

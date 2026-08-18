@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"It directly follows the practice-of-yoga episode as an immediate effect (alertness/motivation), so it belongs after the 'Jolene practices yoga' memory.\"}", "prompt_tokens": 759, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

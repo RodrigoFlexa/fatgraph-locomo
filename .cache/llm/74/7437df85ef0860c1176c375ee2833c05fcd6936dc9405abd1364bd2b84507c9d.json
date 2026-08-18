@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"Taking a cooking class directly continues Sam's efforts to eat healthier and follows the memory about reducing soda and candy, so it belongs immediately after that diet-related memory.\"}", "prompt_tokens": 826, "completion_tokens": 438, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to parks themselves while B refers to a place located near a park or woods, so they are different entities.\"}", "prompt_tokens": 203, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

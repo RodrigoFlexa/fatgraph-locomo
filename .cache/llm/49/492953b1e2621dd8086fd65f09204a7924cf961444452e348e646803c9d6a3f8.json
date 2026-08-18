@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"A photo of a dark street at night most naturally belongs to the same episode as the recent power cut (index 4) and would be part of that causal/episodic trail.\"}", "prompt_tokens": 743, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence linking the unspecified 'a park outside of town' to the park visited 'yesterday' so they cannot be assumed the same.\"}", "prompt_tokens": 181, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

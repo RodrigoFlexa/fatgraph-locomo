@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same activity and monthly frequency, phrased differently.\"}", "prompt_tokens": 381, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

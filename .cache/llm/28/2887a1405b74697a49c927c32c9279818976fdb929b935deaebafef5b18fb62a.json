@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only lists jerseys; omits sneakers and fantasy movie DVDs.\"}", "prompt_tokens": 358, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a yoga studio (a location/business) while the other is a beginner yoga class (an event/session), so they are different types of entities.\"}", "prompt_tokens": 249, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

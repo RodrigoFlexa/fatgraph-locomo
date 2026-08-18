@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a community project about infrastructure while the other is the infrastructure itself, so they are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 105, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

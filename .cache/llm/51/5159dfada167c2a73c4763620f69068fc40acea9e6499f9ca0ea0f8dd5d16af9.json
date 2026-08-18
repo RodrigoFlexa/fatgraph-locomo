@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They state different facts: one records participation, the other records Maria's subjective reaction, so neither fully contains the other.\"}", "prompt_tokens": 249, "completion_tokens": 115, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

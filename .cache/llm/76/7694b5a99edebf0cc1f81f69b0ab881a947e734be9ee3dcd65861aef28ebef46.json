@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This directly continues the garden topic—'veggie patch' is a specific part of Audrey's small garden, so it belongs immediately after that memory in the same narrative thread.\"}", "prompt_tokens": 799, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

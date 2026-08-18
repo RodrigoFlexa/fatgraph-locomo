@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"'Evan's ownership' is a possessive referring to Evan, the same person described by 'Evan'.\"}", "prompt_tokens": 230, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

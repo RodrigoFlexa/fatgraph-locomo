@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to a city associated with Caroline, the other refers to her country of origin four years ago, which are different entity types.\"}", "prompt_tokens": 187, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

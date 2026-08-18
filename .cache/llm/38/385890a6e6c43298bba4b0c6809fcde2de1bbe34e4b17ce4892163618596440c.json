@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same fact: both state Deborah has surfed/tried surfing.\"}", "prompt_tokens": 354, "completion_tokens": 33, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

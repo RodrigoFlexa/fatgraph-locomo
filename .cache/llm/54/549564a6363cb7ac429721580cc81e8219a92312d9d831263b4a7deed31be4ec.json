@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"These statements are compatible—Maria offering help to John and John planning to collaborate with Maria can both be true.\"}", "prompt_tokens": 251, "completion_tokens": 108, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

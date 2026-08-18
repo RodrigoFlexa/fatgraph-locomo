@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first phrase refers to multiple friends of Deborah's mother (other people), while the second is Deborah's mother herself, so they are different entities.\"}", "prompt_tokens": 287, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

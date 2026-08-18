@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence ties 'a custom car' to Dave's specific 'car project'; one is a description and the other a referenced project, so they cannot be confirmed as the same.\"}", "prompt_tokens": 197, "completion_tokens": 184, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

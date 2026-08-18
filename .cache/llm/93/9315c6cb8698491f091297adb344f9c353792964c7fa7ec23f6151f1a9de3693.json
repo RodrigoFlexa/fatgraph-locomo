@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new before-and-after diet photo shares the same timestamp and diet/body-transformation topic as memory 0 (Sam shared a food photo on 2023-09-11), so it belongs in that same narrative thread immediately after it.\"}", "prompt_tokens": 785, "completion_tokens": 262, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"States Sept 14, 2022 instead of the week before.\"}", "prompt_tokens": 368, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

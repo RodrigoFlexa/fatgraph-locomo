@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The clothes donation belongs to the same fundraising sequence as the canned food and toiletries, so it fits narratively immediately after the canned-food donation and before the toiletries donation.\"}", "prompt_tokens": 773, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory continues the yoga episode and directly follows 'Jolene practices yoga,' connecting to the note that her partner joins yoga sometimes.\"}", "prompt_tokens": 774, "completion_tokens": 113, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

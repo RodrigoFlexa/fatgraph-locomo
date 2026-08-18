@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"watercolor\\\" is a common shorthand for \\\"watercolor painting\\\" and the aliases include \\\"watercolors,\\\" indicating the same activity/entity.\"}", "prompt_tokens": 238, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

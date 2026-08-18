@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"content for the dance studio\\\" refers to the same dance studio entity described by \\\"a dance studio\\\" (the studio being referenced)\"}", "prompt_tokens": 256, "completion_tokens": 174, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

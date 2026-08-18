@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The new memory directly continues from meeting industry people at the Tokyo festival, describing advice received from music professionals as the next event in that same festival narrative.\"}", "prompt_tokens": 747, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

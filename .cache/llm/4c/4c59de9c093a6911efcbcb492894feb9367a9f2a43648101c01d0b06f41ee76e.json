@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory is a direct follow-up to 'James met a woman named Samantha at the beach outing,' so it belongs immediately after that meeting in the same episode.\"}", "prompt_tokens": 753, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

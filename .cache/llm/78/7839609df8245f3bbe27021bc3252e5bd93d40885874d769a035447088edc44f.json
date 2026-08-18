@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the act of finding a pet-friendly spot while the other refers to the actual pet-friendly place to live, so they are different entities.\"}", "prompt_tokens": 195, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

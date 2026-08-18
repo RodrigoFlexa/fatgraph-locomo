@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory is part of the same mountaineering trip episode as memory 0, so it should be placed immediately after the mountaineering trip memory to keep the summit event in that narrative thread.\"}", "prompt_tokens": 778, "completion_tokens": 127, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

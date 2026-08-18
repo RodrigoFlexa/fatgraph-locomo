@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"The OLD says Caroline attended the pride parade while the NEW says she missed the pride parade, which cannot both be true about the same event.\"}", "prompt_tokens": 246, "completion_tokens": 370, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

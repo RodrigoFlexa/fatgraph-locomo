@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits friendship/support and specific stress-relieving activities from reference.\"}", "prompt_tokens": 419, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This new memory belongs to the same touring-with-Frank-Ocean narrative as the existing 'Calvin toured with Frank Ocean last week' memory, so it should be inserted directly after index 6.\"}", "prompt_tokens": 725, "completion_tokens": 190, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

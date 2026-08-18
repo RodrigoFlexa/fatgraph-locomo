@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"The car accident on 16 June 2023 is causally tied to Calvin's touring and upcoming Boston performance, so it belongs directly after the memory about his tour-performance plans.\"}", "prompt_tokens": 761, "completion_tokens": 378, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

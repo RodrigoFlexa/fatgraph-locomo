@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to talks/events at the shelter while Mention B refers to people at the shelter, so they are different types of entities.\"}", "prompt_tokens": 193, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

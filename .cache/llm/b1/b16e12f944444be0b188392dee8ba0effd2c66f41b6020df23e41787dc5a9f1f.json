@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Says furless pets (e.g., fish) avoid Joanna's allergy.\"}", "prompt_tokens": 393, "completion_tokens": 228, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

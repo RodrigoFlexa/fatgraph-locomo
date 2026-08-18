@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A grandmother is a distinct relative of Caroline, not the same person as Caroline.\"}", "prompt_tokens": 262, "completion_tokens": 36, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

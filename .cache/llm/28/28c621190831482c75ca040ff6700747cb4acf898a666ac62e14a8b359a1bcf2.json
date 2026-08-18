@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits 'watercolor', only says generic painting.\"}", "prompt_tokens": 366, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

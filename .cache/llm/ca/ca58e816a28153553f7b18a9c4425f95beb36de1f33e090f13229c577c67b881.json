@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new memory directly repeats and generalizes the same event as index 5 (Jon lost his job before 16 March 2023), so it belongs in that same causal trail about losing his job and starting the studio.\"}", "prompt_tokens": 777, "completion_tokens": 195, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same pride event (the LGBTQ+/LGBT pride parade described in the conversation).\"}", "prompt_tokens": 257, "completion_tokens": 168, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

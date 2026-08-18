@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A partner and a mother are different relations; the mother is deceased last year so cannot be Jolene's partner.\"}", "prompt_tokens": 200, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

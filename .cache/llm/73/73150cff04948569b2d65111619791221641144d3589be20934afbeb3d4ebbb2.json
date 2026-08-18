@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to a group of people (Deborah's family) and the other to a physical location (Deborah's mother's old house), so they are different entities.\"}", "prompt_tokens": 199, "completion_tokens": 54, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

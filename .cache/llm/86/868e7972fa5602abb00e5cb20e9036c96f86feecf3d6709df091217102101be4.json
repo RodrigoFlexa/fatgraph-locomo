@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This directly continues the same camping-plans narrative (specifying Toby as the dog involved) so it belongs immediately after the August 4 camping-with-girlfriend memory.\"}", "prompt_tokens": 739, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The photo is directly part of the same yoga-poses episode following the shared image of the yoga room and naturally precedes her saying she'd send a tutorial video.\"}", "prompt_tokens": 750, "completion_tokens": 374, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

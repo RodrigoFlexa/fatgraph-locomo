@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"Sam's confidence\\\" denotes an attribute of the person Sam, so both mentions refer to the same individual.\"}", "prompt_tokens": 235, "completion_tokens": 41, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

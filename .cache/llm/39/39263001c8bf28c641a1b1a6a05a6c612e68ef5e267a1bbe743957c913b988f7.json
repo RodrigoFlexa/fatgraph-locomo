@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to playdates with neighbors' dogs while B refers to meeting other dog owners in the park, which are different groups/events.\"}", "prompt_tokens": 195, "completion_tokens": 239, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

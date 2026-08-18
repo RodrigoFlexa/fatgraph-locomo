@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same assessment: rich and creamy, implies very good.\"}", "prompt_tokens": 366, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

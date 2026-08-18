@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory continues the personal fitness thread related to John starting weekend yoga and experimenting with exercise, so it belongs after the memory whose trail mentions his yoga class.\"}", "prompt_tokens": 776, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

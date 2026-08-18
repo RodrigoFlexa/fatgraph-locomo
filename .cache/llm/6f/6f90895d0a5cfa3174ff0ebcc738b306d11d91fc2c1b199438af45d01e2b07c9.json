@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Training and housebreaking are part of the same early puppy episode as noting Shadow's sex, so it belongs immediately after the 'Shadow is a female dog' memory.\"}", "prompt_tokens": 514, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

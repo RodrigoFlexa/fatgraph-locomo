@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases describe the same bookshelf (a shelf filled with books/magazines), with one as a photo of that bookshelf.\"}", "prompt_tokens": 209, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence links 'Jon joy' to the known aliases or facts about 'Jon', and the differing name suggests a different person.\"}", "prompt_tokens": 269, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

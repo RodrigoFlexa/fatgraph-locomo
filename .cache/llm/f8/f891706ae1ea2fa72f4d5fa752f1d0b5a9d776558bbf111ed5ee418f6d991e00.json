@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Becoming allergic and then having to get rid of the dog are consistent (the new memory follows from the old rather than contradicting it).\"}", "prompt_tokens": 256, "completion_tokens": 114, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

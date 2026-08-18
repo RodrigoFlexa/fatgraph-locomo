@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This memory is part of the same tournament episode as playing Counter-Strike and explains his mindset during the match, so it belongs immediately after the 'played Counter-Strike: Global Offensive' memory.\"}", "prompt_tokens": 731, "completion_tokens": 253, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

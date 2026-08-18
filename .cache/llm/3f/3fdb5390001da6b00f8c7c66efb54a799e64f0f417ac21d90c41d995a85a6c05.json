@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a location (the view from Calvin's living room) owned by or associated with Calvin, while Mention B is the person Calvin, so they are different entity types.\"}", "prompt_tokens": 259, "completion_tokens": 121, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

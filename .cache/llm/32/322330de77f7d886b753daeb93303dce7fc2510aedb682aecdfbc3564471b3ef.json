@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first is Gina's business (an organization), while the second refers to its offers and promotions, which are different things.\"}", "prompt_tokens": 184, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

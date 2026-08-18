@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"painting and pottery\\\" refers to activities or a pair of arts, while \\\"a pottery class\\\" refers to a specific class instance, so they are not the same entity.\"}", "prompt_tokens": 179, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

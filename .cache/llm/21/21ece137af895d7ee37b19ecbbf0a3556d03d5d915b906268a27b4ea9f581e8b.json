@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This new memory continues the causal/business thread that follows ‘Jon is investing time in his business after he lost his job,’ fitting naturally before entries about promoting and working on the business.\"}", "prompt_tokens": 808, "completion_tokens": 314, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to people who suffer domestic abuse while the other refers to an organization that assists those victims, so they are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

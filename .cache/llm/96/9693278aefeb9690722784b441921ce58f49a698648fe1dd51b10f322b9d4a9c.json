@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"movies\\\" refers to the films themselves while \\\"watching movies\\\" refers to the activity of viewing them, so they are different concepts.\"}", "prompt_tokens": 179, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

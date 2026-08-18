@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They record different facts about the same event (attendance with date vs. feeling accepted), so both contain distinct information.\"}", "prompt_tokens": 240, "completion_tokens": 114, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

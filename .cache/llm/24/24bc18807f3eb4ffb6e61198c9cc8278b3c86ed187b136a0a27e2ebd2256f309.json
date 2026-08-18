@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same activity practice (meditation), with A specifying it occurs with others but still being the same meditation entity as B.\"}", "prompt_tokens": 186, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

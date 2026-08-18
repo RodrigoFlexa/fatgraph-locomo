@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate gives Aug 9, not the first weekend (Aug 5-6) 2023.\"}", "prompt_tokens": 376, "completion_tokens": 233, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

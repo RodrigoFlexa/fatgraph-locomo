@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to a specific instance (a single class last Friday) while B refers to the general activity of taking dance classes, so they are not the same entity.\"}", "prompt_tokens": 195, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

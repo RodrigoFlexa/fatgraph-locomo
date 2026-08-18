@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a general topic (castles in Europe) while the other is a specific book about UK castles, so they are different entities.\"}", "prompt_tokens": 228, "completion_tokens": 48, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

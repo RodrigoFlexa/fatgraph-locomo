@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first mention is a combined activity (watching movies and playing games) while the second is only the watching-movies activity, so they are not the same single entity.\"}", "prompt_tokens": 184, "completion_tokens": 183, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

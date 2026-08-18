@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Placing it after the Weight Watchers meeting connects the concrete event (attending WW) to the resulting change in behavior, fitting the same narrative about Sam adopting healthier habits.\"}", "prompt_tokens": 733, "completion_tokens": 313, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

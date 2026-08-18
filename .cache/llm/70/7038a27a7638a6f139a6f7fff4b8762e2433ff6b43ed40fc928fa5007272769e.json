@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"stay motivated\\\" is a state/goal, while \\\"a hobby to stay motivated\\\" refers to a hobby (an activity), so they are different entities.\"}", "prompt_tokens": 182, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

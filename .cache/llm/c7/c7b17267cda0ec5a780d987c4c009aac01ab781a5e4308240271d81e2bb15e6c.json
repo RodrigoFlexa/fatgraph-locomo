@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This memory is part of the tournament episode tied to playing CS:GO, so it belongs directly after the memory about playing in the recent tournament.\"}", "prompt_tokens": 714, "completion_tokens": 307, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

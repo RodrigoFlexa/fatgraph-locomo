@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes attention/approach in car restoration while B is a specific restoration project, so they are not the same entity.\"}", "prompt_tokens": 189, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

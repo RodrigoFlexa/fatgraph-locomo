@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"This follows the opening-night episode (20 June 2023) and continues the same operational narrative by reporting that by 21 July the studio’s running status was tenuous.\"}", "prompt_tokens": 782, "completion_tokens": 377, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

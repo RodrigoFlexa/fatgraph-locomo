@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Mentioning a failed military aptitude test fits the thread about John doing taekwondo (training/physical preparation) and explains a personal setback before the subsequent family posts.\"}", "prompt_tokens": 776, "completion_tokens": 375, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

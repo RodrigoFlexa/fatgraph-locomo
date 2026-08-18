@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B is a generic mention covering multiple gaming parties (past and upcoming), so it is ambiguous whether it refers specifically to the gaming party next month.\"}", "prompt_tokens": 202, "completion_tokens": 241, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

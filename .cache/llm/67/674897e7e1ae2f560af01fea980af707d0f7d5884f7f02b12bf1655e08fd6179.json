@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The phrase matches an alias-style variant expressing Audrey's emotional state (e.g., 'Audrey happy'), indicating the same person Audrey described in the facts.\"}", "prompt_tokens": 288, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

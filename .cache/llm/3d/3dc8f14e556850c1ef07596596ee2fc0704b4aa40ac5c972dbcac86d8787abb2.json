@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This directly continues the cafe/city dining thread—it fits the episode about discovering new places to eat and follows 'Andrew visited a new cafe in the city last weekend.'\"}", "prompt_tokens": 738, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"“Evan's close friend” denotes someone who is a friend of Evan, not Evan himself.\"}", "prompt_tokens": 235, "completion_tokens": 104, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

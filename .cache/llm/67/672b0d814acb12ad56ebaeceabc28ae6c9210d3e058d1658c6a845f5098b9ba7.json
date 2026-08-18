@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to Deborah's mother (A describes Max's state at the time Deborah's mother passed away).\"}", "prompt_tokens": 320, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

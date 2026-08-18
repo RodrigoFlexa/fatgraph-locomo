@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This new memory is directly connected to the episode about his decision to run and explains prior electoral history that belongs in the same narrative thread immediately following that decision.\"}", "prompt_tokens": 726, "completion_tokens": 309, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

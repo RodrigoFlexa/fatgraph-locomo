@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Sharing her story is a specific action during her volunteering, so it belongs immediately after the general 'volunteered' memory and before the resulting 'felt fulfilled' entry.\"}", "prompt_tokens": 397, "completion_tokens": 120, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

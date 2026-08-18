@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A pet shelter houses animals (animal shelter), while a pet-friendly place to live is housing that allows tenants to keep pets, so they are different types of places.\"}", "prompt_tokens": 202, "completion_tokens": 53, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

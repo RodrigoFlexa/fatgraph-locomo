@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a video of a dance routine, while Mention B refers to the person Gina, so they are different types of entities.\"}", "prompt_tokens": 194, "completion_tokens": 175, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

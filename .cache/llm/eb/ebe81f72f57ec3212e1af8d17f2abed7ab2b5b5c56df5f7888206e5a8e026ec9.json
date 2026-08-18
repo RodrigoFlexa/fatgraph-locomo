@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only lists McGee's; omits VR Club and baseball game.\"}", "prompt_tokens": 370, "completion_tokens": 98, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

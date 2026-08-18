@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This new memory continues the same sourcing/networking episode as memory 0 (how networking uncovered products for her store), so it should be inserted directly after that memory.\"}", "prompt_tokens": 800, "completion_tokens": 119, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

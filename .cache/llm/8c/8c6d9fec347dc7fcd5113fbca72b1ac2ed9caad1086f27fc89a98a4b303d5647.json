@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says two dogs; reference specifies three dogs.\"}", "prompt_tokens": 359, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

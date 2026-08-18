@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"Placing it after the pet-store visit links the causal thread (she went to buy toys) with the explainable context that she owns four dogs, which naturally precedes the shared box-of-toys image.\"}", "prompt_tokens": 782, "completion_tokens": 384, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

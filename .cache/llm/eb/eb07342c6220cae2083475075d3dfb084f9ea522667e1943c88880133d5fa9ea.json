@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Conveys same activity: he did basketball practice.\"}", "prompt_tokens": 365, "completion_tokens": 158, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

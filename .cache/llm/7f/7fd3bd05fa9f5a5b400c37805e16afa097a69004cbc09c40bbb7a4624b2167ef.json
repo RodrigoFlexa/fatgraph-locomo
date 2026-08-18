@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Mountain life is a specific form of exploring the outdoors.\"}", "prompt_tokens": 363, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

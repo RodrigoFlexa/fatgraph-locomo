@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Performing in Tokyo previously does not conflict with planning a future visit there; this can be a new plan after the past event.\"}", "prompt_tokens": 246, "completion_tokens": 113, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same homeless shelter location described in the conversation.\"}", "prompt_tokens": 264, "completion_tokens": 34, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

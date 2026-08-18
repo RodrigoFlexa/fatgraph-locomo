@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A specifies a camping trip in a forest while Mention B describes camping in the mountains, so they refer to different locations and likely different trips.\"}", "prompt_tokens": 190, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

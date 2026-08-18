@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Melanie for adoption\\\" implies an adoption listing or different referent, while \\\"Melanie and her family\\\" refers to a known Melanie with family and kids, so they are not the same entity.\"}", "prompt_tokens": 235, "completion_tokens": 188, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

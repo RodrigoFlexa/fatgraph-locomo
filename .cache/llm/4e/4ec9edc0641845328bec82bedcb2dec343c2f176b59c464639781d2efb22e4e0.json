@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This statement is directly about Jolene's surfing status and belongs in the same surfing narrative following 'Jolene started learning surfing.'\"}", "prompt_tokens": 774, "completion_tokens": 240, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

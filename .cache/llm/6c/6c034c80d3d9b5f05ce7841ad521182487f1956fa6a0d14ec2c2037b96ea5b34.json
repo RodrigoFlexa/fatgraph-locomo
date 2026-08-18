@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the band Aerosmith, with B specifying their appearance at the festival.\"}", "prompt_tokens": 184, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

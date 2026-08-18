@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to the studio's social media account (an online presence), the other refers to the dance crew (a group of people), so they are different entities.\"}", "prompt_tokens": 267, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

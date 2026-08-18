@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same Harry Potter fan met in California (same meeting described differently).\"}", "prompt_tokens": 222, "completion_tokens": 166, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

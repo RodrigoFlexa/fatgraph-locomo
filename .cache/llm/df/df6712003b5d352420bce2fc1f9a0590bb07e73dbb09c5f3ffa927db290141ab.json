@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"A cast on the foot and a cast on the leg are compatible (the new statement is a broader/rephrased description), so they do not contradict.\"}", "prompt_tokens": 254, "completion_tokens": 117, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

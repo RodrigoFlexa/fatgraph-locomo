@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same previously mentioned park (the beautiful park Dave has been spending time at).\"}", "prompt_tokens": 182, "completion_tokens": 168, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to different places and times—Tokyo (a city) this month vs Japan (the country) next month, so not the same entity.\"}", "prompt_tokens": 235, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The temporal references differ (last Friday vs yesterday) so they likely refer to different occurrences of a park visit.\"}", "prompt_tokens": 181, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

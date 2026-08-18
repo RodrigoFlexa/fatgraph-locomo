@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A refers to a practice/quality (paying attention to detail) while B refers to the specific activity/products of full restorations of classic cars, so they are not the same entity.\"}", "prompt_tokens": 267, "completion_tokens": 186, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

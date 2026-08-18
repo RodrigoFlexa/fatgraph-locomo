@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true simultaneously—James offered support to John and John can also support James at another time.\"}", "prompt_tokens": 253, "completion_tokens": 107, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

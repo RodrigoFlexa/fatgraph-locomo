@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A mentions a leash while B specifies post-grooming and there is no evidence they refer to the identical photo.\"}", "prompt_tokens": 201, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

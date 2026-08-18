@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This expresses John's intent as a direct follow-up to the specific organizing event (John organized the CS:GO tournament on 7 May 2022), making it part of the same organizing episode.\"}", "prompt_tokens": 590, "completion_tokens": 189, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

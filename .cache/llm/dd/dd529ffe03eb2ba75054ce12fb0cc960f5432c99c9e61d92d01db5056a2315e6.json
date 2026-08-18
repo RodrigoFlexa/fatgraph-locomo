@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This statement about living in the city belongs to the housing/dog-friendly-rental thread that follows 'Andrew cannot find dog-friendly spots to rent.' and helps explain why finding pet-friendly housing is difficult.\"}", "prompt_tokens": 765, "completion_tokens": 190, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

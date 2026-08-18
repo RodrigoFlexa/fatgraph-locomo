@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches: she won't pursue writing; plans counseling, consistent and more specific.\"}", "prompt_tokens": 380, "completion_tokens": 99, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

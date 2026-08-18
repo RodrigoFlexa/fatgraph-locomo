@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is the general concept of keeping turtles as pets, while B refers to specific turtles someone has had for three years.\"}", "prompt_tokens": 210, "completion_tokens": 172, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

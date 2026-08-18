@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Surfing is a direct detail of John loving the ocean, so it should follow the memory 'John loves the ocean' to stay within that narrative thread.\"}", "prompt_tokens": 745, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

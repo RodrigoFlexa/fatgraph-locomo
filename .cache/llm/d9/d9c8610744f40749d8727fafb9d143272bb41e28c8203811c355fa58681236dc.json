@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase denotes the activity of learning dog grooming while the other denotes a specific course offering, so they are different entity types.\"}", "prompt_tokens": 178, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

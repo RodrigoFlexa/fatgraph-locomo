@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory naturally follows 'Jon is rehearsing new dance routines' and belongs in the same dancing/rehearsal narrative before the photo-sharing episode.\"}", "prompt_tokens": 754, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

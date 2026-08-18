@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Gina who is involved in dance and her clothing business.\"}", "prompt_tokens": 195, "completion_tokens": 102, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

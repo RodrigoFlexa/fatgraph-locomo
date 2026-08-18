@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a dessert recipe (instructions), while Mention B is an actual homemade dessert instance, so they are different entities.\"}", "prompt_tokens": 187, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

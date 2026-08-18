@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to the pair/group 'Audrey and her dogs' while B refers only to 'Audrey's dogs', so they are not the same single entity.\"}", "prompt_tokens": 249, "completion_tokens": 246, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

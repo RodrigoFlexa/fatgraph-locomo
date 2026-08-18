@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This detail belongs to the same episode of choosing to move in with Samantha and explains a criterion used when selecting their apartment.\"}", "prompt_tokens": 808, "completion_tokens": 174, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

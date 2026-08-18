@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person Audrey, with A being a descriptive phrase about Audrey in her grandma's kitchen.\"}", "prompt_tokens": 236, "completion_tokens": 107, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

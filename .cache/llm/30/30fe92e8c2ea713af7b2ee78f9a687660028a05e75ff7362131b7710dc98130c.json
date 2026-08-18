@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to students engaging with the broader LGBTQ community, while Mention B is a specific LGBTQ support group instance, so they are different entities.\"}", "prompt_tokens": 264, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

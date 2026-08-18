@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They state different facts: one is about Andrew naming the adopted dog, the other about a plan to take the dog to a park.\"}", "prompt_tokens": 236, "completion_tokens": 118, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

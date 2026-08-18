@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory explains why Andrew agreed to join Audrey and her dogs, so it belongs between the dog photo (index 5) and the agreement to join (index 6).\"}", "prompt_tokens": 756, "completion_tokens": 250, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

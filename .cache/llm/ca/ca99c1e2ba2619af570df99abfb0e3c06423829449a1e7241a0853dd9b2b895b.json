@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different facts: found a perfect spot vs can expand store.\"}", "prompt_tokens": 373, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

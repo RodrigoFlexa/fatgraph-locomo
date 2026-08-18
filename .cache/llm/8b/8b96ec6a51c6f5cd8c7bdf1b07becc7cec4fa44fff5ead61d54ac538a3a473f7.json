@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Missing pottery and camping; includes unrelated activities like running and violin.\"}", "prompt_tokens": 390, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

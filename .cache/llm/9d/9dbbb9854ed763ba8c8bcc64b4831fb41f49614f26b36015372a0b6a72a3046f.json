@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The new photo post is another shared image about basketball gear/scene and best fits the sequence of photo-sharing posts following the jersey photo.\"}", "prompt_tokens": 744, "completion_tokens": 177, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": true, \"reason\": \"At the same timestamp, 'considering trying' implies not yet committed while 'is going' states a definite plan, so they conflict.\"}", "prompt_tokens": 257, "completion_tokens": 178, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

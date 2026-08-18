@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: the old memory says Caroline and her mentee attended a pride event last month, and the new says Caroline attended a parade recently, which do not conflict.\"}", "prompt_tokens": 247, "completion_tokens": 122, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

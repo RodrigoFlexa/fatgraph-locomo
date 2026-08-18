@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They convey different facts: A references feeling great about volunteering specifically at the shelter, while B states a general love of volunteering, so neither fully contains the other.\"}", "prompt_tokens": 232, "completion_tokens": 187, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

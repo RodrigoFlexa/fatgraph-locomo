@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is insufficient evidence that the sunset painting inspired by a vacation is the same specific painting shown in the shared photo.\"}", "prompt_tokens": 217, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

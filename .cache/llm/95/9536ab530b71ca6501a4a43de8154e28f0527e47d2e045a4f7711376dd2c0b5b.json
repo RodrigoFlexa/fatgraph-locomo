@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A broad community is a general social group, while an LGBTQ support group is a specific organized local group, so they are different entities.\"}", "prompt_tokens": 216, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

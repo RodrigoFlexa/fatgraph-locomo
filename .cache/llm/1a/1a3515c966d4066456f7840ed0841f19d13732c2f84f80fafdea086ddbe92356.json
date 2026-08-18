@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Placing it after the summer-break memory keeps a coherent causal thread: excitement about summer leads to interest in learning about animals, which connects onward to the dinosaur exhibit.\"}", "prompt_tokens": 374, "completion_tokens": 247, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

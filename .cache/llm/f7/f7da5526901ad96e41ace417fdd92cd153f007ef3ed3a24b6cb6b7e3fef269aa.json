@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Same date (14 Oct 2023) and outdoor travel imagery makes this Lake Tahoe travel memory part of the same episode as the kayaks image, so it should follow memory 0.\"}", "prompt_tokens": 849, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

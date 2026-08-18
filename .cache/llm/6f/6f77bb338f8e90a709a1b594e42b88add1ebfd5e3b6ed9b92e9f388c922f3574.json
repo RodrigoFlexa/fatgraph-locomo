@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory belongs to the Weight Watchers thread and fits narratively right after Sam attended the meeting where his struggle with weight would be relevant.\"}", "prompt_tokens": 768, "completion_tokens": 243, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

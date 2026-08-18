@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions refer to the same person, Deborah's mother, with A mentioning keeping her memory alive and B naming her directly.\"}", "prompt_tokens": 300, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The existing trail through memory 7 ends with someone sharing an image (Tim shared an image...), so placing John’s photo next ties into the same social-media/image-sharing episode and continues that narrative.\"}", "prompt_tokens": 795, "completion_tokens": 253, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

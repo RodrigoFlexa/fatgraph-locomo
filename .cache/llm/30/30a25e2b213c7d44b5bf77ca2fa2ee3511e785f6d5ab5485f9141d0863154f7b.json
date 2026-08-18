@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states she wants a safe, inviting place; candidate says absent.\"}", "prompt_tokens": 370, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

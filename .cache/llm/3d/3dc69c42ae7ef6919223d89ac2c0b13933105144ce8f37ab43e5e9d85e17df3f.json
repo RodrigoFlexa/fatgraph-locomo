@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory about John caring about volunteering best continues the same narrative as memory 4 (John helped renovate a community center), keeping it in the volunteering episode.\"}", "prompt_tokens": 763, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

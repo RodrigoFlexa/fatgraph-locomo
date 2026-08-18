@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a specific photo of a person doing yoga on the beach, while B is the activity itself, not the photo.\"}", "prompt_tokens": 191, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

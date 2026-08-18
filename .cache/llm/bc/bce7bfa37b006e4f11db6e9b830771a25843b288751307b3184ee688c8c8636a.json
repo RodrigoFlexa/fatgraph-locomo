@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They refer to events at different times (one is next week, the other occurred last Friday), so they are not the same event.\"}", "prompt_tokens": 191, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

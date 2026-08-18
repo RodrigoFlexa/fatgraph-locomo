@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The statements can both be true (the first says she started a clothing store on Jan 29 and the later note specifies she opened an online store), so there is no contradiction.\"}", "prompt_tokens": 247, "completion_tokens": 122, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

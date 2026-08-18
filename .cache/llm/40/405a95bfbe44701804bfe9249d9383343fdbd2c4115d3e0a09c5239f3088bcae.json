@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This specifies the kind of video games they played and naturally follows the memory that Deborah played video games with her husband, keeping the gaming episode together.\"}", "prompt_tokens": 511, "completion_tokens": 243, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

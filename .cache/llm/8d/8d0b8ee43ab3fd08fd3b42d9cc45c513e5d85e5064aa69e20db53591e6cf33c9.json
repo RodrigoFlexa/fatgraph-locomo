@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"Creating a meal plan and workout schedule is a direct response to Sam struggling with his weight, so it belongs immediately after that memory in the same causal narrative.\"}", "prompt_tokens": 757, "completion_tokens": 181, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This is a recent personal weekend activity (taking Seraphim to the park last Sunday) and best fits the same casual ‘last-week’ cluster as the memory about practicing yoga and meditation last Friday.\"}", "prompt_tokens": 737, "completion_tokens": 382, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

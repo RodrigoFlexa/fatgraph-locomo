@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"More specific but consistent with reference (adds year).\"}", "prompt_tokens": 359, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

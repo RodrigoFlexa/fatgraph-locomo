@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"Joining a travel club is part of the same travel-related episode as taking trips and visiting travel sites, so it belongs immediately after the memory about Tim taking a trip last summer.\"}", "prompt_tokens": 750, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

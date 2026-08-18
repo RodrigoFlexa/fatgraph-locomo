@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"No conflict: winning a tournament last week (earlier) does not contradict participating in a tournament later; this can validly change over time.\"}", "prompt_tokens": 245, "completion_tokens": 115, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different action: goes to park instead of installing a feeder at home\"}", "prompt_tokens": 390, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

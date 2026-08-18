@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the specific animal behaviorist mentioned in the context (the one Audrey made an appointment with last Wednesday).\"}", "prompt_tokens": 186, "completion_tokens": 108, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

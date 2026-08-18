@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A describes multiple bowls of fruit and yogurt while B refers to a single bowl with a striped cloth, so they are different photos/entities.\"}", "prompt_tokens": 200, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

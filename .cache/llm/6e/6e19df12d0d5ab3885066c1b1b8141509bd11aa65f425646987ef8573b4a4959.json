@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This comment about specific running shoes follows naturally from John saying he needs new shoes, keeping it within the same shoes-related episode.\"}", "prompt_tokens": 768, "completion_tokens": 111, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

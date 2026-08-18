@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Missing PlayStation and 'Nintendo games' is vague about GameCube.\"}", "prompt_tokens": 365, "completion_tokens": 226, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

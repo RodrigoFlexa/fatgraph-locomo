@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is an activity (attention to detail in restoration) while B is the outcome/result (the restored car), so they are different entities.\"}", "prompt_tokens": 189, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"White frosting is vaguer than coconut cream; not the same.\"}", "prompt_tokens": 367, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Counts and settings differ (three young men on a basketball court vs two men by a basketball machine), so they refer to different photos/subjects.\"}", "prompt_tokens": 204, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

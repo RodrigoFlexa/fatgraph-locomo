@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B names two distinct works (Harry Potter and Game of Thrones) while A refers only to the Harry Potter books.\"}", "prompt_tokens": 184, "completion_tokens": 171, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

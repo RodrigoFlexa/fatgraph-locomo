@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same meaning; both state they planned to go hiking on Saturday.\"}", "prompt_tokens": 369, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

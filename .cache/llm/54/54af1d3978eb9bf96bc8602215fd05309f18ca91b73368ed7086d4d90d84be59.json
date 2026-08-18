@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One phrase refers to people (old friends) and the other refers to a location (the old house), so they are different entities.\"}", "prompt_tokens": 304, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

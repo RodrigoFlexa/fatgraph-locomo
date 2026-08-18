@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A rock concert is a specific type of event and a music festival is a broader category with a time attached, so they are not guaranteed to be the same event.\"}", "prompt_tokens": 186, "completion_tokens": 117, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

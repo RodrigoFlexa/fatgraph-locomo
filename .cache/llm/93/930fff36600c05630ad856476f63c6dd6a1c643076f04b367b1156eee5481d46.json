@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"'work stress' is a specific type of stress, not identical to the general term 'stress'.\"}", "prompt_tokens": 180, "completion_tokens": 168, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

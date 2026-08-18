@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits 'kids' — loses that they are children's books.\"}", "prompt_tokens": 378, "completion_tokens": 289, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

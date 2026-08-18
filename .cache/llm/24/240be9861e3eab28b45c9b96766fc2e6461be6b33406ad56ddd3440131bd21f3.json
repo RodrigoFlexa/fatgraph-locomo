@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘teaching yoga’ refers to the act of instructing yoga while ‘yoga’ is the general activity—a specific role versus the broader activity, so they are not the same entity.\"}", "prompt_tokens": 283, "completion_tokens": 315, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A 'gaming party' implies a social gathering while a 'gaming tournament' is a competitive event, so they are different event types and not necessarily the same.\"}", "prompt_tokens": 191, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

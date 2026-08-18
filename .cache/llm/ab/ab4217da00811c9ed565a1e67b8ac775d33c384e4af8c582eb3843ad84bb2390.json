@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Insufficient evidence: one mention specifies timing (next month) while the other only describes type/scale (regional video game tournament), so they may be different events.\"}", "prompt_tokens": 191, "completion_tokens": 181, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

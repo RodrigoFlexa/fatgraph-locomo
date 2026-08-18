@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Kundalini yoga is a specific style of yoga, not the identical single entity referred to by the general term \\\"yoga\\\".\"}", "prompt_tokens": 196, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

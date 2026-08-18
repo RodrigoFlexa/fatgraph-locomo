@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits chocolate-and-vanilla swirl variant.\"}", "prompt_tokens": 390, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

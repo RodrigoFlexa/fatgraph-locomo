@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Donating a car and volunteering at a shelter are compatible and can both be true of Maria.\"}", "prompt_tokens": 250, "completion_tokens": 105, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

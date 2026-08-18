@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The toy drive is another charitable activity directly connected to the group's visit to help those in need, so it belongs immediately after the shelter food-and-supplies memory in the same service episode.\"}", "prompt_tokens": 474, "completion_tokens": 316, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

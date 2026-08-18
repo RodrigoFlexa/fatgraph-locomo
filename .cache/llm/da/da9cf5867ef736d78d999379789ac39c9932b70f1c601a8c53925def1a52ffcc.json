@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true: being on a diet and living healthier on Aug 19 is consistent with later working on becoming healthier.\"}", "prompt_tokens": 249, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"The phrase \\\"James and John\\\" includes the individual James, so it refers to the same James as the single mention.\"}", "prompt_tokens": 203, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

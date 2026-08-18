@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This memory is directly about Harry Potter and fits the same episode as Tim planning more Harry Potter visits, so it should follow the memory about planning to visit more Harry Potter spots.\"}", "prompt_tokens": 772, "completion_tokens": 249, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

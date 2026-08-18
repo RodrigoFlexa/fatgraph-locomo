@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Doesn't mention witnessing family or reaching out; only gives timeframe.\"}", "prompt_tokens": 378, "completion_tokens": 161, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

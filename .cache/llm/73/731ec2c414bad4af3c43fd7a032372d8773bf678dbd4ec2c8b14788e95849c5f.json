@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions differ (pink shirt vs beach) and there is no evidence they refer to the same photo or person.\"}", "prompt_tokens": 204, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

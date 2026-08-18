@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A dance routine is a performance/choreography, while a dance crew is the group of dancers—different entity types.\"}", "prompt_tokens": 243, "completion_tokens": 44, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

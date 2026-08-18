@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"The new memory connects directly to the episode about Deborah practicing yoga/meditation (already in trail 0), so it should be placed immediately after memory 0 to keep that narrative together.\"}", "prompt_tokens": 381, "completion_tokens": 188, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

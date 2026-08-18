@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate lists a plate instead of the referenced cup.\"}", "prompt_tokens": 367, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

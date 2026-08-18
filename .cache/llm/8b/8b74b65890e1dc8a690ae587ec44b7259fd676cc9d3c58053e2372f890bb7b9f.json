@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One is a singular, specific park outside town while the other refers to parks in general (plural), so they are not the same entity.\"}", "prompt_tokens": 181, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

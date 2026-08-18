@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Candidate gives the same name as the reference.\"}", "prompt_tokens": 357, "completion_tokens": 29, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

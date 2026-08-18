@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same quantity expressed in words.\"}", "prompt_tokens": 357, "completion_tokens": 26, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

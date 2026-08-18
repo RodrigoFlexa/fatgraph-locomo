@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"The statements are at different times and planning a hike a week later can follow recovery, so they do not conflict.\"}", "prompt_tokens": 250, "completion_tokens": 109, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

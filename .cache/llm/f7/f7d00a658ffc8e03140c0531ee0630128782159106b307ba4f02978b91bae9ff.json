@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same type of location — a spot that allows pets/dogs, i.e., the same real-world place described differently.\"}", "prompt_tokens": 185, "completion_tokens": 369, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true — Andrew can plan to hike someday but currently take Toby to a nearby park because Toby is still young.\"}", "prompt_tokens": 254, "completion_tokens": 111, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

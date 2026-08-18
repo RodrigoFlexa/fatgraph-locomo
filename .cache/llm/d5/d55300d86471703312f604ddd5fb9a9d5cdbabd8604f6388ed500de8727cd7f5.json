@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same two names, order is irrelevant.\"}", "prompt_tokens": 366, "completion_tokens": 92, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

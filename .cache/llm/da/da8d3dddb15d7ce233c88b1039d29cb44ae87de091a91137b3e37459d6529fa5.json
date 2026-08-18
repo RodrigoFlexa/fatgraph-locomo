@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"It directly parallels an existing memory about James bringing souvenirs for John, so it belongs next to that souvenir-related episode in the same narrative thread.\"}", "prompt_tokens": 729, "completion_tokens": 178, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

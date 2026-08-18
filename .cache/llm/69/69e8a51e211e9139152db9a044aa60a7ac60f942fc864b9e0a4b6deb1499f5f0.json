@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"adopting\\\" is an action/gerund while B describes the inclusivity and support of an adoption agency, so they are different entities.\"}", "prompt_tokens": 191, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

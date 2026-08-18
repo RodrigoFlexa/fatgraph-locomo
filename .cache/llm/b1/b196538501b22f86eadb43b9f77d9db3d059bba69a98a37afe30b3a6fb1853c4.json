@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"yoga on the beach\\\" is the same activity (yoga) specified by location, not a different entity\"}", "prompt_tokens": 217, "completion_tokens": 234, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

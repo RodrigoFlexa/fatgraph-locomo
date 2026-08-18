@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They report two different facts about the same pair (meeting vs exchanging a phone number), so neither fully restates or contains the other.\"}", "prompt_tokens": 238, "completion_tokens": 118, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same fact: Tim was stuck on a plot twist.\"}", "prompt_tokens": 378, "completion_tokens": 31, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

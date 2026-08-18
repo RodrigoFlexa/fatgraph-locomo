@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"a fantasy series\\\" refers to a specific work within the genre, while \\\"fantasy\\\" refers to the genre or general interest, so they are different entities.\"}", "prompt_tokens": 192, "completion_tokens": 52, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

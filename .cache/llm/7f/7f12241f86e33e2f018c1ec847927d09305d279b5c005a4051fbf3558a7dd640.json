@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Dates align: around March 20 is the week before March 27.\"}", "prompt_tokens": 374, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

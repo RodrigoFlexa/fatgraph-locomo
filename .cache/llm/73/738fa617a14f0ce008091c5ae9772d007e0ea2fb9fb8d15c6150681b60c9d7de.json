@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This new memory continues Audrey's sushi-related thread (plans to order tonight) and belongs with the Audrey loves sushi trail, not Andrew's first-sushi story.\"}", "prompt_tokens": 388, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

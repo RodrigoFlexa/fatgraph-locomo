@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same item; 'great' is just a positive descriptor.\"}", "prompt_tokens": 363, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

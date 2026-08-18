@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A business and a team are different entity types; the facts about Gina's team (competition performance) indicate a team, not a business.\"}", "prompt_tokens": 222, "completion_tokens": 112, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

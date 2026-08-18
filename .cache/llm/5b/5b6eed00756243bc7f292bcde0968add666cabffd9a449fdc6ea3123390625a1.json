@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘Deborah's family’ is a group of relatives while ‘Deborah's mother’ is a single specific person, so they are not the same entity.\"}", "prompt_tokens": 218, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

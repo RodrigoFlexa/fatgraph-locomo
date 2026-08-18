@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A describes an activity/event (Deborah doing yoga on the beach) while B refers to a yoga place or class, so they are different types of entities.\"}", "prompt_tokens": 252, "completion_tokens": 245, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

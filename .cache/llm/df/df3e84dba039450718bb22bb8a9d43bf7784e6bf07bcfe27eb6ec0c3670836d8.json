@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference gives pot details; candidate incorrectly says it's unmentioned.\"}", "prompt_tokens": 370, "completion_tokens": 96, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

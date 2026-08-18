@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same goal/intent of improving diet (making healthier meals = eating healthier).\"}", "prompt_tokens": 238, "completion_tokens": 168, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

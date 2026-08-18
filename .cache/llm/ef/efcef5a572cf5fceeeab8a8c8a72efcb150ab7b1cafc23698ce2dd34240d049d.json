@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"The ballet group photo continues the same dance-class/contest episode that begins with 'used to enjoy taking dance classes' and leads into the trophy and event-support trail.\"}", "prompt_tokens": 737, "completion_tokens": 311, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

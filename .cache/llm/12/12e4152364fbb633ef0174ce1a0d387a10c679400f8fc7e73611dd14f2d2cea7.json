@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Buying air tickets to Toronto fits the narrative of following up the online gaming success (e.g., traveling to attend an in-person event) so it should go after the memory about winning the tournament.\"}", "prompt_tokens": 742, "completion_tokens": 253, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same month and year; only formatting difference.\"}", "prompt_tokens": 363, "completion_tokens": 93, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

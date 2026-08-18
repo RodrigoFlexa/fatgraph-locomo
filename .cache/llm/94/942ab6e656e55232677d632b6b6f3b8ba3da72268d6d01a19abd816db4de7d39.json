@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says absent but reference gives a signed basketball.\"}", "prompt_tokens": 371, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"A plane flying against a star-filled sky is a night-sky photo that fits the same camping/nightfire episode as the fire-pit photo, so it should follow that memory in the camping trail.\"}", "prompt_tokens": 761, "completion_tokens": 318, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

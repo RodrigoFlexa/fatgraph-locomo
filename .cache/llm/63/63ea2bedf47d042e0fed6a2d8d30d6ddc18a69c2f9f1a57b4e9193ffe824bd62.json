@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The phrase refers to three past tournaments while the other specifies a single upcoming tournament, so they are different events.\"}", "prompt_tokens": 190, "completion_tokens": 42, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is the location 'McGee's Pub' while mention B refers to a person (John) at that location, so they are different entities.\"}", "prompt_tokens": 186, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

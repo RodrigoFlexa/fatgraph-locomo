@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"This memory is part of Gina's personal history with dance and best continues the thread about her dancing (e.g., using dance as stress relief), so it belongs immediately after memory 6.\"}", "prompt_tokens": 728, "completion_tokens": 252, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

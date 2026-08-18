@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention denotes a gaming team formed after the event while the other denotes the tournament event itself, so they are different entities.\"}", "prompt_tokens": 194, "completion_tokens": 45, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

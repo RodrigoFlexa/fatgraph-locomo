@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The shared photo of a basketball player in a gym fits the same episode about John admiring players like LeBron and being motivated by their work ethic, so it should follow the LeBron admiration memory.\"}", "prompt_tokens": 787, "completion_tokens": 254, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

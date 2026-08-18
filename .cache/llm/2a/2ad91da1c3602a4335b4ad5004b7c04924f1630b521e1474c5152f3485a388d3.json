@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Mentions only confidence; omits worry, anxiety, and mixed emotions.\"}", "prompt_tokens": 371, "completion_tokens": 99, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

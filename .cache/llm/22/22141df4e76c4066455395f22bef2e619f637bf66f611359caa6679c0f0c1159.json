@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One description emphasizes people washing a car (cleaning) while the other describes a car being worked on (repair/maintenance), so they likely refer to different images.\"}", "prompt_tokens": 218, "completion_tokens": 181, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

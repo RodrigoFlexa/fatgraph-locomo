@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate says absent though reference lists Nils Frahm and Arnalds\"}", "prompt_tokens": 377, "completion_tokens": 162, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"The new memory adds detail to the same episode of John’s first dance (which is currently memory 4), so it should follow that memory within the same narrative thread.\"}", "prompt_tokens": 742, "completion_tokens": 184, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

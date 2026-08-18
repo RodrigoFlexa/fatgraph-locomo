@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The lists overlap but are not identical—'raspberry' vs 'mixed berry' and 'coconut' vs 'coconut milk' are different referents.\"}", "prompt_tokens": 197, "completion_tokens": 118, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"B is an activity (meditation) performed by/at the nearby tranquil spot, while A names the location itself, so they are different entities.\"}", "prompt_tokens": 192, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

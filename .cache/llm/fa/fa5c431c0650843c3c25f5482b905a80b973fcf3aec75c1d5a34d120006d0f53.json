@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":6,\"reason\":\"This directly follows and elaborates on memory 6 (John mentors younger players on his team), keeping the mentoring narrative together.\"}", "prompt_tokens": 797, "completion_tokens": 108, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

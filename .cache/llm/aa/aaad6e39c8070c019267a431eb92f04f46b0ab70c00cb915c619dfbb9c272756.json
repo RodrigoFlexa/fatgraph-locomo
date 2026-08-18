@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"Sam's doctor\\\" refers to Sam's physician, a different person than Sam.\"}", "prompt_tokens": 257, "completion_tokens": 36, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate omits one of the two names (Shadow).\"}", "prompt_tokens": 356, "completion_tokens": 95, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

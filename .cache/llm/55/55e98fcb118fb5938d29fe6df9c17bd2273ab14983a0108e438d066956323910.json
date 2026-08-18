@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Omits the Game 7 2016 block; only mentions determination.\"}", "prompt_tokens": 387, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

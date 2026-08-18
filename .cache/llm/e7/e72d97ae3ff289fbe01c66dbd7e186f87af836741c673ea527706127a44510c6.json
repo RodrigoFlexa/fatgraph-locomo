@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Different object type: pots vs clay sculptures are not equivalent.\"}", "prompt_tokens": 359, "completion_tokens": 224, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

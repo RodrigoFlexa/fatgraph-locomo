@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"There is no evidence linking the black-and-white flower design to the known hand-painted bowl; the descriptions could match but are not confirmed to be the same object.\"}", "prompt_tokens": 223, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

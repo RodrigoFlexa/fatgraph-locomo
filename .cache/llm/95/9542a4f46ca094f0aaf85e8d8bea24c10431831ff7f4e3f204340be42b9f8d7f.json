@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Too narrow: only scripts mentioned, missing books, blog posts, journal.\"}", "prompt_tokens": 363, "completion_tokens": 163, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

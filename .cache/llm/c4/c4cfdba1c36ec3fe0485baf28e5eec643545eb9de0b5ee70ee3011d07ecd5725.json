@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This new memory about scheduling a doctor appointment fits the health/self-care thread following Sam saying yoga helped flexibility and stress, so it belongs immediately after index 5.\"}", "prompt_tokens": 762, "completion_tokens": 246, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

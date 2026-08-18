@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 5, \"reason\": \"This memory directly describes Joanna's contribution to the movie script and belongs in the same narrative thread as the memory about her contributing to a script shown on the big screen.\"}", "prompt_tokens": 752, "completion_tokens": 183, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

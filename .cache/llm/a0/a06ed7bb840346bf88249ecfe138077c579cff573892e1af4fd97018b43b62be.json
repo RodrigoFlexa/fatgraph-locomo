@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is the person Calvin and the other is the music belonging to him, so they are different entities.\"}", "prompt_tokens": 358, "completion_tokens": 106, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

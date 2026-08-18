@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"It belongs with the bird-interest episode — following 'Andrew likes birds' links the fact he likes birds to the related activities (he hasn't actually gone bird-watching).\"}", "prompt_tokens": 552, "completion_tokens": 311, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

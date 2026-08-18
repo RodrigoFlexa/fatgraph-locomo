@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This specific Game 7 play is part of the same live-game narrative about LeBron that follows the memory at index 0 (John saw LeBron play live / game experience).\"}", "prompt_tokens": 410, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

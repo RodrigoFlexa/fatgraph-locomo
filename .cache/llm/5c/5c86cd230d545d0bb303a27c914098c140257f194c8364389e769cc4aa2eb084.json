@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"\\\"yoga on the beach\\\" is a specific instance/location of the activity, while \\\"yoga\\\" is the general activity.\"}", "prompt_tokens": 217, "completion_tokens": 109, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

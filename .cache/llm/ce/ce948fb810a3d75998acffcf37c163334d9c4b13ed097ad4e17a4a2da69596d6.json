@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate lists only hiking, omitting many referenced inspirations.\"}", "prompt_tokens": 386, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

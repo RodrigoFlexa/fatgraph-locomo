@@ -1,0 +1,1 @@
+{"text": "{\"after_index\":5,\"reason\":\"Joining a chess club is a direct next event after John started playing chess and belongs in the same 22 July chess episode, so it should be placed immediately after that memory.\"}", "prompt_tokens": 651, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

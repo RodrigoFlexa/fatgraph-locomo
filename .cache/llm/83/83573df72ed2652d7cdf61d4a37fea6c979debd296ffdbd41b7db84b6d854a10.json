@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"three years with Jolene's partner\\\" refers to time spent with the same individual called \\\"Jolene's partner\\\", so they are the same entity.\"}", "prompt_tokens": 222, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

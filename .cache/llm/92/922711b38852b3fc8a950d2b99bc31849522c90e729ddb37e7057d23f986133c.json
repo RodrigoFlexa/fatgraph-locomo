@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Insufficient evidence: A is a generic painting 'inspired by sunsets' while B is specifically a photograph of a painting depicting a tree with a bright sun—details don't confirm they are the same artwork.\"}", "prompt_tokens": 202, "completion_tokens": 189, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

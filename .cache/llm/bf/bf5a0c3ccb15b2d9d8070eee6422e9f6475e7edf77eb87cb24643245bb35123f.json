@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"A is the physical notebook itself while B is a photo of a notebook, so they are different entity types (object vs image).\"}", "prompt_tokens": 190, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

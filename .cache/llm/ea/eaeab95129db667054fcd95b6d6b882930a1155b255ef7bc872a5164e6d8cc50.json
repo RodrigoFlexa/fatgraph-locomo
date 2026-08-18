@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Only mentions veterans' rights, omitting other listed causes.\"}", "prompt_tokens": 366, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

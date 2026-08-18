@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"This belongs directly after the 5K charity run memory because its trail already continues with 'Maria shared...', so the beach photo is part of the same sharing episode and narrative.\"}", "prompt_tokens": 738, "completion_tokens": 121, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

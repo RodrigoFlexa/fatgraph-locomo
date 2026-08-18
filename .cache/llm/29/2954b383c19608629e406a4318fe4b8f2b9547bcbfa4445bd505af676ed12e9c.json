@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Candidate claims absence despite reference stating remembering and appreciating veterans.\"}", "prompt_tokens": 371, "completion_tokens": 159, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

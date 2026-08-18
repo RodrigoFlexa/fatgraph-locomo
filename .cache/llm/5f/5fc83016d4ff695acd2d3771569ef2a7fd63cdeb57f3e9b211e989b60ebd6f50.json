@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Coding and programming are equivalent terms for same activity.\"}", "prompt_tokens": 354, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

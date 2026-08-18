@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 4, \"reason\": \"‘Jolene is juggling personal growth’ belongs with other ‘juggling’ personal-life entries (like ‘juggling her relationship’) so it should follow memory 4 to keep that personal juggling narrative together.\"}", "prompt_tokens": 740, "completion_tokens": 192, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 3, \"reason\": \"This memory fits the ongoing narrative about Andrew owning and caring for his dog Toby, so inserting it after 'Andrew has a dog named Toby' keeps it with that pet-care thread.\"}", "prompt_tokens": 765, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

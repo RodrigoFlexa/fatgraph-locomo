@@ -1,0 +1,1 @@
+{"text": "{\"contradiction\": false, \"reason\": \"Both can be true simultaneously—old says Jon supports Gina, new says Gina supports Jon and offers encouragement, which is compatible.\"}", "prompt_tokens": 238, "completion_tokens": 47, "purpose": "ingest/incongruence", "model": "gpt-5-mini-petrobras"}

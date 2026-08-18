@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A is a generic description of any sunset-inspired painting, while B refers to a specific painting made last weekend with details linking it to particular people, so they are not necessarily the same.\"}", "prompt_tokens": 217, "completion_tokens": 186, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

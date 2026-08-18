@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions differ in gender and context (people in a class vs women doing a routine) so they are not clearly the same photo.\"}", "prompt_tokens": 200, "completion_tokens": 174, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention refers to John himself and the other refers to John's girlfriend, a different person.\"}", "prompt_tokens": 234, "completion_tokens": 38, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

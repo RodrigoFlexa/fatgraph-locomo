@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"This directly continues the video-presentation episode (she developed the presentation and will send it to Jon), so it belongs immediately after the memory about developing the video.\"}", "prompt_tokens": 758, "completion_tokens": 118, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

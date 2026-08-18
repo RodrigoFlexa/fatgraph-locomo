@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states she took them to the beach; candidate says absent.\"}", "prompt_tokens": 374, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

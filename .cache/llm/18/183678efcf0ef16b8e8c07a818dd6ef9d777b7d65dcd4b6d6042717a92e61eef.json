@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"The new photo is a stage shot that continues the concert-focused narrative following the photo of the stage with a large eagle, so it belongs immediately after the eagle-on-stage memory.\"}", "prompt_tokens": 762, "completion_tokens": 377, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

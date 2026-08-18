@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 0, \"reason\": \"It continues the same restoration-and-photo episode as memory 0 (restored a classic car last year and shared photos of the restored car), so it belongs directly after that entry.\"}", "prompt_tokens": 400, "completion_tokens": 186, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

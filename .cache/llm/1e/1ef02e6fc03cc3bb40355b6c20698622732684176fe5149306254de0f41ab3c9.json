@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One mention is a singular individual ('a trans woman'), the other is a plural category/group ('trans people'), so they are not the same entity.\"}", "prompt_tokens": 269, "completion_tokens": 178, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

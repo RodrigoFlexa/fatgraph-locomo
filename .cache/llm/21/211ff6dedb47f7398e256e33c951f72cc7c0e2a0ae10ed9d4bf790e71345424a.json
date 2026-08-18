@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Mentions aerial but replaces kundalini with upside-down poses.\"}", "prompt_tokens": 364, "completion_tokens": 160, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

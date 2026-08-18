@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"‘a car’ is a singular, unspecified instance while ‘cars’ refers to the general category discussed, not the same specific entity.\"}", "prompt_tokens": 195, "completion_tokens": 111, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

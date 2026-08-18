@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"\\\"John and Max\\\" includes the same individual referred to as \\\"John\\\".\"}", "prompt_tokens": 237, "completion_tokens": 35, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

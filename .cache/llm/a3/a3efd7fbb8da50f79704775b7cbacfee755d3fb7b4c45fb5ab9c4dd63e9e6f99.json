@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": true, \"merged_text\": \"Evan and his family had a family get-together with homemade lasagna on 6 January 2024.\", \"reason\": \"Both entries report the same event and details; one is a restatement of the other.\"}", "prompt_tokens": 262, "completion_tokens": 196, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

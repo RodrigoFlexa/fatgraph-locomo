@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information: she celebrated her daughter's birthday.\"}", "prompt_tokens": 359, "completion_tokens": 157, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

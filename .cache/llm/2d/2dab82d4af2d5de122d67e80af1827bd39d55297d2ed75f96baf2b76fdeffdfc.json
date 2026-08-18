@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Mention A refers to the content (stories and sketches) while B is a specific book containing those stories and sketches, so they are not the same entity.\"}", "prompt_tokens": 200, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

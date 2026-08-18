@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"They describe two different regular care activities (bathing vs nail trimming) for the same dogs, so neither restates or contains the other.\"}", "prompt_tokens": 238, "completion_tokens": 119, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

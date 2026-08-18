@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 7, \"reason\": \"The image of a computer screen displaying a book and shoes fits the online store narrative (product imagery or promotion) and thus belongs directly after the memory about Gina opening her online clothes store.\"}", "prompt_tokens": 751, "completion_tokens": 187, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

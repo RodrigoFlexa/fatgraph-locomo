@@ -1,0 +1,1 @@
+{"text": "{\"correct\": false, \"reason\": \"Reference states kids like dinosaurs and nature; candidate says not mentioned.\"}", "prompt_tokens": 359, "completion_tokens": 97, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

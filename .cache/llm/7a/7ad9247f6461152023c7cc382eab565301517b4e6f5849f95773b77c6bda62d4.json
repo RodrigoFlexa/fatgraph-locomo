@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both mentions clearly refer to the same person named Joanna, with the first phrase describing something pertaining to Joanna.\"}", "prompt_tokens": 208, "completion_tokens": 41, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

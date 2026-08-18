@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both refer to the same basketball game last week (known alias 'a basketball game last week' and facts state John had a game last week).\"}", "prompt_tokens": 242, "completion_tokens": 113, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

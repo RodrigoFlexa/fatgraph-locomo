@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"The first refers generically to car modifications at a car show, while the second is a specific car mod workshop event, so they are not the same entity.\"}", "prompt_tokens": 199, "completion_tokens": 116, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

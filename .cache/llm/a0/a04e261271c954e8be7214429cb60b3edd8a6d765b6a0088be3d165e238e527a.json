@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"This memory directly continues the episode about Deborah's mother dying (index 1) by adding what Deborah did when her mother passed away, so it belongs in that death-related trail.\"}", "prompt_tokens": 760, "completion_tokens": 250, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

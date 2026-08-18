@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"After sharing a photograph of a group looking at a map, it naturally follows that Maria offered to help improve the roadways discussed while planning the route.\"}", "prompt_tokens": 775, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Matches: national park and preference for outdoors activities.\"}", "prompt_tokens": 380, "completion_tokens": 94, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

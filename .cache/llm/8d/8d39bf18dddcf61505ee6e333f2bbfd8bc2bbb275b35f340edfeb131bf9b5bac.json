@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 2, \"reason\": \"This general declarative fact best belongs with the dairy-free recipe episode (memory 2 lists the coconut-milk recipe), so insert it immediately after that memory.\"}", "prompt_tokens": 709, "completion_tokens": 310, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

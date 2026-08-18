@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to Gina's business (an enterprise) while the other refers to Gina's support (assistance from Gina), so they are different entities.\"}", "prompt_tokens": 178, "completion_tokens": 114, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

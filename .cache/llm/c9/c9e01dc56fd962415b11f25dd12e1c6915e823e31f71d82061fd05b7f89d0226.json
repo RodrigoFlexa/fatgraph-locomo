@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"One states past support while the other expresses a plan to support long-term; they are different facts.\"}", "prompt_tokens": 240, "completion_tokens": 175, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

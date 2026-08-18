@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 6, \"reason\": \"The new photo of a group looking at a map fits the same charity-run/photo episode as memory 6, so place it immediately after that related photograph memory.\"}", "prompt_tokens": 778, "completion_tokens": 182, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

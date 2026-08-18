@@ -1,0 +1,1 @@
+{"text": "{\"same\": true, \"reason\": \"Both phrases refer to the same person—Deborah's mother, with the first mention adding a contextual location (by the art show).\"}", "prompt_tokens": 253, "completion_tokens": 47, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

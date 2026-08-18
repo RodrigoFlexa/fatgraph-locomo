@@ -1,0 +1,1 @@
+{"text": "{\"correct\": true, \"reason\": \"Same information: both state he played Catan.\"}", "prompt_tokens": 371, "completion_tokens": 30, "purpose": "eval/judge", "model": "gpt-5-mini-petrobras"}

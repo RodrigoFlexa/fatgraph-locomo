@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"They are different groups: church friends are part of her social circle, while 'Maria's family' refers to her relatives (e.g., a cousin).\"}", "prompt_tokens": 224, "completion_tokens": 115, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

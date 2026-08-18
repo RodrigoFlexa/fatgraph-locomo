@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"One refers to an individual's passion for basketball while the other describes a shared love among people, so they are different referents.\"}", "prompt_tokens": 185, "completion_tokens": 173, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

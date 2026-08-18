@@ -1,0 +1,1 @@
+{"text": "{\"after_index\": 1, \"reason\": \"Sharing a photo of fruit and yogurt is a direct instance of Sam trying dietary changes, so it should follow the memory 'Sam is trying dietary changes.'\"}", "prompt_tokens": 789, "completion_tokens": 244, "purpose": "ingest/sigma_agent", "model": "gpt-5-mini-petrobras"}

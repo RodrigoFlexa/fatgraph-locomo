@@ -1,0 +1,1 @@
+{"text": "{\"redundant\": false, \"merged_text\": \"\", \"reason\": \"The two memories add different details about the same event (one notes it was powerful; the other notes she felt accepted and gained courage), so neither fully contains the other.\"}", "prompt_tokens": 261, "completion_tokens": 189, "purpose": "curation/redundancy", "model": "gpt-5-mini-petrobras"}

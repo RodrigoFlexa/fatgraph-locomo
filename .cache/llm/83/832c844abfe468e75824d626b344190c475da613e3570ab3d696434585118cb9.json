@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"Descriptions differ in key details (bird vs wave and unspecified body of water vs ocean), so they are not clearly the same photo.\"}", "prompt_tokens": 207, "completion_tokens": 110, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}

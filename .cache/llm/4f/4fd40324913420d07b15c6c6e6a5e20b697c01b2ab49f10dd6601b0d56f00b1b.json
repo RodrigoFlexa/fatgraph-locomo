@@ -1,0 +1,1 @@
+{"text": "{\"same\": false, \"reason\": \"No evidence they refer to the same referent: one mention is 'Melanie for adoption' (adoption context) while B refers to a known Melanie with family and family activities.\"}", "prompt_tokens": 327, "completion_tokens": 185, "purpose": "ingest/entity_match", "model": "gpt-5-mini-petrobras"}
