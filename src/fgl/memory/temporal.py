@@ -55,10 +55,24 @@ _WEEKDAY_QUALIFIED = re.compile(
 class ResolvedDate:
     raw: str  # the span exactly as it appeared ("last Saturday")
     resolved: datetime  # absolute datetime it was resolved to
-    resolved_date: str  # ISO date, what actually gets shown to the reader
+    resolved_date: str  # ISO date -- machine-facing (logs, vertex meta), NOT
+    # what gets shown to the reader; see render().
 
     def render(self) -> str:
-        return f"'{self.raw}' = {self.resolved_date}"
+        # Natural-language format ("7 May 2023"), matching how LoCoMo's own
+        # gold answers and session dates are written. Measured regression
+        # (first real run of L1, all 10 conversations, real LLM): the ISO
+        # gloss this used to emit ("... = 2023-05-07") was arithmetically
+        # exact but scored F1=0.0 against gold answers like "7 May 2023" --
+        # zero token overlap after the official scorer's tokenisation --
+        # even on questions where recall_context was 1.0 and the resolved
+        # date was the literal correct day. Temporal was the worst-scoring
+        # category (F1 0.178) despite the best non-adversarial recall_context
+        # (0.768); this format mismatch, not a retrieval miss, was the cause
+        # for a large share of those. `%-d` (no leading zero) is avoided
+        # deliberately -- it is a glibc strftime extension, not portable.
+        day = self.resolved.day
+        return f"'{self.raw}' = {day} {self.resolved.strftime('%B %Y')}"
 
 
 def _direction(span: str) -> str:

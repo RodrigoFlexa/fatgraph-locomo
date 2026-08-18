@@ -98,8 +98,20 @@ def test_annotate_text_appends_gloss_without_touching_original_phrase():
     resolved = resolve_all(["last Saturday"], BASE)
     out = annotate_text("I went hiking last Saturday.", resolved)
     assert out.startswith("I went hiking last Saturday.")
-    assert "2023-05-13" in out
+    # natural-language format ("13 May 2023"), not ISO -- see render()'s
+    # docstring for the measured F1 regression ISO caused on the real run.
+    assert "13 May 2023" in out
     assert "last Saturday" in out  # original phrase preserved, not replaced
+
+
+def test_render_uses_natural_language_not_iso():
+    r = resolve_relative_date("last Saturday", BASE)
+    assert r is not None
+    assert "2023-05-13" not in r.render()
+    assert "13 May 2023" in r.render()
+    # resolved_date itself stays ISO -- it is machine-facing (vertex meta),
+    # only render()'s reader-facing gloss changed.
+    assert r.resolved_date == "2023-05-13"
 
 
 def test_annotate_text_is_a_no_op_with_nothing_resolved():
