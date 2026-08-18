@@ -1,0 +1,240 @@
+{
+ "facts": [
+  {
+   "entity_1": "James's project",
+   "relation": "had",
+   "entity_2": "a bug that messed up the game mechanics",
+   "fact_text": "James's project had a bug that messed up the game mechanics on 4 May, 2022.",
+   "turn_ids": [
+    "D9:2",
+    "D9:4"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "teamed up with",
+   "entity_2": "a group of friends to fix the bug",
+   "fact_text": "James teamed up with a group of friends to fix the bug in his project on 4 May, 2022.",
+   "turn_ids": [
+    "D9:6"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "spent time with",
+   "entity_2": "his beloved pets",
+   "fact_text": "James spent time with his beloved pets on 4 May, 2022.",
+   "turn_ids": [
+    "D9:10"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "the shared image",
+   "relation": "depicts",
+   "entity_2": "two dogs playing in a fenced in area",
+   "fact_text": "The shared image depicts two dogs playing in a fenced in area (photo shared on 4 May, 2022).",
+   "turn_ids": [
+    "D9:10"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "Daisy",
+   "relation": "is a",
+   "entity_2": "Labrador",
+   "fact_text": "Daisy is a Labrador.",
+   "turn_ids": [
+    "D9:12"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "Daisy",
+   "relation": "likes to",
+   "entity_2": "play with her toys",
+   "fact_text": "Daisy likes to play with her toys.",
+   "turn_ids": [
+    "D9:12"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "Daisy",
+   "relation": "likes to",
+   "entity_2": "eat the most",
+   "fact_text": "Daisy likes to eat the most.",
+   "turn_ids": [
+    "D9:12"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James's other dogs",
+   "relation": "are",
+   "entity_2": "shepherds",
+   "fact_text": "James's other dogs are shepherds.",
+   "turn_ids": [
+    "D9:13",
+    "D9:14"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James's shepherds",
+   "relation": "are known for",
+   "entity_2": "loyalty",
+   "fact_text": "James's shepherds are known for loyalty.",
+   "turn_ids": [
+    "D9:14"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "is happy about",
+   "entity_2": "his pets",
+   "fact_text": "James is happy about his pets.",
+   "turn_ids": [
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "likes",
+   "entity_2": "computer games",
+   "fact_text": "James likes computer games.",
+   "turn_ids": [
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "likes",
+   "entity_2": "travel",
+   "fact_text": "James likes travel.",
+   "turn_ids": [
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "likes",
+   "entity_2": "pizza",
+   "fact_text": "James likes pizza.",
+   "turn_ids": [
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "prefers",
+   "entity_2": "pepperoni pizza",
+   "fact_text": "James prefers pepperoni pizza.",
+   "turn_ids": [
+    "D9:18"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "also likes",
+   "entity_2": "cheese pizza",
+   "fact_text": "James also likes cheese pizza.",
+   "turn_ids": [
+    "D9:20"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "also likes",
+   "entity_2": "prosciutto pizza",
+   "fact_text": "James also likes prosciutto pizza.",
+   "turn_ids": [
+    "D9:20"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "likes",
+   "entity_2": "Hawaiian pizza",
+   "fact_text": "John likes Hawaiian pizza.",
+   "turn_ids": [
+    "D9:19"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had",
+   "entity_2": "a day off and had a few new friends over to watch movies",
+   "fact_text": "John had a day off and had a few new friends over to watch movies on 4 May, 2022.",
+   "turn_ids": [
+    "D9:9"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2022-05-04T19:01:00",
+   "date_raw": "7:01 pm on 4 May, 2022"
+  }
+ ]
+}

@@ -1,0 +1,148 @@
+{
+ "facts": [
+  {
+   "entity_1": "Gina",
+   "relation": "launched",
+   "entity_2": "an ad campaign for Gina's clothing store",
+   "fact_text": "On 29 January 2023 Gina launched an ad campaign for her clothing store.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "started",
+   "entity_2": "a clothing store",
+   "fact_text": "On 29 January 2023 Gina started her own clothing store.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is looking for",
+   "entity_2": "an ideal spot for his dance studio",
+   "fact_text": "On 29 January 2023 Jon is looking for an ideal spot for his dance studio.",
+   "turn_ids": [
+    "D2:4",
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "found",
+   "entity_2": "a place with great natural light",
+   "fact_text": "On 29 January 2023 Jon found a place with great natural light for his dance studio.",
+   "turn_ids": [
+    "D2:4"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "visited",
+   "entity_2": "Paris",
+   "fact_text": "Jon visited Paris on 28 January 2023.",
+   "turn_ids": [
+    "D2:4"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "the shared image",
+   "relation": "depicts",
+   "entity_2": "a bathroom with a blue floor and a pink wall",
+   "fact_text": "The shared image depicts a bathroom with a blue floor and a pink wall.",
+   "turn_ids": [
+    "D2:4"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "the place Jon found",
+   "relation": "is located in",
+   "entity_2": "downtown",
+   "fact_text": "The place Jon found is located in downtown.",
+   "turn_ids": [
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "prefers",
+   "entity_2": "Marley flooring",
+   "fact_text": "Jon prefers Marley flooring for his dance studio.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Marley flooring",
+   "relation": "is commonly used in",
+   "entity_2": "dance studios",
+   "fact_text": "Marley flooring is commonly used in dance studios.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "has visited",
+   "entity_2": "Rome once",
+   "fact_text": "Gina has visited Rome once.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "needs",
+   "entity_2": "a dance floor with enough bounce",
+   "fact_text": "Jon needs a dance floor with enough bounce for his students to dance safely.",
+   "turn_ids": [
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-29T14:32:00",
+   "date_raw": "2:32 pm on 29 January, 2023"
+  }
+ ]
+}

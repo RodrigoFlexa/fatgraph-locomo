@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "caroline and great came up when Melanie was talking.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "lgbtq",
+   "fact_text": "great and lgbtq came up when Caroline was talking.",
+   "turn_ids": [
+    "D9:2"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "along",
+   "fact_text": "great and along came up when Caroline was talking.",
+   "turn_ids": [
+    "D9:4"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "sounds",
+   "fact_text": "caroline and sounds came up when Melanie was talking.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "last",
+   "fact_text": "great and last came up when Caroline was talking.",
+   "turn_ids": [
+    "D9:6"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "awesome",
+   "fact_text": "caroline and awesome came up when Melanie was talking.",
+   "turn_ids": [
+    "D9:7"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "event",
+   "fact_text": "awesome and event came up when Caroline was talking.",
+   "turn_ids": [
+    "D9:8"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-07-17T14:31:00",
+   "date_raw": "2:31 pm on 17 July, 2023"
+  }
+ ]
+}

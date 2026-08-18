@@ -1,0 +1,148 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "got",
+   "entity_2": "a puppy named Coco",
+   "fact_text": "Maria got a puppy named Coco two weeks before 11 August 2023.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "Coco",
+   "relation": "is",
+   "entity_2": "a puppy",
+   "fact_text": "Coco is a puppy.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "Coco",
+   "relation": "is",
+   "entity_2": "a white dog",
+   "fact_text": "Coco is a white dog shown laying in the grass with a baseball in the shared photo.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "owns",
+   "entity_2": "a dog named Max",
+   "fact_text": "John owns a dog named Max.",
+   "turn_ids": [
+    "D30:4"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John and Max",
+   "relation": "went on",
+   "entity_2": "a camping trip last summer",
+   "fact_text": "John and Max went on a camping trip last summer.",
+   "turn_ids": [
+    "D30:6"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John and Max",
+   "relation": "hiked and swam on",
+   "entity_2": "their camping trip last summer",
+   "fact_text": "John and Max hiked and swam on their camping trip last summer.",
+   "turn_ids": [
+    "D30:6"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has experienced",
+   "entity_2": "some tough times lately",
+   "fact_text": "John has experienced some tough times lately.",
+   "turn_ids": [
+    "D30:12"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels",
+   "entity_2": "he is not making much of an impact",
+   "fact_text": "John feels he is not making much of an impact and is questioning his decisions and goals.",
+   "turn_ids": [
+    "D30:14",
+    "D30:16"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wants",
+   "entity_2": "to positively affect people and the world",
+   "fact_text": "John wants to positively affect people and the world.",
+   "turn_ids": [
+    "D30:16"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is exploring",
+   "entity_2": "joining local organizations or volunteering programs",
+   "fact_text": "John is exploring joining local organizations or volunteering programs as a way to channel his energy.",
+   "turn_ids": [
+    "D30:18"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to",
+   "entity_2": "make a list of organizations and reach out for more information",
+   "fact_text": "John plans to make a list of organizations that suit his beliefs and reach out for more information.",
+   "turn_ids": [
+    "D30:20"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-08-11T00:10:00",
+   "date_raw": "12:10 am on 11 August, 2023"
+  }
+ ]
+}

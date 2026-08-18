@@ -1,0 +1,122 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan and Evan's partner",
+   "relation": "told",
+   "entity_2": "Evan's extended family about their marriage on 5 January 2024",
+   "fact_text": "Evan and Evan's partner told Evan's extended family about their marriage on 5 January 2024.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "limits himself to",
+   "entity_2": "two ginger snaps a day",
+   "fact_text": "Evan limits himself to two ginger snaps a day.",
+   "turn_ids": [
+    "D23:15"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan's family",
+   "relation": "had a family get-together with",
+   "entity_2": "homemade lasagna on 6 January 2024",
+   "fact_text": "Evan's family had a family get-together with homemade lasagna on 6 January 2024.",
+   "turn_ids": [
+    "D23:15"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan and Evan's partner",
+   "relation": "plan a honeymoon in",
+   "entity_2": "Canada in February 2024",
+   "fact_text": "Evan and Evan's partner plan a honeymoon in Canada in February 2024.",
+   "turn_ids": [
+    "D23:23"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan and Evan's partner",
+   "relation": "plan to",
+   "entity_2": "ski on their Canada honeymoon",
+   "fact_text": "Evan and Evan's partner plan to ski on their Canada honeymoon.",
+   "turn_ids": [
+    "D23:25"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan and Evan's partner",
+   "relation": "plan to",
+   "entity_2": "try local cuisine on their Canada honeymoon",
+   "fact_text": "Evan and Evan's partner plan to try local cuisine on their Canada honeymoon.",
+   "turn_ids": [
+    "D23:25"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "plans to try",
+   "entity_2": "poutine in Canada",
+   "fact_text": "Evan plans to try poutine in Canada.",
+   "turn_ids": [
+    "D23:27"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Photo D23:1",
+   "relation": "depicts",
+   "entity_2": "a man and a woman standing on a rocky beach",
+   "fact_text": "Photo D23:1 depicts a man and a woman standing on a rocky beach.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  },
+  {
+   "entity_1": "Photo D23:18",
+   "relation": "is from",
+   "entity_2": "Sam's cousin's wedding",
+   "fact_text": "Photo D23:18 is from Sam's cousin's wedding.",
+   "turn_ids": [
+    "D23:18",
+    "D23:20"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2024-01-06T13:32:00",
+   "date_raw": "1:32 pm on 6 January, 2024"
+  }
+ ]
+}

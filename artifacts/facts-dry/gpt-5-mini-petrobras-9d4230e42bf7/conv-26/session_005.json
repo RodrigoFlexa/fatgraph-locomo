@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "community",
+   "relation": "mentions",
+   "entity_2": "feel",
+   "fact_text": "community and feel came up when Caroline was talking.",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "caroline and great came up when Melanie was talking.",
+   "turn_ids": [
+    "D5:2"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "community",
+   "relation": "mentions",
+   "entity_2": "excited",
+   "fact_text": "community and excited came up when Caroline was talking.",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "pottery",
+   "relation": "mentions",
+   "entity_2": "creative",
+   "fact_text": "pottery and creative came up when Caroline was talking.",
+   "turn_ids": [
+    "D5:5"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "pottery",
+   "relation": "mentions",
+   "entity_2": "awesome",
+   "fact_text": "pottery and awesome came up when Melanie was talking.",
+   "turn_ids": [
+    "D5:6"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "bowl",
+   "relation": "mentions",
+   "entity_2": "black",
+   "fact_text": "bowl and black came up when Caroline was talking.",
+   "turn_ids": [
+    "D5:7"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "bowl",
+   "fact_text": "caroline and bowl came up when Melanie was talking.",
+   "turn_ids": [
+    "D5:8"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  }
+ ]
+}

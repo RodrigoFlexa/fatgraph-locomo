@@ -1,0 +1,268 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "is taking",
+   "entity_2": "a dog training course",
+   "fact_text": "Audrey is taking a dog training course.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "are doing better",
+   "entity_2": "after the course",
+   "fact_text": "Audrey's dogs are doing better after the dog training course.",
+   "turn_ids": [
+    "D10:1",
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "cannot find",
+   "entity_2": "dog-friendly spots to rent",
+   "fact_text": "Andrew cannot find dog-friendly spots to rent.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "are",
+   "entity_2": "mutts",
+   "fact_text": "Audrey's dogs are mutts.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Two of Audrey's dogs",
+   "relation": "are",
+   "entity_2": "Jack Russell mixes",
+   "fact_text": "Two of Audrey's dogs are Jack Russell mixes.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Two of Audrey's dogs",
+   "relation": "are",
+   "entity_2": "Chihuahua mixes",
+   "fact_text": "Two of Audrey's dogs are Chihuahua mixes.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "are",
+   "entity_2": "3 years old",
+   "fact_text": "Audrey's dogs are 3 years old.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "get along as",
+   "entity_2": "a great pack",
+   "fact_text": "Audrey's dogs get along as a great pack.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "had",
+   "entity_2": "a doggy playdate last Friday",
+   "fact_text": "Audrey's dogs had a doggy playdate last Friday.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "loves",
+   "entity_2": "cooking",
+   "fact_text": "Audrey loves cooking.",
+   "turn_ids": [
+    "D10:13",
+    "D10:17"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's favorite recipe",
+   "relation": "is",
+   "entity_2": "Chicken Pot Pie",
+   "fact_text": "Audrey's favorite recipe is Chicken Pot Pie.",
+   "turn_ids": [
+    "D10:13"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Chicken Pot Pie",
+   "relation": "is",
+   "entity_2": "a family recipe",
+   "fact_text": "Chicken Pot Pie is a family recipe for Audrey.",
+   "turn_ids": [
+    "D10:15"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Chicken Pot Pie",
+   "relation": "reminds",
+   "entity_2": "Audrey of her grandma's kitchen",
+   "fact_text": "Chicken Pot Pie reminds Audrey of her grandma's kitchen.",
+   "turn_ids": [
+    "D10:15"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "uses as go-to ingredient",
+   "entity_2": "garlic",
+   "fact_text": "Audrey uses garlic as her go-to ingredient in the kitchen.",
+   "turn_ids": [
+    "D10:21"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's favorite dish",
+   "relation": "is",
+   "entity_2": "Roasted Chicken",
+   "fact_text": "Audrey's favorite dish is Roasted Chicken.",
+   "turn_ids": [
+    "D10:23"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Roasted Chicken",
+   "relation": "is based on",
+   "entity_2": "Mediterranean flavors",
+   "fact_text": "Roasted Chicken is based on Mediterranean flavors.",
+   "turn_ids": [
+    "D10:25"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Roasted Chicken",
+   "relation": "includes",
+   "entity_2": "chicken, garlic, lemon, and herbs",
+   "fact_text": "Roasted Chicken includes chicken, garlic, lemon, and herbs.",
+   "turn_ids": [
+    "D10:25"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "has been getting into",
+   "entity_2": "cooking",
+   "fact_text": "Andrew has been getting into cooking.",
+   "turn_ids": [
+    "D10:12"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "is",
+   "entity_2": "a rookie cook",
+   "fact_text": "Andrew is a rookie cook.",
+   "turn_ids": [
+    "D10:12",
+    "D10:16"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Cooking",
+   "relation": "helps",
+   "entity_2": "Andrew de-stress and be creative",
+   "fact_text": "Cooking helps Andrew de-stress and be creative.",
+   "turn_ids": [
+    "D10:12",
+    "D10:16"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-03T20:32:00",
+   "date_raw": "8:32 pm on 3 July, 2023"
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "family",
+   "relation": "mentions",
+   "entity_2": "melanie",
+   "fact_text": "family and melanie came up when Caroline was talking.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "family",
+   "fact_text": "caroline and family came up when Melanie was talking.",
+   "turn_ids": [
+    "D19:2"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "acceptance",
+   "fact_text": "melanie and acceptance came up when Caroline was talking.",
+   "turn_ids": [
+    "D19:5"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "helping",
+   "fact_text": "caroline and helping came up when Melanie was talking.",
+   "turn_ids": [
+    "D19:6"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "support",
+   "relation": "mentions",
+   "entity_2": "love",
+   "fact_text": "support and love came up when Caroline was talking.",
+   "turn_ids": [
+    "D19:7"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "acceptance",
+   "fact_text": "caroline and acceptance came up when Melanie was talking.",
+   "turn_ids": [
+    "D19:8"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  }
+ ]
+}

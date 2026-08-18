@@ -1,0 +1,219 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "had",
+   "entity_2": "a pee accident near someone's roses",
+   "fact_text": "Evan had a pee accident near someone's roses on the night before 10 January 2024.",
+   "turn_ids": [
+    "D24:3",
+    "D24:5"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "apologized to",
+   "entity_2": "the owners of the roses",
+   "fact_text": "Evan apologized to the owners of the roses after the pee accident.",
+   "turn_ids": [
+    "D24:7"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "the owners of the roses",
+   "relation": "were",
+   "entity_2": "understanding",
+   "fact_text": "The owners of the roses were understanding when Evan apologized for the pee accident.",
+   "turn_ids": [
+    "D24:7",
+    "D24:8"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "was",
+   "entity_2": "out with friends and drank too much",
+   "fact_text": "Evan was out with friends and drank too much the night before the 10 January 2024 session.",
+   "turn_ids": [
+    "D24:3",
+    "D24:7"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan and his partner",
+   "relation": "tried",
+   "entity_2": "snowshoeing",
+   "fact_text": "Evan and his partner tried snowshoeing this weekend.",
+   "turn_ids": [
+    "D24:9"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "created",
+   "entity_2": "a meal plan and workout schedule",
+   "fact_text": "Sam created a meal plan and workout schedule and started it on the day of the 10 January 2024 session.",
+   "turn_ids": [
+    "D24:10"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared",
+   "entity_2": "an image of a white board with writing",
+   "fact_text": "Sam shared an image of a white board with a bunch of writing on it.",
+   "turn_ids": [
+    "D24:10"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "plans to",
+   "entity_2": "make a doctor appointment",
+   "fact_text": "Sam plans to make a doctor appointment because Sam has not seen a doctor in a while.",
+   "turn_ids": [
+    "D24:12",
+    "D24:11"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "plans to ask",
+   "entity_2": "a doctor about a balanced diet and low-impact exercises",
+   "fact_text": "Sam plans to ask a doctor about a balanced diet and getting advice on low-impact exercises.",
+   "turn_ids": [
+    "D24:14"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared",
+   "entity_2": "an image of a salad from a nearby restaurant",
+   "fact_text": "Evan shared an image of a salad with chicken, avocado, tomatoes, corn, and cheese and said he got the idea from a nearby restaurant.",
+   "turn_ids": [
+    "D24:15",
+    "D24:17"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "recommended",
+   "entity_2": "yoga",
+   "fact_text": "Evan recommended yoga as a low-impact exercise.",
+   "turn_ids": [
+    "D24:17",
+    "D24:19"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Yoga",
+   "relation": "helped",
+   "entity_2": "Evan with stress and staying flexible",
+   "fact_text": "Yoga helped Evan with stress and staying flexible.",
+   "turn_ids": [
+    "D24:19"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "watched",
+   "entity_2": "The Godfather last night",
+   "fact_text": "Sam watched The Godfather last night and felt motivated by it.",
+   "turn_ids": [
+    "D24:18"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "had",
+   "entity_2": "a recurring dream of flying over skyscrapers",
+   "fact_text": "Sam had a recurring dream of flying over skyscrapers.",
+   "turn_ids": [
+    "D24:22"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "plans to",
+   "entity_2": "go for beach walks",
+   "fact_text": "Sam plans to go for beach walks following Evan's suggestion about beach sunsets and walks.",
+   "turn_ids": [
+    "D24:21",
+    "D24:23"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared",
+   "entity_2": "an image of a woman standing on a beach at sunset",
+   "fact_text": "Evan shared an image of a woman standing on a beach at sunset.",
+   "turn_ids": [
+    "D24:21"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2024-01-10T00:17:00",
+   "date_raw": "12:17 am on 10 January, 2024"
+  }
+ ]
+}

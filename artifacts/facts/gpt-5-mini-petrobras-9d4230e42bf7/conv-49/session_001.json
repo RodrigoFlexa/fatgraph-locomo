@@ -1,0 +1,213 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "owns",
+   "entity_2": "new Prius",
+   "fact_text": "Evan owns a new Prius.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "took a trip with",
+   "entity_2": "his family in his new Prius",
+   "fact_text": "Evan took a trip with his family in his new Prius.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "had",
+   "entity_2": "old Prius that broke down",
+   "fact_text": "Evan had an old Prius that broke down.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "repaired and sold",
+   "entity_2": "his old Prius",
+   "fact_text": "Evan repaired and sold his old Prius.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "visited",
+   "entity_2": "the Rockies",
+   "fact_text": "Evan visited the Rockies.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared an image of",
+   "entity_2": "a lake with rocks and mountains",
+   "fact_text": "Evan shared an image of a lake with rocks and mountains.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan and his family",
+   "relation": "hiked",
+   "entity_2": "the trails last week",
+   "fact_text": "Evan and his family hiked the trails last week.",
+   "turn_ids": [
+    "D1:6"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "hiked with",
+   "entity_2": "his dad when he was ten",
+   "fact_text": "Sam hiked with his dad when he was ten.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared an image of",
+   "entity_2": "a man and a child walking through a forest",
+   "fact_text": "Sam shared an image of a man and a child walking through a forest.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is thinking about trying",
+   "entity_2": "painting",
+   "fact_text": "Sam is thinking about trying painting.",
+   "turn_ids": [
+    "D1:11"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared an image of",
+   "entity_2": "a person holding a paint set in a store",
+   "fact_text": "Sam shared an image of a person holding a paint set in a store.",
+   "turn_ids": [
+    "D1:11"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "enjoys",
+   "entity_2": "watercolor painting",
+   "fact_text": "Evan enjoys watercolor painting.",
+   "turn_ids": [
+    "D1:14",
+    "D1:16"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "started",
+   "entity_2": "watercolor painting a few years ago",
+   "fact_text": "Evan started watercolor painting a few years ago.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "was introduced to watercolor painting by",
+   "entity_2": "a friend",
+   "fact_text": "Evan was introduced to watercolor painting by a friend who gave him advice.",
+   "turn_ids": [
+    "D1:16"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared an image of",
+   "entity_2": "a painting of a cactus in the desert",
+   "fact_text": "Evan shared an image of a painting of a cactus in the desert.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is keen to try",
+   "entity_2": "painting",
+   "fact_text": "Sam is keen to try painting.",
+   "turn_ids": [
+    "D1:13"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-18T13:47:00",
+   "date_raw": "1:47 pm on 18 May, 2023"
+  }
+ ]
+}

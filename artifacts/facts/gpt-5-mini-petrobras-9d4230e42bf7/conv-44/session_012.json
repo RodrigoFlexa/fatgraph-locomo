@@ -1,0 +1,163 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "has puppy",
+   "entity_2": "Toby",
+   "fact_text": "Andrew has a puppy named Toby.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Toby",
+   "relation": "is a",
+   "entity_2": "puppy",
+   "fact_text": "Toby is a puppy.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "lives in",
+   "entity_2": "the city",
+   "fact_text": "Andrew lives in the city.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "is stressed about",
+   "entity_2": "work",
+   "fact_text": "Andrew is stressed about work.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "misses",
+   "entity_2": "hiking",
+   "fact_text": "Andrew misses going for a hike and the feeling of freedom it brings.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans",
+   "entity_2": "a hike next month",
+   "fact_text": "Andrew plans a hike next month.",
+   "turn_ids": [
+    "D12:5"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "invited",
+   "entity_2": "Audrey",
+   "fact_text": "Andrew invited Audrey to join the hike next month.",
+   "turn_ids": [
+    "D12:5"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "invited",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Andrew invited Audrey's dogs to join the hike next month.",
+   "turn_ids": [
+    "D12:5"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "made",
+   "entity_2": "personalized tags",
+   "fact_text": "Audrey made personalized tags for her dogs.",
+   "turn_ids": [
+    "D12:6",
+    "D12:8"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "personalized tags",
+   "relation": "are",
+   "entity_2": "wooden keychains with engraved names",
+   "fact_text": "The personalized tags are wooden keychains with engraved names.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Toby",
+   "relation": "brings joy to",
+   "entity_2": "Andrew",
+   "fact_text": "Toby brings a lot of joy to Andrew.",
+   "turn_ids": [
+    "D12:1",
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to meet with",
+   "entity_2": "Audrey and her dogs on a hike",
+   "fact_text": "Andrew plans to meet with Audrey and her dogs on a hike.",
+   "turn_ids": [
+    "D12:5",
+    "D12:13"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-07-11T10:05:00",
+   "date_raw": "10:05 am on 11 July, 2023"
+  }
+ ]
+}

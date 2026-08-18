@@ -1,0 +1,174 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "got",
+   "entity_2": "dream job",
+   "fact_text": "John got his dream job.",
+   "turn_ids": [
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "starts",
+   "entity_2": "dream job next month",
+   "fact_text": "John starts his dream job next month.",
+   "turn_ids": [
+    "D13:5"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "started",
+   "entity_2": "course combining gaming and programming",
+   "fact_text": "James started a course combining gaming and programming.",
+   "turn_ids": [
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "works on",
+   "entity_2": "new part of the football simulator",
+   "fact_text": "James works on a new part of the football simulator.",
+   "turn_ids": [
+    "D13:8"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "collected",
+   "entity_2": "player databases",
+   "fact_text": "James collected player databases for the football simulator.",
+   "turn_ids": [
+    "D13:8"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "loves",
+   "entity_2": "football",
+   "fact_text": "James loves football.",
+   "turn_ids": [
+    "D13:10"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "supports",
+   "entity_2": "Liverpool",
+   "fact_text": "James supports Liverpool.",
+   "turn_ids": [
+    "D13:12"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "hopes",
+   "entity_2": "Liverpool become champions next season",
+   "fact_text": "James hopes Liverpool become champions next season.",
+   "turn_ids": [
+    "D13:14"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "supports",
+   "entity_2": "Manchester City",
+   "fact_text": "John supports Manchester City.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "expects",
+   "entity_2": "Manchester City to win the championship",
+   "fact_text": "John expects Manchester City to win the championship.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "believes",
+   "entity_2": "Manchester City are in bad form",
+   "fact_text": "James believes Manchester City are in bad form.",
+   "turn_ids": [
+    "D13:16"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "believes",
+   "entity_2": "Manchester City manager can handle it",
+   "fact_text": "John believes the Manchester City manager can handle it.",
+   "turn_ids": [
+    "D13:17"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "bet",
+   "entity_2": "John about final standings",
+   "fact_text": "James bet John that James's team would finish higher than John's team in the final standings.",
+   "turn_ids": [
+    "D13:18",
+    "D13:19"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-06-13T16:30:00",
+   "date_raw": "4:30 pm on 13 June, 2022"
+  }
+ ]
+}

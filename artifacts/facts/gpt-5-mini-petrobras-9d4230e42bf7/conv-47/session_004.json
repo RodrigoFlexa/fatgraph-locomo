@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "joined",
+   "entity_2": "online gaming tournament on 2022-04-03",
+   "fact_text": "James joined an online gaming tournament on 2022-04-03.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "reached",
+   "entity_2": "tournament semifinals",
+   "fact_text": "James reached the tournament semifinals on 2022-04-03.",
+   "turn_ids": [
+    "D4:4"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "won",
+   "entity_2": "some rounds in the online gaming tournament",
+   "fact_text": "James won some rounds in the online gaming tournament on 2022-04-03.",
+   "turn_ids": [
+    "D4:4"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "failed to reach",
+   "entity_2": "tournament finals",
+   "fact_text": "James failed to reach the tournament finals on 2022-04-03.",
+   "turn_ids": [
+    "D4:6"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "met",
+   "entity_2": "a gaming team at the tournament",
+   "fact_text": "James met a gaming team at the tournament on 2022-04-03.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "a member of the gaming team",
+   "relation": "gave",
+   "entity_2": "James gaming tips",
+   "fact_text": "A member of the gaming team gave James gaming tips at the tournament on 2022-04-03.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "the gaming team",
+   "relation": "gave",
+   "entity_2": "autographs to James",
+   "fact_text": "The gaming team gave autographs to James on 2022-04-03.",
+   "turn_ids": [
+    "D4:10"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "values",
+   "entity_2": "always communicating correctly with the team over ego",
+   "fact_text": "James values always communicating correctly with the team over putting ego above team success.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "uses",
+   "entity_2": "voice chat to communicate with his team",
+   "fact_text": "James uses voice chat to communicate with his team.",
+   "turn_ids": [
+    "D4:14"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plays",
+   "entity_2": "Apex Legends with his team",
+   "fact_text": "James plays Apex Legends with his team.",
+   "turn_ids": [
+    "D4:16"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "Apex Legends",
+   "relation": "has",
+   "entity_2": "awesome graphics and super fast-paced gameplay",
+   "fact_text": "Apex Legends has awesome graphics and super fast-paced gameplay.",
+   "turn_ids": [
+    "D4:18"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to try",
+   "entity_2": "RPGs",
+   "fact_text": "James plans to try RPGs.",
+   "turn_ids": [
+    "D4:20"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to try",
+   "entity_2": "MOBAs",
+   "fact_text": "James plans to try MOBAs.",
+   "turn_ids": [
+    "D4:20"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-04-04T14:13:00",
+   "date_raw": "2:13 pm on 4 April, 2022"
+  }
+ ]
+}

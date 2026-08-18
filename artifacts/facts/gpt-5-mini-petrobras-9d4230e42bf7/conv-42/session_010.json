@@ -1,0 +1,238 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "watched",
+   "entity_2": "The Lord of the Rings Trilogy",
+   "fact_text": "Joanna watched The Lord of the Rings Trilogy last night.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared image of",
+   "entity_2": "a gaming room with a computer and a gaming chair",
+   "fact_text": "Nate shared an image of a gaming room with a computer and a gaming chair.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "focused on",
+   "entity_2": "gaming",
+   "fact_text": "Nate focused on gaming.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "practiced",
+   "entity_2": "gaming a lot",
+   "fact_text": "Nate practiced gaming a lot.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "won",
+   "entity_2": "a few tournaments",
+   "fact_text": "Nate won a few tournaments.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "won",
+   "entity_2": "his second tournament last week",
+   "fact_text": "Nate won his second tournament last week.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "usually plays",
+   "entity_2": "CS:GO",
+   "fact_text": "Nate usually plays CS:GO.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "tried his hand at",
+   "entity_2": "a local Street Fighter tournament",
+   "fact_text": "Nate tried his hand at a local Street Fighter tournament.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "plays a lot with friends",
+   "entity_2": "Street Fighter",
+   "fact_text": "Nate plays Street Fighter a lot with his friends.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is really good at",
+   "entity_2": "Street Fighter",
+   "fact_text": "Nate is really good at Street Fighter.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "the other finalist",
+   "relation": "shook hands with",
+   "entity_2": "Nate",
+   "fact_text": "The other finalist shook hands with Nate.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "working on",
+   "entity_2": "a screenplay",
+   "fact_text": "Joanna has been working on a screenplay.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "tested",
+   "entity_2": "dairy-free dessert recipes for friends and family",
+   "fact_text": "Joanna tested dairy-free dessert recipes for friends and family.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared image of",
+   "entity_2": "a cake with white frosting on a wooden table",
+   "fact_text": "Joanna shared an image of a cake with white frosting on a wooden table.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "the cake",
+   "relation": "is",
+   "entity_2": "dairy-free vanilla with strawberry filling and coconut cream frosting",
+   "fact_text": "The cake is dairy-free vanilla with strawberry filling and coconut cream frosting.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "likes",
+   "entity_2": "Nate's coconut recommendation",
+   "fact_text": "Joanna likes Nate's coconut recommendation.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "uses as creative outlets",
+   "entity_2": "cooking and baking",
+   "fact_text": "Joanna uses cooking and baking as creative outlets.",
+   "turn_ids": [
+    "D10:13"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "enjoys",
+   "entity_2": "experimenting in the kitchen",
+   "fact_text": "Joanna enjoys experimenting in the kitchen.",
+   "turn_ids": [
+    "D10:13"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-02T11:54:00",
+   "date_raw": "11:54 am on 2 May, 2022"
+  }
+ ]
+}

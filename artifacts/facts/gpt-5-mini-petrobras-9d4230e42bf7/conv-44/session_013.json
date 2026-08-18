@@ -1,0 +1,188 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "volunteered at",
+   "entity_2": "pet shelter",
+   "fact_text": "Andrew volunteered at a pet shelter on Monday.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Andrew's girlfriend",
+   "relation": "volunteered at",
+   "entity_2": "pet shelter",
+   "fact_text": "Andrew's girlfriend volunteered at a pet shelter on Monday.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has",
+   "entity_2": "four fur babies",
+   "fact_text": "Audrey has four fur babies.",
+   "turn_ids": [
+    "D13:4",
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "image of a woman kissing a dog in a park",
+   "fact_text": "Audrey shared an image of a woman kissing a dog in a park.",
+   "turn_ids": [
+    "D13:4"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's oldest dog",
+   "relation": "is",
+   "entity_2": "relaxed",
+   "fact_text": "Audrey's oldest dog is relaxed like a wise old sage.",
+   "turn_ids": [
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's second dog",
+   "relation": "is",
+   "entity_2": "always ready for a game",
+   "fact_text": "Audrey's second dog is always ready for a game.",
+   "turn_ids": [
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's third dog",
+   "relation": "is",
+   "entity_2": "naughty but loves cuddles",
+   "fact_text": "Audrey's third dog is naughty but loves a good cuddle.",
+   "turn_ids": [
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey's youngest dog",
+   "relation": "is",
+   "entity_2": "full of life and up for an adventure",
+   "fact_text": "Audrey's youngest dog is full of life and always up for an adventure.",
+   "turn_ids": [
+    "D13:6"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Max",
+   "relation": "is",
+   "entity_2": "Audrey's childhood dog",
+   "fact_text": "Max is Audrey's childhood dog.",
+   "turn_ids": [
+    "D13:7",
+    "D13:8"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Max",
+   "relation": "had",
+   "entity_2": "lots of energy and loved a game of fetch",
+   "fact_text": "Max had lots of energy and loved a game of fetch.",
+   "turn_ids": [
+    "D13:8"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "took long walks in the neighborhood with",
+   "entity_2": "Max",
+   "fact_text": "Audrey took long walks in the neighborhood with Max when Audrey was a kid.",
+   "turn_ids": [
+    "D13:10"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Max",
+   "relation": "sniffed and marked territory on",
+   "entity_2": "neighborhood walks",
+   "fact_text": "Max sniffed and marked his territory on neighborhood walks with Audrey.",
+   "turn_ids": [
+    "D13:10"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "confided in",
+   "entity_2": "Max",
+   "fact_text": "Audrey confided her worries and hopes in Max.",
+   "turn_ids": [
+    "D13:10"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  },
+  {
+   "entity_1": "Max",
+   "relation": "was",
+   "entity_2": "a great listener",
+   "fact_text": "Max was a great listener.",
+   "turn_ids": [
+    "D13:10"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-07-27T15:52:00",
+   "date_raw": "3:52 pm on 27 July, 2023"
+  }
+ ]
+}

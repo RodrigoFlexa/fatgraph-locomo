@@ -1,0 +1,191 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "went on",
+   "entity_2": "a hiking trip last week",
+   "fact_text": "Caroline went on a hiking trip last week.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "got into a bad situation with",
+   "entity_2": "some people during a hiking trip last week",
+   "fact_text": "Caroline got into a bad situation with some people during a hiking trip last week.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "apologized to",
+   "entity_2": "the people from the hiking incident",
+   "fact_text": "Caroline apologized to the people from the hiking incident.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "made",
+   "entity_2": "a pottery plate in pottery class yesterday",
+   "fact_text": "Melanie made a pottery plate in pottery class yesterday.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "painted",
+   "entity_2": "a sunset painting after visiting the beach last week",
+   "fact_text": "Caroline painted a sunset painting after visiting the beach last week.",
+   "turn_ids": [
+    "D14:5",
+    "D14:7"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "volunteered with her family at",
+   "entity_2": "a homeless shelter yesterday",
+   "fact_text": "Melanie volunteered with her family at a homeless shelter yesterday.",
+   "turn_ids": [
+    "D14:10"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is a member of",
+   "entity_2": "the transgender community",
+   "fact_text": "Caroline is a member of the transgender community.",
+   "turn_ids": [
+    "D14:12",
+    "D14:13"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "values",
+   "entity_2": "a rainbow flag mural as representing courage and strength of the trans community",
+   "fact_text": "Caroline values a rainbow flag mural as representing the courage and strength of the trans community.",
+   "turn_ids": [
+    "D14:13",
+    "D14:15"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "made",
+   "entity_2": "a stained glass window for a local church",
+   "fact_text": "Caroline made a stained glass window for a local church.",
+   "turn_ids": [
+    "D14:17",
+    "D14:19"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "made the stained glass window to show",
+   "entity_2": "her journey as a transgender woman",
+   "fact_text": "Caroline made the stained glass window to show her journey as a transgender woman.",
+   "turn_ids": [
+    "D14:19"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "photographed",
+   "entity_2": "a rainbow sidewalk in her neighborhood for Pride Month",
+   "fact_text": "Caroline photographed a rainbow sidewalk in her neighborhood for Pride Month.",
+   "turn_ids": [
+    "D14:21",
+    "D14:23"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is organizing",
+   "entity_2": "an LGBTQ art show next month",
+   "fact_text": "Caroline is organizing an LGBTQ art show next month.",
+   "turn_ids": [
+    "D14:33"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "plans to exhibit",
+   "entity_2": "her paintings at the LGBTQ art show next month",
+   "fact_text": "Caroline plans to exhibit her paintings at the LGBTQ art show next month.",
+   "turn_ids": [
+    "D14:33"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "plans to paint",
+   "entity_2": "a few autumn-inspired paintings",
+   "fact_text": "Melanie plans to paint a few autumn-inspired paintings.",
+   "turn_ids": [
+    "D14:32"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  }
+ ]
+}

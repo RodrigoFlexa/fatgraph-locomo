@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "something",
+   "relation": "mentions",
+   "entity_2": "people",
+   "fact_text": "something and people came up when Caroline was talking.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "people",
+   "fact_text": "caroline and people came up when Melanie was talking.",
+   "turn_ids": [
+    "D12:2"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "something",
+   "relation": "mentions",
+   "entity_2": "happy",
+   "fact_text": "something and happy came up when Caroline was talking.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "experience",
+   "fact_text": "great and experience came up when Melanie was talking.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "bowl",
+   "fact_text": "awesome and bowl came up when Caroline was talking.",
+   "turn_ids": [
+    "D12:5"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "something",
+   "fact_text": "caroline and something came up when Melanie was talking.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  },
+  {
+   "entity_1": "source",
+   "relation": "mentions",
+   "entity_2": "amazing",
+   "fact_text": "source and amazing came up when Caroline was talking.",
+   "turn_ids": [
+    "D12:7"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-17T13:50:00",
+   "date_raw": "1:50 pm on 17 August, 2023"
+  }
+ ]
+}

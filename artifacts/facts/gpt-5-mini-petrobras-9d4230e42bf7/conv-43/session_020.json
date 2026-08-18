@@ -1,0 +1,331 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "had",
+   "entity_2": "a tough exam last week",
+   "fact_text": "Tim had a tough exam last week.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "did",
+   "entity_2": "hard studying",
+   "fact_text": "Tim did hard studying after his tough exam last week.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "achieved",
+   "entity_2": "success on the exam last week",
+   "fact_text": "Tim achieved success on the exam last week.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "shared",
+   "entity_2": "a photo of a notepad with a note and pen",
+   "fact_text": "Tim shared a photo of a notepad with a note and pen.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is trying",
+   "entity_2": "yoga",
+   "fact_text": "John is trying yoga.",
+   "turn_ids": [
+    "D20:2"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "improved in",
+   "entity_2": "strength",
+   "fact_text": "John improved in strength through yoga.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "improved in",
+   "entity_2": "flexibility",
+   "fact_text": "John improved in flexibility through yoga.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "improved in",
+   "entity_2": "focus",
+   "fact_text": "John improved in focus through yoga.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "improved in",
+   "entity_2": "balance",
+   "fact_text": "John improved in balance through yoga.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "enjoys",
+   "entity_2": "the Warrior II pose",
+   "fact_text": "John enjoys the Warrior II pose.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "enjoys",
+   "entity_2": "a pose for balance and stability",
+   "fact_text": "John enjoys a pose for balance and stability.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "holds",
+   "entity_2": "that yoga pose for 30-60 seconds",
+   "fact_text": "John holds that yoga pose for 30-60 seconds.",
+   "turn_ids": [
+    "D20:10"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a man doing a yoga pose on a blue mat",
+   "fact_text": "John shared a photo of a man doing a yoga pose on a blue mat.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "the yoga pose John shared",
+   "relation": "works out",
+   "entity_2": "legs and core",
+   "fact_text": "The yoga pose John shared works out legs and core.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "reorganized",
+   "entity_2": "his bookshelf",
+   "fact_text": "Tim reorganized his bookshelf.",
+   "turn_ids": [
+    "D20:17"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "has on his bookshelf",
+   "entity_2": "The Hobbit",
+   "fact_text": "Tim has The Hobbit on his bookshelf.",
+   "turn_ids": [
+    "D20:19",
+    "D20:20"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has read",
+   "entity_2": "the other popular fantasy series",
+   "fact_text": "John has read the other popular fantasy series.",
+   "turn_ids": [
+    "D20:22"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is into",
+   "entity_2": "fantasy books and movies",
+   "fact_text": "Tim is into fantasy books and movies.",
+   "turn_ids": [
+    "D20:17"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is into",
+   "entity_2": "fantasy books and movies",
+   "fact_text": "John is into fantasy books and movies.",
+   "turn_ids": [
+    "D20:17"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a forest near his hometown",
+   "fact_text": "John shared a photo of a forest near his hometown.",
+   "turn_ids": [
+    "D20:26",
+    "D20:28"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a lake with a rock in the middle",
+   "fact_text": "John shared a photo of a lake with a rock in the middle.",
+   "turn_ids": [
+    "D20:32"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a campfire with chairs and a lake in the background",
+   "fact_text": "John shared a photo of a campfire with chairs and a lake in the background.",
+   "turn_ids": [
+    "D20:34"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "went",
+   "entity_2": "camping in the mountains",
+   "fact_text": "John went camping in the mountains.",
+   "turn_ids": [
+    "D20:36"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "took",
+   "entity_2": "a Rocky Mountains trip last year",
+   "fact_text": "John took a Rocky Mountains trip last year.",
+   "turn_ids": [
+    "D20:40"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "took",
+   "entity_2": "a trip last summer",
+   "fact_text": "Tim took a trip last summer.",
+   "turn_ids": [
+    "D20:33"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-01T09:52:00",
+   "date_raw": "9:52 am on 1 December, 2023"
+  }
+ ]
+}

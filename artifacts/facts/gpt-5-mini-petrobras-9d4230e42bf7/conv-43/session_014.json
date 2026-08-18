@@ -1,0 +1,178 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "mentors",
+   "entity_2": "younger players on his team",
+   "fact_text": "John mentors younger players on his team.",
+   "turn_ids": [
+    "D14:3"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "finds mentoring",
+   "entity_2": "rewarding",
+   "fact_text": "John finds mentoring younger players on his team rewarding.",
+   "turn_ids": [
+    "D14:3",
+    "D14:5"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "stays involved in",
+   "entity_2": "the game during the off-season",
+   "fact_text": "John stays involved in the game during the off-season.",
+   "turn_ids": [
+    "D14:3"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "faces challenges mentoring because of",
+   "entity_2": "differences between players",
+   "fact_text": "John faces challenges mentoring because of differences between players.",
+   "turn_ids": [
+    "D14:5"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "provides",
+   "entity_2": "advice and support on and off the court",
+   "fact_text": "John provides advice and support to younger players on and off the court.",
+   "turn_ids": [
+    "D14:9"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "Some of the younger players on John's team",
+   "relation": "see",
+   "entity_2": "John as a mentor",
+   "fact_text": "Some of the younger players on John's team see John as a mentor.",
+   "turn_ids": [
+    "D14:8",
+    "D14:9"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is a",
+   "entity_2": "positive role model for the younger players",
+   "fact_text": "John is a positive role model for the younger players on his team.",
+   "turn_ids": [
+    "D14:9",
+    "D14:11"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "snapped a photo on",
+   "entity_2": "a trip to the Smoky Mountains last year",
+   "fact_text": "Tim snapped a photo on a trip to the Smoky Mountains last year.",
+   "turn_ids": [
+    "D14:14",
+    "D14:16"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is busy with",
+   "entity_2": "studies",
+   "fact_text": "Tim is busy with studies but finds time to relax with books.",
+   "turn_ids": [
+    "D14:20",
+    "D14:18"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is reading",
+   "entity_2": "a book he is hooked on",
+   "fact_text": "Tim is reading a book that he is hooked on.",
+   "turn_ids": [
+    "D14:22"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "picked up",
+   "entity_2": "a book after the conversation",
+   "fact_text": "John picked up a book after the conversation and has been enjoying it.",
+   "turn_ids": [
+    "D14:23"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a basketball player standing in a gym with his hands on his hips",
+   "fact_text": "John shared a photo of a basketball player standing in a gym with his hands on his hips.",
+   "turn_ids": [
+    "D14:7"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "shared",
+   "entity_2": "a photo of a sunset over a mountain range with a few trees",
+   "fact_text": "Tim shared a photo of a sunset over a mountain range with a few trees.",
+   "turn_ids": [
+    "D14:12"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-10-17T13:50:00",
+   "date_raw": "1:50 pm on 17 October, 2023"
+  }
+ ]
+}

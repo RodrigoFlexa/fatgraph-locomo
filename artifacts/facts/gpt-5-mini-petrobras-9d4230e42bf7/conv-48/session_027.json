@@ -1,0 +1,188 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "traveled to",
+   "entity_2": "a meditation retreat in Phuket",
+   "fact_text": "Jolene traveled with her partner to a meditation retreat in Phuket that lasted a few weeks.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "studies",
+   "entity_2": "engineering",
+   "fact_text": "Jolene studies engineering.",
+   "turn_ids": [
+    "D27:1",
+    "D27:3"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "the meditation retreat in Phuket",
+   "relation": "helped",
+   "entity_2": "Jolene find inner peace",
+   "fact_text": "The meditation retreat in Phuket helped Jolene find inner peace.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "realized importance of incorporating",
+   "entity_2": "relaxation alongside her engineering studies",
+   "fact_text": "Jolene realized the importance of incorporating relaxation alongside her engineering studies.",
+   "turn_ids": [
+    "D27:3"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "realized importance of incorporating",
+   "entity_2": "self-care alongside her engineering studies",
+   "fact_text": "Jolene realized the importance of incorporating self-care alongside her engineering studies.",
+   "turn_ids": [
+    "D27:3"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "realized importance of incorporating",
+   "entity_2": "balance in life alongside her engineering studies",
+   "fact_text": "Jolene realized the importance of incorporating balance in life alongside her engineering studies.",
+   "turn_ids": [
+    "D27:3"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "the beauty of nature at the retreat",
+   "relation": "was",
+   "entity_2": "inspiring and refreshing to Jolene",
+   "fact_text": "The beauty of nature at the retreat was inspiring and refreshing to Jolene.",
+   "turn_ids": [
+    "D27:3"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "a session at the retreat",
+   "relation": "was about",
+   "entity_2": "releasing expectations and judgments and savoring the present",
+   "fact_text": "A session at the retreat was about releasing expectations and judgments and savoring the present.",
+   "turn_ids": [
+    "D27:5"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "tends to get",
+   "entity_2": "consumed with hitting her goals",
+   "fact_text": "Jolene tends to get consumed with hitting her goals and forgets to appreciate the journey.",
+   "turn_ids": [
+    "D27:5"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is practicing",
+   "entity_2": "mindfulness and gratitude",
+   "fact_text": "Jolene is practicing mindfulness and gratitude to appreciate small moments.",
+   "turn_ids": [
+    "D27:7"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "recently played",
+   "entity_2": "a card game about cats",
+   "fact_text": "Deborah recently played a card game about cats where you take cards one by one from a deck and can attack an opponent.",
+   "turn_ids": [
+    "D27:12"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "plans to play",
+   "entity_2": "the card game about cats with Jolene",
+   "fact_text": "Deborah plans to play the card game about cats with Jolene.",
+   "turn_ids": [
+    "D27:12"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "looks forward to",
+   "entity_2": "meeting Deborah and playing the card game",
+   "fact_text": "Jolene looks forward to meeting Deborah and playing the card game about cats with her.",
+   "turn_ids": [
+    "D27:13"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "believes",
+   "entity_2": "having a supportive community helps motivate and encourage people",
+   "fact_text": "Deborah believes that having a supportive community helps motivate and encourage people.",
+   "turn_ids": [
+    "D27:11",
+    "D27:12"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-09-12T14:18:00",
+   "date_raw": "2:18 pm on 12 September, 2023"
+  }
+ ]
+}

@@ -1,0 +1,212 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "went to last Monday to buy toys from",
+   "entity_2": "a pet store",
+   "fact_text": "Audrey went to a pet store last Monday to buy toys for her dogs.",
+   "turn_ids": [
+    "D24:1"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "owns",
+   "entity_2": "dogs",
+   "fact_text": "Audrey owns dogs.",
+   "turn_ids": [
+    "D24:1"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared an image of",
+   "entity_2": "a box filled with toys and other items",
+   "fact_text": "Audrey shared an image of a box filled with toys and other items.",
+   "turn_ids": [
+    "D24:1"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "adopted",
+   "entity_2": "a pup from a shelter",
+   "fact_text": "Andrew adopted a pup from a shelter.",
+   "turn_ids": [
+    "D24:2"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared an image of",
+   "entity_2": "a dog sitting on a couch with a bowl of food",
+   "fact_text": "Andrew shared an image of a dog sitting on a couch with a bowl of food.",
+   "turn_ids": [
+    "D24:2"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "named",
+   "entity_2": "Buddy",
+   "fact_text": "Andrew named the pup Buddy.",
+   "turn_ids": [
+    "D24:6"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Buddy",
+   "relation": "is getting used to living with",
+   "entity_2": "Toby",
+   "fact_text": "Buddy is getting used to living with Toby.",
+   "turn_ids": [
+    "D24:4"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "goes on walks with",
+   "entity_2": "Buddy",
+   "fact_text": "Andrew goes on walks with Buddy.",
+   "turn_ids": [
+    "D24:8"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Buddy",
+   "relation": "likes checking out",
+   "entity_2": "new hiking trails",
+   "fact_text": "Buddy likes checking out new hiking trails.",
+   "turn_ids": [
+    "D24:10"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to take to hiking trails",
+   "entity_2": "Buddy and Toby",
+   "fact_text": "Andrew plans to take Buddy and Toby to hiking trails soon.",
+   "turn_ids": [
+    "D24:12"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "is looking forward to",
+   "entity_2": "a hike with Buddy and Toby next month",
+   "fact_text": "Audrey is looking forward to a hike with Buddy and Toby next month.",
+   "turn_ids": [
+    "D24:13"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "will research",
+   "entity_2": "places to find an awesome spot for the hike",
+   "fact_text": "Audrey will research places to find an awesome spot for the hike.",
+   "turn_ids": [
+    "D24:19"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared an image of",
+   "entity_2": "a dirt road with a cow standing in the middle",
+   "fact_text": "Andrew shared an image of a dirt road with a cow standing in the middle.",
+   "turn_ids": [
+    "D24:14"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared an image of",
+   "entity_2": "a red truck driving down a road in a field",
+   "fact_text": "Andrew shared an image of a red truck driving down a road in a field.",
+   "turn_ids": [
+    "D24:16"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "feels that",
+   "entity_2": "pets bring lots of joy and companionship",
+   "fact_text": "Andrew feels that pets bring lots of joy and companionship to people's lives.",
+   "turn_ids": [
+    "D24:4"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "feels that",
+   "entity_2": "her dogs bring her joy",
+   "fact_text": "Audrey feels that her dogs bring her joy and make her happy.",
+   "turn_ids": [
+    "D24:1"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2023-10-19T18:12:00",
+   "date_raw": "6:12 pm on 19 October, 2023"
+  }
+ ]
+}

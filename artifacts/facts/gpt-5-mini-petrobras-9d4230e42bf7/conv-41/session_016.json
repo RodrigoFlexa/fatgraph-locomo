@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "started",
+   "entity_2": "a petition",
+   "fact_text": "John started a petition.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "got",
+   "entity_2": "a picture of his workmates from a hiking trip",
+   "fact_text": "John got a picture of his workmates from a hiking trip.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "reconnected with",
+   "entity_2": "his buddies through the petition",
+   "fact_text": "John reconnected with his buddies through the petition.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "gained",
+   "entity_2": "support for his petition",
+   "fact_text": "John gained support for his petition.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is motivated by",
+   "entity_2": "his workmates",
+   "fact_text": "John is motivated by his workmates.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "works at",
+   "entity_2": "a shelter",
+   "fact_text": "Maria works at a shelter.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is preparing",
+   "entity_2": "a fundraiser next week",
+   "fact_text": "Maria is preparing a fundraiser next week.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "The fundraiser",
+   "relation": "aims to raise",
+   "entity_2": "enough to cover basic needs for the homeless",
+   "fact_text": "The fundraiser aims to raise enough to cover basic needs for the homeless.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "The fundraiser",
+   "relation": "includes",
+   "entity_2": "a chili cook-off",
+   "fact_text": "The fundraiser includes a chili cook-off.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a poster for a chili cook-off",
+   "fact_text": "Maria shared a poster for a chili cook-off.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "will spread the word about",
+   "entity_2": "the chili cook-off",
+   "fact_text": "John will spread the word about the chili cook-off.",
+   "turn_ids": [
+    "D16:5"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "will ask around for",
+   "entity_2": "volunteers for the event",
+   "fact_text": "John will ask around for volunteers for the event.",
+   "turn_ids": [
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a picture of his family at the beach showing a couple walking into the ocean at sunset",
+   "fact_text": "John shared a picture of his family at the beach showing a couple walking into the ocean at sunset.",
+   "turn_ids": [
+    "D16:11"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-05-25T13:24:00",
+   "date_raw": "1:24 pm on 25 May, 2023"
+  }
+ ]
+}

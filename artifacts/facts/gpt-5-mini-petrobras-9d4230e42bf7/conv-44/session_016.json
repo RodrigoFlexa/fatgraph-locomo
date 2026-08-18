@@ -1,0 +1,190 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "took a break from",
+   "entity_2": "work on 18 August 2023",
+   "fact_text": "Andrew took a break from work on 18 August 2023.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "visited",
+   "entity_2": "a new cafe on 18 August 2023",
+   "fact_text": "Andrew visited a new cafe on 18 August 2023.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared",
+   "entity_2": "a photo of a sunset over a mountain with a church on top",
+   "fact_text": "Andrew shared a photo of a sunset over a mountain with a church on top.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "learned",
+   "entity_2": "dog grooming in August 2023",
+   "fact_text": "Audrey learned dog grooming in August 2023.",
+   "turn_ids": [
+    "D16:2",
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "took",
+   "entity_2": "a dog grooming course",
+   "fact_text": "Audrey took a dog grooming course.",
+   "turn_ids": [
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "grooms",
+   "entity_2": "her pups herself",
+   "fact_text": "Audrey grooms her pups herself.",
+   "turn_ids": [
+    "D16:2",
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of a dog standing on a table after grooming",
+   "fact_text": "Audrey shared a photo of a dog standing on a table after grooming.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans to take",
+   "entity_2": "her dogs for a stroll in the park this weekend",
+   "fact_text": "Audrey plans to take her dogs for a stroll in the park this weekend.",
+   "turn_ids": [
+    "D16:12"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "said",
+   "entity_2": "her dogs love the park",
+   "fact_text": "Audrey said her dogs love the park.",
+   "turn_ids": [
+    "D16:12"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of two dogs running in a field with a ball in their mouth",
+   "fact_text": "Audrey shared a photo of two dogs running in a field with a ball in their mouth.",
+   "turn_ids": [
+    "D16:18"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to visit",
+   "entity_2": "a nature reserve this weekend",
+   "fact_text": "Andrew plans to visit a nature reserve this weekend.",
+   "turn_ids": [
+    "D16:13"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "is interested in",
+   "entity_2": "learning dog grooming",
+   "fact_text": "Andrew is interested in learning dog grooming.",
+   "turn_ids": [
+    "D16:5",
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "advised",
+   "entity_2": "grooming slowly and gently paying attention to ears and paws",
+   "fact_text": "Audrey advised grooming slowly and gently and paying attention to ears and paws.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to show",
+   "entity_2": "Audrey photos from his hike when he returns",
+   "fact_text": "Andrew plans to show Audrey photos from his hike when he returns.",
+   "turn_ids": [
+    "D16:15",
+    "D16:19"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-19T21:19:00",
+   "date_raw": "9:19 pm on 19 August, 2023"
+  }
+ ]
+}

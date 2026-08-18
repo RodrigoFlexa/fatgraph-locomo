@@ -1,0 +1,135 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna's screenplay",
+   "relation": "was sent to",
+   "entity_2": "a film festival",
+   "fact_text": "Joanna's screenplay was sent to a film festival.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Joanna's screenplay",
+   "relation": "was on the mind of",
+   "entity_2": "Joanna every day",
+   "fact_text": "Joanna's screenplay was on the mind of Joanna every day.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "put a lot of effort into",
+   "entity_2": "Joanna's screenplay",
+   "fact_text": "Joanna put a lot of effort into Joanna's screenplay.",
+   "turn_ids": [
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "hopes a producer or director will like",
+   "entity_2": "Joanna's screenplay enough to get it on the big screen",
+   "fact_text": "Joanna hopes a producer or director will like Joanna's screenplay enough to get it on the big screen.",
+   "turn_ids": [
+    "D3:1",
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made and tried",
+   "entity_2": "coconut milk ice cream",
+   "fact_text": "Nate made and tried coconut milk ice cream.",
+   "turn_ids": [
+    "D3:4"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "found",
+   "entity_2": "coconut milk ice cream rich and creamy",
+   "fact_text": "Nate found coconut milk ice cream rich and creamy and thought it might be his new favorite snack.",
+   "turn_ids": [
+    "D3:6"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared",
+   "entity_2": "a photo of a bowl of ice cream with a spoon",
+   "fact_text": "Nate shared a photo of a bowl of ice cream with a spoon.",
+   "turn_ids": [
+    "D3:4"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "enjoys",
+   "entity_2": "coconut milk, chocolate, and mixed berry flavors",
+   "fact_text": "Nate enjoys coconut milk, chocolate, and mixed berry flavors for dairy-free desserts.",
+   "turn_ids": [
+    "D3:10"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made",
+   "entity_2": "a dairy-free chocolate cake with berries",
+   "fact_text": "Nate made a dairy-free chocolate cake with berries.",
+   "turn_ids": [
+    "D3:12"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "watched",
+   "entity_2": "the film Little Women",
+   "fact_text": "Joanna watched the film Little Women and thought it was amazing.",
+   "turn_ids": [
+    "D3:17"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2022-02-07T09:27:00",
+   "date_raw": "9:27 am on 7 February, 2022"
+  }
+ ]
+}

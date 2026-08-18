@@ -1,0 +1,135 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "signed a deal with",
+   "entity_2": "a renowned outdoor gear company",
+   "fact_text": "John signed a deal with a renowned outdoor gear company on or before 19 December 2023.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "shared image",
+   "relation": "depicts",
+   "entity_2": "a man with a backpack walking down a path",
+   "fact_text": "A shared image depicts a man with a backpack walking down a path.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "shared image",
+   "relation": "depicts",
+   "entity_2": "a man jumping in a field",
+   "fact_text": "A shared image depicts a man jumping in a field.",
+   "turn_ids": [
+    "D25:6"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "acquired",
+   "entity_2": "hiking and outdoor gear",
+   "fact_text": "John acquired hiking and outdoor gear.",
+   "turn_ids": [
+    "D25:4"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "photoshoot",
+   "relation": "occurred in",
+   "entity_2": "a gorgeous forest",
+   "fact_text": "The photoshoot occurred in a gorgeous forest.",
+   "turn_ids": [
+    "D25:4"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "photographer",
+   "relation": "captured",
+   "entity_2": "epic shots of John",
+   "fact_text": "The photographer captured epic shots of John during the photoshoot.",
+   "turn_ids": [
+    "D25:4"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "stumbled across",
+   "entity_2": "a spot with a river and rocks while hiking",
+   "fact_text": "John stumbled across a spot with a river and rocks while hiking.",
+   "turn_ids": [
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "nature",
+   "relation": "energizes",
+   "entity_2": "John",
+   "fact_text": "Nature puts John in a great mood and energizes John.",
+   "turn_ids": [
+    "D25:6",
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "John's team",
+   "relation": "participated in",
+   "entity_2": "last week's scrimmage",
+   "fact_text": "John's team participated in last week's scrimmage.",
+   "turn_ids": [
+    "D25:12"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  },
+  {
+   "entity_1": "John's team",
+   "relation": "improved in",
+   "entity_2": "communication and bonding",
+   "fact_text": "John's team improved in communication and bonding.",
+   "turn_ids": [
+    "D25:14"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-12-19T10:04:00",
+   "date_raw": "10:04 am on 19 December, 2023"
+  }
+ ]
+}

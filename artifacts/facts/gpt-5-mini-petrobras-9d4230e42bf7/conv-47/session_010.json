@@ -1,0 +1,124 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "organized",
+   "entity_2": "a CS:GO tournament",
+   "fact_text": "John organized a CS:GO tournament on 7 May 2022.",
+   "turn_ids": [
+    "D10:2",
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "organized with",
+   "entity_2": "his friends",
+   "fact_text": "John organized the CS:GO tournament with his friends.",
+   "turn_ids": [
+    "D10:2",
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "the CS:GO tournament",
+   "relation": "raised money for",
+   "entity_2": "charity",
+   "fact_text": "The CS:GO tournament raised money for charity.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "many people",
+   "relation": "attended",
+   "entity_2": "the CS:GO tournament",
+   "fact_text": "Many people attended the CS:GO tournament.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "sent money to",
+   "entity_2": "a dog shelter near the street where John lives",
+   "fact_text": "John sent the collected money to a dog shelter near the street where John lives.",
+   "turn_ids": [
+    "D10:9",
+    "D10:10"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "the leftover money from the tournament",
+   "relation": "was used to buy",
+   "entity_2": "groceries to cook food for the homeless",
+   "fact_text": "The leftover money from the tournament was used to buy groceries to cook food for the homeless.",
+   "turn_ids": [
+    "D10:12"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "organizing the CS:GO tournament",
+   "relation": "required",
+   "entity_2": "planning and coordination",
+   "fact_text": "Organizing the CS:GO tournament required planning and coordination.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wants to organize",
+   "entity_2": "more events like the CS:GO tournament",
+   "fact_text": "John wants to organize more events like the CS:GO tournament.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared an image of",
+   "entity_2": "a wooden table with a game controller",
+   "fact_text": "John shared an image of a wooden table with a game controller.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2022-05-08T00:45:00",
+   "date_raw": "12:45 am on 8 May, 2022"
+  }
+ ]
+}

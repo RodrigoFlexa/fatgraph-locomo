@@ -1,0 +1,252 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "attended",
+   "entity_2": "a game convention on 7 October 2022",
+   "fact_text": "Nate attended a game convention on 7 October 2022.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "met",
+   "entity_2": "new people outside his normal circle at the game convention",
+   "fact_text": "Nate met new people outside his normal circle at the game convention.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made friends with",
+   "entity_2": "people from the game convention",
+   "fact_text": "Nate made friends with people from the game convention.",
+   "turn_ids": [
+    "D23:3"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "planned a gaming session with",
+   "entity_2": "friends from the game convention",
+   "fact_text": "Nate planned a gaming session with friends from the game convention.",
+   "turn_ids": [
+    "D23:3"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "joined a game of",
+   "entity_2": "Catan at the convention",
+   "fact_text": "Nate joined a game of Catan at the convention.",
+   "turn_ids": [
+    "D23:5",
+    "D23:7"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "likes",
+   "entity_2": "the board game Catan",
+   "fact_text": "Nate likes the board game Catan.",
+   "turn_ids": [
+    "D23:7"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "uses",
+   "entity_2": "playing games as an escape from life struggles",
+   "fact_text": "Nate uses playing games as an escape from life struggles.",
+   "turn_ids": [
+    "D23:11"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "was",
+   "entity_2": "chilling at home in the evening",
+   "fact_text": "Nate was chilling at home in the evening.",
+   "turn_ids": [
+    "D23:15"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "unwinds by playing",
+   "entity_2": "video games",
+   "fact_text": "Nate unwinds by playing video games.",
+   "turn_ids": [
+    "D23:15"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "unwinds by watching",
+   "entity_2": "movies",
+   "fact_text": "Nate unwinds by watching movies.",
+   "turn_ids": [
+    "D23:15"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "recently watched",
+   "entity_2": "the movie Inception",
+   "fact_text": "Nate recently watched the movie Inception.",
+   "turn_ids": [
+    "D23:17"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has been playing",
+   "entity_2": "Cyberpunk 2077 nonstop",
+   "fact_text": "Nate has been playing Cyberpunk 2077 nonstop.",
+   "turn_ids": [
+    "D23:17"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "watches",
+   "entity_2": "a living room with a TV and candles (her room)",
+   "fact_text": "Joanna has a living room with a TV and candles.",
+   "turn_ids": [
+    "D23:22"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "owns",
+   "entity_2": "a framed movie poster with a signed picture",
+   "fact_text": "Joanna owns a framed movie poster with a signed picture.",
+   "turn_ids": [
+    "D23:18"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "rates",
+   "entity_2": "the classic movie she watched as 9 or 10 out of 10",
+   "fact_text": "Joanna rates the classic movie she watched as 9 or 10 out of 10.",
+   "turn_ids": [
+    "D23:20"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "suggests getting",
+   "entity_2": "a multi-person fluffy couch for a comfy living room",
+   "fact_text": "Joanna suggests getting a multi-person fluffy couch for a comfy living room.",
+   "turn_ids": [
+    "D23:26"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "suggests using",
+   "entity_2": "a somewhat weighted blanket for a comfy living room",
+   "fact_text": "Joanna suggests using a somewhat weighted blanket for a comfy living room.",
+   "turn_ids": [
+    "D23:26"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "suggests installing",
+   "entity_2": "dimmable lights for a comfy living room",
+   "fact_text": "Joanna suggests installing dimmable lights for a comfy living room.",
+   "turn_ids": [
+    "D23:26"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "gets",
+   "entity_2": "super invested in random little things",
+   "fact_text": "Joanna gets super invested in random little things.",
+   "turn_ids": [
+    "D23:28"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2022-10-09T10:58:00",
+   "date_raw": "10:58 am on 9 October, 2022"
+  }
+ ]
+}

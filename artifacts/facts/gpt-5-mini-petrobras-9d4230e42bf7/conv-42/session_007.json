@@ -1,0 +1,97 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "dyed",
+   "entity_2": "purple hair",
+   "fact_text": "Nate dyed his hair purple last week.",
+   "turn_ids": [
+    "D7:1",
+    "D7:3"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "chose",
+   "entity_2": "a bright and bold color to stand out from regular options",
+   "fact_text": "Nate chose a bright and bold color to stand out from regular options.",
+   "turn_ids": [
+    "D7:5"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "wears",
+   "entity_2": "glasses in the selfie",
+   "fact_text": "Nate wears glasses in the selfie he shared.",
+   "turn_ids": [
+    "D7:3"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "saw while hiking",
+   "entity_2": "a gorgeous sunset",
+   "fact_text": "Joanna saw a gorgeous sunset while hiking the other day.",
+   "turn_ids": [
+    "D7:6",
+    "D7:8"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "a photo of a street with a stop sign and a cloudy sky",
+   "fact_text": "Joanna shared a photo of a street with a stop sign and a cloudy sky.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is consumed by",
+   "entity_2": "writing",
+   "fact_text": "Joanna is consumed by her writing.",
+   "turn_ids": [
+    "D7:8"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "appreciates",
+   "entity_2": "Nate's support",
+   "fact_text": "Joanna appreciates Nate's support.",
+   "turn_ids": [
+    "D7:10"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-15T19:37:00",
+   "date_raw": "7:37 pm on 15 April, 2022"
+  }
+ ]
+}

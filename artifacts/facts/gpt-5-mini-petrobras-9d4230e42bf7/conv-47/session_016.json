@@ -1,0 +1,212 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "won",
+   "entity_2": "an online gaming tournament",
+   "fact_text": "James won an online gaming tournament last week.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "felt motivated to",
+   "entity_2": "keep improving",
+   "fact_text": "James felt motivated to keep improving after winning the online gaming tournament.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "became interested in",
+   "entity_2": "extreme sports",
+   "fact_text": "James became interested in extreme sports recently.",
+   "turn_ids": [
+    "D16:5"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "did rope jumping from",
+   "entity_2": "a height of 150 meters",
+   "fact_text": "James did rope jumping yesterday and his highest height jumped from was 150 meters.",
+   "turn_ids": [
+    "D16:5"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "went surfing on",
+   "entity_2": "a date three days before the session",
+   "fact_text": "James went surfing three days before the session.",
+   "turn_ids": [
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "likes to relax by",
+   "entity_2": "reading",
+   "fact_text": "John likes to relax by reading.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a bookshelf filled with books and a guitar",
+   "fact_text": "John shared a photo of a bookshelf filled with books and a guitar.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "loves to read while",
+   "entity_2": "snuggled under covers on a cold winter day",
+   "fact_text": "James loves to read while snuggled under the covers on a cold winter day.",
+   "turn_ids": [
+    "D16:9"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "bought",
+   "entity_2": "air tickets to Toronto",
+   "fact_text": "James bought air tickets to Toronto.",
+   "turn_ids": [
+    "D16:9"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to leave on",
+   "entity_2": "the day after tomorrow evening",
+   "fact_text": "James plans to leave on the day after tomorrow evening.",
+   "turn_ids": [
+    "D16:9"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to visit",
+   "entity_2": "Vancouver",
+   "fact_text": "James plans to visit Vancouver.",
+   "turn_ids": [
+    "D16:11"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to return on",
+   "entity_2": "July 20",
+   "fact_text": "James plans to return on July 20.",
+   "turn_ids": [
+    "D16:13"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to bring",
+   "entity_2": "a souvenir for John",
+   "fact_text": "James plans to bring a souvenir for John from his trip.",
+   "turn_ids": [
+    "D16:13"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels",
+   "entity_2": "determined and passionate",
+   "fact_text": "John feels determined and passionate.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels",
+   "entity_2": "overwhelmed and stressed",
+   "fact_text": "John feels overwhelmed and stressed.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "finds challenging",
+   "entity_2": "balancing personal and professional life",
+   "fact_text": "John finds balancing personal and professional life challenging.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2022-07-09T17:13:00",
+   "date_raw": "5:13 pm on 9 July, 2022"
+  }
+ ]
+}

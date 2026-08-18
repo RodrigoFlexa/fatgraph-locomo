@@ -1,0 +1,277 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "read",
+   "entity_2": "book about castles in the UK",
+   "fact_text": "Tim read a book about castles in the UK on 21 October 2023 at 5:51 pm.",
+   "turn_ids": [
+    "D15:1"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "dreams of visiting",
+   "entity_2": "castles in the UK",
+   "fact_text": "Tim dreams of visiting castles in the UK.",
+   "turn_ids": [
+    "D15:1"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has on his bucket list",
+   "entity_2": "visiting castles",
+   "fact_text": "John has visiting castles on his bucket list.",
+   "turn_ids": [
+    "D15:2"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is writing",
+   "entity_2": "a fantasy novel",
+   "fact_text": "Tim is writing a fantasy novel and was in the middle of it on 21 October 2023 at 5:51 pm.",
+   "turn_ids": [
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Reading about castles in the UK",
+   "relation": "inspired",
+   "entity_2": "Tim's writing",
+   "fact_text": "Reading about castles in the UK inspired Tim's writing.",
+   "turn_ids": [
+    "D15:5"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is inspired by",
+   "entity_2": "J.K. Rowling",
+   "fact_text": "Tim is inspired by J.K. Rowling.",
+   "turn_ids": [
+    "D15:7"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "has been reading",
+   "entity_2": "J.K. Rowling's works for a long time",
+   "fact_text": "Tim has been reading J.K. Rowling's works for a long time.",
+   "turn_ids": [
+    "D15:9"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "likes the quote",
+   "entity_2": "\"Turn on the light - happiness hides in the darkest of times\"",
+   "fact_text": "Tim likes the quote \"Turn on the light - happiness hides in the darkest of times\" by J.K. Rowling.",
+   "turn_ids": [
+    "D15:11"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wrote on a whiteboard",
+   "entity_2": "motivational quotes and strategies",
+   "fact_text": "John wrote motivational quotes and strategies on a whiteboard to help him stay focused and push through tough workouts.",
+   "turn_ids": [
+    "D15:14"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "keeps",
+   "entity_2": "a plaque on his desk",
+   "fact_text": "John keeps a plaque on his desk that is a constant reminder for him to believe in himself.",
+   "turn_ids": [
+    "D15:16"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John's teammates",
+   "relation": "believe in",
+   "entity_2": "John",
+   "fact_text": "John's teammates believe in John and help keep him motivated.",
+   "turn_ids": [
+    "D15:18"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John's teammates",
+   "relation": "support",
+   "entity_2": "John even when he makes mistakes",
+   "fact_text": "John's teammates support John even when John makes mistakes.",
+   "turn_ids": [
+    "D15:20"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "supportive people outside of sports",
+   "fact_text": "John has supportive people outside of sports who are always there for him.",
+   "turn_ids": [
+    "D15:22"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "says",
+   "entity_2": "his family is always there for him",
+   "fact_text": "John says his family is always there for him.",
+   "turn_ids": [
+    "D15:24"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "considers",
+   "entity_2": "his team as a second family",
+   "fact_text": "John considers his team as a second family.",
+   "turn_ids": [
+    "D15:26"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "enjoys",
+   "entity_2": "going on road trips with friends and family",
+   "fact_text": "Tim enjoys going on road trips with friends and family for exploring and hiking.",
+   "turn_ids": [
+    "D15:29"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "enjoys",
+   "entity_2": "playing board games",
+   "fact_text": "Tim enjoys playing board games in his free time.",
+   "turn_ids": [
+    "D15:29"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "enjoys",
+   "entity_2": "curling up with a good book",
+   "fact_text": "Tim enjoys curling up with a good book to escape reality.",
+   "turn_ids": [
+    "D15:29"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "uses cooking as",
+   "entity_2": "therapy",
+   "fact_text": "John uses cooking as therapy when he is away from the court.",
+   "turn_ids": [
+    "D15:30"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "often makes",
+   "entity_2": "honey garlic chicken with roasted veg",
+   "fact_text": "John often makes honey garlic chicken with roasted veg.",
+   "turn_ids": [
+    "D15:32"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "offered to mail",
+   "entity_2": "the honey garlic chicken recipe to Tim",
+   "fact_text": "John offered to write down and mail the honey garlic chicken with roasted veg recipe to Tim.",
+   "turn_ids": [
+    "D15:34"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-10-21T17:51:00",
+   "date_raw": "5:51 pm on 21 October, 2023"
+  }
+ ]
+}

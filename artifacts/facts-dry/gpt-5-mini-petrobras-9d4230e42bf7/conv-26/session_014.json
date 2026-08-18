@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "photo",
+   "fact_text": "image and photo came up when Caroline was talking.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "photo",
+   "fact_text": "image and photo came up when Melanie was talking.",
+   "turn_ids": [
+    "D14:2"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "melanie",
+   "fact_text": "awesome and melanie came up when Caroline was talking.",
+   "turn_ids": [
+    "D14:3"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "love",
+   "relation": "mentions",
+   "entity_2": "tried",
+   "fact_text": "love and tried came up when Melanie was talking.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "amazing",
+   "fact_text": "caroline and amazing came up when Melanie was talking.",
+   "turn_ids": [
+    "D14:6"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "amazing",
+   "relation": "mentions",
+   "entity_2": "colors",
+   "fact_text": "amazing and colors came up when Caroline was talking.",
+   "turn_ids": [
+    "D14:7"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  },
+  {
+   "entity_1": "feel",
+   "relation": "mentions",
+   "entity_2": "inspired",
+   "fact_text": "feel and inspired came up when Melanie was talking.",
+   "turn_ids": [
+    "D14:8"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-25T13:33:00",
+   "date_raw": "1:33 pm on 25 August, 2023"
+  }
+ ]
+}

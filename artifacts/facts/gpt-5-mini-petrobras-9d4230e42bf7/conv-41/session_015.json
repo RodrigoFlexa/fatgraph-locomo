@@ -1,0 +1,97 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "works on",
+   "entity_2": "project to support military veterans",
+   "fact_text": "John works on a project to support military veterans.",
+   "turn_ids": [
+    "D15:1",
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is passionate about",
+   "entity_2": "veterans' rights",
+   "fact_text": "John is passionate about veterans' rights.",
+   "turn_ids": [
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "decided to take on",
+   "entity_2": "project to support military veterans last week",
+   "fact_text": "John decided to take on a project to support military veterans last week.",
+   "turn_ids": [
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "hosted",
+   "entity_2": "small party for veterans to share their stories",
+   "fact_text": "John hosted a small party for veterans to share their stories.",
+   "turn_ids": [
+    "D15:13"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "photography of a man shaking hands with a soldier in uniform from last Friday",
+   "fact_text": "John shared a photography of a man shaking hands with a soldier in uniform from last Friday.",
+   "turn_ids": [
+    "D15:11"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is planning",
+   "entity_2": "ring-toss tournament for the homeless shelter's fundraiser later this month",
+   "fact_text": "Maria is planning a ring-toss tournament for the homeless shelter's fundraiser later this month.",
+   "turn_ids": [
+    "D15:18"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "agreed to help",
+   "entity_2": "John's project to support military veterans",
+   "fact_text": "Maria agreed to help John's project to support military veterans.",
+   "turn_ids": [
+    "D15:10",
+    "D15:11"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2023-05-20T19:38:00",
+   "date_raw": "7:38 pm on 20 May, 2023"
+  }
+ ]
+}

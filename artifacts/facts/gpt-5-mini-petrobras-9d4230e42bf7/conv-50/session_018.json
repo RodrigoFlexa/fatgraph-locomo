@@ -1,0 +1,123 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin's album",
+   "relation": "was released on",
+   "entity_2": "11 September 2023",
+   "fact_text": "Calvin's album was released on 11 September 2023.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin's album",
+   "relation": "connects with",
+   "entity_2": "people",
+   "fact_text": "Calvin's album connects with people.",
+   "turn_ids": [
+    "D18:1",
+    "D18:3"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is motivated to",
+   "entity_2": "make even better music",
+   "fact_text": "Calvin is motivated to make even better music.",
+   "turn_ids": [
+    "D18:3",
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans a",
+   "entity_2": "tour",
+   "fact_text": "Calvin plans a tour.",
+   "turn_ids": [
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to",
+   "entity_2": "explore and grow his brand",
+   "fact_text": "Calvin plans to explore and grow his brand.",
+   "turn_ids": [
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "offered to show",
+   "entity_2": "his garage to Calvin",
+   "fact_text": "Dave offered to show his garage to Calvin.",
+   "turn_ids": [
+    "D18:10"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "accepted an offer to visit",
+   "entity_2": "Dave's garage",
+   "fact_text": "Calvin accepted an offer to visit Dave's garage.",
+   "turn_ids": [
+    "D18:11"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared",
+   "entity_2": "an image of a car in a garage with a Coca Cola sign",
+   "fact_text": "Dave shared an image of a car in a garage with a Coca Cola sign.",
+   "turn_ids": [
+    "D18:12"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "will notify",
+   "entity_2": "Dave when Calvin is in Boston",
+   "fact_text": "Calvin said he will notify Dave when Calvin is in Boston.",
+   "turn_ids": [
+    "D18:11"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-09-13T10:56:00",
+   "date_raw": "10:56 am on 13 September, 2023"
+  }
+ ]
+}

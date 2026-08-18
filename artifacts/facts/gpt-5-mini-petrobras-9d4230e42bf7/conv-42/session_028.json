@@ -1,0 +1,214 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "had an upcoming game tournament pushed back",
+   "entity_2": "game tournament",
+   "fact_text": "Nate had an upcoming game tournament pushed back on 9 November, 2022.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made",
+   "entity_2": "homemade coconut ice cream",
+   "fact_text": "Nate made homemade coconut ice cream on 9 November, 2022.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "sprinkles",
+   "relation": "changed the color of",
+   "entity_2": "Nate's homemade coconut ice cream",
+   "fact_text": "Sprinkles changed the color of Nate's homemade coconut ice cream.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "did not make it to",
+   "entity_2": "the finals",
+   "fact_text": "Nate did not make it to the finals of the tournament.",
+   "turn_ids": [
+    "D28:3"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is thinking of joining",
+   "entity_2": "a new gaming team after the next tournament",
+   "fact_text": "Nate is thinking of joining a new gaming team after the next tournament and has had a few offers.",
+   "turn_ids": [
+    "D28:5"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "worked on",
+   "entity_2": "another script",
+   "fact_text": "Joanna worked on another script and created a plan for getting it made into a movie.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "pitched",
+   "entity_2": "the script to some producers yesterday",
+   "fact_text": "Joanna pitched the script to some producers yesterday and they really liked it.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "felt",
+   "entity_2": "a big confidence boost",
+   "fact_text": "Joanna felt a big confidence boost after producers liked her script pitch.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is working on",
+   "entity_2": "a suspenseful thriller set in a small Midwestern town",
+   "fact_text": "Joanna is working on a suspenseful thriller set in a small Midwestern town.",
+   "turn_ids": [
+    "D28:12"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "creates",
+   "entity_2": "gaming content for YouTube",
+   "fact_text": "Nate creates gaming content for YouTube to entertain people and satisfy his video game cravings when there are no tournaments.",
+   "turn_ids": [
+    "D28:13",
+    "D28:15"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "took",
+   "entity_2": "a sunset photo on a hike near Fort Wayne last summer",
+   "fact_text": "Joanna took a sunset photo on a hike near Fort Wayne last summer.",
+   "turn_ids": [
+    "D28:22"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has",
+   "entity_2": "three turtles",
+   "fact_text": "Nate has three turtles.",
+   "turn_ids": [
+    "D28:23"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "acquired",
+   "entity_2": "a third turtle at a pet store",
+   "fact_text": "Nate acquired a third turtle at a pet store because his tank was big enough for three.",
+   "turn_ids": [
+    "D28:25"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "said he would give a bath to",
+   "entity_2": "the turtles before Joanna's visit",
+   "fact_text": "Nate said he would give a bath to the turtles before Joanna's visit.",
+   "turn_ids": [
+    "D28:31"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is allergic to",
+   "entity_2": "turtles",
+   "fact_text": "Joanna is allergic to turtles and asked to watch from a distance.",
+   "turn_ids": [
+    "D28:28"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "invited",
+   "entity_2": "Joanna to his place",
+   "fact_text": "Nate invited Joanna to his place to watch one of her movies together or go to the park.",
+   "turn_ids": [
+    "D28:29",
+    "D28:30"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2022-11-09T17:54:00",
+   "date_raw": "5:54 pm on 9 November, 2022"
+  }
+ ]
+}

@@ -1,0 +1,212 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "created",
+   "entity_2": "a meditation guide",
+   "fact_text": "Deborah created a meditation guide for her yoga retreat.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "lost",
+   "entity_2": "work files",
+   "fact_text": "Jolene lost her work files.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "felt",
+   "entity_2": "stress",
+   "fact_text": "Jolene felt stressed after losing her work files.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "meditation",
+   "relation": "helped calm",
+   "entity_2": "Jolene",
+   "fact_text": "Meditation helped calm Jolene when she was overwhelmed.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "meditation",
+   "relation": "restored",
+   "entity_2": "Jolene's clarity",
+   "fact_text": "Meditation restored Jolene's clarity.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "appreciates",
+   "entity_2": "meditation practice",
+   "fact_text": "Jolene appreciates the meditation practice.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "shared a photo of",
+   "entity_2": "two notebooks with a blue cover and a white strip",
+   "fact_text": "Jolene shared a photo of two notebooks with a blue cover and a white strip.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "designed",
+   "entity_2": "notebooks",
+   "fact_text": "Jolene designed notebooks with elements like galaxies and circuitry.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "was inspired by",
+   "entity_2": "her love for space and engines",
+   "fact_text": "Jolene was inspired by her love for space and engines when designing the notebooks.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "notebooks",
+   "relation": "include",
+   "entity_2": "galaxies and circuitry elements",
+   "fact_text": "The notebooks include galaxies and circuitry elements.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is working on",
+   "entity_2": "a prototype for aerial surveillance",
+   "fact_text": "Jolene is working on a prototype for aerial surveillance.",
+   "turn_ids": [
+    "D17:10"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "aims to devise",
+   "entity_2": "a more productive and affordable aerial surveillance system",
+   "fact_text": "Jolene aims to devise a more productive and affordable aerial surveillance system.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "the aerial surveillance system",
+   "relation": "will help with",
+   "entity_2": "responding to emergencies",
+   "fact_text": "The aerial surveillance system will help with responding to emergencies.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "the aerial surveillance system",
+   "relation": "will help with",
+   "entity_2": "monitoring the environment",
+   "fact_text": "The aerial surveillance system will help with monitoring the environment.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "the aerial surveillance system",
+   "relation": "will make",
+   "entity_2": "the world a better, safer place",
+   "fact_text": "The aerial surveillance system will make the world a better, safer place.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  },
+  {
+   "entity_1": "art and design",
+   "relation": "gives a unique perspective to",
+   "entity_2": "Jolene",
+   "fact_text": "Art and design give a unique perspective to Jolene when solving problems.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-12T20:50:00",
+   "date_raw": "8:50 pm on 12 August, 2023"
+  }
+ ]
+}

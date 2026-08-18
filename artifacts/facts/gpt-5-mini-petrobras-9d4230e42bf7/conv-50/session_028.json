@@ -1,0 +1,186 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "hosted",
+   "entity_2": "a small party at his Japanese house for his new album",
+   "fact_text": "Calvin hosted a small party at his Japanese house for his new album last week.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "released",
+   "entity_2": "a new album",
+   "fact_text": "Calvin released a new album.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "started",
+   "entity_2": "a blog on car mods",
+   "fact_text": "Dave started a blog on car mods.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "posted about",
+   "entity_2": "making a car look like a beast",
+   "fact_text": "Dave posted about making a car look like a beast and that post inspired others to start DIY projects.",
+   "turn_ids": [
+    "D28:10"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "found and restored",
+   "entity_2": "a car",
+   "fact_text": "Dave found a car last week in bad shape and restored it.",
+   "turn_ids": [
+    "D28:20"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "created",
+   "entity_2": "a logo for his rock band",
+   "fact_text": "Dave created a logo for his rock band.",
+   "turn_ids": [
+    "D28:22"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "joined",
+   "entity_2": "a rock band",
+   "fact_text": "Dave joined a rock band.",
+   "turn_ids": [
+    "D28:24"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has",
+   "entity_2": "a recording studio",
+   "fact_text": "Calvin has a recording studio.",
+   "turn_ids": [
+    "D28:27"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has",
+   "entity_2": "a relaxation room with a TV",
+   "fact_text": "Calvin has a relaxation room with a TV separate from his studio.",
+   "turn_ids": [
+    "D28:29"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "watches",
+   "entity_2": "music videos, concerts, and documentaries about artists",
+   "fact_text": "Calvin watches music videos, concerts, and documentaries about artists and their creative process for inspiration.",
+   "turn_ids": [
+    "D28:31"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "writes",
+   "entity_2": "lyrics and notes in a notebook",
+   "fact_text": "Dave writes lyrics and notes in a notebook to boost his motivation.",
+   "turn_ids": [
+    "D28:34"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "listens to",
+   "entity_2": "vinyl while doing car work",
+   "fact_text": "Dave listens to vinyl while doing car work to relax and stay on track.",
+   "turn_ids": [
+    "D28:36"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "owns",
+   "entity_2": "an old record player that still works",
+   "fact_text": "Dave owns an old record player that still works.",
+   "turn_ids": [
+    "D28:38"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has been getting into",
+   "entity_2": "classic rock lately",
+   "fact_text": "Dave has been getting into classic rock lately.",
+   "turn_ids": [
+    "D28:40"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-02T17:46:00",
+   "date_raw": "5:46 pm on 2 November, 2023"
+  }
+ ]
+}

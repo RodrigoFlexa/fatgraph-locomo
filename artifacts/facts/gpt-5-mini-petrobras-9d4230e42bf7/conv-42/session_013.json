@@ -1,0 +1,138 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "took for a walk",
+   "entity_2": "Max (Nate's dog)",
+   "fact_text": "Nate took Max (Nate's dog) for a walk on 25 May, 2022 at 3:00 pm.",
+   "turn_ids": [
+    "D13:1",
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "met",
+   "entity_2": "a nearby couple who have a dog",
+   "fact_text": "Nate met a nearby couple who have a dog while walking Max on 25 May, 2022 at 3:00 pm.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "arranged doggy playdates with",
+   "entity_2": "a nearby couple who have a dog",
+   "fact_text": "Nate arranged doggy playdates with a nearby couple who have a dog after meeting them on 25 May, 2022 at 3:00 pm.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Max (Nate's dog)",
+   "relation": "likes",
+   "entity_2": "the nearby couple's dog",
+   "fact_text": "Max (Nate's dog) likes the nearby couple's dog.",
+   "turn_ids": [
+    "D13:3",
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared",
+   "entity_2": "a photo of a stuffed animal laying on a bed",
+   "fact_text": "Nate shared a photo of a stuffed animal laying on a bed.",
+   "turn_ids": [
+    "D13:9"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "got a stuffed animal for",
+   "entity_2": "Joanna",
+   "fact_text": "Nate got a stuffed animal for Joanna and presented it as a new pup.",
+   "turn_ids": [
+    "D13:9",
+    "D13:11"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "finished",
+   "entity_2": "her screenplay",
+   "fact_text": "Joanna finished her screenplay.",
+   "turn_ids": [
+    "D13:18"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "values the opinion of",
+   "entity_2": "Nate",
+   "fact_text": "Joanna values the opinion of Nate about her screenplay.",
+   "turn_ids": [
+    "D13:20"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "will keep updated",
+   "entity_2": "Nate",
+   "fact_text": "Joanna will keep Nate updated about her screenplay.",
+   "turn_ids": [
+    "D13:22"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "supports",
+   "entity_2": "Joanna",
+   "fact_text": "Nate supports Joanna.",
+   "turn_ids": [
+    "D13:21",
+    "D13:23"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2022-05-25T15:00:00",
+   "date_raw": "3:00 pm on 25 May, 2022"
+  }
+ ]
+}

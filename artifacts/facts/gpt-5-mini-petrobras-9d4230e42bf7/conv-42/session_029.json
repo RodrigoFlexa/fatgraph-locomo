@@ -1,0 +1,110 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "is filming",
+   "entity_2": "a movie based on Joanna's road-trip script",
+   "fact_text": "Joanna is filming a movie based on Joanna's road-trip script.",
+   "turn_ids": [
+    "D29:1",
+    "D29:3"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "an actor",
+   "relation": "liked",
+   "entity_2": "Joanna's script",
+   "fact_text": "An actor liked Joanna's script.",
+   "turn_ids": [
+    "D29:5"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "took",
+   "entity_2": "his turtles to a beach in Tampa on 10 November 2022",
+   "fact_text": "Nate took his turtles to a beach in Tampa on 10 November 2022.",
+   "turn_ids": [
+    "D29:6"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate's image",
+   "relation": "shows",
+   "entity_2": "a turtle sitting on a log in a pond",
+   "fact_text": "Nate's image shows a turtle sitting on a log in a pond.",
+   "turn_ids": [
+    "D29:8"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is experimenting with",
+   "entity_2": "flavors",
+   "fact_text": "Nate is experimenting with flavors.",
+   "turn_ids": [
+    "D29:10"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made",
+   "entity_2": "colorful bowls of coconut milk ice cream",
+   "fact_text": "Nate made colorful bowls of coconut milk ice cream.",
+   "turn_ids": [
+    "D29:10"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate's turtles",
+   "relation": "make feel calm",
+   "entity_2": "Nate",
+   "fact_text": "Nate's turtles make Nate feel calm.",
+   "turn_ids": [
+    "D29:6",
+    "D29:8"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  },
+  {
+   "entity_1": "Nate's turtles",
+   "relation": "do not require",
+   "entity_2": "much looking after",
+   "fact_text": "Nate's turtles do not require much looking after.",
+   "turn_ids": [
+    "D29:8"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2022-11-11T00:06:00",
+   "date_raw": "12:06 am on 11 November, 2022"
+  }
+ ]
+}

@@ -1,0 +1,161 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "started",
+   "entity_2": "a yoga class in the neighborhood",
+   "fact_text": "Deborah started a yoga class in the neighborhood.",
+   "turn_ids": [
+    "D9:3"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shares exercise with",
+   "entity_2": "her neighbors",
+   "fact_text": "Deborah shares the exercise with her neighbors.",
+   "turn_ids": [
+    "D9:3"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "hosted",
+   "entity_2": "a yoga class for her neighbors on Friday",
+   "fact_text": "Deborah hosted a yoga class for her neighbors on Friday.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared",
+   "entity_2": "a photo of a group of women posing for a picture",
+   "fact_text": "Deborah shared a photo of a group of women posing for a picture.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "finds",
+   "entity_2": "yoga calming",
+   "fact_text": "Deborah finds yoga calming.",
+   "turn_ids": [
+    "D9:7"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "wanted to share",
+   "entity_2": "the calming effect of yoga with others",
+   "fact_text": "Deborah wanted to share the calming effect of yoga with others.",
+   "turn_ids": [
+    "D9:7"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "made friends through",
+   "entity_2": "teaching yoga",
+   "fact_text": "Deborah made great friends through teaching yoga.",
+   "turn_ids": [
+    "D9:9"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "uses teaching to build",
+   "entity_2": "community connections",
+   "fact_text": "Deborah uses teaching yoga to build community connections.",
+   "turn_ids": [
+    "D9:9"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is struggling with",
+   "entity_2": "Engineering assignments",
+   "fact_text": "Jolene is struggling with her Engineering assignments.",
+   "turn_ids": [
+    "D9:14"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "plans to check",
+   "entity_2": "Jolene's schedule and get back about finding a time to chat",
+   "fact_text": "Jolene plans to check Jolene's schedule and get back about finding a time to chat.",
+   "turn_ids": [
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "offered support to",
+   "entity_2": "Jolene",
+   "fact_text": "Deborah offered support to Jolene if Jolene needs her.",
+   "turn_ids": [
+    "D9:19"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "agreed to find a time to chat with",
+   "entity_2": "Jolene",
+   "fact_text": "Deborah agreed to find a time to chat with Jolene.",
+   "turn_ids": [
+    "D9:15",
+    "D9:16"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-03-13T11:22:00",
+   "date_raw": "11:22 am on 13 March, 2023"
+  }
+ ]
+}

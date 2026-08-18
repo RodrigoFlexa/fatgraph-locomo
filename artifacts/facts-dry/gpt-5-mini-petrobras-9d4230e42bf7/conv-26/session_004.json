@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "time",
+   "fact_text": "melanie and time came up when Caroline was talking.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "necklace",
+   "fact_text": "caroline and necklace came up when Melanie was talking.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "family",
+   "fact_text": "melanie and family came up when Caroline was talking.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "awesome",
+   "fact_text": "caroline and awesome came up when Melanie was talking.",
+   "turn_ids": [
+    "D4:4"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "stuff",
+   "fact_text": "melanie and stuff came up when Caroline was talking.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "family",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "family and great came up when Caroline was talking.",
+   "turn_ids": [
+    "D4:7"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  }
+ ]
+}

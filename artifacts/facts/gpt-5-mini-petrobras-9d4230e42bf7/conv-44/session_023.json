@@ -1,0 +1,253 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "played board games with",
+   "entity_2": "Toby (Andrew's girlfriend)",
+   "fact_text": "Andrew played board games with his girlfriend Toby last Tuesday.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "had a board game session on",
+   "entity_2": "Friday night",
+   "fact_text": "Andrew had a board game session on Friday night.",
+   "turn_ids": [
+    "D23:3"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to visit",
+   "entity_2": "a cozy cafe this weekend",
+   "fact_text": "Andrew plans to visit a cozy cafe this weekend.",
+   "turn_ids": [
+    "D23:3"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "dog park",
+   "relation": "is close to",
+   "entity_2": "the new cafe spot",
+   "fact_text": "A dog park is close to the new cafe spot Andrew mentioned.",
+   "turn_ids": [
+    "D23:7",
+    "D23:5"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Toby (Andrew's pup)",
+   "relation": "is a",
+   "entity_2": "German Shepherd",
+   "fact_text": "Toby, Andrew's pup, is a German Shepherd.",
+   "turn_ids": [
+    "D23:13"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Toby (Andrew's pup)",
+   "relation": "likes",
+   "entity_2": "cute sweaters",
+   "fact_text": "Toby, Andrew's pup, likes cute sweaters.",
+   "turn_ids": [
+    "D23:13"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "made",
+   "entity_2": "goodies to thank her neighbors",
+   "fact_text": "Audrey made goodies to thank her neighbors for their pup-friendly homes.",
+   "turn_ids": [
+    "D23:2"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "had a tattoo of",
+   "entity_2": "her four dogs",
+   "fact_text": "Audrey had a tattoo of her four dogs.",
+   "turn_ids": [
+    "D23:18"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "added more drawings to",
+   "entity_2": "her tattoo",
+   "fact_text": "Audrey went to the tattoo parlor and added more drawings to her tattoo.",
+   "turn_ids": [
+    "D23:18"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "hate",
+   "entity_2": "snow",
+   "fact_text": "Audrey's dogs hate snow.",
+   "turn_ids": [
+    "D23:12"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "like",
+   "entity_2": "fetch",
+   "fact_text": "Audrey's dogs like fetch.",
+   "turn_ids": [
+    "D23:14"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "like",
+   "entity_2": "frisbee",
+   "fact_text": "Audrey's dogs like frisbee.",
+   "turn_ids": [
+    "D23:14"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "prefer",
+   "entity_2": "sunny days in the grass",
+   "fact_text": "Audrey's dogs prefer sunny days in the grass.",
+   "turn_ids": [
+    "D23:12"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "took her dogs to",
+   "entity_2": "a snowy dog park last winter",
+   "fact_text": "Audrey took her dogs to a snowy dog park last winter and they were confused.",
+   "turn_ids": [
+    "D23:12"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "can run for",
+   "entity_2": "hours",
+   "fact_text": "Audrey's dogs can run for hours at the park.",
+   "turn_ids": [
+    "D23:14"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "goes to",
+   "entity_2": "nearby parks",
+   "fact_text": "Andrew goes to nearby parks whenever he can.",
+   "turn_ids": [
+    "D23:23"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "goes on",
+   "entity_2": "hikes",
+   "fact_text": "Andrew goes on hikes whenever he can.",
+   "turn_ids": [
+    "D23:23"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans to go on a hike with",
+   "entity_2": "her dogs",
+   "fact_text": "Audrey plans to go on a hike with her dogs.",
+   "turn_ids": [
+    "D23:26"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  },
+  {
+   "entity_1": "Toby (Andrew's pup)",
+   "relation": "chased",
+   "entity_2": "a squirrel",
+   "fact_text": "Toby, Andrew's pup, chased a squirrel at the dog park.",
+   "turn_ids": [
+    "D23:11",
+    "D23:13"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-13T16:22:00",
+   "date_raw": "4:22 pm on 13 October, 2023"
+  }
+ ]
+}

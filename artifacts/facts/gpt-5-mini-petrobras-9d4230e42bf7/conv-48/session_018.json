@@ -1,0 +1,213 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "is juggling",
+   "entity_2": "her engineering",
+   "fact_text": "Jolene is juggling her engineering.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is juggling",
+   "entity_2": "her relationship",
+   "fact_text": "Jolene is juggling her relationship.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is juggling",
+   "entity_2": "personal growth",
+   "fact_text": "Jolene is juggling personal growth.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "checked in with",
+   "entity_2": "her boyfriend",
+   "fact_text": "Jolene checked in with her boyfriend.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "started using",
+   "entity_2": "a bullet journal",
+   "fact_text": "Jolene started using a bullet journal for time management.",
+   "turn_ids": [
+    "D18:3"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "a bullet journal",
+   "relation": "helps",
+   "entity_2": "Jolene track tasks",
+   "fact_text": "A bullet journal helps Jolene track her tasks and stay organized.",
+   "turn_ids": [
+    "D18:3"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "finds satisfying",
+   "entity_2": "crossing tasks off her list",
+   "fact_text": "Jolene finds crossing tasks off her list satisfying.",
+   "turn_ids": [
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "shared",
+   "entity_2": "a photo of a notebook with a quote",
+   "fact_text": "Jolene shared a photo of a notebook with a quote.",
+   "turn_ids": [
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "the quote in Jolene's notebook",
+   "relation": "motivates",
+   "entity_2": "Jolene to stick to her goals",
+   "fact_text": "The quote in Jolene's notebook motivates Jolene to stick to her goals and never give up.",
+   "turn_ids": [
+    "D18:7",
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "led",
+   "entity_2": "a meditation yoga session at a local care home last week during sunset",
+   "fact_text": "Deborah led a meditation yoga session at a local care home last week during sunset.",
+   "turn_ids": [
+    "D18:8"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared",
+   "entity_2": "a photo of a group doing yoga on a beach",
+   "fact_text": "Deborah shared a photo of a group doing yoga on a beach.",
+   "turn_ids": [
+    "D18:8"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "started mindfulness with",
+   "entity_2": "workshops and books",
+   "fact_text": "Deborah started mindfulness with workshops and books.",
+   "turn_ids": [
+    "D18:10"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "has",
+   "entity_2": "mindfulness as a huge part of her life",
+   "fact_text": "Deborah has mindfulness as a huge part of her life.",
+   "turn_ids": [
+    "D18:10"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "has not tried",
+   "entity_2": "mindfulness yet",
+   "fact_text": "Jolene has not tried mindfulness yet.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is keen to try",
+   "entity_2": "mindfulness",
+   "fact_text": "Jolene is keen to try mindfulness.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "offered help to",
+   "entity_2": "Jolene with getting started in mindfulness",
+   "fact_text": "Deborah offered help to Jolene with getting started in mindfulness.",
+   "turn_ids": [
+    "D18:12"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-08-16T14:58:00",
+   "date_raw": "2:58 pm on 16 August, 2023"
+  }
+ ]
+}

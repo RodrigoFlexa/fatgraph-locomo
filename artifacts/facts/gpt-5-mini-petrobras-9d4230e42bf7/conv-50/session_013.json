@@ -1,0 +1,134 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "was picked for",
+   "entity_2": "a car mod workshop",
+   "fact_text": "Dave was picked for a car mod workshop on 11 August 2023 at 5:22 pm.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "wants to learn",
+   "entity_2": "auto engineering",
+   "fact_text": "Dave wants to learn auto engineering.",
+   "turn_ids": [
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "wants to build",
+   "entity_2": "a custom car",
+   "fact_text": "Dave wants to build a custom car.",
+   "turn_ids": [
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has been doing",
+   "entity_2": "engine swaps",
+   "fact_text": "Dave has been doing engine swaps.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has been doing",
+   "entity_2": "suspension modifications",
+   "fact_text": "Dave has been doing suspension modifications.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is learning",
+   "entity_2": "body modifications",
+   "fact_text": "Dave is learning body modifications.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is giving a modern twist to",
+   "entity_2": "a classic muscle car",
+   "fact_text": "Dave is giving a modern twist to a classic muscle car.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has",
+   "entity_2": "a music studio setup with a high-quality sound system",
+   "fact_text": "Dave has a music studio setup with a high-quality sound system.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "offered to help with music to",
+   "entity_2": "Calvin",
+   "fact_text": "Dave offered to help with music to Calvin.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is busy with",
+   "entity_2": "his music work",
+   "fact_text": "Calvin is busy with his music work.",
+   "turn_ids": [
+    "D13:16"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-11T17:22:00",
+   "date_raw": "5:22 pm on 11 August, 2023"
+  }
+ ]
+}

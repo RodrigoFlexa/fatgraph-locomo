@@ -1,0 +1,175 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "wrote screenplay bits that appeared on",
+   "entity_2": "big screen on 4 June, 2022",
+   "fact_text": "Joanna wrote screenplay bits that appeared on the big screen on 4 June, 2022.",
+   "turn_ids": [
+    "D15:1"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "noticed Spider-Man pin on",
+   "entity_2": "Joanna's purse",
+   "fact_text": "Nate noticed a Spider-Man pin on Joanna's purse.",
+   "turn_ids": [
+    "D15:2"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "likes",
+   "entity_2": "Spider-Man",
+   "fact_text": "Joanna likes Spider-Man.",
+   "turn_ids": [
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "likes",
+   "entity_2": "superheroes in general",
+   "fact_text": "Joanna likes superheroes in general.",
+   "turn_ids": [
+    "D15:3"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "prefers",
+   "entity_2": "Iron Man",
+   "fact_text": "Nate prefers Iron Man.",
+   "turn_ids": [
+    "D15:4"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared an image of",
+   "entity_2": "a toy Iron Man",
+   "fact_text": "Nate shared an image of a toy Iron Man.",
+   "turn_ids": [
+    "D15:4"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "keeps toy Iron Man in",
+   "entity_2": "his room",
+   "fact_text": "Nate keeps a toy Iron Man in his room.",
+   "turn_ids": [
+    "D15:6",
+    "D15:4"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "uses toy Iron Man as a reminder to",
+   "entity_2": "work on his goals",
+   "fact_text": "Nate uses a toy Iron Man as a reminder to work on his goals.",
+   "turn_ids": [
+    "D15:6"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "has",
+   "entity_2": "a cork board full of inspiring quotes and pictures",
+   "fact_text": "Joanna has a cork board full of inspiring quotes and pictures for motivation and creativity.",
+   "turn_ids": [
+    "D15:7"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared an image of",
+   "entity_2": "a picture frame with a family photo on her cork board",
+   "fact_text": "Joanna shared an image of a picture frame with a family photo on her cork board.",
+   "turn_ids": [
+    "D15:9"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "keeps a family photo on",
+   "entity_2": "her cork board",
+   "fact_text": "Joanna keeps a family photo on her cork board.",
+   "turn_ids": [
+    "D15:9"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "says family photo on cork board reminds her of",
+   "entity_2": "love and encouragement from her family",
+   "fact_text": "Joanna says the family photo on her cork board reminds her of the love and encouragement from her family every day.",
+   "turn_ids": [
+    "D15:11"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "would recommend",
+   "entity_2": "Nate start a cork board",
+   "fact_text": "Joanna would recommend Nate start a cork board.",
+   "turn_ids": [
+    "D15:15",
+    "D15:14"
+   ],
+   "session_id": "S15",
+   "session_num": 15,
+   "timestamp": "2022-06-05T14:12:00",
+   "date_raw": "2:12 pm on 5 June, 2022"
+  }
+ ]
+}

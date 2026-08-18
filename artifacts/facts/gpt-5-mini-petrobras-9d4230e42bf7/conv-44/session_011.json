@@ -1,0 +1,161 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "had a picnic with",
+   "entity_2": "his girlfriend on last Friday",
+   "fact_text": "Andrew had a picnic with his girlfriend on last Friday.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has",
+   "entity_2": "dogs",
+   "fact_text": "Audrey has dogs.",
+   "turn_ids": [
+    "D11:2"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "found",
+   "entity_2": "a breeder nearby",
+   "fact_text": "Audrey found a breeder nearby that has the dogs she wanted.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "finds it tough to find",
+   "entity_2": "a place that allows dogs",
+   "fact_text": "Andrew finds it tough to find a place that allows dogs.",
+   "turn_ids": [
+    "D11:3",
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "found",
+   "entity_2": "a few parks that allow leashed dogs",
+   "fact_text": "Andrew found a few parks that allow leashed dogs.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans to join",
+   "entity_2": "Andrew for a hike and bring her dogs",
+   "fact_text": "Audrey plans to join Andrew for a hike and bring her dogs.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans a hike with",
+   "entity_2": "Audrey and her dogs next month",
+   "fact_text": "Andrew plans a hike with Audrey and her dogs next month when the weather is more pleasant.",
+   "turn_ids": [
+    "D11:7"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "hiked at",
+   "entity_2": "a location that was a 3 hour drive from her last year",
+   "fact_text": "Audrey hiked at a location that was a 3 hour drive from her last year.",
+   "turn_ids": [
+    "D11:32"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "prioritizes",
+   "entity_2": "safety for her dogs when they are outside running around",
+   "fact_text": "Audrey prioritizes safety for her dogs when they are outside running around.",
+   "turn_ids": [
+    "D11:12"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "feels joy from",
+   "entity_2": "her dogs",
+   "fact_text": "Audrey feels joy from her dogs.",
+   "turn_ids": [
+    "D11:22"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "likes",
+   "entity_2": "being outdoors",
+   "fact_text": "Andrew likes being outdoors.",
+   "turn_ids": [
+    "D11:29"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "will let know",
+   "entity_2": "Audrey if he finds a place where dogs can run and play off-leash",
+   "fact_text": "Andrew will let Audrey know if he finds a place where dogs can run and play off-leash.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-08T09:48:00",
+   "date_raw": "9:48 am on 8 July, 2023"
+  }
+ ]
+}

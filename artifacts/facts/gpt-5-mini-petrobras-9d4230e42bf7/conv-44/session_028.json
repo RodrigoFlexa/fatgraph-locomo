@@ -1,0 +1,213 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "took to",
+   "entity_2": "the pet salon on last Friday",
+   "fact_text": "Audrey took her dogs to the pet salon on last Friday.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of a dog standing on a table with a leash",
+   "fact_text": "Audrey shared a photo of a dog standing on a table with a leash.",
+   "turn_ids": [
+    "D28:3"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "had well-groomed dogs after visiting",
+   "entity_2": "the pet salon",
+   "fact_text": "Audrey's dogs were well-groomed after visiting the pet salon.",
+   "turn_ids": [
+    "D28:3"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "adopted",
+   "entity_2": "a dog",
+   "fact_text": "Andrew adopted a dog the other day.",
+   "turn_ids": [
+    "D28:6"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "named",
+   "entity_2": "Scout",
+   "fact_text": "Andrew named the adopted dog Scout.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Scout",
+   "relation": "has",
+   "entity_2": "an adventurous spirit",
+   "fact_text": "Scout has an adventurous spirit.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to take to a nearby park",
+   "entity_2": "Scout",
+   "fact_text": "Andrew plans to take Scout to a nearby park.",
+   "turn_ids": [
+    "D28:10"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to take to a nearby park",
+   "entity_2": "Toby",
+   "fact_text": "Andrew plans to take Toby to a nearby park.",
+   "turn_ids": [
+    "D28:10"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to take to a nearby park",
+   "entity_2": "Buddy",
+   "fact_text": "Andrew plans to take Buddy to a nearby park.",
+   "turn_ids": [
+    "D28:10"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "acquired for the new dog",
+   "entity_2": "a bed",
+   "fact_text": "Andrew acquired a bed for the new dog.",
+   "turn_ids": [
+    "D28:12"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "acquired for the new dog",
+   "entity_2": "toys",
+   "fact_text": "Andrew acquired toys for the new dog.",
+   "turn_ids": [
+    "D28:12"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "acquired for the new dog",
+   "entity_2": "puppy pads",
+   "fact_text": "Andrew acquired puppy pads for the new dog.",
+   "turn_ids": [
+    "D28:12"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "has",
+   "entity_2": "a girlfriend",
+   "fact_text": "Andrew has a girlfriend.",
+   "turn_ids": [
+    "D28:13"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "owns",
+   "entity_2": "dogs",
+   "fact_text": "Audrey owns dogs.",
+   "turn_ids": [
+    "D28:1",
+    "D28:5"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "has not taken to the groomer",
+   "entity_2": "his dogs",
+   "fact_text": "Andrew has not taken his dogs to the groomer yet.",
+   "turn_ids": [
+    "D28:6"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "feel",
+   "entity_2": "loved and safe",
+   "fact_text": "Audrey's dogs feel loved and safe.",
+   "turn_ids": [
+    "D28:15"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-11-22T09:02:00",
+   "date_raw": "9:02 am on 22 November, 2023"
+  }
+ ]
+}

@@ -1,0 +1,318 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "talked with",
+   "entity_2": "Jolene's partner about how loved ones influenced them",
+   "fact_text": "Jolene talked with Jolene's partner about how their loved ones influenced them last Friday.",
+   "turn_ids": [
+    "D22:2"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "learned perseverance from",
+   "entity_2": "Jolene's mom",
+   "fact_text": "Jolene learned perseverance from Jolene's mom, who always said to never give up.",
+   "turn_ids": [
+    "D22:4"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene's partner's dad",
+   "relation": "taught determination to",
+   "entity_2": "Jolene's partner",
+   "fact_text": "Jolene's partner's dad taught determination to Jolene's partner.",
+   "turn_ids": [
+    "D22:4"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is",
+   "entity_2": "an engineering student",
+   "fact_text": "Jolene is an engineering student.",
+   "turn_ids": [
+    "D22:6"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene's partner",
+   "relation": "pursues",
+   "entity_2": "creative endeavors",
+   "fact_text": "Jolene's partner pursues creative endeavors.",
+   "turn_ids": [
+    "D22:4"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "wants to incorporate values into",
+   "entity_2": "engineering projects",
+   "fact_text": "Jolene wants to incorporate the values she learned into her engineering projects.",
+   "turn_ids": [
+    "D22:6"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is interested in",
+   "entity_2": "sustainable initiatives",
+   "fact_text": "Jolene is interested in sustainable initiatives.",
+   "turn_ids": [
+    "D22:8"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is interested in developing",
+   "entity_2": "innovative solutions for environmental issues",
+   "fact_text": "Jolene is interested in developing innovative solutions for environmental issues.",
+   "turn_ids": [
+    "D22:8"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "wants to get involved with",
+   "entity_2": "organizations that focus on social causes",
+   "fact_text": "Jolene wants to get involved with organizations that focus on social causes.",
+   "turn_ids": [
+    "D22:8"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is keen on",
+   "entity_2": "renewable energy like solar",
+   "fact_text": "Jolene is keen on renewable energy like solar to help communities and reduce dependence on non-renewables.",
+   "turn_ids": [
+    "D22:10"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is keen on",
+   "entity_2": "supplying clean water to people with limited access",
+   "fact_text": "Jolene is keen on supplying clean water to people with limited access.",
+   "turn_ids": [
+    "D22:12"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared",
+   "entity_2": "a photo of a woman doing a yoga pose on the beach",
+   "fact_text": "Deborah shared a photo of a woman doing a yoga pose on the beach.",
+   "turn_ids": [
+    "D22:13"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "shared",
+   "entity_2": "a photo of a woman in a pink shirt doing a yoga pose",
+   "fact_text": "Jolene shared a photo of a woman in a pink shirt doing a yoga pose.",
+   "turn_ids": [
+    "D22:16"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "practices",
+   "entity_2": "yoga",
+   "fact_text": "Jolene practices yoga to recharge and relieve tension.",
+   "turn_ids": [
+    "D22:16"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "practices",
+   "entity_2": "meditation",
+   "fact_text": "Jolene practices meditation.",
+   "turn_ids": [
+    "D22:16"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is planning to go on",
+   "entity_2": "a meditation retreat with her partner",
+   "fact_text": "Jolene is planning to go on a meditation retreat with her partner to enhance their practice together.",
+   "turn_ids": [
+    "D22:16"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "owns",
+   "entity_2": "snakes",
+   "fact_text": "Jolene owns snakes as pets.",
+   "turn_ids": [
+    "D22:18"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "owns",
+   "entity_2": "Max (a cat)",
+   "fact_text": "Deborah owns Max (a cat).",
+   "turn_ids": [
+    "D22:19",
+    "D22:21"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "owns",
+   "entity_2": "Luna (a cat)",
+   "fact_text": "Deborah owns Luna (a cat).",
+   "turn_ids": [
+    "D22:19",
+    "D22:25"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "took in",
+   "entity_2": "Max when Deborah's mother passed away",
+   "fact_text": "Deborah took in Max when Deborah's mother passed away.",
+   "turn_ids": [
+    "D22:23"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "adopted from",
+   "entity_2": "the shelter",
+   "fact_text": "Deborah adopted Luna from the shelter.",
+   "turn_ids": [
+    "D22:25"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Max (a cat)",
+   "relation": "is",
+   "entity_2": "8 years old",
+   "fact_text": "Max is 8 years old.",
+   "turn_ids": [
+    "D22:27"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Luna (a cat)",
+   "relation": "is",
+   "entity_2": "5 years old",
+   "fact_text": "Luna is 5 years old.",
+   "turn_ids": [
+    "D22:29"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "likes",
+   "entity_2": "cats",
+   "fact_text": "Deborah likes cats.",
+   "turn_ids": [
+    "D22:27"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-08-26T17:33:00",
+   "date_raw": "5:33 pm on 26 August, 2023"
+  }
+ ]
+}

@@ -1,0 +1,213 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "read a lot during",
+   "entity_2": "the week before 2022-04-17",
+   "fact_text": "Joanna read a lot during the week before 2022-04-17.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "forgot she owned",
+   "entity_2": "a lot of good books",
+   "fact_text": "Joanna forgot she owned a lot of good books.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "found",
+   "entity_2": "an awesome hiking trail in her hometown on 2022-04-16",
+   "fact_text": "Joanna found an awesome hiking trail in her hometown on 2022-04-16.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is a huge fan of",
+   "entity_2": "nature",
+   "fact_text": "Joanna is a huge fan of nature.",
+   "turn_ids": [
+    "D8:8"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "finds peace in",
+   "entity_2": "walking in nature",
+   "fact_text": "Joanna finds peace in walking in nature.",
+   "turn_ids": [
+    "D8:10"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is not really into",
+   "entity_2": "hiking",
+   "fact_text": "Nate is not really into hiking.",
+   "turn_ids": [
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "heard about",
+   "entity_2": "a nice trail just north of where he lives",
+   "fact_text": "Nate heard about a nice trail just north of where he lives.",
+   "turn_ids": [
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "finds peace in spending time with",
+   "entity_2": "his pets",
+   "fact_text": "Nate finds peace in spending time with his pets.",
+   "turn_ids": [
+    "D8:11"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "finds peace in engaging in",
+   "entity_2": "his hobbies",
+   "fact_text": "Nate finds peace in engaging in his hobbies.",
+   "turn_ids": [
+    "D8:11"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has",
+   "entity_2": "turtles",
+   "fact_text": "Nate has turtles.",
+   "turn_ids": [
+    "D8:13",
+    "D8:15"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "brings into the kitchen",
+   "entity_2": "his turtles to watch him make food",
+   "fact_text": "Nate brings his turtles into the kitchen to watch him make food.",
+   "turn_ids": [
+    "D8:15"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "made",
+   "entity_2": "a dairy-free ice cream using coconut milk, vanilla extract, sugar, and a pinch of salt and then chilled and froze it in an ice cream maker until scoopable",
+   "fact_text": "Nate made a dairy-free ice cream using coconut milk, vanilla extract, sugar, and a pinch of salt and then chilled and froze it in an ice cream maker until scoopable.",
+   "turn_ids": [
+    "D8:19"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is",
+   "entity_2": "lactose intolerant",
+   "fact_text": "Joanna is lactose intolerant.",
+   "turn_ids": [
+    "D8:18"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "planned to try making",
+   "entity_2": "Nate's dairy-free ice cream on 2022-04-17",
+   "fact_text": "Joanna planned to try making Nate's dairy-free ice cream on 2022-04-17.",
+   "turn_ids": [
+    "D8:20"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "loves",
+   "entity_2": "Nate's turtles",
+   "fact_text": "Joanna loves Nate's turtles.",
+   "turn_ids": [
+    "D8:14"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "likes",
+   "entity_2": "Nate's ice cream",
+   "fact_text": "Joanna likes Nate's ice cream.",
+   "turn_ids": [
+    "D8:16"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-17T18:44:00",
+   "date_raw": "6:44 pm on 17 April, 2022"
+  }
+ ]
+}

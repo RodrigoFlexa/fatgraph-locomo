@@ -1,0 +1,149 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "has been looking into",
+   "entity_2": "counseling or mental health work",
+   "fact_text": "Caroline has been looking into counseling or mental health work.",
+   "turn_ids": [
+    "D6:3"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is passionate about",
+   "entity_2": "helping people",
+   "fact_text": "Caroline is passionate about helping people.",
+   "turn_ids": [
+    "D6:3"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "took to the museum",
+   "entity_2": "her children",
+   "fact_text": "Melanie took her children to the museum on 5 July 2023 (yesterday relative to the session date).",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's children",
+   "relation": "were excited about",
+   "entity_2": "the dinosaur exhibit",
+   "fact_text": "Melanie's children were excited about the dinosaur exhibit at the museum.",
+   "turn_ids": [
+    "D6:4",
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's children",
+   "relation": "like",
+   "entity_2": "learning about animals",
+   "fact_text": "Melanie's children like learning about animals.",
+   "turn_ids": [
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is creating",
+   "entity_2": "a children's library for her future kids",
+   "fact_text": "Caroline is creating a children's library for her future kids.",
+   "turn_ids": [
+    "D6:7"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "owns",
+   "entity_2": "many children's books",
+   "fact_text": "Caroline owns many children's books including classics, stories from different cultures, and educational books.",
+   "turn_ids": [
+    "D6:9"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "liked reading",
+   "entity_2": "\"Charlotte's Web\" as a child",
+   "fact_text": "Melanie liked reading \"Charlotte's Web\" as a child.",
+   "turn_ids": [
+    "D6:10"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "had",
+   "entity_2": "a picnic last week with friends and family",
+   "fact_text": "Caroline had a picnic last week with friends and family.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Caroline's support network",
+   "relation": "supported",
+   "entity_2": "Caroline's gender transition",
+   "fact_text": "Caroline's support network supported Caroline's gender transition by providing love, guidance, and acceptance.",
+   "turn_ids": [
+    "D6:13",
+    "D6:15"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's family",
+   "relation": "went camping at",
+   "entity_2": "the beach",
+   "fact_text": "Melanie's family went camping at the beach.",
+   "turn_ids": [
+    "D6:16"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-07-06T20:18:00",
+   "date_raw": "8:18 pm on 6 July, 2023"
+  }
+ ]
+}

@@ -1,0 +1,135 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "passed",
+   "entity_2": "adoption agency interviews on 20 October 2023",
+   "fact_text": "Caroline passed the adoption agency interviews on 20 October 2023.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "has the goal of",
+   "entity_2": "having a family",
+   "fact_text": "Caroline has the goal of having a family.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "views",
+   "entity_2": "adoption as a way of giving back and showing love and acceptance",
+   "fact_text": "Caroline views adoption as a way of giving back and showing love and acceptance.",
+   "turn_ids": [
+    "D19:1",
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "plans to provide a home for",
+   "entity_2": "kids who haven't had a roof over their heads",
+   "fact_text": "Caroline plans to provide a home for kids who haven't had a roof over their heads.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "underwent",
+   "entity_2": "a gender transition",
+   "fact_text": "Caroline underwent a gender transition.",
+   "turn_ids": [
+    "D19:9"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "received help from",
+   "entity_2": "friends, family and role models",
+   "fact_text": "Caroline received help from friends, family and role models during her transition.",
+   "turn_ids": [
+    "D19:9"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "finds joy in",
+   "entity_2": "bringing others comfort and helping them grow",
+   "fact_text": "Caroline finds joy in bringing others comfort and helping them grow.",
+   "turn_ids": [
+    "D19:9"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "bought",
+   "entity_2": "figurines on 21 October 2023",
+   "fact_text": "Melanie bought figurines on 21 October 2023.",
+   "turn_ids": [
+    "D19:2"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared",
+   "entity_2": "a photo of a couple of wooden dolls sitting on a table",
+   "fact_text": "Melanie shared a photo of a couple of wooden dolls sitting on a table.",
+   "turn_ids": [
+    "D19:2"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "shared",
+   "entity_2": "a photo of a painting with the words happiness painted on it",
+   "fact_text": "Caroline shared a photo of a painting with the words happiness painted on it.",
+   "turn_ids": [
+    "D19:15"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-10-22T09:55:00",
+   "date_raw": "9:55 am on 22 October, 2023"
+  }
+ ]
+}

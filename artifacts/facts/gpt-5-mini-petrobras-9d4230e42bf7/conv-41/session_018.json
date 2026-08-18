@@ -1,0 +1,201 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "lost",
+   "entity_2": "a pet named Max",
+   "fact_text": "John lost a pet named Max.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "went on",
+   "entity_2": "a camping trip with friends from church last weekend",
+   "fact_text": "Maria went on a camping trip with friends from church last weekend.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "went on",
+   "entity_2": "a mountaineering trip with workmates last week",
+   "fact_text": "John went on a mountaineering trip with workmates last week.",
+   "turn_ids": [
+    "D18:2"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "reached",
+   "entity_2": "the mountain summit",
+   "fact_text": "John reached the mountain summit on his mountaineering trip.",
+   "turn_ids": [
+    "D18:2",
+    "D18:4"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "went on",
+   "entity_2": "a road trip to Oregon with her family when she was younger",
+   "fact_text": "Maria went on a road trip to Oregon with her family when she was younger.",
+   "turn_ids": [
+    "D18:3"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "saw",
+   "entity_2": "a waterfall with a bridge after hiking to the top",
+   "fact_text": "Maria saw a waterfall with a bridge after hiking to the top.",
+   "turn_ids": [
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "felt like",
+   "entity_2": "she was in a fairy tale at the waterfall location",
+   "fact_text": "Maria felt like she was in a fairy tale at the waterfall location.",
+   "turn_ids": [
+    "D18:7",
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "finds",
+   "entity_2": "nature a natural soul-soother",
+   "fact_text": "Maria finds nature a natural soul-soother when things get tough.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "finds peaceful moments by",
+   "entity_2": "taking a moment to herself and listening to her favorite tunes",
+   "fact_text": "Maria finds peaceful moments by taking a moment to herself and listening to her favorite tunes.",
+   "turn_ids": [
+    "D18:15"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "enjoys",
+   "entity_2": "aerial yoga",
+   "fact_text": "Maria enjoys aerial yoga.",
+   "turn_ids": [
+    "D18:15"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "enjoys",
+   "entity_2": "upside-down yoga poses",
+   "fact_text": "Maria enjoys upside-down yoga poses.",
+   "turn_ids": [
+    "D18:17"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "enjoys",
+   "entity_2": "camping",
+   "fact_text": "John enjoys camping as a way to get away from it all.",
+   "turn_ids": [
+    "D18:12"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "has gone",
+   "entity_2": "camping a few times",
+   "fact_text": "Maria has gone camping a few times.",
+   "turn_ids": [
+    "D18:11"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "spent a day at",
+   "entity_2": "the park with his family",
+   "fact_text": "John spent a day at the park with his family.",
+   "turn_ids": [
+    "D18:22"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  },
+  {
+   "entity_1": "John's kids",
+   "relation": "had fun on",
+   "entity_2": "the playground",
+   "fact_text": "John's kids had fun on the playground.",
+   "turn_ids": [
+    "D18:22"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-06-12T14:47:00",
+   "date_raw": "2:47 pm on 12 June, 2023"
+  }
+ ]
+}

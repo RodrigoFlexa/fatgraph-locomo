@@ -1,0 +1,134 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "visited",
+   "entity_2": "a car workshop in San Francisco",
+   "fact_text": "Dave visited a car workshop in San Francisco.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "people at the car workshop in San Francisco",
+   "relation": "were",
+   "entity_2": "passionate and dedicated",
+   "fact_text": "People at the car workshop in San Francisco were passionate and dedicated.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is restoring",
+   "entity_2": "a car",
+   "fact_text": "Dave is restoring a car.",
+   "turn_ids": [
+    "D14:11"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared a photo of",
+   "entity_2": "a car with a broken engine in the woods",
+   "fact_text": "Dave shared a photo of a car with a broken engine in the woods.",
+   "turn_ids": [
+    "D14:11"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "planned to finish restoration by",
+   "entity_2": "the end of next month",
+   "fact_text": "Dave planned to finish the car restoration by the end of next month.",
+   "turn_ids": [
+    "D14:13"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "toured with",
+   "entity_2": "a well-known artist",
+   "fact_text": "Calvin toured with a well-known artist.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "ended the tour with a show in",
+   "entity_2": "Japan",
+   "fact_text": "Calvin ended the tour with a show in Japan.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "explored",
+   "entity_2": "his new place",
+   "fact_text": "Calvin explored his new place.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "performed a song that",
+   "entity_2": "the Tokyo audience sang along to",
+   "fact_text": "Calvin performed a song that the Tokyo audience sang along to.",
+   "turn_ids": [
+    "D14:6"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared a photo of",
+   "entity_2": "a crowd of people at a concert with their hands up",
+   "fact_text": "Calvin shared a photo of a crowd of people at a concert with their hands up.",
+   "turn_ids": [
+    "D14:8"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-08-14T00:35:00",
+   "date_raw": "12:35 am on 14 August, 2023"
+  }
+ ]
+}

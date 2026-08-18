@@ -1,0 +1,148 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "went on",
+   "entity_2": "a road trip with his friends",
+   "fact_text": "On 21 July 2023 Dave went on a road trip with his friends and saw countryside.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "works in",
+   "entity_2": "a corporate job",
+   "fact_text": "Dave works in a corporate job and described the workplace as 'corporate mayhem'.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "had reinforced",
+   "entity_2": "his passion for cars",
+   "fact_text": "On 21 July 2023 a road trip with his friends recharged Dave and reinforced his passion for cars.",
+   "turn_ids": [
+    "D11:1",
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared image of",
+   "entity_2": "a person riding a motorcycle down a dirt road",
+   "fact_text": "On 21 July 2023 Dave shared an image captioned 'a person riding a motorcycle down a dirt road'.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is transforming",
+   "entity_2": "a Japanese mansion into a recording studio",
+   "fact_text": "Calvin is transforming a Japanese mansion into a recording studio as a project.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "wants",
+   "entity_2": "a space for creating music with other artists",
+   "fact_text": "Calvin wants a space for creating music with other artists and described the recording studio as his sanctuary.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared image of",
+   "entity_2": "a room with a ladder",
+   "fact_text": "Calvin shared an image of a room with a ladder showing progress on the project.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has been experimenting with",
+   "entity_2": "different genres",
+   "fact_text": "Calvin has been experimenting with different genres in his music.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has been adding",
+   "entity_2": "electronic elements to his songs",
+   "fact_text": "Calvin has been adding electronic elements to his songs to give them a fresh vibe.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "collaborates with",
+   "entity_2": "other artists",
+   "fact_text": "Calvin collaborates with other artists and said collaborating keeps him motivated.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "started making music to follow",
+   "entity_2": "his dreams",
+   "fact_text": "Calvin started making music to follow his dreams.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-07-21T18:38:00",
+   "date_raw": "6:38 pm on 21 July, 2023"
+  }
+ ]
+}

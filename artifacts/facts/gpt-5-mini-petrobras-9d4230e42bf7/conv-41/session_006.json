@@ -1,0 +1,151 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "did",
+   "entity_2": "a charity event last Friday",
+   "fact_text": "Maria did a charity event last Friday.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "served meals at",
+   "entity_2": "the charity event",
+   "fact_text": "Maria served meals at the charity event.",
+   "turn_ids": [
+    "D6:3"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "had a conversation with",
+   "entity_2": "David",
+   "fact_text": "Maria had a conversation with David at the charity event.",
+   "turn_ids": [
+    "D6:5"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "linked",
+   "entity_2": "a nearby organization that offers housing and support for homeless individuals",
+   "fact_text": "Maria linked David with a nearby organization that offers housing and support for homeless individuals.",
+   "turn_ids": [
+    "D6:7"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "relied on",
+   "entity_2": "her auntie for help",
+   "fact_text": "When Maria was younger, Maria relied on her auntie for help because of money problems.",
+   "turn_ids": [
+    "D6:9"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "started",
+   "entity_2": "a community food drive",
+   "fact_text": "John started a community food drive for people who lost their jobs.",
+   "turn_ids": [
+    "D6:10",
+    "D6:12"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photography of a group of people standing around a table with boxes of tomatoes",
+   "fact_text": "John shared a photography of a group of people standing around a table with boxes of tomatoes showing him at the food bank.",
+   "turn_ids": [
+    "D6:10"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a woman in a face mask holding a bag of food",
+   "fact_text": "John shared a photo of a woman in a face mask holding a bag of food from a recent event.",
+   "turn_ids": [
+    "D6:16"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "ran for",
+   "entity_2": "public office",
+   "fact_text": "John ran for public office because he felt a strong urge to serve his country and community.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offered to help",
+   "entity_2": "John with networking or future events",
+   "fact_text": "Maria offered to help John with networking or helping out at future events.",
+   "turn_ids": [
+    "D6:17",
+    "D6:18"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is friends with",
+   "entity_2": "Maria",
+   "fact_text": "John is friends with Maria and they support each other.",
+   "turn_ids": [
+    "D6:20",
+    "D6:21",
+    "D6:22"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-05T14:33:00",
+   "date_raw": "2:33 pm on 5 February, 2023"
+  }
+ ]
+}

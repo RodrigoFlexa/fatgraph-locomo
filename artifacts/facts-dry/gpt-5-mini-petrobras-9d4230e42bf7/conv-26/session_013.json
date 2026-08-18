@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "great and image came up when Caroline was talking.",
+   "turn_ids": [
+    "D13:1"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "does",
+   "fact_text": "caroline and does came up when Melanie was talking.",
+   "turn_ids": [
+    "D13:2"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "guinea",
+   "fact_text": "great and guinea came up when Caroline was talking.",
+   "turn_ids": [
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "shares",
+   "fact_text": "image and shares came up when Melanie was talking.",
+   "turn_ids": [
+    "D13:4"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "shares",
+   "fact_text": "image and shares came up when Caroline was talking.",
+   "turn_ids": [
+    "D13:5"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "love",
+   "relation": "mentions",
+   "entity_2": "horses",
+   "fact_text": "love and horses came up when Caroline was talking.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "great and image came up when Melanie was talking.",
+   "turn_ids": [
+    "D13:8"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-08-23T15:31:00",
+   "date_raw": "3:31 pm on 23 August, 2023"
+  }
+ ]
+}

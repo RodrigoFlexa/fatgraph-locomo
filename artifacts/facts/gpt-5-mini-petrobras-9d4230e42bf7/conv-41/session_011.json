@@ -1,0 +1,188 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "had an incident on",
+   "entity_2": "his car breaking down on Friday, April 7, 2023 while driving to work",
+   "fact_text": "John had his car break down on Friday, April 7, 2023 while driving to work.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is experiencing",
+   "entity_2": "financial strain from car trouble",
+   "fact_text": "John is experiencing financial strain from his car trouble.",
+   "turn_ids": [
+    "D11:1",
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "maintains",
+   "entity_2": "a positive attitude while seeking a solution",
+   "fact_text": "John maintains a positive attitude while seeking a solution to his car and money problems.",
+   "turn_ids": [
+    "D11:1",
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photograph of a mountain with a sunset and flowers in the foreground",
+   "fact_text": "John shared a photograph of a mountain with a sunset and flowers in the foreground.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was reminded by",
+   "entity_2": "the shared photograph of a road trip he took last year",
+   "fact_text": "John was reminded by the shared photograph of a road trip he took last year.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visited",
+   "entity_2": "the Pacific Northwest coast and some national parks on a road trip last year",
+   "fact_text": "John visited the Pacific Northwest coast and some national parks on a road trip last year.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "volunteers at",
+   "entity_2": "a homeless shelter",
+   "fact_text": "Maria volunteers at a homeless shelter.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "gave",
+   "entity_2": "a few talks at the homeless shelter",
+   "fact_text": "Maria gave a few talks at the homeless shelter where she volunteers.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "received",
+   "entity_2": "lots of compliments from other volunteers for her talks",
+   "fact_text": "Maria received lots of compliments from other volunteers for her talks at the homeless shelter.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "bought",
+   "entity_2": "a cross necklace to feel closer to her faith",
+   "fact_text": "Maria bought a cross necklace to feel closer to her faith.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "organized",
+   "entity_2": "a meal for the shelter residents",
+   "fact_text": "Maria organized a meal for the shelter residents.",
+   "turn_ids": [
+    "D11:16"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "helped with",
+   "entity_2": "getting everything ready for the shelter meal",
+   "fact_text": "Maria helped with getting everything ready for the shelter meal.",
+   "turn_ids": [
+    "D11:16"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photo of a group of people standing around a table filled with food",
+   "fact_text": "Maria shared a photo of a group of people standing around a table filled with food.",
+   "turn_ids": [
+    "D11:14"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "feels",
+   "entity_2": "that the people at the shelter are like family",
+   "fact_text": "Maria feels that the people at the homeless shelter are like family.",
+   "turn_ids": [
+    "D11:12"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-04-10T18:13:00",
+   "date_raw": "6:13 pm on 10 April, 2023"
+  }
+ ]
+}

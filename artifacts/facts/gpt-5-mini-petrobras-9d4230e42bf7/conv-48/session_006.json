@@ -1,0 +1,134 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "went out for dinner and drinks with",
+   "entity_2": "her friends last night",
+   "fact_text": "Jolene went out for dinner and drinks with her friends last night.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visited",
+   "entity_2": "a garden that was calming and nostalgic",
+   "fact_text": "Deborah visited a garden that was calming and nostalgic.",
+   "turn_ids": [
+    "D6:2"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Roses and dahlias",
+   "relation": "bring peace to",
+   "entity_2": "Deborah",
+   "fact_text": "Roses and dahlias bring peace to Deborah.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "lost",
+   "entity_2": "a friend last week",
+   "fact_text": "Deborah lost a friend last week.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "spends time in",
+   "entity_2": "her garden to find comfort",
+   "fact_text": "Deborah spends time in her garden to find comfort.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "took her last photo with",
+   "entity_2": "Karlie last summer when they hiked",
+   "fact_text": "Deborah took her last photo with Karlie last summer when they hiked.",
+   "turn_ids": [
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visited",
+   "entity_2": "Bali last year",
+   "fact_text": "Deborah visited Bali last year.",
+   "turn_ids": [
+    "D6:10"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Bali",
+   "relation": "gave peace to",
+   "entity_2": "Deborah",
+   "fact_text": "Bali gave peace to Deborah.",
+   "turn_ids": [
+    "D6:10"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Bali",
+   "relation": "was great for",
+   "entity_2": "yoga",
+   "fact_text": "Bali was great for yoga.",
+   "turn_ids": [
+    "D6:10"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "wants to try",
+   "entity_2": "yoga on the beach",
+   "fact_text": "Jolene wants to try yoga on the beach.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-02-22T16:12:00",
+   "date_raw": "4:12 pm on 22 February, 2023"
+  }
+ ]
+}

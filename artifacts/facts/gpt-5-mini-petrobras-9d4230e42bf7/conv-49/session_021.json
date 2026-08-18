@@ -1,0 +1,192 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "married",
+   "entity_2": "a woman from Canada",
+   "fact_text": "Evan married a woman from Canada last week.",
+   "turn_ids": [
+    "D21:2",
+    "D21:4"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "fell in love at first sight with",
+   "entity_2": "a woman from Canada",
+   "fact_text": "Evan fell in love at first sight with a woman from Canada.",
+   "turn_ids": [
+    "D21:4",
+    "D21:6"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "believes in",
+   "entity_2": "love at first sight",
+   "fact_text": "Evan believes in love at first sight.",
+   "turn_ids": [
+    "D21:6"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "painted",
+   "entity_2": "a painting with a white background and blue, orange, and black",
+   "fact_text": "Evan painted a painting with a white background and blue, orange, and black.",
+   "turn_ids": [
+    "D21:10",
+    "D21:12"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "painted",
+   "entity_2": "a painting with a bird flying over it",
+   "fact_text": "Evan painted a painting with a bird flying over it.",
+   "turn_ids": [
+    "D21:14",
+    "D21:16"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "painted with",
+   "entity_2": "a sense of joy and freedom",
+   "fact_text": "Evan painted a painting with a bird flying over it with a sense of joy and freedom.",
+   "turn_ids": [
+    "D21:16"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "uses",
+   "entity_2": "art to recognize and handle his feelings",
+   "fact_text": "Evan uses art to recognize and handle his own feelings.",
+   "turn_ids": [
+    "D21:14"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "feels",
+   "entity_2": "a massive rush of joy from a painting with a bird flying over it",
+   "fact_text": "Evan feels a massive rush of joy from a painting with a bird flying over it.",
+   "turn_ids": [
+    "D21:14"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "loses",
+   "entity_2": "Evan's keys",
+   "fact_text": "Evan loses Evan's keys weekly.",
+   "turn_ids": [
+    "D21:20"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "enjoys",
+   "entity_2": "running in the mornings",
+   "fact_text": "Sam enjoys running in the mornings.",
+   "turn_ids": [
+    "D21:9"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "sketches",
+   "entity_2": "occasionally",
+   "fact_text": "Sam sketches occasionally.",
+   "turn_ids": [
+    "D21:19"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "suggested putting a GPS sensor on",
+   "entity_2": "Evan's keys",
+   "fact_text": "Sam suggested putting a GPS sensor on Evan's keys.",
+   "turn_ids": [
+    "D21:21"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "plans to put a GPS sensor on",
+   "entity_2": "Evan's keys",
+   "fact_text": "Evan plans to put a GPS sensor on Evan's keys as soon as he finds them.",
+   "turn_ids": [
+    "D21:22",
+    "D21:21"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "offered to help teach",
+   "entity_2": "Sam to paint",
+   "fact_text": "Evan offered to help teach Sam to paint.",
+   "turn_ids": [
+    "D21:18",
+    "D21:20"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-12-26T16:25:00",
+   "date_raw": "4:25 pm on 26 December, 2023"
+  }
+ ]
+}

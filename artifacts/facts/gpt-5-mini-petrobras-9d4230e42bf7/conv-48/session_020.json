@@ -1,0 +1,174 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "was given",
+   "entity_2": "the video game Battlefield 1 last week",
+   "fact_text": "Jolene was given the video game Battlefield 1 last week.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visited",
+   "entity_2": "a place that held a lot of memories on 21 August 2023 at 9:11 am",
+   "fact_text": "Deborah visited a place that held a lot of memories on 21 August 2023 at 9:11 am.",
+   "turn_ids": [
+    "D20:2"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "sat on",
+   "entity_2": "a bench where Deborah and Jolene used to chat",
+   "fact_text": "Deborah sat on a bench where Deborah and Jolene used to chat.",
+   "turn_ids": [
+    "D20:2"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "brought",
+   "entity_2": "flowers to the place that held a lot of memories",
+   "fact_text": "Deborah brought flowers to the place that held a lot of memories.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "felt",
+   "entity_2": "nostalgia and longing about the place visit",
+   "fact_text": "Deborah felt nostalgia and longing about the place visit.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "loved",
+   "entity_2": "flowers",
+   "fact_text": "Deborah's mother loved flowers.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "appreciated",
+   "entity_2": "simple things in life",
+   "fact_text": "Deborah's mother appreciated simple things in life.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "practices",
+   "entity_2": "yoga and meditation",
+   "fact_text": "Deborah practices yoga and meditation to help find balance and inner peace.",
+   "turn_ids": [
+    "D20:12"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "goes for",
+   "entity_2": "walks to stay grounded",
+   "fact_text": "Deborah goes for walks to stay grounded.",
+   "turn_ids": [
+    "D20:12"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "takes",
+   "entity_2": "photos on walks",
+   "fact_text": "Deborah takes photos on walks.",
+   "turn_ids": [
+    "D20:12"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "has practiced",
+   "entity_2": "yoga for three years",
+   "fact_text": "Jolene has practiced yoga for three years.",
+   "turn_ids": [
+    "D20:21"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "uses",
+   "entity_2": "yoga and meditation to relax and escape studying and work stress",
+   "fact_text": "Jolene uses yoga and meditation to relax and escape studying and work stress.",
+   "turn_ids": [
+    "D20:11",
+    "D20:21"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "favors",
+   "entity_2": "savasana as a resting pose",
+   "fact_text": "Jolene favors savasana as a resting pose.",
+   "turn_ids": [
+    "D20:19"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-08-21T09:11:00",
+   "date_raw": "9:11 am on 21 August, 2023"
+  }
+ ]
+}

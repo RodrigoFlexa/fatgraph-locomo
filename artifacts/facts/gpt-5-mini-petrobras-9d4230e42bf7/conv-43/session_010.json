@@ -1,0 +1,160 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "received",
+   "entity_2": "a rejection for a summer job",
+   "fact_text": "Tim received a rejection for a summer job on 31 August 2023.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had trouble with",
+   "entity_2": "the NYC subway at first",
+   "fact_text": "John had trouble with the NYC subway at first during his NYC trip.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "received help understanding",
+   "entity_2": "the NYC subway",
+   "fact_text": "John received help understanding the NYC subway during his NYC trip.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "gave",
+   "entity_2": "a presentation in class on 30 August 2023",
+   "fact_text": "Tim gave a presentation in class on 30 August 2023.",
+   "turn_ids": [
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "felt",
+   "entity_2": "nervous about a class presentation",
+   "fact_text": "Tim felt nervous about a class presentation on 30 August 2023.",
+   "turn_ids": [
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has been trying out",
+   "entity_2": "cooking recipes",
+   "fact_text": "John has been trying out cooking recipes.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "made",
+   "entity_2": "a tasty soup recently",
+   "fact_text": "John made a tasty soup recently.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a bowl of soup with a spoon and a butternut on a cutting board",
+   "fact_text": "John shared a photo of a bowl of soup with a spoon and a butternut on a cutting board.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "added",
+   "entity_2": "sage to the soup",
+   "fact_text": "John added sage to the soup.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "plans to visit",
+   "entity_2": "Universal Studios in September 2023",
+   "fact_text": "Tim plans to visit Universal Studios in September 2023.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has not visited",
+   "entity_2": "Universal Studios",
+   "fact_text": "John has not visited Universal Studios and it is on his bucket list.",
+   "turn_ids": [
+    "D10:10"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is excited about",
+   "entity_2": "the Harry Potter attractions at Universal Studios",
+   "fact_text": "Tim is excited about the Harry Potter attractions at Universal Studios.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-08-31T14:52:00",
+   "date_raw": "2:52 pm on 31 August, 2023"
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "was getting ready for",
+   "entity_2": "a yoga retreat with some buddies",
+   "fact_text": "Deborah was getting ready for a yoga retreat with some buddies on 26 June, 2023.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "tried",
+   "entity_2": "Dancer Pose (Natarajasana)",
+   "fact_text": "Deborah tried the Dancer Pose (Natarajasana).",
+   "turn_ids": [
+    "D14:3"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "tried",
+   "entity_2": "Tree Pose",
+   "fact_text": "Deborah tried a Tree Pose in a photo showing three people standing in front of a large statue.",
+   "turn_ids": [
+    "D14:15"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is drawn to",
+   "entity_2": "animals",
+   "fact_text": "Deborah is always drawn to animals.",
+   "turn_ids": [
+    "D14:5"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "was busy with",
+   "entity_2": "an internship",
+   "fact_text": "Jolene was busy with an internship.",
+   "turn_ids": [
+    "D14:2"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "bought",
+   "entity_2": "an aquarium",
+   "fact_text": "Jolene bought a new aquarium on 24 June, 2023 (the day before yesterday relative to 26 June, 2023).",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Seraphim",
+   "relation": "is",
+   "entity_2": "a snake",
+   "fact_text": "Seraphim is a snake.",
+   "turn_ids": [
+    "D14:4"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Seraphim",
+   "relation": "is owned by",
+   "entity_2": "Jolene",
+   "fact_text": "Seraphim is a pet snake owned by Jolene.",
+   "turn_ids": [
+    "D14:4",
+    "D14:6"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "acquired",
+   "entity_2": "Seraphim in 2022",
+   "fact_text": "Jolene acquired Seraphim in 2022 (she said she got her last year).",
+   "turn_ids": [
+    "D14:6"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Seraphim",
+   "relation": "cheers up",
+   "entity_2": "Jolene",
+   "fact_text": "Seraphim cheers up Jolene and brings Jolene a sense of peace.",
+   "turn_ids": [
+    "D14:6"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "felt",
+   "entity_2": "overwhelmed by pushing herself to succeed",
+   "fact_text": "Jolene felt overwhelmed by pushing herself to succeed.",
+   "turn_ids": [
+    "D14:10"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "had a breakthrough with",
+   "entity_2": "a project",
+   "fact_text": "Jolene had a big breakthrough with a project.",
+   "turn_ids": [
+    "D14:12"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "described",
+   "entity_2": "a statue as a symbol of peace and enlightenment",
+   "fact_text": "Deborah described the statue in her photo as a symbol of peace and enlightenment.",
+   "turn_ids": [
+    "D14:16",
+    "D14:17"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-06-26T09:17:00",
+   "date_raw": "9:17 am on 26 June, 2023"
+  }
+ ]
+}

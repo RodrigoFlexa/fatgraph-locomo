@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "decided to run for",
+   "entity_2": "public office",
+   "fact_text": "John decided to run for public office on 6 May, 2023.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was unsuccessful in",
+   "entity_2": "prior election campaigns",
+   "fact_text": "John was unsuccessful in prior election campaigns.",
+   "turn_ids": [
+    "D14:1"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "supports",
+   "entity_2": "John's decision to run for public office",
+   "fact_text": "Maria supports John's decision to run for public office.",
+   "turn_ids": [
+    "D14:2"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is involved in",
+   "entity_2": "charity work",
+   "fact_text": "Maria is involved in charity work.",
+   "turn_ids": [
+    "D14:8"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "joined",
+   "entity_2": "a nearby church",
+   "fact_text": "Maria joined a nearby church on 5 May, 2023.",
+   "turn_ids": [
+    "D14:10"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "experienced",
+   "entity_2": "a power cut in John's area",
+   "fact_text": "John experienced a power cut in John's area last week before 6 May, 2023.",
+   "turn_ids": [
+    "D14:13"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a dark street at night",
+   "fact_text": "John shared a photo of a dark street at night.",
+   "turn_ids": [
+    "D14:13"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "advocated upgrading",
+   "entity_2": "the infrastructure",
+   "fact_text": "John advocated upgrading the infrastructure for more stable services after the power cut.",
+   "turn_ids": [
+    "D14:13"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "said were full of potholes",
+   "entity_2": "the neighborhood roadways",
+   "fact_text": "John said the neighborhood roadways were full of potholes.",
+   "turn_ids": [
+    "D14:15"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is planning",
+   "entity_2": "a community project regarding infrastructure",
+   "fact_text": "John is planning a community project regarding infrastructure.",
+   "turn_ids": [
+    "D14:17"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photograph of a group looking at a map",
+   "fact_text": "Maria shared a photograph of a group looking at a map.",
+   "turn_ids": [
+    "D14:18"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wants to improve",
+   "entity_2": "West County",
+   "fact_text": "John wants to improve West County, his old area.",
+   "turn_ids": [
+    "D14:21"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offered to help with",
+   "entity_2": "improving the roadways",
+   "fact_text": "Maria offered to help with improving the roadways.",
+   "turn_ids": [
+    "D14:16"
+   ],
+   "session_id": "S14",
+   "session_num": 14,
+   "timestamp": "2023-05-06T17:04:00",
+   "date_raw": "5:04 pm on 6 May, 2023"
+  }
+ ]
+}

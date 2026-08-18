@@ -1,0 +1,253 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "an amusement park",
+   "fact_text": "James visited an amusement park last weekend.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited with",
+   "entity_2": "his friends",
+   "fact_text": "James visited the amusement park with his friends last weekend.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "rode",
+   "entity_2": "roller coasters",
+   "fact_text": "James rode roller coasters at the amusement park.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "rode",
+   "entity_2": "a Ferris wheel",
+   "fact_text": "James rode a Ferris wheel at the amusement park.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "rode",
+   "entity_2": "electric cars",
+   "fact_text": "James rode electric cars at the amusement park.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "rode",
+   "entity_2": "buggies",
+   "fact_text": "James rode buggies at the amusement park.",
+   "turn_ids": [
+    "D12:3"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "felt like",
+   "entity_2": "being in a video game",
+   "fact_text": "James felt like he was in a video game during the amusement park visit.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "entered",
+   "entity_2": "a local tournament",
+   "fact_text": "John entered a local tournament last Friday.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "took",
+   "entity_2": "second place",
+   "fact_text": "John took second place in a local tournament last Friday.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "received",
+   "entity_2": "money for second place",
+   "fact_text": "John received money for taking second place in the local tournament.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "received",
+   "entity_2": "a trophy",
+   "fact_text": "John received a trophy for the local tournament.",
+   "turn_ids": [
+    "D12:8",
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "felt about",
+   "entity_2": "the tournament achievement",
+   "fact_text": "John felt stoked about the tournament achievement.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a graduation cap on a book with a rope",
+   "fact_text": "John shared a photo of a graduation cap on a book with a rope.",
+   "turn_ids": [
+    "D12:8"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "finished",
+   "entity_2": "a big project",
+   "fact_text": "James finished a big project last month.",
+   "turn_ids": [
+    "D12:9",
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "learned",
+   "entity_2": "a new language",
+   "fact_text": "James learned a new language while finishing the big project.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "learned about",
+   "entity_2": "problem-solving",
+   "fact_text": "James learned about problem-solving during the big project.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "learned about",
+   "entity_2": "patience",
+   "fact_text": "James learned about patience during the big project.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "learned about",
+   "entity_2": "perseverance",
+   "fact_text": "James learned about perseverance during the big project.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "feels",
+   "entity_2": "more confident to take on bigger projects",
+   "fact_text": "James feels more confident to take on bigger projects after finishing the big project.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2022-05-23T19:33:00",
+   "date_raw": "7:33 pm on 23 May, 2022"
+  }
+ ]
+}

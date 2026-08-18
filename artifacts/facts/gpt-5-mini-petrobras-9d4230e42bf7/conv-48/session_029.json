@@ -1,0 +1,239 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "ran",
+   "entity_2": "a free gardening class for the community yesterday",
+   "fact_text": "Deborah ran a free gardening class for the community yesterday.",
+   "turn_ids": [
+    "D29:1"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "the free gardening class for the community",
+   "relation": "included",
+   "entity_2": "people of any age",
+   "fact_text": "The free gardening class for the community included people of any age.",
+   "turn_ids": [
+    "D29:1"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "tried",
+   "entity_2": "a scuba diving lesson last Friday",
+   "fact_text": "Jolene tried a scuba diving lesson last Friday.",
+   "turn_ids": [
+    "D29:4"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "found",
+   "entity_2": "a cool dive spot to explore",
+   "fact_text": "Jolene found a cool dive spot to explore.",
+   "turn_ids": [
+    "D29:4"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visited",
+   "entity_2": "her mother's old house on 10 September 2023",
+   "fact_text": "Deborah visited her mother's old house on 10 September 2023.",
+   "turn_ids": [
+    "D29:5"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "felt guided by",
+   "entity_2": "her mother's presence when visiting her mother's old house",
+   "fact_text": "Deborah felt guided by her mother's presence when visiting her mother's old house.",
+   "turn_ids": [
+    "D29:5"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "had a passion for",
+   "entity_2": "cooking",
+   "fact_text": "Deborah's mother had a passion for cooking.",
+   "turn_ids": [
+    "D29:7"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "remembers",
+   "entity_2": "the smell of her mother's special dish filling the house",
+   "fact_text": "Deborah remembers the smell of her mother's special dish filling the house.",
+   "turn_ids": [
+    "D29:7"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "baked",
+   "entity_2": "pineapple birthday cakes for Deborah when Deborah was a kid",
+   "fact_text": "Deborah's mother baked pineapple birthday cakes for Deborah when Deborah was a kid.",
+   "turn_ids": [
+    "D29:9"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "used to bake",
+   "entity_2": "cookies with someone close to her",
+   "fact_text": "Jolene used to bake cookies with someone close to her.",
+   "turn_ids": [
+    "D29:12"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "favors making",
+   "entity_2": "warm, gooey chocolate and soft, buttery cookies",
+   "fact_text": "Jolene favors making warm, gooey chocolate and soft, buttery cookies.",
+   "turn_ids": [
+    "D29:14"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene's bathroom",
+   "relation": "has",
+   "entity_2": "an aesthetic vibe",
+   "fact_text": "Jolene's bathroom has an aesthetic vibe.",
+   "turn_ids": [
+    "D29:22"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "read",
+   "entity_2": "a self-discovery book in her bathroom that resonated with her",
+   "fact_text": "Jolene read a self-discovery book in her bathroom that resonated with her.",
+   "turn_ids": [
+    "D29:22"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "has",
+   "entity_2": "a big bookshelf",
+   "fact_text": "Deborah has a big bookshelf.",
+   "turn_ids": [
+    "D29:19"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "has surfed",
+   "entity_2": "surfing",
+   "fact_text": "Deborah has surfed.",
+   "turn_ids": [
+    "D29:25"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "started learning",
+   "entity_2": "surfing",
+   "fact_text": "Jolene started learning surfing.",
+   "turn_ids": [
+    "D29:30"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "has not gone",
+   "entity_2": "surfing yet",
+   "fact_text": "Jolene has not gone surfing yet.",
+   "turn_ids": [
+    "D29:30"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  },
+  {
+   "entity_1": "Deborah and Jolene",
+   "relation": "plan to go",
+   "entity_2": "surfing together next month",
+   "fact_text": "Deborah and Jolene plan to go surfing together next month.",
+   "turn_ids": [
+    "D29:31",
+    "D29:34"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-09-17T13:24:00",
+   "date_raw": "1:24 pm on 17 September, 2023"
+  }
+ ]
+}

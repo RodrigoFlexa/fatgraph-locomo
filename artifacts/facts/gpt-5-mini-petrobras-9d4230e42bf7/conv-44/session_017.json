@@ -1,0 +1,267 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "went fishing with",
+   "entity_2": "Andrew's girlfriend",
+   "fact_text": "Andrew went fishing with Andrew's girlfriend last weekend.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "fished at",
+   "entity_2": "a nearby lake",
+   "fact_text": "Andrew fished at a nearby lake last weekend.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "caught",
+   "entity_2": "a few fish",
+   "fact_text": "Andrew caught a few fish during the fishing trip last weekend.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has never gone",
+   "entity_2": "fishing",
+   "fact_text": "Audrey has never gone fishing.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "sat by",
+   "entity_2": "a lake in the mountains",
+   "fact_text": "Audrey sat by a lake in the mountains with friends a few years back.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared a photo of",
+   "entity_2": "a group of dogs standing on a rock near a lake",
+   "fact_text": "Audrey shared a photo of a group of dogs standing on a rock near a lake.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "enjoy",
+   "entity_2": "mountain life",
+   "fact_text": "Audrey's dogs enjoy mountain life.",
+   "turn_ids": [
+    "D17:3",
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "brushes daily",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey brushes Audrey's dogs daily.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "gives regular baths to",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey gives regular baths to Audrey's dogs.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "trims nails of",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey trims the nails of Audrey's dogs regularly.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "gives lots of love to",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey gives lots of love to Audrey's dogs.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "takes responsibility for caring for",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey takes responsibility for caring for Audrey's dogs seriously.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "make",
+   "entity_2": "Audrey happy",
+   "fact_text": "Audrey's dogs make Audrey really happy.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has a strong bond with",
+   "entity_2": "Audrey's dogs",
+   "fact_text": "Audrey has a strong bond with Audrey's dogs.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "hopes to have a strong bond with",
+   "entity_2": "Toby",
+   "fact_text": "Andrew hopes to have a strong bond with Toby.",
+   "turn_ids": [
+    "D17:9",
+    "D17:10"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "offered care tips for",
+   "entity_2": "Toby",
+   "fact_text": "Audrey offered care tips for Toby.",
+   "turn_ids": [
+    "D17:12",
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared a photo of",
+   "entity_2": "Toby sitting on a floor with a leash",
+   "fact_text": "Andrew shared a photo of Toby sitting on a floor with a leash.",
+   "turn_ids": [
+    "D17:17"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "said Toby looks",
+   "entity_2": "happy",
+   "fact_text": "Audrey said Toby looks happy.",
+   "turn_ids": [
+    "D17:18"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "loves",
+   "entity_2": "Toby",
+   "fact_text": "Andrew loves Toby.",
+   "turn_ids": [
+    "D17:19"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to explore outdoors with",
+   "entity_2": "Toby",
+   "fact_text": "Andrew plans to explore outdoors with Toby.",
+   "turn_ids": [
+    "D17:21"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-08-24T00:24:00",
+   "date_raw": "12:24 am on 24 August, 2023"
+  }
+ ]
+}

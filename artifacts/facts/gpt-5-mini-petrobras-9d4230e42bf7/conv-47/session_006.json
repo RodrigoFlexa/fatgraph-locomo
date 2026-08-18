@@ -1,0 +1,239 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "met",
+   "entity_2": "three new friends in a programming course",
+   "fact_text": "John met three new friends in a programming course last Tuesday.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "worked with",
+   "entity_2": "one of his gaming pals on a programming project",
+   "fact_text": "James worked with one of his gaming pals on a programming project last Thursday.",
+   "turn_ids": [
+    "D6:2"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James's programming-and-gaming project",
+   "relation": "is inspired by",
+   "entity_2": "Witcher 3",
+   "fact_text": "James's programming-and-gaming project is inspired by Witcher 3.",
+   "turn_ids": [
+    "D6:2"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "a screenshot of the game character he created",
+   "fact_text": "James has a screenshot of the game character he created.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "got the idea from",
+   "entity_2": "a walk with his dogs two weeks ago",
+   "fact_text": "James got the idea for his game character from a walk with his dogs two weeks ago.",
+   "turn_ids": [
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "was inspired by",
+   "entity_2": "a stranger he saw on the walk",
+   "fact_text": "James was inspired by a stranger he saw on the walk with his dogs and embodied her appearance in the game character.",
+   "turn_ids": [
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "found",
+   "entity_2": "a canyon in the surrounding area two days ago",
+   "fact_text": "John found a canyon in the surrounding area two days ago.",
+   "turn_ids": [
+    "D6:7"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "captured an image of",
+   "entity_2": "a river running through a canyon surrounded by mountains",
+   "fact_text": "John captured an image of a river running through a canyon surrounded by mountains.",
+   "turn_ids": [
+    "D6:7"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "says",
+   "entity_2": "chilling with friends gives him motivation",
+   "fact_text": "John says chilling with friends gives him motivation to work further.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "says",
+   "entity_2": "traveling gives him motivation",
+   "fact_text": "John says traveling gives him motivation to work further.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "Italy last year",
+   "fact_text": "James visited Italy last year.",
+   "turn_ids": [
+    "D6:12"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "Turkey",
+   "fact_text": "James visited Turkey.",
+   "turn_ids": [
+    "D6:14"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "Mexico",
+   "fact_text": "James visited Mexico.",
+   "turn_ids": [
+    "D6:14"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visited",
+   "entity_2": "Japan",
+   "fact_text": "John visited Japan (the last country he visited).",
+   "turn_ids": [
+    "D6:15"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was impressed by",
+   "entity_2": "the megacities and huge screens in Japan",
+   "fact_text": "John was impressed by the megacities and huge screens on buildings in Japan.",
+   "turn_ids": [
+    "D6:15"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "proposed",
+   "entity_2": "going somewhere together next year",
+   "fact_text": "James proposed going somewhere together next year.",
+   "turn_ids": [
+    "D6:16"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "will start looking for",
+   "entity_2": "a country for their trip",
+   "fact_text": "James will start looking for a country for their trip.",
+   "turn_ids": [
+    "D6:18"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "agreed to",
+   "entity_2": "going somewhere together next year",
+   "fact_text": "John agreed to going somewhere together next year and expressed hope it will work out.",
+   "turn_ids": [
+    "D6:17",
+    "D6:16"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2022-04-20T21:32:00",
+   "date_raw": "9:32 pm on 20 April, 2022"
+  }
+ ]
+}

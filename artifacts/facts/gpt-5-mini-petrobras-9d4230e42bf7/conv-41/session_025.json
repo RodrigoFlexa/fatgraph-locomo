@@ -1,0 +1,212 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "is enjoying",
+   "entity_2": "his new job",
+   "fact_text": "John is enjoying his new job.",
+   "turn_ids": [
+    "D25:1"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has a team that is",
+   "entity_2": "encouraging and inspiring",
+   "fact_text": "John has a team that is encouraging and inspiring.",
+   "turn_ids": [
+    "D25:1"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "went hiking with",
+   "entity_2": "Maria's church friends",
+   "fact_text": "Maria went hiking with Maria's church friends last weekend.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photo of a group of people walking up a trail",
+   "fact_text": "Maria shared a photo of a group of people walking up a trail.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "felt refreshed after",
+   "entity_2": "the hike last weekend",
+   "fact_text": "Maria felt refreshed after the hike last weekend.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "wanted to make connections during",
+   "entity_2": "the hike",
+   "fact_text": "Maria wanted to make connections during the hike.",
+   "turn_ids": [
+    "D25:4"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "reached",
+   "entity_2": "the top of the hike last weekend",
+   "fact_text": "Maria reached the top of the hike last weekend.",
+   "turn_ids": [
+    "D25:6"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "the view from the top of the hike",
+   "relation": "made feel",
+   "entity_2": "Maria",
+   "fact_text": "The view from the top of the hike made Maria feel part of something special and gave her a sense of peace.",
+   "turn_ids": [
+    "D25:6"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "plans to explore more",
+   "entity_2": "future adventures",
+   "fact_text": "Maria plans to explore more in the future.",
+   "turn_ids": [
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "plans to volunteer at",
+   "entity_2": "shelters next month",
+   "fact_text": "Maria plans to volunteer at shelters next month.",
+   "turn_ids": [
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "attends often",
+   "entity_2": "a yoga studio",
+   "fact_text": "John attends a yoga studio often.",
+   "turn_ids": [
+    "D25:11"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of two women standing in a room full of black mats",
+   "fact_text": "John shared a photo of two women standing in a room full of black mats.",
+   "turn_ids": [
+    "D25:9"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "the yoga studio John goes to",
+   "relation": "offers",
+   "entity_2": "yoga, kickboxing, and circuit training classes",
+   "fact_text": "The yoga studio John goes to offers yoga, kickboxing, and circuit training classes.",
+   "turn_ids": [
+    "D25:13"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has done",
+   "entity_2": "weight training",
+   "fact_text": "John has done weight training.",
+   "turn_ids": [
+    "D25:17"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a group of people doing yoga in a gym",
+   "fact_text": "John shared a photo of a group of people doing yoga in a gym.",
+   "turn_ids": [
+    "D25:15"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is going to bake",
+   "entity_2": "some cakes",
+   "fact_text": "Maria is going to bake some cakes.",
+   "turn_ids": [
+    "D25:20"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-07-22T18:21:00",
+   "date_raw": "6:21 pm on 22 July, 2023"
+  }
+ ]
+}

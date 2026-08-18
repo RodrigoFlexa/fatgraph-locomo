@@ -1,0 +1,187 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jon",
+   "relation": "is starting",
+   "entity_2": "a dance studio business",
+   "fact_text": "Jon is starting a dance studio business.",
+   "turn_ids": [
+    "D9:1",
+    "D9:3"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "has spent a lot of time in",
+   "entity_2": "the dance studio",
+   "fact_text": "Jon has spent a lot of time in the dance studio.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon's students",
+   "relation": "are improving",
+   "entity_2": "their dancing",
+   "fact_text": "Jon's students are improving their dancing.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is learning with",
+   "entity_2": "his students",
+   "fact_text": "Jon is learning with his students.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "lost",
+   "entity_2": "his job",
+   "fact_text": "Jon lost his job.",
+   "turn_ids": [
+    "D9:3"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "was motivated by",
+   "entity_2": "losing his job",
+   "fact_text": "Jon was motivated by losing his job to pursue the dance studio.",
+   "turn_ids": [
+    "D9:3"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Dancing",
+   "relation": "makes",
+   "entity_2": "Jon happy",
+   "fact_text": "Dancing makes Jon happy.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Seeing his students improve",
+   "relation": "brings",
+   "entity_2": "Jon joy",
+   "fact_text": "Seeing his students improve brings Jon joy.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "was afraid of",
+   "entity_2": "what other people would think about his dancing",
+   "fact_text": "Jon was afraid of what other people would think about his dancing.",
+   "turn_ids": [
+    "D9:7"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "prioritizes",
+   "entity_2": "his own happiness",
+   "fact_text": "Jon prioritizes his own happiness.",
+   "turn_ids": [
+    "D9:7"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "used to enjoy",
+   "entity_2": "taking dance classes",
+   "fact_text": "Gina used to enjoy taking dance classes.",
+   "turn_ids": [
+    "D9:8"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "shared a photo of",
+   "entity_2": "a trophy from a dance contest",
+   "fact_text": "Gina shared a photo of a trophy from a dance contest.",
+   "turn_ids": [
+    "D9:10"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "shared a photo of",
+   "entity_2": "a group of dancers on a stage with a red background",
+   "fact_text": "Jon shared a photo of a group of dancers on a stage with a red background.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "shared a photo of",
+   "entity_2": "a group of young women in ballet attire",
+   "fact_text": "Gina shared a photo of a group of young women in ballet attire.",
+   "turn_ids": [
+    "D9:8"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-04-09T10:33:00",
+   "date_raw": "10:33 am on 9 April, 2023"
+  }
+ ]
+}

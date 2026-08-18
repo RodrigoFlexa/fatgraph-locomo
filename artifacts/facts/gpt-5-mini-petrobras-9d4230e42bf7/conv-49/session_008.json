@@ -1,0 +1,213 @@
+{
+ "facts": [
+  {
+   "entity_1": "Sam",
+   "relation": "is on",
+   "entity_2": "a diet and living healthier",
+   "fact_text": "Sam is on a diet and living healthier on 19 August 2023.",
+   "turn_ids": [
+    "D8:1"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is sticking with",
+   "entity_2": "the diet",
+   "fact_text": "Sam is sticking with the diet.",
+   "turn_ids": [
+    "D8:3"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "has",
+   "entity_2": "more energy after meals",
+   "fact_text": "Sam has more energy after meals.",
+   "turn_ids": [
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "experiences",
+   "entity_2": "less sluggishness after eating",
+   "fact_text": "Sam experiences less sluggishness after eating.",
+   "turn_ids": [
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "likes",
+   "entity_2": "a grilled chicken and veggie stir-fry recipe",
+   "fact_text": "Sam likes a grilled chicken and veggie stir-fry recipe.",
+   "turn_ids": [
+    "D8:7"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "has",
+   "entity_2": "a homemade sauce",
+   "fact_text": "Sam has a homemade sauce for the recipe.",
+   "turn_ids": [
+    "D8:9"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared",
+   "entity_2": "a recipe card image",
+   "fact_text": "Sam shared a recipe card image.",
+   "turn_ids": [
+    "D8:11"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "started",
+   "entity_2": "painting classes a few days before 2023-08-19",
+   "fact_text": "Evan started painting classes a few days before 19 August 2023.",
+   "turn_ids": [
+    "D8:12"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "started painting when",
+   "entity_2": "a friend gave him a painting",
+   "fact_text": "Evan started painting when a friend gave him a painting that inspired him.",
+   "turn_ids": [
+    "D8:14"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "joined",
+   "entity_2": "painting classes to find like-minded people",
+   "fact_text": "Evan joined painting classes to find like-minded people and to show them what he can do.",
+   "turn_ids": [
+    "D8:14"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "has been learning",
+   "entity_2": "watercolors",
+   "fact_text": "Evan has been learning watercolors in painting classes.",
+   "turn_ids": [
+    "D8:18"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "paints",
+   "entity_2": "landscapes",
+   "fact_text": "Evan paints landscapes.",
+   "turn_ids": [
+    "D8:20"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "goes on road trips in",
+   "entity_2": "Evan's trusty car",
+   "fact_text": "Evan goes on road trips in Evan's trusty car.",
+   "turn_ids": [
+    "D8:24"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "took",
+   "entity_2": "a fun driving trip last month",
+   "fact_text": "Evan took a fun driving trip last month.",
+   "turn_ids": [
+    "D8:26"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "skied in",
+   "entity_2": "Banff",
+   "fact_text": "Evan skied in Banff and enjoyed the experience.",
+   "turn_ids": [
+    "D8:26",
+    "D8:28"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "enjoys",
+   "entity_2": "skiing, snowboarding, and ice skating",
+   "fact_text": "Evan enjoys skiing, snowboarding, and ice skating.",
+   "turn_ids": [
+    "D8:30"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-08-19T18:17:00",
+   "date_raw": "6:17 pm on 19 August, 2023"
+  }
+ ]
+}

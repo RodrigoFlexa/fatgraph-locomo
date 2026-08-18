@@ -1,0 +1,110 @@
+{
+ "facts": [
+  {
+   "entity_1": "Sam",
+   "relation": "is a",
+   "entity_2": "Weight Watchers coach in his group",
+   "fact_text": "Sam is a Weight Watchers coach in his group.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "received",
+   "entity_2": "1968 Kustom K-200A vintage guitar as a gift",
+   "fact_text": "Evan received a 1968 Kustom K-200A vintage guitar as a gift from a close friend.",
+   "turn_ids": [
+    "D16:10"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "lost",
+   "entity_2": "his job last month",
+   "fact_text": "Evan lost his job last month.",
+   "turn_ids": [
+    "D16:10"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "was laid off in",
+   "entity_2": "a company downsizing",
+   "fact_text": "Evan was laid off in a company downsizing.",
+   "turn_ids": [
+    "D16:12"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "is looking for",
+   "entity_2": "a new job",
+   "fact_text": "Evan is looking for a new job.",
+   "turn_ids": [
+    "D16:12"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "the photo",
+   "relation": "was taken at",
+   "entity_2": "Evan's favorite spot by the beach last Friday",
+   "fact_text": "The photo was taken at Evan's favorite spot by the beach last Friday.",
+   "turn_ids": [
+    "D16:20"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "often visits",
+   "entity_2": "his favorite spot by the beach to relax",
+   "fact_text": "Evan often visits his favorite spot by the beach to relax and unwind.",
+   "turn_ids": [
+    "D16:18",
+    "D16:20"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "plans to visit Evan's favorite spot by the beach with",
+   "entity_2": "Sam next month",
+   "fact_text": "Evan plans to visit Evan's favorite spot by the beach with Sam next month.",
+   "turn_ids": [
+    "D16:24",
+    "D16:20"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-09T21:13:00",
+   "date_raw": "9:13 pm on 9 November, 2023"
+  }
+ ]
+}

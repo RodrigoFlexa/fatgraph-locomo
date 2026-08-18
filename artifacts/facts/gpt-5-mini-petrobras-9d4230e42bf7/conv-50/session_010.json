@@ -1,0 +1,187 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin's car",
+   "relation": "was involved in",
+   "entity_2": "a crash",
+   "fact_text": "Calvin's car was involved in a crash.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin's car",
+   "relation": "is in",
+   "entity_2": "working condition",
+   "fact_text": "Calvin's car is in working condition.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "owns",
+   "entity_2": "a red sports car",
+   "fact_text": "Calvin owns a red sports car.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "arranged regular walks with",
+   "entity_2": "friends",
+   "fact_text": "Dave arranged regular walks with friends in the park.",
+   "turn_ids": [
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has been hanging out with",
+   "entity_2": "friends at parks",
+   "fact_text": "Dave has been hanging out with friends at parks.",
+   "turn_ids": [
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is going to",
+   "entity_2": "the park today",
+   "fact_text": "Dave is going to the park today.",
+   "turn_ids": [
+    "D10:5"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "lives in",
+   "entity_2": "a Japanese mansion",
+   "fact_text": "Calvin lives in a Japanese mansion.",
+   "turn_ids": [
+    "D10:6",
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared",
+   "entity_2": "a photo of a boat docked in a canal at sunset",
+   "fact_text": "Calvin shared a photo of a boat docked in a canal at sunset.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared",
+   "entity_2": "a photo of the front of the mansion",
+   "fact_text": "Calvin shared a photo of the front of the mansion.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is collaborating with",
+   "entity_2": "Japanese artists",
+   "fact_text": "Calvin is collaborating with Japanese artists on music.",
+   "turn_ids": [
+    "D10:12"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "has never visited",
+   "entity_2": "Japan",
+   "fact_text": "Dave has never visited Japan.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "wants to visit",
+   "entity_2": "Japan",
+   "fact_text": "Dave wants to visit Japan someday.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is hooked on",
+   "entity_2": "Japanese music",
+   "fact_text": "Dave is hooked on Japanese music.",
+   "turn_ids": [
+    "D10:11"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to share",
+   "entity_2": "music clips",
+   "fact_text": "Calvin plans to share music clips when the collaborations are ready.",
+   "turn_ids": [
+    "D10:14"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-07T19:56:00",
+   "date_raw": "7:56 pm on 7 July, 2023"
+  }
+ ]
+}

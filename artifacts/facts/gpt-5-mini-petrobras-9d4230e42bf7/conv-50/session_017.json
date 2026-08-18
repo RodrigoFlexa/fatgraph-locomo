@@ -1,0 +1,97 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "returned from",
+   "entity_2": "San Francisco",
+   "fact_text": "Dave returned from San Francisco on 1 September 2023 with insights on car modification.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "was tied up with",
+   "entity_2": "car work",
+   "fact_text": "Dave was tied up with car work in early September 2023.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "finds rewarding",
+   "entity_2": "fixing cars",
+   "fact_text": "Dave finds fixing cars rewarding and that activity gives him a sense of purpose.",
+   "turn_ids": [
+    "D17:2",
+    "D17:3"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "feels proud of",
+   "entity_2": "fixing someone else's car",
+   "fact_text": "Dave feels proud of fixing someone else's car because it makes him feel like he is making a difference.",
+   "turn_ids": [
+    "D17:3",
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "booked a flight to",
+   "entity_2": "Boston",
+   "fact_text": "Calvin booked a flight to Boston last week.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to contact",
+   "entity_2": "Dave",
+   "fact_text": "Calvin plans to contact Dave when Calvin arrives in Boston.",
+   "turn_ids": [
+    "D17:10"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared an image of",
+   "entity_2": "a book with a boarding pass",
+   "fact_text": "Calvin shared an image of a book with a boarding pass.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-09-02T09:19:00",
+   "date_raw": "9:19 am on 2 September, 2023"
+  }
+ ]
+}

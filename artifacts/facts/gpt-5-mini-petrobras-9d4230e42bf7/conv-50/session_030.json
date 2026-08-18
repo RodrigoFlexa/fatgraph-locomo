@@ -1,0 +1,148 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "took up",
+   "entity_2": "photography",
+   "fact_text": "Dave took up photography.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "attended",
+   "entity_2": "fancy gala in Boston on 16 November 2023",
+   "fact_text": "Calvin attended a fancy gala in Boston on 16 November 2023.",
+   "turn_ids": [
+    "D30:2"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "met",
+   "entity_2": "a cool artist",
+   "fact_text": "Calvin met a cool artist and had an interesting conversation about music and art.",
+   "turn_ids": [
+    "D30:4"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "accepted invitation to perform at",
+   "entity_2": "an upcoming show in Boston",
+   "fact_text": "Calvin accepted an invitation to perform at an upcoming show in Boston.",
+   "turn_ids": [
+    "D30:20"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "bought",
+   "entity_2": "a vintage camera this month",
+   "fact_text": "Dave bought a vintage camera this month.",
+   "turn_ids": [
+    "D30:5"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "likes photographing",
+   "entity_2": "nature (sunsets, beaches, waves)",
+   "fact_text": "Dave likes photographing nature, including sunsets, beaches, and waves.",
+   "turn_ids": [
+    "D30:9"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "photographed",
+   "entity_2": "a sunset with a wave crashing on rocks",
+   "fact_text": "Dave photographed a sunset with a wave crashing on rocks.",
+   "turn_ids": [
+    "D30:9"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "photographed",
+   "entity_2": "a waterfall flowing over rocks and boulders in a nearby park",
+   "fact_text": "Dave photographed a waterfall flowing over rocks and boulders in a nearby park.",
+   "turn_ids": [
+    "D30:13",
+    "D30:15"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "photographed",
+   "entity_2": "a Japanese garden bench under a tree with pink flowers",
+   "fact_text": "Calvin photographed a bench under a tree with pink flowers in a Japanese garden.",
+   "turn_ids": [
+    "D30:16"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "found",
+   "entity_2": "a serene spot with a bench under a tree with pink flowers",
+   "fact_text": "Dave found a serene spot with a bench under a tree with pink flowers.",
+   "turn_ids": [
+    "D30:17"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "planned to visit",
+   "entity_2": "the serene spot with Calvin",
+   "fact_text": "Dave planned to visit the serene spot with Calvin.",
+   "turn_ids": [
+    "D30:19"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2023-11-17T10:54:00",
+   "date_raw": "10:54 am on 17 November, 2023"
+  }
+ ]
+}

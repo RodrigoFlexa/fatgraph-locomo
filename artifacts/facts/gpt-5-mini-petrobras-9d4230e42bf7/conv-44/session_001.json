@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "works as",
+   "entity_2": "Financial Analyst",
+   "fact_text": "Andrew works as a Financial Analyst and he started the job last week.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "got",
+   "entity_2": "new collars and tags",
+   "fact_text": "Audrey got new collars and tags for her dogs.",
+   "turn_ids": [
+    "D1:3"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared an image of",
+   "entity_2": "two dogs standing in the grass with their mouths open",
+   "fact_text": "Audrey shared an image of two dogs standing in the grass with their mouths open.",
+   "turn_ids": [
+    "D1:5"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "owns",
+   "entity_2": "dogs named Pepper, Precious, and Panda",
+   "fact_text": "Audrey owns dogs named Pepper, Precious, and Panda.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has owned her dogs for",
+   "entity_2": "three years",
+   "fact_text": "Audrey has owned her dogs for three years.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "are",
+   "entity_2": "city dogs",
+   "fact_text": "Audrey's dogs are city dogs.",
+   "turn_ids": [
+    "D1:9"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "visit",
+   "entity_2": "parks and trails",
+   "fact_text": "Audrey's dogs visit parks and trails.",
+   "turn_ids": [
+    "D1:9"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "has",
+   "entity_2": "no pets",
+   "fact_text": "Andrew has no pets.",
+   "turn_ids": [
+    "D1:12"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "likes",
+   "entity_2": "birds",
+   "fact_text": "Andrew likes birds.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "likes",
+   "entity_2": "eagles",
+   "fact_text": "Andrew likes eagles.",
+   "turn_ids": [
+    "D1:16"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "spots",
+   "entity_2": "birds while hiking",
+   "fact_text": "Andrew spots birds while hiking.",
+   "turn_ids": [
+    "D1:18"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "hasn't gone",
+   "entity_2": "bird-watching",
+   "fact_text": "Andrew hasn't gone bird-watching.",
+   "turn_ids": [
+    "D1:18"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "hikes at",
+   "entity_2": "Fox Hollow",
+   "fact_text": "Andrew hikes at Fox Hollow on weekends.",
+   "turn_ids": [
+    "D1:20"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-03-27T13:10:00",
+   "date_raw": "1:10 pm on 27 March, 2023"
+  }
+ ]
+}

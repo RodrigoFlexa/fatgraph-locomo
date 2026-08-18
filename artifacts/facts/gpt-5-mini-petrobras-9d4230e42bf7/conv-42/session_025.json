@@ -1,0 +1,201 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "contributed to",
+   "entity_2": "a movie script that was shown on the big screen last Sunday",
+   "fact_text": "Joanna contributed to a movie script that was shown on the big screen last Sunday.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "had",
+   "entity_2": "a movie shown on the big screen for the third time",
+   "fact_text": "Joanna had a movie she contributed to shown on the big screen for the third time.",
+   "turn_ids": [
+    "D25:4"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "wrote",
+   "entity_2": "characters and dialogue that were acted out on screen",
+   "fact_text": "Joanna wrote characters and dialogue that were acted out on screen.",
+   "turn_ids": [
+    "D25:4",
+    "D25:6"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "creates",
+   "entity_2": "drawings of characters to help her write",
+   "fact_text": "Joanna creates drawings of characters to help her write better.",
+   "turn_ids": [
+    "D25:6",
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "gets character ideas from",
+   "entity_2": "people Joanna knows",
+   "fact_text": "Joanna gets character ideas from people Joanna knows.",
+   "turn_ids": [
+    "D25:10"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "gets character ideas from",
+   "entity_2": "things Joanna saw",
+   "fact_text": "Joanna gets character ideas from things Joanna saw.",
+   "turn_ids": [
+    "D25:10"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "gets character ideas from",
+   "entity_2": "Joanna's imagination",
+   "fact_text": "Joanna gets character ideas from Joanna's imagination.",
+   "turn_ids": [
+    "D25:10"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "took out for a walk",
+   "entity_2": "his turtles",
+   "fact_text": "Nate took his turtles out for a walk.",
+   "turn_ids": [
+    "D25:15"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "said are relaxing in the tank afterwards",
+   "entity_2": "his turtles",
+   "fact_text": "Nate said his turtles were relaxing in the tank after their walk.",
+   "turn_ids": [
+    "D25:17"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate's turtles",
+   "relation": "eat",
+   "entity_2": "a combination of vegetables, fruits, and insects",
+   "fact_text": "Nate's turtles eat a combination of vegetables, fruits, and insects.",
+   "turn_ids": [
+    "D25:19"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "likes seeing",
+   "entity_2": "his turtles eat fruit",
+   "fact_text": "Nate likes seeing his turtles eat fruit.",
+   "turn_ids": [
+    "D25:21"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "likes holding",
+   "entity_2": "his turtles",
+   "fact_text": "Nate likes holding his turtles.",
+   "turn_ids": [
+    "D25:23"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "One of Nate's turtles",
+   "relation": "has",
+   "entity_2": "an adventurous personality",
+   "fact_text": "One of Nate's turtles has an adventurous personality.",
+   "turn_ids": [
+    "D25:25"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "The other of Nate's turtles",
+   "relation": "has",
+   "entity_2": "a more reserved personality",
+   "fact_text": "The other of Nate's turtles has a more reserved personality.",
+   "turn_ids": [
+    "D25:25"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has liked",
+   "entity_2": "turtles since he was a boy",
+   "fact_text": "Nate has liked turtles since he was a boy.",
+   "turn_ids": [
+    "D25:27"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2022-10-25T20:16:00",
+   "date_raw": "8:16 pm on 25 October, 2022"
+  }
+ ]
+}

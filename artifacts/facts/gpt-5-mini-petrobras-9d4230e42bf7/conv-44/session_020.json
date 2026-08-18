@@ -1,0 +1,239 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "shared",
+   "entity_2": "a photo of a sunset over the ocean with waves",
+   "fact_text": "Andrew shared a photo of a sunset over the ocean with waves.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans",
+   "entity_2": "a beach trip next month with his girlfriend and Toby",
+   "fact_text": "Andrew plans a beach trip next month with his girlfriend and Toby.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans",
+   "entity_2": "a hike next month with the dogs",
+   "fact_text": "Audrey plans a hike next month with the dogs.",
+   "turn_ids": [
+    "D20:2"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "took",
+   "entity_2": "the dogs to the dog park last Saturday",
+   "fact_text": "Audrey took the dogs to the dog park last Saturday.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of a group of dogs sitting on a lush green field",
+   "fact_text": "Audrey shared a photo of a group of dogs sitting on a lush green field.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of a book with a page of birds",
+   "fact_text": "Audrey shared a photo of a book with a page of birds.",
+   "turn_ids": [
+    "D20:16"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "shared",
+   "entity_2": "a photo of a pair of binoculars sitting on a table with a book",
+   "fact_text": "Audrey shared a photo of a pair of binoculars sitting on a table with a book.",
+   "turn_ids": [
+    "D20:20"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared",
+   "entity_2": "a photo of a pen and a notebook with a camera",
+   "fact_text": "Andrew shared a photo of a pen and a notebook with a camera.",
+   "turn_ids": [
+    "D20:21"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to bring",
+   "entity_2": "binoculars and a notebook to a birdwatching trip",
+   "fact_text": "Andrew plans to bring binoculars and a notebook to a birdwatching trip.",
+   "turn_ids": [
+    "D20:21"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "enjoys",
+   "entity_2": "watching birds in nature",
+   "fact_text": "Andrew enjoys watching birds in nature.",
+   "turn_ids": [
+    "D20:23"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "read",
+   "entity_2": "books about ecological systems",
+   "fact_text": "Andrew read books about ecological systems.",
+   "turn_ids": [
+    "D20:23"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "uses",
+   "entity_2": "a book about birdwatching guides",
+   "fact_text": "Audrey uses a book about birdwatching guides.",
+   "turn_ids": [
+    "D20:16"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "suggested",
+   "entity_2": "biking or using public transport to reduce carbon footprint",
+   "fact_text": "Andrew suggested biking or using public transport to reduce carbon footprint.",
+   "turn_ids": [
+    "D20:33"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "usually takes",
+   "entity_2": "public transport",
+   "fact_text": "Audrey usually takes public transport.",
+   "turn_ids": [
+    "D20:34"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "recycles",
+   "entity_2": "recycling",
+   "fact_text": "Audrey recycles.",
+   "turn_ids": [
+    "D20:32"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "shared",
+   "entity_2": "a photo of a trash can sitting in the middle of a park",
+   "fact_text": "Andrew shared a photo of a trash can sitting in the middle of a park.",
+   "turn_ids": [
+    "D20:31"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "knows",
+   "entity_2": "some bike routes near the river",
+   "fact_text": "Andrew knows some bike routes near the river.",
+   "turn_ids": [
+    "D20:37"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "will show",
+   "entity_2": "Audrey the best bike routes near the river",
+   "fact_text": "Andrew will show Audrey the best bike routes near the river.",
+   "turn_ids": [
+    "D20:38",
+    "D20:39"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-10-01T19:09:00",
+   "date_raw": "7:09 pm on 1 October, 2023"
+  }
+ ]
+}

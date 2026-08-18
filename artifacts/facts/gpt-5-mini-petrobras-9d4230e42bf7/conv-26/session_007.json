@@ -1,0 +1,242 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "attended",
+   "entity_2": "LGBTQ conference on 10 July 2023",
+   "fact_text": "Caroline attended an LGBTQ conference on 10 July 2023.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "felt accepted at",
+   "entity_2": "LGBTQ conference",
+   "fact_text": "Caroline felt accepted at the LGBTQ conference.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "met",
+   "entity_2": "people who went through similar journeys",
+   "fact_text": "Caroline met people who went through similar journeys at the LGBTQ conference.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "wants to fight for",
+   "entity_2": "trans rights",
+   "fact_text": "Caroline wants to fight for trans rights.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is looking into",
+   "entity_2": "counseling and mental health jobs",
+   "fact_text": "Caroline is looking into counseling and mental health jobs.",
+   "turn_ids": [
+    "D7:5",
+    "D7:7"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "struggled with",
+   "entity_2": "mental health",
+   "fact_text": "Caroline struggled with mental health.",
+   "turn_ids": [
+    "D7:7"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "received helpful support from",
+   "entity_2": "support she received",
+   "fact_text": "Caroline received helpful support that influenced her career interest.",
+   "turn_ids": [
+    "D7:7"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "loves",
+   "entity_2": "books",
+   "fact_text": "Caroline loves books.",
+   "turn_ids": [
+    "D7:9"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "favorites",
+   "entity_2": "\"Becoming Nicole\" by Amy Ellis Nutt",
+   "fact_text": "Caroline's favorite book is \"Becoming Nicole\" by Amy Ellis Nutt.",
+   "turn_ids": [
+    "D7:11"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "\"Becoming Nicole\" by Amy Ellis Nutt",
+   "relation": "taught",
+   "entity_2": "Caroline self-acceptance",
+   "fact_text": "\"Becoming Nicole\" by Amy Ellis Nutt taught Caroline self-acceptance.",
+   "turn_ids": [
+    "D7:13"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Pets",
+   "relation": "bring joy to",
+   "entity_2": "Caroline",
+   "fact_text": "Pets bring joy to Caroline.",
+   "turn_ids": [
+    "D7:13"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "has",
+   "entity_2": "a dog",
+   "fact_text": "Melanie has a dog.",
+   "turn_ids": [
+    "D7:16"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "has",
+   "entity_2": "a cat",
+   "fact_text": "Melanie has a cat.",
+   "turn_ids": [
+    "D7:16"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "named her pets",
+   "entity_2": "Luna and Oliver",
+   "fact_text": "Melanie named her pets Luna and Oliver.",
+   "turn_ids": [
+    "D7:18"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "bought",
+   "entity_2": "running shoes",
+   "fact_text": "Melanie bought running shoes.",
+   "turn_ids": [
+    "D7:18"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "runs to de-stress",
+   "entity_2": "running",
+   "fact_text": "Melanie runs to de-stress.",
+   "turn_ids": [
+    "D7:20",
+    "D7:22"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Running",
+   "relation": "has improved",
+   "entity_2": "Melanie's mental health",
+   "fact_text": "Running has improved Melanie's mental health.",
+   "turn_ids": [
+    "D7:24",
+    "D7:26"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "plans to help people by pursuing",
+   "entity_2": "a counseling and mental health career",
+   "fact_text": "Caroline plans to help people by pursuing a counseling and mental health career.",
+   "turn_ids": [
+    "D7:5",
+    "D7:7"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  }
+ ]
+}

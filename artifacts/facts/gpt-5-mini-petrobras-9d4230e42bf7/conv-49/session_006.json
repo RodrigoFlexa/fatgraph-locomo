@@ -1,0 +1,200 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "visited",
+   "entity_2": "Canada",
+   "fact_text": "Evan visited Canada.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "vacationed with",
+   "entity_2": "Evan's new significant other",
+   "fact_text": "Evan vacationed with Evan's new significant other.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "did",
+   "entity_2": "hiking",
+   "fact_text": "Evan did hiking during the vacation in Canada.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "did",
+   "entity_2": "biking",
+   "fact_text": "Evan did biking during the vacation in Canada.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "explored outdoors with",
+   "entity_2": "Evan's new significant other",
+   "fact_text": "Evan explored the outdoors with Evan's new significant other.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "the photo from Evan",
+   "relation": "shows",
+   "entity_2": "a tent pitched in a grassy field",
+   "fact_text": "The photo from Evan shows a tent pitched in a grassy field.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "experienced challenges with",
+   "entity_2": "Sam's health",
+   "fact_text": "Sam experienced challenges with Sam's health.",
+   "turn_ids": [
+    "D6:2"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "the photo from Sam",
+   "relation": "shows",
+   "entity_2": "a notepad with a pen and a note",
+   "fact_text": "The photo from Sam shows a notepad with a pen and a note.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Sam's note",
+   "relation": "contained",
+   "entity_2": "the quote \"Don't fear it, just take the first step. It's been helping me move forward to healthier habits!\"",
+   "fact_text": "Sam's note contained the quote \"Don't fear it, just take the first step. It's been helping me move forward to healthier habits!\".",
+   "turn_ids": [
+    "D6:6",
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "dreamed about",
+   "entity_2": "soaring over skyscrapers",
+   "fact_text": "Sam dreamed about soaring over skyscrapers.",
+   "turn_ids": [
+    "D6:14"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "searched for",
+   "entity_2": "Evan's keys",
+   "fact_text": "Evan searched for Evan's keys for the last half hour.",
+   "turn_ids": [
+    "D6:13"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "loses regularly",
+   "entity_2": "Evan's keys",
+   "fact_text": "Evan loses Evan's keys every week.",
+   "turn_ids": [
+    "D6:13"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "will be cheerleader for",
+   "entity_2": "Evan",
+   "fact_text": "Sam will be a cheerleader for Evan once Sam gets some sleep.",
+   "turn_ids": [
+    "D6:14"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "believes about",
+   "entity_2": "the journey",
+   "fact_text": "Sam believes that the journey will be rewarding.",
+   "turn_ids": [
+    "D6:16"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "suggested checking",
+   "entity_2": "a dream interpretation book",
+   "fact_text": "Evan suggested checking a dream interpretation book.",
+   "turn_ids": [
+    "D6:15"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-08-13T16:09:00",
+   "date_raw": "4:09 pm on 13 August, 2023"
+  }
+ ]
+}

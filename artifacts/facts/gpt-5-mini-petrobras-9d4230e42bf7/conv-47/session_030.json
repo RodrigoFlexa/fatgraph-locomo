@@ -1,0 +1,189 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "started",
+   "entity_2": "a road trip on 4 Nov 2022",
+   "fact_text": "James started a road trip on 4 Nov 2022.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "spent time with",
+   "entity_2": "his family",
+   "fact_text": "James spent time with his family during the road trip on 4 Nov 2022.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "spent time with",
+   "entity_2": "his dogs",
+   "fact_text": "James spent time with his dogs during the road trip on 4 Nov 2022.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "explored",
+   "entity_2": "new places",
+   "fact_text": "James explored new places during the road trip on 4 Nov 2022.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "explored with",
+   "entity_2": "nature",
+   "fact_text": "James explored nature with his dogs during the road trip on 4 Nov 2022.",
+   "turn_ids": [
+    "D30:1"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "won",
+   "entity_2": "the regional chess tournament",
+   "fact_text": "John won the regional chess tournament this Tuesday.",
+   "turn_ids": [
+    "D30:4"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "gained",
+   "entity_2": "a huge confidence boost",
+   "fact_text": "John gained a huge confidence boost after winning the regional chess tournament this Tuesday.",
+   "turn_ids": [
+    "D30:6",
+    "D30:4"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "used strategy of",
+   "entity_2": "analyzing and anticipating opponent's moves",
+   "fact_text": "John used a strategy of analyzing and anticipating opponent's moves to win the regional chess tournament.",
+   "turn_ids": [
+    "D30:8",
+    "D30:4"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a resource on chess openings (photo of a book)",
+   "fact_text": "John shared a resource on chess openings (a photo of a book with a list of games).",
+   "turn_ids": [
+    "D30:12"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is hooked on",
+   "entity_2": "FIFA 23",
+   "fact_text": "John is hooked on FIFA 23.",
+   "turn_ids": [
+    "D30:14"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "proposed to play with",
+   "entity_2": "James",
+   "fact_text": "John proposed that after some practice he and James can play together.",
+   "turn_ids": [
+    "D30:16"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "FIFA 23",
+   "relation": "requires",
+   "entity_2": "a gamepad",
+   "fact_text": "FIFA 23 requires a gamepad according to John.",
+   "turn_ids": [
+    "D30:18"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "FIFA 23",
+   "relation": "requires",
+   "entity_2": "a sense of timing",
+   "fact_text": "FIFA 23 requires a sense of timing according to John.",
+   "turn_ids": [
+    "D30:18"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to train",
+   "entity_2": "to play FIFA 23",
+   "fact_text": "James plans to train to play FIFA 23.",
+   "turn_ids": [
+    "D30:19",
+    "D30:16"
+   ],
+   "session_id": "S30",
+   "session_num": 30,
+   "timestamp": "2022-11-05T17:20:00",
+   "date_raw": "5:20 pm on 5 November, 2022"
+  }
+ ]
+}

@@ -1,0 +1,161 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "attended",
+   "entity_2": "an LGBTQ+ pride parade",
+   "fact_text": "Caroline attended an LGBTQ+ pride parade last week.",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "felt like she belonged at",
+   "entity_2": "the LGBTQ+ pride parade",
+   "fact_text": "Caroline felt like she belonged at the LGBTQ+ pride parade.",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "the LGBTQ+ pride parade",
+   "relation": "showed growth of",
+   "entity_2": "the LGBTQ+ community",
+   "fact_text": "The LGBTQ+ pride parade showed how much the LGBTQ+ community has grown.",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "plans to pursue",
+   "entity_2": "counseling and mental health",
+   "fact_text": "Caroline plans to pursue counseling and mental health to use her story to help others.",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "wants to help",
+   "entity_2": "others",
+   "fact_text": "Caroline wants to help others using her story.",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "signed up for",
+   "entity_2": "a pottery class",
+   "fact_text": "Melanie signed up for a pottery class yesterday.",
+   "turn_ids": [
+    "D5:4"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "made",
+   "entity_2": "a bowl with a black and white flower design",
+   "fact_text": "Melanie made a bowl with a black and white flower design in her pottery class.",
+   "turn_ids": [
+    "D5:6",
+    "D5:8"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "says pottery helps express",
+   "entity_2": "her emotions",
+   "fact_text": "Melanie says pottery helps express her emotions and is calming.",
+   "turn_ids": [
+    "D5:10"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "considers",
+   "entity_2": "pottery a huge part of her life",
+   "fact_text": "Melanie considers pottery a huge part of her life, not just a hobby.",
+   "turn_ids": [
+    "D5:10"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is learning",
+   "entity_2": "the piano",
+   "fact_text": "Caroline is learning the piano.",
+   "turn_ids": [
+    "D5:5"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is going to",
+   "entity_2": "a transgender conference this month",
+   "fact_text": "Caroline is going to a transgender conference this month.",
+   "turn_ids": [
+    "D5:13"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared",
+   "entity_2": "a photo of a person holding a frisbee",
+   "fact_text": "Melanie shared a photo of a person holding a frisbee in their hand.",
+   "turn_ids": [
+    "D5:4"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-07-03T13:36:00",
+   "date_raw": "1:36 pm on 3 July, 2023"
+  }
+ ]
+}

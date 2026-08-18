@@ -1,0 +1,148 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "lost his job at",
+   "entity_2": "the mechanical engineering company",
+   "fact_text": "On 5 August 2023, John lost his job at the mechanical engineering company.",
+   "turn_ids": [
+    "D28:1"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had been looking into opportunities in",
+   "entity_2": "the tech industry",
+   "fact_text": "John had been looking into opportunities in the tech industry.",
+   "turn_ids": [
+    "D28:3"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "encouraged",
+   "entity_2": "John",
+   "fact_text": "John reported that Maria encouraged him to look into opportunities in the tech industry.",
+   "turn_ids": [
+    "D28:3"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "may have found a job at",
+   "entity_2": "a tech company",
+   "fact_text": "John said he may have found a job at a tech company that needs his mechanical skills for their hardware team.",
+   "turn_ids": [
+    "D28:5"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "a tech company",
+   "relation": "needs",
+   "entity_2": "John's mechanical skills",
+   "fact_text": "John said the tech company may need his mechanical skills for their hardware team.",
+   "turn_ids": [
+    "D28:5"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "did community work with",
+   "entity_2": "her friends from church",
+   "fact_text": "Yesterday, Maria did community work with her friends from church.",
+   "turn_ids": [
+    "D28:8"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "helped renovate",
+   "entity_2": "a rundown community center in his hometown",
+   "fact_text": "Last year, John helped renovate a rundown community center in his hometown.",
+   "turn_ids": [
+    "D28:11"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "cares about",
+   "entity_2": "volunteering",
+   "fact_text": "John cares about volunteering.",
+   "turn_ids": [
+    "D28:11"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "hasn't been able to volunteer much lately",
+   "entity_2": "volunteering",
+   "fact_text": "John said he hasn't been able to volunteer much lately.",
+   "turn_ids": [
+    "D28:11"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offered support to",
+   "entity_2": "John",
+   "fact_text": "Maria offered support to John and told him to let her know if he needed anything.",
+   "turn_ids": [
+    "D28:18"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "appreciates",
+   "entity_2": "Maria's support",
+   "fact_text": "John said he appreciates Maria's support.",
+   "turn_ids": [
+    "D28:7",
+    "D28:19"
+   ],
+   "session_id": "S28",
+   "session_num": 28,
+   "timestamp": "2023-08-05T17:19:00",
+   "date_raw": "5:19 pm on 5 August, 2023"
+  }
+ ]
+}

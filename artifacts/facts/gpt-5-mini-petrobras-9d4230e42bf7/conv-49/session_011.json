@@ -1,0 +1,176 @@
+{
+ "facts": [
+  {
+   "entity_1": "Sam",
+   "relation": "is eating",
+   "entity_2": "healthier",
+   "fact_text": "Sam is eating healthier.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "injured",
+   "entity_2": "knee playing basketball with his kids last week",
+   "fact_text": "Evan injured his knee playing basketball with his kids last week.",
+   "turn_ids": [
+    "D11:2"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "misses",
+   "entity_2": "going on adventures with his family from last year",
+   "fact_text": "Evan misses going on adventures with his family from last year.",
+   "turn_ids": [
+    "D11:2"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared",
+   "entity_2": "a photo of a person with a cast on their leg",
+   "fact_text": "Evan shared a photo of a person with a cast on their leg.",
+   "turn_ids": [
+    "D11:2"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "is undergoing",
+   "entity_2": "physical therapy",
+   "fact_text": "Evan is undergoing physical therapy that has helped him some.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "is doing",
+   "entity_2": "easy exercises to keep his knee strong",
+   "fact_text": "Evan is doing easy exercises to keep his knee strong because he cannot do intense workouts.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "paints",
+   "entity_2": "watercolor",
+   "fact_text": "Evan paints watercolor as a way to relax and keep busy.",
+   "turn_ids": [
+    "D11:6",
+    "D11:8"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "helped",
+   "entity_2": "a lost tourist two weeks ago which led to an unexpected tour around the city",
+   "fact_text": "Evan helped a lost tourist two weeks ago which led to an unexpected tour around the city.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "painted",
+   "entity_2": "a cactus painting inspired by a road trip last month",
+   "fact_text": "Evan painted a cactus painting that was inspired by a road trip last month.",
+   "turn_ids": [
+    "D11:8",
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "painted",
+   "entity_2": "a sunset painting inspired by a vacation a few years back",
+   "fact_text": "Evan painted a sunset painting that was inspired by a vacation a few years back.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "expresses",
+   "entity_2": "himself through journal writing and creative writing",
+   "fact_text": "Sam expresses himself through journal writing and creative writing.",
+   "turn_ids": [
+    "D11:15",
+    "D11:17"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is frustrated by",
+   "entity_2": "his new phone's navigation app malfunctioning",
+   "fact_text": "Sam is frustrated by his new phone's navigation app malfunctioning.",
+   "turn_ids": [
+    "D11:15"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared",
+   "entity_2": "a photo of a bowl of fruit with a striped cloth",
+   "fact_text": "Sam shared a photo of a bowl of fruit with a striped cloth.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-10-06T20:57:00",
+   "date_raw": "8:57 pm on 6 October, 2023"
+  }
+ ]
+}

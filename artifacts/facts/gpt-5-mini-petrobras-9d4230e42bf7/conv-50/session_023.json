@@ -1,0 +1,135 @@
+{
+ "facts": [
+  {
+   "entity_1": "a competing car maintenance shop",
+   "relation": "snagged",
+   "entity_2": "a deal Dave was trying to secure for months",
+   "fact_text": "A competing car maintenance shop snagged a deal Dave was trying to secure for months.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "felt bummed about",
+   "entity_2": "a competing car maintenance shop snagging a deal Dave was trying to secure for months",
+   "fact_text": "Dave felt bummed about a competing car maintenance shop snagging a deal Dave was trying to secure for months.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "put in",
+   "entity_2": "a lot of effort at work",
+   "fact_text": "Dave put in a lot of effort at work.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "relies on",
+   "entity_2": "helpful people when setbacks occur",
+   "fact_text": "Calvin relies on helpful people when setbacks occur.",
+   "turn_ids": [
+    "D23:4"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "takes",
+   "entity_2": "breaks to recharge with his favorite activities",
+   "fact_text": "Calvin takes breaks to recharge with his favorite activities.",
+   "turn_ids": [
+    "D23:4"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "attended",
+   "entity_2": "a music festival",
+   "fact_text": "Dave attended a music festival.",
+   "turn_ids": [
+    "D23:5"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "The Fireworks",
+   "relation": "headlined",
+   "entity_2": "the music festival Dave attended",
+   "fact_text": "The Fireworks headlined the music festival Dave attended.",
+   "turn_ids": [
+    "D23:9",
+    "D23:7"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "The Fireworks",
+   "relation": "performed with",
+   "entity_2": "Frank Ocean recently",
+   "fact_text": "The Fireworks performed with Frank Ocean recently.",
+   "turn_ids": [
+    "D23:10"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "likes",
+   "entity_2": "repairing things",
+   "fact_text": "Dave likes repairing things.",
+   "turn_ids": [
+    "D23:11"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "got",
+   "entity_2": "a new Ferrari last week",
+   "fact_text": "Calvin got a new Ferrari last week.",
+   "turn_ids": [
+    "D23:16"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-10-15T09:39:00",
+   "date_raw": "9:39 am on 15 October, 2023"
+  }
+ ]
+}

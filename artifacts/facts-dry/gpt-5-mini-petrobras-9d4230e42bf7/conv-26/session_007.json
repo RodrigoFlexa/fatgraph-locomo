@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "important",
+   "fact_text": "great and important came up when Caroline was talking.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "caroline and great came up when Melanie was talking.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "help",
+   "fact_text": "great and help came up when Caroline was talking.",
+   "turn_ids": [
+    "D7:3"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "awesome",
+   "fact_text": "caroline and awesome came up when Melanie was talking.",
+   "turn_ids": [
+    "D7:4"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "help",
+   "relation": "mentions",
+   "entity_2": "mental",
+   "fact_text": "help and mental came up when Caroline was talking.",
+   "turn_ids": [
+    "D7:5"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "help",
+   "fact_text": "caroline and help came up when Melanie was talking.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "caroline and image came up when Melanie was talking.",
+   "turn_ids": [
+    "D7:8"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-07-12T16:33:00",
+   "date_raw": "4:33 pm on 12 July, 2023"
+  }
+ ]
+}

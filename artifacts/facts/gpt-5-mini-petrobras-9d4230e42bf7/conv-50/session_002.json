@@ -1,0 +1,174 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "owns",
+   "entity_2": "a new luxury car",
+   "fact_text": "Calvin owns a new luxury car.",
+   "turn_ids": [
+    "D2:1",
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin's new car",
+   "relation": "is",
+   "entity_2": "a red sports car parked on the side of the road",
+   "fact_text": "Calvin's new car is a red sports car parked on the side of the road.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "had",
+   "entity_2": "a few studio sessions last week",
+   "fact_text": "Calvin had a few studio sessions last week.",
+   "turn_ids": [
+    "D2:17"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to collaborate on",
+   "entity_2": "his new tunes",
+   "fact_text": "Calvin plans to collaborate on his new tunes.",
+   "turn_ids": [
+    "D2:17"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "attended",
+   "entity_2": "a music festival in Boston last weekend",
+   "fact_text": "Dave attended a music festival in Boston last weekend.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "favored",
+   "entity_2": "Aerosmith at the festival",
+   "fact_text": "Dave's favorite band at the festival was Aerosmith.",
+   "turn_ids": [
+    "D2:10"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "saw live",
+   "entity_2": "Aerosmith",
+   "fact_text": "Dave saw Aerosmith live.",
+   "turn_ids": [
+    "D2:12"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "felt about owning a luxury car",
+   "entity_2": "a dream come true",
+   "fact_text": "Calvin felt that owning a luxury car was a dream come true.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "felt he deserved",
+   "entity_2": "the new car after his hard work",
+   "fact_text": "Calvin felt he deserved the new car after his hard work.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "described",
+   "entity_2": "his new car as super smooth and powerful",
+   "fact_text": "Calvin described his new car as super smooth and powerful.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared",
+   "entity_2": "a photo of a large crowd of people at a concert",
+   "fact_text": "Dave shared a photo of a large crowd of people at a concert.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared",
+   "entity_2": "a photo of a concert with a large eagle on the stage",
+   "fact_text": "Dave shared a photo of a concert with a large eagle on the stage.",
+   "turn_ids": [
+    "D2:10"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared",
+   "entity_2": "a photo of two people on stage with guitars and a microphone",
+   "fact_text": "Dave shared a photo of two people on stage with guitars and a microphone.",
+   "turn_ids": [
+    "D2:12"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-03-26T16:45:00",
+   "date_raw": "4:45 pm on 26 March, 2023"
+  }
+ ]
+}

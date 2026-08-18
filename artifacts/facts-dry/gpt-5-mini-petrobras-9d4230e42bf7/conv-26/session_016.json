@@ -1,0 +1,108 @@
+{
+ "facts": [
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "photo",
+   "fact_text": "image and photo came up when Caroline was talking.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "caroline and image came up when Melanie was talking.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "love",
+   "relation": "mentions",
+   "entity_2": "amazing",
+   "fact_text": "love and amazing came up when Caroline was talking.",
+   "turn_ids": [
+    "D16:3"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "awesome",
+   "fact_text": "caroline and awesome came up when Melanie was talking.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "painting",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "painting and image came up when Caroline was talking.",
+   "turn_ids": [
+    "D16:5"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "love",
+   "relation": "mentions",
+   "entity_2": "caroline",
+   "fact_text": "love and caroline came up when Melanie was talking.",
+   "turn_ids": [
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "amazing",
+   "relation": "mentions",
+   "entity_2": "long",
+   "fact_text": "amazing and long came up when Caroline was talking.",
+   "turn_ids": [
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  },
+  {
+   "entity_1": "painting",
+   "relation": "mentions",
+   "entity_2": "image",
+   "fact_text": "painting and image came up when Melanie was talking.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-09-13T00:09:00",
+   "date_raw": "12:09 am on 13 September, 2023"
+  }
+ ]
+}

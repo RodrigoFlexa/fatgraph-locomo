@@ -1,0 +1,110 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "had",
+   "entity_2": "a huge writing issue last week",
+   "fact_text": "Tim had a huge writing issue last week where he got stuck on a plot twist.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "overcame",
+   "entity_2": "a plot twist block",
+   "fact_text": "Tim overcame a plot twist block last week and eventually got his ideas flowing again.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had",
+   "entity_2": "a basketball game last year with a fourth-quarter comeback",
+   "fact_text": "John had a basketball game last year where his team was trailing big in the fourth quarter and they overturned the deficit to win.",
+   "turn_ids": [
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "owns",
+   "entity_2": "a basketball signed by his favorite player",
+   "fact_text": "Tim owns a basketball in a case that is signed by his favorite player.",
+   "turn_ids": [
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "likes watching",
+   "entity_2": "LeBron",
+   "fact_text": "Tim likes watching LeBron.",
+   "turn_ids": [
+    "D16:9"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "LeBron",
+   "relation": "chased down and pinned the ball against the backboard on",
+   "entity_2": "Andre Iguodala in Game 7 of the 2016 Finals",
+   "fact_text": "LeBron chased down and pinned the ball against the backboard on Andre Iguodala in Game 7 of the 2016 Finals.",
+   "turn_ids": [
+    "D16:10",
+    "D16:9"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "John and his wife",
+   "relation": "left for",
+   "entity_2": "a short European vacation",
+   "fact_text": "John and his wife left for a short European vacation.",
+   "turn_ids": [
+    "D16:14"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "recommended visiting",
+   "entity_2": "castles in Europe",
+   "fact_text": "Tim recommended visiting castles in Europe to John and his wife.",
+   "turn_ids": [
+    "D16:15",
+    "D16:14"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-11-06T11:41:00",
+   "date_raw": "11:41 am on 6 November, 2023"
+  }
+ ]
+}

@@ -1,0 +1,125 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "worked on",
+   "entity_2": "engine of a vintage Mustang",
+   "fact_text": "Dave worked on the engine of a vintage Mustang.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "heard",
+   "entity_2": "weird noise when he started the engine of the vintage Mustang",
+   "fact_text": "Dave heard a weird noise when he started the engine of the vintage Mustang.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared image of",
+   "entity_2": "photography of a car engine",
+   "fact_text": "Dave shared an image of a photography of a car engine.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared image of",
+   "entity_2": "red sports car parked in a parking lot",
+   "fact_text": "Calvin shared an image of a red sports car parked in a parking lot.",
+   "turn_ids": [
+    "D20:2"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "had",
+   "entity_2": "an amazing drive one summer day",
+   "fact_text": "Calvin had an amazing drive one summer day where he felt a rush of freedom.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "visited",
+   "entity_2": "Japan",
+   "fact_text": "Calvin visited Japan.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "wants to return to",
+   "entity_2": "Japan",
+   "fact_text": "Calvin wants to return to Japan.",
+   "turn_ids": [
+    "D20:4"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "listened to during a road trip with his dad",
+   "entity_2": "'California Love' by Tupac and Dr. Dre",
+   "fact_text": "Calvin listened to the song 'California Love' by Tupac and Dr. Dre during a road trip with his dad.",
+   "turn_ids": [
+    "D20:6",
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "plans to have a jam session with",
+   "entity_2": "Calvin",
+   "fact_text": "Dave plans to have a jam session with Calvin.",
+   "turn_ids": [
+    "D20:9",
+    "D20:10",
+    "D20:11",
+    "D20:12"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-09-22T20:57:00",
+   "date_raw": "8:57 pm on 22 September, 2023"
+  }
+ ]
+}

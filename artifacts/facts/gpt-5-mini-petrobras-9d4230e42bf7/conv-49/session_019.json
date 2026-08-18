@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan's partner",
+   "relation": "is",
+   "entity_2": "pregnant",
+   "fact_text": "Evan's partner is pregnant.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "feels about",
+   "entity_2": "becoming a parent",
+   "fact_text": "Evan feels excited and a bit nervous about becoming a parent.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "has",
+   "entity_2": "a first child",
+   "fact_text": "Evan has a first child.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  },
+  {
+   "entity_1": "Evan's family collage",
+   "relation": "contains",
+   "entity_2": "photos of birthdays, holidays, and vacations",
+   "fact_text": "Evan's family collage contains photos of birthdays, holidays, and vacations.",
+   "turn_ids": [
+    "D19:5"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  },
+  {
+   "entity_1": "the framed sign from Evan's trip to Banff",
+   "relation": "says",
+   "entity_2": "'Bring it on Home'",
+   "fact_text": "The framed sign from Evan's trip to Banff says 'Bring it on Home'.",
+   "turn_ids": [
+    "D19:7"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "plans",
+   "entity_2": "a big family reunion next summer",
+   "fact_text": "Evan plans a big family reunion next summer.",
+   "turn_ids": [
+    "D19:11"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-12-09T13:45:00",
+   "date_raw": "1:45 pm on 9 December, 2023"
+  }
+ ]
+}

@@ -1,0 +1,121 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "invited",
+   "entity_2": "Calvin's old high school buddy to see him perform in Boston",
+   "fact_text": "Calvin invited his old high school buddy to see him perform in Boston.",
+   "turn_ids": [
+    "D29:1"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin's old high school buddy",
+   "relation": "supported",
+   "entity_2": "Calvin",
+   "fact_text": "Calvin's old high school buddy supported Calvin and encouraged him during Calvin's journey.",
+   "turn_ids": [
+    "D29:5"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "freestyled with",
+   "entity_2": "Calvin's old high school buddy when they were teenagers",
+   "fact_text": "Calvin freestyled with his old high school buddy when they were teenagers.",
+   "turn_ids": [
+    "D29:3"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "values",
+   "entity_2": "having supportive people around him for artist development",
+   "fact_text": "Calvin values having supportive people around him for his artist development.",
+   "turn_ids": [
+    "D29:7"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "supported",
+   "entity_2": "young musicians from a music program",
+   "fact_text": "Calvin supported young musicians from a music program.",
+   "turn_ids": [
+    "D29:9"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to support",
+   "entity_2": "the young musicians for a long time",
+   "fact_text": "Calvin plans to support the young musicians for a long time.",
+   "turn_ids": [
+    "D29:11"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "made a beat for",
+   "entity_2": "a young artist",
+   "fact_text": "Calvin made a beat for a young artist who has great potential in music.",
+   "turn_ids": [
+    "D29:13"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has",
+   "entity_2": "a music studio",
+   "fact_text": "Calvin has a music studio.",
+   "turn_ids": [
+    "D29:14"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "experimented with",
+   "entity_2": "new sounds and pushed boundaries",
+   "fact_text": "Calvin experimented with new sounds and pushed the boundaries in his music.",
+   "turn_ids": [
+    "D29:15"
+   ],
+   "session_id": "S29",
+   "session_num": 29,
+   "timestamp": "2023-11-13T21:15:00",
+   "date_raw": "9:15 pm on 13 November, 2023"
+  }
+ ]
+}

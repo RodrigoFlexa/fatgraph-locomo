@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "started",
+   "entity_2": "community cleanup project",
+   "fact_text": "On 1 August 2023 Deborah started a community cleanup project.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is raising funds for",
+   "entity_2": "community cleanup project",
+   "fact_text": "Deborah is raising funds for the community cleanup project.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "experienced a huge setback with",
+   "entity_2": "project",
+   "fact_text": "Last week Jolene experienced a huge setback with her project.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "lost everything in",
+   "entity_2": "project",
+   "fact_text": "Last week Jolene lost everything in her project.",
+   "turn_ids": [
+    "D16:2"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Susie",
+   "relation": "helps",
+   "entity_2": "Jolene",
+   "fact_text": "Susie helps Jolene when times get tough.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "adopted",
+   "entity_2": "Susie",
+   "fact_text": "Jolene adopted Susie two years ago when Jolene was feeling lonely and wanted company.",
+   "turn_ids": [
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "says provide",
+   "entity_2": "pets",
+   "fact_text": "Deborah says pets provide love and comfort.",
+   "turn_ids": [
+    "D16:7"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Video games",
+   "relation": "serve as a distraction for",
+   "entity_2": "Jolene",
+   "fact_text": "Video games serve as a distraction for Jolene.",
+   "turn_ids": [
+    "D16:4"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "practices",
+   "entity_2": "yoga and meditation",
+   "fact_text": "Jolene practices self-care by doing yoga and meditation.",
+   "turn_ids": [
+    "D16:10"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared an image of",
+   "entity_2": "yoga room with many mats",
+   "fact_text": "Deborah shared an image of a yoga room with a lot of yoga mats on the floor.",
+   "turn_ids": [
+    "D16:13"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared a tutorial video for",
+   "entity_2": "yoga routine",
+   "fact_text": "Deborah said she would send a tutorial video with the yoga poses for the yoga routine.",
+   "turn_ids": [
+    "D16:15"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "shared a photo of herself doing",
+   "entity_2": "a yoga pose",
+   "fact_text": "Deborah shared a photo of herself in a pink shirt doing a yoga pose.",
+   "turn_ids": [
+    "D16:15"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "plans to practice",
+   "entity_2": "yoga routine",
+   "fact_text": "Jolene plans to practice the yoga routine and update Deborah.",
+   "turn_ids": [
+    "D16:20"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-08-01T09:26:00",
+   "date_raw": "9:26 am on 1 August, 2023"
+  }
+ ]
+}

@@ -1,0 +1,121 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan's son",
+   "relation": "sustained",
+   "entity_2": "a bicycle accident on 12 December 2023",
+   "fact_text": "Evan's son sustained a bicycle accident on 12 December 2023 and was doing better by 17 December 2023.",
+   "turn_ids": [
+    "D20:3"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared",
+   "entity_2": "a photo of a young boy with crutches and a backpack",
+   "fact_text": "Evan shared a photo of a young boy with crutches and a backpack.",
+   "turn_ids": [
+    "D20:3"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "used to love",
+   "entity_2": "hiking",
+   "fact_text": "Sam used to love hiking.",
+   "turn_ids": [
+    "D20:6"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "suggested planning",
+   "entity_2": "a hike with Sam",
+   "fact_text": "Evan suggested planning a hike with Sam.",
+   "turn_ids": [
+    "D20:7"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is struggling with",
+   "entity_2": "his weight",
+   "fact_text": "Sam is struggling with his weight.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Sam's weight",
+   "relation": "affected",
+   "entity_2": "Sam's confidence",
+   "fact_text": "Sam's weight affected Sam's confidence.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "finished",
+   "entity_2": "a contemporary figurative painting a few days before 17 December 2023",
+   "fact_text": "Evan finished a contemporary figurative painting a few days before 17 December 2023.",
+   "turn_ids": [
+    "D20:15"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared",
+   "entity_2": "a photo of a woman standing in front of a painting",
+   "fact_text": "Evan shared a photo of a woman standing in front of a painting.",
+   "turn_ids": [
+    "D20:13"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  },
+  {
+   "entity_1": "Evan's close friend",
+   "relation": "helped with",
+   "entity_2": "getting the painting published in an exhibition",
+   "fact_text": "Evan's close friend helped with getting the painting published in an exhibition.",
+   "turn_ids": [
+    "D20:17"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2023-12-17T18:48:00",
+   "date_raw": "6:48 pm on 17 December, 2023"
+  }
+ ]
+}

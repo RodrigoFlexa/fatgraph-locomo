@@ -1,0 +1,121 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "adopted",
+   "entity_2": "Pixie",
+   "fact_text": "Audrey adopted Pixie.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Pixie",
+   "relation": "is",
+   "entity_2": "a small white dog",
+   "fact_text": "Pixie is a small white dog sitting on a carpet.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Pixie",
+   "relation": "is friends with",
+   "entity_2": "the other dogs",
+   "fact_text": "Pixie is friends with the other dogs.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Pepper",
+   "relation": "is always together with",
+   "entity_2": "Pixie",
+   "fact_text": "Pepper is always together with Pixie.",
+   "turn_ids": [
+    "D2:7"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Pixie",
+   "relation": "keeps",
+   "entity_2": "Audrey busy",
+   "fact_text": "Pixie keeps Audrey busy.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "used",
+   "entity_2": "websites to find a dog-friendly place",
+   "fact_text": "Audrey used websites to find a dog-friendly place.",
+   "turn_ids": [
+    "D2:9"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "is considering getting",
+   "entity_2": "a dog",
+   "fact_text": "Andrew is considering getting a dog.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "is looking for",
+   "entity_2": "a dog-friendly spot",
+   "fact_text": "Andrew is looking for a dog-friendly spot.",
+   "turn_ids": [
+    "D2:22"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "misses exploring with",
+   "entity_2": "his family's dog",
+   "fact_text": "Andrew misses exploring nature trails with his family's dog.",
+   "turn_ids": [
+    "D2:18"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-04-02T14:42:00",
+   "date_raw": "2:42 pm on 2 April, 2023"
+  }
+ ]
+}

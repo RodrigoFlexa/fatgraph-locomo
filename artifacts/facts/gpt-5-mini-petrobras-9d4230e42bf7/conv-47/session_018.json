@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "left",
+   "entity_2": "his IT job after 3 years",
+   "fact_text": "John left his IT job after 3 years.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "a new job",
+   "fact_text": "John has a new job.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is happy about",
+   "entity_2": "his decision to leave his IT job",
+   "fact_text": "John is happy about his decision to leave his IT job.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is passionate about",
+   "entity_2": "gaming",
+   "fact_text": "John is passionate about gaming.",
+   "turn_ids": [
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to become",
+   "entity_2": "an organizer of tournaments for computer games in his state",
+   "fact_text": "John plans to become an organizer of tournaments for computer games in his state.",
+   "turn_ids": [
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "can host",
+   "entity_2": "Fortnite competitions",
+   "fact_text": "John can host Fortnite competitions.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has made",
+   "entity_2": "connections to help with hosting competitions",
+   "fact_text": "John has made connections to help with hosting competitions.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to gain",
+   "entity_2": "more experience to be successful as a tournament organizer",
+   "fact_text": "John plans to gain more experience to be successful as a tournament organizer.",
+   "turn_ids": [
+    "D18:9"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "took to the clinic on 2022-08-05",
+   "entity_2": "his puppy",
+   "fact_text": "James took his puppy to the clinic on 2022-08-05.",
+   "turn_ids": [
+    "D18:14"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "vaccinated",
+   "entity_2": "his puppy to prevent seasonal canine disease",
+   "fact_text": "James vaccinated his puppy to prevent seasonal canine disease.",
+   "turn_ids": [
+    "D18:16"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "considers",
+   "entity_2": "his pets a source of joy",
+   "fact_text": "James considers his pets a source of joy.",
+   "turn_ids": [
+    "D18:18"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "offered",
+   "entity_2": "financial assistance or advice to John",
+   "fact_text": "James offered financial assistance or advice to John if John needed it.",
+   "turn_ids": [
+    "D18:12"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "said he would contact",
+   "entity_2": "James for financial assistance if necessary",
+   "fact_text": "John said he would contact James for financial assistance if necessary.",
+   "turn_ids": [
+    "D18:13"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2022-08-06T13:45:00",
+   "date_raw": "1:45 pm on 6 August, 2022"
+  }
+ ]
+}

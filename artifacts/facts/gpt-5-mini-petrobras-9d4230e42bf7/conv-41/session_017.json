@@ -1,0 +1,123 @@
+{
+ "facts": [
+  {
+   "entity_1": "Max",
+   "relation": "was part of",
+   "entity_2": "John's family",
+   "fact_text": "Max was part of John's family for 10 years.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "John's family",
+   "relation": "said goodbye to",
+   "entity_2": "Max",
+   "fact_text": "John's family said goodbye to Max.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of Max sitting in the grass with a leash",
+   "fact_text": "John shared a cherished photo of Max showing Max sitting in the grass with a leash.",
+   "turn_ids": [
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "John's family",
+   "relation": "is considering adopting",
+   "entity_2": "a rescue dog",
+   "fact_text": "John's family is considering adopting a rescue dog to teach their kids responsibility and compassion.",
+   "turn_ids": [
+    "D17:11"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "volunteers at",
+   "entity_2": "a local dog shelter",
+   "fact_text": "Maria volunteers at a local dog shelter once a month.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "Max",
+   "relation": "taught",
+   "entity_2": "John's family",
+   "fact_text": "Max taught John and his family the importance of unconditional love and loyalty.",
+   "turn_ids": [
+    "D17:7",
+    "D17:9"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wants to teach",
+   "entity_2": "his kids",
+   "fact_text": "John wants his kids to learn the importance of unconditional love and loyalty.",
+   "turn_ids": [
+    "D17:9"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offered help to",
+   "entity_2": "John",
+   "fact_text": "Maria offered help to John with adopting a dog if John needs help.",
+   "turn_ids": [
+    "D17:12",
+    "D17:13"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "appreciates",
+   "entity_2": "Maria's support",
+   "fact_text": "John appreciates Maria's support.",
+   "turn_ids": [
+    "D17:15"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-06-03T11:51:00",
+   "date_raw": "11:51 am on 3 June, 2023"
+  }
+ ]
+}

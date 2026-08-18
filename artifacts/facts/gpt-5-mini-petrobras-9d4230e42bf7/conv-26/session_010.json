@@ -1,0 +1,200 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "joined",
+   "entity_2": "Connected LGBTQ Activists",
+   "fact_text": "Caroline joined Connected LGBTQ Activists last Tues.",
+   "turn_ids": [
+    "D10:3",
+    "D10:5"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Connected LGBTQ Activists",
+   "relation": "plans",
+   "entity_2": "events and campaigns",
+   "fact_text": "Connected LGBTQ Activists plans events and campaigns and holds regular meetings to support each other.",
+   "turn_ids": [
+    "D10:5"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Caroline's city",
+   "relation": "held",
+   "entity_2": "a pride parade",
+   "fact_text": "Caroline's city held a pride parade last weekend.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "missed",
+   "entity_2": "the pride parade",
+   "fact_text": "Caroline missed the pride parade last weekend.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "went to the beach with",
+   "entity_2": "her kids",
+   "fact_text": "Melanie went to the beach recently with her kids.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "visits the beach",
+   "entity_2": "once or twice a year",
+   "fact_text": "Melanie visits the beach once or twice a year.",
+   "turn_ids": [
+    "D10:10"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's family",
+   "relation": "has",
+   "entity_2": "a family camping trip tradition",
+   "fact_text": "Melanie's family has a family camping trip tradition where they roast marshmallows and tell stories.",
+   "turn_ids": [
+    "D10:12"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's family camping trip last year",
+   "relation": "saw",
+   "entity_2": "the Perseid meteor shower",
+   "fact_text": "Melanie's family camping trip last year saw the Perseid meteor shower.",
+   "turn_ids": [
+    "D10:14"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie's youngest child",
+   "relation": "took",
+   "entity_2": "her first steps",
+   "fact_text": "Melanie's youngest child took her first steps.",
+   "turn_ids": [
+    "D10:20"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "has",
+   "entity_2": "a family that brings joy and love",
+   "fact_text": "Melanie has a family that brings her joy and love.",
+   "turn_ids": [
+    "D10:24"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared a photo of",
+   "entity_2": "three children playing on the beach with a kite",
+   "fact_text": "Melanie shared a photo of three children playing on the beach with a kite.",
+   "turn_ids": [
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared a photo of",
+   "entity_2": "a fire pit with a lot of fire and sparks",
+   "fact_text": "Melanie shared a photo of a fire pit with a lot of fire and sparks.",
+   "turn_ids": [
+    "D10:12"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared a photo of",
+   "entity_2": "a plane flying in the sky with a star filled sky",
+   "fact_text": "Melanie shared a photo of a plane flying in the sky with a star filled sky.",
+   "turn_ids": [
+    "D10:14"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared a photo of",
+   "entity_2": "a plane flying in the sky with a trail of smoke coming out of it",
+   "fact_text": "Melanie shared a photo of a plane flying in the sky with a trail of smoke coming out of it.",
+   "turn_ids": [
+    "D10:16"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "shared a photo of",
+   "entity_2": "a family standing on the beach at sunset",
+   "fact_text": "Melanie shared a photograph of a family standing on the beach at sunset.",
+   "turn_ids": [
+    "D10:22"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  }
+ ]
+}

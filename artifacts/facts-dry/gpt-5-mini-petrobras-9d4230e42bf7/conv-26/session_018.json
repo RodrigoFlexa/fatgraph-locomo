@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "accident",
+   "fact_text": "caroline and accident came up when Melanie was talking.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "accident",
+   "relation": "mentions",
+   "entity_2": "life",
+   "fact_text": "accident and life came up when Caroline was talking.",
+   "turn_ids": [
+    "D18:2"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "accident",
+   "relation": "mentions",
+   "entity_2": "family",
+   "fact_text": "accident and family came up when Melanie was talking.",
+   "turn_ids": [
+    "D18:3"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "glad",
+   "fact_text": "melanie and glad came up when Caroline was talking.",
+   "turn_ids": [
+    "D18:4"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "accident",
+   "relation": "mentions",
+   "entity_2": "kids",
+   "fact_text": "accident and kids came up when Caroline was talking.",
+   "turn_ids": [
+    "D18:6"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "kids",
+   "relation": "mentions",
+   "entity_2": "scared",
+   "fact_text": "kids and scared came up when Melanie was talking.",
+   "turn_ids": [
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "kids",
+   "relation": "mentions",
+   "entity_2": "amazing",
+   "fact_text": "kids and amazing came up when Caroline was talking.",
+   "turn_ids": [
+    "D18:8"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  }
+ ]
+}

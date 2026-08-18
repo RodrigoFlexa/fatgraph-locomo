@@ -1,0 +1,200 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan's son",
+   "relation": "had",
+   "entity_2": "a soccer accident",
+   "fact_text": "Evan's son had a soccer accident last Saturday.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "looked after",
+   "entity_2": "Evan's son",
+   "fact_text": "Evan looked after Evan's son after the soccer accident.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "took to",
+   "entity_2": "the doctor",
+   "fact_text": "Evan took Evan's son to the doctor after the soccer accident.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Evan's son",
+   "relation": "has",
+   "entity_2": "a sore ankle",
+   "fact_text": "Evan's son has a sore ankle that is getting better.",
+   "turn_ids": [
+    "D7:9"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is taking",
+   "entity_2": "a cooking class",
+   "fact_text": "Sam is taking a cooking class.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is learning",
+   "entity_2": "to make healthier meals",
+   "fact_text": "Sam is learning to make healthier meals in the cooking class.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "made",
+   "entity_2": "a grilled salmon with vegetables",
+   "fact_text": "Sam made a grilled salmon with vegetables.",
+   "turn_ids": [
+    "D7:4",
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "marinated",
+   "entity_2": "the salmon",
+   "fact_text": "Sam marinated the salmon before grilling it.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "offered to share",
+   "entity_2": "recipes from his cooking class",
+   "fact_text": "Sam offered to share recipes from his cooking class.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "wants to add",
+   "entity_2": "more vegetables to his meals",
+   "fact_text": "Evan wants to add more vegetables to his meals.",
+   "turn_ids": [
+    "D7:7"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "had",
+   "entity_2": "a doctor's appointment",
+   "fact_text": "Sam had a doctor's appointment during a tough week.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is somewhat concerned about",
+   "entity_2": "his health",
+   "fact_text": "Sam is somewhat concerned about his health.",
+   "turn_ids": [
+    "D7:12"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is motivated to make",
+   "entity_2": "positive changes",
+   "fact_text": "Sam is motivated to make positive changes.",
+   "turn_ids": [
+    "D7:12"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "shared an image of",
+   "entity_2": "a plate of salmon and vegetables",
+   "fact_text": "Sam shared an image of a plate of salmon and vegetables.",
+   "turn_ids": [
+    "D7:4"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "shared an image of",
+   "entity_2": "a person with a cast on their foot",
+   "fact_text": "Evan shared an image of a person with a cast on their foot.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-08-15T16:20:00",
+   "date_raw": "4:20 pm on 15 August, 2023"
+  }
+ ]
+}

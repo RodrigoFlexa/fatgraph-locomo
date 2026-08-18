@@ -1,0 +1,344 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "contacted",
+   "entity_2": "her mentor for adoption advice",
+   "fact_text": "Caroline contacted her mentor for adoption advice on 13 October 2023 at 10:31 am.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is ready to be",
+   "entity_2": "a mom",
+   "fact_text": "Caroline is ready to be a mom.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "plans to",
+   "entity_2": "adopt and provide a safe loving home",
+   "fact_text": "Caroline plans to adopt and provide a safe, loving home for children who need it.",
+   "turn_ids": [
+    "D17:3"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "knows",
+   "entity_2": "a buddy who adopted last year",
+   "fact_text": "Melanie knows a buddy who adopted last year.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "considered",
+   "entity_2": "adopting",
+   "fact_text": "Melanie considered adopting after seeing her buddy's experience.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "offered help to",
+   "entity_2": "Melanie for adoption",
+   "fact_text": "Caroline offered help to Melanie if Melanie decides to adopt.",
+   "turn_ids": [
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "advised",
+   "entity_2": "Melanie to find an adoption agency or lawyer",
+   "fact_text": "Caroline advised Melanie to find an adoption agency or lawyer when starting the adoption process.",
+   "turn_ids": [
+    "D17:7"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "advised",
+   "entity_2": "Melanie to gather references financial info and medical checks",
+   "fact_text": "Caroline advised Melanie to gather references, financial information, and medical checks for the adoption process.",
+   "turn_ids": [
+    "D17:7"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "advised",
+   "entity_2": "Melanie to prepare emotionally for the adoption wait",
+   "fact_text": "Caroline advised Melanie to prepare emotionally for the adoption wait.",
+   "turn_ids": [
+    "D17:7"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "got hurt",
+   "entity_2": "last month",
+   "fact_text": "Melanie got hurt last month and had to take a break from pottery.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "uses",
+   "entity_2": "pottery for self-expression and peace",
+   "fact_text": "Melanie uses pottery for self-expression and peace.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "has been reading",
+   "entity_2": "the book Caroline recommended",
+   "fact_text": "Melanie has been reading the book Caroline recommended.",
+   "turn_ids": [
+    "D17:10"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "has been",
+   "entity_2": "painting to keep busy",
+   "fact_text": "Melanie has been painting to keep busy.",
+   "turn_ids": [
+    "D17:10"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "created",
+   "entity_2": "a painting inspired by sunsets",
+   "fact_text": "Melanie created a painting inspired by sunsets with colors that make her feel calm.",
+   "turn_ids": [
+    "D17:12"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "tried",
+   "entity_2": "abstract painting recently",
+   "fact_text": "Caroline tried abstract painting recently as a form of self-expression.",
+   "turn_ids": [
+    "D17:13"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "attended",
+   "entity_2": "a transgender poetry reading last Friday",
+   "fact_text": "Caroline attended a transgender poetry reading last Friday.",
+   "turn_ids": [
+    "D17:17",
+    "D17:19"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "saw",
+   "entity_2": "a sign that says trans lives matter",
+   "fact_text": "Caroline saw a sign that says 'trans lives matter' at the transgender poetry event.",
+   "turn_ids": [
+    "D17:19"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "drew",
+   "entity_2": "a drawing of a woman in a dress",
+   "fact_text": "Caroline drew a drawing of a woman in a dress that represents freedom and being real.",
+   "turn_ids": [
+    "D17:21",
+    "D17:23"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "interprets",
+   "entity_2": "the drawing as a nudge to embrace womanhood",
+   "fact_text": "Caroline interprets the drawing as a nudge to stay true to herself and embrace her womanhood.",
+   "turn_ids": [
+    "D17:23"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "painted",
+   "entity_2": "an abstract painting with a blue background",
+   "fact_text": "Melanie painted an abstract painting on a wall with a blue background.",
+   "turn_ids": [
+    "D17:14"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "intended to portray",
+   "entity_2": "tranquility with peaceful blue streaks",
+   "fact_text": "Melanie intended to portray tranquility with peaceful blue streaks in her abstract painting.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Blue",
+   "relation": "calms",
+   "entity_2": "Melanie",
+   "fact_text": "Blue calms Melanie.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "was inspired to make art by",
+   "entity_2": "the transgender poetry reading",
+   "fact_text": "The transgender poetry reading inspired Caroline to make art.",
+   "turn_ids": [
+    "D17:21"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "values",
+   "entity_2": "showing true selves",
+   "fact_text": "Melanie values showing true selves.",
+   "turn_ids": [
+    "D17:24"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "believes",
+   "entity_2": "life is about learning and growing",
+   "fact_text": "Caroline believes life is about learning and growing.",
+   "turn_ids": [
+    "D17:25"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "agrees",
+   "entity_2": "that life is about learning and exploring",
+   "fact_text": "Melanie agrees that life is about learning and exploring.",
+   "turn_ids": [
+    "D17:26"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  }
+ ]
+}

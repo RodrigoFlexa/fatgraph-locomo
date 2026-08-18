@@ -1,0 +1,190 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "encouraged",
+   "entity_2": "John to try new game genres",
+   "fact_text": "James encouraged John to try new game genres.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "played",
+   "entity_2": "strategy games",
+   "fact_text": "John has been playing strategy games.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "played",
+   "entity_2": "RPG games",
+   "fact_text": "John has been playing RPG games.",
+   "turn_ids": [
+    "D19:3",
+    "D19:5"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "usually played",
+   "entity_2": "shooters",
+   "fact_text": "John usually played shooters prior to trying other genres.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "planned to make competitions for",
+   "entity_2": "different game genres",
+   "fact_text": "John was thinking about making competitions for different game genres.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was hooked on",
+   "entity_2": "The Witcher 3",
+   "fact_text": "John was hooked on The Witcher 3.",
+   "turn_ids": [
+    "D19:5",
+    "D19:7"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "organized",
+   "entity_2": "his workplace",
+   "fact_text": "John organized his workplace (a gaming room with a computer and a gaming chair).",
+   "turn_ids": [
+    "D19:9"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "shared",
+   "entity_2": "an image of a man dressed in armor holding a sword",
+   "fact_text": "James shared an image of a man dressed in armor holding a sword.",
+   "turn_ids": [
+    "D19:8"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "three dogs",
+   "fact_text": "James has three dogs.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "attended",
+   "entity_2": "a beach outing with his three dogs",
+   "fact_text": "James attended a beach outing with his three dogs to have fun and bond with other dogkeepers.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "bonded with",
+   "entity_2": "other dogkeepers",
+   "fact_text": "James bonded with other dogkeepers at a beach outing.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "met",
+   "entity_2": "a woman named Samantha",
+   "fact_text": "James met a woman named Samantha at the beach outing.",
+   "turn_ids": [
+    "D19:14",
+    "D19:16"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "Samantha",
+   "relation": "left her phone number with",
+   "entity_2": "James",
+   "fact_text": "Samantha left her phone number with James.",
+   "turn_ids": [
+    "D19:14"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "planned to call",
+   "entity_2": "Samantha tomorrow",
+   "fact_text": "James planned to call Samantha tomorrow.",
+   "turn_ids": [
+    "D19:14",
+    "D19:16"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-10T09:16:00",
+   "date_raw": "9:16 am on 10 August, 2022"
+  }
+ ]
+}

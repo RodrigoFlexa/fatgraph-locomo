@@ -1,0 +1,111 @@
+{
+ "facts": [
+  {
+   "entity_1": "John's old area",
+   "relation": "was hit by",
+   "entity_2": "a nasty flood last week",
+   "fact_text": "John's old area was hit by a nasty flood last week.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "John's old area",
+   "relation": "had",
+   "entity_2": "poor infrastructure",
+   "fact_text": "John's old area had poor infrastructure.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "lots of homes in John's old area",
+   "relation": "were",
+   "entity_2": "ruined",
+   "fact_text": "Lots of homes in John's old area were ruined.",
+   "turn_ids": [
+    "D23:1"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is organizing",
+   "entity_2": "a meeting to discuss flood damage and potential solutions",
+   "fact_text": "John is organizing a meeting to discuss flood damage and potential solutions.",
+   "turn_ids": [
+    "D23:1",
+    "D23:3"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offered help to",
+   "entity_2": "John",
+   "fact_text": "Maria offered help to John regarding the flood damage in his old area.",
+   "turn_ids": [
+    "D23:2"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "will join",
+   "entity_2": "the meeting to discuss flood damage",
+   "fact_text": "Maria will join the meeting to discuss flood damage and contribute.",
+   "turn_ids": [
+    "D23:4"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to collaborate with",
+   "entity_2": "Maria",
+   "fact_text": "John plans to collaborate with Maria to improve their community.",
+   "turn_ids": [
+    "D23:3",
+    "D23:4",
+    "D23:6"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is going to",
+   "entity_2": "dinner with friends from the gym",
+   "fact_text": "Maria is going to dinner with friends from the gym.",
+   "turn_ids": [
+    "D23:14"
+   ],
+   "session_id": "S23",
+   "session_num": 23,
+   "timestamp": "2023-07-07T18:29:00",
+   "date_raw": "6:29 pm on 7 July, 2023"
+  }
+ ]
+}

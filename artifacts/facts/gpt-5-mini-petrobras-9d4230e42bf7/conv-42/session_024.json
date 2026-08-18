@@ -1,0 +1,176 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "revised and perfected",
+   "entity_2": "a recipe for her family",
+   "fact_text": "Joanna revised and perfected a recipe for her family.",
+   "turn_ids": [
+    "D24:2"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "felt stressed about",
+   "entity_2": "his tournament progress",
+   "fact_text": "Nate felt stressed about his tournament progress because of tough competitors.",
+   "turn_ids": [
+    "D24:3"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is cheered up by",
+   "entity_2": "his turtles",
+   "fact_text": "Nate is cheered up by his turtles.",
+   "turn_ids": [
+    "D24:3",
+    "D24:9"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "has",
+   "entity_2": "a stuffed animal dog from Nate",
+   "fact_text": "Joanna has a stuffed animal dog that Nate gave her.",
+   "turn_ids": [
+    "D24:4"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "named",
+   "entity_2": "the stuffed animal Tilly",
+   "fact_text": "Joanna named the stuffed animal Tilly.",
+   "turn_ids": [
+    "D24:4"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "used to have",
+   "entity_2": "a dog in Michigan named Tilly",
+   "fact_text": "Joanna used to have a dog in Michigan named Tilly.",
+   "turn_ids": [
+    "D24:6"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "became allergic to",
+   "entity_2": "the dog in Michigan named Tilly",
+   "fact_text": "Joanna became allergic to the dog in Michigan named Tilly.",
+   "turn_ids": [
+    "D24:6"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "had to get rid of",
+   "entity_2": "the dog in Michigan named Tilly",
+   "fact_text": "Joanna had to get rid of the dog in Michigan named Tilly because of the allergy.",
+   "turn_ids": [
+    "D24:6"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "the stuffed animal Tilly",
+   "relation": "helps",
+   "entity_2": "Joanna stay focused",
+   "fact_text": "The stuffed animal Tilly helps Joanna stay focused and brings her joy while she writes.",
+   "turn_ids": [
+    "D24:4",
+    "D24:8"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is practicing for",
+   "entity_2": "his next video game tournament",
+   "fact_text": "Nate is practicing for his next video game tournament.",
+   "turn_ids": [
+    "D24:11"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "received a rejection from",
+   "entity_2": "a production company",
+   "fact_text": "Joanna received another rejection from a production company.",
+   "turn_ids": [
+    "D24:12"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Joanna's submission",
+   "relation": "was sent to",
+   "entity_2": "a film contest",
+   "fact_text": "Joanna's submission was sent to a film contest.",
+   "turn_ids": [
+    "D24:13",
+    "D24:14"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "respects",
+   "entity_2": "Joanna's ability to bounce back after setbacks",
+   "fact_text": "Nate respects Joanna's ability to bounce back after setbacks.",
+   "turn_ids": [
+    "D24:15"
+   ],
+   "session_id": "S24",
+   "session_num": 24,
+   "timestamp": "2022-10-21T14:01:00",
+   "date_raw": "2:01 pm on 21 October, 2022"
+  }
+ ]
+}

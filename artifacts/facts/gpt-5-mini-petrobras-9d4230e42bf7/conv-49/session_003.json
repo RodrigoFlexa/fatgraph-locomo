@@ -1,0 +1,187 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "experienced",
+   "entity_2": "a sudden heart palpitation incident last week",
+   "fact_text": "Evan experienced a sudden heart palpitation incident last week.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan's shared image",
+   "relation": "depicted",
+   "entity_2": "a person holding a bottle of medicine",
+   "fact_text": "Evan's shared image depicted a person holding a bottle of medicine.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is trying",
+   "entity_2": "to eat healthier these days",
+   "fact_text": "Sam is trying to eat healthier these days.",
+   "turn_ids": [
+    "D3:2"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam's shared image",
+   "relation": "depicted",
+   "entity_2": "a plate of vegetables and a glass of milk",
+   "fact_text": "Sam's shared image depicted a plate of vegetables and a glass of milk.",
+   "turn_ids": [
+    "D3:2"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "is trying",
+   "entity_2": "to eat less processed food and sugary snacks",
+   "fact_text": "Evan is trying to eat less processed food and sugary snacks.",
+   "turn_ids": [
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "loves",
+   "entity_2": "ginger snaps",
+   "fact_text": "Evan loves ginger snaps.",
+   "turn_ids": [
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "has made no changes to",
+   "entity_2": "Sam's diet recently",
+   "fact_text": "Sam has made no changes to Sam's diet recently.",
+   "turn_ids": [
+    "D3:4"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "enjoys",
+   "entity_2": "soda and candy",
+   "fact_text": "Sam enjoys soda and candy.",
+   "turn_ids": [
+    "D3:4"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "planned to try",
+   "entity_2": "swapping soda for flavored seltzer water and trying dark chocolate",
+   "fact_text": "Sam planned to try swapping soda for flavored seltzer water and trying dark chocolate.",
+   "turn_ids": [
+    "D3:5",
+    "D3:6"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan's shared image",
+   "relation": "depicted",
+   "entity_2": "a man with a beard holding a dumbbell",
+   "fact_text": "Evan's shared image depicted a man with a beard holding a dumbbell.",
+   "turn_ids": [
+    "D3:13"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "offered to show",
+   "entity_2": "Sam some basic exercises",
+   "fact_text": "Evan offered to show Sam some basic exercises.",
+   "turn_ids": [
+    "D3:15"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "planned to get together with",
+   "entity_2": "Sam",
+   "fact_text": "Evan planned to get together with Sam.",
+   "turn_ids": [
+    "D3:15"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "encountered",
+   "entity_2": "broken self-checkout machines at the supermarket",
+   "fact_text": "Sam encountered broken self-checkout machines at the supermarket.",
+   "turn_ids": [
+    "D3:16"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "was in",
+   "entity_2": "a terrible mood after the supermarket incident",
+   "fact_text": "Sam was in a terrible mood after the supermarket incident with the broken self-checkout machines.",
+   "turn_ids": [
+    "D3:16"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-06T15:55:00",
+   "date_raw": "3:55 pm on 6 June, 2023"
+  }
+ ]
+}

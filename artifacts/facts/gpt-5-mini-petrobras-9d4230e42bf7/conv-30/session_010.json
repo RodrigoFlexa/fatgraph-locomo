@@ -1,0 +1,242 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jon",
+   "relation": "attended",
+   "entity_2": "a fair on 24 April 2023",
+   "fact_text": "Jon attended a fair on 24 April 2023.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "showed off",
+   "entity_2": "Jon's studio",
+   "fact_text": "Jon showed off Jon's studio at a fair on 24 April 2023.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "got",
+   "entity_2": "possible leads at the fair",
+   "fact_text": "Jon got possible leads at the fair on 24 April 2023.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "found",
+   "entity_2": "the fair stressful and great",
+   "fact_text": "Jon found the fair both stressful and great.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "learned about",
+   "entity_2": "Jon's business",
+   "fact_text": "Jon learned that Jon's business is no cakewalk.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "believes",
+   "entity_2": "confidence is important for Jon's business success",
+   "fact_text": "Jon believes that confidence is important for Jon's business's success.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "started",
+   "entity_2": "an online clothing store",
+   "fact_text": "Gina started an online clothing store.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "lost",
+   "entity_2": "her job",
+   "fact_text": "Gina lost her job before starting her online clothing store.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "started after",
+   "entity_2": "losing her job",
+   "fact_text": "Gina started the online clothing store after Gina lost her job.",
+   "turn_ids": [
+    "D10:2",
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "found",
+   "entity_2": "the journey of starting the store tough and rewarding",
+   "fact_text": "Gina found the journey of starting the online clothing store tough but very rewarding.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "stays motivated by",
+   "entity_2": "reminding herself of her successes and progress",
+   "fact_text": "Gina stays motivated by reminding herself of her successes and progress.",
+   "turn_ids": [
+    "D10:6",
+    "D10:8"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "gets help from",
+   "entity_2": "supportive people",
+   "fact_text": "Gina gets help from supportive people to stay motivated.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "stays motivated by",
+   "entity_2": "dancing",
+   "fact_text": "Gina stays motivated by dancing.",
+   "turn_ids": [
+    "D10:6"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "encourages",
+   "entity_2": "Jon",
+   "fact_text": "Gina encourages Jon and tells Jon to believe in himself and his abilities.",
+   "turn_ids": [
+    "D10:8",
+    "D10:10"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "believes",
+   "entity_2": "Jon is talented and passionate about dance",
+   "fact_text": "Gina believes Jon is talented and passionate about dance.",
+   "turn_ids": [
+    "D10:10"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "loves",
+   "entity_2": "dance",
+   "fact_text": "Jon loves dance.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "believes",
+   "entity_2": "his love of dance will keep his confidence up",
+   "fact_text": "Jon believes his love of dance will keep his confidence up.",
+   "turn_ids": [
+    "D10:9"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "will mutually support",
+   "entity_2": "Gina",
+   "fact_text": "Jon and Gina will keep supporting each other.",
+   "turn_ids": [
+    "D10:13",
+    "D10:14"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-04-25T11:24:00",
+   "date_raw": "11:24 am on 25 April, 2023"
+  }
+ ]
+}

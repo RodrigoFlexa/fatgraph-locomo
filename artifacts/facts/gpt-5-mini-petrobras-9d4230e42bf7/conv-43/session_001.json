@@ -1,0 +1,192 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "is working on",
+   "entity_2": "a Harry Potter fan project",
+   "fact_text": "Tim is working on a Harry Potter fan project.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "talked to",
+   "entity_2": "a friend who is a fan of Harry Potter",
+   "fact_text": "Tim talked to a friend who is a fan of Harry Potter last week.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "visited",
+   "entity_2": "a place in London related to Harry Potter",
+   "fact_text": "Tim visited a place in London related to Harry Potter a few years ago.",
+   "turn_ids": [
+    "D1:18"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "signed with",
+   "entity_2": "the Minnesota Wolves",
+   "fact_text": "John signed with the Minnesota Wolves.",
+   "turn_ids": [
+    "D1:3",
+    "D1:5"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plays as",
+   "entity_2": "a shooting guard",
+   "fact_text": "John plays as a shooting guard for the Minnesota Wolves.",
+   "turn_ids": [
+    "D1:6",
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has a goal to improve",
+   "entity_2": "his shooting percentage",
+   "fact_text": "John has a goal to improve his shooting percentage.",
+   "turn_ids": [
+    "D1:8",
+    "D1:9"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "found challenging",
+   "entity_2": "fitting into the Minnesota Wolves' style of play during pre-season",
+   "fact_text": "John found fitting into the Minnesota Wolves' style of play during pre-season challenging.",
+   "turn_ids": [
+    "D1:10",
+    "D1:11"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is enjoying",
+   "entity_2": "being with the Minnesota Wolves",
+   "fact_text": "John is enjoying being with the Minnesota Wolves and reported that the team has been really nice.",
+   "turn_ids": [
+    "D1:12",
+    "D1:13"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "likes talking about",
+   "entity_2": "his sneaker collection",
+   "fact_text": "John likes talking about his sneaker collection.",
+   "turn_ids": [
+    "D1:15"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "Tim's Harry Potter fan project",
+   "relation": "will discuss",
+   "entity_2": "characters, spells, and magical creatures",
+   "fact_text": "Tim's Harry Potter fan project will discuss characters, spells, and magical creatures.",
+   "turn_ids": [
+    "D1:16"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to visit",
+   "entity_2": "places related to Harry Potter",
+   "fact_text": "John plans to visit places related to Harry Potter someday and has put them on his to-do list.",
+   "turn_ids": [
+    "D1:17",
+    "D1:19"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a bunch of basketball jerseys laying on a bed",
+   "fact_text": "John shared a photo of a bunch of basketball jerseys laying on a bed.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of two men standing next to a basketball machine",
+   "fact_text": "John shared a photo of two men standing next to a basketball machine.",
+   "turn_ids": [
+    "D1:9"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "shared",
+   "entity_2": "a photo of a table with a bunch of books on it",
+   "fact_text": "Tim shared a photo of a table with a bunch of books on it.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-21T19:48:00",
+   "date_raw": "7:48 pm on 21 May, 2023"
+  }
+ ]
+}

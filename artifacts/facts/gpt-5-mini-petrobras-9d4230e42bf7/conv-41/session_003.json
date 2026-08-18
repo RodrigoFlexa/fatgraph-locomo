@@ -1,0 +1,226 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "joined",
+   "entity_2": "service-focused online group",
+   "fact_text": "John joined a service-focused online group last week.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels",
+   "entity_2": "a sense of connection and purpose with the service-focused online group",
+   "fact_text": "John feels a sense of connection and purpose with the service-focused online group.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "service-focused online group members",
+   "relation": "have",
+   "entity_2": "inspiring stories",
+   "fact_text": "Service-focused online group members have inspiring stories.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "service-focused online group",
+   "relation": "opened",
+   "entity_2": "John's eyes to new perspectives",
+   "fact_text": "The service-focused online group opened John's eyes to new perspectives.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John and the service-focused online group",
+   "relation": "met in person",
+   "entity_2": "some group members at events",
+   "fact_text": "John and the service-focused online group met some group members in person at events.",
+   "turn_ids": [
+    "D3:5"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John and the service-focused online group",
+   "relation": "visited",
+   "entity_2": "a homeless shelter to give out food and supplies",
+   "fact_text": "John and the service-focused online group visited a homeless shelter to give out food and supplies.",
+   "turn_ids": [
+    "D3:5"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "people at the homeless shelter",
+   "relation": "smiled when helped by",
+   "entity_2": "John and the service-focused online group",
+   "fact_text": "People at the homeless shelter smiled when helped by John and the service-focused online group.",
+   "turn_ids": [
+    "D3:5"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John and the service-focused online group",
+   "relation": "organized",
+   "entity_2": "a toy drive for kids in need",
+   "fact_text": "John and the service-focused online group organized a toy drive for kids in need.",
+   "turn_ids": [
+    "D3:5"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John and the service-focused online group",
+   "relation": "are brainstorming",
+   "entity_2": "projects to help underserved communities get access to education, mentorship, job training, and resume building",
+   "fact_text": "John and the service-focused online group are brainstorming projects to help underserved communities get access to education, mentorship, job training, and resume building.",
+   "turn_ids": [
+    "D3:7"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "said the goal is to",
+   "entity_2": "empower individuals in achieving their aspirations",
+   "fact_text": "John said the goal of the projects is to empower individuals in achieving their aspirations.",
+   "turn_ids": [
+    "D3:7"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "failed",
+   "entity_2": "the military aptitude test recently",
+   "fact_text": "John failed the military aptitude test recently.",
+   "turn_ids": [
+    "D3:11"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photo of a sunset over the ocean with a wave coming in",
+   "fact_text": "Maria shared a photo of a sunset over the ocean with a wave coming in.",
+   "turn_ids": [
+    "D3:12"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "took",
+   "entity_2": "the photo at the beach last month",
+   "fact_text": "Maria took the photo of a sunset over the ocean with a wave coming in at the beach last month.",
+   "turn_ids": [
+    "D3:14"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "offers support to",
+   "entity_2": "John",
+   "fact_text": "Maria offers support to John.",
+   "turn_ids": [
+    "D3:12"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "says nature's beauty reminds her to",
+   "entity_2": "slow down and enjoy small things",
+   "fact_text": "Maria says nature's beauty reminds her to slow down and enjoy small things.",
+   "turn_ids": [
+    "D3:12",
+    "D3:14"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "owned",
+   "entity_2": "a film camera as a kid",
+   "fact_text": "John owned a film camera as a kid.",
+   "turn_ids": [
+    "D3:15"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "took",
+   "entity_2": "plenty of beach photos as a kid",
+   "fact_text": "John took plenty of beach photos as a kid.",
+   "turn_ids": [
+    "D3:15"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-01-01T20:30:00",
+   "date_raw": "8:30 pm on 1 January, 2023"
+  }
+ ]
+}

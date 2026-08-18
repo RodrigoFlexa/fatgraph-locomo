@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "mentions",
+   "entity_2": "good",
+   "fact_text": "Caroline and good came up when Caroline was talking.",
+   "turn_ids": [
+    "D1:1"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "anything",
+   "fact_text": "caroline and anything came up when Melanie was talking.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "support",
+   "relation": "mentions",
+   "entity_2": "group",
+   "fact_text": "support and group came up when Caroline was talking.",
+   "turn_ids": [
+    "D1:3"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "cool",
+   "fact_text": "caroline and cool came up when Melanie was talking.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "painting",
+   "relation": "mentions",
+   "entity_2": "support",
+   "fact_text": "painting and support came up when Caroline was talking.",
+   "turn_ids": [
+    "D1:5"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "painting",
+   "relation": "mentions",
+   "entity_2": "cool",
+   "fact_text": "painting and cool came up when Melanie was talking.",
+   "turn_ids": [
+    "D1:6"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  },
+  {
+   "entity_1": "cool",
+   "relation": "mentions",
+   "entity_2": "guts",
+   "fact_text": "cool and guts came up when Melanie was talking.",
+   "turn_ids": [
+    "D1:8"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2023-05-08T13:56:00",
+   "date_raw": "1:56 pm on 8 May, 2023"
+  }
+ ]
+}

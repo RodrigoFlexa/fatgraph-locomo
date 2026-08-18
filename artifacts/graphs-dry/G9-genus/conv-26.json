@@ -1,0 +1,5548 @@
+{
+  "version": 1,
+  "counters": {
+    "half_edge": 260,
+    "edge": 130,
+    "vertex": 74
+  },
+  "vertices": {
+    "v1": {
+      "id": "v1",
+      "name": "Caroline",
+      "aliases": [],
+      "meta": {}
+    },
+    "v2": {
+      "id": "v2",
+      "name": "good",
+      "aliases": [],
+      "meta": {}
+    },
+    "v3": {
+      "id": "v3",
+      "name": "anything",
+      "aliases": [],
+      "meta": {}
+    },
+    "v4": {
+      "id": "v4",
+      "name": "support",
+      "aliases": [],
+      "meta": {}
+    },
+    "v5": {
+      "id": "v5",
+      "name": "group",
+      "aliases": [],
+      "meta": {}
+    },
+    "v6": {
+      "id": "v6",
+      "name": "cool",
+      "aliases": [],
+      "meta": {}
+    },
+    "v7": {
+      "id": "v7",
+      "name": "painting",
+      "aliases": [],
+      "meta": {}
+    },
+    "v8": {
+      "id": "v8",
+      "name": "guts",
+      "aliases": [],
+      "meta": {}
+    },
+    "v9": {
+      "id": "v9",
+      "name": "taking",
+      "aliases": [],
+      "meta": {}
+    },
+    "v10": {
+      "id": "v10",
+      "name": "great",
+      "aliases": [],
+      "meta": {}
+    },
+    "v11": {
+      "id": "v11",
+      "name": "family",
+      "aliases": [],
+      "meta": {}
+    },
+    "v12": {
+      "id": "v12",
+      "name": "tough",
+      "aliases": [],
+      "meta": {}
+    },
+    "v13": {
+      "id": "v13",
+      "name": "carving",
+      "aliases": [],
+      "meta": {}
+    },
+    "v14": {
+      "id": "v14",
+      "name": "kids",
+      "aliases": [],
+      "meta": {}
+    },
+    "v15": {
+      "id": "v15",
+      "name": "community",
+      "aliases": [],
+      "meta": {}
+    },
+    "v16": {
+      "id": "v16",
+      "name": "journey",
+      "aliases": [],
+      "meta": {}
+    },
+    "v17": {
+      "id": "v17",
+      "name": "love",
+      "aliases": [],
+      "meta": {}
+    },
+    "v18": {
+      "id": "v18",
+      "name": "keep",
+      "aliases": [],
+      "meta": {}
+    },
+    "v19": {
+      "id": "v19",
+      "name": "others",
+      "aliases": [],
+      "meta": {}
+    },
+    "v20": {
+      "id": "v20",
+      "name": "melanie",
+      "aliases": [],
+      "meta": {}
+    },
+    "v21": {
+      "id": "v21",
+      "name": "time",
+      "aliases": [],
+      "meta": {}
+    },
+    "v22": {
+      "id": "v22",
+      "name": "necklace",
+      "aliases": [],
+      "meta": {}
+    },
+    "v23": {
+      "id": "v23",
+      "name": "awesome",
+      "aliases": [],
+      "meta": {}
+    },
+    "v24": {
+      "id": "v24",
+      "name": "stuff",
+      "aliases": [],
+      "meta": {}
+    },
+    "v25": {
+      "id": "v25",
+      "name": "feel",
+      "aliases": [],
+      "meta": {}
+    },
+    "v26": {
+      "id": "v26",
+      "name": "excited",
+      "aliases": [],
+      "meta": {}
+    },
+    "v27": {
+      "id": "v27",
+      "name": "pottery",
+      "aliases": [],
+      "meta": {}
+    },
+    "v28": {
+      "id": "v28",
+      "name": "creative",
+      "aliases": [],
+      "meta": {}
+    },
+    "v29": {
+      "id": "v29",
+      "name": "bowl",
+      "aliases": [],
+      "meta": {}
+    },
+    "v30": {
+      "id": "v30",
+      "name": "black",
+      "aliases": [],
+      "meta": {}
+    },
+    "v31": {
+      "id": "v31",
+      "name": "lots",
+      "aliases": [],
+      "meta": {}
+    },
+    "v32": {
+      "id": "v32",
+      "name": "since",
+      "aliases": [],
+      "meta": {}
+    },
+    "v33": {
+      "id": "v33",
+      "name": "helping",
+      "aliases": [],
+      "meta": {}
+    },
+    "v34": {
+      "id": "v34",
+      "name": "image",
+      "aliases": [],
+      "meta": {}
+    },
+    "v35": {
+      "id": "v35",
+      "name": "books",
+      "aliases": [],
+      "meta": {}
+    },
+    "v36": {
+      "id": "v36",
+      "name": "important",
+      "aliases": [],
+      "meta": {}
+    },
+    "v37": {
+      "id": "v37",
+      "name": "help",
+      "aliases": [],
+      "meta": {}
+    },
+    "v38": {
+      "id": "v38",
+      "name": "mental",
+      "aliases": [],
+      "meta": {}
+    },
+    "v39": {
+      "id": "v39",
+      "name": "busy",
+      "aliases": [],
+      "meta": {}
+    },
+    "v40": {
+      "id": "v40",
+      "name": "shares",
+      "aliases": [],
+      "meta": {}
+    },
+    "v41": {
+      "id": "v41",
+      "name": "sounds",
+      "aliases": [],
+      "meta": {}
+    },
+    "v42": {
+      "id": "v42",
+      "name": "photo",
+      "aliases": [],
+      "meta": {}
+    },
+    "v43": {
+      "id": "v43",
+      "name": "amazing",
+      "aliases": [],
+      "meta": {}
+    },
+    "v44": {
+      "id": "v44",
+      "name": "nature",
+      "aliases": [],
+      "meta": {}
+    },
+    "v45": {
+      "id": "v45",
+      "name": "lgbtq",
+      "aliases": [],
+      "meta": {}
+    },
+    "v46": {
+      "id": "v46",
+      "name": "along",
+      "aliases": [],
+      "meta": {}
+    },
+    "v47": {
+      "id": "v47",
+      "name": "last",
+      "aliases": [],
+      "meta": {}
+    },
+    "v48": {
+      "id": "v48",
+      "name": "event",
+      "aliases": [],
+      "meta": {}
+    },
+    "v49": {
+      "id": "v49",
+      "name": "wanted",
+      "aliases": [],
+      "meta": {}
+    },
+    "v50": {
+      "id": "v50",
+      "name": "acceptance",
+      "aliases": [],
+      "meta": {}
+    },
+    "v51": {
+      "id": "v51",
+      "name": "something",
+      "aliases": [],
+      "meta": {}
+    },
+    "v52": {
+      "id": "v52",
+      "name": "people",
+      "aliases": [],
+      "meta": {}
+    },
+    "v53": {
+      "id": "v53",
+      "name": "happy",
+      "aliases": [],
+      "meta": {}
+    },
+    "v54": {
+      "id": "v54",
+      "name": "experience",
+      "aliases": [],
+      "meta": {}
+    },
+    "v55": {
+      "id": "v55",
+      "name": "source",
+      "aliases": [],
+      "meta": {}
+    },
+    "v56": {
+      "id": "v56",
+      "name": "does",
+      "aliases": [],
+      "meta": {}
+    },
+    "v57": {
+      "id": "v57",
+      "name": "guinea",
+      "aliases": [],
+      "meta": {}
+    },
+    "v58": {
+      "id": "v58",
+      "name": "horses",
+      "aliases": [],
+      "meta": {}
+    },
+    "v59": {
+      "id": "v59",
+      "name": "tried",
+      "aliases": [],
+      "meta": {}
+    },
+    "v60": {
+      "id": "v60",
+      "name": "colors",
+      "aliases": [],
+      "meta": {}
+    },
+    "v61": {
+      "id": "v61",
+      "name": "inspired",
+      "aliases": [],
+      "meta": {}
+    },
+    "v62": {
+      "id": "v62",
+      "name": "hear",
+      "aliases": [],
+      "meta": {}
+    },
+    "v63": {
+      "id": "v63",
+      "name": "playing",
+      "aliases": [],
+      "meta": {}
+    },
+    "v64": {
+      "id": "v64",
+      "name": "young",
+      "aliases": [],
+      "meta": {}
+    },
+    "v65": {
+      "id": "v65",
+      "name": "connecting",
+      "aliases": [],
+      "meta": {}
+    },
+    "v66": {
+      "id": "v66",
+      "name": "difference",
+      "aliases": [],
+      "meta": {}
+    },
+    "v67": {
+      "id": "v67",
+      "name": "story",
+      "aliases": [],
+      "meta": {}
+    },
+    "v68": {
+      "id": "v68",
+      "name": "long",
+      "aliases": [],
+      "meta": {}
+    },
+    "v69": {
+      "id": "v69",
+      "name": "adoption",
+      "aliases": [],
+      "meta": {}
+    },
+    "v70": {
+      "id": "v70",
+      "name": "process",
+      "aliases": [],
+      "meta": {}
+    },
+    "v71": {
+      "id": "v71",
+      "name": "accident",
+      "aliases": [],
+      "meta": {}
+    },
+    "v72": {
+      "id": "v72",
+      "name": "life",
+      "aliases": [],
+      "meta": {}
+    },
+    "v73": {
+      "id": "v73",
+      "name": "glad",
+      "aliases": [],
+      "meta": {}
+    },
+    "v74": {
+      "id": "v74",
+      "name": "scared",
+      "aliases": [],
+      "meta": {}
+    }
+  },
+  "half_edges": {
+    "h1": {
+      "id": "h1",
+      "vertex_id": "v1",
+      "text": "Caroline and good came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:1"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e1",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h2": {
+      "id": "h2",
+      "vertex_id": "v2",
+      "text": "Caroline and good came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:1"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e1",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h3": {
+      "id": "h3",
+      "vertex_id": "v1",
+      "text": "caroline and anything came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:2"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e2",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h4": {
+      "id": "h4",
+      "vertex_id": "v3",
+      "text": "caroline and anything came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:2"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e2",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h5": {
+      "id": "h5",
+      "vertex_id": "v4",
+      "text": "support and group came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:3"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e3",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h6": {
+      "id": "h6",
+      "vertex_id": "v5",
+      "text": "support and group came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:3"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e3",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h7": {
+      "id": "h7",
+      "vertex_id": "v1",
+      "text": "caroline and cool came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:4"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e4",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h8": {
+      "id": "h8",
+      "vertex_id": "v6",
+      "text": "caroline and cool came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:4"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e4",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h9": {
+      "id": "h9",
+      "vertex_id": "v7",
+      "text": "painting and support came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:5"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e5",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h10": {
+      "id": "h10",
+      "vertex_id": "v4",
+      "text": "painting and support came up when Caroline was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:5"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e5",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h11": {
+      "id": "h11",
+      "vertex_id": "v7",
+      "text": "painting and cool came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:6"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e6",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h12": {
+      "id": "h12",
+      "vertex_id": "v6",
+      "text": "painting and cool came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:6"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e6",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h13": {
+      "id": "h13",
+      "vertex_id": "v6",
+      "text": "cool and guts came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:8"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e7",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h14": {
+      "id": "h14",
+      "vertex_id": "v8",
+      "text": "cool and guts came up when Melanie was talking.",
+      "session_id": "S1",
+      "turn_ids": [
+        "D1:8"
+      ],
+      "timestamp": "2023-05-08T13:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e7",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h15": {
+      "id": "h15",
+      "vertex_id": "v1",
+      "text": "caroline and taking came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:1"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e8",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h16": {
+      "id": "h16",
+      "vertex_id": "v9",
+      "text": "caroline and taking came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:1"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e8",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h17": {
+      "id": "h17",
+      "vertex_id": "v10",
+      "text": "great and taking came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:2"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e9",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h18": {
+      "id": "h18",
+      "vertex_id": "v9",
+      "text": "great and taking came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:2"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e9",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h19": {
+      "id": "h19",
+      "vertex_id": "v1",
+      "text": "caroline and family came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:3"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e10",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h20": {
+      "id": "h20",
+      "vertex_id": "v11",
+      "text": "caroline and family came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:3"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e10",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h21": {
+      "id": "h21",
+      "vertex_id": "v12",
+      "text": "tough and carving came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:5"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e11",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h22": {
+      "id": "h22",
+      "vertex_id": "v13",
+      "text": "tough and carving came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:5"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e11",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h23": {
+      "id": "h23",
+      "vertex_id": "v11",
+      "text": "family and great came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:6"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e12",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h24": {
+      "id": "h24",
+      "vertex_id": "v10",
+      "text": "family and great came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:6"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e12",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h25": {
+      "id": "h25",
+      "vertex_id": "v14",
+      "text": "kids and caroline came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:7"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e13",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h26": {
+      "id": "h26",
+      "vertex_id": "v1",
+      "text": "kids and caroline came up when Melanie was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:7"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e13",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h27": {
+      "id": "h27",
+      "vertex_id": "v14",
+      "text": "kids and family came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:8"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e14",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h28": {
+      "id": "h28",
+      "vertex_id": "v11",
+      "text": "kids and family came up when Caroline was talking.",
+      "session_id": "S2",
+      "turn_ids": [
+        "D2:8"
+      ],
+      "timestamp": "2023-05-25T13:14:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e14",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h29": {
+      "id": "h29",
+      "vertex_id": "v10",
+      "text": "great and community came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:1"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e15",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h30": {
+      "id": "h30",
+      "vertex_id": "v15",
+      "text": "great and community came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:1"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e15",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h31": {
+      "id": "h31",
+      "vertex_id": "v1",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:2"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e16",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h32": {
+      "id": "h32",
+      "vertex_id": "v10",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:2"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e16",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h33": {
+      "id": "h33",
+      "vertex_id": "v15",
+      "text": "community and journey came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:3"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e17",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h34": {
+      "id": "h34",
+      "vertex_id": "v16",
+      "text": "community and journey came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:3"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e17",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h35": {
+      "id": "h35",
+      "vertex_id": "v1",
+      "text": "caroline and love came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:6"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e18",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h36": {
+      "id": "h36",
+      "vertex_id": "v17",
+      "text": "caroline and love came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:6"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e18",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h37": {
+      "id": "h37",
+      "vertex_id": "v18",
+      "text": "keep and others came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:7"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e19",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h38": {
+      "id": "h38",
+      "vertex_id": "v19",
+      "text": "keep and others came up when Caroline was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:7"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e19",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h39": {
+      "id": "h39",
+      "vertex_id": "v1",
+      "text": "caroline and journey came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:8"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e20",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h40": {
+      "id": "h40",
+      "vertex_id": "v16",
+      "text": "caroline and journey came up when Melanie was talking.",
+      "session_id": "S3",
+      "turn_ids": [
+        "D3:8"
+      ],
+      "timestamp": "2023-06-09T19:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e20",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h41": {
+      "id": "h41",
+      "vertex_id": "v20",
+      "text": "melanie and time came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:1"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e21",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h42": {
+      "id": "h42",
+      "vertex_id": "v21",
+      "text": "melanie and time came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:1"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e21",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h43": {
+      "id": "h43",
+      "vertex_id": "v1",
+      "text": "caroline and necklace came up when Melanie was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:2"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e22",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h44": {
+      "id": "h44",
+      "vertex_id": "v22",
+      "text": "caroline and necklace came up when Melanie was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:2"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e22",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h45": {
+      "id": "h45",
+      "vertex_id": "v20",
+      "text": "melanie and family came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:3"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e23",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h46": {
+      "id": "h46",
+      "vertex_id": "v11",
+      "text": "melanie and family came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:3"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e23",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h47": {
+      "id": "h47",
+      "vertex_id": "v1",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:4"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e24",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h48": {
+      "id": "h48",
+      "vertex_id": "v23",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:4"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e24",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h49": {
+      "id": "h49",
+      "vertex_id": "v20",
+      "text": "melanie and stuff came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:5"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e25",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h50": {
+      "id": "h50",
+      "vertex_id": "v24",
+      "text": "melanie and stuff came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:5"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e25",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h51": {
+      "id": "h51",
+      "vertex_id": "v11",
+      "text": "family and great came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:7"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e26",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h52": {
+      "id": "h52",
+      "vertex_id": "v10",
+      "text": "family and great came up when Caroline was talking.",
+      "session_id": "S4",
+      "turn_ids": [
+        "D4:7"
+      ],
+      "timestamp": "2023-06-27T10:37:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e26",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h53": {
+      "id": "h53",
+      "vertex_id": "v15",
+      "text": "community and feel came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:1"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e27",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h54": {
+      "id": "h54",
+      "vertex_id": "v25",
+      "text": "community and feel came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:1"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e27",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h55": {
+      "id": "h55",
+      "vertex_id": "v1",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:2"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e28",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h56": {
+      "id": "h56",
+      "vertex_id": "v10",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:2"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e28",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h57": {
+      "id": "h57",
+      "vertex_id": "v15",
+      "text": "community and excited came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:3"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e29",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h58": {
+      "id": "h58",
+      "vertex_id": "v26",
+      "text": "community and excited came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:3"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e29",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h59": {
+      "id": "h59",
+      "vertex_id": "v27",
+      "text": "pottery and creative came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:5"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e30",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h60": {
+      "id": "h60",
+      "vertex_id": "v28",
+      "text": "pottery and creative came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:5"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e30",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h61": {
+      "id": "h61",
+      "vertex_id": "v27",
+      "text": "pottery and awesome came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:6"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e31",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h62": {
+      "id": "h62",
+      "vertex_id": "v23",
+      "text": "pottery and awesome came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:6"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e31",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h63": {
+      "id": "h63",
+      "vertex_id": "v29",
+      "text": "bowl and black came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:7"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e32",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h64": {
+      "id": "h64",
+      "vertex_id": "v30",
+      "text": "bowl and black came up when Caroline was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:7"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e32",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h65": {
+      "id": "h65",
+      "vertex_id": "v1",
+      "text": "caroline and bowl came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:8"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e33",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h66": {
+      "id": "h66",
+      "vertex_id": "v29",
+      "text": "caroline and bowl came up when Melanie was talking.",
+      "session_id": "S5",
+      "turn_ids": [
+        "D5:8"
+      ],
+      "timestamp": "2023-07-03T13:36:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e33",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h67": {
+      "id": "h67",
+      "vertex_id": "v31",
+      "text": "lots and since came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:1"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e34",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h68": {
+      "id": "h68",
+      "vertex_id": "v32",
+      "text": "lots and since came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:1"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e34",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h69": {
+      "id": "h69",
+      "vertex_id": "v1",
+      "text": "caroline and anything came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:2"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e35",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h70": {
+      "id": "h70",
+      "vertex_id": "v3",
+      "text": "caroline and anything came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:2"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e35",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h71": {
+      "id": "h71",
+      "vertex_id": "v33",
+      "text": "helping and anything came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:3"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e36",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h72": {
+      "id": "h72",
+      "vertex_id": "v3",
+      "text": "helping and anything came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:3"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e36",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h73": {
+      "id": "h73",
+      "vertex_id": "v23",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:4"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e37",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h74": {
+      "id": "h74",
+      "vertex_id": "v1",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:4"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e37",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h75": {
+      "id": "h75",
+      "vertex_id": "v23",
+      "text": "awesome and great came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:5"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e38",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h76": {
+      "id": "h76",
+      "vertex_id": "v10",
+      "text": "awesome and great came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:5"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e38",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h77": {
+      "id": "h77",
+      "vertex_id": "v17",
+      "text": "love and cool came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:6"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e39",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h78": {
+      "id": "h78",
+      "vertex_id": "v6",
+      "text": "love and cool came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:6"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e39",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h79": {
+      "id": "h79",
+      "vertex_id": "v23",
+      "text": "awesome and image came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:7"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e40",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h80": {
+      "id": "h80",
+      "vertex_id": "v34",
+      "text": "awesome and image came up when Caroline was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:7"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e40",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h81": {
+      "id": "h81",
+      "vertex_id": "v10",
+      "text": "great and books came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:8"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e41",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h82": {
+      "id": "h82",
+      "vertex_id": "v35",
+      "text": "great and books came up when Melanie was talking.",
+      "session_id": "S6",
+      "turn_ids": [
+        "D6:8"
+      ],
+      "timestamp": "2023-07-06T20:18:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e41",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h83": {
+      "id": "h83",
+      "vertex_id": "v10",
+      "text": "great and important came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:1"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e42",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h84": {
+      "id": "h84",
+      "vertex_id": "v36",
+      "text": "great and important came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:1"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e42",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h85": {
+      "id": "h85",
+      "vertex_id": "v1",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:2"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e43",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h86": {
+      "id": "h86",
+      "vertex_id": "v10",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:2"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e43",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h87": {
+      "id": "h87",
+      "vertex_id": "v10",
+      "text": "great and help came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:3"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e44",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h88": {
+      "id": "h88",
+      "vertex_id": "v37",
+      "text": "great and help came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:3"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e44",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h89": {
+      "id": "h89",
+      "vertex_id": "v1",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:4"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e45",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h90": {
+      "id": "h90",
+      "vertex_id": "v23",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:4"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e45",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h91": {
+      "id": "h91",
+      "vertex_id": "v37",
+      "text": "help and mental came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:5"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e46",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h92": {
+      "id": "h92",
+      "vertex_id": "v38",
+      "text": "help and mental came up when Caroline was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:5"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e46",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h93": {
+      "id": "h93",
+      "vertex_id": "v1",
+      "text": "caroline and help came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:6"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e47",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h94": {
+      "id": "h94",
+      "vertex_id": "v37",
+      "text": "caroline and help came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:6"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e47",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h95": {
+      "id": "h95",
+      "vertex_id": "v1",
+      "text": "caroline and image came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:8"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e48",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h96": {
+      "id": "h96",
+      "vertex_id": "v34",
+      "text": "caroline and image came up when Melanie was talking.",
+      "session_id": "S7",
+      "turn_ids": [
+        "D7:8"
+      ],
+      "timestamp": "2023-07-12T16:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e48",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h97": {
+      "id": "h97",
+      "vertex_id": "v39",
+      "text": "busy and since came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:1"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e49",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h98": {
+      "id": "h98",
+      "vertex_id": "v32",
+      "text": "busy and since came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:1"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e49",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h99": {
+      "id": "h99",
+      "vertex_id": "v34",
+      "text": "image and shares came up when Melanie was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:2"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e50",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h100": {
+      "id": "h100",
+      "vertex_id": "v40",
+      "text": "image and shares came up when Melanie was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:2"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e50",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h101": {
+      "id": "h101",
+      "vertex_id": "v14",
+      "text": "kids and sounds came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:3"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e51",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h102": {
+      "id": "h102",
+      "vertex_id": "v41",
+      "text": "kids and sounds came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:3"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e51",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h103": {
+      "id": "h103",
+      "vertex_id": "v34",
+      "text": "image and photo came up when Melanie was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:4"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e52",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h104": {
+      "id": "h104",
+      "vertex_id": "v42",
+      "text": "image and photo came up when Melanie was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:4"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e52",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h105": {
+      "id": "h105",
+      "vertex_id": "v23",
+      "text": "awesome and kids came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:5"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e53",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h106": {
+      "id": "h106",
+      "vertex_id": "v14",
+      "text": "awesome and kids came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:5"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e53",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h107": {
+      "id": "h107",
+      "vertex_id": "v43",
+      "text": "amazing and nature came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:7"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e54",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h108": {
+      "id": "h108",
+      "vertex_id": "v44",
+      "text": "amazing and nature came up when Caroline was talking.",
+      "session_id": "S8",
+      "turn_ids": [
+        "D8:7"
+      ],
+      "timestamp": "2023-07-15T13:51:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e54",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h109": {
+      "id": "h109",
+      "vertex_id": "v1",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:1"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e55",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h110": {
+      "id": "h110",
+      "vertex_id": "v10",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:1"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e55",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h111": {
+      "id": "h111",
+      "vertex_id": "v10",
+      "text": "great and lgbtq came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:2"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e56",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h112": {
+      "id": "h112",
+      "vertex_id": "v45",
+      "text": "great and lgbtq came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:2"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e56",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h113": {
+      "id": "h113",
+      "vertex_id": "v10",
+      "text": "great and along came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:4"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e57",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h114": {
+      "id": "h114",
+      "vertex_id": "v46",
+      "text": "great and along came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:4"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e57",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h115": {
+      "id": "h115",
+      "vertex_id": "v1",
+      "text": "caroline and sounds came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:5"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e58",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h116": {
+      "id": "h116",
+      "vertex_id": "v41",
+      "text": "caroline and sounds came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:5"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e58",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h117": {
+      "id": "h117",
+      "vertex_id": "v10",
+      "text": "great and last came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:6"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e59",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h118": {
+      "id": "h118",
+      "vertex_id": "v47",
+      "text": "great and last came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:6"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e59",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h119": {
+      "id": "h119",
+      "vertex_id": "v1",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:7"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e60",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h120": {
+      "id": "h120",
+      "vertex_id": "v23",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:7"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e60",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h121": {
+      "id": "h121",
+      "vertex_id": "v23",
+      "text": "awesome and event came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:8"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e61",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h122": {
+      "id": "h122",
+      "vertex_id": "v48",
+      "text": "awesome and event came up when Caroline was talking.",
+      "session_id": "S9",
+      "turn_ids": [
+        "D9:8"
+      ],
+      "timestamp": "2023-07-17T14:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e61",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h123": {
+      "id": "h123",
+      "vertex_id": "v20",
+      "text": "melanie and wanted came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:1"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e62",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h124": {
+      "id": "h124",
+      "vertex_id": "v49",
+      "text": "melanie and wanted came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:1"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e62",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h125": {
+      "id": "h125",
+      "vertex_id": "v1",
+      "text": "caroline and last came up when Melanie was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:2"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e63",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h126": {
+      "id": "h126",
+      "vertex_id": "v47",
+      "text": "caroline and last came up when Melanie was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:2"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e63",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h127": {
+      "id": "h127",
+      "vertex_id": "v10",
+      "text": "great and group came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:3"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e64",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h128": {
+      "id": "h128",
+      "vertex_id": "v5",
+      "text": "great and group came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:3"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e64",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h129": {
+      "id": "h129",
+      "vertex_id": "v23",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:4"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e65",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h130": {
+      "id": "h130",
+      "vertex_id": "v1",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:4"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e65",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h131": {
+      "id": "h131",
+      "vertex_id": "v23",
+      "text": "awesome and group came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:5"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e66",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h132": {
+      "id": "h132",
+      "vertex_id": "v5",
+      "text": "awesome and group came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:5"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e66",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h133": {
+      "id": "h133",
+      "vertex_id": "v47",
+      "text": "last and love came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:7"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e67",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h134": {
+      "id": "h134",
+      "vertex_id": "v17",
+      "text": "last and love came up when Caroline was talking.",
+      "session_id": "S10",
+      "turn_ids": [
+        "D10:7"
+      ],
+      "timestamp": "2023-07-20T20:56:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e67",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h135": {
+      "id": "h135",
+      "vertex_id": "v23",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:1"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e68",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h136": {
+      "id": "h136",
+      "vertex_id": "v1",
+      "text": "awesome and caroline came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:1"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e68",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h137": {
+      "id": "h137",
+      "vertex_id": "v17",
+      "text": "love and awesome came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:2"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e69",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h138": {
+      "id": "h138",
+      "vertex_id": "v23",
+      "text": "love and awesome came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:2"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e69",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h139": {
+      "id": "h139",
+      "vertex_id": "v1",
+      "text": "caroline and amazing came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:3"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e70",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h140": {
+      "id": "h140",
+      "vertex_id": "v43",
+      "text": "caroline and amazing came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:3"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e70",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h141": {
+      "id": "h141",
+      "vertex_id": "v23",
+      "text": "awesome and community came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:5"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e71",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h142": {
+      "id": "h142",
+      "vertex_id": "v15",
+      "text": "awesome and community came up when Melanie was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:5"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e71",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h143": {
+      "id": "h143",
+      "vertex_id": "v17",
+      "text": "love and acceptance came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:6"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e72",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h144": {
+      "id": "h144",
+      "vertex_id": "v50",
+      "text": "love and acceptance came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:6"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e72",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h145": {
+      "id": "h145",
+      "vertex_id": "v50",
+      "text": "acceptance and image came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:8"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e73",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h146": {
+      "id": "h146",
+      "vertex_id": "v34",
+      "text": "acceptance and image came up when Caroline was talking.",
+      "session_id": "S11",
+      "turn_ids": [
+        "D11:8"
+      ],
+      "timestamp": "2023-08-14T14:24:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e73",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h147": {
+      "id": "h147",
+      "vertex_id": "v51",
+      "text": "something and people came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:1"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e74",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h148": {
+      "id": "h148",
+      "vertex_id": "v52",
+      "text": "something and people came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:1"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e74",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h149": {
+      "id": "h149",
+      "vertex_id": "v1",
+      "text": "caroline and people came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:2"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e75",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h150": {
+      "id": "h150",
+      "vertex_id": "v52",
+      "text": "caroline and people came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:2"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e75",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h151": {
+      "id": "h151",
+      "vertex_id": "v51",
+      "text": "something and happy came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:3"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e76",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h152": {
+      "id": "h152",
+      "vertex_id": "v53",
+      "text": "something and happy came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:3"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e76",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h153": {
+      "id": "h153",
+      "vertex_id": "v10",
+      "text": "great and experience came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:4"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e77",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h154": {
+      "id": "h154",
+      "vertex_id": "v54",
+      "text": "great and experience came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:4"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e77",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h155": {
+      "id": "h155",
+      "vertex_id": "v23",
+      "text": "awesome and bowl came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:5"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e78",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h156": {
+      "id": "h156",
+      "vertex_id": "v29",
+      "text": "awesome and bowl came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:5"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e78",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h157": {
+      "id": "h157",
+      "vertex_id": "v1",
+      "text": "caroline and something came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:6"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e79",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h158": {
+      "id": "h158",
+      "vertex_id": "v51",
+      "text": "caroline and something came up when Melanie was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:6"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e79",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h159": {
+      "id": "h159",
+      "vertex_id": "v55",
+      "text": "source and amazing came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:7"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e80",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h160": {
+      "id": "h160",
+      "vertex_id": "v43",
+      "text": "source and amazing came up when Caroline was talking.",
+      "session_id": "S12",
+      "turn_ids": [
+        "D12:7"
+      ],
+      "timestamp": "2023-08-17T13:50:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e80",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h161": {
+      "id": "h161",
+      "vertex_id": "v10",
+      "text": "great and image came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:1"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e81",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h162": {
+      "id": "h162",
+      "vertex_id": "v34",
+      "text": "great and image came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:1"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e81",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h163": {
+      "id": "h163",
+      "vertex_id": "v1",
+      "text": "caroline and does came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:2"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e82",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h164": {
+      "id": "h164",
+      "vertex_id": "v56",
+      "text": "caroline and does came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:2"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e82",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h165": {
+      "id": "h165",
+      "vertex_id": "v10",
+      "text": "great and guinea came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:3"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e83",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h166": {
+      "id": "h166",
+      "vertex_id": "v57",
+      "text": "great and guinea came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:3"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e83",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h167": {
+      "id": "h167",
+      "vertex_id": "v34",
+      "text": "image and shares came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:4"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e84",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h168": {
+      "id": "h168",
+      "vertex_id": "v40",
+      "text": "image and shares came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:4"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e84",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h169": {
+      "id": "h169",
+      "vertex_id": "v34",
+      "text": "image and shares came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:5"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e85",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h170": {
+      "id": "h170",
+      "vertex_id": "v40",
+      "text": "image and shares came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:5"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e85",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h171": {
+      "id": "h171",
+      "vertex_id": "v17",
+      "text": "love and horses came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:7"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e86",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h172": {
+      "id": "h172",
+      "vertex_id": "v58",
+      "text": "love and horses came up when Caroline was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:7"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e86",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h173": {
+      "id": "h173",
+      "vertex_id": "v10",
+      "text": "great and image came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:8"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e87",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h174": {
+      "id": "h174",
+      "vertex_id": "v34",
+      "text": "great and image came up when Melanie was talking.",
+      "session_id": "S13",
+      "turn_ids": [
+        "D13:8"
+      ],
+      "timestamp": "2023-08-23T15:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e87",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h175": {
+      "id": "h175",
+      "vertex_id": "v34",
+      "text": "image and photo came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:1"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e88",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h176": {
+      "id": "h176",
+      "vertex_id": "v42",
+      "text": "image and photo came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:1"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e88",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h177": {
+      "id": "h177",
+      "vertex_id": "v34",
+      "text": "image and photo came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:2"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e89",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h178": {
+      "id": "h178",
+      "vertex_id": "v42",
+      "text": "image and photo came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:2"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e89",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h179": {
+      "id": "h179",
+      "vertex_id": "v23",
+      "text": "awesome and melanie came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:3"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e90",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h180": {
+      "id": "h180",
+      "vertex_id": "v20",
+      "text": "awesome and melanie came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:3"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e90",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h181": {
+      "id": "h181",
+      "vertex_id": "v17",
+      "text": "love and tried came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:4"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e91",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h182": {
+      "id": "h182",
+      "vertex_id": "v59",
+      "text": "love and tried came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:4"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e91",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h183": {
+      "id": "h183",
+      "vertex_id": "v1",
+      "text": "caroline and amazing came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:6"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e92",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h184": {
+      "id": "h184",
+      "vertex_id": "v43",
+      "text": "caroline and amazing came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:6"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e92",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h185": {
+      "id": "h185",
+      "vertex_id": "v43",
+      "text": "amazing and colors came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:7"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e93",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h186": {
+      "id": "h186",
+      "vertex_id": "v60",
+      "text": "amazing and colors came up when Caroline was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:7"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e93",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h187": {
+      "id": "h187",
+      "vertex_id": "v25",
+      "text": "feel and inspired came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:8"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e94",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h188": {
+      "id": "h188",
+      "vertex_id": "v61",
+      "text": "feel and inspired came up when Melanie was talking.",
+      "session_id": "S14",
+      "turn_ids": [
+        "D14:8"
+      ],
+      "timestamp": "2023-08-25T13:33:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e94",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h189": {
+      "id": "h189",
+      "vertex_id": "v10",
+      "text": "great and hear came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:1"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e95",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h190": {
+      "id": "h190",
+      "vertex_id": "v62",
+      "text": "great and hear came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:1"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e95",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h191": {
+      "id": "h191",
+      "vertex_id": "v63",
+      "text": "playing and caroline came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:2"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e96",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h192": {
+      "id": "h192",
+      "vertex_id": "v1",
+      "text": "playing and caroline came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:2"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e96",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h193": {
+      "id": "h193",
+      "vertex_id": "v14",
+      "text": "kids and people came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:3"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e97",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h194": {
+      "id": "h194",
+      "vertex_id": "v52",
+      "text": "kids and people came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:3"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e97",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h195": {
+      "id": "h195",
+      "vertex_id": "v10",
+      "text": "great and caroline came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:4"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e98",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h196": {
+      "id": "h196",
+      "vertex_id": "v1",
+      "text": "great and caroline came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:4"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e98",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h197": {
+      "id": "h197",
+      "vertex_id": "v52",
+      "text": "people and young came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:5"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e99",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h198": {
+      "id": "h198",
+      "vertex_id": "v64",
+      "text": "people and young came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:5"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e99",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h199": {
+      "id": "h199",
+      "vertex_id": "v64",
+      "text": "young and connecting came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:6"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e100",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h200": {
+      "id": "h200",
+      "vertex_id": "v65",
+      "text": "young and connecting came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:6"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e100",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h201": {
+      "id": "h201",
+      "vertex_id": "v66",
+      "text": "difference and story came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:7"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e101",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h202": {
+      "id": "h202",
+      "vertex_id": "v67",
+      "text": "difference and story came up when Caroline was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:7"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e101",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h203": {
+      "id": "h203",
+      "vertex_id": "v10",
+      "text": "great and difference came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:8"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e102",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h204": {
+      "id": "h204",
+      "vertex_id": "v66",
+      "text": "great and difference came up when Melanie was talking.",
+      "session_id": "S15",
+      "turn_ids": [
+        "D15:8"
+      ],
+      "timestamp": "2023-08-28T15:19:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e102",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h205": {
+      "id": "h205",
+      "vertex_id": "v34",
+      "text": "image and photo came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:1"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e103",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h206": {
+      "id": "h206",
+      "vertex_id": "v42",
+      "text": "image and photo came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:1"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e103",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h207": {
+      "id": "h207",
+      "vertex_id": "v1",
+      "text": "caroline and image came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:2"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e104",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h208": {
+      "id": "h208",
+      "vertex_id": "v34",
+      "text": "caroline and image came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:2"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e104",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h209": {
+      "id": "h209",
+      "vertex_id": "v17",
+      "text": "love and amazing came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:3"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e105",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h210": {
+      "id": "h210",
+      "vertex_id": "v43",
+      "text": "love and amazing came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:3"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e105",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h211": {
+      "id": "h211",
+      "vertex_id": "v1",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:4"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e106",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h212": {
+      "id": "h212",
+      "vertex_id": "v23",
+      "text": "caroline and awesome came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:4"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e106",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h213": {
+      "id": "h213",
+      "vertex_id": "v7",
+      "text": "painting and image came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:5"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e107",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h214": {
+      "id": "h214",
+      "vertex_id": "v34",
+      "text": "painting and image came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:5"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e107",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h215": {
+      "id": "h215",
+      "vertex_id": "v17",
+      "text": "love and caroline came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:6"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e108",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h216": {
+      "id": "h216",
+      "vertex_id": "v1",
+      "text": "love and caroline came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:6"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e108",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h217": {
+      "id": "h217",
+      "vertex_id": "v43",
+      "text": "amazing and long came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:7"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e109",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h218": {
+      "id": "h218",
+      "vertex_id": "v68",
+      "text": "amazing and long came up when Caroline was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:7"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e109",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h219": {
+      "id": "h219",
+      "vertex_id": "v7",
+      "text": "painting and image came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:8"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e110",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h220": {
+      "id": "h220",
+      "vertex_id": "v34",
+      "text": "painting and image came up when Melanie was talking.",
+      "session_id": "S16",
+      "turn_ids": [
+        "D16:8"
+      ],
+      "timestamp": "2023-09-13T00:09:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e110",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h221": {
+      "id": "h221",
+      "vertex_id": "v10",
+      "text": "great and love came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:1"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e111",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h222": {
+      "id": "h222",
+      "vertex_id": "v17",
+      "text": "great and love came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:1"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e111",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h223": {
+      "id": "h223",
+      "vertex_id": "v1",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:2"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e112",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h224": {
+      "id": "h224",
+      "vertex_id": "v10",
+      "text": "caroline and great came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:2"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e112",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h225": {
+      "id": "h225",
+      "vertex_id": "v20",
+      "text": "melanie and adoption came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:3"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e113",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h226": {
+      "id": "h226",
+      "vertex_id": "v69",
+      "text": "melanie and adoption came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:3"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e113",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h227": {
+      "id": "h227",
+      "vertex_id": "v47",
+      "text": "last and process came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:4"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e114",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h228": {
+      "id": "h228",
+      "vertex_id": "v70",
+      "text": "last and process came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:4"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e114",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h229": {
+      "id": "h229",
+      "vertex_id": "v1",
+      "text": "caroline and help came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:6"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e115",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h230": {
+      "id": "h230",
+      "vertex_id": "v37",
+      "text": "caroline and help came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:6"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e115",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h231": {
+      "id": "h231",
+      "vertex_id": "v37",
+      "text": "help and adoption came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:7"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e116",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h232": {
+      "id": "h232",
+      "vertex_id": "v69",
+      "text": "help and adoption came up when Caroline was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:7"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e116",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h233": {
+      "id": "h233",
+      "vertex_id": "v1",
+      "text": "caroline and last came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:8"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e117",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h234": {
+      "id": "h234",
+      "vertex_id": "v47",
+      "text": "caroline and last came up when Melanie was talking.",
+      "session_id": "S17",
+      "turn_ids": [
+        "D17:8"
+      ],
+      "timestamp": "2023-10-13T10:31:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e117",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h235": {
+      "id": "h235",
+      "vertex_id": "v1",
+      "text": "caroline and accident came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:1"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e118",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h236": {
+      "id": "h236",
+      "vertex_id": "v71",
+      "text": "caroline and accident came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:1"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e118",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h237": {
+      "id": "h237",
+      "vertex_id": "v71",
+      "text": "accident and life came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:2"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e119",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h238": {
+      "id": "h238",
+      "vertex_id": "v72",
+      "text": "accident and life came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:2"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e119",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h239": {
+      "id": "h239",
+      "vertex_id": "v71",
+      "text": "accident and family came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:3"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e120",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h240": {
+      "id": "h240",
+      "vertex_id": "v11",
+      "text": "accident and family came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:3"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e120",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h241": {
+      "id": "h241",
+      "vertex_id": "v20",
+      "text": "melanie and glad came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:4"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e121",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h242": {
+      "id": "h242",
+      "vertex_id": "v73",
+      "text": "melanie and glad came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:4"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e121",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h243": {
+      "id": "h243",
+      "vertex_id": "v71",
+      "text": "accident and kids came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:6"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e122",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h244": {
+      "id": "h244",
+      "vertex_id": "v14",
+      "text": "accident and kids came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:6"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e122",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h245": {
+      "id": "h245",
+      "vertex_id": "v14",
+      "text": "kids and scared came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:7"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e123",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h246": {
+      "id": "h246",
+      "vertex_id": "v74",
+      "text": "kids and scared came up when Melanie was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:7"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e123",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h247": {
+      "id": "h247",
+      "vertex_id": "v14",
+      "text": "kids and amazing came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:8"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e124",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h248": {
+      "id": "h248",
+      "vertex_id": "v43",
+      "text": "kids and amazing came up when Caroline was talking.",
+      "session_id": "S18",
+      "turn_ids": [
+        "D18:8"
+      ],
+      "timestamp": "2023-10-20T18:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e124",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h249": {
+      "id": "h249",
+      "vertex_id": "v11",
+      "text": "family and melanie came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:1"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e125",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h250": {
+      "id": "h250",
+      "vertex_id": "v20",
+      "text": "family and melanie came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:1"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e125",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h251": {
+      "id": "h251",
+      "vertex_id": "v1",
+      "text": "caroline and family came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:2"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e126",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h252": {
+      "id": "h252",
+      "vertex_id": "v11",
+      "text": "caroline and family came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:2"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e126",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h253": {
+      "id": "h253",
+      "vertex_id": "v20",
+      "text": "melanie and acceptance came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:5"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e127",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h254": {
+      "id": "h254",
+      "vertex_id": "v50",
+      "text": "melanie and acceptance came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:5"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e127",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h255": {
+      "id": "h255",
+      "vertex_id": "v1",
+      "text": "caroline and helping came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:6"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e128",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h256": {
+      "id": "h256",
+      "vertex_id": "v33",
+      "text": "caroline and helping came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:6"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e128",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h257": {
+      "id": "h257",
+      "vertex_id": "v4",
+      "text": "support and love came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:7"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e129",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h258": {
+      "id": "h258",
+      "vertex_id": "v17",
+      "text": "support and love came up when Caroline was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:7"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e129",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h259": {
+      "id": "h259",
+      "vertex_id": "v1",
+      "text": "caroline and acceptance came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:8"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e130",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    },
+    "h260": {
+      "id": "h260",
+      "vertex_id": "v50",
+      "text": "caroline and acceptance came up when Melanie was talking.",
+      "session_id": "S19",
+      "turn_ids": [
+        "D19:8"
+      ],
+      "timestamp": "2023-10-22T09:55:00",
+      "state": "emergente",
+      "level": 1,
+      "edge_id": "e130",
+      "shadowed": false,
+      "children": [],
+      "provenance": [],
+      "meta": {}
+    }
+  },
+  "alpha": {
+    "h1": "h2",
+    "h2": "h1",
+    "h3": "h4",
+    "h4": "h3",
+    "h5": "h6",
+    "h6": "h5",
+    "h7": "h8",
+    "h8": "h7",
+    "h9": "h10",
+    "h10": "h9",
+    "h11": "h12",
+    "h12": "h11",
+    "h13": "h14",
+    "h14": "h13",
+    "h15": "h16",
+    "h16": "h15",
+    "h17": "h18",
+    "h18": "h17",
+    "h19": "h20",
+    "h20": "h19",
+    "h21": "h22",
+    "h22": "h21",
+    "h23": "h24",
+    "h24": "h23",
+    "h25": "h26",
+    "h26": "h25",
+    "h27": "h28",
+    "h28": "h27",
+    "h29": "h30",
+    "h30": "h29",
+    "h31": "h32",
+    "h32": "h31",
+    "h33": "h34",
+    "h34": "h33",
+    "h35": "h36",
+    "h36": "h35",
+    "h37": "h38",
+    "h38": "h37",
+    "h39": "h40",
+    "h40": "h39",
+    "h41": "h42",
+    "h42": "h41",
+    "h43": "h44",
+    "h44": "h43",
+    "h45": "h46",
+    "h46": "h45",
+    "h47": "h48",
+    "h48": "h47",
+    "h49": "h50",
+    "h50": "h49",
+    "h51": "h52",
+    "h52": "h51",
+    "h53": "h54",
+    "h54": "h53",
+    "h55": "h56",
+    "h56": "h55",
+    "h57": "h58",
+    "h58": "h57",
+    "h59": "h60",
+    "h60": "h59",
+    "h61": "h62",
+    "h62": "h61",
+    "h63": "h64",
+    "h64": "h63",
+    "h65": "h66",
+    "h66": "h65",
+    "h67": "h68",
+    "h68": "h67",
+    "h69": "h70",
+    "h70": "h69",
+    "h71": "h72",
+    "h72": "h71",
+    "h73": "h74",
+    "h74": "h73",
+    "h75": "h76",
+    "h76": "h75",
+    "h77": "h78",
+    "h78": "h77",
+    "h79": "h80",
+    "h80": "h79",
+    "h81": "h82",
+    "h82": "h81",
+    "h83": "h84",
+    "h84": "h83",
+    "h85": "h86",
+    "h86": "h85",
+    "h87": "h88",
+    "h88": "h87",
+    "h89": "h90",
+    "h90": "h89",
+    "h91": "h92",
+    "h92": "h91",
+    "h93": "h94",
+    "h94": "h93",
+    "h95": "h96",
+    "h96": "h95",
+    "h97": "h98",
+    "h98": "h97",
+    "h99": "h100",
+    "h100": "h99",
+    "h101": "h102",
+    "h102": "h101",
+    "h103": "h104",
+    "h104": "h103",
+    "h105": "h106",
+    "h106": "h105",
+    "h107": "h108",
+    "h108": "h107",
+    "h109": "h110",
+    "h110": "h109",
+    "h111": "h112",
+    "h112": "h111",
+    "h113": "h114",
+    "h114": "h113",
+    "h115": "h116",
+    "h116": "h115",
+    "h117": "h118",
+    "h118": "h117",
+    "h119": "h120",
+    "h120": "h119",
+    "h121": "h122",
+    "h122": "h121",
+    "h123": "h124",
+    "h124": "h123",
+    "h125": "h126",
+    "h126": "h125",
+    "h127": "h128",
+    "h128": "h127",
+    "h129": "h130",
+    "h130": "h129",
+    "h131": "h132",
+    "h132": "h131",
+    "h133": "h134",
+    "h134": "h133",
+    "h135": "h136",
+    "h136": "h135",
+    "h137": "h138",
+    "h138": "h137",
+    "h139": "h140",
+    "h140": "h139",
+    "h141": "h142",
+    "h142": "h141",
+    "h143": "h144",
+    "h144": "h143",
+    "h145": "h146",
+    "h146": "h145",
+    "h147": "h148",
+    "h148": "h147",
+    "h149": "h150",
+    "h150": "h149",
+    "h151": "h152",
+    "h152": "h151",
+    "h153": "h154",
+    "h154": "h153",
+    "h155": "h156",
+    "h156": "h155",
+    "h157": "h158",
+    "h158": "h157",
+    "h159": "h160",
+    "h160": "h159",
+    "h161": "h162",
+    "h162": "h161",
+    "h163": "h164",
+    "h164": "h163",
+    "h165": "h166",
+    "h166": "h165",
+    "h167": "h168",
+    "h168": "h167",
+    "h169": "h170",
+    "h170": "h169",
+    "h171": "h172",
+    "h172": "h171",
+    "h173": "h174",
+    "h174": "h173",
+    "h175": "h176",
+    "h176": "h175",
+    "h177": "h178",
+    "h178": "h177",
+    "h179": "h180",
+    "h180": "h179",
+    "h181": "h182",
+    "h182": "h181",
+    "h183": "h184",
+    "h184": "h183",
+    "h185": "h186",
+    "h186": "h185",
+    "h187": "h188",
+    "h188": "h187",
+    "h189": "h190",
+    "h190": "h189",
+    "h191": "h192",
+    "h192": "h191",
+    "h193": "h194",
+    "h194": "h193",
+    "h195": "h196",
+    "h196": "h195",
+    "h197": "h198",
+    "h198": "h197",
+    "h199": "h200",
+    "h200": "h199",
+    "h201": "h202",
+    "h202": "h201",
+    "h203": "h204",
+    "h204": "h203",
+    "h205": "h206",
+    "h206": "h205",
+    "h207": "h208",
+    "h208": "h207",
+    "h209": "h210",
+    "h210": "h209",
+    "h211": "h212",
+    "h212": "h211",
+    "h213": "h214",
+    "h214": "h213",
+    "h215": "h216",
+    "h216": "h215",
+    "h217": "h218",
+    "h218": "h217",
+    "h219": "h220",
+    "h220": "h219",
+    "h221": "h222",
+    "h222": "h221",
+    "h223": "h224",
+    "h224": "h223",
+    "h225": "h226",
+    "h226": "h225",
+    "h227": "h228",
+    "h228": "h227",
+    "h229": "h230",
+    "h230": "h229",
+    "h231": "h232",
+    "h232": "h231",
+    "h233": "h234",
+    "h234": "h233",
+    "h235": "h236",
+    "h236": "h235",
+    "h237": "h238",
+    "h238": "h237",
+    "h239": "h240",
+    "h240": "h239",
+    "h241": "h242",
+    "h242": "h241",
+    "h243": "h244",
+    "h244": "h243",
+    "h245": "h246",
+    "h246": "h245",
+    "h247": "h248",
+    "h248": "h247",
+    "h249": "h250",
+    "h250": "h249",
+    "h251": "h252",
+    "h252": "h251",
+    "h253": "h254",
+    "h254": "h253",
+    "h255": "h256",
+    "h256": "h255",
+    "h257": "h258",
+    "h258": "h257",
+    "h259": "h260",
+    "h260": "h259"
+  },
+  "sigma": {
+    "v1": [
+      "h85",
+      "h3",
+      "h31",
+      "h15",
+      "h223",
+      "h26",
+      "h7",
+      "h35",
+      "h39",
+      "h43",
+      "h47",
+      "h109",
+      "h65",
+      "h69",
+      "h74",
+      "h1",
+      "h183",
+      "h233",
+      "h95",
+      "h55",
+      "h119",
+      "h115",
+      "h125",
+      "h130",
+      "h136",
+      "h139",
+      "h149",
+      "h157",
+      "h163",
+      "h89",
+      "h192",
+      "h196",
+      "h207",
+      "h211",
+      "h216",
+      "h19",
+      "h229",
+      "h93",
+      "h235",
+      "h251",
+      "h255",
+      "h259"
+    ],
+    "v2": [
+      "h2"
+    ],
+    "v3": [
+      "h4",
+      "h70",
+      "h72"
+    ],
+    "v4": [
+      "h5",
+      "h10",
+      "h257"
+    ],
+    "v5": [
+      "h6",
+      "h128",
+      "h132"
+    ],
+    "v6": [
+      "h8",
+      "h12",
+      "h13",
+      "h78"
+    ],
+    "v7": [
+      "h9",
+      "h11",
+      "h213",
+      "h219"
+    ],
+    "v8": [
+      "h14"
+    ],
+    "v9": [
+      "h16",
+      "h18"
+    ],
+    "v10": [
+      "h17",
+      "h24",
+      "h29",
+      "h32",
+      "h52",
+      "h56",
+      "h76",
+      "h81",
+      "h83",
+      "h86",
+      "h87",
+      "h110",
+      "h111",
+      "h113",
+      "h117",
+      "h127",
+      "h153",
+      "h161",
+      "h165",
+      "h173",
+      "h189",
+      "h195",
+      "h203",
+      "h221",
+      "h224"
+    ],
+    "v11": [
+      "h20",
+      "h23",
+      "h28",
+      "h46",
+      "h51",
+      "h240",
+      "h249",
+      "h252"
+    ],
+    "v12": [
+      "h21"
+    ],
+    "v13": [
+      "h22"
+    ],
+    "v14": [
+      "h25",
+      "h27",
+      "h101",
+      "h106",
+      "h193",
+      "h244",
+      "h245",
+      "h247"
+    ],
+    "v15": [
+      "h30",
+      "h33",
+      "h53",
+      "h57",
+      "h142"
+    ],
+    "v16": [
+      "h34",
+      "h40"
+    ],
+    "v17": [
+      "h36",
+      "h77",
+      "h134",
+      "h137",
+      "h143",
+      "h171",
+      "h181",
+      "h209",
+      "h215",
+      "h222",
+      "h258"
+    ],
+    "v18": [
+      "h37"
+    ],
+    "v19": [
+      "h38"
+    ],
+    "v20": [
+      "h41",
+      "h45",
+      "h49",
+      "h123",
+      "h180",
+      "h225",
+      "h241",
+      "h250",
+      "h253"
+    ],
+    "v21": [
+      "h42"
+    ],
+    "v22": [
+      "h44"
+    ],
+    "v23": [
+      "h48",
+      "h62",
+      "h73",
+      "h75",
+      "h79",
+      "h90",
+      "h105",
+      "h120",
+      "h121",
+      "h129",
+      "h131",
+      "h135",
+      "h138",
+      "h141",
+      "h155",
+      "h179",
+      "h212"
+    ],
+    "v24": [
+      "h50"
+    ],
+    "v25": [
+      "h54",
+      "h187"
+    ],
+    "v26": [
+      "h58"
+    ],
+    "v27": [
+      "h59",
+      "h61"
+    ],
+    "v28": [
+      "h60"
+    ],
+    "v29": [
+      "h63",
+      "h66",
+      "h156"
+    ],
+    "v30": [
+      "h64"
+    ],
+    "v31": [
+      "h67"
+    ],
+    "v32": [
+      "h68",
+      "h98"
+    ],
+    "v33": [
+      "h71",
+      "h256"
+    ],
+    "v34": [
+      "h80",
+      "h96",
+      "h99",
+      "h177",
+      "h146",
+      "h162",
+      "h167",
+      "h208",
+      "h174",
+      "h175",
+      "h103",
+      "h205",
+      "h169",
+      "h214",
+      "h220"
+    ],
+    "v35": [
+      "h82"
+    ],
+    "v36": [
+      "h84"
+    ],
+    "v37": [
+      "h88",
+      "h91",
+      "h94",
+      "h230",
+      "h231"
+    ],
+    "v38": [
+      "h92"
+    ],
+    "v39": [
+      "h97"
+    ],
+    "v40": [
+      "h100",
+      "h168",
+      "h170"
+    ],
+    "v41": [
+      "h102",
+      "h116"
+    ],
+    "v42": [
+      "h104",
+      "h176",
+      "h178",
+      "h206"
+    ],
+    "v43": [
+      "h107",
+      "h140",
+      "h160",
+      "h184",
+      "h185",
+      "h210",
+      "h217",
+      "h248"
+    ],
+    "v44": [
+      "h108"
+    ],
+    "v45": [
+      "h112"
+    ],
+    "v46": [
+      "h114"
+    ],
+    "v47": [
+      "h118",
+      "h126",
+      "h133",
+      "h227",
+      "h234"
+    ],
+    "v48": [
+      "h122"
+    ],
+    "v49": [
+      "h124"
+    ],
+    "v50": [
+      "h144",
+      "h145",
+      "h254",
+      "h260"
+    ],
+    "v51": [
+      "h147",
+      "h151",
+      "h158"
+    ],
+    "v52": [
+      "h148",
+      "h150",
+      "h194",
+      "h197"
+    ],
+    "v53": [
+      "h152"
+    ],
+    "v54": [
+      "h154"
+    ],
+    "v55": [
+      "h159"
+    ],
+    "v56": [
+      "h164"
+    ],
+    "v57": [
+      "h166"
+    ],
+    "v58": [
+      "h172"
+    ],
+    "v59": [
+      "h182"
+    ],
+    "v60": [
+      "h186"
+    ],
+    "v61": [
+      "h188"
+    ],
+    "v62": [
+      "h190"
+    ],
+    "v63": [
+      "h191"
+    ],
+    "v64": [
+      "h198",
+      "h199"
+    ],
+    "v65": [
+      "h200"
+    ],
+    "v66": [
+      "h201",
+      "h204"
+    ],
+    "v67": [
+      "h202"
+    ],
+    "v68": [
+      "h218"
+    ],
+    "v69": [
+      "h226",
+      "h232"
+    ],
+    "v70": [
+      "h228"
+    ],
+    "v71": [
+      "h236",
+      "h237",
+      "h239",
+      "h243"
+    ],
+    "v72": [
+      "h238"
+    ],
+    "v73": [
+      "h242"
+    ],
+    "v74": [
+      "h246"
+    ]
+  }
+}

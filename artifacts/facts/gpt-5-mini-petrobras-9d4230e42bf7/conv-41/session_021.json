@@ -1,0 +1,111 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "met",
+   "entity_2": "three children at the shelter",
+   "fact_text": "Maria met three children at the shelter.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "a car",
+   "relation": "hit",
+   "entity_2": "Maria and her passengers",
+   "fact_text": "A car ran a red light and hit Maria and her passengers, but everyone was okay.",
+   "turn_ids": [
+    "D21:5"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is helping",
+   "entity_2": "Maria's cousin",
+   "fact_text": "Maria is helping Maria's cousin find a new place.",
+   "turn_ids": [
+    "D21:5",
+    "D21:7"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Maria's cousin",
+   "relation": "had to find",
+   "entity_2": "a new place in a hurry",
+   "fact_text": "Maria's cousin had to find a new place in a hurry.",
+   "turn_ids": [
+    "D21:5",
+    "D21:7"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "loves",
+   "entity_2": "volunteering",
+   "fact_text": "Maria loves volunteering.",
+   "turn_ids": [
+    "D21:21"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "Laura",
+   "relation": "wrote",
+   "entity_2": "a letter expressing gratitude",
+   "fact_text": "Laura wrote a letter expressing gratitude to the shelter volunteers.",
+   "turn_ids": [
+    "D21:17",
+    "D21:19"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "participated in",
+   "entity_2": "a marching event for veterans' rights",
+   "fact_text": "John participated in a marching event for veterans' rights.",
+   "turn_ids": [
+    "D21:22"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has respect for",
+   "entity_2": "the military",
+   "fact_text": "John has great respect for the military.",
+   "turn_ids": [
+    "D21:24"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2023-07-03T20:43:00",
+   "date_raw": "8:43 pm on 3 July, 2023"
+  }
+ ]
+}

@@ -1,0 +1,266 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "is friends with",
+   "entity_2": "a fellow volunteer",
+   "fact_text": "Maria is friends with a fellow volunteer.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "loves",
+   "entity_2": "helping others",
+   "fact_text": "Maria loves helping others.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "a fellow volunteer",
+   "relation": "loves",
+   "entity_2": "helping others",
+   "fact_text": "A fellow volunteer loves helping others.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had",
+   "entity_2": "an unexpected incident on his way home last week",
+   "fact_text": "John had an unexpected incident on his way home last week.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a car with a broken windshield",
+   "fact_text": "John shared a photo of a car with a broken windshield.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "stayed calm and asked for",
+   "entity_2": "assistance",
+   "fact_text": "John stayed calm and asked for assistance during the incident.",
+   "turn_ids": [
+    "D4:6"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "made it back to",
+   "entity_2": "home safely",
+   "fact_text": "John made it back home safely after the incident.",
+   "turn_ids": [
+    "D4:6"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "felt",
+   "entity_2": "relieved and grateful",
+   "fact_text": "John felt relieved and grateful after the incident.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "calms down by looking at",
+   "entity_2": "the sunset",
+   "fact_text": "John calms down by looking at the sunset.",
+   "turn_ids": [
+    "D4:10"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is looking into",
+   "entity_2": "local politics",
+   "fact_text": "John is looking into local politics.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "talks to",
+   "entity_2": "community leaders",
+   "fact_text": "John talks to community leaders as part of his local politics work.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is learning about",
+   "entity_2": "neighborhood needs and hopes",
+   "fact_text": "John is learning about neighborhood needs and hopes.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels optimistic about",
+   "entity_2": "his local politics work",
+   "fact_text": "John feels optimistic about his local politics work.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "has",
+   "entity_2": "a notebook with notes about local politics",
+   "fact_text": "Maria has a notebook with notes about local politics.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has scheduled",
+   "entity_2": "a community meeting next week",
+   "fact_text": "John has scheduled a community meeting next week.",
+   "turn_ids": [
+    "D4:16"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "the community meeting",
+   "relation": "will discuss",
+   "entity_2": "education",
+   "fact_text": "The community meeting will discuss education.",
+   "turn_ids": [
+    "D4:16"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "the community meeting",
+   "relation": "will discuss",
+   "entity_2": "infrastructure upgrades",
+   "fact_text": "The community meeting will discuss infrastructure upgrades.",
+   "turn_ids": [
+    "D4:16"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to speak up for",
+   "entity_2": "the community",
+   "fact_text": "John plans to speak up for the community.",
+   "turn_ids": [
+    "D4:18"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is collaborating with",
+   "entity_2": "Maria",
+   "fact_text": "John is collaborating with Maria to bring positive changes to the neighborhood.",
+   "turn_ids": [
+    "D4:20",
+    "D4:21",
+    "D4:23"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photograph of a man and a woman shaking hands",
+   "fact_text": "John shared a photograph of a man and a woman shaking hands.",
+   "turn_ids": [
+    "D4:22"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-01-09T19:06:00",
+   "date_raw": "7:06 pm on 9 January, 2023"
+  }
+ ]
+}

@@ -1,0 +1,240 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "won",
+   "entity_2": "final of a big Valorant tournament last Saturday",
+   "fact_text": "Nate won the final of a big Valorant tournament last Saturday.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "tournaments",
+   "relation": "bring out strong emotions in",
+   "entity_2": "Nate",
+   "fact_text": "Tournaments bring out strong emotions in Nate.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "finished",
+   "entity_2": "presentation for producers last Friday",
+   "fact_text": "Joanna finished the presentation for producers last Friday.",
+   "turn_ids": [
+    "D27:2"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is writing",
+   "entity_2": "a movie script that is a love story",
+   "fact_text": "Joanna is writing a movie script that is a love story with lots of challenges.",
+   "turn_ids": [
+    "D27:6"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "got the idea for the script from",
+   "entity_2": "a dream",
+   "fact_text": "Joanna got the idea for the script from a dream.",
+   "turn_ids": [
+    "D27:8"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has as pets",
+   "entity_2": "turtles",
+   "fact_text": "Nate has turtles as pets.",
+   "turn_ids": [
+    "D27:9",
+    "D27:33"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "submitted",
+   "entity_2": "a few more scripts last week",
+   "fact_text": "Joanna submitted a few more scripts last week.",
+   "turn_ids": [
+    "D27:12"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "predicted",
+   "entity_2": "that at least one of Joanna's scripts will be published as her third movie",
+   "fact_text": "Nate predicted that at least one of Joanna's scripts will be published as her third movie.",
+   "turn_ids": [
+    "D27:13"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "upgraded",
+   "entity_2": "his home gaming equipment",
+   "fact_text": "Nate upgraded his home gaming equipment.",
+   "turn_ids": [
+    "D27:15"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "uses",
+   "entity_2": "his computer for gaming and practice",
+   "fact_text": "Nate uses his computer for gaming and practice.",
+   "turn_ids": [
+    "D27:17"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "plays",
+   "entity_2": "Xeonoblade Chronicles",
+   "fact_text": "Nate plays Xeonoblade Chronicles.",
+   "turn_ids": [
+    "D27:23"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is a big fan of",
+   "entity_2": "Nintendo games",
+   "fact_text": "Nate is a big fan of Nintendo games.",
+   "turn_ids": [
+    "D27:25"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna's brother",
+   "relation": "wrote",
+   "entity_2": "cute notes to Joanna when they were kids",
+   "fact_text": "Joanna's brother wrote cute notes to Joanna when they were kids.",
+   "turn_ids": [
+    "D27:30"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "included at the beginning of her next script",
+   "entity_2": "a handwritten letter",
+   "fact_text": "Joanna included a handwritten letter at the beginning of her next script.",
+   "turn_ids": [
+    "D27:28"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "took to the park",
+   "entity_2": "his pets on a special day",
+   "fact_text": "Nate took his pets to the park on a special day.",
+   "turn_ids": [
+    "D27:33"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "finds happiness in",
+   "entity_2": "creating stories",
+   "fact_text": "Joanna finds happiness in creating stories and watching them come alive.",
+   "turn_ids": [
+    "D27:10"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "hopes to get",
+   "entity_2": "her movie script on the big screen",
+   "fact_text": "Joanna hopes to get her movie script on the big screen.",
+   "turn_ids": [
+    "D27:6"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "has",
+   "entity_2": "a dedicated gaming space at home",
+   "fact_text": "Nate has a dedicated gaming space at home.",
+   "turn_ids": [
+    "D27:15",
+    "D27:19"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-11-07T20:10:00",
+   "date_raw": "8:10 pm on 7 November, 2022"
+  }
+ ]
+}

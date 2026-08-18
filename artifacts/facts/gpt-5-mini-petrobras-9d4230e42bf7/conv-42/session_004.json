@@ -1,0 +1,176 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "made ice cream for",
+   "entity_2": "a friend",
+   "fact_text": "On 25 February 2022 Nate made ice cream for a friend.",
+   "turn_ids": [
+    "D4:1",
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "the ice cream Nate made",
+   "relation": "was",
+   "entity_2": "chocolate and vanilla swirl",
+   "fact_text": "The ice cream Nate made was chocolate and vanilla swirl.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "cannot have",
+   "entity_2": "dairy",
+   "fact_text": "Joanna cannot have dairy.",
+   "turn_ids": [
+    "D4:4"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "knows",
+   "entity_2": "a dairy-free recipe using coconut milk",
+   "fact_text": "Nate knows a dairy-free recipe that uses coconut milk.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "offered to send",
+   "entity_2": "the coconut milk recipe to Joanna",
+   "fact_text": "Nate offered to send the coconut milk dairy-free recipe to Joanna.",
+   "turn_ids": [
+    "D4:5",
+    "D4:7"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is keen to try",
+   "entity_2": "Nate's dairy-free coconut milk recipe",
+   "fact_text": "Joanna is keen to try Nate's dairy-free coconut milk recipe.",
+   "turn_ids": [
+    "D4:6"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "started writing",
+   "entity_2": "another screenplay",
+   "fact_text": "Joanna started writing another screenplay while she waited to hear back about her first screenplay.",
+   "turn_ids": [
+    "D4:10"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna's new screenplay",
+   "relation": "is about",
+   "entity_2": "a thirty year old woman on a journey of self-discovery after a loss",
+   "fact_text": "Joanna's new screenplay is about a thirty year old woman on a journey of self-discovery after a loss.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna's new screenplay",
+   "relation": "features",
+   "entity_2": "a road trip to heal and grow",
+   "fact_text": "Joanna's new screenplay features a road trip to heal and grow.",
+   "turn_ids": [
+    "D4:14"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna's new screenplay",
+   "relation": "was inspired by",
+   "entity_2": "Joanna's personal experiences",
+   "fact_text": "Joanna's new screenplay was inspired by Joanna's personal experiences.",
+   "turn_ids": [
+    "D4:16"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "is waiting to hear back about",
+   "entity_2": "Joanna's first screenplay",
+   "fact_text": "Joanna is waiting to hear back about Joanna's first screenplay.",
+   "turn_ids": [
+    "D4:10"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "hopes",
+   "entity_2": "Joanna's first screenplay will be noticed and made into a film",
+   "fact_text": "Joanna hopes Joanna's first screenplay will be noticed and made into a film.",
+   "turn_ids": [
+    "D4:18"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "bakes",
+   "entity_2": "desserts",
+   "fact_text": "Nate bakes desserts.",
+   "turn_ids": [
+    "D4:7",
+    "D4:9"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2022-02-25T13:07:00",
+   "date_raw": "1:07 pm on 25 February, 2022"
+  }
+ ]
+}

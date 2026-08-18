@@ -1,0 +1,161 @@
+{
+ "facts": [
+  {
+   "entity_1": "Gina",
+   "relation": "acquired",
+   "entity_2": "new unique pieces for her store",
+   "fact_text": "Gina acquired new unique pieces for her store on 21 June 2023.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "shared",
+   "entity_2": "photo of a woman in a black hoodie posing for a picture",
+   "fact_text": "Gina shared a photo of a woman in a black hoodie posing for a picture on 21 June 2023.",
+   "turn_ids": [
+    "D16:1"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "owns",
+   "entity_2": "black hoodie from her personal collection",
+   "fact_text": "Gina owns a black hoodie from her personal collection.",
+   "turn_ids": [
+    "D16:3"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "is selling",
+   "entity_2": "limited edition line",
+   "fact_text": "Gina made a limited edition line last week to show off her style and creativity.",
+   "turn_ids": [
+    "D16:3"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "shared",
+   "entity_2": "photo of a sign that says never give up never give up never",
+   "fact_text": "Gina shared a photo of a sign that says \"never give up never give up never\" on 21 June 2023.",
+   "turn_ids": [
+    "D16:13"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "was inspired by",
+   "entity_2": "a design that evokes grit to stand out and face challenges",
+   "fact_text": "Gina was inspired by a design that evokes grit to stand out and face challenges.",
+   "turn_ids": [
+    "D16:5"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "attended",
+   "entity_2": "networking events yesterday",
+   "fact_text": "Jon attended networking events yesterday to make things happen.",
+   "turn_ids": [
+    "D16:6"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "lost",
+   "entity_2": "his job",
+   "fact_text": "Jon lost his job before 21 June 2023.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is investing time in",
+   "entity_2": "his business",
+   "fact_text": "Jon is investing time in his business after he lost his job.",
+   "turn_ids": [
+    "D16:8"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "wrote down",
+   "entity_2": "all his plans",
+   "fact_text": "Jon wrote down all his plans.",
+   "turn_ids": [
+    "D16:10"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "encouraged",
+   "entity_2": "Jon to persevere",
+   "fact_text": "Gina encouraged Jon to persevere and keep working hard.",
+   "turn_ids": [
+    "D16:13",
+    "D16:15"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "feels",
+   "entity_2": "confident and determined not to give up",
+   "fact_text": "Jon feels confident and determined not to give up as of 21 June 2023.",
+   "turn_ids": [
+    "D16:16"
+   ],
+   "session_id": "S16",
+   "session_num": 16,
+   "timestamp": "2023-06-21T14:15:00",
+   "date_raw": "2:15 pm on 21 June, 2023"
+  }
+ ]
+}

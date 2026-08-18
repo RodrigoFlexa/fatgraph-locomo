@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "busy",
+   "relation": "mentions",
+   "entity_2": "since",
+   "fact_text": "busy and since came up when Caroline was talking.",
+   "turn_ids": [
+    "D8:1"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  },
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "shares",
+   "fact_text": "image and shares came up when Melanie was talking.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  },
+  {
+   "entity_1": "kids",
+   "relation": "mentions",
+   "entity_2": "sounds",
+   "fact_text": "kids and sounds came up when Caroline was talking.",
+   "turn_ids": [
+    "D8:3"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  },
+  {
+   "entity_1": "image",
+   "relation": "mentions",
+   "entity_2": "photo",
+   "fact_text": "image and photo came up when Melanie was talking.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "kids",
+   "fact_text": "awesome and kids came up when Caroline was talking.",
+   "turn_ids": [
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  },
+  {
+   "entity_1": "amazing",
+   "relation": "mentions",
+   "entity_2": "nature",
+   "fact_text": "amazing and nature came up when Caroline was talking.",
+   "turn_ids": [
+    "D8:7"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-07-15T13:51:00",
+   "date_raw": "1:51 pm on 15 July, 2023"
+  }
+ ]
+}

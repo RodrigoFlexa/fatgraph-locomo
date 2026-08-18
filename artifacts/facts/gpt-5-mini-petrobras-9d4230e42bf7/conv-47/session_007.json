@@ -1,0 +1,161 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "went on a hike with",
+   "entity_2": "James's dogs",
+   "fact_text": "James went on a hike with James's dogs on 21 April 2022.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "shared",
+   "entity_2": "a photo of a man walking two dogs on a path in the woods",
+   "fact_text": "James shared a photo of a man walking two dogs on a path in the woods.",
+   "turn_ids": [
+    "D7:4"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "picked",
+   "entity_2": "the hiking spot",
+   "fact_text": "James picked the hiking spot because it had great views and lots of trails.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "enjoys being surrounded by",
+   "entity_2": "lush greenery and clean air",
+   "fact_text": "James enjoys being surrounded by lush greenery and clean air.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "likes",
+   "entity_2": "the crunch of leaves under his feet",
+   "fact_text": "James likes the crunch of leaves under his feet.",
+   "turn_ids": [
+    "D7:8"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "finds helpful to clear his head",
+   "entity_2": "peacefulness",
+   "fact_text": "James finds peacefulness helpful to clear his head and relax.",
+   "turn_ids": [
+    "D7:8"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is busy at",
+   "entity_2": "work with deadlines",
+   "fact_text": "John is busy at work with deadlines.",
+   "turn_ids": [
+    "D7:11"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is working on",
+   "entity_2": "a difficult coding project",
+   "fact_text": "John is working on a difficult coding project.",
+   "turn_ids": [
+    "D7:13"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is stuck on",
+   "entity_2": "a new algorithm",
+   "fact_text": "John is stuck on a new algorithm for his project.",
+   "turn_ids": [
+    "D7:15",
+    "D7:17"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "suggested",
+   "entity_2": "breaking the project into smaller steps and asking other programmers for advice",
+   "fact_text": "James suggested breaking the project into smaller steps and asking other programmers for advice.",
+   "turn_ids": [
+    "D7:18"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "appreciated",
+   "entity_2": "James's advice",
+   "fact_text": "John appreciated James's advice about the project.",
+   "turn_ids": [
+    "D7:19"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to keep working on",
+   "entity_2": "the project",
+   "fact_text": "John plans to keep working on the project and not quit.",
+   "turn_ids": [
+    "D7:21"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2022-04-23T11:04:00",
+   "date_raw": "11:04 am on 23 April, 2022"
+  }
+ ]
+}

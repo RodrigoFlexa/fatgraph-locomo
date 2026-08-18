@@ -1,0 +1,371 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "is motivated by",
+   "entity_2": "video games",
+   "fact_text": "James is motivated by video games.",
+   "turn_ids": [
+    "D1:2"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is a fan of",
+   "entity_2": "video games",
+   "fact_text": "John is a fan of video games.",
+   "turn_ids": [
+    "D1:3"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "is currently enjoying",
+   "entity_2": "The Witcher 3",
+   "fact_text": "James is currently enjoying The Witcher 3.",
+   "turn_ids": [
+    "D1:4"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "signed up for",
+   "entity_2": "a programming class",
+   "fact_text": "John signed up for a programming class.",
+   "turn_ids": [
+    "D1:5"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "tried",
+   "entity_2": "programming in college",
+   "fact_text": "James tried programming in college.",
+   "turn_ids": [
+    "D1:6"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "is dedicated to",
+   "entity_2": "programming",
+   "fact_text": "James is dedicated to programming.",
+   "turn_ids": [
+    "D1:6"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has experience with",
+   "entity_2": "HTML and CSS",
+   "fact_text": "John has experience with HTML and CSS from a few years back.",
+   "turn_ids": [
+    "D1:7"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has worked with",
+   "entity_2": "Python",
+   "fact_text": "James has worked with Python.",
+   "turn_ids": [
+    "D1:8"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has worked with",
+   "entity_2": "C++",
+   "fact_text": "James has worked with C++.",
+   "turn_ids": [
+    "D1:8"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "built",
+   "entity_2": "a website",
+   "fact_text": "James built a website.",
+   "turn_ids": [
+    "D1:8"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "created",
+   "entity_2": "game mods",
+   "fact_text": "James created game mods.",
+   "turn_ids": [
+    "D1:8"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has not worked with",
+   "entity_2": "other programming languages",
+   "fact_text": "James has not worked with other programming languages.",
+   "turn_ids": [
+    "D1:10"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "hopes to work with",
+   "entity_2": "other programming languages in the future",
+   "fact_text": "James hopes to work with other programming languages in the future.",
+   "turn_ids": [
+    "D1:10"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "is open to developing mobile applications with",
+   "entity_2": "John",
+   "fact_text": "James is open to developing mobile applications with John.",
+   "turn_ids": [
+    "D1:11",
+    "D1:24"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "owns",
+   "entity_2": "two dogs named Max and Daisy",
+   "fact_text": "James owns two dogs named Max and Daisy.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to build",
+   "entity_2": "a dog walking and pet care app",
+   "fact_text": "James plans to build a dog walking and pet care app to connect pet owners with reliable dog walkers and provide helpful information on pet care.",
+   "turn_ids": [
+    "D1:14"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "The dog walking and pet care app",
+   "relation": "allows",
+   "entity_2": "users to add their pup's preferences",
+   "fact_text": "The dog walking and pet care app allows users to add their pup's preferences.",
+   "turn_ids": [
+    "D1:16"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "writes down",
+   "entity_2": "all his goals in a notebook",
+   "fact_text": "James writes down all his goals in a notebook.",
+   "turn_ids": [
+    "D1:18"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "made sketches of",
+   "entity_2": "the main character as a child",
+   "fact_text": "James made sketches of the main character as a child.",
+   "turn_ids": [
+    "D1:20"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "wants to turn",
+   "entity_2": "his childhood drawings into a computer game",
+   "fact_text": "James wants to turn his childhood drawings into a computer game.",
+   "turn_ids": [
+    "D1:20",
+    "D1:22"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "invited",
+   "entity_2": "John to help with HTML for his game",
+   "fact_text": "James invited John to help with HTML for his game.",
+   "turn_ids": [
+    "D1:24"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "went bowling and got",
+   "entity_2": "2 strikes yesterday",
+   "fact_text": "James went bowling yesterday and got 2 strikes.",
+   "turn_ids": [
+    "D1:26"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "likes",
+   "entity_2": "bowling",
+   "fact_text": "James likes bowling.",
+   "turn_ids": [
+    "D1:26"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "does not like",
+   "entity_2": "bowling",
+   "fact_text": "John does not like bowling.",
+   "turn_ids": [
+    "D1:27"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "had",
+   "entity_2": "his wallet stolen at slot machines the last time he played",
+   "fact_text": "James had his wallet stolen at slot machines the last time he played.",
+   "turn_ids": [
+    "D1:30"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has tried",
+   "entity_2": "VR gaming",
+   "fact_text": "James has tried VR gaming.",
+   "turn_ids": [
+    "D1:34"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has tried",
+   "entity_2": "VR gaming a few times",
+   "fact_text": "John has tried VR gaming a few times.",
+   "turn_ids": [
+    "D1:35"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  },
+  {
+   "entity_1": "James and John",
+   "relation": "plan to try",
+   "entity_2": "VR gaming next Saturday",
+   "fact_text": "James and John plan to try VR gaming next Saturday.",
+   "turn_ids": [
+    "D1:36",
+    "D1:37"
+   ],
+   "session_id": "S1",
+   "session_num": 1,
+   "timestamp": "2022-03-17T15:47:00",
+   "date_raw": "3:47 pm on 17 March, 2022"
+  }
+ ]
+}

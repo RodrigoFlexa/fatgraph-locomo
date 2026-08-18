@@ -1,0 +1,277 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "won",
+   "entity_2": "his fourth video game tournament on Friday",
+   "fact_text": "Nate won his fourth video game tournament on Friday.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "The tournament",
+   "relation": "was",
+   "entity_2": "online",
+   "fact_text": "The tournament was online.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "makes money doing",
+   "entity_2": "playing video games",
+   "fact_text": "Nate makes money doing playing video games.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "took",
+   "entity_2": "a road trip for research for her next movie",
+   "fact_text": "Joanna took a road trip for research for her next movie.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "visited",
+   "entity_2": "Woodhaven",
+   "fact_text": "Joanna visited Woodhaven.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Woodhaven",
+   "relation": "is",
+   "entity_2": "a small town in the Midwest",
+   "fact_text": "Woodhaven is a small town in the Midwest.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "saw",
+   "entity_2": "scenery in Woodhaven",
+   "fact_text": "Joanna saw scenery in Woodhaven.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "saw",
+   "entity_2": "historic buildings in Woodhaven",
+   "fact_text": "Joanna saw historic buildings in Woodhaven.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "checked out",
+   "entity_2": "the library in Woodhaven",
+   "fact_text": "Joanna checked out the library in Woodhaven.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "The library in Woodhaven",
+   "relation": "had",
+   "entity_2": "a cool old book collection",
+   "fact_text": "The library in Woodhaven had a cool old book collection.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "found",
+   "entity_2": "a book from the 1900s with stories and sketches",
+   "fact_text": "Joanna found a book from the 1900s with stories and sketches.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "The book from the 1900s",
+   "relation": "contained",
+   "entity_2": "stories and sketches",
+   "fact_text": "The book from the 1900s contained stories and sketches.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Woodhaven",
+   "relation": "inspired",
+   "entity_2": "Joanna's next script",
+   "fact_text": "Woodhaven inspired Joanna's next script.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "started",
+   "entity_2": "a book recently",
+   "fact_text": "Joanna started a book recently.",
+   "turn_ids": [
+    "D17:14"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "The page Joanna shared",
+   "relation": "contains",
+   "entity_2": "dialogues exploring loss, redemption, and forgiveness",
+   "fact_text": "The page Joanna shared contains dialogues exploring loss, redemption, and forgiveness.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "has never tried",
+   "entity_2": "publishing a book before",
+   "fact_text": "Joanna has never tried publishing a book before.",
+   "turn_ids": [
+    "D17:18"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "created",
+   "entity_2": "a movie that did well",
+   "fact_text": "Joanna created a movie that did well.",
+   "turn_ids": [
+    "D17:14"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared",
+   "entity_2": "an image of a television screen showing trophies",
+   "fact_text": "Nate shared an image of a television screen showing trophies.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "an image of a bookshelf filled with lots of books",
+   "fact_text": "Joanna shared an image of a bookshelf filled with lots of books.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "an image of a book with writing on it and a pen",
+   "fact_text": "Joanna shared an image of a book with writing on it and a pen.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "an image of a person holding a notebook with a handwritten page",
+   "fact_text": "Joanna shared an image of a person holding a notebook with a handwritten page.",
+   "turn_ids": [
+    "D17:14"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-10T14:34:00",
+   "date_raw": "2:34 pm on 10 July, 2022"
+  }
+ ]
+}

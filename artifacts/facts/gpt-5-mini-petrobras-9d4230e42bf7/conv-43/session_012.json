@@ -1,0 +1,214 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "had wedding with",
+   "entity_2": "John's girlfriend",
+   "fact_text": "John had a wedding with John's girlfriend last week (relative to 3:00 pm on 2 October, 2023).",
+   "turn_ids": [
+    "D12:2"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "held ceremony at",
+   "entity_2": "a greenhouse venue",
+   "fact_text": "John held the wedding ceremony at a greenhouse venue.",
+   "turn_ids": [
+    "D12:2",
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "hosted",
+   "entity_2": "a smaller, more intimate gathering",
+   "fact_text": "John hosted a smaller, more intimate gathering for the wedding.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "followed",
+   "entity_2": "necessary safety protocols",
+   "fact_text": "John followed necessary safety protocols for the wedding ceremony.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had hiking club friends attend",
+   "entity_2": "the wedding",
+   "fact_text": "Some of John's hiking club friends attended the wedding even though John had just joined the hiking club.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "felt choked up seeing",
+   "entity_2": "his wife walk down the aisle",
+   "fact_text": "John felt choked up when John's wife walked down the aisle.",
+   "turn_ids": [
+    "D12:8"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had first dance at",
+   "entity_2": "a cozy restaurant",
+   "fact_text": "John had the first dance with his wife at a cozy restaurant.",
+   "turn_ids": [
+    "D12:10"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had first dance with",
+   "entity_2": "candlelight and music",
+   "fact_text": "John had the first dance with his wife accompanied by music and candlelight.",
+   "turn_ids": [
+    "D12:10"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "shared image of",
+   "entity_2": "a bookshelf filled with fantasy novels",
+   "fact_text": "Tim shared an image of a bookshelf filled with Tim's favorite fantasy novels.",
+   "turn_ids": [
+    "D12:15"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "collects",
+   "entity_2": "jerseys",
+   "fact_text": "John collects jerseys.",
+   "turn_ids": [
+    "D12:18"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "supports",
+   "entity_2": "the Wolves",
+   "fact_text": "John supports the Wolves basketball team.",
+   "turn_ids": [
+    "D12:20"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "favors",
+   "entity_2": "LeBron",
+   "fact_text": "John favors LeBron as his preferred basketball player.",
+   "turn_ids": [
+    "D12:20"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "admired",
+   "entity_2": "LeBron's work ethic and dedication",
+   "fact_text": "John admired LeBron's work ethic and dedication to the game.",
+   "turn_ids": [
+    "D12:22"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "met",
+   "entity_2": "LeBron a few times",
+   "fact_text": "John met LeBron a few times.",
+   "turn_ids": [
+    "D12:24"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "saw",
+   "entity_2": "LeBron play live",
+   "fact_text": "John saw LeBron play live.",
+   "turn_ids": [
+    "D12:24"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "found game experience motivating for",
+   "entity_2": "his work ethic",
+   "fact_text": "Seeing LeBron play live and the game experience motivated John to work harder and influenced John's work ethic.",
+   "turn_ids": [
+    "D12:26",
+    "D12:28"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-10-02T15:00:00",
+   "date_raw": "3:00 pm on 2 October, 2023"
+  }
+ ]
+}

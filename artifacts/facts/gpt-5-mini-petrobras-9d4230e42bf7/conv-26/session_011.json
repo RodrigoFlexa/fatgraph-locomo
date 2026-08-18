@@ -1,0 +1,121 @@
+{
+ "facts": [
+  {
+   "entity_1": "Melanie",
+   "relation": "celebrated",
+   "entity_2": "Melanie's daughter's birthday with a concert",
+   "fact_text": "Melanie celebrated Melanie's daughter's birthday with a concert.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "attended",
+   "entity_2": "a Matt Patterson concert",
+   "fact_text": "Melanie attended a Matt Patterson concert.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "attended",
+   "entity_2": "a pride parade last Friday",
+   "fact_text": "Caroline attended a pride parade last Friday.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "expresses",
+   "entity_2": "Caroline's trans experience in her art",
+   "fact_text": "Caroline expresses Caroline's trans experience in her art.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "advocates for",
+   "entity_2": "the LGBTQ+ community through her art",
+   "fact_text": "Caroline advocates for the LGBTQ+ community through her art.",
+   "turn_ids": [
+    "D11:8"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "painted",
+   "entity_2": "the painting 'Embracing Identity'",
+   "fact_text": "Caroline painted the painting 'Embracing Identity'.",
+   "turn_ids": [
+    "D11:12"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "the painting 'Embracing Identity'",
+   "relation": "depicts",
+   "entity_2": "a woman representing the journey of acceptance",
+   "fact_text": "The painting 'Embracing Identity' depicts a woman representing the journey of acceptance.",
+   "turn_ids": [
+    "D11:12"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "used art to explore",
+   "entity_2": "Caroline's transition and changing body",
+   "fact_text": "Caroline used art to explore Caroline's transition and changing body.",
+   "turn_ids": [
+    "D11:14"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "wants to cultivate",
+   "entity_2": "a loving and accepting environment for Melanie's kids",
+   "fact_text": "Melanie wants to cultivate a loving and accepting environment for Melanie's kids.",
+   "turn_ids": [
+    "D11:7"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-08-14T14:24:00",
+   "date_raw": "2:24 pm on 14 August, 2023"
+  }
+ ]
+}

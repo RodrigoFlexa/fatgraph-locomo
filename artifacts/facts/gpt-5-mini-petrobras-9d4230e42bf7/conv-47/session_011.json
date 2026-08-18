@@ -1,0 +1,225 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "volunteered",
+   "entity_2": "programming skills for a social cause",
+   "fact_text": "John volunteered programming skills for a social cause on 11 May, 2022.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "created",
+   "entity_2": "a software tool for a charitable foundation",
+   "fact_text": "John created a software tool for a charitable foundation.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "charitable foundation",
+   "relation": "used",
+   "entity_2": "paper records",
+   "fact_text": "The charitable foundation used paper records before John created the software tool.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "charitable foundation",
+   "relation": "recorded",
+   "entity_2": "inventory manually",
+   "fact_text": "The charitable foundation recorded inventory manually before John created the software tool.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "created",
+   "entity_2": "a smartphone application for inventory",
+   "fact_text": "John created a smartphone application that stores the foundation's inventory in one application.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "application",
+   "relation": "structured",
+   "entity_2": "the foundation's work",
+   "fact_text": "The application structured the foundation's work.",
+   "turn_ids": [
+    "D11:3"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "application",
+   "relation": "generates",
+   "entity_2": "reports for analysis",
+   "fact_text": "The application generates reports for analysis.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "an image of a computer monitor showing CPU performance",
+   "fact_text": "John shared an image of a computer monitor showing CPU performance.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was inspired by",
+   "entity_2": "the foundation's passion for helping kids",
+   "fact_text": "John was inspired by the charitable foundation's passion for helping kids.",
+   "turn_ids": [
+    "D11:7"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "uses",
+   "entity_2": "coding to challenge himself and expand his skills",
+   "fact_text": "John uses coding to challenge himself and expand his skills.",
+   "turn_ids": [
+    "D11:7"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "felt",
+   "entity_2": "a real sense of purpose from the volunteering experience",
+   "fact_text": "John felt a real sense of purpose from the volunteering experience.",
+   "turn_ids": [
+    "D11:9"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is considering",
+   "entity_2": "volunteer roles",
+   "fact_text": "John is considering volunteer roles following his experience.",
+   "turn_ids": [
+    "D11:11"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is considering",
+   "entity_2": "a career in the non-profit sector",
+   "fact_text": "John is considering a career in the non-profit sector.",
+   "turn_ids": [
+    "D11:11"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has not found",
+   "entity_2": "a non-profit organization",
+   "fact_text": "John has not found a non-profit organization that aligns with his values.",
+   "turn_ids": [
+    "D11:13"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has not looked for",
+   "entity_2": "a non-profit organization",
+   "fact_text": "John has not looked for a non-profit organization yet.",
+   "turn_ids": [
+    "D11:13"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "believes",
+   "entity_2": "finding a suitable organization will not be difficult",
+   "fact_text": "John believes that finding a suitable non-profit organization will not be difficult.",
+   "turn_ids": [
+    "D11:13"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "hopes to",
+   "entity_2": "make a positive impact at a matching organization",
+   "fact_text": "John hopes to make a positive impact at a place where his skills and passions are a perfect match.",
+   "turn_ids": [
+    "D11:15"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2022-05-11T17:00:00",
+   "date_raw": "5:00 pm on 11 May, 2022"
+  }
+ ]
+}

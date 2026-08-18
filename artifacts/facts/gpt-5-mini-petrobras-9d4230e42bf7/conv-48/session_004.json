@@ -1,0 +1,253 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "has been experiencing",
+   "entity_2": "an emotional rollercoaster",
+   "fact_text": "Jolene has been experiencing an emotional rollercoaster and is coping.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "achieved",
+   "entity_2": "a major milestone last week",
+   "fact_text": "Jolene achieved a major milestone last week and it went really well.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "designed and built",
+   "entity_2": "a sustainable water purifier",
+   "fact_text": "Jolene designed and built a sustainable water purifier for a rural community in need.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "the sustainable water purifier",
+   "relation": "provided clean water to",
+   "entity_2": "the rural community",
+   "fact_text": "The sustainable water purifier provided clean water to the rural community.",
+   "turn_ids": [
+    "D4:5",
+    "D4:7"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "wants to continue working in",
+   "entity_2": "engineering",
+   "fact_text": "Jolene wants to continue working in engineering to make a positive impact on communities in need by creating sustainable solutions.",
+   "turn_ids": [
+    "D4:9"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "teaches",
+   "entity_2": "yoga",
+   "fact_text": "Deborah teaches yoga and spends a lot of her time doing so.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "bonded with during a yoga class yesterday",
+   "entity_2": "Anna",
+   "fact_text": "Deborah bonded with Anna during a yoga class yesterday.",
+   "turn_ids": [
+    "D4:12"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "explained how to do",
+   "entity_2": "a modified seated Warrior II pose",
+   "fact_text": "Deborah explained how to do a modified seated Warrior II pose that involves sitting on the edge of a chair, twisting the torso, and using a hand on the knee for support.",
+   "turn_ids": [
+    "D4:18"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is into",
+   "entity_2": "the book Sapiens",
+   "fact_text": "Jolene is into the book Sapiens and finds it a fascinating look at human history and technology.",
+   "turn_ids": [
+    "D4:21"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "read",
+   "entity_2": "Avalanche by Neal Stephenson two weeks ago in one sitting",
+   "fact_text": "Jolene read Avalanche by Neal Stephenson two weeks ago in one sitting.",
+   "turn_ids": [
+    "D4:23"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "took a picture on vacation last summer in",
+   "entity_2": "Bogota",
+   "fact_text": "Jolene took a picture on vacation last summer in Bogota of a sunset over the water.",
+   "turn_ids": [
+    "D4:33"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "favors",
+   "entity_2": "a park with a forest trail",
+   "fact_text": "Deborah favors a park with a forest trail as one of her favorite nature spots.",
+   "turn_ids": [
+    "D4:32"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "favors",
+   "entity_2": "a nearby beach",
+   "fact_text": "Deborah favors a nearby beach where the sound of the waves and the sand make her feel peaceful and happy.",
+   "turn_ids": [
+    "D4:32"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visits to reflect on her mother",
+   "entity_2": "a spot by the water near her mother's old house",
+   "fact_text": "Deborah visits a spot by the water near her mother's old house to reflect on her mother and find peace.",
+   "turn_ids": [
+    "D4:34"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "has",
+   "entity_2": "an amulet from her mother",
+   "fact_text": "Deborah has an amulet that she received from her mother.",
+   "turn_ids": [
+    "D4:36"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "brings when visiting the spot by the water",
+   "entity_2": "the amulet from her mother",
+   "fact_text": "Deborah brings the amulet from her mother when she visits the spot by the water near her mother's old house.",
+   "turn_ids": [
+    "D4:36"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Anna",
+   "relation": "wears",
+   "entity_2": "a pendant in memory of her mother",
+   "fact_text": "Anna wears a pendant in memory of her mother.",
+   "turn_ids": [
+    "D4:40"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "a friend of Deborah",
+   "relation": "gave",
+   "entity_2": "a bouquet to Deborah when she was struggling",
+   "fact_text": "A friend of Deborah gave a bouquet to Deborah when Deborah was struggling.",
+   "turn_ids": [
+    "D4:28",
+    "D4:26"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "the bouquet",
+   "relation": "gives",
+   "entity_2": "hope and courage to Deborah",
+   "fact_text": "The bouquet gives hope and courage to Deborah when she looks at it.",
+   "turn_ids": [
+    "D4:28"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T09:48:00",
+   "date_raw": "9:48 am on 4 February, 2023"
+  }
+ ]
+}

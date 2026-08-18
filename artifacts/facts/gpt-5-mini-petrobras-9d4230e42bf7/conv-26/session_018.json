@@ -1,0 +1,103 @@
+{
+ "facts": [
+  {
+   "entity_1": "Melanie's son",
+   "relation": "was in",
+   "entity_2": "a roadtrip accident this past weekend",
+   "fact_text": "Melanie's son was in a roadtrip accident this past weekend.",
+   "turn_ids": [
+    "D18:1"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie's son",
+   "relation": "was okay after",
+   "entity_2": "the roadtrip accident",
+   "fact_text": "Melanie's son was okay after the roadtrip accident.",
+   "turn_ids": [
+    "D18:1",
+    "D18:3",
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie's children",
+   "relation": "were scared by",
+   "entity_2": "the accident",
+   "fact_text": "Melanie's children were scared by the accident but were reassured that their brother would be okay.",
+   "turn_ids": [
+    "D18:6",
+    "D18:7"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "values",
+   "entity_2": "her family highly",
+   "fact_text": "Melanie values her family highly.",
+   "turn_ids": [
+    "D18:5",
+    "D18:11",
+    "D18:13"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie's family",
+   "relation": "enjoyed",
+   "entity_2": "the Grand Canyon",
+   "fact_text": "Melanie's family enjoyed the Grand Canyon a lot.",
+   "turn_ids": [
+    "D18:5"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "walked on",
+   "entity_2": "a trail on 19 October 2023",
+   "fact_text": "Melanie walked on a trail with her family on 19 October 2023.",
+   "turn_ids": [
+    "D18:15",
+    "D18:16",
+    "D18:17"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "loves",
+   "entity_2": "camping trips with her family",
+   "fact_text": "Melanie loves camping trips with her family because nature brings peace and serenity.",
+   "turn_ids": [
+    "D18:19",
+    "D18:21"
+   ],
+   "session_id": "S18",
+   "session_num": 18,
+   "timestamp": "2023-10-20T18:55:00",
+   "date_raw": "6:55 pm on 20 October, 2023"
+  }
+ ]
+}

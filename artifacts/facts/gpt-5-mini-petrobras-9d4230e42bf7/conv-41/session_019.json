@@ -1,0 +1,306 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "joined",
+   "entity_2": "a gym last week",
+   "fact_text": "Maria joined a gym last week.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is sticking to",
+   "entity_2": "her workout routine",
+   "fact_text": "Maria is sticking to her workout routine.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "the gym",
+   "relation": "has",
+   "entity_2": "awesome people",
+   "fact_text": "The gym has awesome people.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "the gym",
+   "relation": "has",
+   "entity_2": "a welcoming atmosphere",
+   "fact_text": "The gym has a welcoming atmosphere.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "wants to get",
+   "entity_2": "stronger",
+   "fact_text": "Maria wants to get stronger.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "wants to improve",
+   "entity_2": "her endurance",
+   "fact_text": "Maria wants to improve her endurance.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is trying",
+   "entity_2": "kundalini yoga",
+   "fact_text": "Maria is trying kundalini yoga.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is trying",
+   "entity_2": "different workout regimes",
+   "fact_text": "John is trying different workout regimes.",
+   "turn_ids": [
+    "D19:4"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is interested in",
+   "entity_2": "rock climbing",
+   "fact_text": "John is interested in rock climbing.",
+   "turn_ids": [
+    "D19:4"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was promoted to",
+   "entity_2": "assistant manager",
+   "fact_text": "John was promoted to assistant manager.",
+   "turn_ids": [
+    "D19:6",
+    "D19:8"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "a trophy commemorating his journey",
+   "fact_text": "John has a trophy commemorating his journey.",
+   "turn_ids": [
+    "D19:8",
+    "D19:10"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "faced",
+   "entity_2": "tech-related hurdles",
+   "fact_text": "John faced tech-related hurdles.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "faced",
+   "entity_2": "workplace-related hurdles",
+   "fact_text": "John faced workplace-related hurdles.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "experienced",
+   "entity_2": "self-doubt",
+   "fact_text": "John experienced self-doubt.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had support from",
+   "entity_2": "his family",
+   "fact_text": "John had support from his family.",
+   "turn_ids": [
+    "D19:12",
+    "D19:16"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "usually works",
+   "entity_2": "regular work hours",
+   "fact_text": "John usually works regular work hours.",
+   "turn_ids": [
+    "D19:18"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "sometimes brings work home",
+   "entity_2": "his work",
+   "fact_text": "John sometimes brings his work home.",
+   "turn_ids": [
+    "D19:18"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a desk with a chair and a lamp",
+   "fact_text": "John shared a photo of a desk with a chair and a lamp.",
+   "turn_ids": [
+    "D19:16"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of a desk with a computer, keyboard, and notebook",
+   "fact_text": "John shared a photo of a desk with a computer, keyboard, and notebook.",
+   "turn_ids": [
+    "D19:18"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photo of a person walking on the beach with a surfboard",
+   "fact_text": "Maria shared a photo of a person walking on the beach with a surfboard.",
+   "turn_ids": [
+    "D19:21"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "recalled",
+   "entity_2": "a vacation to California with Maria",
+   "fact_text": "John recalled a vacation to California with Maria.",
+   "turn_ids": [
+    "D19:22"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "shared",
+   "entity_2": "a photo of a sunset over a body of water with a bird flying",
+   "fact_text": "Maria shared a photo of a sunset over a body of water with a bird flying.",
+   "turn_ids": [
+    "D19:23"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "a photo of two children playing in the ocean waves from his vacation",
+   "fact_text": "John shared a photo of two children playing in the ocean waves from his vacation.",
+   "turn_ids": [
+    "D19:24"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2023-06-16T19:20:00",
+   "date_raw": "7:20 pm on 16 June, 2023"
+  }
+ ]
+}

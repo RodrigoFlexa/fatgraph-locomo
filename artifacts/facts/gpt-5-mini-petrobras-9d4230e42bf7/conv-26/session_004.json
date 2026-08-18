@@ -1,0 +1,278 @@
+{
+ "facts": [
+  {
+   "entity_1": "Caroline",
+   "relation": "received as a gift from",
+   "entity_2": "Caroline's grandma",
+   "fact_text": "Caroline received the necklace as a gift from Caroline's grandma.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline's grandma",
+   "relation": "lives in",
+   "entity_2": "Sweden",
+   "fact_text": "Caroline's grandma lives in Sweden.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the necklace",
+   "relation": "symbolizes",
+   "entity_2": "love, faith and strength",
+   "fact_text": "The necklace symbolizes love, faith and strength.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the necklace",
+   "relation": "was given when",
+   "entity_2": "Caroline was young",
+   "fact_text": "The necklace was given to Caroline when Caroline was young.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "owns",
+   "entity_2": "a hand-painted bowl",
+   "fact_text": "Caroline owns a hand-painted bowl.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the hand-painted bowl",
+   "relation": "was made by",
+   "entity_2": "a friend",
+   "fact_text": "The hand-painted bowl was made by a friend.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the hand-painted bowl",
+   "relation": "was given for",
+   "entity_2": "Caroline's 18th birthday",
+   "fact_text": "The hand-painted bowl was given for Caroline's 18th birthday.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the hand-painted bowl",
+   "relation": "was given",
+   "entity_2": "ten years ago",
+   "fact_text": "The hand-painted bowl was given to Caroline ten years ago.",
+   "turn_ids": [
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Melanie",
+   "relation": "took",
+   "entity_2": "her family camping in the mountains",
+   "fact_text": "Melanie took her family camping in the mountains last week.",
+   "turn_ids": [
+    "D4:6",
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Melanie's family camping trip",
+   "relation": "included",
+   "entity_2": "exploring nature",
+   "fact_text": "Melanie's family camping trip included exploring nature.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Melanie's family camping trip",
+   "relation": "included",
+   "entity_2": "roasting marshmallows around the campfire",
+   "fact_text": "Melanie's family camping trip included roasting marshmallows around the campfire.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Melanie's family camping trip",
+   "relation": "included",
+   "entity_2": "going on a hike",
+   "fact_text": "Melanie's family camping trip included going on a hike.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the view from the top",
+   "relation": "was",
+   "entity_2": "amazing",
+   "fact_text": "The view from the top on Melanie's hike was amazing.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the two younger kids",
+   "relation": "love",
+   "entity_2": "nature",
+   "fact_text": "The two younger kids love nature.",
+   "turn_ids": [
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "is exploring a career in",
+   "entity_2": "counseling and mental health",
+   "fact_text": "Caroline is exploring a career in counseling and mental health.",
+   "turn_ids": [
+    "D4:11"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "wants to work with",
+   "entity_2": "trans people",
+   "fact_text": "Caroline wants to work with trans people as part of her counseling career.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline",
+   "relation": "attended",
+   "entity_2": "an LGBTQ+ counseling workshop",
+   "fact_text": "Caroline attended an LGBTQ+ counseling workshop last Friday.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the LGBTQ+ counseling workshop",
+   "relation": "covered",
+   "entity_2": "different therapeutic methods and how to best work with trans people",
+   "fact_text": "The LGBTQ+ counseling workshop covered different therapeutic methods and how to best work with trans people.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "the professionals at the workshop",
+   "relation": "are passionate about",
+   "entity_2": "making a safe space for trans people",
+   "fact_text": "The professionals at the LGBTQ+ counseling workshop are passionate about making a safe space for trans people.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "counseling and support groups",
+   "relation": "improved",
+   "entity_2": "Caroline's life",
+   "fact_text": "Counseling and support groups improved Caroline's life.",
+   "turn_ids": [
+    "D4:15"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  },
+  {
+   "entity_1": "Caroline's own journey and support",
+   "relation": "motivated",
+   "entity_2": "Caroline's interest in mental health work",
+   "fact_text": "Caroline's own journey and support motivated Caroline's interest in mental health work.",
+   "turn_ids": [
+    "D4:15"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-06-27T10:37:00",
+   "date_raw": "10:37 am on 27 June, 2023"
+  }
+ ]
+}

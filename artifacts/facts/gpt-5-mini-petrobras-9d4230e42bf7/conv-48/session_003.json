@@ -1,0 +1,109 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "was assigned",
+   "entity_2": "a huge robotics project",
+   "fact_text": "Jolene was assigned a huge robotics project by her engineering professor.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "feels about",
+   "entity_2": "a huge robotics project",
+   "fact_text": "Jolene feels that the huge robotics project is tough but fun.",
+   "turn_ids": [
+    "D3:1",
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "huge robotics project",
+   "relation": "is making",
+   "entity_2": "Jolene",
+   "fact_text": "The huge robotics project is making Jolene get creative and problem-solve.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "shared",
+   "entity_2": "a photo of a table with a robot and a laptop",
+   "fact_text": "Jolene shared a photo of a table with a robot and a laptop.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "met",
+   "entity_2": "Anna",
+   "fact_text": "Deborah met Anna yesterday.",
+   "turn_ids": [
+    "D3:4"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "met at",
+   "entity_2": "Anna",
+   "fact_text": "Deborah met Anna at yoga in the park.",
+   "turn_ids": [
+    "D3:6"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "talked with",
+   "entity_2": "Anna",
+   "fact_text": "Deborah talked with Anna about how yoga improved their lives and the sense of community.",
+   "turn_ids": [
+    "D3:8"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "planned to play the console with",
+   "entity_2": "Jolene's partner",
+   "fact_text": "Jolene planned to play the console with Jolene's partner.",
+   "turn_ids": [
+    "D3:11"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-02-01T19:03:00",
+   "date_raw": "7:03 pm on 1 February, 2023"
+  }
+ ]
+}

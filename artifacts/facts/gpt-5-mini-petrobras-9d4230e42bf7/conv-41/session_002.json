@@ -1,0 +1,174 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "donated to",
+   "entity_2": "homeless shelter",
+   "fact_text": "Maria donated her old car to a homeless shelter on 21 December 2022.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "volunteers at",
+   "entity_2": "homeless shelter",
+   "fact_text": "Maria volunteers at a homeless shelter.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has been networking with",
+   "entity_2": "people",
+   "fact_text": "John has been networking with people to get their input.",
+   "turn_ids": [
+    "D2:2"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "talked to",
+   "entity_2": "a person who shared stories",
+   "fact_text": "John talked to a person who shared some amazing stories that increased his motivation.",
+   "turn_ids": [
+    "D2:4"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "feels motivated to improve",
+   "entity_2": "local education",
+   "fact_text": "John feels motivated to make education better in the local area.",
+   "turn_ids": [
+    "D2:4"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "photograph of a family having a picnic in the park",
+   "fact_text": "John shared a photograph of a family having a picnic in the park.",
+   "turn_ids": [
+    "D2:10"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "photograph of a family enjoying a ride on a swing",
+   "fact_text": "John shared a photograph of a family enjoying a ride on a swing.",
+   "turn_ids": [
+    "D2:14"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "shared",
+   "entity_2": "photo of a group standing around a kitchen table",
+   "fact_text": "John shared a photo of a group of people standing around a kitchen table from a dinner.",
+   "turn_ids": [
+    "D2:20"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "made with his family",
+   "entity_2": "pizza",
+   "fact_text": "John made pizza with his family.",
+   "turn_ids": [
+    "D2:24"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "enjoys doing with friends",
+   "entity_2": "watching movies, hiking, and having game nights at her place",
+   "fact_text": "Maria enjoys watching movies, hiking, and having game nights at her place with her friends.",
+   "turn_ids": [
+    "D2:17"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "made",
+   "entity_2": "peach cobbler recently",
+   "fact_text": "Maria made peach cobbler recently.",
+   "turn_ids": [
+    "D2:25"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "says gives him strength",
+   "entity_2": "his family",
+   "fact_text": "John says his family gives him strength and is the reason he never gives up.",
+   "turn_ids": [
+    "D2:10",
+    "D2:12"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "practices",
+   "entity_2": "taekwondo",
+   "fact_text": "John is off to do taekwondo.",
+   "turn_ids": [
+    "D2:28"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2022-12-22T18:10:00",
+   "date_raw": "6:10 pm on 22 December, 2022"
+  }
+ ]
+}

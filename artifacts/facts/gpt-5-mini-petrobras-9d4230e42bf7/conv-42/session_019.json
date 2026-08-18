@@ -1,0 +1,160 @@
+{
+ "facts": [
+  {
+   "entity_1": "Nate",
+   "relation": "won",
+   "entity_2": "an international tournament on 21 August 2022",
+   "fact_text": "Nate won an international tournament on 21 August 2022.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "makes a living from",
+   "entity_2": "gaming",
+   "fact_text": "Nate makes a living from gaming.",
+   "turn_ids": [
+    "D19:1"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Nate's fish",
+   "relation": "received",
+   "entity_2": "a new tank",
+   "fact_text": "Nate's fish received a new tank.",
+   "turn_ids": [
+    "D19:3"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared a book with",
+   "entity_2": "her writers group last week",
+   "fact_text": "Joanna shared a book with her writers group last week.",
+   "turn_ids": [
+    "D19:6"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "received",
+   "entity_2": "great feedback from her writers group",
+   "fact_text": "Joanna received great feedback from her writers group.",
+   "turn_ids": [
+    "D19:6"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "celebrated by making",
+   "entity_2": "a homemade dessert",
+   "fact_text": "Joanna celebrated by making a homemade dessert.",
+   "turn_ids": [
+    "D19:8"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "planned to take time off to relax with",
+   "entity_2": "his pets this weekend",
+   "fact_text": "Nate planned to take time off to relax with his pets this weekend.",
+   "turn_ids": [
+    "D19:9"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "planned to recharge with",
+   "entity_2": "a long walk and some reading this weekend",
+   "fact_text": "Joanna planned to recharge with a long walk and some reading this weekend.",
+   "turn_ids": [
+    "D19:10"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "recommends reading",
+   "entity_2": "a fantasy book series",
+   "fact_text": "Joanna recommends reading a fantasy book series for relaxing.",
+   "turn_ids": [
+    "D19:14"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "is looking for",
+   "entity_2": "new books to read",
+   "fact_text": "Nate is looking for new books to read.",
+   "turn_ids": [
+    "D19:13"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "recommended",
+   "entity_2": "a book series with awesome battles and interesting characters",
+   "fact_text": "Nate recommended a book series with awesome battles and interesting characters.",
+   "turn_ids": [
+    "D19:17"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "believes",
+   "entity_2": "taking breaks and looking after herself are important for inspiration and mental health",
+   "fact_text": "Joanna believes that taking breaks and looking after herself are important for inspiration and mental health.",
+   "turn_ids": [
+    "D19:12"
+   ],
+   "session_id": "S19",
+   "session_num": 19,
+   "timestamp": "2022-08-22T10:57:00",
+   "date_raw": "10:57 am on 22 August, 2022"
+  }
+ ]
+}

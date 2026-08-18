@@ -1,0 +1,134 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jon",
+   "relation": "started hitting",
+   "entity_2": "the gym during the week before 16 March 2023",
+   "fact_text": "Jon started hitting the gym during the week before 16 March 2023.",
+   "turn_ids": [
+    "D6:1"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "lost her job at",
+   "entity_2": "Door Dash",
+   "fact_text": "Gina lost her job at Door Dash.",
+   "turn_ids": [
+    "D6:4"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "opened",
+   "entity_2": "an online clothes store",
+   "fact_text": "Gina opened an online clothes store.",
+   "turn_ids": [
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "shared an image of",
+   "entity_2": "a computer screen showing a book and a pair of shoes",
+   "fact_text": "Gina shared an image of a computer screen showing a book and a pair of shoes.",
+   "turn_ids": [
+    "D6:6"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "is passionate about",
+   "entity_2": "fashion trends",
+   "fact_text": "Gina is passionate about fashion trends.",
+   "turn_ids": [
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "loves",
+   "entity_2": "dance",
+   "fact_text": "Gina loves dance.",
+   "turn_ids": [
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "loves",
+   "entity_2": "fashion",
+   "fact_text": "Gina loves fashion.",
+   "turn_ids": [
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "lost his job",
+   "entity_2": "before 16 March 2023",
+   "fact_text": "Jon lost his job before 16 March 2023.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "started",
+   "entity_2": "a business",
+   "fact_text": "Jon started a business.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "shared an image of",
+   "entity_2": "two glasses of champagne with a bottle of wine in the background",
+   "fact_text": "Jon shared an image of two glasses of champagne with a bottle of wine in the background.",
+   "turn_ids": [
+    "D6:19"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-03-16T14:35:00",
+   "date_raw": "2:35 pm on 16 March, 2023"
+  }
+ ]
+}

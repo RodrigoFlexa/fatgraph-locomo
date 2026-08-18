@@ -1,0 +1,71 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "organized with",
+   "entity_2": "his programmer friends an online competition the week before 13 October 2022",
+   "fact_text": "John organized with his programmer friends an online competition the week before 13 October 2022.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-10-13T14:14:00",
+   "date_raw": "2:14 pm on 13 October, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "released",
+   "entity_2": "his first game to the gaming community",
+   "fact_text": "James released his first game to the gaming community.",
+   "turn_ids": [
+    "D27:2",
+    "D27:4"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-10-13T14:14:00",
+   "date_raw": "2:14 pm on 13 October, 2022"
+  },
+  {
+   "entity_1": "The Witcher 3",
+   "relation": "inspired",
+   "entity_2": "James to create his game",
+   "fact_text": "The Witcher 3 inspired James to create his game.",
+   "turn_ids": [
+    "D27:6"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-10-13T14:14:00",
+   "date_raw": "2:14 pm on 13 October, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plans to",
+   "entity_2": "make more games in different genres",
+   "fact_text": "James plans to make more games in different genres.",
+   "turn_ids": [
+    "D27:8"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-10-13T14:14:00",
+   "date_raw": "2:14 pm on 13 October, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "supports",
+   "entity_2": "James",
+   "fact_text": "John supports James and has been there for James.",
+   "turn_ids": [
+    "D27:11",
+    "D27:14"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2022-10-13T14:14:00",
+   "date_raw": "2:14 pm on 13 October, 2022"
+  }
+ ]
+}

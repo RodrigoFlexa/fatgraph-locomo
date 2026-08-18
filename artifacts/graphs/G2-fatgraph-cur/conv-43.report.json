@@ -1,0 +1,812 @@
+{
+  "sample_id": "conv-43",
+  "condition": "G2-fatgraph-cur",
+  "n_facts": 405,
+  "n_edges": 405,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 0,
+  "n_collapses": 4,
+  "n_consolidations": 12,
+  "per_session": [
+    {
+      "session": 1,
+      "session_id": "S1",
+      "timestamp": "2023-05-21T19:48:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 14,
+      "E": 14,
+      "F": 2,
+      "C": 2,
+      "genus": 1,
+      "face_length_hist": {
+        "10": 1,
+        "18": 1
+      }
+    },
+    {
+      "session": 2,
+      "session_id": "S2",
+      "timestamp": "2023-06-15T17:08:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 29,
+      "E": 29,
+      "F": 2,
+      "C": 2,
+      "genus": 1,
+      "face_length_hist": {
+        "26": 1,
+        "32": 1
+      }
+    },
+    {
+      "session": 3,
+      "session_id": "S3",
+      "timestamp": "2023-07-16T16:21:00",
+      "n_facts": 17,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 47,
+      "E": 46,
+      "F": 3,
+      "C": 3,
+      "genus": 1,
+      "face_length_hist": {
+        "2": 1,
+        "30": 1,
+        "60": 1
+      }
+    },
+    {
+      "session": 4,
+      "session_id": "S4",
+      "timestamp": "2023-08-02T16:17:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 57,
+      "E": 59,
+      "F": 4,
+      "C": 3,
+      "genus": 2,
+      "face_length_hist": {
+        "2": 1,
+        "24": 1,
+        "26": 1,
+        "66": 1
+      }
+    },
+    {
+      "session": 5,
+      "session_id": "S5",
+      "timestamp": "2023-08-09T10:29:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 64,
+      "E": 71,
+      "F": 5,
+      "C": 3,
+      "genus": 4,
+      "face_length_hist": {
+        "2": 1,
+        "4": 1,
+        "28": 1,
+        "40": 1,
+        "68": 1
+      }
+    },
+    {
+      "session": 6,
+      "session_id": "S6",
+      "timestamp": "2023-08-11T13:08:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 3,
+      "V": 77,
+      "E": 88,
+      "F": 5,
+      "C": 3,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 2,
+        "4": 1,
+        "49": 1,
+        "119": 1
+      }
+    },
+    {
+      "session": 7,
+      "session_id": "S7",
+      "timestamp": "2023-08-17T19:54:00",
+      "n_facts": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 88,
+      "E": 99,
+      "F": 7,
+      "C": 4,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 2,
+        "4": 2,
+        "53": 1,
+        "57": 1,
+        "76": 1
+      }
+    },
+    {
+      "session": 8,
+      "session_id": "S8",
+      "timestamp": "2023-08-21T16:29:00",
+      "n_facts": 26,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 113,
+      "E": 126,
+      "F": 9,
+      "C": 5,
+      "genus": 7,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 1,
+        "98": 1,
+        "132": 1
+      }
+    },
+    {
+      "session": 9,
+      "session_id": "S9",
+      "timestamp": "2023-08-26T18:59:00",
+      "n_facts": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 1,
+      "n_consolidations": 1,
+      "V": 119,
+      "E": 133,
+      "F": 10,
+      "C": 5,
+      "genus": 7,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 1,
+        "61": 1,
+        "77": 1,
+        "106": 1
+      }
+    },
+    {
+      "session": 10,
+      "session_id": "S10",
+      "timestamp": "2023-08-31T14:52:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 1,
+      "n_consolidations": 0,
+      "V": 129,
+      "E": 144,
+      "F": 9,
+      "C": 5,
+      "genus": 8,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 1,
+        "77": 1,
+        "189": 1
+      }
+    },
+    {
+      "session": 11,
+      "session_id": "S11",
+      "timestamp": "2023-09-21T20:17:00",
+      "n_facts": 16,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 142,
+      "E": 160,
+      "F": 10,
+      "C": 5,
+      "genus": 9,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 1,
+        "28": 1,
+        "114": 1,
+        "156": 1
+      }
+    },
+    {
+      "session": 12,
+      "session_id": "S12",
+      "timestamp": "2023-10-02T15:00:00",
+      "n_facts": 16,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 156,
+      "E": 176,
+      "F": 12,
+      "C": 5,
+      "genus": 9,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 2,
+        "8": 1,
+        "44": 1,
+        "114": 1,
+        "158": 1
+      }
+    },
+    {
+      "session": 13,
+      "session_id": "S13",
+      "timestamp": "2023-10-13T13:50:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 2,
+      "V": 164,
+      "E": 191,
+      "F": 11,
+      "C": 5,
+      "genus": 13,
+      "face_length_hist": {
+        "2": 5,
+        "4": 2,
+        "6": 1,
+        "114": 1,
+        "122": 2
+      }
+    },
+    {
+      "session": 14,
+      "session_id": "S14",
+      "timestamp": "2023-10-17T13:50:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 177,
+      "E": 204,
+      "F": 11,
+      "C": 5,
+      "genus": 13,
+      "face_length_hist": {
+        "2": 5,
+        "4": 2,
+        "6": 1,
+        "114": 1,
+        "122": 1,
+        "148": 1
+      }
+    },
+    {
+      "session": 15,
+      "session_id": "S15",
+      "timestamp": "2023-10-21T17:51:00",
+      "n_facts": 21,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 195,
+      "E": 225,
+      "F": 12,
+      "C": 5,
+      "genus": 14,
+      "face_length_hist": {
+        "2": 5,
+        "4": 3,
+        "6": 1,
+        "114": 1,
+        "144": 1,
+        "164": 1
+      }
+    },
+    {
+      "session": 16,
+      "session_id": "S16",
+      "timestamp": "2023-11-06T11:41:00",
+      "n_facts": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 201,
+      "E": 234,
+      "F": 9,
+      "C": 4,
+      "genus": 16,
+      "face_length_hist": {
+        "2": 5,
+        "4": 1,
+        "6": 1,
+        "114": 1,
+        "334": 1
+      }
+    },
+    {
+      "session": 17,
+      "session_id": "S17",
+      "timestamp": "2023-11-11T15:36:00",
+      "n_facts": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 1,
+      "n_consolidations": 0,
+      "V": 206,
+      "E": 240,
+      "F": 10,
+      "C": 4,
+      "genus": 16,
+      "face_length_hist": {
+        "2": 5,
+        "4": 1,
+        "6": 1,
+        "58": 1,
+        "114": 1,
+        "288": 1
+      }
+    },
+    {
+      "session": 18,
+      "session_id": "S18",
+      "timestamp": "2023-11-16T15:59:00",
+      "n_facts": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 215,
+      "E": 248,
+      "F": 11,
+      "C": 5,
+      "genus": 16,
+      "face_length_hist": {
+        "2": 6,
+        "4": 1,
+        "6": 1,
+        "66": 1,
+        "114": 1,
+        "294": 1
+      }
+    },
+    {
+      "session": 19,
+      "session_id": "S19",
+      "timestamp": "2023-11-21T10:22:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 227,
+      "E": 263,
+      "F": 10,
+      "C": 5,
+      "genus": 18,
+      "face_length_hist": {
+        "2": 6,
+        "4": 1,
+        "6": 1,
+        "114": 1,
+        "390": 1
+      }
+    },
+    {
+      "session": 20,
+      "session_id": "S20",
+      "timestamp": "2023-12-01T09:52:00",
+      "n_facts": 25,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 251,
+      "E": 288,
+      "F": 13,
+      "C": 6,
+      "genus": 18,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "6": 1,
+        "30": 1,
+        "109": 1,
+        "114": 1,
+        "299": 1
+      }
+    },
+    {
+      "session": 21,
+      "session_id": "S21",
+      "timestamp": "2023-12-06T17:34:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 266,
+      "E": 306,
+      "F": 10,
+      "C": 6,
+      "genus": 21,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "6": 1,
+        "588": 1
+      }
+    },
+    {
+      "session": 22,
+      "session_id": "S22",
+      "timestamp": "2023-12-08T19:42:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 277,
+      "E": 320,
+      "F": 11,
+      "C": 6,
+      "genus": 22,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "6": 1,
+        "52": 1,
+        "564": 1
+      }
+    },
+    {
+      "session": 23,
+      "session_id": "S23",
+      "timestamp": "2023-12-11T20:28:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 284,
+      "E": 331,
+      "F": 13,
+      "C": 6,
+      "genus": 23,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "6": 1,
+        "27": 1,
+        "73": 1,
+        "148": 1,
+        "390": 1
+      }
+    },
+    {
+      "session": 24,
+      "session_id": "S24",
+      "timestamp": "2023-12-16T15:37:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 296,
+      "E": 343,
+      "F": 13,
+      "C": 8,
+      "genus": 25,
+      "face_length_hist": {
+        "2": 8,
+        "6": 1,
+        "10": 1,
+        "27": 1,
+        "148": 1,
+        "479": 1
+      }
+    },
+    {
+      "session": 25,
+      "session_id": "S25",
+      "timestamp": "2023-12-19T10:04:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 309,
+      "E": 354,
+      "F": 17,
+      "C": 11,
+      "genus": 25,
+      "face_length_hist": {
+        "2": 10,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "27": 1,
+        "148": 1,
+        "491": 1
+      }
+    },
+    {
+      "session": 26,
+      "session_id": "S26",
+      "timestamp": "2023-12-26T15:35:00",
+      "n_facts": 22,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 330,
+      "E": 377,
+      "F": 21,
+      "C": 12,
+      "genus": 25,
+      "face_length_hist": {
+        "2": 13,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "27": 1,
+        "42": 1,
+        "148": 1,
+        "489": 1
+      }
+    },
+    {
+      "session": 27,
+      "session_id": "S27",
+      "timestamp": "2024-01-02T17:26:00",
+      "n_facts": 20,
+      "n_incongruent_new": 0,
+      "n_collapses": 1,
+      "n_consolidations": 1,
+      "V": 346,
+      "E": 397,
+      "F": 19,
+      "C": 12,
+      "genus": 28,
+      "face_length_hist": {
+        "2": 12,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "42": 1,
+        "307": 1,
+        "399": 1
+      }
+    },
+    {
+      "session": 28,
+      "session_id": "S28",
+      "timestamp": "2024-01-07T17:24:00",
+      "n_facts": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 355,
+      "E": 408,
+      "F": 21,
+      "C": 13,
+      "genus": 29,
+      "face_length_hist": {
+        "2": 13,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "42": 1,
+        "111": 1,
+        "234": 1,
+        "381": 1
+      }
+    },
+    {
+      "session": 29,
+      "session_id": "S29",
+      "timestamp": "2024-01-12T13:41:00",
+      "n_facts": 5,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 360,
+      "E": 413,
+      "F": 21,
+      "C": 13,
+      "genus": 29,
+      "face_length_hist": {
+        "2": 13,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "42": 1,
+        "115": 1,
+        "234": 1,
+        "387": 1
+      }
+    }
+  ],
+  "graph_stats": {
+    "V": 360,
+    "E": 413,
+    "F": 21,
+    "C": 13,
+    "genus": 29,
+    "chi": -32,
+    "components": [
+      {
+        "index": 0,
+        "V": 329,
+        "E": 393,
+        "F": 8,
+        "genus": 29
+      },
+      {
+        "index": 1,
+        "V": 4,
+        "E": 3,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 2,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 3,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 4,
+        "V": 6,
+        "E": 6,
+        "F": 2,
+        "genus": 0
+      },
+      {
+        "index": 5,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 6,
+        "V": 3,
+        "E": 2,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 7,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 8,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 9,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 10,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 11,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 12,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      }
+    ],
+    "n_faces_nontrivial": 21,
+    "face_length_hist": {
+      "2": 13,
+      "4": 2,
+      "6": 1,
+      "8": 1,
+      "42": 1,
+      "115": 1,
+      "234": 1,
+      "387": 1
+    },
+    "face_length_mean": 39.333333333333336,
+    "face_length_max": 387,
+    "n_leaf_faces": 9,
+    "n_bigon_faces": 4,
+    "edges_by_state": {
+      "emergente": 404,
+      "consolidada": 9,
+      "incongruente": 0
+    },
+    "n_level2_edges": 9,
+    "n_shadowed_edges": 141,
+    "degree_mean": 2.2944444444444443
+  },
+  "llm_usage": {
+    "calls": 1891,
+    "cached_calls": 1043,
+    "prompt_tokens": 1269535,
+    "completion_tokens": 234363,
+    "total_tokens": 1503898,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "ingest/incongruence": {
+        "calls": 541,
+        "cached_calls": 538,
+        "prompt_tokens": 133848,
+        "completion_tokens": 55235,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/entity_match": {
+        "calls": 493,
+        "cached_calls": 450,
+        "prompt_tokens": 100188,
+        "completion_tokens": 56114,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "curation/consolidate": {
+        "calls": 60,
+        "cached_calls": 0,
+        "prompt_tokens": 31552,
+        "completion_tokens": 24635,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "curation/redundancy": {
+        "calls": 40,
+        "cached_calls": 0,
+        "prompt_tokens": 10112,
+        "completion_tokens": 8960,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "qa/answer": {
+        "calls": 757,
+        "cached_calls": 55,
+        "prompt_tokens": 993835,
+        "completion_tokens": 89419,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  }
+}

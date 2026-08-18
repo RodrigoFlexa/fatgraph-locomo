@@ -1,0 +1,97 @@
+{
+ "facts": [
+  {
+   "entity_1": "Gina",
+   "relation": "was noticed by",
+   "entity_2": "fashion editors",
+   "fact_text": "Gina was noticed by fashion editors last week.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "lost",
+   "entity_2": "his job",
+   "fact_text": "Jon lost his job.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "plans to go full-time with",
+   "entity_2": "his business idea",
+   "fact_text": "Jon plans to go full-time with his business idea.",
+   "turn_ids": [
+    "D17:2",
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "started learning",
+   "entity_2": "marketing and analytics tools",
+   "fact_text": "Jon started learning marketing and analytics tools today.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "plans to mentor",
+   "entity_2": "aspiring dancers",
+   "fact_text": "Jon plans to mentor aspiring dancers.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "shared an image of",
+   "entity_2": "a drawing of a smiley face floating in the water",
+   "fact_text": "Jon shared an image of a drawing of a smiley face floating in the water.",
+   "turn_ids": [
+    "D17:18"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "has",
+   "entity_2": "a dance studio",
+   "fact_text": "Jon has a dance studio.",
+   "turn_ids": [
+    "D17:2",
+    "D17:7"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-07-09T13:25:00",
+   "date_raw": "1:25 pm on 9 July, 2023"
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "taking",
+   "fact_text": "caroline and taking came up when Melanie was talking.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "taking",
+   "fact_text": "great and taking came up when Caroline was talking.",
+   "turn_ids": [
+    "D2:2"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "family",
+   "fact_text": "caroline and family came up when Melanie was talking.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "tough",
+   "relation": "mentions",
+   "entity_2": "carving",
+   "fact_text": "tough and carving came up when Melanie was talking.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "family",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "family and great came up when Caroline was talking.",
+   "turn_ids": [
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "kids",
+   "relation": "mentions",
+   "entity_2": "caroline",
+   "fact_text": "kids and caroline came up when Melanie was talking.",
+   "turn_ids": [
+    "D2:7"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  },
+  {
+   "entity_1": "kids",
+   "relation": "mentions",
+   "entity_2": "family",
+   "fact_text": "kids and family came up when Caroline was talking.",
+   "turn_ids": [
+    "D2:8"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-25T13:14:00",
+   "date_raw": "1:14 pm on 25 May, 2023"
+  }
+ ]
+}

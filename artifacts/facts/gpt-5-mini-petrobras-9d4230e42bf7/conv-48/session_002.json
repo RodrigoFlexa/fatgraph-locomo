@@ -1,0 +1,292 @@
+{
+ "facts": [
+  {
+   "entity_1": "Deborah",
+   "relation": "lost",
+   "entity_2": "Deborah's father",
+   "fact_text": "Deborah lost Deborah's father two days before 27 January 2023.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is spending more time with",
+   "entity_2": "Deborah's family",
+   "fact_text": "Deborah is spending more time with Deborah's family to channel grief.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "looked at",
+   "entity_2": "the family album",
+   "fact_text": "Deborah looked at the family album to remember past moments.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah's parents",
+   "relation": "were married in",
+   "entity_2": "1993",
+   "fact_text": "Deborah's parents were married in 1993.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is married to",
+   "entity_2": "Deborah's husband",
+   "fact_text": "Deborah is married to Deborah's husband.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah and Deborah's husband",
+   "relation": "are trying to be",
+   "entity_2": "as good a family as Deborah's parents",
+   "fact_text": "Deborah and Deborah's husband are trying to be as good a family as Deborah's parents were.",
+   "turn_ids": [
+    "D2:5"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "values",
+   "entity_2": "love and openness in relationship",
+   "fact_text": "Deborah values love and openness in relationship.",
+   "turn_ids": [
+    "D2:7"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "received",
+   "entity_2": "a thank-you letter from group members",
+   "fact_text": "Deborah received a thank-you letter from group members thanking Deborah for Deborah's positive influence.",
+   "turn_ids": [
+    "D2:7",
+    "D2:9"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is passionate about",
+   "entity_2": "yoga",
+   "fact_text": "Deborah is passionate about yoga.",
+   "turn_ids": [
+    "D2:9"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "One of Deborah's yoga places",
+   "relation": "is",
+   "entity_2": "the living room in Deborah's old home with a television and a window",
+   "fact_text": "One of Deborah's yoga places is the living room in Deborah's old home with a television and a window.",
+   "turn_ids": [
+    "D2:11",
+    "D2:13"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "visits",
+   "entity_2": "Deborah's old home for Deborah's mother",
+   "fact_text": "Deborah visits Deborah's old home for Deborah's mother, who has passed away.",
+   "turn_ids": [
+    "D2:13"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "The window seat in Deborah's old home",
+   "relation": "gives",
+   "entity_2": "Deborah peace",
+   "fact_text": "The window seat in Deborah's old home gives Deborah peace.",
+   "turn_ids": [
+    "D2:15"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "died",
+   "entity_2": "before the session",
+   "fact_text": "Deborah's mother died before the session on 27 January 2023.",
+   "turn_ids": [
+    "D2:13"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "read",
+   "entity_2": "every night from a book",
+   "fact_text": "Deborah's mother read every night from a book as one of her hobbies.",
+   "turn_ids": [
+    "D2:17"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Deborah's mother",
+   "relation": "enjoyed",
+   "entity_2": "travel",
+   "fact_text": "Deborah's mother enjoyed travel.",
+   "turn_ids": [
+    "D2:19"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "owns",
+   "entity_2": "a snake named Susie",
+   "fact_text": "Jolene owns a snake named Susie.",
+   "turn_ids": [
+    "D2:20"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "owns",
+   "entity_2": "a snake named Seraphim",
+   "fact_text": "Jolene owns a snake named Seraphim.",
+   "turn_ids": [
+    "D2:22"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Seraphim",
+   "relation": "coiled up next to",
+   "entity_2": "Jolene while Jolene was playing video games",
+   "fact_text": "Seraphim coiled up next to Jolene while Jolene was playing video games.",
+   "turn_ids": [
+    "D2:22"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "bought",
+   "entity_2": "Seraphim in Paris a year ago",
+   "fact_text": "Jolene bought Seraphim in Paris a year ago.",
+   "turn_ids": [
+    "D2:24"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene and Jolene's partner",
+   "relation": "played",
+   "entity_2": "the game \"Detroit\" on a console last week",
+   "fact_text": "Jolene and Jolene's partner played the game \"Detroit\" on a console last week.",
+   "turn_ids": [
+    "D2:26"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "learned to play video games",
+   "entity_2": "as a child",
+   "fact_text": "Jolene learned to play video games as a child.",
+   "turn_ids": [
+    "D2:28"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  },
+  {
+   "entity_1": "Jolene and Jolene's partner",
+   "relation": "plan to play",
+   "entity_2": "the game \"Walking Dead\" next Saturday",
+   "fact_text": "Jolene and Jolene's partner plan to play the game \"Walking Dead\" next Saturday.",
+   "turn_ids": [
+    "D2:30"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-01-27T09:49:00",
+   "date_raw": "9:49 am on 27 January, 2023"
+  }
+ ]
+}

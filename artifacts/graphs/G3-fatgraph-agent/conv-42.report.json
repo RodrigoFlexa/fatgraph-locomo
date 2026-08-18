@@ -1,0 +1,767 @@
+{
+  "sample_id": "conv-42",
+  "condition": "G3-fatgraph-agent",
+  "n_facts": 405,
+  "n_edges": 405,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 1,
+  "n_collapses": 1,
+  "n_consolidations": 6,
+  "per_session": [
+    {
+      "session": 1,
+      "session_id": "S1",
+      "timestamp": "2022-01-21T19:31:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 15,
+      "E": 18,
+      "F": 1,
+      "C": 1,
+      "genus": 2,
+      "face_length_hist": {
+        "36": 1
+      }
+    },
+    {
+      "session": 2,
+      "session_id": "S2",
+      "timestamp": "2022-01-23T14:01:00",
+      "n_facts": 20,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 33,
+      "E": 38,
+      "F": 3,
+      "C": 2,
+      "genus": 3,
+      "face_length_hist": {
+        "2": 1,
+        "4": 1,
+        "70": 1
+      }
+    },
+    {
+      "session": 3,
+      "session_id": "S3",
+      "timestamp": "2022-02-07T09:27:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 39,
+      "E": 48,
+      "F": 3,
+      "C": 1,
+      "genus": 4,
+      "face_length_hist": {
+        "4": 1,
+        "6": 1,
+        "86": 1
+      }
+    },
+    {
+      "session": 4,
+      "session_id": "S4",
+      "timestamp": "2022-02-25T13:07:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 48,
+      "E": 61,
+      "F": 5,
+      "C": 2,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 1,
+        "8": 1,
+        "12": 1,
+        "18": 1,
+        "82": 1
+      }
+    },
+    {
+      "session": 5,
+      "session_id": "S5",
+      "timestamp": "2022-03-18T18:59:00",
+      "n_facts": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 54,
+      "E": 73,
+      "F": 3,
+      "C": 2,
+      "genus": 10,
+      "face_length_hist": {
+        "2": 2,
+        "142": 1
+      }
+    },
+    {
+      "session": 6,
+      "session_id": "S6",
+      "timestamp": "2022-03-24T13:43:00",
+      "n_facts": 10,
+      "n_incongruent_new": 1,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 59,
+      "E": 83,
+      "F": 4,
+      "C": 2,
+      "genus": 12,
+      "face_length_hist": {
+        "2": 2,
+        "17": 1,
+        "145": 1
+      }
+    },
+    {
+      "session": 7,
+      "session_id": "S7",
+      "timestamp": "2022-04-15T19:37:00",
+      "n_facts": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 64,
+      "E": 90,
+      "F": 4,
+      "C": 2,
+      "genus": 13,
+      "face_length_hist": {
+        "2": 2,
+        "17": 1,
+        "159": 1
+      }
+    },
+    {
+      "session": 8,
+      "session_id": "S8",
+      "timestamp": "2022-04-17T18:44:00",
+      "n_facts": 16,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 75,
+      "E": 106,
+      "F": 3,
+      "C": 1,
+      "genus": 15,
+      "face_length_hist": {
+        "2": 1,
+        "33": 1,
+        "177": 1
+      }
+    },
+    {
+      "session": 9,
+      "session_id": "S9",
+      "timestamp": "2022-04-21T19:44:00",
+      "n_facts": 19,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 91,
+      "E": 125,
+      "F": 4,
+      "C": 1,
+      "genus": 16,
+      "face_length_hist": {
+        "2": 1,
+        "31": 1,
+        "58": 1,
+        "159": 1
+      }
+    },
+    {
+      "session": 10,
+      "session_id": "S10",
+      "timestamp": "2022-05-02T11:54:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 106,
+      "E": 143,
+      "F": 5,
+      "C": 2,
+      "genus": 18,
+      "face_length_hist": {
+        "2": 3,
+        "39": 1,
+        "241": 1
+      }
+    },
+    {
+      "session": 11,
+      "session_id": "S11",
+      "timestamp": "2022-05-12T15:35:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 115,
+      "E": 158,
+      "F": 5,
+      "C": 2,
+      "genus": 21,
+      "face_length_hist": {
+        "2": 3,
+        "100": 1,
+        "210": 1
+      }
+    },
+    {
+      "session": 12,
+      "session_id": "S12",
+      "timestamp": "2022-05-20T19:49:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 128,
+      "E": 173,
+      "F": 7,
+      "C": 3,
+      "genus": 22,
+      "face_length_hist": {
+        "2": 4,
+        "6": 1,
+        "63": 1,
+        "269": 1
+      }
+    },
+    {
+      "session": 13,
+      "session_id": "S13",
+      "timestamp": "2022-05-25T15:00:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 130,
+      "E": 184,
+      "F": 8,
+      "C": 3,
+      "genus": 26,
+      "face_length_hist": {
+        "2": 6,
+        "6": 1,
+        "350": 1
+      }
+    },
+    {
+      "session": 14,
+      "session_id": "S14",
+      "timestamp": "2022-06-03T17:44:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 1,
+      "n_consolidations": 0,
+      "V": 142,
+      "E": 195,
+      "F": 9,
+      "C": 4,
+      "genus": 26,
+      "face_length_hist": {
+        "2": 5,
+        "6": 1,
+        "16": 1,
+        "131": 1,
+        "227": 1
+      }
+    },
+    {
+      "session": 15,
+      "session_id": "S15",
+      "timestamp": "2022-06-05T14:12:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 155,
+      "E": 208,
+      "F": 9,
+      "C": 4,
+      "genus": 26,
+      "face_length_hist": {
+        "2": 5,
+        "6": 1,
+        "26": 1,
+        "131": 1,
+        "243": 1
+      }
+    },
+    {
+      "session": 16,
+      "session_id": "S16",
+      "timestamp": "2022-06-24T10:55:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 165,
+      "E": 218,
+      "F": 13,
+      "C": 6,
+      "genus": 26,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "6": 1,
+        "10": 1,
+        "24": 1,
+        "131": 1,
+        "247": 1
+      }
+    },
+    {
+      "session": 17,
+      "session_id": "S17",
+      "timestamp": "2022-07-10T14:34:00",
+      "n_facts": 21,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 2,
+      "V": 184,
+      "E": 241,
+      "F": 11,
+      "C": 7,
+      "genus": 30,
+      "face_length_hist": {
+        "2": 8,
+        "6": 1,
+        "131": 1,
+        "329": 1
+      }
+    },
+    {
+      "session": 18,
+      "session_id": "S18",
+      "timestamp": "2022-08-14T18:12:00",
+      "n_facts": 9,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 189,
+      "E": 250,
+      "F": 11,
+      "C": 7,
+      "genus": 32,
+      "face_length_hist": {
+        "2": 8,
+        "6": 1,
+        "193": 1,
+        "285": 1
+      }
+    },
+    {
+      "session": 19,
+      "session_id": "S19",
+      "timestamp": "2022-08-22T10:57:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 198,
+      "E": 262,
+      "F": 12,
+      "C": 8,
+      "genus": 34,
+      "face_length_hist": {
+        "2": 9,
+        "6": 1,
+        "62": 1,
+        "438": 1
+      }
+    },
+    {
+      "session": 20,
+      "session_id": "S20",
+      "timestamp": "2022-09-05T18:03:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 209,
+      "E": 275,
+      "F": 12,
+      "C": 8,
+      "genus": 35,
+      "face_length_hist": {
+        "2": 9,
+        "6": 1,
+        "240": 1,
+        "286": 1
+      }
+    },
+    {
+      "session": 21,
+      "session_id": "S21",
+      "timestamp": "2022-09-14T13:43:00",
+      "n_facts": 17,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 226,
+      "E": 292,
+      "F": 14,
+      "C": 10,
+      "genus": 36,
+      "face_length_hist": {
+        "2": 11,
+        "6": 1,
+        "70": 1,
+        "486": 1
+      }
+    },
+    {
+      "session": 22,
+      "session_id": "S22",
+      "timestamp": "2022-10-06T11:15:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 234,
+      "E": 306,
+      "F": 14,
+      "C": 10,
+      "genus": 39,
+      "face_length_hist": {
+        "2": 11,
+        "6": 2,
+        "578": 1
+      }
+    },
+    {
+      "session": 23,
+      "session_id": "S23",
+      "timestamp": "2022-10-09T10:58:00",
+      "n_facts": 19,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 1,
+      "V": 251,
+      "E": 326,
+      "F": 15,
+      "C": 10,
+      "genus": 40,
+      "face_length_hist": {
+        "2": 12,
+        "6": 1,
+        "272": 1,
+        "350": 1
+      }
+    },
+    {
+      "session": 24,
+      "session_id": "S24",
+      "timestamp": "2022-10-21T14:01:00",
+      "n_facts": 13,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 259,
+      "E": 339,
+      "F": 18,
+      "C": 11,
+      "genus": 42,
+      "face_length_hist": {
+        "2": 14,
+        "6": 1,
+        "21": 1,
+        "89": 1,
+        "534": 1
+      }
+    },
+    {
+      "session": 25,
+      "session_id": "S25",
+      "timestamp": "2022-10-25T20:16:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 269,
+      "E": 354,
+      "F": 19,
+      "C": 11,
+      "genus": 44,
+      "face_length_hist": {
+        "2": 14,
+        "4": 1,
+        "6": 1,
+        "25": 1,
+        "91": 1,
+        "554": 1
+      }
+    },
+    {
+      "session": 26,
+      "session_id": "S26",
+      "timestamp": "2022-11-04T15:56:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 279,
+      "E": 368,
+      "F": 17,
+      "C": 11,
+      "genus": 47,
+      "face_length_hist": {
+        "2": 14,
+        "6": 1,
+        "206": 1,
+        "496": 1
+      }
+    },
+    {
+      "session": 27,
+      "session_id": "S27",
+      "timestamp": "2022-11-07T20:10:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 295,
+      "E": 386,
+      "F": 19,
+      "C": 12,
+      "genus": 48,
+      "face_length_hist": {
+        "2": 15,
+        "6": 1,
+        "191": 1,
+        "264": 1,
+        "281": 1
+      }
+    },
+    {
+      "session": 28,
+      "session_id": "S28",
+      "timestamp": "2022-11-09T17:54:00",
+      "n_facts": 16,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 304,
+      "E": 402,
+      "F": 18,
+      "C": 12,
+      "genus": 52,
+      "face_length_hist": {
+        "2": 14,
+        "6": 1,
+        "74": 1,
+        "301": 1,
+        "395": 1
+      }
+    },
+    {
+      "session": 29,
+      "session_id": "S29",
+      "timestamp": "2022-11-11T00:06:00",
+      "n_facts": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 311,
+      "E": 410,
+      "F": 17,
+      "C": 13,
+      "genus": 54,
+      "face_length_hist": {
+        "2": 15,
+        "6": 1,
+        "784": 1
+      }
+    }
+  ],
+  "graph_stats": {
+    "V": 311,
+    "E": 410,
+    "F": 17,
+    "C": 13,
+    "genus": 54,
+    "chi": -82,
+    "components": [
+      {
+        "index": 0,
+        "V": 285,
+        "E": 396,
+        "F": 5,
+        "genus": 54
+      },
+      {
+        "index": 1,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 2,
+        "V": 4,
+        "E": 3,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 3,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 4,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 5,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 6,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 7,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 8,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 9,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 10,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 11,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 12,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      }
+    ],
+    "n_faces_nontrivial": 17,
+    "face_length_hist": {
+      "2": 15,
+      "6": 1,
+      "784": 1
+    },
+    "face_length_mean": 48.23529411764706,
+    "face_length_max": 784,
+    "n_leaf_faces": 11,
+    "n_bigon_faces": 4,
+    "edges_by_state": {
+      "emergente": 404,
+      "consolidada": 5,
+      "incongruente": 1
+    },
+    "n_level2_edges": 5,
+    "n_shadowed_edges": 80,
+    "degree_mean": 2.6366559485530545
+  },
+  "llm_usage": {
+    "calls": 2846,
+    "cached_calls": 800,
+    "prompt_tokens": 1845529,
+    "completion_tokens": 479808,
+    "total_tokens": 2325337,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "ingest/sigma_agent": {
+        "calls": 1374,
+        "cached_calls": 0,
+        "prompt_tokens": 974338,
+        "completion_tokens": 299028,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/incongruence": {
+        "calls": 489,
+        "cached_calls": 468,
+        "prompt_tokens": 120986,
+        "completion_tokens": 49972,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "curation/redundancy": {
+        "calls": 39,
+        "cached_calls": 20,
+        "prompt_tokens": 9815,
+        "completion_tokens": 8622,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/entity_match": {
+        "calls": 405,
+        "cached_calls": 302,
+        "prompt_tokens": 82815,
+        "completion_tokens": 45751,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "curation/consolidate": {
+        "calls": 42,
+        "cached_calls": 9,
+        "prompt_tokens": 16978,
+        "completion_tokens": 17400,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "qa/answer": {
+        "calls": 497,
+        "cached_calls": 1,
+        "prompt_tokens": 640597,
+        "completion_tokens": 59035,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  }
+}

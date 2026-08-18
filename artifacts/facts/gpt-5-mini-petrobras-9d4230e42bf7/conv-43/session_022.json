@@ -1,0 +1,187 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "attended",
+   "entity_2": "a Harry Potter party",
+   "fact_text": "Tim attended a Harry Potter party on 8 December 2023 at 7:42 pm.",
+   "turn_ids": [
+    "D22:1"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "wore",
+   "entity_2": "a Gryffindor scarf",
+   "fact_text": "Tim wore a Gryffindor scarf at the Harry Potter party on 8 December 2023 at 7:42 pm.",
+   "turn_ids": [
+    "D22:1",
+    "D22:3"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "did not dress as",
+   "entity_2": "any Harry Potter character",
+   "fact_text": "Tim did not dress as any Harry Potter character at the Harry Potter party on 8 December 2023 at 7:42 pm.",
+   "turn_ids": [
+    "D22:3"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "received",
+   "entity_2": "a chocolate frog",
+   "fact_text": "Tim received a chocolate frog as a treat at the Harry Potter party on 8 December 2023 at 7:42 pm.",
+   "turn_ids": [
+    "D22:3"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "told",
+   "entity_2": "Tim about a charity event with Harry Potter trivia in August 2023",
+   "fact_text": "John told Tim about a charity event with Harry Potter trivia in August 2023.",
+   "turn_ids": [
+    "D22:2"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had not had in a long time",
+   "entity_2": "a chocolate frog",
+   "fact_text": "John had not had a chocolate frog in a long time as of 8 December 2023.",
+   "turn_ids": [
+    "D22:4"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John's basketball team",
+   "relation": "played and beat",
+   "entity_2": "a top team",
+   "fact_text": "John's basketball team played and beat a top team recently before 8 December 2023.",
+   "turn_ids": [
+    "D22:4"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John's basketball team",
+   "relation": "built",
+   "entity_2": "camaraderie on and off the court",
+   "fact_text": "John's basketball team built camaraderie on and off the court.",
+   "turn_ids": [
+    "D22:6"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John's basketball team",
+   "relation": "uses",
+   "entity_2": "team dinners, outings, and basketball games to build unity",
+   "fact_text": "John's basketball team uses team dinners, outings, and basketball games to build unity.",
+   "turn_ids": [
+    "D22:8"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is reading",
+   "entity_2": "'Dune' by Frank Herbert",
+   "fact_text": "John is reading 'Dune' by Frank Herbert.",
+   "turn_ids": [
+    "D22:12"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "finished reading",
+   "entity_2": "'A Dance with Dragons'",
+   "fact_text": "Tim finished reading 'A Dance with Dragons'.",
+   "turn_ids": [
+    "D22:13"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "has read only",
+   "entity_2": "the Game of Thrones series",
+   "fact_text": "Tim has read only the Game of Thrones series.",
+   "turn_ids": [
+    "D22:15"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has not read",
+   "entity_2": "the Game of Thrones books",
+   "fact_text": "John has not read the Game of Thrones books as of 8 December 2023.",
+   "turn_ids": [
+    "D22:16"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "enjoys being with",
+   "entity_2": "people passionate about Harry Potter",
+   "fact_text": "John enjoys being with people who are passionate about Harry Potter.",
+   "turn_ids": [
+    "D22:2"
+   ],
+   "session_id": "S22",
+   "session_num": 22,
+   "timestamp": "2023-12-08T19:42:00",
+   "date_raw": "7:42 pm on 8 December, 2023"
+  }
+ ]
+}

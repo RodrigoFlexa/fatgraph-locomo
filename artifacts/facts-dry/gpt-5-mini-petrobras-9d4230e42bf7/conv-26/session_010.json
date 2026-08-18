@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "wanted",
+   "fact_text": "melanie and wanted came up when Caroline was talking.",
+   "turn_ids": [
+    "D10:1"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "last",
+   "fact_text": "caroline and last came up when Melanie was talking.",
+   "turn_ids": [
+    "D10:2"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "group",
+   "fact_text": "great and group came up when Caroline was talking.",
+   "turn_ids": [
+    "D10:3"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "caroline",
+   "fact_text": "awesome and caroline came up when Melanie was talking.",
+   "turn_ids": [
+    "D10:4"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "awesome",
+   "relation": "mentions",
+   "entity_2": "group",
+   "fact_text": "awesome and group came up when Caroline was talking.",
+   "turn_ids": [
+    "D10:5"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  },
+  {
+   "entity_1": "last",
+   "relation": "mentions",
+   "entity_2": "love",
+   "fact_text": "last and love came up when Caroline was talking.",
+   "turn_ids": [
+    "D10:7"
+   ],
+   "session_id": "S10",
+   "session_num": 10,
+   "timestamp": "2023-07-20T20:56:00",
+   "date_raw": "8:56 pm on 20 July, 2023"
+  }
+ ]
+}

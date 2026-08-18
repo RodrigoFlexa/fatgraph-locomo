@@ -1,0 +1,201 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "is taking on",
+   "entity_2": "freelance programming to hone coding skills",
+   "fact_text": "John is taking on freelance programming to hone coding skills.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is working on",
+   "entity_2": "a website for a local small business",
+   "fact_text": "John is working on a website for a local small business.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "the website for a local small business",
+   "relation": "is",
+   "entity_2": "John's first professional project outside of class",
+   "fact_text": "The website for a local small business is John's first professional project outside of class.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had trouble with",
+   "entity_2": "getting payments on the website",
+   "fact_text": "John had trouble with getting payments on the website.",
+   "turn_ids": [
+    "D8:10"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "used",
+   "entity_2": "resources to understand the payments process",
+   "fact_text": "John used resources to understand the payments process for the website.",
+   "turn_ids": [
+    "D8:10"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "bought",
+   "entity_2": "an adventure book with fantasy novels and cool arts three days before 29 April 2022",
+   "fact_text": "James bought an adventure book with fantasy novels and cool arts three days before 29 April 2022.",
+   "turn_ids": [
+    "D8:11"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "owns",
+   "entity_2": "Daisy (dog)",
+   "fact_text": "James owns a dog named Daisy.",
+   "turn_ids": [
+    "D8:17"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "Daisy",
+   "relation": "lay down next to",
+   "entity_2": "James while James was playing a game",
+   "fact_text": "Daisy lay down next to James while James was playing a game.",
+   "turn_ids": [
+    "D8:17"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "James's dogs",
+   "relation": "often watch",
+   "entity_2": "James's gaming sessions",
+   "fact_text": "James's dogs often watch James's gaming sessions and often hug James.",
+   "turn_ids": [
+    "D8:17",
+    "D8:18"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is playing",
+   "entity_2": "Assassin's Creed Valhalla",
+   "fact_text": "John is playing Assassin's Creed Valhalla.",
+   "turn_ids": [
+    "D8:20"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has been playing",
+   "entity_2": "the turn-based strategy game for a month",
+   "fact_text": "James has been playing the turn-based strategy game for a month.",
+   "turn_ids": [
+    "D8:29"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "played",
+   "entity_2": "a board game with friends two days before 29 April 2022",
+   "fact_text": "John played a board game with friends two days before 29 April 2022.",
+   "turn_ids": [
+    "D8:30"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has been playing",
+   "entity_2": "a social deduction game about impostors with friends",
+   "fact_text": "John has been playing a social deduction game about impostors with friends.",
+   "turn_ids": [
+    "D8:36"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "recommended",
+   "entity_2": "The Name of the Wind trilogy",
+   "fact_text": "John recommended The Name of the Wind trilogy.",
+   "turn_ids": [
+    "D8:14",
+    "D8:16"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "advised",
+   "entity_2": "James to gather a large group to play the social deduction game",
+   "fact_text": "John advised James to gather a large group to play the social deduction game about impostors.",
+   "turn_ids": [
+    "D8:38"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2022-04-29T14:36:00",
+   "date_raw": "2:36 pm on 29 April, 2022"
+  }
+ ]
+}

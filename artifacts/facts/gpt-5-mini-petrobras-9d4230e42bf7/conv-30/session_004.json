@@ -1,0 +1,111 @@
+{
+ "facts": [
+  {
+   "entity_1": "Gina",
+   "relation": "runs",
+   "entity_2": "Gina's store",
+   "fact_text": "Gina runs Gina's store and the store is doing great.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is putting work into",
+   "entity_2": "Jon's business",
+   "fact_text": "Jon is putting a lot of work into Jon's business.",
+   "turn_ids": [
+    "D4:3"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "faces obstacles with",
+   "entity_2": "Jon's business",
+   "fact_text": "Jon faces obstacles with Jon's business.",
+   "turn_ids": [
+    "D4:3",
+    "D4:5"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Gina",
+   "relation": "supports",
+   "entity_2": "Jon",
+   "fact_text": "Gina supports Jon and offers him encouragement.",
+   "turn_ids": [
+    "D4:6",
+    "D4:8",
+    "D4:18"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is searching for",
+   "entity_2": "a dance studio location",
+   "fact_text": "Jon is searching for a dance studio location.",
+   "turn_ids": [
+    "D4:9"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is rehearsing",
+   "entity_2": "new dance routines",
+   "fact_text": "Jon is rehearsing new dance routines for an upcoming show.",
+   "turn_ids": [
+    "D4:11"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is passionate about",
+   "entity_2": "dancing",
+   "fact_text": "Jon is passionate about dancing.",
+   "turn_ids": [
+    "D4:11"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  },
+  {
+   "entity_1": "Jon",
+   "relation": "is preparing for",
+   "entity_2": "a dance competition near him next month",
+   "fact_text": "Jon is getting ready for a dance competition near him next month.",
+   "turn_ids": [
+    "D4:13"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-02-04T10:43:00",
+   "date_raw": "10:43 am on 4 February, 2023"
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+{
+ "facts": [
+  {
+   "entity_1": "James and his family",
+   "relation": "are on",
+   "entity_2": "a road trip",
+   "fact_text": "James and his family are on a road trip on 7 November, 2022 at 8:57 pm.",
+   "turn_ids": [
+    "D31:1"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "Josh",
+   "fact_text": "James visited Josh during the road trip on 7 November, 2022.",
+   "turn_ids": [
+    "D31:1"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "Mark",
+   "fact_text": "James visited Mark during the road trip on 7 November, 2022.",
+   "turn_ids": [
+    "D31:1"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "collaborated with",
+   "entity_2": "a game developer",
+   "fact_text": "John collaborated with a game developer on a project.",
+   "turn_ids": [
+    "D31:2",
+    "D31:4"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "co-created",
+   "entity_2": "an online board game",
+   "fact_text": "John co-created an online board game with a game developer.",
+   "turn_ids": [
+    "D31:4"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to release",
+   "entity_2": "a demo of the online board game",
+   "fact_text": "John plans to release a demo of the online board game soon.",
+   "turn_ids": [
+    "D31:6"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "visited",
+   "entity_2": "an animal sanctuary",
+   "fact_text": "James visited an animal sanctuary during the road trip on 7 November, 2022.",
+   "turn_ids": [
+    "D31:11"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "the animal sanctuary",
+   "relation": "had",
+   "entity_2": "rescue dogs",
+   "fact_text": "The animal sanctuary had many rescue dogs.",
+   "turn_ids": [
+    "D31:11"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "three dogs at home",
+   "fact_text": "James has three dogs at home.",
+   "turn_ids": [
+    "D31:13"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "believes",
+   "entity_2": "more than three dogs is too much",
+   "fact_text": "James believes that having more than three dogs is too much.",
+   "turn_ids": [
+    "D31:13"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has not gotten",
+   "entity_2": "a dog",
+   "fact_text": "John has not gotten a dog.",
+   "turn_ids": [
+    "D31:14"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "wants",
+   "entity_2": "a dog",
+   "fact_text": "John wants a dog.",
+   "turn_ids": [
+    "D31:14"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  },
+  {
+   "entity_1": "Luna",
+   "relation": "belongs to",
+   "entity_2": "John's cousin",
+   "fact_text": "Luna belongs to John's cousin.",
+   "turn_ids": [
+    "D31:20",
+    "D31:22"
+   ],
+   "session_id": "S31",
+   "session_num": 31,
+   "timestamp": "2022-11-07T20:57:00",
+   "date_raw": "8:57 pm on 7 November, 2022"
+  }
+ ]
+}

@@ -1,0 +1,583 @@
+{
+  "sample_id": "conv-26",
+  "condition": "G9-genus",
+  "n_facts": 267,
+  "n_edges": 267,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 1,
+  "n_collapses": 0,
+  "n_consolidations": 0,
+  "per_session": [
+    {
+      "session": 1,
+      "session_id": "S1",
+      "timestamp": "2023-05-08T13:56:00",
+      "n_facts": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 12,
+      "E": 11,
+      "F": 3,
+      "C": 2,
+      "genus": 0,
+      "face_length_hist": {
+        "4": 1,
+        "8": 1,
+        "10": 1
+      }
+    },
+    {
+      "session": 2,
+      "session_id": "S2",
+      "timestamp": "2023-05-25T13:14:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 26,
+      "E": 23,
+      "F": 5,
+      "C": 4,
+      "genus": 0,
+      "face_length_hist": {
+        "2": 2,
+        "4": 1,
+        "16": 1,
+        "22": 1
+      }
+    },
+    {
+      "session": 3,
+      "session_id": "S3",
+      "timestamp": "2023-06-09T19:55:00",
+      "n_facts": 16,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 41,
+      "E": 39,
+      "F": 6,
+      "C": 4,
+      "genus": 0,
+      "face_length_hist": {
+        "2": 2,
+        "4": 1,
+        "16": 1,
+        "18": 1,
+        "36": 1
+      }
+    },
+    {
+      "session": 4,
+      "session_id": "S4",
+      "timestamp": "2023-06-27T10:37:00",
+      "n_facts": 21,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 65,
+      "E": 60,
+      "F": 11,
+      "C": 8,
+      "genus": 0,
+      "face_length_hist": {
+        "2": 5,
+        "4": 1,
+        "6": 1,
+        "16": 1,
+        "18": 2,
+        "48": 1
+      }
+    },
+    {
+      "session": 5,
+      "session_id": "S5",
+      "timestamp": "2023-07-03T13:36:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 74,
+      "E": 72,
+      "F": 10,
+      "C": 8,
+      "genus": 2,
+      "face_length_hist": {
+        "2": 5,
+        "4": 1,
+        "6": 1,
+        "18": 1,
+        "28": 1,
+        "78": 1
+      }
+    },
+    {
+      "session": 6,
+      "session_id": "S6",
+      "timestamp": "2023-07-06T20:18:00",
+      "n_facts": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 84,
+      "E": 83,
+      "F": 11,
+      "C": 8,
+      "genus": 2,
+      "face_length_hist": {
+        "2": 3,
+        "4": 2,
+        "6": 2,
+        "18": 1,
+        "30": 1,
+        "32": 1,
+        "60": 1
+      }
+    },
+    {
+      "session": 7,
+      "session_id": "S7",
+      "timestamp": "2023-07-12T16:33:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 99,
+      "E": 101,
+      "F": 12,
+      "C": 8,
+      "genus": 3,
+      "face_length_hist": {
+        "2": 4,
+        "4": 2,
+        "6": 2,
+        "18": 1,
+        "38": 1,
+        "44": 1,
+        "74": 1
+      }
+    },
+    {
+      "session": 8,
+      "session_id": "S8",
+      "timestamp": "2023-07-15T13:51:00",
+      "n_facts": 18,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 113,
+      "E": 119,
+      "F": 12,
+      "C": 7,
+      "genus": 4,
+      "face_length_hist": {
+        "2": 5,
+        "4": 2,
+        "18": 1,
+        "26": 1,
+        "48": 1,
+        "52": 1,
+        "76": 1
+      }
+    },
+    {
+      "session": 9,
+      "session_id": "S9",
+      "timestamp": "2023-07-17T14:31:00",
+      "n_facts": 12,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 125,
+      "E": 131,
+      "F": 14,
+      "C": 8,
+      "genus": 4,
+      "face_length_hist": {
+        "2": 6,
+        "4": 1,
+        "6": 1,
+        "16": 1,
+        "18": 1,
+        "26": 1,
+        "46": 1,
+        "56": 1,
+        "78": 1
+      }
+    },
+    {
+      "session": 10,
+      "session_id": "S10",
+      "timestamp": "2023-07-20T20:56:00",
+      "n_facts": 15,
+      "n_incongruent_new": 1,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 139,
+      "E": 146,
+      "F": 13,
+      "C": 9,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "8": 1,
+        "18": 1,
+        "46": 1,
+        "100": 1,
+        "102": 1
+      }
+    },
+    {
+      "session": 11,
+      "session_id": "S11",
+      "timestamp": "2023-08-14T14:24:00",
+      "n_facts": 9,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 146,
+      "E": 155,
+      "F": 15,
+      "C": 9,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "8": 2,
+        "18": 1,
+        "24": 1,
+        "46": 1,
+        "82": 1,
+        "106": 1
+      }
+    },
+    {
+      "session": 12,
+      "session_id": "S12",
+      "timestamp": "2023-08-17T13:50:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 155,
+      "E": 165,
+      "F": 14,
+      "C": 8,
+      "genus": 6,
+      "face_length_hist": {
+        "2": 7,
+        "4": 1,
+        "8": 2,
+        "18": 1,
+        "46": 1,
+        "82": 1,
+        "150": 1
+      }
+    },
+    {
+      "session": 13,
+      "session_id": "S13",
+      "timestamp": "2023-08-23T15:31:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 167,
+      "E": 180,
+      "F": 15,
+      "C": 8,
+      "genus": 7,
+      "face_length_hist": {
+        "2": 8,
+        "4": 1,
+        "8": 2,
+        "18": 1,
+        "40": 1,
+        "46": 1,
+        "220": 1
+      }
+    },
+    {
+      "session": 14,
+      "session_id": "S14",
+      "timestamp": "2023-08-25T13:33:00",
+      "n_facts": 14,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 176,
+      "E": 194,
+      "F": 18,
+      "C": 8,
+      "genus": 8,
+      "face_length_hist": {
+        "2": 9,
+        "4": 1,
+        "8": 2,
+        "12": 1,
+        "16": 1,
+        "18": 1,
+        "40": 1,
+        "46": 1,
+        "218": 1
+      }
+    },
+    {
+      "session": 15,
+      "session_id": "S15",
+      "timestamp": "2023-08-28T15:19:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 188,
+      "E": 209,
+      "F": 19,
+      "C": 8,
+      "genus": 9,
+      "face_length_hist": {
+        "2": 9,
+        "4": 2,
+        "8": 2,
+        "16": 1,
+        "18": 1,
+        "22": 1,
+        "40": 1,
+        "46": 1,
+        "234": 1
+      }
+    },
+    {
+      "session": 16,
+      "session_id": "S16",
+      "timestamp": "2023-09-13T00:09:00",
+      "n_facts": 15,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 199,
+      "E": 224,
+      "F": 19,
+      "C": 8,
+      "genus": 11,
+      "face_length_hist": {
+        "2": 9,
+        "4": 2,
+        "8": 2,
+        "16": 1,
+        "18": 2,
+        "40": 1,
+        "46": 1,
+        "268": 1
+      }
+    },
+    {
+      "session": 17,
+      "session_id": "S17",
+      "timestamp": "2023-10-13T10:31:00",
+      "n_facts": 26,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 219,
+      "E": 250,
+      "F": 19,
+      "C": 8,
+      "genus": 14,
+      "face_length_hist": {
+        "2": 9,
+        "4": 2,
+        "8": 3,
+        "16": 1,
+        "18": 2,
+        "40": 1,
+        "358": 1
+      }
+    },
+    {
+      "session": 18,
+      "session_id": "S18",
+      "timestamp": "2023-10-20T18:55:00",
+      "n_facts": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 224,
+      "E": 257,
+      "F": 19,
+      "C": 8,
+      "genus": 15,
+      "face_length_hist": {
+        "2": 10,
+        "4": 2,
+        "8": 2,
+        "10": 1,
+        "18": 2,
+        "40": 1,
+        "384": 1
+      }
+    },
+    {
+      "session": 19,
+      "session_id": "S19",
+      "timestamp": "2023-10-22T09:55:00",
+      "n_facts": 10,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 233,
+      "E": 267,
+      "F": 20,
+      "C": 8,
+      "genus": 15,
+      "face_length_hist": {
+        "2": 10,
+        "4": 2,
+        "8": 2,
+        "10": 1,
+        "18": 2,
+        "40": 1,
+        "94": 1,
+        "310": 1
+      }
+    }
+  ],
+  "graph_stats": {
+    "V": 233,
+    "E": 267,
+    "F": 38,
+    "C": 8,
+    "genus": 6,
+    "chi": 4,
+    "components": [
+      {
+        "index": 0,
+        "V": 215,
+        "E": 256,
+        "F": 31,
+        "genus": 6
+      },
+      {
+        "index": 1,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 2,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 3,
+        "V": 6,
+        "E": 5,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 4,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 5,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 6,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      },
+      {
+        "index": 7,
+        "V": 2,
+        "E": 1,
+        "F": 1,
+        "genus": 0
+      }
+    ],
+    "n_faces_nontrivial": 38,
+    "face_length_hist": {
+      "2": 15,
+      "4": 4,
+      "5": 1,
+      "6": 1,
+      "8": 3,
+      "10": 1,
+      "13": 1,
+      "16": 1,
+      "18": 2,
+      "22": 1,
+      "28": 1,
+      "35": 1,
+      "36": 1,
+      "38": 1,
+      "42": 1,
+      "48": 1,
+      "52": 1,
+      "77": 1
+    },
+    "face_length_mean": 14.052631578947368,
+    "face_length_max": 77,
+    "n_leaf_faces": 6,
+    "n_bigon_faces": 9,
+    "edges_by_state": {
+      "emergente": 266,
+      "consolidada": 0,
+      "incongruente": 1
+    },
+    "n_level2_edges": 0,
+    "n_shadowed_edges": 0,
+    "degree_mean": 2.291845493562232,
+    "degree_1_frac": 0.8155,
+    "hub_share": 0.4307,
+    "fingerprint": "eac706630ee488825020a0d908e95f3e"
+  },
+  "llm_usage": {
+    "calls": 153,
+    "cached_calls": 153,
+    "prompt_tokens": 34142,
+    "completion_tokens": 17069,
+    "total_tokens": 51211,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "ingest/incongruence": {
+        "calls": 56,
+        "cached_calls": 56,
+        "prompt_tokens": 14032,
+        "completion_tokens": 5663,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/entity_match": {
+        "calls": 97,
+        "cached_calls": 97,
+        "prompt_tokens": 20110,
+        "completion_tokens": 11406,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "genus_optimization": {
+    "faces_before": 20,
+    "faces_after": 38,
+    "moves_applied": 9,
+    "transpositions_evaluated": 17618
+  }
+}

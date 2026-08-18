@@ -1,0 +1,189 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "lost",
+   "entity_2": "grandma",
+   "fact_text": "Maria lost her grandma on 6 March, 2023.",
+   "turn_ids": [
+    "D8:1"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had",
+   "entity_2": "a picnic with his wife and kids",
+   "fact_text": "John had a picnic with his wife and kids.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "a one-year-old son named Kyle",
+   "fact_text": "John has a one-year-old son named Kyle.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "a wife",
+   "fact_text": "John has a wife.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has",
+   "entity_2": "children",
+   "fact_text": "John has children.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visits",
+   "entity_2": "the park a few times a week",
+   "fact_text": "John visits the park a few times a week with his kids.",
+   "turn_ids": [
+    "D8:8"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "found",
+   "entity_2": "a violin concert last week",
+   "fact_text": "John found a violin concert last week that his family enjoyed.",
+   "turn_ids": [
+    "D8:12"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "visited",
+   "entity_2": "London a few years ago",
+   "fact_text": "Maria visited London a few years ago.",
+   "turn_ids": [
+    "D8:15",
+    "D8:17"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "made",
+   "entity_2": "a painting of a castle",
+   "fact_text": "Maria made a painting of a castle inspired by her trip to England.",
+   "turn_ids": [
+    "D8:15"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "retook",
+   "entity_2": "an aptitude test last week with great results",
+   "fact_text": "John retook an aptitude test last week with great results.",
+   "turn_ids": [
+    "D8:18"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "felt drawn to",
+   "entity_2": "serving his country",
+   "fact_text": "John felt drawn to serving his country after his aptitude test results.",
+   "turn_ids": [
+    "D8:18"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "discussed",
+   "entity_2": "serving his country with his family and friends",
+   "fact_text": "John discussed serving his country with his family and friends and they were supportive.",
+   "turn_ids": [
+    "D8:20"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "volunteers at",
+   "entity_2": "a homeless shelter",
+   "fact_text": "Maria volunteers at a homeless shelter.",
+   "turn_ids": [
+    "D8:21"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "formed",
+   "entity_2": "connections at the homeless shelter by listening and showing compassion",
+   "fact_text": "Maria formed connections at the homeless shelter by listening and showing compassion.",
+   "turn_ids": [
+    "D8:22",
+    "D8:23",
+    "D8:25"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-06T18:03:00",
+   "date_raw": "6:03 pm on 6 March, 2023"
+  }
+ ]
+}

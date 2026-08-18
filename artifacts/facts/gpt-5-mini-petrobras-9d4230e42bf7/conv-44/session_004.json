@@ -1,0 +1,150 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "saw",
+   "entity_2": "a hummingbird",
+   "fact_text": "On 3 May 2023 Audrey saw a hummingbird while on a hike.",
+   "turn_ids": [
+    "D4:1"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "found",
+   "entity_2": "a new open space to hike nearby",
+   "fact_text": "On 3 May 2023 Andrew found a new open space to hike nearby.",
+   "turn_ids": [
+    "D4:2"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "hikes",
+   "entity_2": "at least once a weekend",
+   "fact_text": "Andrew hikes at least once a weekend.",
+   "turn_ids": [
+    "D4:4"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "takes care of",
+   "entity_2": "her dogs",
+   "fact_text": "Audrey takes care of her dogs and spends time with them.",
+   "turn_ids": [
+    "D4:15"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "enjoy",
+   "entity_2": "going on hikes",
+   "fact_text": "Audrey's dogs enjoy going on hikes and get excited by exploring new scents.",
+   "turn_ids": [
+    "D4:17"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "bought",
+   "entity_2": "dog shoes for her dogs",
+   "fact_text": "Audrey bought dog shoes for her dogs.",
+   "turn_ids": [
+    "D4:19"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plays fetch with",
+   "entity_2": "a ball or frisbee with her dogs",
+   "fact_text": "When Audrey takes her dogs out she plays fetch with a ball or frisbee with her dogs.",
+   "turn_ids": [
+    "D4:21"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "meets",
+   "entity_2": "other dog owners in the park for playdates",
+   "fact_text": "Audrey meets other dog owners in the park for doggie playdates.",
+   "turn_ids": [
+    "D4:21"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Audrey's dogs",
+   "relation": "wear",
+   "entity_2": "party hats for fun and treats",
+   "fact_text": "Audrey's dogs wear party hats for fun and treats.",
+   "turn_ids": [
+    "D4:23",
+    "D4:25"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "The dog park",
+   "relation": "is located",
+   "entity_2": "right by the park Audrey usually walks",
+   "fact_text": "The dog park is located right by the park Audrey usually walks.",
+   "turn_ids": [
+    "D4:26",
+    "D4:27"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "captures",
+   "entity_2": "nature moments in photographs to share",
+   "fact_text": "Andrew captures nature moments in photographs to share with others.",
+   "turn_ids": [
+    "D4:6",
+    "D4:8"
+   ],
+   "session_id": "S4",
+   "session_num": 4,
+   "timestamp": "2023-05-03T17:41:00",
+   "date_raw": "5:41 pm on 3 May, 2023"
+  }
+ ]
+}

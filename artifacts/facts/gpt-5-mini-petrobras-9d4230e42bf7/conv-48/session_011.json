@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "Jolene",
+   "relation": "had a breakthrough on",
+   "entity_2": "engineering project",
+   "fact_text": "Jolene had a breakthrough on an engineering project on Friday.",
+   "turn_ids": [
+    "D11:1"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "bought",
+   "entity_2": "new props for the yoga class",
+   "fact_text": "Deborah bought new props for the yoga class.",
+   "turn_ids": [
+    "D11:2"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "bought",
+   "entity_2": "a candle with a sprig of rosemary",
+   "fact_text": "Deborah bought a candle with a sprig of rosemary to improve her yoga practice.",
+   "turn_ids": [
+    "D11:4"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "feels relaxed during",
+   "entity_2": "yoga practice",
+   "fact_text": "Jolene feels relaxed during her yoga practice.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "likes scents",
+   "entity_2": "lavender and rosemary scents",
+   "fact_text": "Jolene likes lavender and rosemary scents for creating a serene space.",
+   "turn_ids": [
+    "D11:5"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "likes scents",
+   "entity_2": "lavender and rosemary scents",
+   "fact_text": "Deborah likes lavender and rosemary scents for her yoga practice.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "uses",
+   "entity_2": "candles and essential oils",
+   "fact_text": "Deborah uses candles and essential oils because they add warmth and calm to her yoga session.",
+   "turn_ids": [
+    "D11:6"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "finds helpful for yoga practice",
+   "entity_2": "music",
+   "fact_text": "Jolene finds music helpful for her yoga practice.",
+   "turn_ids": [
+    "D11:7"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "finds helpful for creating a peaceful vibe",
+   "entity_2": "instrumental tracks with mellow melodies and rhythms",
+   "fact_text": "Deborah finds instrumental tracks with mellow melodies and rhythms helpful for creating a peaceful vibe.",
+   "turn_ids": [
+    "D11:8"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "favors",
+   "entity_2": "the track 'Savana'",
+   "fact_text": "Deborah favors the track 'Savana' during her yoga or meditation sessions.",
+   "turn_ids": [
+    "D11:8"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "listens to during yoga practice",
+   "entity_2": "Nils Frahm",
+   "fact_text": "Jolene listens to Nils Frahm during her yoga practice.",
+   "turn_ids": [
+    "D11:9"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "listens to during yoga practice",
+   "entity_2": "Olafur Arnalds",
+   "fact_text": "Jolene listens to Olafur Arnalds during her yoga practice.",
+   "turn_ids": [
+    "D11:9"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "is listening to",
+   "entity_2": "the album 'Sleep'",
+   "fact_text": "Deborah is listening to the album 'Sleep' which she finds great for meditation and deep relaxation.",
+   "turn_ids": [
+    "D11:10"
+   ],
+   "session_id": "S11",
+   "session_num": 11,
+   "timestamp": "2023-03-28T16:03:00",
+   "date_raw": "4:03 pm on 28 March, 2023"
+  }
+ ]
+}

@@ -1,0 +1,164 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "toured with",
+   "entity_2": "Frank Ocean",
+   "fact_text": "Calvin toured with Frank Ocean last week.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "performed in",
+   "entity_2": "Tokyo",
+   "fact_text": "Calvin performed in Tokyo and experienced an intense crowd.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "felt alive when performing in",
+   "entity_2": "Tokyo",
+   "fact_text": "Calvin felt alive when performing in Tokyo.",
+   "turn_ids": [
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "says performing live fuels",
+   "entity_2": "his soul",
+   "fact_text": "Calvin says performing live fuels his soul.",
+   "turn_ids": [
+    "D7:11"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "finds fixing cars calming and meditative for",
+   "entity_2": "himself",
+   "fact_text": "Calvin finds fixing cars calming and meditative for himself.",
+   "turn_ids": [
+    "D7:3",
+    "D7:5"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "repaired",
+   "entity_2": "his neighbor's car engine",
+   "fact_text": "Dave repaired his neighbor's car engine himself.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "finds fixing cars therapeutic for",
+   "entity_2": "himself",
+   "fact_text": "Dave finds fixing cars therapeutic for himself.",
+   "turn_ids": [
+    "D7:2",
+    "D7:4",
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is passionate about",
+   "entity_2": "fixing up things",
+   "fact_text": "Dave is passionate about fixing up things because it gives him a sense of achievement and purpose.",
+   "turn_ids": [
+    "D7:6"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to perform in",
+   "entity_2": "Boston",
+   "fact_text": "Calvin plans to perform in Boston on the tour with Frank Ocean.",
+   "turn_ids": [
+    "D7:15",
+    "D7:1"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "plans to attend and cheer on",
+   "entity_2": "Calvin in Boston",
+   "fact_text": "Dave plans to attend and cheer on Calvin in Boston.",
+   "turn_ids": [
+    "D7:16"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "photo_of_a_man_working_on_a_car_engine_in_a_garage",
+   "relation": "depicts",
+   "entity_2": "a man working on a car engine in a garage",
+   "fact_text": "The image caption depicts a man working on a car engine in a garage.",
+   "turn_ids": [
+    "D7:2"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  },
+  {
+   "entity_1": "photo_of_a_large_crowd_taking_pictures_of_a_concert",
+   "relation": "depicts",
+   "entity_2": "a large crowd of people taking pictures of a concert",
+   "fact_text": "The image caption depicts a large crowd of people taking pictures of a concert.",
+   "turn_ids": [
+    "D7:12"
+   ],
+   "session_id": "S7",
+   "session_num": 7,
+   "timestamp": "2023-05-31T18:06:00",
+   "date_raw": "6:06 pm on 31 May, 2023"
+  }
+ ]
+}

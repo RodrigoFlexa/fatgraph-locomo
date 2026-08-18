@@ -1,0 +1,336 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "started playing",
+   "entity_2": "chess",
+   "fact_text": "John started playing chess.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is enjoying",
+   "entity_2": "playing chess",
+   "fact_text": "John is enjoying playing chess.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plays",
+   "entity_2": "chess online",
+   "fact_text": "John plays chess online.",
+   "turn_ids": [
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "joined",
+   "entity_2": "a chess club",
+   "fact_text": "John joined a chess club.",
+   "turn_ids": [
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "practices with",
+   "entity_2": "other chess players",
+   "fact_text": "John practices chess with other chess players.",
+   "turn_ids": [
+    "D17:5"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has played",
+   "entity_2": "chess",
+   "fact_text": "James has played chess.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was age",
+   "entity_2": "10",
+   "fact_text": "John was age 10 when the elementary school photo was taken.",
+   "turn_ids": [
+    "D17:15",
+    "D17:13"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was into",
+   "entity_2": "skateboarding",
+   "fact_text": "John was into skateboarding when he was 10.",
+   "turn_ids": [
+    "D17:15"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "had",
+   "entity_2": "a group of friends who went to the skate park",
+   "fact_text": "John had a group of friends who went to the skate park when he was 10.",
+   "turn_ids": [
+    "D17:15"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "was into",
+   "entity_2": "skateboarding at age 10",
+   "fact_text": "James was into skateboarding at age 10.",
+   "turn_ids": [
+    "D17:15",
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "sometimes left",
+   "entity_2": "class early to skateboard",
+   "fact_text": "James sometimes left class early to skateboard.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "taught",
+   "entity_2": "his dogs to balance on a skateboard",
+   "fact_text": "James taught his dogs to balance on a skateboard.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "dogs",
+   "fact_text": "James has dogs.",
+   "turn_ids": [
+    "D17:16",
+    "D17:26",
+    "D17:28"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "travelled to",
+   "entity_2": "Nuuk",
+   "fact_text": "James travelled to Nuuk.",
+   "turn_ids": [
+    "D17:22"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "stayed in",
+   "entity_2": "Nuuk",
+   "fact_text": "James stayed in Nuuk for a while.",
+   "turn_ids": [
+    "D17:22"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "brought souvenirs for",
+   "entity_2": "John",
+   "fact_text": "James brought souvenirs for John.",
+   "turn_ids": [
+    "D17:24"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "brought souvenirs for",
+   "entity_2": "Jill",
+   "fact_text": "James brought souvenirs for Jill.",
+   "turn_ids": [
+    "D17:24"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "a sister",
+   "fact_text": "James has a sister.",
+   "turn_ids": [
+    "D17:26",
+    "D17:28"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "spent time with",
+   "entity_2": "his sister",
+   "fact_text": "James spent time with his sister.",
+   "turn_ids": [
+    "D17:26",
+    "D17:28"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "spent time with",
+   "entity_2": "his dogs",
+   "fact_text": "James spent time with his dogs.",
+   "turn_ids": [
+    "D17:26",
+    "D17:28"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "watched a sunset with",
+   "entity_2": "his sister",
+   "fact_text": "James watched a sunset with his sister near the ocean.",
+   "turn_ids": [
+    "D17:32"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "was tired over",
+   "entity_2": "the last two days",
+   "fact_text": "James was tired over the last two days.",
+   "turn_ids": [
+    "D17:36"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "James's dogs",
+   "relation": "chase",
+   "entity_2": "skateboards",
+   "fact_text": "James's dogs chase skateboards and run with them.",
+   "turn_ids": [
+    "D17:16"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "does not have",
+   "entity_2": "pets",
+   "fact_text": "John does not have pets.",
+   "turn_ids": [
+    "D17:21"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to get",
+   "entity_2": "a pet someday",
+   "fact_text": "John plans to get a pet someday.",
+   "turn_ids": [
+    "D17:21"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2022-07-22T09:49:00",
+   "date_raw": "9:49 am on 22 July, 2022"
+  }
+ ]
+}

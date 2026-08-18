@@ -1,0 +1,149 @@
+{
+ "facts": [
+  {
+   "entity_1": "James",
+   "relation": "shared",
+   "entity_2": "a photo of a person holding a dog on a couch",
+   "fact_text": "James shared a photo of a person holding a dog on a couch.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "adopted",
+   "entity_2": "Ned",
+   "fact_text": "James adopted Ned.",
+   "turn_ids": [
+    "D21:3"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "Ned",
+   "relation": "approached",
+   "entity_2": "James while James was playing on the console",
+   "fact_text": "Ned approached James while James was playing on the console.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has been helping",
+   "entity_2": "his younger siblings with programming",
+   "fact_text": "John has been helping his younger siblings with programming since they joined the programming course.",
+   "turn_ids": [
+    "D21:2"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is working on",
+   "entity_2": "a text-based adventure game with his younger siblings",
+   "fact_text": "John is working on a text-based adventure game with his younger siblings to help them learn coding.",
+   "turn_ids": [
+    "D21:6",
+    "D21:8"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "wants to create",
+   "entity_2": "a strategy game like Civilization",
+   "fact_text": "James wants to create a strategy game like Civilization.",
+   "turn_ids": [
+    "D21:9"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "has a day off",
+   "entity_2": "tomorrow",
+   "fact_text": "John has a day off tomorrow.",
+   "turn_ids": [
+    "D21:12"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "will meet at",
+   "entity_2": "John at McGee's Pub tomorrow",
+   "fact_text": "James will meet John at McGee's Pub tomorrow.",
+   "turn_ids": [
+    "D21:13",
+    "D21:18"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "dislikes",
+   "entity_2": "dark beer",
+   "fact_text": "John dislikes dark beer.",
+   "turn_ids": [
+    "D21:16"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "McGee's Pub",
+   "relation": "serves",
+   "entity_2": "a great stout",
+   "fact_text": "McGee's Pub serves a great stout.",
+   "turn_ids": [
+    "D21:15"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  },
+  {
+   "entity_1": "McGee's Pub",
+   "relation": "offers",
+   "entity_2": "light beers",
+   "fact_text": "McGee's Pub offers light beers.",
+   "turn_ids": [
+    "D21:17"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-08-26T21:18:00",
+   "date_raw": "9:18 pm on 26 August, 2022"
+  }
+ ]
+}

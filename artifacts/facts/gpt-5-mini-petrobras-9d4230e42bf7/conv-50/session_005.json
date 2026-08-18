@@ -1,0 +1,186 @@
+{
+ "facts": [
+  {
+   "entity_1": "Dave",
+   "relation": "is teaming up with",
+   "entity_2": "a local garage",
+   "fact_text": "Dave is teaming up with a local garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared an image of",
+   "entity_2": "a photo of a car being worked on in a garage",
+   "fact_text": "Dave shared an image of a photo of a car being worked on in a garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:1"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "works with",
+   "entity_2": "awesome mechanics",
+   "fact_text": "Dave works with awesome mechanics at the garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shares knowledge about",
+   "entity_2": "cars",
+   "fact_text": "Dave shares his knowledge about cars while working at the garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "is working on",
+   "entity_2": "a car project",
+   "fact_text": "Dave is working on a car project in the garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:3"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "plans to learn more about",
+   "entity_2": "auto engineering",
+   "fact_text": "Dave plans to learn more about auto engineering (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:5"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "hopes to build",
+   "entity_2": "a custom car",
+   "fact_text": "Dave hopes to build a custom car someday (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:5"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "assists",
+   "entity_2": "customers",
+   "fact_text": "Dave assists customers as part of his work at the garage (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:5"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "finds relaxing",
+   "entity_2": "long drives in his car",
+   "fact_text": "Calvin finds long drives in his car relaxing (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:8"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared an image of",
+   "entity_2": "a photo of a red sports car driving down a road",
+   "fact_text": "Calvin shared an image of a photo of a red sports car driving down a road (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:8"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is enjoying getting to know",
+   "entity_2": "Japanese culture",
+   "fact_text": "Calvin is enjoying getting to know Japanese culture (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:10"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is experiencing",
+   "entity_2": "a creative block with his music",
+   "fact_text": "Calvin is experiencing a creative block with his music (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:10"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "uses as inspiration",
+   "entity_2": "concerts and his favorite albums",
+   "fact_text": "Dave uses immersing himself in concerts and his favorite albums as inspiration to jumpstart creativity (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:11"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "likes",
+   "entity_2": "taking walks to destress",
+   "fact_text": "Dave likes taking walks to destress (session dated 1:16 pm on 3 May, 2023).",
+   "turn_ids": [
+    "D5:9"
+   ],
+   "session_id": "S5",
+   "session_num": 5,
+   "timestamp": "2023-05-03T13:16:00",
+   "date_raw": "1:16 pm on 3 May, 2023"
+  }
+ ]
+}

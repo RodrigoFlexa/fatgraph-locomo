@@ -1,0 +1,226 @@
+{
+ "facts": [
+  {
+   "entity_1": "Joanna",
+   "relation": "is a",
+   "entity_2": "writer",
+   "fact_text": "Joanna is a writer.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna's laptop",
+   "relation": "crashed",
+   "entity_2": "last week",
+   "fact_text": "Joanna's laptop crashed last week.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "lost",
+   "entity_2": "all her work",
+   "fact_text": "Joanna lost all her work when her laptop crashed.",
+   "turn_ids": [
+    "D21:1"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "acquired",
+   "entity_2": "an external drive for backups",
+   "fact_text": "Joanna acquired an external drive for backups after losing her work.",
+   "turn_ids": [
+    "D21:3"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "taught on",
+   "entity_2": "his own cooking show",
+   "fact_text": "Nate taught people vegan ice cream recipes on his own cooking show last Monday.",
+   "turn_ids": [
+    "D21:4"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "favorited",
+   "entity_2": "coconut milk ice cream",
+   "fact_text": "Nate's favorite dish from his cooking show is coconut milk ice cream.",
+   "turn_ids": [
+    "D21:6"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "coconut milk ice cream",
+   "relation": "is",
+   "entity_2": "dairy-free",
+   "fact_text": "Coconut milk ice cream is dairy-free.",
+   "turn_ids": [
+    "D21:6"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "shared",
+   "entity_2": "a photo of a bowl of coconut milk ice cream",
+   "fact_text": "Nate shared a photo of a bowl of coconut milk ice cream with a spoon on a table.",
+   "turn_ids": [
+    "D21:6"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Nate",
+   "relation": "likes",
+   "entity_2": "dairy-free chocolate mousse",
+   "fact_text": "Nate likes dairy-free chocolate mousse.",
+   "turn_ids": [
+    "D21:10"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "made",
+   "entity_2": "a dessert with almond milk last Friday",
+   "fact_text": "Joanna made a dessert with almond milk last Friday.",
+   "turn_ids": [
+    "D21:9"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna's favorite dairy-free treat",
+   "relation": "is",
+   "entity_2": "a chocolate raspberry tart",
+   "fact_text": "Joanna's favorite dairy-free treat is a chocolate raspberry tart with an almond flour crust, chocolate ganache, and fresh raspberries.",
+   "turn_ids": [
+    "D21:11"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "makes",
+   "entity_2": "a dairy-free chocolate cake with raspberries",
+   "fact_text": "Joanna makes a dairy-free chocolate cake with raspberries that she uses for birthdays and special days.",
+   "turn_ids": [
+    "D21:13",
+    "D21:15"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna's chocolate cake",
+   "relation": "is made with",
+   "entity_2": "almond flour, coconut oil, chocolate and raspberries",
+   "fact_text": "Joanna's dairy-free chocolate cake is made with almond flour, coconut oil, chocolate, and raspberries.",
+   "turn_ids": [
+    "D21:15"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "likes",
+   "entity_2": "a dessert made with blueberries, coconut milk, and a gluten-free crust",
+   "fact_text": "Joanna likes a dessert made with blueberries, coconut milk, and a gluten-free crust.",
+   "turn_ids": [
+    "D21:17"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "a photo of a chocolate tart with raspberries",
+   "fact_text": "Joanna shared a photo of a chocolate tart with raspberries on top.",
+   "turn_ids": [
+    "D21:11"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "a photo of a piece of chocolate cake with raspberries",
+   "fact_text": "Joanna shared a photo of a piece of chocolate cake with raspberries on a plate.",
+   "turn_ids": [
+    "D21:13"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  },
+  {
+   "entity_1": "Joanna",
+   "relation": "shared",
+   "entity_2": "a photo of a piece of cake with walnuts on top",
+   "fact_text": "Joanna shared a photo of a piece of cake with walnuts on top.",
+   "turn_ids": [
+    "D21:17"
+   ],
+   "session_id": "S21",
+   "session_num": 21,
+   "timestamp": "2022-09-14T13:43:00",
+   "date_raw": "1:43 pm on 14 September, 2022"
+  }
+ ]
+}

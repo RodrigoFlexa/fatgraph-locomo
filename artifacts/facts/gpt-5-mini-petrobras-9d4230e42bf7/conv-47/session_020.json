@@ -1,0 +1,212 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "joined",
+   "entity_2": "an online programming group last Friday",
+   "fact_text": "John joined an online programming group last Friday.",
+   "turn_ids": [
+    "D20:1"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "exchanged contacts with",
+   "entity_2": "a few members of the online programming group",
+   "fact_text": "John exchanged contacts with a few members of the online programming group.",
+   "turn_ids": [
+    "D20:3"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "collaborated with",
+   "entity_2": "someone from the online programming group last week",
+   "fact_text": "John collaborated with someone from the online programming group last week on a project.",
+   "turn_ids": [
+    "D20:5"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "considers",
+   "entity_2": "the programming group involvement to be a one-time experience",
+   "fact_text": "John considers the programming group involvement to be a one-time experience to learn something new and work as a team.",
+   "turn_ids": [
+    "D20:7"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "plans to start",
+   "entity_2": "hosting eSports competitions",
+   "fact_text": "John plans to start hosting eSports competitions.",
+   "turn_ids": [
+    "D20:7"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "plays with",
+   "entity_2": "a gaming group regularly",
+   "fact_text": "James plays with a gaming group regularly.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "streams",
+   "entity_2": "his game sessions",
+   "fact_text": "James streams his game sessions.",
+   "turn_ids": [
+    "D20:8"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "bought",
+   "entity_2": "some new devices",
+   "fact_text": "John bought some new devices.",
+   "turn_ids": [
+    "D20:9"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "refurbished",
+   "entity_2": "his gaming desk",
+   "fact_text": "John refurbished his gaming desk.",
+   "turn_ids": [
+    "D20:9"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "has",
+   "entity_2": "a gaming PC, keyboard, mouse, and a comfy chair",
+   "fact_text": "James has a gaming PC, keyboard, mouse, and a comfy chair.",
+   "turn_ids": [
+    "D20:10"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "uses",
+   "entity_2": "a gaming PC with a powerful graphics card",
+   "fact_text": "John uses a gaming PC with a powerful graphics card for intense games.",
+   "turn_ids": [
+    "D20:11"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "uses",
+   "entity_2": "a headset for immersive sound",
+   "fact_text": "John uses a headset for immersive sound.",
+   "turn_ids": [
+    "D20:11"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "James",
+   "relation": "hosted",
+   "entity_2": "a gaming marathon with friends",
+   "fact_text": "James hosted a gaming marathon with friends and they played all night.",
+   "turn_ids": [
+    "D20:12"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was given",
+   "entity_2": "a gaming marathon by his siblings when he was younger",
+   "fact_text": "John was given a gaming marathon by his siblings when he was younger.",
+   "turn_ids": [
+    "D20:13"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "lives far apart from",
+   "entity_2": "his siblings",
+   "fact_text": "John lives far apart from his siblings and they do not hang out much.",
+   "turn_ids": [
+    "D20:15"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is organizing",
+   "entity_2": "a gaming night with his siblings next month",
+   "fact_text": "John is organizing a gaming night with his siblings next month.",
+   "turn_ids": [
+    "D20:17"
+   ],
+   "session_id": "S20",
+   "session_num": 20,
+   "timestamp": "2022-08-21T15:57:00",
+   "date_raw": "3:57 pm on 21 August, 2022"
+  }
+ ]
+}

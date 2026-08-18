@@ -1,0 +1,123 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "is a member of",
+   "entity_2": "a virtual support group",
+   "fact_text": "John is a member of a virtual support group.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "asked to join",
+   "entity_2": "John's family and friends",
+   "fact_text": "John asked John's family and friends to join the virtual support group.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "volunteers at",
+   "entity_2": "a homeless shelter",
+   "fact_text": "Maria volunteers at a homeless shelter.",
+   "turn_ids": [
+    "D27:2"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "started volunteering at",
+   "entity_2": "the homeless shelter about a year ago",
+   "fact_text": "Maria started volunteering at the homeless shelter about a year ago.",
+   "turn_ids": [
+    "D27:4"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "witnessed",
+   "entity_2": "a family struggling on the streets",
+   "fact_text": "Maria witnessed a family struggling on the streets.",
+   "turn_ids": [
+    "D27:4"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Cindy",
+   "relation": "wrote",
+   "entity_2": "the note",
+   "fact_text": "Cindy wrote the note that Maria shared from the shelter.",
+   "turn_ids": [
+    "D27:6",
+    "D27:8"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Cindy",
+   "relation": "is a resident at",
+   "entity_2": "the homeless shelter",
+   "fact_text": "Cindy is a resident at the homeless shelter.",
+   "turn_ids": [
+    "D27:8"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visited",
+   "entity_2": "a military memorial last week",
+   "fact_text": "John visited a military memorial last week.",
+   "turn_ids": [
+    "D27:9"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "John's kids",
+   "relation": "were awestruck and humbled by visiting",
+   "entity_2": "the military memorial",
+   "fact_text": "John's kids were awestruck and humbled by visiting the military memorial last week.",
+   "turn_ids": [
+    "D27:9",
+    "D27:11"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2023-08-03T18:20:00",
+   "date_raw": "6:20 pm on 3 August, 2023"
+  }
+ ]
+}

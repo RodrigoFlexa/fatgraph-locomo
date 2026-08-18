@@ -1,0 +1,96 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "experienced",
+   "entity_2": "a flood at Calvin's home last week",
+   "fact_text": "Calvin experienced a flood at Calvin's home last week.",
+   "turn_ids": [
+    "D6:3"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "saved",
+   "entity_2": "Calvin's music gear and Calvin's favorite microphone",
+   "fact_text": "Calvin saved Calvin's music gear and Calvin's favorite microphone during the flood last week.",
+   "turn_ids": [
+    "D6:3"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "is waiting on",
+   "entity_2": "insurance to start repairs",
+   "fact_text": "Calvin is waiting on insurance to start repairs to Calvin's home.",
+   "turn_ids": [
+    "D6:5"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared",
+   "entity_2": "a photo of a music studio with a keyboard, synthesizer, and other musical equipment",
+   "fact_text": "Calvin shared a photo of a music studio with a keyboard, synthesizer, and other musical equipment.",
+   "turn_ids": [
+    "D6:5"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "opened",
+   "entity_2": "a car shop last week",
+   "fact_text": "Dave opened a car shop last week.",
+   "turn_ids": [
+    "D6:8"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "has an upcoming performance in",
+   "entity_2": "Tokyo this month",
+   "fact_text": "Calvin has an upcoming performance in Tokyo this month.",
+   "turn_ids": [
+    "D6:11"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "took",
+   "entity_2": "a photo of Tokyo's skyline last night",
+   "fact_text": "Calvin took a photo of Tokyo's skyline last night.",
+   "turn_ids": [
+    "D6:13",
+    "D6:15"
+   ],
+   "session_id": "S6",
+   "session_num": 6,
+   "timestamp": "2023-05-16T11:50:00",
+   "date_raw": "11:50 am on 16 May, 2023"
+  }
+ ]
+}

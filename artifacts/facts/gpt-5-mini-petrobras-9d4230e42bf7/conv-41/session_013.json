@@ -1,0 +1,227 @@
+{
+ "facts": [
+  {
+   "entity_1": "John",
+   "relation": "started attending",
+   "entity_2": "boot camps with John's family",
+   "fact_text": "John started attending boot camps with John's family in April 2023.",
+   "turn_ids": [
+    "D13:3"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John's family",
+   "relation": "work out",
+   "entity_2": "three times a week",
+   "fact_text": "John's family work out together three times a week.",
+   "turn_ids": [
+    "D13:7"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "experienced",
+   "entity_2": "increased strength and endurance",
+   "fact_text": "John experienced increased strength and endurance after starting the boot camps.",
+   "turn_ids": [
+    "D13:5"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "experienced",
+   "entity_2": "more energy",
+   "fact_text": "John experienced more energy after starting the boot camps.",
+   "turn_ids": [
+    "D13:5"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John's kids",
+   "relation": "became excited about",
+   "entity_2": "staying active",
+   "fact_text": "John's kids became excited about staying active after joining the boot camps.",
+   "turn_ids": [
+    "D13:5"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John's family",
+   "relation": "cheer during",
+   "entity_2": "workouts",
+   "fact_text": "John's family cheer during workouts to support each other.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John's family",
+   "relation": "provide",
+   "entity_2": "emotional support",
+   "fact_text": "John's family provide emotional support outside workouts.",
+   "turn_ids": [
+    "D13:15"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "made",
+   "entity_2": "an apple pie on 2023-05-03",
+   "fact_text": "John made an apple pie for his kids on 2023-05-03.",
+   "turn_ids": [
+    "D13:17"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "made",
+   "entity_2": "dinner with her mom on 2023-05-03",
+   "fact_text": "Maria made dinner with her mom on 2023-05-03.",
+   "turn_ids": [
+    "D13:16"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria's dinner",
+   "relation": "included",
+   "entity_2": "salads, sandwiches, and homemade desserts",
+   "fact_text": "Maria's dinner included salads, sandwiches, and homemade desserts.",
+   "turn_ids": [
+    "D13:18"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "enjoys",
+   "entity_2": "banana split sundae",
+   "fact_text": "Maria enjoys a banana split sundae as her favorite dessert.",
+   "turn_ids": [
+    "D13:18"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "does",
+   "entity_2": "volunteering",
+   "fact_text": "Maria does volunteering and she often enjoys a banana split sundae after a day of volunteering.",
+   "turn_ids": [
+    "D13:18"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria's family",
+   "relation": "is",
+   "entity_2": "small",
+   "fact_text": "Maria's family is small.",
+   "turn_ids": [
+    "D13:12"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "relies on",
+   "entity_2": "her family for strength during tough times",
+   "fact_text": "Maria relies on her family for strength during tough times.",
+   "turn_ids": [
+    "D13:12"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "took a solo trip to",
+   "entity_2": "Spain in 2022",
+   "fact_text": "Maria took a solo trip to Spain in 2022.",
+   "turn_ids": [
+    "D13:22",
+    "D13:24"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "tried for the first time",
+   "entity_2": "surfing on her Spain trip in 2022",
+   "fact_text": "Maria tried surfing for the first time on her Spain trip in 2022.",
+   "turn_ids": [
+    "D13:30"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "learned about",
+   "entity_2": "relying on inner strength and appreciating small moments from her Spain trip",
+   "fact_text": "Maria learned about relying on her inner strength and appreciating small moments from her Spain trip.",
+   "turn_ids": [
+    "D13:24",
+    "D13:28"
+   ],
+   "session_id": "S13",
+   "session_num": 13,
+   "timestamp": "2023-05-04T15:18:00",
+   "date_raw": "3:18 pm on 4 May, 2023"
+  }
+ ]
+}

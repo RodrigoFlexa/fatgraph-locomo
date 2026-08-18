@@ -1,0 +1,150 @@
+{
+ "facts": [
+  {
+   "entity_1": "Maria",
+   "relation": "dropped off",
+   "entity_2": "baked goods at the homeless shelter",
+   "fact_text": "Maria dropped off baked goods at the homeless shelter last week.",
+   "turn_ids": [
+    "D26:1"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "is more motivated to",
+   "entity_2": "help people",
+   "fact_text": "Maria is more motivated than ever to help people.",
+   "turn_ids": [
+    "D26:1"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "joined",
+   "entity_2": "a fire-fighting brigade",
+   "fact_text": "John joined a fire-fighting brigade.",
+   "turn_ids": [
+    "D26:2"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "was inspired by",
+   "entity_2": "Maria's work at the homeless shelter",
+   "fact_text": "John was inspired by Maria's work at the homeless shelter to join a fire-fighting brigade.",
+   "turn_ids": [
+    "D26:1",
+    "D26:2"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "completed",
+   "entity_2": "intense and taxing training with the fire-fighting brigade",
+   "fact_text": "John completed intense and taxing training with the fire-fighting brigade.",
+   "turn_ids": [
+    "D26:4"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "responded to",
+   "entity_2": "a first call-out on Sunday",
+   "fact_text": "John responded to a first call-out on Sunday with the fire-fighting brigade.",
+   "turn_ids": [
+    "D26:4"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "helped save",
+   "entity_2": "a family from a burning building",
+   "fact_text": "John helped save a family from a burning building.",
+   "turn_ids": [
+    "D26:6",
+    "D26:4"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "considers",
+   "entity_2": "fire-fighting brigade members like family",
+   "fact_text": "John considers the fire-fighting brigade members like family.",
+   "turn_ids": [
+    "D26:8",
+    "D26:10"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "previously served in",
+   "entity_2": "the military",
+   "fact_text": "John previously served in the military.",
+   "turn_ids": [
+    "D26:10"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "Maria",
+   "relation": "took",
+   "entity_2": "a photograph of a group of people standing around a table with food when she volunteered",
+   "fact_text": "Maria took a photograph of a group of people standing around a table with food when she volunteered.",
+   "turn_ids": [
+    "D26:13"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  },
+  {
+   "entity_1": "John",
+   "relation": "finds",
+   "entity_2": "serving and protecting the community fulfilling and meaningful",
+   "fact_text": "John finds serving and protecting the community fulfilling and meaningful.",
+   "turn_ids": [
+    "D26:12"
+   ],
+   "session_id": "S26",
+   "session_num": 26,
+   "timestamp": "2023-07-31T13:59:00",
+   "date_raw": "1:59 pm on 31 July, 2023"
+  }
+ ]
+}

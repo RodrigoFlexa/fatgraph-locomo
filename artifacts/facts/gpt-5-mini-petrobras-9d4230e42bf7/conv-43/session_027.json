@@ -1,0 +1,267 @@
+{
+ "facts": [
+  {
+   "entity_1": "Tim",
+   "relation": "joined",
+   "entity_2": "a group of globetrotters",
+   "fact_text": "Tim joined a group of globetrotters who share his travel interests on 2 January 2024 session.",
+   "turn_ids": [
+    "D27:1"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visited",
+   "entity_2": "Italy in December 2023",
+   "fact_text": "John visited Italy in December 2023.",
+   "turn_ids": [
+    "D27:2"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "acquired",
+   "entity_2": "a book in Italy",
+   "fact_text": "John acquired a book in Italy that has been giving him cooking inspiration.",
+   "turn_ids": [
+    "D27:4"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "is learning",
+   "entity_2": "German",
+   "fact_text": "Tim is learning German.",
+   "turn_ids": [
+    "D27:5",
+    "D27:7"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "took",
+   "entity_2": "French in high school",
+   "fact_text": "Tim took French in high school.",
+   "turn_ids": [
+    "D27:7"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "knows a bit of",
+   "entity_2": "German",
+   "fact_text": "John knows a bit of German.",
+   "turn_ids": [
+    "D27:6"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "knows",
+   "entity_2": "Spanish",
+   "fact_text": "John knows Spanish.",
+   "turn_ids": [
+    "D27:6",
+    "D27:8"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "uses",
+   "entity_2": "a language-learning phone app",
+   "fact_text": "Tim uses a language-learning phone app (photo of a cell phone sitting on a notebook with a smiley face app).",
+   "turn_ids": [
+    "D27:9"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "uses",
+   "entity_2": "the same language-learning phone app",
+   "fact_text": "John uses the same language-learning phone app on his phone to practice Spanish.",
+   "turn_ids": [
+    "D27:10"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "practices and trains",
+   "entity_2": "basketball every day",
+   "fact_text": "John practices and trains basketball every day to stay in shape and improve.",
+   "turn_ids": [
+    "D27:14"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "considers",
+   "entity_2": "basketball his passion",
+   "fact_text": "John considers basketball his passion and cannot imagine life without it.",
+   "turn_ids": [
+    "D27:14"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "enjoys",
+   "entity_2": "reading",
+   "fact_text": "Tim enjoys reading and has a collection of books.",
+   "turn_ids": [
+    "D27:15",
+    "D27:17"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "has a collection of",
+   "entity_2": "Harry Potter books",
+   "fact_text": "Tim has a collection of Harry Potter books.",
+   "turn_ids": [
+    "D27:15"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "favors",
+   "entity_2": "Harry Potter",
+   "fact_text": "Tim's favorite book is Harry Potter.",
+   "turn_ids": [
+    "D27:19"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "likes",
+   "entity_2": "Star Wars",
+   "fact_text": "Tim likes Star Wars and considers it his favorite.",
+   "turn_ids": [
+    "D27:21"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "is a fan of",
+   "entity_2": "The Lord of the Rings",
+   "fact_text": "John is a huge fan of The Lord of the Rings.",
+   "turn_ids": [
+    "D27:22"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "favors",
+   "entity_2": "Aragorn",
+   "fact_text": "John's favorite character in The Lord of the Rings is Aragorn.",
+   "turn_ids": [
+    "D27:24"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "owns",
+   "entity_2": "a painting in his room",
+   "fact_text": "John owns a painting in his room that reminds him to stay true and be a leader.",
+   "turn_ids": [
+    "D27:28"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "Tim",
+   "relation": "owns",
+   "entity_2": "a map of Middle-earth",
+   "fact_text": "Tim owns a map of Middle-earth from The Lord of the Rings.",
+   "turn_ids": [
+    "D27:33"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  },
+  {
+   "entity_1": "John",
+   "relation": "visited",
+   "entity_2": "Paris",
+   "fact_text": "John visited Paris and enjoyed the view from the Eiffel Tower.",
+   "turn_ids": [
+    "D27:38"
+   ],
+   "session_id": "S27",
+   "session_num": 27,
+   "timestamp": "2024-01-02T17:26:00",
+   "date_raw": "5:26 pm on 2 January, 2024"
+  }
+ ]
+}

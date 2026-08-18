@@ -1,0 +1,173 @@
+{
+ "facts": [
+  {
+   "entity_1": "Evan",
+   "relation": "took a road trip to",
+   "entity_2": "Jasper",
+   "fact_text": "Evan took a road trip to Jasper with his family last weekend.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "drove through",
+   "entity_2": "the Icefields Parkway",
+   "fact_text": "Evan drove through the Icefields Parkway during the road trip.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "saw",
+   "entity_2": "glaciers",
+   "fact_text": "Evan saw glaciers on the road trip.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "saw",
+   "entity_2": "lakes",
+   "fact_text": "Evan saw lakes on the road trip.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "photographed",
+   "entity_2": "a glacier",
+   "fact_text": "Evan photographed a glacier and shared the image.",
+   "turn_ids": [
+    "D2:1"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "stayed in",
+   "entity_2": "a cozy cabin surrounded by mountains and forests",
+   "fact_text": "Evan stayed in a cozy cabin surrounded by mountains and forests during the trip.",
+   "turn_ids": [
+    "D2:3"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "has been doing",
+   "entity_2": "painting",
+   "fact_text": "Evan has been doing painting for a few years.",
+   "turn_ids": [
+    "D2:11"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Evan",
+   "relation": "recommends",
+   "entity_2": "exercising",
+   "fact_text": "Evan recommends exercising as part of addressing weight concerns.",
+   "turn_ids": [
+    "D2:11"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "had a check-up with",
+   "entity_2": "a doctor",
+   "fact_text": "Sam had a check-up with a doctor a few days before the conversation.",
+   "turn_ids": [
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "was told",
+   "entity_2": "their weight wasn't great",
+   "fact_text": "Sam was told at the check-up that their weight wasn't great.",
+   "turn_ids": [
+    "D2:6"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "has been looking for",
+   "entity_2": "a hobby to stay motivated",
+   "fact_text": "Sam has been looking for a hobby to stay motivated.",
+   "turn_ids": [
+    "D2:9"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "is thinking about trying",
+   "entity_2": "painting",
+   "fact_text": "Sam is thinking about trying painting as a hobby.",
+   "turn_ids": [
+    "D2:10"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  },
+  {
+   "entity_1": "Sam",
+   "relation": "plans to try",
+   "entity_2": "painting",
+   "fact_text": "Sam plans to give painting a go.",
+   "turn_ids": [
+    "D2:12"
+   ],
+   "session_id": "S2",
+   "session_num": 2,
+   "timestamp": "2023-05-24T19:11:00",
+   "date_raw": "7:11 pm on 24 May, 2023"
+  }
+ ]
+}

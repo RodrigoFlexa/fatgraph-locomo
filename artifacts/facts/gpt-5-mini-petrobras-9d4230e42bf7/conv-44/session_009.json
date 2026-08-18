@@ -1,0 +1,151 @@
+{
+ "facts": [
+  {
+   "entity_1": "Audrey",
+   "relation": "moved to",
+   "entity_2": "a new house with a bigger backyard",
+   "fact_text": "Audrey moved to a new house with a bigger backyard on 26 June 2023 at 1:51 pm (session time).",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has",
+   "entity_2": "two dogs",
+   "fact_text": "Audrey has two dogs.",
+   "turn_ids": [
+    "D9:1"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "set up",
+   "entity_2": "a doggy play area with agility equipment and toys in the backyard",
+   "fact_text": "Audrey set up a doggy play area with agility equipment and toys in the backyard.",
+   "turn_ids": [
+    "D9:5"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "is unpacking",
+   "entity_2": "packed boxes from the move",
+   "fact_text": "Audrey is unpacking packed boxes after moving to the new house.",
+   "turn_ids": [
+    "D9:17"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "has nearby",
+   "entity_2": "a doggy daycare with a big indoor play space for dogs",
+   "fact_text": "Andrew has a nearby doggy daycare that has a big indoor play space for dogs.",
+   "turn_ids": [
+    "D9:6",
+    "D9:8"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans to take",
+   "entity_2": "her dogs to the nearby doggy daycare",
+   "fact_text": "Audrey plans to take her dogs to the nearby doggy daycare sometime soon.",
+   "turn_ids": [
+    "D9:7",
+    "D9:8"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "hiked with",
+   "entity_2": "friends last Friday",
+   "fact_text": "Andrew hiked with friends last Friday.",
+   "turn_ids": [
+    "D9:18"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "misses",
+   "entity_2": "connection with nature and plans to explore more",
+   "fact_text": "Andrew misses the connection with nature and plans to explore more.",
+   "turn_ids": [
+    "D9:20"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "hiked with",
+   "entity_2": "friends a few years ago and discovered a lake in the mountains",
+   "fact_text": "Audrey hiked with friends a few years ago and discovered a stunning lake in the mountains where they sat and admired the peacefulness of nature.",
+   "turn_ids": [
+    "D9:23"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "thinks about",
+   "entity_2": "pets as family",
+   "fact_text": "Audrey thinks about pets as family to people.",
+   "turn_ids": [
+    "D9:15"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "both appreciate",
+   "entity_2": "Andrew",
+   "fact_text": "Audrey and Andrew both appreciate animals.",
+   "turn_ids": [
+    "D9:12",
+    "D9:13",
+    "D9:14"
+   ],
+   "session_id": "S9",
+   "session_num": 9,
+   "timestamp": "2023-06-26T13:51:00",
+   "date_raw": "1:51 pm on 26 June, 2023"
+  }
+ ]
+}

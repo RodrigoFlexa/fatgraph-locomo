@@ -1,0 +1,229 @@
+{
+ "facts": [
+  {
+   "entity_1": "Calvin",
+   "relation": "took for service",
+   "entity_2": "his Ferrari",
+   "fact_text": "On 3 August 2023 Calvin took his Ferrari for a service.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "feels attached to",
+   "entity_2": "his Ferrari",
+   "fact_text": "Calvin feels attached to his Ferrari.",
+   "turn_ids": [
+    "D12:1"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "finds therapeutic",
+   "entity_2": "fixing cars",
+   "fact_text": "Dave finds fixing cars therapeutic.",
+   "turn_ids": [
+    "D12:2"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "worked on cars with",
+   "entity_2": "Dave's father",
+   "fact_text": "Dave worked on cars with Dave's father when he was growing up.",
+   "turn_ids": [
+    "D12:2",
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "derives fulfillment from",
+   "entity_2": "refurbishing cars",
+   "fact_text": "Refurbishing cars derives a sense of fulfillment for Dave.",
+   "turn_ids": [
+    "D12:2"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "restored with his father",
+   "entity_2": "an old car",
+   "fact_text": "Dave restored an old car with his father one summer.",
+   "turn_ids": [
+    "D12:4"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "shared",
+   "entity_2": "a photograph of a man and a child",
+   "fact_text": "Dave shared a photograph of a man and a child.",
+   "turn_ids": [
+    "D12:6"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared",
+   "entity_2": "a photograph of a red car lifted on a lift in a garage",
+   "fact_text": "Calvin shared a photograph of a red car lifted on a lift in a garage.",
+   "turn_ids": [
+    "D12:7"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "says his car reminds him of",
+   "entity_2": "Calvin's hard work and dedication",
+   "fact_text": "Calvin says his car reminds Calvin of Calvin's hard work and dedication.",
+   "turn_ids": [
+    "D12:7"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "says his car motivates",
+   "entity_2": "Calvin",
+   "fact_text": "Calvin says his car motivates Calvin and keeps Calvin pushing.",
+   "turn_ids": [
+    "D12:9"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to",
+   "entity_2": "expand his brand worldwide",
+   "fact_text": "Calvin plans to expand his brand worldwide.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "plans to",
+   "entity_2": "grow his fanbase",
+   "fact_text": "Calvin plans to grow his fanbase.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "wants",
+   "entity_2": "his music to reach more people",
+   "fact_text": "Calvin wants his music to reach more people.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "wants to",
+   "entity_2": "work with artists from around the globe",
+   "fact_text": "Calvin wants to work with artists from around the globe.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "wants to",
+   "entity_2": "create special music",
+   "fact_text": "Calvin wants to challenge himself to create special music.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Calvin",
+   "relation": "shared a photo of",
+   "entity_2": "Calvin performing with the boys last night",
+   "fact_text": "Calvin shared a photo of Calvin performing with the boys last night.",
+   "turn_ids": [
+    "D12:11"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  },
+  {
+   "entity_1": "Dave",
+   "relation": "encouraged",
+   "entity_2": "Calvin",
+   "fact_text": "Dave encouraged Calvin and expressed support for Calvin's goals.",
+   "turn_ids": [
+    "D12:12",
+    "D12:13",
+    "D12:14",
+    "D12:16"
+   ],
+   "session_id": "S12",
+   "session_num": 12,
+   "timestamp": "2023-08-03T13:12:00",
+   "date_raw": "1:12 pm on 3 August, 2023"
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+ "facts": [
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "love",
+   "fact_text": "great and love came up when Caroline was talking.",
+   "turn_ids": [
+    "D17:1"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "caroline and great came up when Melanie was talking.",
+   "turn_ids": [
+    "D17:2"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "melanie",
+   "relation": "mentions",
+   "entity_2": "adoption",
+   "fact_text": "melanie and adoption came up when Caroline was talking.",
+   "turn_ids": [
+    "D17:3"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "last",
+   "relation": "mentions",
+   "entity_2": "process",
+   "fact_text": "last and process came up when Melanie was talking.",
+   "turn_ids": [
+    "D17:4"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "help",
+   "fact_text": "caroline and help came up when Melanie was talking.",
+   "turn_ids": [
+    "D17:6"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "help",
+   "relation": "mentions",
+   "entity_2": "adoption",
+   "fact_text": "help and adoption came up when Caroline was talking.",
+   "turn_ids": [
+    "D17:7"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "last",
+   "fact_text": "caroline and last came up when Melanie was talking.",
+   "turn_ids": [
+    "D17:8"
+   ],
+   "session_id": "S17",
+   "session_num": 17,
+   "timestamp": "2023-10-13T10:31:00",
+   "date_raw": "10:31 am on 13 October, 2023"
+  }
+ ]
+}

@@ -1,0 +1,187 @@
+{
+ "facts": [
+  {
+   "entity_1": "Andrew",
+   "relation": "went to",
+   "entity_2": "a wine tasting last weekend",
+   "fact_text": "Andrew went to a wine tasting last weekend.",
+   "turn_ids": [
+    "D25:1"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "went to with",
+   "entity_2": "Andrew's girlfriend",
+   "fact_text": "Andrew went to the wine tasting last weekend with Andrew's girlfriend.",
+   "turn_ids": [
+    "D25:1"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "had an accident at",
+   "entity_2": "a park while playing with her pups",
+   "fact_text": "Audrey had an accident at a park while playing with her pups.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "is caring for",
+   "entity_2": "her pups with one arm",
+   "fact_text": "Audrey is caring for her pups with one arm.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "has",
+   "entity_2": "a cast on her arm",
+   "fact_text": "Audrey has a cast on her arm.",
+   "turn_ids": [
+    "D25:2"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "tried",
+   "entity_2": "a new sushi spot in town",
+   "fact_text": "Andrew tried a new sushi spot in town.",
+   "turn_ids": [
+    "D25:3"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "had never tried",
+   "entity_2": "sushi before",
+   "fact_text": "Andrew had never tried sushi before.",
+   "turn_ids": [
+    "D25:5"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "enjoyed",
+   "entity_2": "the sushi at the new spot",
+   "fact_text": "Andrew enjoyed the sushi at the new spot in town.",
+   "turn_ids": [
+    "D25:3",
+    "D25:5"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "loves",
+   "entity_2": "sushi",
+   "fact_text": "Audrey loves sushi.",
+   "turn_ids": [
+    "D25:6"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "recommends starting with",
+   "entity_2": "a California roll or a salmon roll",
+   "fact_text": "Audrey recommends starting with a California roll or a salmon roll when trying sushi.",
+   "turn_ids": [
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "suggests mixing with",
+   "entity_2": "different sauces and dips",
+   "fact_text": "Audrey suggests mixing sushi with different sauces and dips to make it tastier.",
+   "turn_ids": [
+    "D25:8"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "plans to order",
+   "entity_2": "sushi for tonight",
+   "fact_text": "Audrey plans to order sushi for tonight.",
+   "turn_ids": [
+    "D25:14"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Andrew",
+   "relation": "plans to try",
+   "entity_2": "a California roll or a salmon roll and some sauces",
+   "fact_text": "Andrew plans to try a California roll or a salmon roll and some sauces.",
+   "turn_ids": [
+    "D25:9"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  },
+  {
+   "entity_1": "Audrey",
+   "relation": "asked",
+   "entity_2": "Andrew to take photos of his sushi and show her",
+   "fact_text": "Audrey asked Andrew to take photos of his sushi and show her what he enjoys.",
+   "turn_ids": [
+    "D25:12"
+   ],
+   "session_id": "S25",
+   "session_num": 25,
+   "timestamp": "2023-10-24T10:14:00",
+   "date_raw": "10:14 am on 24 October, 2023"
+  }
+ ]
+}

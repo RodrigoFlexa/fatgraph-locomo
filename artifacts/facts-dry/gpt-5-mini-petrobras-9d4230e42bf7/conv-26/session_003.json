@@ -1,0 +1,82 @@
+{
+ "facts": [
+  {
+   "entity_1": "great",
+   "relation": "mentions",
+   "entity_2": "community",
+   "fact_text": "great and community came up when Caroline was talking.",
+   "turn_ids": [
+    "D3:1"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "great",
+   "fact_text": "caroline and great came up when Melanie was talking.",
+   "turn_ids": [
+    "D3:2"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  },
+  {
+   "entity_1": "community",
+   "relation": "mentions",
+   "entity_2": "journey",
+   "fact_text": "community and journey came up when Caroline was talking.",
+   "turn_ids": [
+    "D3:3"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "love",
+   "fact_text": "caroline and love came up when Melanie was talking.",
+   "turn_ids": [
+    "D3:6"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  },
+  {
+   "entity_1": "keep",
+   "relation": "mentions",
+   "entity_2": "others",
+   "fact_text": "keep and others came up when Caroline was talking.",
+   "turn_ids": [
+    "D3:7"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  },
+  {
+   "entity_1": "caroline",
+   "relation": "mentions",
+   "entity_2": "journey",
+   "fact_text": "caroline and journey came up when Melanie was talking.",
+   "turn_ids": [
+    "D3:8"
+   ],
+   "session_id": "S3",
+   "session_num": 3,
+   "timestamp": "2023-06-09T19:55:00",
+   "date_raw": "7:55 pm on 9 June, 2023"
+  }
+ ]
+}

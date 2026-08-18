@@ -1,0 +1,200 @@
+{
+ "facts": [
+  {
+   "entity_1": "Anna",
+   "relation": "gave",
+   "entity_2": "Deborah a vegan stir-fry",
+   "fact_text": "Anna gave Deborah a vegan stir-fry.",
+   "turn_ids": [
+    "D8:1"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "the vegan stir-fry",
+   "relation": "included",
+   "entity_2": "tofu and vegetables with ginger and soy sauce",
+   "fact_text": "The vegan stir-fry included tofu and vegetables with ginger and soy sauce.",
+   "turn_ids": [
+    "D8:1"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "has a favorite dish",
+   "entity_2": "lasagna",
+   "fact_text": "Jolene has a favorite dish: lasagna.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "is dealing with",
+   "entity_2": "studies and exams",
+   "fact_text": "Jolene is dealing with studies and exams.",
+   "turn_ids": [
+    "D8:2"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "practiced",
+   "entity_2": "yoga and meditation last Friday",
+   "fact_text": "Jolene practiced yoga and meditation last Friday.",
+   "turn_ids": [
+    "D8:4"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "practiced",
+   "entity_2": "yoga and meditation last Friday",
+   "fact_text": "Deborah practiced yoga and meditation last Friday.",
+   "turn_ids": [
+    "D8:4",
+    "D8:5"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "took",
+   "entity_2": "Seraphim to the park last Sunday",
+   "fact_text": "Jolene took Seraphim to the park last Sunday.",
+   "turn_ids": [
+    "D8:8"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "the photo shared by Jolene",
+   "relation": "shows",
+   "entity_2": "a lizard laying on the ground surrounded by leaves",
+   "fact_text": "The photo shared by Jolene shows a lizard laying on the ground surrounded by leaves.",
+   "turn_ids": [
+    "D8:8"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "people",
+   "relation": "are surprised when they see",
+   "entity_2": "a tamed snake",
+   "fact_text": "People are surprised when they see a tamed snake, according to Jolene.",
+   "turn_ids": [
+    "D8:10"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "likes",
+   "entity_2": "the birds chirping and the breeze gently blowing",
+   "fact_text": "Deborah likes the birds chirping and the breeze gently blowing.",
+   "turn_ids": [
+    "D8:11"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "needs to be more mindful of",
+   "entity_2": "stress levels",
+   "fact_text": "Jolene needs to be more mindful of her stress levels.",
+   "turn_ids": [
+    "D8:14"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "needs to take care of",
+   "entity_2": "mental health",
+   "fact_text": "Jolene needs to take care of her mental health.",
+   "turn_ids": [
+    "D8:14"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Jolene",
+   "relation": "feels overwhelmed by",
+   "entity_2": "exams and deadlines",
+   "fact_text": "Jolene feels overwhelmed by exams and deadlines.",
+   "turn_ids": [
+    "D8:16"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "the photo shared by Jolene",
+   "relation": "shows",
+   "entity_2": "a desk with a notebook and a computer monitor",
+   "fact_text": "The photo shared by Jolene shows a desk with a notebook and a computer monitor.",
+   "turn_ids": [
+    "D8:16"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  },
+  {
+   "entity_1": "Deborah",
+   "relation": "will give",
+   "entity_2": "Jolene a mug like the yellow coffee cup with a handwritten message",
+   "fact_text": "Deborah will give Jolene a mug like the yellow coffee cup with a handwritten message.",
+   "turn_ids": [
+    "D8:21"
+   ],
+   "session_id": "S8",
+   "session_num": 8,
+   "timestamp": "2023-03-02T19:18:00",
+   "date_raw": "7:18 pm on 2 March, 2023"
+  }
+ ]
+}
