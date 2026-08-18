@@ -203,6 +203,30 @@ class RetrievalConfig:
     #: 0 = no cap, matching sigma_expand_max_anchors and max_facts_per_session.
     sigma_max_orbit_scan: int = 64
 
+    #: Skip vertices of degree >= this when expanding sigma. 0 disables.
+    #:
+    #: The speaker is the `"the"` of this graph. Measured: 86% of edges touch
+    #: one of the two speakers, they are the two highest-degree vertices in
+    #: every conversation (~200 against 9-18 for the third), and the median
+    #: vertex shared by a pair of evidence facts has degree 115. So "these two
+    #: memories share an entity" degenerates into "both are about Caroline",
+    #: true of half the graph, and sigma's orbit contains the real bridge in
+    #: 7.7% of cases -- raising k plateaus at 11% because degrees reach 229.
+    #:
+    #: Information retrieval settled this in the 1960s: you do not index a
+    #: stopword. A hub vertex carries no discriminative information, so the
+    #: orbit through it is noise, and skipping it forces the bridge to be a
+    #: real entity or to not exist. This is the same idea applied to vertices
+    #: instead of terms -- and it is the test that decides whether semantic
+    #: bridges exist in this data at all, because it needs no re-ingest.
+    #:
+    #: The threshold is not a guess: degrees are bimodal with an empty band
+    #: between them. Across the ten conversations the speakers never fall below
+    #: 95 and the third-ranked vertex never rises above 50, so a cut at 60
+    #: removes exactly the 20 speaker vertices and nothing else -- 100%
+    #: precision, measured, not tuned.
+    sigma_skip_hub_degree: int = 0
+
     # --- face as the unit of retrieval (G10) -------------------------------
     # One line of difference from the k-NN baseline: B3 returns the top-k
     # facts, this returns the *faces containing* them, whole. What a face adds
@@ -483,6 +507,15 @@ class Config:
             if self.retrieval.sigma_max_orbit_scan < 0:
                 raise ConfigError(
                     "retrieval.sigma_max_orbit_scan must be >= 0 (0 = no cap)"
+                )
+            if self.retrieval.sigma_skip_hub_degree < 0:
+                raise ConfigError(
+                    "retrieval.sigma_skip_hub_degree must be >= 0 (0 = disabled)"
+                )
+            if 0 < self.retrieval.sigma_skip_hub_degree <= 2:
+                raise ConfigError(
+                    "retrieval.sigma_skip_hub_degree <= 2 would skip almost every "
+                    "vertex and disable the expansion instead of focusing it"
                 )
         if self.retrieval.face_units:
             for flag in ("sigma_expand", "face_coverage"):

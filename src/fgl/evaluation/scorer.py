@@ -176,6 +176,8 @@ class QAOutcome:
     sigma_scanned: int = 0
     sigma_dup: int = 0
     sigma_over_budget: int = 0
+    #: orbits skipped for being a hub vertex (the stopword rule)
+    sigma_hubs_skipped: int = 0
 
     # --- coverage retrieval audit -----------------------------------------
     #: retrieval.face_coverage was on for this question
@@ -226,6 +228,7 @@ class QAOutcome:
             "sigma_scanned": self.sigma_scanned,
             "sigma_dup": self.sigma_dup,
             "sigma_over_budget": self.sigma_over_budget,
+            "sigma_hubs_skipped": self.sigma_hubs_skipped,
             "face_coverage": self.face_coverage,
             "question_entities": self.question_entities,
             "coverage_best": round(self.coverage_best, 4),
@@ -374,6 +377,14 @@ def _sigma_stats(outcomes: Sequence[QAOutcome]) -> dict:
                 / max(1, np.sum([o.sigma_scanned for o in on]))
             ),
             4,
+        ),
+        #: orbits skipped as hubs, per question. Read next to sigma_use_rate:
+        #: skips high AND use_rate high means the join found a real entity once
+        #: the speakers were out of the way; skips high and use_rate near zero
+        #: means the speaker was the ONLY thing the two memories shared, which
+        #: is the structural hypothesis dying rather than the filter misfiring.
+        "sigma_hubs_skipped_mean": round(
+            float(np.mean([o.sigma_hubs_skipped for o in on])), 2
         ),
         "sigma_over_budget_rate": round(
             float(
