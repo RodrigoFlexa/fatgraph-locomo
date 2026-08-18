@@ -154,6 +154,17 @@ class BipartiteRetriever:
             graph, embedder, threshold=cfg.retrieval.coverage_entity_threshold
         )
         self._face_by_half_edge: dict[str, Face] | None = None
+        #: every speaker that appears on a turn vertex. The speaker is still
+        #: not a vertex -- this reads ``meta["speaker"]``, a turn attribute --
+        #: so nothing here changes the topology or can recreate the hub the
+        #: speaker exclusion exists to prevent.
+        self.speakers: list[str] = sorted(
+            {
+                vx.meta["speaker"]
+                for vx in graph.vertices.values()
+                if vx.meta.get("kind") == "turn" and vx.meta.get("speaker")
+            }
+        )
 
     # -------------------------------------------------------- face lookup ----
     def face_of(self, half_edge_id: str) -> Face:
@@ -216,8 +227,13 @@ class BipartiteRetriever:
             return c
 
         # 1. dense backstop over turn embeddings -- a full participant, not
-        # a last resort (see module docstring).
-        for turn_vid, score in self.turn_index.search(qvec, max(r.top_m_anchors * 4, 24)):
+        # a last resort (see module docstring). Breadth is tied to
+        # max_facts_in_prompt, not to a constant: the prompt budget decides how
+        # many units can be shown, so generating fewer candidates than that
+        # leaves budget unspendable however good the ranking is (measured: with
+        # the cap at 80 and breadth at 32, L1 filled 1001 of its 2000 tokens).
+        breadth = max(r.top_m_anchors * 4, r.max_facts_in_prompt, 24)
+        for turn_vid, score in self.turn_index.search(qvec, breadth):
             touch(turn_vid, bp.dense_weight * score, SOURCE_BP_DENSE, priority=0)
 
         # 2. direct entity hits: every turn in a linked non-hub entity's
@@ -289,10 +305,21 @@ class BipartiteRetriever:
                                 priority=2,
                             )
 
-        # 5. speaker-set boost: when the question names both speakers
+        # 5. speaker partition: when the question names exactly ONE speaker,
+        # the other one's turns are almost never the evidence, so spending
+        # context slots on them is pure loss. Measured on this condition's own
+        # predictions: 98.5-99.7% of questions name exactly one speaker, the
+        # evidence turn is that speaker's in 96-100% of cases, and 24% of
+        # every context was going to the other one.
+        if bp.speaker_partition and candidates:
+            self._partition_by_speaker(question, candidates)
+
+        # 6. speaker-set boost: when the question names BOTH speakers
         # explicitly, nudge the ranking so at least one turn from each
         # survives truncation (measured minority pattern -- see
-        # BipartiteConfig.speaker_filter docstring).
+        # BipartiteConfig.speaker_filter docstring). Disjoint from the
+        # partition above by construction: that one only fires on exactly one
+        # named speaker, this one only on two.
         if bp.speaker_filter and candidates:
             self._boost_speaker_coverage(question, candidates)
 
@@ -306,7 +333,6 @@ class BipartiteRetriever:
         for c in ranked:
             if len(result.facts) >= r.max_facts_in_prompt or used >= budget:
                 break
-            vx = self.graph.vertices[c.turn_vid]
             # any half-edge at this turn vertex carries the turn's text; take
             # the first (all identical, see ingest_bipartite.py)
             halves = self.graph.sigma.get(c.turn_vid, ())
@@ -324,14 +350,43 @@ class BipartiteRetriever:
         return result
 
     # ------------------------------------------------------------ internals --
+    def _named_speakers(self, question: str) -> list[str]:
+        """Speakers the question names, by whole-word match on the first name.
+
+        Whole word, not substring: "Sam" must not fire on "same", and the
+        normalised question is already word-split, so the check is exact
+        rather than a prefix heuristic.
+        """
+        words = set(normalize_name(question).split())
+        return [
+            spk for spk in self.speakers
+            if (normalize_name(spk).split() or [""])[0] in words
+        ]
+
+    def _partition_by_speaker(
+        self, question: str, candidates: dict[str, _Candidate]
+    ) -> None:
+        """Drop candidates spoken by someone the question did not name.
+
+        Mutates ``candidates`` in place. Refuses to fire when it would leave
+        fewer than ``speaker_partition_min`` candidates: on the few questions
+        where the named person is not the one who said it, an empty context is
+        a forced abstention, which is strictly worse than a ranked miss.
+        """
+        named = self._named_speakers(question)
+        if len(named) != 1:
+            return
+        keep = {
+            vid for vid in candidates
+            if self.graph.vertices[vid].meta.get("speaker") == named[0]
+        }
+        if len(keep) < self.cfg.bipartite.speaker_partition_min:
+            return
+        for vid in [v for v in candidates if v not in keep]:
+            del candidates[vid]
+
     def _boost_speaker_coverage(self, question: str, candidates: dict[str, _Candidate]) -> None:
-        speakers: set[str] = set()
-        qnorm = normalize_name(question)
-        for turn_vid in candidates:
-            spk = self.graph.vertices[turn_vid].meta.get("speaker", "")
-            if spk:
-                speakers.add(spk)
-        named = {spk for spk in speakers if normalize_name(spk) and normalize_name(spk) in qnorm}
+        named = set(self._named_speakers(question))
         if len(named) < 2:
             return
         # at least one candidate per named speaker gets a boost proportional

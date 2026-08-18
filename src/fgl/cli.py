@@ -593,6 +593,76 @@ def ingest(
     _print_cost(runner)
 
 
+@app.command("slots-oracle")
+def slots_oracle(
+    conditions: Optional[list[str]] = typer.Option(
+        None, "--condition", "-C",
+        help="Conditions to compare (repeatable). Default: L1 and L2.",
+    ),
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = OptLimitConv,
+    force: bool = typer.Option(False, "--force", help="Rebuild existing graphs."),
+    out: Optional[str] = typer.Option(
+        None, "--out", help="Also write the report as JSON to this path."
+    ),
+) -> None:
+    """Compare memory models by retrieval alone — no LLM call, no cost.
+
+    Retrieves for all 1986 questions under each condition and reports where the
+    annotated evidence lands, at each condition's own (identical) token budget.
+    This is the check to run BEFORE `fgl run L2`: answering is what costs money,
+    and measured on L1 there is no answering headroom left to find — every
+    remaining point is retrieval, so retrieval is what decides whether a new
+    memory model is worth a run.
+    """
+    import json as _json
+
+    from fgl.evaluation.slots_oracle import TARGETS, format_oracle, run_oracle
+
+    names = list(conditions) if conditions else ["L1", "L2"]
+    # dry_run=True: this command answers nothing, so it must not demand Azure
+    # credentials to run. `run_oracle` pins llm.provider="fake" per condition
+    # anyway -- this only stops the CLI's credential gate from firing.
+    cfg0 = _load(names[0], None, dry_run=True)
+    convs = _dataset(cfg0, conversation, limit_conversations)
+    console.print(
+        f"[bold]slots-oracle[/] · {', '.join(names)} · {len(convs)} conversation(s) "
+        f"· [dim]zero LLM calls[/]"
+    )
+
+    with _progress() as bar:
+        report = run_oracle(
+            names, convs, force_ingest=force, progress=_Bar(bar, "oracle")
+        )
+
+    console.print()
+    console.print(format_oracle(report))
+
+    # the stopping rule, stated as a verdict rather than left to the reader
+    last = list(report["conditions"])[-1]
+    pc = report["conditions"][last]["per_category"]
+    misses = [
+        f"{c} {pc[c]['recall_context']:.3f} < {t:.2f}"
+        for c, t in TARGETS.items()
+        if c in pc and pc[c]["recall_context"] < t
+    ]
+    console.print()
+    if misses:
+        console.print(
+            f"[yellow]{last} misses the target on: " + "; ".join(misses) + "[/]\n"
+            "[dim]The model is not yet worth an LLM run — sweep the knobs the "
+            "condition file flags first.[/]"
+        )
+    else:
+        console.print(f"[green]{last} clears every target — worth `fgl run {last}`.[/]")
+
+    if out:
+        _p = Path(out)
+        _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(_json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        console.print(f"[dim]wrote {_p}[/]")
+
+
 @app.command()
 def qa(
     condition: str = typer.Argument(..., help="Condition name, id or prefix."),

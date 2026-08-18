@@ -205,6 +205,16 @@ class QAOutcome:
     #: claim in one number
     corroborating_facts: int = 0
 
+    # --- typed-slot audit (L2) --------------------------------------------
+    #: slot keys the question linked, per kind. Non-empty only for the slot
+    #: retriever, which makes the column itself the proof that it ran -- the
+    #: same "audit, do not trust" rule the sigma/coverage columns follow.
+    slot_channels: dict = field(default_factory=dict)
+    #: corner-test support in [0, 1]; 1.0 also means "the test did not apply"
+    slot_support: float = 1.0
+    #: why the deterministic abstention fired, empty when it did not
+    abstain_reason: str = ""
+
     def to_dict(self) -> dict:
         return {
             "question": self.question,
@@ -241,6 +251,9 @@ class QAOutcome:
             "face_units": self.face_units,
             "face_units_used": self.face_units_used,
             "corroborating_facts": self.corroborating_facts,
+            "slot_channels": self.slot_channels,
+            "slot_support": self.slot_support,
+            "abstain_reason": self.abstain_reason,
         }
 
 

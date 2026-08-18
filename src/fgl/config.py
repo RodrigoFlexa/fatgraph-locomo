@@ -352,6 +352,131 @@ class BipartiteConfig:
     #: i.e. the minority; most multi-hop in LoCoMo is one person's own facts
     #: spread across sessions, which needs no speaker logic at all).
     speaker_filter: bool = True
+    #: when the question names exactly ONE speaker, drop candidate turns
+    #: spoken by the other one. This is a different mechanism from
+    #: ``speaker_filter`` above, which only fires on the rare two-speaker
+    #: question and only boosts; measured on L1's own predictions, 98.5-99.7%
+    #: of questions name exactly one speaker, the evidence turn belongs to
+    #: that speaker in 96-100% of cases (multi-hop 244/244, open-domain
+    #: 72/72), and 24% of every context was being spent on the other one.
+    #: The speaker is still not a vertex -- ``meta["speaker"]`` is a turn
+    #: attribute, so this changes no topology and cannot recreate the hub.
+    speaker_partition: bool = False
+    #: never let the partition leave fewer than this many candidates: on the
+    #: handful of questions where the named speaker is not the one who said
+    #: it, an over-eager filter would turn a ranked miss into an empty context
+    #: (and a forced abstention), which is strictly worse.
+    speaker_partition_min: int = 8
+
+
+@dataclass
+class SlotsConfig:
+    """Knobs for condition L2 (``ingest.mode=retrieval.mode=slots``).
+
+    Inert for every other condition. The design these numbers parametrise is
+    documented in :mod:`fgl.memory.slots`; what follows is only what each knob
+    trades off, so a sweep can be read without opening the module.
+    """
+
+    # --- extraction --------------------------------------------------------
+    #: spaCy pipeline. Needs a parser (noun chunks) and a tagger (verb lemmas).
+    ner_model: str = "en_core_web_sm"
+    max_chunk_words: int = 6
+    min_concept_chars: int = 3
+    #: resolve relative dates against the session timestamp, exactly as L1
+    resolve_temporal: bool = True
+    #: lift concepts to WordNet hypernyms. Turns itself off with a recorded
+    #: flag in ``graph_stats["wordnet_types"]`` when the corpus is missing,
+    #: rather than failing the run -- the channel is additive.
+    lift_types: bool = True
+    max_types_per_concept: int = 6
+
+    # --- episodes ----------------------------------------------------------
+    #: turns glued unconditionally before cohesion is even consulted. 2 = the
+    #: adjacency pair, which is the entire point: a reply carries the value
+    #: and none of the topic, so a question turn and its answer turn must not
+    #: be able to land in different episodes.
+    episode_min_turns: int = 2
+    #: hard ceiling, so one long on-topic stretch cannot become a 40-turn
+    #: vertex that costs the whole prompt budget in a single retrieval.
+    episode_max_turns: int = 6
+    #: minimum concept overlap for a turn to extend the current episode,
+    #: as a fraction of the smaller of the two concept sets.
+    episode_cohesion: float = 0.10
+
+    # --- per-episode slot caps (bound the edge count, not the quality) -----
+    max_concepts: int = 24
+    max_predicates: int = 12
+    max_types: int = 24
+
+    # --- question linking --------------------------------------------------
+    max_question_concepts: int = 6
+    max_question_predicates: int = 4
+    max_question_types: int = 8
+    #: cosine floor for linking a question noun to a concept vertex it does
+    #: not match literally. Only concepts get this fallback: every other kind
+    #: is a lemma, a bucket or a name, where "nearly" is not a thing.
+    concept_link_threshold: float = 0.75
+
+    # --- scoring -----------------------------------------------------------
+    #: All five structural channels are damped by 1/(1+log(degree)) before
+    #: these weights apply, so a weight is "how much this KIND of evidence is
+    #: worth", not "how common this slot is" -- the two were confounded in L1,
+    #: where a hit on "dog" (degree 128) scored the same as one on "sunset".
+    dense_weight: float = 1.0
+    actor_weight: float = 1.0
+    predicate_weight: float = 1.2
+    concept_weight: float = 1.5
+    type_weight: float = 0.6
+    time_weight: float = 0.8
+    #: weight for an actor merely NAMED in an episode rather than speaking in
+    #: it -- enough to be findable, not enough to outrank a speaker.
+    mention_weight: float = 0.25
+    #: the actor is applied as a multiplicative prior, not as a summand:
+    #: score *= floor + (1 - floor) * min(contribution / full, 1). ``floor`` is
+    #: what an episode the named person did not contribute to keeps -- 0 would
+    #: be a hard filter (and would delete the ~2-4% of questions whose evidence
+    #: is the *other* speaker's turn), 1 would disable the prior entirely.
+    actor_prior_floor: float = 0.35
+    #: contribution share at which the prior is already fully satisfied. Half
+    #: the episode's content is "this is their exchange"; demanding all of it
+    #: would penalise every normal two-sided turn pair.
+    actor_prior_full: float = 0.5
+    #: share of a sibling turn's similarity that a turn inherits from its own
+    #: exchange. This is the reply rule as arithmetic: the turn that *answers*
+    #: a question rarely resembles it ("We just did a contemporary piece
+    #: called 'Finding Freedom'"), so it has to be retrievable through the
+    #: turn next to it. The episode-level dense term already carries most of
+    #: this (see fgl.retrieval.slots), so this is the fine adjustment on top:
+    #: measured optimum is shallow between 0.0 and 0.4, and it degrades above
+    #: 0.7, where a whole exchange becomes as retrievable as its best line and
+    #: breadth collapses (25 episodes for 56 turns instead of 35).
+    sibling_frac: float = 0.2
+    #: degree at or above which a slot stops being enumerated and becomes a
+    #: flat filter bonus. Same rule as ``bipartite.bridge_max_degree``, but it
+    #: now applies per KIND, which is what lets an actor vertex be a partition
+    #: (high degree, still useful) instead of a hub (high degree, useless).
+    hub_degree: int = 60
+    hub_weight: float = 0.2
+    #: exponent on the degree damping ``1/(1+log(deg)) ** slot_damping``.
+    #: 0 disables it (every orbit member scores the same, which is what L1
+    #: does); 1 is full damping. Between them is the precision/enumeration
+    #: trade-off: a multi-hop question is answered by a whole orbit, a
+    #: single-hop one by the rarest member of it.
+    slot_damping: float = 1.0
+
+    # --- deterministic abstention -----------------------------------------
+    #: abstain when the question's (actor, specific-slot) corner exists
+    #: nowhere in the graph. OFF by default on purpose: it is the only
+    #: mechanism here that can *remove* a correct answer, so it should be
+    #: turned on from a measured false-positive rate (``fgl slots-oracle``),
+    #: not from the fact that it is the elegant thing to do.
+    abstain_on_empty_corner: bool = False
+    #: share of an episode's content a person must contribute for the episode
+    #: to count as *theirs* in the corner test. An episode is an adjacency
+    #: pair, so both speakers appear in nearly all of them; at 0.0 the corner
+    #: exists everywhere and the test never fires. 0.5 = the majority.
+    corner_actor_min: float = 0.5
 
 
 @dataclass
@@ -386,6 +511,7 @@ SECTIONS: dict[str, type] = {
     "curation": CurationConfig,
     "retrieval": RetrievalConfig,
     "bipartite": BipartiteConfig,
+    "slots": SlotsConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
 }
@@ -412,6 +538,7 @@ class Config:
     curation: CurationConfig = field(default_factory=CurationConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
     bipartite: BipartiteConfig = field(default_factory=BipartiteConfig)
+    slots: SlotsConfig = field(default_factory=SlotsConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
 
@@ -527,19 +654,27 @@ class Config:
             )
         if self.index.backend not in ("numpy", "faiss"):
             raise ConfigError(f"index.backend must be numpy|faiss")
-        if self.ingest.mode not in ("triples", "bipartite"):
+        if self.ingest.mode not in ("triples", "bipartite", "slots"):
             raise ConfigError(
-                f"ingest.mode must be triples|bipartite, got {self.ingest.mode!r}"
+                f"ingest.mode must be triples|bipartite|slots, got {self.ingest.mode!r}"
             )
-        if self.retrieval.mode not in ("walk", "bipartite"):
+        if self.retrieval.mode not in ("walk", "bipartite", "slots"):
             raise ConfigError(
-                f"retrieval.mode must be walk|bipartite, got {self.retrieval.mode!r}"
+                f"retrieval.mode must be walk|bipartite|slots, got "
+                f"{self.retrieval.mode!r}"
             )
-        if (self.ingest.mode == "bipartite") != (self.retrieval.mode == "bipartite"):
+        # Each non-default memory model builds its own kind of vertex, and a
+        # retriever that does not know that kind cannot interpret the graph at
+        # all (it would silently score turn vertices as if they were entities).
+        # So the pair is checked as a pair, not as two independent settings.
+        _MODEL_PAIRS = {"bipartite": "bipartite", "slots": "slots", "triples": "walk"}
+        if _MODEL_PAIRS[self.ingest.mode] != self.retrieval.mode:
             raise ConfigError(
-                "ingest.mode=bipartite builds turn/entity vertices that "
-                "retrieval.mode=walk cannot interpret (and vice versa): the "
-                "two must be switched together"
+                f"ingest.mode={self.ingest.mode!r} builds vertices that "
+                f"retrieval.mode={self.retrieval.mode!r} cannot interpret: "
+                f"expected retrieval.mode="
+                f"{_MODEL_PAIRS[self.ingest.mode]!r} -- the two must be "
+                "switched together"
             )
         if self.ingest.mode == "bipartite":
             if self.bipartite.bridge_max_degree < 2:
@@ -550,6 +685,37 @@ class Config:
                 raise ConfigError("bipartite.min_entity_chars must be >= 1")
             if self.bipartite.max_bridge_scan < 1:
                 raise ConfigError("bipartite.max_bridge_scan must be >= 1")
+            if self.bipartite.speaker_partition_min < 0:
+                raise ConfigError("bipartite.speaker_partition_min must be >= 0")
+        if self.ingest.mode == "slots":
+            sl = self.slots
+            if sl.episode_min_turns < 1:
+                raise ConfigError("slots.episode_min_turns must be >= 1")
+            if sl.episode_max_turns < sl.episode_min_turns:
+                raise ConfigError(
+                    "slots.episode_max_turns must be >= slots.episode_min_turns"
+                )
+            if not 0.0 <= sl.episode_cohesion <= 1.0:
+                raise ConfigError("slots.episode_cohesion must be in [0, 1]")
+            if sl.hub_degree < 2:
+                raise ConfigError("slots.hub_degree must be >= 2")
+            if not 0.0 <= sl.concept_link_threshold <= 1.0:
+                raise ConfigError("slots.concept_link_threshold must be in [0, 1]")
+            if not 0.0 <= sl.corner_actor_min <= 1.0:
+                raise ConfigError("slots.corner_actor_min must be in [0, 1]")
+            if sl.slot_damping < 0.0:
+                raise ConfigError("slots.slot_damping must be >= 0")
+            if not 0.0 <= sl.actor_prior_floor <= 1.0:
+                raise ConfigError("slots.actor_prior_floor must be in [0, 1]")
+            if not 0.0 < sl.actor_prior_full <= 1.0:
+                raise ConfigError("slots.actor_prior_full must be in (0, 1]")
+            if not 0.0 <= sl.sibling_frac <= 2.0:
+                raise ConfigError("slots.sibling_frac must be in [0, 2]")
+            for name in ("max_concepts", "max_predicates", "max_types",
+                         "max_question_concepts", "max_question_predicates",
+                         "max_question_types", "max_types_per_concept"):
+                if getattr(sl, name) < 1:
+                    raise ConfigError(f"slots.{name} must be >= 1")
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(
                 "ingest.extract_prompt must be extract_facts|extract_facts_topical, "

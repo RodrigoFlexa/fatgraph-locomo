@@ -28,6 +28,7 @@ from fgl.llm import LLMClient, PromptLibrary, build_llm
 from fgl.logging_utils import JsonlLogger
 from fgl.memory.ingest import Ingestor
 from fgl.memory.ingest_bipartite import BipartiteIngestor
+from fgl.memory.ingest_slots import SlotIngestor
 from fgl.paths import Paths, project_root
 from fgl.retrieval import (
     JOIN_SOURCES,
@@ -39,6 +40,7 @@ from fgl.retrieval import (
     CachedEmbedder,
     Embedder,
     FaceRetriever,
+    SlotRetriever,
     build_embedder,
 )
 
@@ -56,8 +58,23 @@ FATGRAPH_CONDITIONS = (
     "G11-sigma-nohub",
     "T1-topical",
     "L1-bipartite",
+    "L2-slots",
 )
 BASELINE_CONDITIONS = ("B1-full-context", "B2-rag-turns", "B3-rag-facts")
+
+#: ``ingest.mode`` / ``retrieval.mode`` -> implementation. One table instead of
+#: a chain of ternaries, so adding a memory model is a line here and a line in
+#: ``Config.validate`` rather than an edit inside two methods.
+_INGESTORS = {
+    "triples": Ingestor,
+    "bipartite": BipartiteIngestor,
+    "slots": SlotIngestor,
+}
+_RETRIEVERS = {
+    "walk": FaceRetriever,
+    "bipartite": BipartiteRetriever,
+    "slots": SlotRetriever,
+}
 
 #: Above these the memory graph is a star and multi-hop retrieval is redundant
 #: by construction -- see `Runner._topology_warnings`. A long tail of degree-1
@@ -204,7 +221,7 @@ class Runner:
         )
         with JsonlLogger(log_path) as logger:
             cfg = self._ingest_cfg()
-            ingestor_cls = BipartiteIngestor if cfg.ingest.mode == "bipartite" else Ingestor
+            ingestor_cls = _INGESTORS[cfg.ingest.mode]
             graph, report_obj = ingestor_cls(
                 cfg, self.llm, self.embedder, self.prompts, logger
             ).ingest(conv)
@@ -228,9 +245,7 @@ class Runner:
         ingest_usage = _usage_delta(usage_before, self.llm.usage.to_dict())
 
         dates = {s.id: s.date_time_raw for s in conv.sessions}
-        retriever_cls = (
-            BipartiteRetriever if self.cfg.retrieval.mode == "bipartite" else FaceRetriever
-        )
+        retriever_cls = _RETRIEVERS[self.cfg.retrieval.mode]
         retriever = retriever_cls(graph, self.embedder, self.cfg, dates)
         answerer = Answerer(self.llm, self.prompts, self.cfg)
 
@@ -301,6 +316,12 @@ class Runner:
                     face_units=result.face_units,
                     face_units_used=result.face_units_used,
                     corroborating_facts=result.corroborating_facts,
+                    # present on every RetrievalResult, non-trivial only under
+                    # the slot retriever -- getattr keeps a hand-built result
+                    # from an older test fixture from breaking the run
+                    slot_channels=dict(getattr(result, "slot_channels", {}) or {}),
+                    slot_support=float(getattr(result, "slot_support", 1.0)),
+                    abstain_reason=str(getattr(result, "abstain_reason", "") or ""),
                 )
             )
         qa_usage = _usage_delta(_add(usage_before, ingest_usage), self.llm.usage.to_dict())

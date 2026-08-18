@@ -32,6 +32,8 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from typing import TYPE_CHECKING
 
+from fgl.memory.entities import normalize_name
+
 if TYPE_CHECKING:  # pragma: no cover
     import spacy
     from spacy.tokens import Doc, Span
@@ -105,6 +107,14 @@ class ExtractionResult:
     candidates: list[Candidate] = field(default_factory=list)
     #: raw DATE/TIME span texts, in document order, for the temporal resolver
     date_spans: list[str] = field(default_factory=list)
+    #: content-verb lemmas, in document order. Empty unless the extractor was
+    #: built with ``extract_verbs=True`` (condition L2), so L1's graphs are
+    #: byte-identical with or without this field existing.
+    verbs: list[Candidate] = field(default_factory=list)
+    #: PERSON spans, in document order. Empty unless ``split_persons=True``;
+    #: when it is on they are removed from ``candidates`` instead, so a person
+    #: is never both an actor and a topic.
+    persons: list[Candidate] = field(default_factory=list)
 
 
 @lru_cache(maxsize=4)
@@ -127,10 +137,18 @@ class NonGenerativeExtractor:
     """
 
     def __init__(self, model_name: str = "en_core_web_sm", max_chunk_words: int = 6,
-                 min_chars: int = 3):
+                 min_chars: int = 3, extract_verbs: bool = False,
+                 split_persons: bool = False):
         self.model_name = model_name
         self.max_chunk_words = max_chunk_words
         self.min_chars = min_chars
+        #: collect content-verb lemmas as a separate channel (L2's ``predicate``
+        #: slot). Off by default: L1 indexes nouns only and must keep doing so
+        #: for its numbers to stay comparable with the ones already measured.
+        self.extract_verbs = extract_verbs
+        #: route PERSON entities to ``persons`` instead of ``candidates`` (L2's
+        #: ``actor`` slot). Off by default for the same reason.
+        self.split_persons = split_persons
         self._nlp = _load_model(model_name)
 
     def extract(self, text: str) -> ExtractionResult:
@@ -155,6 +173,7 @@ class NonGenerativeExtractor:
     def _extract_from_doc(self, doc: "Doc") -> ExtractionResult:
         date_spans: list[str] = []
         chosen: list["Span"] = []
+        persons: list[Candidate] = []
         claimed_tokens: set[int] = set()
 
         # Named entities first (excluding dates and numeric labels), longest
@@ -166,6 +185,13 @@ class NonGenerativeExtractor:
                 date_spans.append(ent.text)
                 continue
             if ent.label_ in _DROP_LABELS:
+                continue
+            if self.split_persons and ent.label_ == "PERSON":
+                # claimed, so the noun-chunk pass below cannot re-add the same
+                # tokens as a topic: a person is an actor or nothing.
+                persons.append(Candidate(text=normalize_name(ent.text),
+                                         raw=ent.text, label="PERSON"))
+                claimed_tokens.update(range(ent.start, ent.end))
                 continue
             chosen.append(ent)
             claimed_tokens.update(range(ent.start, ent.end))
@@ -197,7 +223,35 @@ class NonGenerativeExtractor:
             label = span.label_ if hasattr(span, "label_") and span.label_ else "NOUN_CHUNK"
             candidates.append(Candidate(text=norm, raw=span.text, label=label))
 
-        return ExtractionResult(candidates=candidates, date_spans=date_spans)
+        verbs = self._extract_verbs(doc) if self.extract_verbs else []
+        return ExtractionResult(
+            candidates=candidates, date_spans=date_spans,
+            verbs=verbs, persons=persons,
+        )
+
+    def _extract_verbs(self, doc: "Doc") -> list[Candidate]:
+        """Content-verb lemmas, de-duplicated, in document order.
+
+        ``pos_ == "VERB"`` already excludes what spaCy tags ``AUX`` ("is",
+        "was", "will"), so the stop list only has to remove the dialogue verbs
+        that survive that ("know", "think", "say") -- see
+        ``fgl.memory.slots.PREDICATE_STOP`` for why they are removed at all.
+        """
+        from fgl.memory.slots import PREDICATE_STOP
+
+        out: list[Candidate] = []
+        seen: set[str] = set()
+        for tok in doc:
+            if tok.pos_ != "VERB":
+                continue
+            lemma = tok.lemma_.lower().strip()
+            if not lemma or lemma in seen or lemma in PREDICATE_STOP:
+                continue
+            if len(lemma) < 2 or not lemma.isalpha():
+                continue
+            seen.add(lemma)
+            out.append(Candidate(text=lemma, raw=tok.text, label="VERB"))
+        return out
 
     def _normalise_span(self, span: "Span") -> str:
         tokens = list(span)

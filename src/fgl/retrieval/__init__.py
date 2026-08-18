@@ -33,6 +33,17 @@ from fgl.retrieval.bipartite import (
     SOURCE_BP_ENTITY,
     BipartiteRetriever,
 )
+from fgl.retrieval.slots import (
+    SLOT_SOURCES,
+    SOURCE_SLOT_ACTOR,
+    SOURCE_SLOT_CONCEPT,
+    SOURCE_SLOT_DENSE,
+    SOURCE_SLOT_PREDICATE,
+    SOURCE_SLOT_TIME,
+    SOURCE_SLOT_TYPE,
+    QuestionSlots,
+    SlotRetriever,
+)
 
 __all__ = [
     "AzureEmbedder", "CachedEmbedder", "Embedder", "HashingEmbedder",
@@ -43,4 +54,7 @@ __all__ = [
     "JOIN_SOURCES", "QuestionLinker",
     "BipartiteRetriever", "SOURCE_BP_ENTITY", "SOURCE_BP_BRIDGE", "SOURCE_BP_DENSE",
     "BIPARTITE_SOURCES",
+    "SlotRetriever", "QuestionSlots", "SLOT_SOURCES", "SOURCE_SLOT_ACTOR",
+    "SOURCE_SLOT_PREDICATE", "SOURCE_SLOT_CONCEPT", "SOURCE_SLOT_TYPE",
+    "SOURCE_SLOT_TIME", "SOURCE_SLOT_DENSE",
 ]

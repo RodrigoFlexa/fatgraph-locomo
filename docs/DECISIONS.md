@@ -437,3 +437,134 @@ código — é recomendado medir de novo (`fgl diagnose --bipartite` ou `fgl ing
 L1 -n 10` e inspecionar `graph_stats`) antes de confiar nele numa base de dados
 diferente, porque a forma do grafo bipartido depende de quanto texto informal
 tem cada conversa.
+
+## D25 — Correções na L1 medidas na própria L1 (formato de data, teto de fatos, partição por falante)
+
+Três defeitos encontrados relendo `results/L1-bipartite/predictions.jsonl` e os
+grafos da própria condição. Nenhum é hipótese: cada um vem com o número que o
+delatou.
+
+1. **Formato de data.** 47,7% das respostas temporais da L1 saíram em ISO
+   (`2023-05-07`) contra gold `7 May 2023` — F1 = 0,0 mesmo com
+   `recall_context = 1.0`, porque o scorer oficial tokeniza e as duas strings
+   não têm um token em comum. Na G4, com o mesmo prompt e o mesmo modelo, isso
+   acontece em 0,6% das respostas: o que muda é que a L1 injeta datas
+   resolvidas no contexto (`fgl.memory.temporal`), e o modelo copia o formato
+   que vê. Corrigido nos dois lugares — `ResolvedDate.render()` passou a emitir
+   formato natural, e a regra 3 de `prompts/answer.txt` agora nomeia o formato
+   em vez de pedir "uma data". Recomputando o F1 oficial sobre as predições
+   existentes só com a data normalizada: temporal 0,178 → ~0,466, micro 0,445 →
+   ~0,491.
+
+2. **Teto de fatos, não de tokens.** 27,5% das perguntas eram truncadas pelo
+   limite de 40 *fatos*, e só 3,0% chegavam aos 2000 tokens de orçamento —
+   contexto médio 1256 tokens, 37% do orçamento declarado nunca gasto. E as
+   perguntas truncadas tinham `recall_context` e F1 *maiores* (0,750/0,440
+   contra 0,679/0,356): o teto cortava a metade boa. `max_facts_in_prompt`
+   40 → 80, `budget_tokens` inalterado, então a comparação com as outras
+   condições continua a custo idêntico. Junto veio um defeito irmão: os dois
+   recuperadores pediam `top_m_anchors * 4` candidatos ao canal denso, um
+   número anterior ao teto de fatos, então mesmo com o teto em 80 a L1 gerava
+   ~32 candidatos e continuava gastando metade do orçamento. A largura passou a
+   acompanhar `max_facts_in_prompt`.
+
+3. **Partição por falante.** 98,5%–99,7% das perguntas do LoCoMo nomeiam
+   exatamente um dos dois falantes, e quando nomeiam, o turno de evidência é
+   desse falante em 96% (single-hop), 100% (multi-hop, 244/244), 98%
+   (temporal) e 100% (open-domain, 72/72) dos casos — enquanto 24% de todo
+   contexto recuperado era turno do outro falante. `bipartite.speaker_partition`
+   descarta esses candidatos. Isso **não** faz do falante um vértice: lê
+   `meta["speaker"]`, que é atributo do turno, então a topologia não muda e o
+   hub que a exclusão do falante existe para evitar não volta. Tem piso
+   (`speaker_partition_min`) porque nas poucas perguntas em que quem falou não
+   é quem foi nomeado, um filtro voraz troca um erro de ranking por um contexto
+   vazio — que é estritamente pior, já que força abstenção.
+
+**Medido junto, com `fgl slots-oracle -C L1` (zero chamadas de LLM):**
+`recall_context` multi-hop 0,456 → 0,714 e single-hop 0,736 → 0,850 nas
+primeiras conversas, com o contexto passando de 1001 para ~1920 tokens dentro do
+mesmo orçamento de 2000.
+
+## D26 — Vocabulário de slots tipados sobre episódios (condição L2)
+
+**O que a medida diz.** Reconstruindo os grafos da própria L1 e cruzando com a
+evidência anotada: só 0,5% dos turnos de evidência estão ausentes do grafo, mas
+dos turnos de evidência que a L1 **não recuperou**, a fração que compartilhava
+ao menos uma entidade com a pergunta é 13% (single-hop), 7% (multi-hop), 10%
+(temporal), 5% (open-domain). Ou seja: a lacuna de recall não é cobertura nem
+ranking — 87%–95% dos erros são turnos para os quais o grafo de incidência
+entidade×turno não oferece caminho nenhum.
+
+Inspecionando esses erros, quatro pontes faltam, e cada uma vira um tipo de
+vértice em `fgl.memory.slots`:
+
+| ponte | exemplo medido | tipo |
+|---|---|---|
+| a resposta do diálogo | "What kind of dance piece did Gina's team perform?" → `"We just did a contemporary piece called 'Finding Freedom.'"` — nenhum substantivo em comum | `episode` |
+| o predicado | "What did James **adopt** in April 2022?" → "I **adopted** a pup" | `predicate` |
+| o tipo | "What **foods** does Audrey like?" → "**Roasted chicken** is one of my favorites" | `type` (hiperônimo WordNet) |
+| a pessoa | 98,5%–99,7% das perguntas nomeiam um falante; a L1 apaga o falante do grafo de propósito | `actor` |
+
+**Zero LLM na memória, como na L1**: uma passada de spaCy por turno entrega
+noun chunks, lemas de verbo, spans PERSON e spans DATE de uma vez; WordNet e o
+resolvedor de datas já existente fazem o resto. O canal de tipos se desliga
+sozinho com flag registrada em `graph_stats["wordnet_types"]` se o corpus não
+estiver instalado, porque é aditivo.
+
+**O que o ribbon graph faz aqui, e o que não faz.** `sigma` num vértice de slot
+é cronológico, então "tudo que esta pessoa/predicado/conceito tocou, em ordem" é
+leitura de lista e não ranking. `sigma` num vértice de episódio segue
+`SLOT_ORDER`, o que torna os **cantos** do episódio os pares (quem, fez-o-quê),
+(fez-o-quê, com-o-quê), (com-o-quê, quando) — e uma pergunta do LoCoMo é
+exatamente um canto com um lado em branco. **Faces não são usadas**: nos grafos
+medidos da L1 uma única face já contém 2954 meias-arestas, e para "tudo que X
+fez" o objeto certo sempre foi a órbita, que é o vértice. Tipar os vértices é o
+que daria à face uma chance de significar algo — é o experimento seguinte, não a
+tese desta condição.
+
+**Abstenção determinística.** Uma pergunta adversarial nomeia uma combinação que
+nunca aconteceu: isso é um canto que não existe. Dois formatos, ambos sem LLM —
+`missing_slot` (todo o vocabulário de conteúdo da pergunta está ausente da
+memória) e `empty_corner` (o conteúdo existe, mas nunca num episódio que essa
+pessoa domina). O teste de posse é de **maioria** (`corner_actor_min`), não
+"contribuiu alguma coisa": um episódio é um par adjacente, os dois falantes
+aparecem em quase todos por construção, e com limiar zero o canto existiria em
+todo lugar. Sai **desligado** (`abstain_on_empty_corner: false`) de propósito —
+é o único mecanismo da condição capaz de apagar uma resposta correta, então
+liga-se a partir da taxa de falso positivo medida por `fgl slots-oracle`, não
+porque o mecanismo é elegante.
+
+**Unidade de índice ≠ unidade de emissão.** O episódio é o que torna a memória
+*ligável*; é a unidade errada para *pagar*. Três tentativas medidas, todas ao
+mesmo orçamento de 2000 tokens:
+
+* emitir episódios inteiros → 18,9 unidades contra as 58,7 da L1; tudo que
+  precisa de largura perdeu;
+* emitir turnos mas esvaziando um episódio antes do próximo → 54,5 unidades,
+  multi-hop ainda perdendo, porque 55 turnos vindos de ~18 episódios
+  consecutivos cobrem 18 regiões da conversa onde os 58 turnos independentes da
+  L1 cobrem 58, e evidência multi-hop é espalhada por definição;
+* um turno por episódio em rodadas → regiões recuperadas, single-hop
+  0,858 → 0,682, porque o turno que *responde* é muito frequentemente o
+  vizinho do turno que *casa* — que é a razão de existir do episódio.
+
+A forma final pontua **turnos**: similaridade própria, mais o que o turno herda
+do seu episódio (os canais tipados e `sibling_frac` da melhor similaridade dos
+irmãos). A regra da resposta vira aritmética em vez de agrupamento, e o par sobe
+junto porque as duas metades carregam a mesma herança.
+
+## D27 — `fgl slots-oracle`: comparar modelos de memória sem gastar LLM
+
+Responder custa; recuperar não. E medido na L1, condicionado à evidência estar
+no contexto, ela já empata com a baseline de contexto inteiro nas categorias
+substantivas (single-hop 0,641 contra 0,653; multi-hop 0,360 contra 0,392;
+adversarial 0,639 contra 0,630) usando 5,4% dos tokens — não há folga de
+resposta a encontrar, todo ponto restante é recuperação.
+
+Então `fgl slots-oracle` recupera para as 1986 perguntas sob cada condição, não
+responde nenhuma, e reporta `recall_context` por categoria mais as duas coisas
+sem as quais essa comparação não significa nada (quantas unidades e quantos
+tokens cada modelo realmente gastou) e a matriz de confusão da abstenção
+determinística. Os limiares em `TARGETS` não são nota de corte para o artigo:
+são regra de parada, para abandonar um modelo que não move a recuperação antes
+que ele custe alguma coisa.

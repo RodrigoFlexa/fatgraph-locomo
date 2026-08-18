@@ -1,0 +1,137 @@
+# L2 -- typed slots over episodes. The memory stops being an index of nouns
+# and becomes an index of the thing a LoCoMo question actually asks for.
+#
+# Why this exists, in one measurement. Reconstructing L1's own graphs and
+# crossing them with the annotated evidence: only 0.5% of evidence turns are
+# missing from the graph, but of the evidence turns L1 FAILED to retrieve, the
+# fraction sharing even one entity vertex with the question is 13% (single-hop),
+# 7% (multi-hop), 10% (temporal), 5% (open-domain). So the recall gap is
+# neither coverage nor ranking: 87-95% of the misses are turns the
+# entity-incidence graph offers no path to at all. Four bridges are missing,
+# and each becomes a vertex kind here (see fgl.memory.slots for the worked
+# examples):
+#
+#   episode    the reply carries the value and none of the topic ("We just did
+#              a contemporary piece called 'Finding Freedom.'"), so the unit
+#              has to be the adjacency pair, not the turn
+#   predicate  questions are framed by a verb ("What did James ADOPT")
+#   type       questions ask by category ("foods"), turns answer by instance
+#              ("roasted chicken") -- WordNet hypernym lift bridges them
+#   actor      98.5-99.7% of questions name exactly one speaker and the
+#              evidence is that speaker's 96-100% of the time; L1 deletes the
+#              speaker from the graph on purpose and pays 24% of every context
+#              for it
+#
+# Still zero LLM calls in the memory, same as L1: one spaCy pass per turn
+# yields noun chunks, verb lemmas, PERSON spans and DATE spans together, and
+# WordNet + the existing date resolver do the rest.
+#
+# What the ribbon structure contributes here, and what it does not. sigma at a
+# slot vertex is chronological, so "everything this person/predicate/concept
+# ever touched, in order" is a list read rather than a ranking. sigma at an
+# episode vertex is ordered by slots.SLOT_ORDER, which makes the CORNERS of an
+# episode the pairs (who, did-what), (did-what, with-what), (with-what, when) --
+# and a LoCoMo question is exactly a corner with one side blank. Faces are NOT
+# used: on L1's measured graphs one face already holds 2954 half-edges, and for
+# "everything X did" the right object was always the orbit, which is the vertex.
+# Typing the vertices is what would give a face a chance of meaning something;
+# that is the experiment after this one, not the claim of this one.
+#
+# Trade-off stated rather than hidden: an episode costs more tokens than a
+# turn, so at an identical budget_tokens this condition puts FEWER units in the
+# prompt and more turns in each. That is the bet -- 2-3 contiguous turns beat 1
+# isolated turn for a benchmark whose evidence is a dialogue -- and
+# `fgl slots-oracle` measures it directly (recall_context at equal token
+# budget, L1 vs L2) before a single LLM call is spent on it.
+extends: base.yaml
+condition: L2-slots
+
+ingest:
+  mode: slots
+  # unused by this ingest path (no SigmaPolicy: the rotation is chosen in
+  # fgl.memory.ingest_slots, not by a policy object; no extractor prompt; no
+  # incongruence judge). Left at defaults so a stray --set on them is a
+  # visible no-op rather than a silent one.
+  detect_incongruence: false
+
+entities:
+  # concepts are resolved exactly as L1 resolves its entities -- same
+  # embedding merge, same threshold -- so the L1-vs-L2 delta measures the
+  # change of MODEL and not a change of resolution policy. As in L1, closing
+  # the tie-break window makes the "zero LLM calls" guarantee visible in the
+  # config and not only in the code (EntityResolver is constructed with
+  # llm=None either way).
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: slots
+  top_m_anchors: 8
+  # Same prompt budget as L1 and G1: the comparison is at equal cost, which is
+  # the only way the recall numbers mean anything.
+  budget_tokens: 2000
+  # An episode is 2-6 turns, so ~30 of them already saturate 2000 tokens.
+  # Kept well above that so the *budget* is what truncates, never the count --
+  # the exact failure mode measured on L1's first run and fixed there too.
+  max_facts_in_prompt: 80
+
+slots:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  lift_types: true
+  max_types_per_concept: 6
+
+  # 2 = the adjacency pair, which is the whole point of the unit; 6 caps the
+  # cost of one long on-topic stretch. First knobs to sweep if recall is short:
+  # they decide how much context each retrieved unit drags in.
+  episode_min_turns: 2
+  episode_max_turns: 4
+  episode_cohesion: 0.15
+
+  max_concepts: 24
+  max_predicates: 12
+  max_types: 24
+
+  max_question_concepts: 6
+  max_question_predicates: 4
+  max_question_types: 8
+  concept_link_threshold: 0.75
+
+  dense_weight: 1.0
+  actor_weight: 1.0
+  predicate_weight: 1.2
+  concept_weight: 1.5
+  # deliberately the weakest channel: a hypernym match is a category guess, and
+  # WordNet's first-sense heuristic occasionally lands in the wrong branch
+  # ("turtle" -> turtleneck). It is there for reach, not for precision.
+  type_weight: 0.6
+  time_weight: 0.8
+  mention_weight: 0.25
+  actor_prior_floor: 0.35
+  actor_prior_full: 0.5
+  sibling_frac: 0.2
+
+  # Every structural channel is already damped by 1/(1+log(degree)), so this
+  # threshold only has to catch the slots where even the damped score is
+  # misleading. Measure it on this graph's own degree histogram before
+  # trusting the number -- `fgl ingest L2 -n 10` costs zero LLM calls and
+  # prints it, exactly as L1's bridge_max_degree was set.
+  hub_degree: 60
+  hub_weight: 0.2
+
+  # OFF here. The corner test is the only mechanism in this condition that can
+  # delete a correct answer, so it gets turned on from a measured
+  # false-positive rate (`fgl slots-oracle`, which reports it per category),
+  # not from the fact that it is the elegant thing to do. Run L2 once with it
+  # off to get the retrieval number clean, then once with it on: the
+  # difference is the abstention lever, isolated.
+  abstain_on_empty_corner: false
+  corner_actor_min: 0.5
+
+paths:
+  # builds its own graphs: episode and slot vertices are not turn/entity
+  # vertices, so there is nothing to borrow from L1.
+  graphs_condition: ""

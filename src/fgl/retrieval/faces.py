@@ -153,6 +153,16 @@ class RetrievalResult:
     #: G10 is B3 with extra steps, whatever the F1 says.
     corroborating_facts: int = 0
 
+    # --- typed-slot telemetry (L2; zero/empty for every other condition) ----
+    #: which slot keys the question linked, per kind -- the audit column that
+    #: says whether a miss was a linking failure or a scoring one
+    slot_channels: dict[str, list[str]] = field(default_factory=dict)
+    #: fraction of the question's specific-slot episodes that also carry its
+    #: actor: 1.0 when the corner test does not apply, 0.0 when it fired
+    slot_support: float = 1.0
+    #: why the corner test fired ("empty_corner"), empty when it did not
+    abstain_reason: str = ""
+
     @property
     def turn_ids(self) -> list[str]:
         out: list[str] = []
@@ -1085,6 +1095,20 @@ def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) 
             elif f.source == "bp_bridge":
                 lines.append(f"--- links back to {f.via_entity} ---")
             elif f.source == "bp_dense":
+                lines.append("--- similar memories ---")
+            # L2 channels (fgl.retrieval.slots). String literals for the same
+            # reason as the bp_* ones above: that module imports FROM here.
+            elif f.source == "slot_concept":
+                lines.append(f"--- about {f.via_entity} ---")
+            elif f.source == "slot_predicate":
+                lines.append(f"--- times someone {f.via_entity} ---")
+            elif f.source == "slot_type":
+                lines.append(f"--- a kind of {f.via_entity} ---")
+            elif f.source == "slot_actor":
+                lines.append(f"--- {f.via_entity} ---")
+            elif f.source == "slot_time":
+                lines.append(f"--- around {f.via_entity} ---")
+            elif f.source == "slot_dense":
                 lines.append("--- similar memories ---")
             else:
                 trail_no += 1
