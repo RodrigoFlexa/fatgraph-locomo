@@ -509,6 +509,7 @@ def _fake_extract(prompt: str) -> list[dict]:
                 "entity_1": e1,
                 "relation": "mentions",
                 "entity_2": e2,
+                "speaker": speaker,
                 "fact_text": f"{e1} and {e2} came up when {speaker} was talking.",
                 "turn_ids": [turn],
             }

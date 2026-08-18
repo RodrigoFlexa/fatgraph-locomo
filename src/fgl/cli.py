@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 from typing import Optional
 
+import numpy as np
 import typer
 from rich.console import Console
 from rich.panel import Panel
@@ -606,6 +607,251 @@ def qa(
                    limit_questions, dry_run)
 
 
+@app.command("verify-topical")
+def verify_topical(
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = typer.Option(
+        1, "--limit-conversations", "-n", help="How many conversations to test."
+    ),
+    set_: Optional[list[str]] = OptSet,
+    dry_run: bool = OptDry,
+    baseline: str = typer.Option("G1", "--baseline", help="Condition to compare against."),
+) -> None:
+    """Is the topical extraction actually removing the speaker hub? (1 conversa)
+
+    The cheap gate before re-ingesting everything. It ingests ONE conversation
+    with each prompt and compares the three numbers that decide whether the
+    change did what it was meant to:
+
+      * share of edges touching a speaker -- the disease (86.6% in v1);
+      * degree of the bridge vertex between evidence facts -- the symptom
+        that kills sigma (median 164 in v1, so k=4 covers 7.3%);
+      * fraction of degree-1 vertices -- the risk, since entity-to-entity
+        linking can trade one hub for a field of leaves.
+
+    If the speakers stay at ~200 the prompt did not take, and re-ingesting ten
+    conversations would only buy the same graph at ten times the price.
+    """
+    import statistics as st
+
+    from fgl.pipeline import Runner
+
+    rows = []
+    for name in (baseline, "T1"):
+        cfg = _load(name, set_, dry_run)
+        runner = Runner(cfg)
+        convs = _dataset(cfg, conversation, limit_conversations)
+        touch = tot = 0
+        bridge_degrees: list[int] = []
+        deg1: list[float] = []
+        third: list[int] = []
+        for conv in convs:
+            graph, _ = runner._ingest(conv)  # noqa: SLF001
+            spk = {conv.speaker_a.lower(), conv.speaker_b.lower()}
+            sv = {v for v, vx in graph.vertices.items() if vx.name.lower() in spk}
+            for e in graph.edges():
+                a, b = graph.edge_endpoints(e)
+                tot += 1
+                touch += int(a in sv or b in sv)
+            deg1.append(graph.star_stats()["degree_1_frac"])
+            ranked = sorted(graph.vertices, key=lambda v: -graph.degree(v))
+            third.append(graph.degree(ranked[2]) if len(ranked) > 2 else 0)
+
+            t2e: dict[str, list[str]] = {}
+            for e in graph.edges():
+                for t in graph.get_edge_attr(e, "turn_ids") or ():
+                    t2e.setdefault(t, []).append(e)
+            for q in conv.questions:
+                ev = [x for x in (q.evidence or []) if x in t2e]
+                if len(ev) < 2 or len(ev) != len(q.evidence or []):
+                    continue
+                vs = [set(graph.edge_endpoints(t2e[x][0])) for x in ev]
+                for v in set.intersection(*vs):
+                    bridge_degrees.append(graph.degree(v))
+        rows.append({
+            "cond": cfg.condition,
+            "speaker_edges": touch / tot if tot else 0.0,
+            "bridge_median": st.median(bridge_degrees) if bridge_degrees else 0.0,
+            "bridge_n": len(bridge_degrees),
+            "orbit_k4": (
+                sum(1 for d in bridge_degrees if d - 1 <= 4) / len(bridge_degrees)
+                if bridge_degrees else 0.0
+            ),
+            "degree_1_frac": st.mean(deg1) if deg1 else 0.0,
+            "third_degree": st.mean(third) if third else 0.0,
+        })
+
+    t = Table(title="A extração tópica removeu o hub do falante?")
+    t.add_column("métrica")
+    for r in rows:
+        t.add_column(r["cond"], justify="right")
+    t.add_column("veredito", style="dim")
+
+    def row(label, key, fmt, good):
+        cells = [fmt.format(r[key]) for r in rows]
+        t.add_row(label, *cells, good(rows[0][key], rows[-1][key]))
+
+    row("arestas tocando um falante", "speaker_edges", "{:.1%}",
+        lambda a, b: "[green]caiu[/]" if b < a * 0.75 else "[red]não caiu[/]")
+    row("grau mediano do vértice-ponte", "bridge_median", "{:.0f}",
+        lambda a, b: "[green]ok[/]" if b < 30 else "[red]ainda é hub[/]")
+    row("órbita coberta com k=4", "orbit_k4", "{:.1%}",
+        lambda a, b: "[green]sigma viável[/]" if b > 0.40 else "[red]agulha no palheiro[/]")
+    row("grau do 3º maior vértice", "third_degree", "{:.0f}",
+        lambda a, b: "[green]subiu[/]" if b > a else "[yellow]igual[/]")
+    row("vértices de grau 1", "degree_1_frac", "{:.1%}",
+        lambda a, b: "[red]RISCO: subiu[/]" if b > a + 0.05 else "[green]ok[/]")
+    console.print(t)
+    console.print(
+        f"[dim]pontes medidas: {rows[0]['bridge_n']} vs {rows[-1]['bridge_n']} "
+        "pares de evidência[/]"
+    )
+    if rows[-1]["bridge_median"] >= 30 or rows[-1]["orbit_k4"] <= 0.40:
+        console.print(
+            "\n[yellow]O prompt não entregou o que prometia nesta conversa. "
+            "Reingerir as dez compraria o mesmo grafo dez vezes mais caro.[/]"
+        )
+    else:
+        console.print(
+            "\n[green]Passou. Vale reingerir tudo:[/] "
+            "[cyan]fgl run-all -C T1 -C G1 -C B3[/]"
+        )
+
+
+@app.command()
+def diagnose(
+    condition: str = typer.Argument("G1", help="Condition whose graphs to inspect."),
+    set_: Optional[list[str]] = OptSet,
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = OptLimitConv,
+    dry_run: bool = OptDry,
+    show: int = typer.Option(6, "--show", help="Concrete failing cases to print."),
+    out: str = typer.Option("", "--out", help="Also write the numbers to this JSON."),
+) -> None:
+    """Where does the answer stop being reachable in the memory graph?
+
+    Every condition so far varied the retrieval policy while assuming the graph
+    encodes the answer and that the answer is reachable. This tests that. It
+    walks the chain of ceilings -- extraction, connectivity, distance, shared
+    vertex, common face, cosine rank -- each conditional on the previous, so the
+    first big drop is the layer that actually costs the points.
+
+    Only the last rung is something a retrieval policy can fix. A drop before it
+    is an ingest problem wearing a retrieval costume.
+
+    Costs no LLM calls: it reads graphs that already exist.
+    """
+    import json as _json
+
+    from fgl.evaluation.diagnose import (
+        Diagnostician, by_category, failing_cases, waterfall,
+    )
+    from fgl.pipeline import Runner
+    from fgl.retrieval.embeddings import build_index
+
+    cfg = _load(condition, set_, dry_run)
+    runner = Runner(cfg)
+    convs = _dataset(cfg, conversation, limit_conversations)
+
+    traces = []
+    for conv in convs:
+        graph, _ = runner._ingest(conv)  # noqa: SLF001
+        index = build_index(cfg.index, runner.embedder.dim)
+        ids, vecs = [], []
+        for hid, he in graph.H.items():
+            if he.embedding is not None:
+                ids.append(hid)
+                vecs.append(he.embedding)
+        if ids:
+            index.add(ids, np.vstack(vecs))
+        doc = Diagnostician(graph, runner.embedder, index)
+        traces += [doc.trace(q) for q in conv.questions if q.evidence]
+
+    overall = waterfall(traces)
+    per_cat = by_category(traces)
+    _print_waterfall(cfg.condition, overall, per_cat)
+
+    if show:
+        _print_failing(failing_cases(traces, show))
+    if out:
+        Path(out).write_text(
+            _json.dumps({"overall": overall, "per_category": per_cat}, indent=2),
+            encoding="utf-8",
+        )
+        console.print(f"[dim]números → {out}")
+
+
+def _print_waterfall(condition: str, overall: dict, per_cat: dict) -> None:
+    console.print(f"\n[bold]Cascata de tetos — {condition}[/]")
+    console.print(
+        "[dim]cada degrau é condicional ao anterior; a primeira queda grande é "
+        "a camada que custa os pontos.[/]\n"
+    )
+    rows = [
+        ("1. turnos de evidência extraídos", "evidence_turns_extracted",
+         "abaixo disto nenhuma política recupera"),
+        ("   perguntas com TODA a evidência", "questions_fully_extracted", ""),
+        ("2. fatos no mesmo componente", "same_component", "senão não há caminho"),
+        ("3. compartilham um vértice", "shares_a_vertex", "σ alcançaria em 1 salto"),
+        ("4. numa face comum", "on_a_common_face", "a face alcançaria"),
+        ("5. evidência no top-10 por cosseno", "evidence_within_top_10",
+         "o único degrau que a recuperação conserta"),
+    ]
+    t = Table(show_lines=False)
+    t.add_column("degrau")
+    for cat in per_cat:
+        t.add_column(cat[:9], justify="right")
+    t.add_column("geral", justify="right", style="bold")
+    t.add_column("", style="dim")
+    for label, key, note in rows:
+        cells = [f"{per_cat[c].get(key, 0):.1%}" if key in per_cat[c] else "-"
+                 for c in per_cat]
+        t.add_row(label, *cells, f"{overall.get(key, 0):.1%}", note)
+    console.print(t)
+
+    if "distance_median" in overall:
+        console.print(
+            f"\n  distância mediana entre fatos de evidência: "
+            f"[bold]{overall['distance_median']:.0f}[/] saltos   "
+            f"histograma {overall.get('distance_hist', {})}"
+        )
+    if "worst_evidence_rank_median" in overall:
+        console.print(
+            f"  rank mediano do fato de evidência mais difícil: "
+            f"[bold]{overall['worst_evidence_rank_median']:.0f}[/]   "
+            + "  ".join(
+                f"top-{k}: {overall.get(f'evidence_within_top_{k}', 0):.0%}"
+                for k in (5, 10, 20, 50, 100)
+            )
+        )
+        console.print(
+            "[dim]  rank ~12 diz 'aumente k'. rank ~900 diz que a pergunta e a "
+            "evidência não se parecem, e nenhum k resolve.[/]"
+        )
+
+
+def _print_failing(cases) -> None:
+    console.print("\n[bold]Casos concretos[/] [dim](o que as porcentagens escondem)[/]")
+    for c in cases:
+        status = (
+            "[red]evidência NUNCA extraída[/]"
+            if not c.fully_extracted
+            else f"[yellow]extraída, mas rank {c.worst_rank}[/]"
+        )
+        console.print(f"\n  {status}")
+        console.print(f"  P    : {c.question[:88]}")
+        console.print(f"  gold : {c.gold[:70]}")
+        console.print(
+            f"  evid : {c.evidence}   extraídos: {c.covered or '[]'}"
+        )
+        if c.fully_extracted and c.distance is not None:
+            console.print(
+                f"  grafo: distância {c.distance}, mesmo componente="
+                f"{c.same_component}, mesma face={c.same_face}, "
+                f"compartilha vértice={c.shares_vertex}"
+            )
+
+
 @app.command()
 def judge(
     condition: Optional[list[str]] = typer.Option(
@@ -808,6 +1054,7 @@ def run_all(
         warm.llm, warm.prompts,
         warm.paths.resolve(cfgs[0].paths.facts_cache),
         cfgs[0].ingest.max_facts_per_session,
+        prompt_name=cfgs[0].ingest.extract_prompt,
     )
     with _progress() as bar:
         b = _Bar(bar, "extract")
