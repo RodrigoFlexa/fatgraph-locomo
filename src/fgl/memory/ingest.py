@@ -46,6 +46,13 @@ class Fact:
     entity_2: str
     fact_text: str
     turn_ids: list[str]
+    #: Who said it. Metadata, deliberately NOT a vertex: with the speaker as an
+    #: endpoint, 86.6% of edges touch one of the two speakers and the median
+    #: bridge vertex between two evidence facts has degree 164 -- so "these two
+    #: memories share an entity" degenerates into "both are about Caroline",
+    #: which is true of half the graph. The speaker stays in `fact_text`, so the
+    #: sentence a retriever embeds is unchanged; only the topology differs.
+    speaker: str = ""
     session_id: str = ""
     session_num: int = 0
     timestamp: str = ""
@@ -81,12 +88,14 @@ class FactExtractor:
         prompts: PromptLibrary,
         cache_dir: str | Path,
         max_facts_per_session: int = 0,
+        prompt_name: str = "extract_facts",
     ) -> None:
         self.llm = llm
         self.prompts = prompts
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.max_facts_per_session = max_facts_per_session
+        self.prompt_name = prompt_name
 
     def extract(self, conv: Conversation, session: Session) -> list[Fact]:
         path = self._cache_path(conv, session)
@@ -100,7 +109,7 @@ class FactExtractor:
             for t in session.turns
         )
         prompt = self.prompts.render(
-            "extract_facts",
+            self.prompt_name,
             speaker_a=conv.speaker_a,
             speaker_b=conv.speaker_b,
             session_date=session.date_time_raw,
@@ -128,7 +137,17 @@ class FactExtractor:
 
     # -- helpers -----------------------------------------------------------
     def _cache_path(self, conv: Conversation, session: Session) -> Path:
-        tag = f"{self.llm.cfg.deployment}-{self.prompts.version('extract_facts')}"
+        # Each prompt keeps its own cache, so switching between them costs
+        # nothing already paid for. The default prompt deliberately keeps the
+        # ORIGINAL tag shape (deployment-hash): inserting its name would rename
+        # every existing directory and silently re-extract ten conversations
+        # that were already bought.
+        version = self.prompts.version(self.prompt_name)
+        tag = (
+            f"{self.llm.cfg.deployment}-{version}"
+            if self.prompt_name == "extract_facts"
+            else f"{self.llm.cfg.deployment}-{self.prompt_name}-{version}"
+        )
         d = self.cache_dir / tag / conv.sample_id
         d.mkdir(parents=True, exist_ok=True)
         return d / f"session_{session.num:03d}.json"
@@ -153,11 +172,15 @@ class FactExtractor:
             if key in seen:
                 continue
             seen.add(key)
+            speaker = str(item.get("speaker", "")).strip()
+            if speaker.lower() not in (conv.speaker_a.lower(), conv.speaker_b.lower()):
+                speaker = ""  # only the two real speakers, never a hallucination
             out.append(
                 Fact(
                     entity_1=e1,
                     relation=str(item.get("relation", "")).strip() or "related to",
                     entity_2=e2,
+                    speaker=speaker,
                     fact_text=text,
                     turn_ids=turn_ids or sorted(valid_turns)[:1],
                     session_id=session.id,
@@ -341,7 +364,8 @@ class Ingestor:
         self.prompts = prompts
         self.log = logger or NullLogger()
         self.extractor = FactExtractor(
-            llm, prompts, cfg.paths.facts_cache, cfg.ingest.max_facts_per_session
+            llm, prompts, cfg.paths.facts_cache, cfg.ingest.max_facts_per_session,
+            prompt_name=cfg.ingest.extract_prompt,
         )
 
     # ------------------------------------------------------------------ run --

@@ -1,0 +1,62 @@
+# T1 -- topical: o falante sai da TOPOLOGIA e continua no texto.
+#
+# Esta é a primeira condição desta série que muda o INGEST em vez da
+# recuperação, e ela existe por causa de um diagnóstico, não de uma intuição.
+#
+# O que `fgl diagnose` mediu sobre os grafos v1:
+#
+#   turnos de evidência extraídos      92.5%   <- a extração está boa
+#   fatos no mesmo componente          95.8%   <- a conectividade está boa
+#   compartilham um vértice            88.4%   <- a "ponte" existe...
+#   grau MEDIANO desse vértice-ponte     164   <- ...e é o falante
+#   86.6% das arestas tocam um falante
+#
+# Em toda conversa os dois maiores vértices são os dois falantes (~200), e o
+# terceiro tem 17. Logo "duas memórias compartilham uma entidade" quer dizer
+# "as duas são sobre a Caroline", o que vale para metade do grafo. A órbita de
+# sigma cobre a ponte real em 7.3% dos casos, e subir k satura em 11% porque os
+# graus chegam a 229.
+#
+# G4 a G10 foram todas testadas sobre esse substrato. Nenhuma delas tinha como
+# funcionar: adjacência topológica ali não carrega informação.
+#
+# O QUE MUDA: quando um fato relaciona duas entidades de conteúdo, a aresta liga
+# as DUAS, e o falante vai para o campo `speaker`. Quando o fato é genuinamente
+# sobre a pessoa ("Caroline é transgênero"), ele continua ancorado nela.
+#
+# O QUE NÃO MUDA: o `fact_text`. É deliberado — a B3 recupera por cosseno sobre
+# essa frase, então ela embute exatamente as mesmas sentenças de antes, e a
+# única variável que resta entre a B3 e as condições de grafo passa a ser a
+# ATRIBUIÇÃO DE VÉRTICES. É o ablation mais limpo que este projeto consegue.
+#
+# PREVISÃO REGISTRADA (rode `fgl verify-topical` antes de reingerir tudo):
+#   grau mediano da ponte        164  ->  abaixo de 30
+#   cobertura da órbita com k=4  7.3% ->  acima de 40%
+#   degree_1_frac                81%  ->  NÃO pode subir
+#
+# O terceiro é o risco: ligar entidade<->entidade cria mais entidades distintas
+# ("Melanie's children" vs "the kids"), e se a resolução de entidades não as
+# unificar, trocamos "hub grande demais" por "folhas demais" e o grafo continua
+# sem pontes por outro motivo.
+#
+# Cache: a extração v2 tem cache próprio (o nome do prompt entra na tag), então
+# nada do que já foi pago é perdido e dá para alternar entre as duas.
+extends: base.yaml
+condition: T1-topical
+
+ingest:
+  extract_prompt: extract_facts_topical
+  sigma_policy: sigma-time
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  # idêntica à G1: para o delta T1 - G1 isolar a extração, e nada mais
+  sigma_expand: false
+  face_coverage: false
+  face_units: false
+
+paths:
+  graphs_condition: ""

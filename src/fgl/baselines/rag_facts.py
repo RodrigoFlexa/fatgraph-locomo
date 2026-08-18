@@ -27,6 +27,7 @@ class RagFactsBaseline(Baseline):
             self.prompts,
             self.cfg.paths.facts_cache,
             self.cfg.ingest.max_facts_per_session,
+            prompt_name=self.cfg.ingest.extract_prompt,
         )
         self._facts = extractor.extract_all(conv)
         self._index = build_index(self.cfg.index, self.embedder.dim)

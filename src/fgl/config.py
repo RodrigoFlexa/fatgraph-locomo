@@ -95,6 +95,22 @@ class EntityConfig:
 @dataclass
 class IngestConfig:
     sigma_policy: str = "sigma-time"  # sigma-time | sigma-agent
+    #: Which extraction prompt to use.
+    #:
+    #: `extract_facts` (v1) names the speaker as one endpoint of most facts, and
+    #: the measured consequence is that 86.6% of edges touch a speaker, the two
+    #: speakers are the two highest-degree vertices in every conversation (~200
+    #: against 17 for the third), and the median bridge vertex between a pair of
+    #: evidence facts has degree 164. Entity sharing then means "both are about
+    #: Caroline", so sigma's orbit covers the real bridge in 7.3% of cases and
+    #: raising k plateaus at 11%. Every retrieval mechanism G4-G10 was tested on
+    #: that substrate.
+    #:
+    #: `extract_facts_topical` (v2) connects the two *topics* a fact relates and
+    #: records the speaker as metadata. `fact_text` is unchanged either way, so
+    #: B3 embeds the same sentences and the only variable left between it and
+    #: the graph conditions is the vertex assignment.
+    extract_prompt: str = "extract_facts"
     detect_incongruence: bool = True
     max_facts_per_session: int = 0
     allow_self_loops: bool = False
@@ -418,6 +434,11 @@ class Config:
             )
         if self.index.backend not in ("numpy", "faiss"):
             raise ConfigError(f"index.backend must be numpy|faiss")
+        if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
+            raise ConfigError(
+                "ingest.extract_prompt must be extract_facts|extract_facts_topical, "
+                f"got {self.ingest.extract_prompt!r}"
+            )
         if self.ingest.sigma_policy not in ("sigma-time", "sigma-agent"):
             raise ConfigError(
                 f"ingest.sigma_policy must be sigma-time|sigma-agent, "

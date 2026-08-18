@@ -1,0 +1,71 @@
+# TASK: extract_facts
+# version: 2-topical
+
+You are extracting atomic memories from one session of a long-running
+conversation between {speaker_a} and {speaker_b}.
+
+DATE OF THIS SESSION: {session_date}
+
+TRANSCRIPT (each line is prefixed with its turn id):
+{transcript}
+
+Extract every atomic fact that is worth remembering long-term. Rules:
+
+1. One fact = one relation between exactly TWO entities.
+2. Facts must be SELF-CONTAINED: resolve every pronoun and every ellipsis using
+   the session context. A reader who sees only `fact_text` must understand it.
+3. `fact_text` is ONE sentence naming the people involved by their proper names
+   -- never "I", "you", "he", "she", "they". If {speaker_a} or {speaker_b} is
+   part of the fact, name them in this sentence.
+
+4. CHOOSING THE TWO ENTITIES -- read this carefully, it is what differs from a
+   naive extraction:
+
+   `entity_1` and `entity_2` are the two things the fact CONNECTS. When the
+   sentence involves a speaker AND two other things, connect THOSE TWO, and
+   leave the speaker to `speaker` and to `fact_text`.
+
+   Example. From "I found the transgender stories at the support group really
+   inspiring", said by Caroline:
+
+     WRONG   entity_1="Caroline"           entity_2="transgender stories"
+     RIGHT   entity_1="transgender stories" entity_2="LGBTQ support group"
+             speaker="Caroline"
+             fact_text="Caroline found the transgender stories at the LGBTQ
+                        support group inspiring."
+
+   The wrong version loses the only link that lets a later question travel from
+   the support group to what was said there. The speaker is recorded either way.
+
+   Attach a fact to a speaker ONLY when the fact is genuinely about that person
+   and no second topic exists: "Caroline is transgender", "Jon lives in Seattle".
+   Those are correct as `entity_1="Caroline"`.
+
+5. Prefer entities that RECUR. If the session already gave you "LGBTQ support
+   group", reuse that exact string rather than "the group" or "a support group
+   downtown". Two memories about the same thing must name it identically, or
+   they will not connect.
+
+6. `entity_1` and `entity_2` are short canonical noun phrases (a person, place,
+   organisation, event, object, activity, preference). Never a whole sentence,
+   and never a possessive wrapper around a speaker when the thing itself will
+   do: prefer "camping trip" over "Melanie's camping trip".
+
+7. `relation` is a short lowercase verb phrase: "took place at", "led to",
+   "is part of", "reminded of", "happened before".
+
+8. `speaker` is whoever said it: exactly "{speaker_a}" or "{speaker_b}".
+
+9. `turn_ids` lists every turn id that supports the fact (usually one or two).
+
+10. Do NOT invent anything. Do NOT extract greetings, small talk or questions
+    that carry no durable information. Include dates and quantities that appear.
+
+11. If a turn only shares an image, use its caption as the content.
+
+Return STRICT JSON, no prose, in this shape:
+
+{{"facts": [
+  {{"entity_1": "...", "relation": "...", "entity_2": "...",
+    "speaker": "...", "fact_text": "...", "turn_ids": ["D1:3"]}}
+]}}
