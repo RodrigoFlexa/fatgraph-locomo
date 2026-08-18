@@ -749,6 +749,10 @@ def diagnose(
     dry_run: bool = OptDry,
     show: int = typer.Option(6, "--show", help="Concrete failing cases to print."),
     out: str = typer.Option("", "--out", help="Also write the numbers to this JSON."),
+    allow_ingest: bool = typer.Option(
+        False, "--allow-ingest",
+        help="Build the graphs if missing (costs a full extraction).",
+    ),
 ) -> None:
     """Where does the answer stop being reachable in the memory graph?
 
@@ -761,7 +765,8 @@ def diagnose(
     Only the last rung is something a retrieval policy can fix. A drop before it
     is an ingest problem wearing a retrieval costume.
 
-    Costs no LLM calls: it reads graphs that already exist.
+    Costs no LLM calls -- it reads graphs that already exist, and refuses to
+    run when they do not rather than quietly building them.
     """
     import json as _json
 
@@ -774,6 +779,28 @@ def diagnose(
     cfg = _load(condition, set_, dry_run)
     runner = Runner(cfg)
     convs = _dataset(cfg, conversation, limit_conversations)
+
+    # A diagnostic must not silently become an ingest. `_ingest` builds the
+    # graph when it is missing, so pointing this at a condition that was never
+    # ingested turns a free read into a paid extraction over every
+    # conversation -- which is exactly what happened the first time, half an
+    # hour of Azure calls behind a command documented as costing nothing.
+    missing = [
+        conv.sample_id
+        for conv in convs
+        if not runner._graph_path(conv).with_suffix(".json").exists()  # noqa: SLF001
+    ]
+    if missing and not allow_ingest:
+        err.print(
+            f"[red]{cfg.condition} não tem grafo para "
+            f"{len(missing)}/{len(convs)} conversas[/] "
+            f"({', '.join(missing[:4])}{'...' if len(missing) > 4 else ''})\n"
+            "Este comando LÊ grafos, não os constrói — deixá-lo construir "
+            "custaria uma extração completa.\n\n"
+            f"  Construa antes:  [cyan]fgl ingest {cfg.condition}[/]\n"
+            f"  Ou aceite o custo: [cyan]fgl diagnose {condition} --allow-ingest[/]"
+        )
+        raise typer.Exit(2)
 
     traces = []
     for conv in convs:
