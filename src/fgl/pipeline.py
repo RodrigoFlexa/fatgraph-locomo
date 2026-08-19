@@ -65,6 +65,25 @@ BASELINE_CONDITIONS = ("B1-full-context", "B2-rag-turns", "B3-rag-facts")
 #: ``ingest.mode`` / ``retrieval.mode`` -> implementation. One table instead of
 #: a chain of ternaries, so adding a memory model is a line here and a line in
 #: ``Config.validate`` rather than an edit inside two methods.
+
+def _build_retriever(retriever_cls, graph, embedder, cfg, dates, conv):
+    """Construct a retriever, handing it the question corpus if it wants one.
+
+    Only L2 takes ``question_corpus``, and only to estimate which nouns are
+    question *framing* rather than question content (see
+    :mod:`fgl.memory.calibration`). What is passed is the question TEXT and
+    nothing else -- no answer, no evidence, no category -- so the estimator
+    stays label-free; it is still transductive, which ``docs/ASSUMPTIONS.md``
+    records as scope condition S5 rather than leaving implicit.
+    """
+    import inspect
+
+    kwargs = {}
+    if "question_corpus" in inspect.signature(retriever_cls).parameters:
+        kwargs["question_corpus"] = [q.prompt_question() for q in conv.questions]
+    return retriever_cls(graph, embedder, cfg, dates, **kwargs)
+
+
 _INGESTORS = {
     "triples": Ingestor,
     "bipartite": BipartiteIngestor,
@@ -246,7 +265,8 @@ class Runner:
 
         dates = {s.id: s.date_time_raw for s in conv.sessions}
         retriever_cls = _RETRIEVERS[self.cfg.retrieval.mode]
-        retriever = retriever_cls(graph, self.embedder, self.cfg, dates)
+        retriever = _build_retriever(retriever_cls, graph, self.embedder,
+                                     self.cfg, dates, conv)
         answerer = Answerer(self.llm, self.prompts, self.cfg)
 
         outcomes: list[QAOutcome] = []

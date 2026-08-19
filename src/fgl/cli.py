@@ -593,6 +593,56 @@ def ingest(
     _print_cost(runner)
 
 
+@app.command()
+def reshape(
+    results_dir: Optional[str] = typer.Option(
+        None, "--results-dir", help="Default: the condition's paths.results_dir."
+    ),
+    ablate_: bool = typer.Option(
+        False, "--ablate", help="Price each shaping rule alone and leave-one-out."
+    ),
+    numerals: bool = typer.Option(
+        False, "--numerals", help="Also spell numerals as digits (off: measure it first)."
+    ),
+    write: bool = typer.Option(
+        False, "--write", help="Write predictions_shaped.jsonl / metrics_shaped.json."
+    ),
+) -> None:
+    """Re-score saved predictions under answer shaping — offline, no LLM call.
+
+    The metric is token overlap against a very short reference, so a correct
+    answer wrapped in a sentence scores as a partly wrong one. This rewrites
+    the saved prediction STRING and re-scores it with the official scorer, for
+    every condition in the directory at once — which is the only fair way to
+    use it: applied to one arm it is a prompt advantage, applied to all of them
+    it is a metric fix. The original predictions.jsonl is never overwritten.
+    """
+    import json as _json
+
+    from fgl.evaluation.rescore import (
+        ablate, format_ablation, format_rescore, rescore_dir,
+    )
+    from fgl.evaluation.shaping import ShapingRules
+
+    cfg = _load("L2", None, dry_run=True)
+    root = Path(results_dir) if results_dir else Paths.build(project_root()).resolve(
+        cfg.paths.results_dir
+    )
+    if not root.exists():
+        err.print(f"[red]{root} não existe[/]")
+        raise typer.Exit(2)
+
+    rules = ShapingRules(numerals=numerals)
+    console.print(f"[bold]reshape[/] · {root} · [dim]zero LLM calls[/]\n")
+    if ablate_:
+        console.print(format_ablation(ablate(root, rules)))
+        return
+    report = rescore_dir(root, rules, write=write)
+    console.print(format_rescore(report))
+    if write:
+        console.print("\n[dim]wrote predictions_shaped.jsonl / metrics_shaped.json[/]")
+
+
 @app.command("slots-oracle")
 def slots_oracle(
     conditions: Optional[list[str]] = typer.Option(
@@ -660,6 +710,178 @@ def slots_oracle(
         _p = Path(out)
         _p.parent.mkdir(parents=True, exist_ok=True)
         _p.write_text(_json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        console.print(f"[dim]wrote {_p}[/]")
+
+
+@app.command("slots-sweep")
+def slots_sweep(
+    condition: str = typer.Option("L2", "--condition", "-C",
+                                  help="Condition whose knobs to sweep."),
+    knob: Optional[list[str]] = typer.Option(
+        None, "--knob", "-k",
+        help="Sweep only these knobs (repeatable). Default: the built-in grid.",
+    ),
+    values: Optional[str] = typer.Option(
+        None, "--values",
+        help="Comma-separated values, valid only with exactly one --knob.",
+    ),
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = OptLimitConv,
+    force: bool = typer.Option(False, "--force", help="Rebuild existing graphs."),
+    tol: float = typer.Option(
+        0.01, "--tol",
+        help="Relative tolerance defining the plateau around the best value.",
+    ),
+    out: Optional[str] = typer.Option(
+        None, "--out", help="Write the report as JSON to this path."
+    ),
+    html: Optional[str] = typer.Option(
+        None, "--html", help="Write the report as a standalone HTML page."
+    ),
+) -> None:
+    """Sweep each knob one at a time and report how much its value matters.
+
+    Answers the question a config file cannot: is `hub_degree: 60` a value
+    picked off a plateau, or a peak found by looking at annotated data? A flat
+    curve means the number is not a result and the tuning bought nothing --
+    which is the strongest defence the method has. A peaked one means the
+    number IS a result, and belongs in the limitations section.
+
+    Reports `tuning_gain` per knob (shipped value minus the median of its swept
+    range) and their sum as an estimated calibration debt: roughly how much of
+    the reported recall came from having the annotations. Zero LLM calls.
+    """
+    from fgl.evaluation.sensitivity import (
+        DEFAULT_GRID, format_sweep, sweep, write_sweep,
+    )
+
+    grid: Optional[dict] = None
+    if knob:
+        names = list(knob)
+        if values:
+            if len(names) != 1:
+                console.print(
+                    "[red]--values applies to exactly one --knob[/]"
+                )
+                raise typer.Exit(2)
+            grid = {names[0]: [_autotype(v) for v in values.split(",") if v.strip()]}
+        else:
+            missing = [n for n in names if n not in DEFAULT_GRID]
+            if missing:
+                console.print(
+                    f"[red]no built-in grid for {missing}; pass --values[/]\n"
+                    f"[dim]known: {', '.join(sorted(DEFAULT_GRID))}[/]"
+                )
+                raise typer.Exit(2)
+            grid = {n: DEFAULT_GRID[n] for n in names}
+
+    cfg0 = _load(condition, None, dry_run=True)
+    convs = _dataset(cfg0, conversation, limit_conversations)
+    n_points = sum(len(v) for v in (grid or DEFAULT_GRID).values())
+    console.print(
+        f"[bold]slots-sweep[/] · {cfg0.condition} · {len(convs)} conversation(s) "
+        f"· {n_points} points · [dim]zero LLM calls[/]"
+    )
+
+    with _progress() as bar:
+        report = sweep(
+            condition, convs, grid=grid, force_ingest=force, tol=tol,
+            progress=_Bar(bar, "sweep"),
+        )
+
+    console.print()
+    console.print(format_sweep(report))
+    if out or html:
+        write_sweep(report, json_path=out, html_path=html)
+        for path in (out, html):
+            if path:
+                console.print(f"[dim]wrote {path}[/]")
+
+
+def _autotype(raw: str):
+    """`--values` arrives as text; a knob's own type is applied by Config.set,
+    so this only has to keep ints looking like ints in the report."""
+    raw = raw.strip()
+    for cast in (int, float):
+        try:
+            return cast(raw)
+        except ValueError:
+            continue
+    return raw
+
+
+@app.command("scope-check")
+def scope_check(
+    condition: str = typer.Option("L2", "--condition", "-C",
+                                  help="Condition to read settings from."),
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = OptLimitConv,
+    with_graphs: bool = typer.Option(
+        False, "--with-graphs",
+        help="Also run the checks that need a built memory (S6, S7). Ingests.",
+    ),
+    force: bool = typer.Option(False, "--force", help="Rebuild existing graphs."),
+    out: Optional[str] = typer.Option(
+        None, "--out", help="Write the report as JSON to this path."
+    ),
+) -> None:
+    """Measure the method's declared scope conditions against this corpus.
+
+    A method with declared scope conditions is a method; a method with hidden
+    ones is a method fitted to a benchmark, and the two can be technically
+    identical. `docs/ASSUMPTIONS.md` declares them; this runs them.
+
+    Each check reports what was measured, whether it holds, and what the design
+    falls back to when it does not. Checks marked `audit` need the gold
+    evidence -- they are how the design was derived and are exactly what a new
+    corpus cannot run, so they are labelled rather than mixed in with the
+    runtime ones. Zero LLM calls.
+    """
+    import json as _json
+
+    from fgl.evaluation.scope import format_scope, run_scope
+
+    cfg = _load(condition, None, dry_run=True)
+    convs = _dataset(cfg, conversation, limit_conversations)
+
+    extractor = None
+    try:
+        from fgl.memory.ner import NonGenerativeExtractor
+
+        extractor = NonGenerativeExtractor(
+            model_name=cfg.slots.ner_model,
+            max_chunk_words=cfg.slots.max_chunk_words,
+            min_chars=cfg.slots.min_concept_chars,
+            extract_verbs=True,
+            split_persons=True,
+        )
+    except Exception as exc:  # pragma: no cover - environment-dependent
+        console.print(f"[yellow]S5 skipped: no spaCy pipeline ({exc})[/]")
+
+    graphs = None
+    if with_graphs:
+        from fgl.llm import build_llm
+        from fgl.pipeline import Runner
+
+        cfg.llm.provider = "fake"
+        cfg.llm.cache_enabled = False
+        runner = Runner(cfg, llm=build_llm(cfg.llm))
+        graphs = []
+        with _progress() as bar:
+            reporter = _Bar(bar, "ingest")
+            for i, conv in enumerate(convs):
+                reporter(cfg.condition, i, len(convs), conv.sample_id)
+                g, _ = runner._ingest(conv, force=force)  # noqa: SLF001
+                graphs.append(g)
+
+    report = run_scope(convs, cfg=cfg, graphs=graphs, extractor=extractor)
+    console.print()
+    console.print(format_scope(report))
+    if out:
+        _p = Path(out)
+        _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(_json.dumps(report, ensure_ascii=False, indent=2),
+                      encoding="utf-8")
         console.print(f"[dim]wrote {_p}[/]")
 
 

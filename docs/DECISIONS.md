@@ -568,3 +568,106 @@ tokens cada modelo realmente gastou) e a matriz de confusão da abstenção
 determinística. Os limiares em `TARGETS` não são nota de corte para o artigo:
 são regra de parada, para abandonar um modelo que não move a recuperação antes
 que ele custe alguma coisa.
+
+## D28 — Moldagem de resposta, e o resultado negativo que ela produziu
+
+A métrica é F1 de tokens contra uma referência de 3 palavras, então resposta certa embrulhada em frase é pontuada como parcialmente errada. Medido no run da L2, restrito às perguntas cuja evidência anotada estava no prompt:
+
+```
+single-hop  n=759  F1 0.651  melhor janela contígua da própria predição 0.745  irrecuperável 13%
+multi-hop   n=109  F1 0.378  melhor janela 0.492                               irrecuperável 29%
+```
+
+49% das predições single-hop já contêm uma substring que pontua 1.0 — o modelo sabe a resposta e a acolchoa. Daí `fgl.evaluation.shaping`: regras que só **apagam**, cada uma individualmente ligável e individualmente precificada (`fgl reshape --ablate`), aplicadas offline sobre `predictions.jsonl` e repontuadas com o scorer oficial. Isso é grátis, retroativo e — o ponto — **justo**: aplicado a uma condição é vantagem de prompt, aplicado a todas é correção de métrica. O `predictions.jsonl` original nunca é sobrescrito.
+
+Uma invariante é assertada, não torcida: moldagem **não pode** mover a nota adversarial. A regra da categoria 5 é um teste de substring por "not mentioned"; um aparo que cortasse essa string converteria abstenções corretas em respostas erradas silenciosamente. `rescore_rows` levanta exceção se a média adversarial se mexer.
+
+**Resultado medido, e é negativo.** Sobre B1, B3 e a L1 antiga:
+
+| | single-hop | temporal | micro |
+|---|---|---|---|
+| B1-full-context | +0.003 | −0.000 | +0.001 |
+| B3-rag-facts | −0.000 | +0.003 | +0.000 |
+| L1 (run pré-ISO) | +0.002 | **+0.288** | +0.048 |
+
+Ou seja: **a moldagem recupera exatamente uma coisa, a data ISO** — e reproduziu +0.288 em temporal, batendo a estimativa que eu tinha feito à mão, o que valida a ferramenta. Fora isso, +0.003 no single-hop. Num run que já tem o fix do ISO no prompt, o ganho restante é ~zero.
+
+Puxando os maiores gaps para ver o porquê, o acolchoamento **não é** moldura ("eu acho que", "foi em"). É sintagma nominal cheio:
+
+```
+gold 'meditation'        pred 'a meditation course at a retreat near a lake'
+gold 'hiking'            pred 'hiking with my church friends'
+gold 'Woodhaven'         pred 'Woodhaven, a small town in the Midwest'
+gold 'Horseback riding'  pred 'used to go horseback riding with my dad'
+```
+
+Testei então um aparo **sintático** com spaCy (descartar PP finais, apostos, orações relativas, mantendo a cabeça): single-hop **0.653 → 0.475 (−0.178)**, e pior mesmo aplicado só às predições mais longas que o gold. Descartado. O teto de 0.745 é oráculo — escolhe a melhor janela sabendo o gold — e **não é alcançável por pós-processamento determinístico nenhum**.
+
+Consequência para o planejamento, registrada porque contradiz o que eu havia dito antes: single-hop 0.65 **não** sai só com aparo. A alavanca teve que virar prompt (D29).
+
+## D29 — Precisão em vez de brevidade, e enumeração por órbita
+
+**Precisão, não brevidade** (`prompts/answer.txt` v3). O comprimento médio da predição já é igual ao do gold (4.2 tokens contra 4.2 no single-hop), então instrução global de "seja mais curto" encolheria os 65% que já estão certos. O que separa é outra coisa: 35% das predições são mais longas que o gold e pontuam **0.49**, contra **0.74** das demais. A regra nova nomeia o que sobra — modificador, lugar, companhia, finalidade que a pergunta não pediu — em vez de pedir concisão.
+
+**Enumeração por órbita** (`fgl.retrieval.slots`, passo 2b; `prompts/answer_set.txt`). Categoria 1 é pontuada por `f1_multi`: o gold é lista, a nota é média por item do gold. Um gold de quatro itens limita uma resposta de um item a ~0.25 por construção, por mais correto que esse item esteja. E as predições multi-hop são majoritariamente de um item — só 20% contêm substring valendo 1.0 contra o gold inteiro, contra 49% no single-hop: estão **incompletas**, não erradas.
+
+Uma pergunta de conjunto não é respondida pelo episódio mais parecido; é respondida pela **órbita inteira**. E `σ` num vértice de slot já é essa órbita, em ordem cronológica — sem ranking e sem segunda passada de recuperação. O mecanismo: pegar o slot específico **mais raro** que a pergunta ligou (o que discrimina), intersectar sua órbita com os episódios que o ator nomeado possui, e levantar todos os membros para o prompt. É o único ponto do desenho em que a estrutura ribbon faz algo que um recuperador denso não faz: a resposta é uma lista, e a rotação **é** a lista.
+
+Mais raro e não todos: enumerar a órbita de um slot comum inundaria o orçamento com tudo que a conversa já tocou — o erro de hub que este projeto já cometeu uma vez.
+
+**A detecção lê só o texto da pergunta, nunca a categoria do gold.** Roteamento pela categoria tornaria o mecanismo inutilizável fora deste benchmark e seria ler o gabarito em tempo de inferência. O custo dessa disciplina são algumas perdas em perguntas de categoria 1 fraseadas no singular. Taxa medida (conv-26): multi-hop 47%, single-hop 20%, temporal 0%, open-domain 15%, adversarial 17% — dispara onde as listas moram e não dispara em temporal.
+
+## D30 — Constantes viram estimadores, e a calibração vira um número medido
+
+Três coisas foram feitas de uma vez, e as três respondem à mesma objeção: os números do L2 foram escolhidos **olhando para as respostas anotadas**. A objeção está certa, e o que ela custa não é honra — é portabilidade: nenhum desses números é herdável por um segundo corpus, e nenhum revisor consegue conferi-los.
+
+O critério que separa "método" de "método ajustado a este dataset" é estreito:
+
+> **O parâmetro precisa dos rótulos de ouro para ser fixado?**
+
+Se precisa, é dívida de calibração. Se pode ser estimado do corpus não anotado no momento da construção, é só um algoritmo com um estimador dentro.
+
+### 1. Cada literal virou um estimador (`fgl.memory.calibration`, condição `L2d`)
+
+| era | virou | por quê |
+|---|---|---|
+| `hub_degree: 60` | quantil 0.99 da distribuição de grau **daquele tipo** | contagem absoluta é bug latente, não falta de elegância: num corpus 10x maior *todo* slot cruza 60 e o mecanismo se desliga sozinho. Por tipo porque as escalas são incomparáveis — um ator incide sobre metade dos episódios, um conceito sobre três |
+| `concept_link_threshold: 0.75` | quantil 0.995 da distribuição de cosseno conceito↔conceito observada | um cosseno absoluto é propriedade do *encoder* tanto quanto da tarefa; trocar o modelo de embedding muda o que 0.75 significa |
+| `actor_prior_floor: 0.35` / `full: 0.5` | `1/n_falantes` e a mediana da participação do falante dominante | com 8 participantes o piso cai para 0.125 sozinho — o prior fica **mais** forte, que é o correto, porque nomear um entre oito exclui muito mais do que um entre dois |
+| `QUESTION_NOUN_STOP` (lista manual) | `df_pergunta(w) / df_memória(w) >= ratio` | palavra de tópico é comum nas perguntas *porque* é comum nas conversas, então a razão fica perto de 1; palavra de template é comum nas perguntas e ausente do que alguém disse. É o análogo do IDF do lado da pergunta, e vale para qualquer conjunto templatizado |
+| granularidade de tempo `month` | **parâmetro removido**: indexa ano/mês/dia, a pergunta emite todos os níveis que nomeia | quem escolhe o nível é o **amortecimento por grau que já existia** — vértice de ano incide sobre quase todo o corpus e é apagado por `1/(1+log(grau))`; vértice de dia pontua quase cheio. Nenhum peso novo, nenhuma regra nova |
+
+Esse último ponto é o mais forte do lote e vale registrar como tal: a resolução múltipla de tempo **não precisou de mecanismo novo**. O amortecimento por grau já era um seletor de especificidade, e a granularidade de tempo era um caso particular dele que estava sendo resolvido à mão. Remover o parâmetro melhorou o argumento a favor do resto do desenho.
+
+O que **não** foi calibrado: `dense_weight`, `actor_weight`, `predicate_weight`, `concept_weight`, `type_weight`, `time_weight`, `sibling_frac`, `slot_damping`. São o único grupo que codifica uma afirmação **sobre o modelo** e não sobre o corpus ("um casamento de conceito diz mais que um palpite de hiperônimo" é uma ordenação que este desenho afirma). Fingir derivá-los seria vestir decisão de projeto de medição. O que eles ganham em vez de estimador é uma curva.
+
+`L2_slots.yaml` fixa `calibration: absolute`, `question_stop: literal`, `time_granularities: month` **de propósito**: L2 é a condição de que os números reportados saíram, e uma condição que mudasse de comportamento em silêncio tornaria falsa cada medição acima neste arquivo. `L2d_derived.yaml` é o mesmo modelo com todo estimador ligado. **A diferença entre as duas é a dívida de calibração, medida em vez de discutida** — `fgl slots-oracle -C L2 -C L2d`, orçamento idêntico, zero LLM.
+
+### 2. Sensibilidade em vez do ótimo (`fgl slots-sweep`)
+
+Reportar o valor que venceu uma varredura, e só ele, não diz nada sobre o método depender dele. Duas situações muito diferentes produzem a mesma linha de config: a métrica é **chata** no intervalo e 60 foi pego num platô (então o número não é resultado, e dizer isso é a defesa mais forte disponível); ou a métrica tem um **pico** em 60 (então o número **é** o resultado, foi obtido olhando dados anotados, e é fragilidade a declarar).
+
+O comando varre um knob por vez sobre o oracle sem LLM e reporta, por knob:
+
+- `sensitivity` = `(melhor − pior)/melhor` — quanto o knob consegue mover a métrica;
+- `plateau_frac` = fração dos valores dentro de 1% do melhor — largura da região boa;
+- **`tuning_gain` = valor entregue − mediana do intervalo** — quanto o valor escolhido bate um valor pego às cegas do mesmo intervalo. **É a dívida de calibração daquele knob, em pontos de recall.**
+
+A soma dos `tuning_gain` é a `estimated_calibration_debt`: a resposta honesta para "quanto do recall reportado veio de ter as anotações?". Ignora interações entre knobs (é varredura *one-at-a-time*), então é ordem de grandeza e está rotulada como tal — mas é uma estimativa da quantidade certa, e é o número que um leitor merece ao lado de um score.
+
+Veredictos: `flat` (o knob não é resultado), `shallow`, `peaked` (é resultado, declare), `cliff` (está no ótimo mas o vizinho despenca — frágil a qualquer deslocamento de corpus).
+
+### 3. Premissas declaradas e verificáveis (`docs/ASSUMPTIONS.md`, `fgl scope-check`)
+
+Um método com condições de escopo **declaradas** é um método; com condições **escondidas** é um método ajustado a um benchmark — e os dois podem ser tecnicamente idênticos. A diferença é só se está escrito e se dá para conferir.
+
+Sete condições (S1–S7), cada uma com enunciado, o que é medido, critério e — a parte que importa — **para o que o desenho degrada quando ela falha**. Premissa sem caminho de degradação declarado é requisito escondido, não premissa.
+
+Duas classes, e a distinção carrega peso. `runtime` é computável do que uma implantação teria (transcrições, no máximo o texto das perguntas) — roda em dados não anotados. `audit` precisa de evidência ou resposta anotada: são exatamente as medições que *produziram* o desenho e exatamente as que um corpus novo não vai conseguir rodar. **S3 ("a evidência é do participante nomeado", 96–100% no LoCoMo) é `audit`** — é a dependência que não pode ser removida por engenharia, só declarada, e por isso não conta na contagem de condições de runtime satisfeitas.
+
+Uma ressalva registrada em vez de enterrada: `question_stop=derived` é ajustado sobre o *texto* das perguntas que serão respondidas. Não usa rótulo nenhum, então não é vazamento para efeito de recall — mas é **transdutivo**, e uma implantação que responde uma pergunta por vez não pode fazê-lo. `literal` e `none` são os fallbacks honestos; o sweep precifica a diferença.
+
+### O que continua faltando, e não está escondido
+
+- **Não há split.** Os knobs do L2 foram varridos nas mesmas 10 conversas de que o número final saiu. Enquanto não houver *leave-one-conversation-out*, a palavra correta continua "varrido contra o oracle", não "tunado no dev, avaliado no test". Nenhum dos três itens acima fecha esse furo.
+- **Um único corpus.** Nada aqui prova portabilidade; prova que o método *pode* rodar sem olhar para as respostas. A prova é rodar o config congelado num segundo benchmark (LongMemEval é o alvo óbvio — gerador diferente, sessões com distratores, e casos sem resposta que exercitam o teste de canto) e reportar o número seja qual for.

@@ -30,7 +30,7 @@ from fgl.config import Config
 from fgl.data.locomo import CATEGORY_NAMES, Conversation
 from fgl.evaluation.scorer import evidence_recall
 from fgl.llm import build_llm
-from fgl.pipeline import Runner, _RETRIEVERS
+from fgl.pipeline import Runner, _RETRIEVERS, _build_retriever
 
 #: Thresholds the new model has to clear for it to be worth an LLM run, set
 #: from L1's measured recall_context (0.768 / 0.498 / 0.768 / 0.449). Not a
@@ -130,16 +130,24 @@ def run_oracle(
 
         per_cat: dict[str, _Acc] = {name: _Acc() for name in CATEGORY_NAMES.values()}
         corner = _CornerAcc()
+        calibration: dict = {}
 
         for i, conv in enumerate(conversations):
             say(condition, i, len(conversations), conv.sample_id)
             graph, _ = runner._ingest(conv, force=force_ingest)  # noqa: SLF001
-            retriever = retriever_cls(
+            retriever = _build_retriever(
+                retriever_cls,
                 graph,
                 runner.embedder,
                 cfg,
                 {s.id: s.date_time_raw for s in conv.sessions},
+                conv,
             )
+            # Provenance of every threshold this condition used, from the
+            # first conversation: a report that quotes recall without saying
+            # whether its cut-offs were swept or derived is not auditable.
+            if not calibration and hasattr(retriever, "calibration"):
+                calibration = retriever.calibration.as_dict()
             for q in conv.questions:
                 result = retriever.retrieve(q.prompt_question())
                 per_cat[q.category_name].add(
@@ -163,6 +171,7 @@ def run_oracle(
             "max_facts_in_prompt": cfg.retrieval.max_facts_in_prompt,
             "per_category": {k: v.as_dict() for k, v in per_cat.items() if v.n},
             "corner_test": corner.as_dict(),
+            "calibration": calibration,
         }
         say(condition, len(conversations), len(conversations), "done")
 
@@ -201,6 +210,27 @@ def format_oracle(report: dict) -> str:
         units = sum(v["mean_units"] * v["n"] for v in pc.values()) / n
         empty = sum(v["empty_contexts"] for v in pc.values())
         lines.append(f"{cond:<14}{tokens:>13.0f}{units:>13.1f}{empty:>12}")
+
+    lines.append("")
+    lines.append("threshold provenance (derived = estimated from the corpus, "
+                 "no gold labels)")
+    for cond in conds:
+        cal = report["conditions"][cond].get("calibration") or {}
+        src = cal.get("source") or {}
+        if not src:
+            continue
+        lines.append(
+            f"{cond:<14} " + "  ".join(f"{k}={v}" for k, v in sorted(src.items()))
+        )
+        hub = cal.get("hub_degree_by_kind") or {}
+        if hub:
+            lines.append(
+                f"{'':<14} hub_degree " + ", ".join(f"{k}={v}" for k, v in hub.items())
+                + f"   concept_link={cal.get('concept_link_threshold')}"
+                + f"   actor_prior={cal.get('actor_prior_floor')}"
+                f"/{cal.get('actor_prior_full')}"
+                + f"   question_stop={cal.get('n_question_noun_stop')} words"
+            )
 
     lines.append("")
     lines.append("deterministic abstention (corner test)")

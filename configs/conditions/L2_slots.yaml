@@ -119,6 +119,14 @@ slots:
   # misleading. Measure it on this graph's own degree histogram before
   # trusting the number -- `fgl ingest L2 -n 10` costs zero LLM calls and
   # prints it, exactly as L1's bridge_max_degree was set.
+  # Enumeração por órbita: pergunta de conjunto ("what foods", "what has X
+  # read") é pontuada item a item por f1_multi, então lista incompleta perde em
+  # proporção -- e a órbita de sigma JÁ é a lista, em ordem cronológica. É o
+  # único ponto do desenho em que a estrutura ribbon faz algo que um denso não
+  # faz. A detecção lê só o texto da pergunta, nunca a categoria do gold.
+  enumerate_sets: true
+  set_orbit_boost: 2.0
+
   hub_degree: 60
   hub_weight: 0.2
 
@@ -130,6 +138,22 @@ slots:
   # difference is the abstention lever, isolated.
   abstain_on_empty_corner: false
   corner_actor_min: 0.5
+
+  # --- calibration: PINNED, so this condition reproduces its own numbers ---
+  # Everything above was swept against `fgl slots-oracle` on the annotated
+  # conversations, which is ordinary practice and also the thing a reviewer
+  # cannot check. `fgl.memory.calibration` now estimates the same quantities
+  # from the unlabelled corpus instead, and that is the DEFAULT of the
+  # dataclass. It is pinned back to the swept form *here* on purpose: L2 is
+  # the run the reported numbers came from, and a condition whose behaviour
+  # silently changed under it would make every number in DECISIONS.md a lie.
+  #
+  # Run `L2d` for the same model with every estimator on. The gap between the
+  # two is the calibration debt, measured instead of argued about, and
+  # `fgl slots-sweep` reports how much of it is real (see docs/ASSUMPTIONS.md).
+  calibration: absolute
+  question_stop: literal
+  time_granularities: month
 
 paths:
   # builds its own graphs: episode and slot vertices are not turn/entity

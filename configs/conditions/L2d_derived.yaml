@@ -1,0 +1,124 @@
+# L2d -- L2 with every threshold estimated from the corpus instead of swept.
+#
+# What this condition is for
+# --------------------------
+# L2's numbers are good and L2's numbers are calibrated: `hub_degree: 60`,
+# `concept_link_threshold: 0.75`, `actor_prior_floor: 0.35`, the month-grained
+# time index and the hand-written `QUESTION_NOUN_STOP` were all chosen by
+# looking at what worked on the annotated conversations. Nothing in that is a
+# hack -- there is no exploit of the evaluator, no gold label read at
+# inference -- but it does mean the method as shipped cannot be handed to a
+# second corpus, because the numbers that make it work were fitted to the
+# distribution of one benchmark's question generator.
+#
+# The test that separates the two cases is narrow: **does the parameter need
+# the gold labels to be set?** This condition answers "no" for every one of
+# them. Each literal is replaced by an estimator measured at build time on the
+# unlabelled graph:
+#
+#   hub_degree              -> 99th percentile of the degree distribution OF
+#                              THAT KIND, so it scales with the corpus instead
+#                              of breaking on one ten times larger
+#   concept_link_threshold  -> 99.5th percentile of the observed concept-pair
+#                              cosine, so it survives changing the encoder
+#   actor_prior_floor/full  -> 1/n_speakers and the median dominant-contributor
+#                              share, so a six-party corpus sharpens the prior
+#                              by itself rather than needing a re-sweep
+#   QUESTION_NOUN_STOP      -> nouns over-represented in the question corpus
+#                              relative to the memory, which is what "template
+#                              word" means without naming the template
+#   time granularity        -> DELETED, not retuned: year/month/day are all
+#                              indexed and the degree damping picks the level
+#
+# What to read off it
+# -------------------
+# `fgl slots-oracle -C L2 -C L2d` puts the two side by side at an identical
+# budget with zero LLM calls. The gap is the price of not having looked at the
+# answers. A small gap is the strongest defence the method has; a large one is
+# a finding worth reporting rather than hiding, and `fgl slots-sweep` says
+# which knob it lives in.
+extends: base.yaml
+condition: L2d-derived
+
+ingest:
+  mode: slots
+  detect_incongruence: false
+
+entities:
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: slots
+  top_m_anchors: 8
+  budget_tokens: 2000
+  max_facts_in_prompt: 80
+
+slots:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  lift_types: true
+  max_types_per_concept: 6
+
+  episode_min_turns: 2
+  episode_max_turns: 4
+  episode_cohesion: 0.15
+
+  max_concepts: 24
+  max_predicates: 12
+  max_types: 24
+
+  max_question_concepts: 6
+  max_question_predicates: 4
+  max_question_types: 8
+
+  # Channel weights are NOT calibrated away and are inherited from L2
+  # unchanged. They are the one group of numbers that encodes a claim about
+  # the model rather than about the corpus -- "a concept match tells you more
+  # than a hypernym guess" is an ordering this design asserts, and asserting it
+  # is what an ablation is for. Pretending to derive them would be dressing a
+  # design decision up as a measurement.
+  dense_weight: 1.0
+  actor_weight: 1.0
+  predicate_weight: 1.2
+  concept_weight: 1.5
+  type_weight: 0.6
+  time_weight: 0.8
+  mention_weight: 0.25
+  sibling_frac: 0.2
+  slot_damping: 1.0
+
+  enumerate_sets: true
+  set_orbit_boost: 2.0
+
+  abstain_on_empty_corner: false
+  corner_actor_min: 0.5
+
+  # --- the point of this condition ---------------------------------------
+  calibration: derived
+  hub_degree_quantile: 0.99
+  hub_degree_min: 8
+  concept_link_quantile: 0.995
+  concept_link_min: 0.55
+  question_stop: derived
+  question_stop_df: 0.01
+  question_stop_ratio: 3.0
+  time_granularities: year,month,day
+
+  # Kept as the fallbacks the estimators fall back TO when a corpus is too
+  # small for a quantile to mean anything (a single test conversation, say).
+  # They are never used silently: `calibration.source` records `fallback`.
+  hub_degree: 60
+  hub_weight: 0.2
+  concept_link_threshold: 0.75
+  actor_prior_floor: 0.35
+  actor_prior_full: 0.5
+
+paths:
+  # its own graphs: the time channel is multi-resolution here, so the vertex
+  # set genuinely differs from L2's and borrowing would compare two models
+  # while claiming to compare two calibrations.
+  graphs_condition: ""

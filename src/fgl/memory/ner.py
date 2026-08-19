@@ -115,6 +115,12 @@ class ExtractionResult:
     #: when it is on they are removed from ``candidates`` instead, so a person
     #: is never both an actor and a topic.
     persons: list[Candidate] = field(default_factory=list)
+    #: the parsed document, for callers that need a syntactic fact this class
+    #: does not summarise (L2 checks the interrogative phrase for a plural, to
+    #: tell "what foods" from "what did she paint"). Transient and never
+    #: serialised -- an ExtractionResult is consumed in the same call that
+    #: produced it, and nothing downstream stores one.
+    doc: object | None = field(default=None, repr=False, compare=False)
 
 
 @lru_cache(maxsize=4)
@@ -226,7 +232,7 @@ class NonGenerativeExtractor:
         verbs = self._extract_verbs(doc) if self.extract_verbs else []
         return ExtractionResult(
             candidates=candidates, date_spans=date_spans,
-            verbs=verbs, persons=persons,
+            verbs=verbs, persons=persons, doc=doc,
         )
 
     def _extract_verbs(self, doc: "Doc") -> list[Candidate]:
