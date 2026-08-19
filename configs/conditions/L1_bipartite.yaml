@@ -92,12 +92,28 @@ retrieval:
   # so a comparison at equal budget is apples to apples.
   top_m_anchors: 8
   budget_tokens: 2000
-  max_facts_in_prompt: 40
+  # Raised 40 -> 80 after measuring the first run: 27.5% of questions were
+  # truncated by the FACT count while only 3.0% ever reached the 2000-token
+  # budget (mean context 1256 tokens, i.e. 37% of the declared budget went
+  # unused). The truncated questions also had the HIGHER recall_context and
+  # F1 (0.750/0.440 vs 0.679/0.356), so the cap was cutting the good half.
+  # budget_tokens is unchanged, so this buys recall at identical prompt cost
+  # and the comparison against every other condition still holds.
+  max_facts_in_prompt: 80
 
 bipartite:
   ner_model: en_core_web_sm
   resolve_temporal: true
   speaker_filter: true
+  # Measured on this condition's own first run: 98.5-99.7% of LoCoMo questions
+  # name exactly one of the two speakers, and when they do, the annotated
+  # evidence turn belongs to that speaker in 96% (single-hop), 100% (multi-hop,
+  # 244/244), 98% (temporal) and 100% (open-domain, 72/72) of cases -- while
+  # 24% of every retrieved context was turns from the other speaker. Filtering
+  # them costs ~2% of the evidence and buys back a quarter of the context.
+  # This does NOT make the speaker a vertex: it reads meta["speaker"] off the
+  # turn, so the topology is untouched and the hub cannot come back.
+  speaker_partition: true
   # Measured, not guessed: `fgl ingest L1 -n 10` (all 10 conversations, zero
   # LLM cost) gives entity-vertex degree percentiles p50=1, p75=2, p90=4,
   # p95=7, p99=17, p99.9=44, max=128. The distribution decays fast and then
