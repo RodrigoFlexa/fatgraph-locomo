@@ -538,7 +538,10 @@ def test_l4_carries_every_piece_it_claims_to():
     assert l4.slots.time_granularities == "year,month,day"  # from L2d
     assert l4.propagation.hops >= 2                   # from L3
     assert l4.propagation.non_backtracking is True    # from L3
-    assert l4.steiner.enabled and l4.steiner.abstain  # its own contribution
+    assert l4.steiner.enabled                         # its own contribution
+    # `abstain` ships OFF from a measurement (10/446 caught, 28/1540 false
+    # positives) -- see `test_l4_ships_with_the_abstention_off_and_says_why`
+    assert l4.steiner.abstain is False
     # the binary corner test is superseded, not left on alongside
     assert l4.slots.abstain_on_empty_corner is False
     # multi-resolution time changes the vertex set, so it cannot borrow graphs
@@ -637,3 +640,108 @@ def test_quadrangulation_stats_report_the_euler_ceiling():
     assert 0.0 <= st["faces_used_frac"] <= 1.0
     # the 4-cycles a quadrangular rotation would turn into faces
     assert st["episode_pairs_sharing_2plus_slots"] >= 0
+
+
+# --------------------------------------------------------------------------- #
+# Two bugs that a full 10-conversation run paid for                            #
+# --------------------------------------------------------------------------- #
+
+
+def test_every_slot_retriever_advertises_that_it_takes_a_question_corpus():
+    """Bug 1, pinned.
+
+    `_build_retriever` used to ask `inspect.signature(cls)` whether the
+    constructor accepted `question_corpus`. Both subclasses take
+    `*args, **kwargs`, so the answer was False and L4 -- which declares
+    `question_stop: derived` -- silently ran a whole 10-conversation oracle on
+    the 31-word legacy list instead of the 8-word derived one.
+
+    It was caught only because the calibration records provenance: the report
+    printed `question_noun_stop=fallback` beside a config asking for `derived`.
+    A capability flag cannot be defeated by a signature, so it is a flag now.
+    """
+    from fgl.retrieval.bipartite import BipartiteRetriever
+
+    for cls in (SlotRetriever, PropagationRetriever, UnifiedRetriever):
+        assert cls.WANTS_QUESTION_CORPUS is True, cls.__name__
+    assert not getattr(BipartiteRetriever, "WANTS_QUESTION_CORPUS", False)
+
+
+def test_the_builder_actually_hands_the_corpus_to_every_subclass(built, l4_cfg,
+                                                                 embedder):
+    """The flag is only worth having if the builder honours it end to end."""
+    from fgl.data.locomo import Question
+    from fgl.pipeline import _build_retriever
+
+    conv = _conversation()
+    conv.questions = [
+        Question(question=q, answer="x", category=1, evidence=[])
+        for q in QUESTIONS
+    ]
+    r = _build_retriever(UnifiedRetriever, built, embedder, l4_cfg, {}, conv)
+    assert r.question_corpus == QUESTIONS
+
+
+def test_an_abstention_flag_that_is_reported_must_also_act(built, l4_cfg,
+                                                           embedder):
+    """Bug 2, pinned.
+
+    `steiner.abstain: true` computed and reported a reason while the ACTION
+    stayed gated on `slots.abstain_on_empty_corner`, which L4 pins to false.
+    The signal was measured, published in the oracle table, and completely
+    inert -- visible only as `empty ctx = 0` on a condition that claimed to be
+    abstaining.
+
+    Computing the reason and acting on it are still deliberately separate (the
+    oracle reports the rates on every condition without paying for them), but
+    the two flags must not be able to disagree about what `abstain` means.
+    """
+    l4_cfg.slots.abstain_on_empty_corner = False
+    l4_cfg.steiner.enabled = True
+
+    l4_cfg.steiner.abstain = True
+    assert UnifiedRetriever(built, embedder, l4_cfg, {})._abstention_acts()
+
+    l4_cfg.steiner.abstain = False
+    assert not UnifiedRetriever(built, embedder, l4_cfg, {})._abstention_acts()
+
+    # the inherited signal still gates independently of the new one
+    l4_cfg.slots.abstain_on_empty_corner = True
+    assert UnifiedRetriever(built, embedder, l4_cfg, {})._abstention_acts()
+
+
+def test_an_acting_abstention_really_empties_the_context(built, l4_cfg,
+                                                         embedder):
+    """The end of the chain: a reason plus an acting gate must produce no facts.
+
+    Without this, `_abstention_acts` could return True and the retriever still
+    emit a full prompt -- which is precisely the shape of the bug above, one
+    layer down.
+    """
+    l4_cfg.slots.abstain_on_empty_corner = True   # the inherited signal, acting
+    r = UnifiedRetriever(built, embedder, l4_cfg, {})
+    empties = 0
+    # a real speaker plus content nobody ever mentioned: the corner test's
+    # `missing_slot` shape. A question naming nobody would not fire at all --
+    # the test abstains from abstaining, by design.
+    for q in ("What did Jon paint on the kayak in April 2022?",
+              "Which glacier did Gina photograph in Patagonia?"):
+        res = r.retrieve(q)
+        if res.abstain_reason:
+            assert not res.facts, (
+                f"{q!r} reported {res.abstain_reason!r} and still emitted "
+                f"{len(res.facts)} facts"
+            )
+            empties += 1
+    assert empties, "neither unsupported question triggered any reason at all"
+
+
+def test_l4_ships_with_the_abstention_off_and_says_why():
+    """Measured 10/446 caught for 28/1540 false positives -- a losing trade,
+    so it ships off. The test exists so turning it back on is a decision
+    somebody makes on purpose."""
+    c = Config.load("L4")
+    assert c.steiner.abstain is False
+    assert c.slots.abstain_on_empty_corner is False
+    # ...but the signal is still computed, so its rates stay measurable for free
+    assert c.steiner.enabled is True

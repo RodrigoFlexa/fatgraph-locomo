@@ -173,6 +173,25 @@ class UnifiedRetriever(PropagationRetriever):
                   label="steiner")
 
     # ----------------------------------------------------------- abstention --
+    def _abstention_acts(self) -> bool:
+        """Either signal may empty the context here -- and ``steiner.abstain``
+        now means what its name says.
+
+        It did not, for one full run: the reason was computed and reported
+        while the *action* stayed gated on ``slots.abstain_on_empty_corner``,
+        which L4 pins to false. The measurement was real, the effect was zero,
+        and only ``empty ctx = 0`` in the oracle gave it away.
+
+        Whether it SHOULD act is a separate question, answered by the numbers
+        and not by the flag existing: measured on this benchmark L4's signal
+        catches 10 of 446 adversarials for 28 false positives on 1540
+        substantive questions, which is roughly +0.002 against -0.007 in micro
+        F1. So ``steiner.abstain`` ships **off**, and the condition file says
+        why. Turning it on is now a real experiment instead of a no-op.
+        """
+        st = self.cfg.steiner
+        return bool(super()._abstention_acts() or (st.enabled and st.abstain))
+
     def _corner_support(self, linked, unlinked=()):
         """Replace the binary corner test with the continuous connection cost.
 
@@ -235,9 +254,12 @@ class UnifiedRetriever(PropagationRetriever):
     def connection_stats(self) -> dict:
         stats = self.walk_stats()
         st = self.cfg.steiner
+        if st.enabled and st.abstain:
+            self.null  # force the calibration so the report is not empty
         stats["steiner"] = {
             "enabled": st.enabled,
             "abstain": st.abstain,
+            "acts": self._abstention_acts(),
             "weight": st.weight,
             "max_terminals": st.max_terminals,
             "max_cost": st.max_cost,

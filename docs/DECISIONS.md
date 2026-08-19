@@ -760,3 +760,117 @@ Reporta junto os números de quadrangulação acima (F contra o teto E/2, genus 
 ### Custo medido
 
 Smoke test com 192 turnos e 50 perguntas: L2 14.6 ms/pergunta, L3 15.4, L4 16.1 (incluindo a calibração do null). ~10% a mais de tempo de recuperação, desprezível contra a chamada de LLM. A L3 não paga ingest nenhum (empresta os grafos da L2).
+
+## D32 — O que o primeiro oracle da linha L disse (e ele disse "não" para a L3)
+
+Rodado nas 10 conversas, zero LLM. `recall_context` por categoria:
+
+| condição | single | multi | temporal | open | adversarial | tokens | unidades |
+|---|---|---|---|---|---|---|---|
+| L1-bipartite | 0.824 | 0.639 | 0.855 | 0.548 | 0.204 | 1887 | 59.4 |
+| L2-slots | 0.908 | 0.629 | 0.897 | 0.561 | 0.855 | 1993 | 57.8 |
+| **L2d-derived** | **0.910** | **0.641** | **0.899** | **0.565** | **0.866** | 1993 | 58.1 |
+| L3-propagation | 0.881 | 0.632 | 0.893 | 0.567 | 0.781 | 1984 | 62.4 |
+| L4-unified | 0.908 | **0.652** | 0.894 | 0.528 | 0.825 | 1994 | 57.9 |
+
+### 1. A L2d ganha da L2 em **todas as cinco categorias**
+
+E é a condição em que nenhum número foi escolhido olhando para as respostas. Os
+limiares derivados não são um empate honroso — são melhores. O que move é o
+corte de hub por tipo: derivado dá `concept=16` contra o absoluto 60, ou seja
+**a L2 estava deixando passar como discriminante um conceito incidente a até 59
+episódios**. O `concept_link` derivado também caiu de 0.75 para 0.55, e a lista
+de moldura derivada tem 8 palavras contra as 31 escritas à mão.
+
+Isto encerra a objeção de calibração de D30 da melhor forma possível: a versão
+sem gabarito é a versão boa.
+
+### 2. O `hop-profile` disse "não" para a L3 **antes** de ela rodar, e estava certo
+
+Evidência que a L2 **errou**, por salto:
+
+| categoria | n | salto 1 | salto 2 | salto 3 | inalcançável |
+|---|---|---|---|---|---|
+| multi-hop | 362 | 0.986 | 0.003 | 0.000 | 0.011 |
+| open-domain | 111 | 0.973 | 0.000 | 0.000 | 0.027 |
+| single-hop | 86 | 0.988 | 0.000 | 0.000 | 0.012 |
+
+**99% da evidência errada já está a um salto.** E o oracle confirmou: L3 perde
+em single-hop (0.881 vs 0.908) e em adversarial (0.781 vs 0.855), empata em
+multi-hop.
+
+**Este é o resultado mais importante do lote, e reenquadra o projeto de novo.**
+O diagnóstico da L1 — "87–95% das falhas são turnos sem caminho no grafo" — era
+sobre o grafo de entidades não tipado. Os slots tipados **resolveram isso por
+completo**: com predicado, tipo, tempo e ator no vocabulário, cada episódio tem
+~23 incidências e a pergunta semeia ~15 slots, então o salto 1 já toca quase
+tudo. Alcançabilidade deixou de ser a restrição.
+
+Ou seja: **o problema é inteiramente de ordenação, não de alcance.** E isso
+casa com a outra medição que já estava incomodando — `recall_context` subiu
+0.156 de L1 para L2 e o micro F1 subiu 0.016. Um passeio mais longo aumenta o
+alcance de um grafo cujo alcance já está saturado; só pode adicionar ruído.
+
+Registrado também: 84.365 pares de episódios compartilham 2+ slots não-hub. Os
+4-ciclos que um mergulho quadrangular viraria faces **existem em profusão** — e
+não ajudam, porque não é deles que a recuperação está precisando. É o argumento
+de D31 fechado por medição em vez de por especulação.
+
+**Erro de desenho meu, registrado:** a L3 shipou com `normalization: sym` *e*
+`hops: 2`, então o delta L2→L3 confunde duas mudanças, apesar de o arquivo da
+condição dizer que ela isola a propagação. Separar custa 4 minutos:
+`fgl slots-oracle -C L3 --set propagation.hops=1 --set propagation.normalization=none`
+tem que reproduzir a L2 **exatamente** (é a redução, agora verificável em dados
+reais e não só no teste unitário), e trocar só a normalização diz se `sym`
+sozinho vale alguma coisa.
+
+### 3. A L4 é a melhor em multi-hop, e só nela
+
+0.652 contra 0.641 da L2d: +0.011, o único ganho sobre a L2d em qualquer
+categoria. **O canal de conexão funciona** — a conjunção do group Steiner é a
+única coisa na linha inteira que mexeu multi-hop para cima. Modestamente, mas na
+categoria certa e pelo motivo certo.
+
+Custou open-domain (0.528 vs 0.565) e adversarial (0.825 vs 0.866). Os dois
+números são suspeitos por causa dos bugs abaixo.
+
+### 4. Dois bugs que uma rodada inteira pagou
+
+**A L4 nunca recebeu o corpus de perguntas.** `_build_retriever` perguntava
+`inspect.signature(cls)` se o construtor aceitava `question_corpus`; as duas
+subclasses tomam `*args, **kwargs`, então a resposta era `False`. A L4 declara
+`question_stop: derived` e rodou as 10 conversas com a lista legada de 31
+palavras. Uma lista mais restritiva liga menos substantivos da pergunta — o que
+é uma explicação própria para a queda em open-domain, **independente** do
+`dense_seed`. Duas causas candidatas, uma observação: `dense_seed` fica como
+está até a re-rodada limpa decidir.
+
+Só foi pego porque a calibração registra proveniência: o relatório imprimiu
+`question_noun_stop=fallback` ao lado de um config pedindo `derived`. O
+princípio de D30 ("fallback é registrado, nunca silencioso") pagou o próprio
+custo na primeira vez que importou.
+
+**`steiner.abstain: true` nunca agiu.** O motivo era computado e reportado, mas
+a *ação* continuava presa a `slots.abstain_on_empty_corner`, que a L4 fixa em
+false. Sinal medido, publicado na tabela, e completamente inerte — visível
+apenas como `empty ctx = 0` numa condição que dizia estar se abstendo. Agora
+existe `_abstention_acts()`, que uma subclasse sobrescreve, e a L4 respeita o
+próprio flag.
+
+E aí a decisão vira uma medição em vez de um acidente: 10/446 adversariais
+pegos para 28/1540 falsos positivos ≈ +0.002 contra −0.007 em micro. **Pior que
+o teste de canto que ela substituiu.** Então `abstain: false`, dito no arquivo.
+
+Não é fracasso, é achado: o custo de conexão é sinal real e contínuo, mas na
+cauda 0.95 quase nunca dispara numa pergunta real (4 `far_apart` em 1986). Os
+terminais de uma pergunta são muito mais próximos entre si do que slots
+aleatórios — a distribuição nula, corretamente derivada e sem gabarito, é a
+**classe de referência errada**. A certa seriam os terminais de *outras
+perguntas*, o que é outro estimador e outro experimento.
+
+### Veredito para o run com LLM
+
+**L2d.** É melhor que a L2 em todas as categorias, é a condição que carrega o
+argumento metodológico, e o delta L2→L2d é limpo. A L3 não deve rodar. A L4
+só depois de a re-rodada do oracle confirmar que os bugs eram a causa das duas
+quedas.

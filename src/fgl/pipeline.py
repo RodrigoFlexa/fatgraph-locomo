@@ -71,17 +71,24 @@ BASELINE_CONDITIONS = ("B1-full-context", "B2-rag-turns", "B3-rag-facts")
 def _build_retriever(retriever_cls, graph, embedder, cfg, dates, conv):
     """Construct a retriever, handing it the question corpus if it wants one.
 
-    Only L2 takes ``question_corpus``, and only to estimate which nouns are
+    A class attribute and NOT ``inspect.signature``. The first version of this
+    introspected the constructor, which silently did the wrong thing the moment
+    a subclass took ``*args, **kwargs``: L4 declared ``question_stop: derived``
+    and got the legacy literal list instead, for a whole 10-conversation run.
+    It was caught only because the calibration records its provenance -- the
+    oracle printed ``question_noun_stop=fallback`` next to a config that asked
+    for ``derived``. A flag cannot be defeated by a signature.
+
+    Only the slot family takes ``question_corpus``, and only to estimate which
+    nouns are
     question *framing* rather than question content (see
     :mod:`fgl.memory.calibration`). What is passed is the question TEXT and
     nothing else -- no answer, no evidence, no category -- so the estimator
     stays label-free; it is still transductive, which ``docs/ASSUMPTIONS.md``
     records as scope condition S5 rather than leaving implicit.
     """
-    import inspect
-
     kwargs = {}
-    if "question_corpus" in inspect.signature(retriever_cls).parameters:
+    if getattr(retriever_cls, "WANTS_QUESTION_CORPUS", False):
         kwargs["question_corpus"] = [q.prompt_question() for q in conv.questions]
     return retriever_cls(graph, embedder, cfg, dates, **kwargs)
 

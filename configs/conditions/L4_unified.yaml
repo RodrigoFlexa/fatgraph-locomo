@@ -143,8 +143,17 @@ propagation:
   # turn that resembled the question could not lend that resemblance to the
   # episode beside it in the graph. Seeding the walk from both sources costs
   # nothing -- it is the same walk with a second personalisation vector -- and
-  # open-domain (0.249) is the category that lives entirely on the dense
-  # channel and has no structure of its own to fall back on.
+  # open-domain is the category that lives entirely on the dense channel and
+  # has no structure of its own to fall back on.
+  #
+  # UNDER SUSPICION, and left alone on purpose. The first oracle run put L4's
+  # open-domain at 0.528 against L2d's 0.565 -- but that run also had L4
+  # silently falling back to the 31-word legacy stoplist instead of the derived
+  # 8-word one (a signature-introspection bug, now fixed), and a stricter
+  # stoplist links fewer question nouns, which is its own explanation for an
+  # open-domain drop. Two candidate causes, one observation: changing this now
+  # would be tuning on a confound. Re-run `fgl slots-oracle -C L2d -C L4` with
+  # the fix in place and let the clean number decide.
   dense_seed: 0.5
   bridge_hubs: false
 
@@ -162,7 +171,24 @@ steiner:
   max_cost: 12.0
   cache_size: 4096
 
-  abstain: true
+  # OFF, from a measurement and not from taste. First full oracle run:
+  # 10 of 446 adversarials caught for 28 false positives on 1540 substantive
+  # questions -- about +0.002 against -0.007 in micro F1. Worse than the corner
+  # test it was built to replace (20/446 for 37/1540), which was itself a
+  # losing trade.
+  #
+  # Read that as a finding, not a failure. The connection cost is a real and
+  # continuous signal, but at the 0.95 tail it almost never fires on a real
+  # question (4 `far_apart` in 1986): a question's terminals are far closer
+  # together than random slots of the same count, so the null distribution --
+  # correctly derived, no gold labels -- turns out to be the wrong reference
+  # class. The right one would be OTHER QUESTIONS' terminals, which is a
+  # different estimator and a different experiment.
+  #
+  # Until then this stays off, and `_abstention_acts` in the retriever means
+  # what it says. The signal is still computed and reported on every run, so
+  # its true- and false-positive rates cost nothing to keep watching.
+  abstain: false
   abstain_quantile: 0.95
   null_samples: 120
   null_pool: 64

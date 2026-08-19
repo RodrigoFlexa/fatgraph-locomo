@@ -179,6 +179,13 @@ class SlotRetriever:
     dispatches on ``cfg.retrieval.mode`` alone.
     """
 
+    #: This family accepts ``question_corpus``. Declared as an attribute rather
+    #: than left for the caller to introspect, because a subclass with
+    #: ``*args, **kwargs`` is invisible to ``inspect.signature`` -- which is
+    #: exactly how L4 spent a full run silently falling back to the legacy
+    #: stoplist. Inherited by L3 and L4, so the flag cannot drift from reality.
+    WANTS_QUESTION_CORPUS = True
+
     def __init__(
         self,
         graph: FatGraph,
@@ -435,7 +442,7 @@ class SlotRetriever:
         support, reason = self._corner_support(linked, unlinked)
         result.slot_support = support
         result.abstain_reason = reason
-        if reason and sl.abstain_on_empty_corner:
+        if reason and self._abstention_acts():
             return result  # no facts -> Answerer abstains
 
         candidates: dict[str, _Episode] = {}
@@ -620,6 +627,19 @@ class SlotRetriever:
             # for it, not the same evidence.
             seed[vid] = seed.get(vid, 0.0) + (sl.hub_weight if hub else damped)
         return seed
+
+    def _abstention_acts(self) -> bool:
+        """Does a non-empty ``abstain_reason`` actually empty the context?
+
+        Separated from *computing* the reason on purpose. The oracle reports
+        the signal on every condition so its true- and false-positive rates can
+        be read without paying for them, and only this decides whether the
+        retriever acts on it. A subclass that supplies a better signal
+        overrides this rather than reaching into ``slots.abstain_on_empty_corner``
+        -- which is how a flag named ``steiner.abstain`` came to be measured,
+        reported, and completely inert for a whole run.
+        """
+        return bool(self.cfg.slots.abstain_on_empty_corner)
 
     def is_hub(self, vid: str) -> bool:
         """Is this slot above its kind's calibrated degree cut-off?
