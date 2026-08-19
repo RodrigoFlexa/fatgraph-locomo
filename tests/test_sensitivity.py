@@ -21,7 +21,7 @@ from fgl.evaluation.sensitivity import (
     sweep_to_html,
 )
 
-from conftest import needs_dataset
+from conftest import PATHS, needs_dataset
 
 
 def _curve(knob: str, values, overalls, shipped) -> Curve:
@@ -203,19 +203,26 @@ def test_html_report_is_self_contained_and_has_a_table_view():
 
 @needs_dataset
 @pytest.mark.slow
-def test_sweep_runs_end_to_end_without_an_llm(tmp_path):
-    from fgl.data.locomo import load_locomo
-    from fgl.evaluation.sensitivity import sweep
-    from fgl.paths import Paths, project_root
+def test_sweep_runs_end_to_end_without_an_llm():
+    """One real conversation, one knob, no completion.
 
-    convs = load_locomo(Paths.build(project_root()).locomo_file)[:1]
+    Guards the wiring the synthetic tests above cannot: that `sweep` can build
+    a condition's graphs through the Runner, rebuild a retriever per swept
+    value, and come back with a curve. Skipped without the dataset -- which is
+    also why this file's loader name has to match `fgl.data.locomo` exactly and
+    not be assumed.
+    """
+    from fgl.data.locomo import load_conversations
+    from fgl.evaluation.sensitivity import sweep
+
+    convs = load_conversations(PATHS.locomo_file)[:1]
     convs[0].questions = convs[0].questions[:12]
     report = sweep(
         "L2", convs,
         grid={"slots.sibling_frac": [0.0, 0.2, 0.5]},
-        root=None,
     )
     curve = report["curves"]["slots.sibling_frac"]
     assert len(curve["points"]) == 3
     assert any(p["is_shipped"] for p in curve["points"])
     assert curve["verdict"] in ("flat", "shallow", "peaked", "cliff")
+    assert report["baseline"]["overall"] >= 0.0
