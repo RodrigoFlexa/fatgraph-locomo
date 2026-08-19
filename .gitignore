@@ -37,3 +37,6 @@ config.ini:Zone.Identifier
 config-v1.x.ini:Zone.Identifier
 results/*
 results_v3/*
+artifacts/*
+results-backup-l1el2/*
+.cache/embeddings/st-all-MiniLM-L6-v2.npz
