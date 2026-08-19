@@ -489,40 +489,8 @@ class SlotRetriever:
         for ep_vid, score in best_dense.items():
             touch(ep_vid, sl.dense_weight * score, "")
 
-        # 2. structural channels
-        weight_by_kind = {
-            KIND_ACTOR: sl.actor_weight,
-            KIND_PREDICATE: sl.predicate_weight,
-            KIND_CONCEPT: sl.concept_weight,
-            KIND_TYPE: sl.type_weight,
-            KIND_TIME: sl.time_weight,
-        }
-        for kind, key, vid in linked:
-            degree = self.graph.degree(vid)
-            if degree == 0:
-                continue
-            if kind == KIND_ACTOR:
-                continue  # applied as a prior below, not as a summand
-            base = weight_by_kind[kind]
-            # degree damping: a slot on 200 episodes separates none of them.
-            # The exponent is a knob because the right amount is not obvious a
-            # priori: damping helps precision (single-hop) and hurts
-            # enumeration (multi-hop, where the whole orbit of one moderately
-            # common topic IS the answer). Swept, not assumed -- see
-            # slots.slot_damping.
-            damped = base / (1.0 + math.log(degree)) ** sl.slot_damping
-            # per KIND: an actor incident to half the episodes and a concept
-            # incident to half the episodes are not the same event, and one
-            # absolute cut-off cannot say so. See fgl.memory.calibration.
-            hub = degree >= self.calibration.hub_degree(kind)
-            for ep_vid in self._orbit_episodes(vid):
-                touch(
-                    ep_vid,
-                    sl.hub_weight if hub else damped,
-                    kind if not hub else "",
-                    via=vid,
-                    label=self.graph.vertices[vid].name,
-                )
+        # 2. structural channels -- one hop, overridable
+        self._structural_channels(linked, touch)
 
         # 2b. ENUMERATION. A set question is not answered by the most similar
         # episode -- it is answered by the whole orbit. sigma at a slot vertex
@@ -555,6 +523,12 @@ class SlotRetriever:
                     result.n_enumerated += 1
                     touch(ep_vid, sl.set_orbit_boost, KIND_CONCEPT,
                           via=vid, label=name)
+
+        # 2c. join channel -- empty in L2, the Steiner read in L4. Placed
+        # before the actor prior on purpose: a join is a claim about the
+        # memory's structure, so it is subject to "whose episode is this?"
+        # exactly like every other structural channel.
+        self._join_channels(linked, slots, result, touch)
 
         # 3. the actor is a PARTITION, not a channel. Adding a constant per
         # named actor to every episode that actor touches shifts half the graph
@@ -590,6 +564,98 @@ class SlotRetriever:
         result.faces = sorted({f.face_id for f in result.facts})
         result.sigma_vertices = [vid for _, _, vid in linked]
         return result
+
+    # ------------------------------------------------------- scoring stages --
+    # The three methods below are the seams L3 and L4 reach through. They exist
+    # so that "L3 is L2 with one more hop" and "L4 is L3 plus a join" are facts
+    # about the class hierarchy rather than claims in a docstring -- a subclass
+    # that overrides `_structural_channels` inherits the question parser, the
+    # slot resolver, the actor prior, the orbit enumeration and the emission
+    # policy unchanged, so a measured delta between the conditions cannot be
+    # anything but the stage that was overridden.
+
+    def slot_seed(self, linked: Sequence[tuple[str, str, str]]) -> dict[str, float]:
+        """Weight per linked slot vertex: kind weight, degree-damped.
+
+        Factored out of :meth:`_structural_channels` because it is also the
+        *personalisation vector* of the random walk in
+        :mod:`fgl.retrieval.propagation` -- and the fact that those are the
+        same object is the whole reason a walk of length one reproduces this
+        condition exactly. Actors are excluded here for the same reason they
+        are excluded from the sum: they are a partition, applied
+        multiplicatively at the end.
+        """
+        sl = self.cfg.slots
+        weight_by_kind = {
+            KIND_ACTOR: sl.actor_weight,
+            KIND_PREDICATE: sl.predicate_weight,
+            KIND_CONCEPT: sl.concept_weight,
+            KIND_TYPE: sl.type_weight,
+            KIND_TIME: sl.time_weight,
+        }
+        seed: dict[str, float] = {}
+        for kind, _key, vid in linked:
+            if kind == KIND_ACTOR:
+                continue
+            degree = self.graph.degree(vid)
+            if degree == 0:
+                continue
+            base = weight_by_kind[kind]
+            # degree damping: a slot on 200 episodes separates none of them.
+            # The exponent is a knob because the right amount is not obvious a
+            # priori: damping helps precision (single-hop) and hurts
+            # enumeration (multi-hop, where the whole orbit of one moderately
+            # common topic IS the answer). Swept, not assumed -- see
+            # slots.slot_damping.
+            damped = base / (1.0 + math.log(degree)) ** sl.slot_damping
+            # per KIND: an actor incident to half the episodes and a concept
+            # incident to half the episodes are not the same event, and one
+            # absolute cut-off cannot say so. See fgl.memory.calibration.
+            hub = degree >= self.calibration.hub_degree(kind)
+            # accumulate, not max: two question nouns can resolve to the same
+            # concept vertex through the paraphrase fallback, and L2 scored
+            # that vertex once per resolution. Preserving the sum keeps this
+            # refactor behaviour-identical, and it is also the right thing for
+            # a personalisation vector -- naming a slot twice is more evidence
+            # for it, not the same evidence.
+            seed[vid] = seed.get(vid, 0.0) + (sl.hub_weight if hub else damped)
+        return seed
+
+    def is_hub(self, vid: str) -> bool:
+        """Is this slot above its kind's calibrated degree cut-off?
+
+        One definition, three users: the scorer flattens a hub to
+        ``hub_weight``, the walk refuses to relay through it, and the Steiner
+        metric refuses to route through it. **A hub is a filter, never a
+        bridge** -- that single rule is what keeps every read of this graph
+        from being swamped by the actor and month vertices, and stating it once
+        here is what makes the three conditions one design.
+        """
+        kind = self.graph.vertices[vid].meta.get("kind", KIND_CONCEPT)
+        return self.graph.degree(vid) >= self.calibration.hub_degree(kind)
+
+    def _structural_channels(self, linked, touch) -> None:
+        """One hop: every episode incident to a linked slot takes its weight.
+
+        This is condition L2's whole structural read, and
+        :class:`fgl.retrieval.propagation.PropagationRetriever` replaces it
+        with the length-``hops`` generalisation of the same operator.
+        """
+        seed = self.slot_seed(linked)
+        kind_of = {vid: kind for kind, _key, vid in linked}
+        for vid, weight in seed.items():
+            kind = kind_of[vid]
+            hub = self.is_hub(vid)
+            for ep_vid in self._orbit_episodes(vid):
+                touch(ep_vid, weight, kind if not hub else "", via=vid,
+                      label=self.graph.vertices[vid].name)
+
+    def _join_channels(self, linked, slots, result, touch) -> None:
+        """Hook for a read that asks how the query's slots CONNECT, rather than
+        which episodes they touch. Empty here; L4 fills it with the group-Steiner
+        rooted-star score (:mod:`fgl.retrieval.steiner`).
+        """
+        return None
 
     # ------------------------------------------------------------ internals --
     def _emit(

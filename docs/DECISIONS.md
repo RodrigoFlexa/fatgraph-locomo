@@ -671,3 +671,92 @@ Uma ressalva registrada em vez de enterrada: `question_stop=derived` é ajustado
 
 - **Não há split.** Os knobs do L2 foram varridos nas mesmas 10 conversas de que o número final saiu. Enquanto não houver *leave-one-conversation-out*, a palavra correta continua "varrido contra o oracle", não "tunado no dev, avaliado no test". Nenhum dos três itens acima fecha esse furo.
 - **Um único corpus.** Nada aqui prova portabilidade; prova que o método *pode* rodar sem olhar para as respostas. A prova é rodar o config congelado num segundo benchmark (LongMemEval é o alvo óbvio — gerador diferente, sessões com distratores, e casos sem resposta que exercitam o teste de canto) e reportar o número seja qual for.
+
+## D31 — Do salto único à propagação e à conexão (L3, L4)
+
+O run que motivou isto: L1 → L2 levou `recall_context` de 0.614 a 0.770 (+0.156) e comprou **+0.016 de micro F1**. Decompondo com n_adversarial = 446 / 1986:
+
+| | delta |
+|---|---|
+| categorias substantivas (n=1540) | +0.037 |
+| adversarial (n=446) | −0.058 |
+| contribuição adversarial ao micro | −0.013 |
+| **micro líquido** | **+0.016** |
+
+Duas leituras, e as duas viraram trabalho:
+
+1. **A adversarial comeu 45% do ganho bruto.** Não é ruído, é mecânica: com recall 0.770 o contexto quase sempre contém algo plausível, então o modelo para de se abster. Melhorar a recuperação piorou a abstenção.
+2. **A tese "não há folga de geração" está falsificada pelos próprios dados.** Se todo ponto restante fosse recuperação, +0.156 de recall teria comprado muito mais que +0.037 nas substantivas.
+
+(Registrado também: o `recall@10` caindo 0.271 → 0.214 é artefato. `top_edges` expande episódios em incidências e a L2 tem ~23 por episódio, então k=10 nem cobre um episódio. Não perseguir.)
+
+### O movimento de Whitehead: não, e o próprio código já dizia
+
+Está implementado (D19) e desligado, mas a razão para não ajudar é mais forte que "está desligado": `whitehead_flip` levanta `TopologyViolation` se genus, F ou C mudarem — corretamente, porque o movimento é um *spine move* na mesma superfície espessada. O docstring de `transpose_sigma` já registrava isso: *"Whitehead flips do not [change the surface]... the smallest such alteration is a transposition."*
+
+**Whitehead não pode ajudar, por teorema.** O que muda a superfície é a transposição em σ, que `maximize_faces` já hill-climba.
+
+### O argumento em forma de teorema, e por que ele não virou a implementação
+
+Números da L2: V=20978, E=68710, F=108, C=10, genus=23822.
+
+- Comprimento médio de face: **2E/F = 1272 meias-arestas** (a maior, 11166). Uma face desse tamanho é a conversa inteira.
+- Bipartido ⇒ toda face tem comprimento ≥ 4 ⇒ **F ≤ E/2 = 34.355**, e daí genus ≥ 6.699.
+- Estamos em F=108 de um teto de 34.355 (**0,3%**) e genus 3,6× acima do mínimo.
+
+E num grafo bipartido o mergulho de genus mínimo é **quadrangular**: toda face é um 4-ciclo `e1 — s_a — e2 — s_b — e1`, ou seja **um par de episódios que concorda em duas coisas diferentes**. Isso é literalmente a junção multi-hop, e multi-hop era a pior categoria (0.376).
+
+Duas objeções honestas mataram a rota via rotação:
+
+1. Um mergulho quadrangular seleciona E/2 dos 4-ciclos para ladrilhar a superfície — escolhidos por topologia, não por semântica. Dá uma seleção *canônica*, não uma *boa*. É exatamente por isso que o G8-shuffled deu chato.
+2. `maximize_faces` é O(passes × Σ_v deg² × |H|) com |H|=137k e vértices de ator de grau nas centenas. Não roda.
+
+**Conclusão: testar o objeto sem a maquinaria.** Num grafo bipartido episódio↔slot, um passeio de 2 saltos a partir dos slots da pergunta é exatamente "episódios que compartilham um slot com um episódio que a pergunta nomeou" — a junção — e o caso fechado (voltar a um episódio já alcançado por um slot *diferente*) é o 4-ciclo. O passeio é a versão mole e ponderada do objeto que a teoria aponta, sem rotação, sem genus, sem mergulho.
+
+### L3 — o mesmo grafo, lido por propagação
+
+A observação de partida: **o score estrutural da L2 já é uma iteração de random walk with restart.** Os slots da pergunta são o vetor de personalização, a incidência é a transição, e `1/(1+log deg)` é uma normalização por grau feita à mão. Escrito assim, a limitação salta: o passeio para no primeiro passo.
+
+Três coisas fazem ele funcionar em vez de borrar:
+
+**Um hub é filtro, nunca ponte.** O modo de falha de todo passeio em grafo com hub: a massa entra no vértice de ator (incidente a metade dos episódios) e sai espalhada uniformemente. O corte de grau calibrado por tipo (D30) ganha aqui o trabalho para o qual sempre foi melhor: um hub pode *receber* massa no salto 1, onde age como o filtro que a L2 já usa, e nunca pode *retransmitir*. Uma regra, dita uma vez em `SlotRetriever.is_hub`, obedecida pelo scorer, pelo passeio e pela métrica da L4. **É a cola conceitual das três condições.**
+
+**O passeio é não-retornante.** O salto 2 de um passeio comum é dominado por massa que vai `slot → episódio → mesmo slot` e volta: ele re-pontua a semente e chama isso de junção. Rastreando fluxo em **meias-arestas dirigidas** em vez de vértices e subtraindo de cada aresta a própria contribuição de entrada, obtém-se o operador de Hashimoto — e a estrutura de meias-arestas que ele quer o repositório já tem, como `alpha`. Custa um `bincount` a mais por salto.
+
+**A redução é exata.** `hops=1` + `normalization=none` + `dense_seed=0` reproduz a L2 turno por turno e score por score (`tests/test_propagation.py`). Portanto a varredura de `propagation.hops` é uma curva cujo ponto mais à esquerda **é o número publicado da L2**. E a L3 empresta os grafos da L2 byte a byte (`paths.graphs_condition: L2-slots`) e herda todo o resto por subclasse — o delta não pode ser outra coisa.
+
+Também trocado: `normalization: sym` (a normalização espectral `D^-1/2 A D^-1/2`) amortece o **lado do episódio** também, o que `1/(1+log deg)` nunca fez — ele só olhava o lado do slot.
+
+### L4 — a leitura que pergunta como as coisas se conectam
+
+Toda leitura até aqui pergunta a mesma forma de coisa: *quais episódios estão perto do que a pergunta mencionou?* É uma soma, então um episódio ganha casando um slot com força, e nada na aritmética consegue dizer "e também os outros dois".
+
+Uma pergunta multi-hop não pede proximidade, pede: **qual o menor pedaço desta memória que segura todos estes juntos?** Isso é group Steiner tree, a formulação clássica de busca por palavra-chave em grafos (BANKS, BLINKS, DPBF). Duas consequências:
+
+**Um canal com um E lógico.** A relaxação por estrela enraizada — para cada raiz candidata, a soma das distâncias a todos os terminais — é uma conjunção por construção: uma raiz que não alcança um terminal sai da interseção por mais perto que esteja dos outros. É a forma que multi-hop precisa.
+
+**Abstenção com resolução.** O teste de canto é binário e, medido, um mau negócio: 20/446 adversariais a custo de 38/1540 falsos positivos (+0.004 contra −0.010 em micro). **Substituído, não reajustado.** O custo de conexão é contínuo, e o limiar é a cauda superior do custo de tuplas de slots **aleatórias** do mesmo tamanho nesta mesma memória — "estas coisas ficam mais longe uma da outra que 95% das combinações arbitrárias aqui". Sem gabarito, coerente com D30.
+
+A métrica: entrar num slot custa `1 + log(grau)` — rotear por algo que quarenta episódios mencionam é caro — e acima do corte de hub não é atravessável. Mesma regra do passeio. Sem isso, todo par de episódios fica a dois passos pelo vértice de falante e a estrutura colapsa (o fracasso clássico de keyword-search em grafos).
+
+L4 é a única condição da família que não é um isolamento: L1..L3 e L2d mudam uma coisa para que um delta signifique algo; **L4 existe para responder a outra pergunta — as peças compõem?** Cada componente já foi medido sozinho, que é o que faz disto uma síntese e não uma pilha esperançosa. Constrói grafos próprios porque o tempo multirresolução muda o conjunto de vértices.
+
+### A hierarquia é real, não documentada
+
+```
+SlotRetriever         L2   quais episódios TOCAM os slots?     um salto
+  └─ PropagationRetriever  L3   quais são ALCANÇADOS a partir deles?  passeio
+       └─ UnifiedRetriever  L4   quais os SEGURAM JUNTOS?             conexão
+```
+
+Subclasses, não irmãos copiados. Um teste verifica que a L3 sobrescreve exatamente `_structural_channels` e mais nada — se pudesse divergir no parser da pergunta, no prior de ator ou na política de emissão, nenhum delta medido seria interpretável.
+
+### `fgl hop-profile` — o portão, rodado antes e não depois
+
+Um passeio mais longo só acha evidência *alcançável naquele número de saltos*. O comando mede onde ela está: salto 1 / 2 / 3 / inalcançável, para toda a evidência e — a que importa — só para a que a condição **errou**. Se as falhas estão no salto 2, a L3 tem alvo e o tamanho daquele balde é o teto dela. Se estão inalcançáveis, nenhum passeio neste grafo as acha e a resposta é outro ingest, não outra leitura. Custo: zero LLM.
+
+Reporta junto os números de quadrangulação acima (F contra o teto E/2, genus contra o piso, pares de episódios compartilhando 2+ slots não-hub), porque são a versão quantitativa do argumento e saem numa passada.
+
+### Custo medido
+
+Smoke test com 192 turnos e 50 perguntas: L2 14.6 ms/pergunta, L3 15.4, L4 16.1 (incluindo a calibração do null). ~10% a mais de tempo de recuperação, desprezível contra a chamada de LLM. A L3 não paga ingest nenhum (empresta os grafos da L2).

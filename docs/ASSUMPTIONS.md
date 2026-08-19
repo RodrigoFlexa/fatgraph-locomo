@@ -1,4 +1,4 @@
-# Premissas e condições de escopo do modelo L2
+# Premissas e condições de escopo da linha L (L2, L2d, L3, L4)
 
 > Um método com condições de escopo **declaradas** é um método.
 > Um método com condições de escopo **escondidas** é um método ajustado a um
@@ -39,11 +39,17 @@ Três coisas foram feitas a respeito, e este documento é a terceira:
 | **2** | medir quanto cada número importa, em vez de reportar só o ótimo | `fgl slots-sweep` |
 | **3** | declarar as premissas e torná-las verificáveis | este arquivo + `fgl scope-check` |
 
+E depois, num segundo movimento (D31), duas premissas novas entraram porque duas
+leituras novas dependem delas: **S8** (a memória tem ciclos e eles ligam coisas
+relacionadas — a premissa da L3) e **S9** (o custo de conexão separa o suportado
+do adversarial — a premissa do canal de conexão da L4). As duas são `runtime` e
+as duas têm comando próprio, `fgl hop-profile` e `fgl slots-oracle`.
+
 ---
 
 ## 1. As condições de escopo
 
-Cada condição tem um identificador (`S1`…`S7`), um enunciado, o que é medido,
+Cada condição tem um identificador (`S1`…`S9`), um enunciado, o que é medido,
 o critério, e — a parte que importa — **para o que o desenho degrada quando ela
 falha**. Uma premissa sem caminho de degradação declarado não é uma premissa, é
 um requisito escondido.
@@ -248,6 +254,69 @@ consegue dizer isso.
 
 ---
 
+### S8 — A memória tem ciclos, e eles ligam coisas relacionadas `runtime` (precisa do grafo)
+
+**Enunciado.** Dois episódios que compartilham um slot estão relacionados, e um
+caminho de dois saltos no grafo bipartido episódio↔slot é uma *junção* e não uma
+coincidência. É a premissa de que dependem a condição L3 (o passeio) e o canal
+de conexão da L4.
+
+**Medido.** `fgl hop-profile` — a distribuição, sobre a evidência que a condição
+**errou**, de: alcançável no salto 1, no salto 2, no salto 3, ou inalcançável
+(com hubs bloqueados como ponte, exatamente como o passeio os bloqueia).
+
+**Critério.** ≥ 10% da evidência errada no salto 2 para um passeio mais longo
+ter alvo. Esse balde é literalmente o teto da L3.
+
+**Degrada para.** Se a evidência errada estiver majoritariamente *inalcançável*,
+nenhum passeio neste grafo a encontra e o problema é de ingestão, não de
+leitura — o comando diz isso explicitamente em vez de deixar você descobrir
+depois de um run. Se estiver majoritariamente no salto 1, a L3 é a L2 com um
+scorer mais lento, e `propagation.hops: 1` a devolve exatamente (é a redução
+testada).
+
+**O que este número protege.** A premissa correspondente da L1 foi medida e
+usada assim: "87–95% das falhas eram turnos sem caminho no grafo" foi o que
+justificou os slots tipados. S8 é a mesma medição um salto adiante, e ela é
+`runtime` — roda sem gabarito de resposta, só precisa saber quais turnos a
+condição emitiu.
+
+---
+
+### S9 — O custo de conexão separa o suportado do adversarial `runtime` (precisa do grafo)
+
+**Enunciado.** Uma pergunta adversarial tem ingredientes reais numa combinação
+que nunca aconteceu, então seus slots ficam *mais longe* uns dos outros nesta
+memória do que combinações arbitrárias do mesmo tamanho.
+
+**Medido.** O custo de estrela enraizada (group Steiner relaxado) dos terminais
+da pergunta, contra a distribuição nula do mesmo custo em tuplas de slots
+**aleatórias** do mesmo tamanho, amostradas do próprio grafo.
+
+**Critério.** A pergunta abstém acima de `steiner.abstain_quantile` (0.95) da
+nula. O limiar é **derivado por conversa**, nunca varrido: não existe número
+neste mecanismo que tenha sido escolhido olhando para uma resposta anotada.
+
+**Degrada para.** Três formas distintas de não-suporte, reportadas
+separadamente porque são afirmações diferentes — `dead_terminal` (um terminal
+não alcança episódio nenhum), `disconnected` (todos alcançam algo, nada alcança
+todos), `far_apart` (encontram-se, mas na cauda da nula). Quando a leitura não
+tem o que dizer — menos de dois terminais, ou o canal desligado — o teste de
+canto herdado continua rodando: ligar a abstenção por conexão **nunca remove**
+um sinal, só o supera onde tem mais resolução.
+
+**Por que substitui em vez de somar.** O teste de canto foi medido como negócio
+ruim neste benchmark (20/446 adversariais pegos, 38/1540 falsos positivos ≈
++0.004 contra −0.010 em micro). Manter os dois ligados contaria a mesma
+evidência duas vezes para abster.
+
+**A regressão que isto ataca.** Adversarial caiu 0.666 → 0.608 de L1 para L2
+*enquanto a recuperação melhorava*, custando ~45% do ganho bruto. Recall melhor
+significa que o contexto quase sempre contém algo plausível, então o modelo para
+de se abster sozinho. A abstenção tem que voltar pela estrutura.
+
+---
+
 ## 2. Os pesos de canal *não* foram calibrados para longe
 
 `dense_weight`, `actor_weight`, `predicate_weight`, `concept_weight`,
@@ -270,6 +339,9 @@ histórico de varreduras.
 ## 3. Como rodar
 
 ```bash
+# ONDE a evidência está, em saltos — o portão da L3, antes de qualquer run
+fgl hop-profile -C L2 --out artifacts/hops_L2.json
+
 # as condições de escopo, só com o corpus (sem ingestão, sem LLM)
 fgl scope-check -C L2
 
@@ -285,6 +357,12 @@ fgl slots-sweep -C L2 -k slots.hub_degree --values 15,30,60,120,240
 # a mesma arquitetura com todo estimador ligado, lado a lado com a versão
 # varrida, no mesmo orçamento de tokens e sem nenhuma chamada de LLM
 fgl slots-oracle -C L2 -C L2d
+
+# a linha L inteira, lado a lado, mesmo orçamento, zero LLM
+fgl slots-oracle -C L1 -C L2 -C L2d -C L3 -C L4
+
+# a curva cujo ponto mais à esquerda É o número publicado da L2
+fgl slots-sweep -C L3 -k propagation.hops
 ```
 
 A última linha é a que fecha o argumento. `L2` são os números varridos, `L2d`

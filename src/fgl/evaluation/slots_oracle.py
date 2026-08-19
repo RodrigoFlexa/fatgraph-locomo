@@ -131,6 +131,7 @@ def run_oracle(
         per_cat: dict[str, _Acc] = {name: _Acc() for name in CATEGORY_NAMES.values()}
         corner = _CornerAcc()
         calibration: dict = {}
+        read_stats: dict = {}
 
         for i, conv in enumerate(conversations):
             say(condition, i, len(conversations), conv.sample_id)
@@ -148,6 +149,17 @@ def run_oracle(
             # whether its cut-offs were swept or derived is not auditable.
             if not calibration and hasattr(retriever, "calibration"):
                 calibration = retriever.calibration.as_dict()
+            if not read_stats:
+                # what the READ looks like on this graph. `bridgeable_frac`
+                # near zero means the walk has nowhere to go and the condition
+                # has quietly collapsed back to L2 whatever `hops` says -- the
+                # kind of silent degeneration that otherwise shows up only as
+                # "the numbers did not move".
+                for attr in ("connection_stats", "walk_stats"):
+                    fn = getattr(retriever, attr, None)
+                    if fn is not None:
+                        read_stats = fn()
+                        break
             for q in conv.questions:
                 result = retriever.retrieve(q.prompt_question())
                 per_cat[q.category_name].add(
@@ -172,6 +184,7 @@ def run_oracle(
             "per_category": {k: v.as_dict() for k, v in per_cat.items() if v.n},
             "corner_test": corner.as_dict(),
             "calibration": calibration,
+            "read": read_stats,
         }
         say(condition, len(conversations), len(conversations), "done")
 
@@ -233,7 +246,27 @@ def format_oracle(report: dict) -> str:
             )
 
     lines.append("")
-    lines.append("deterministic abstention (corner test)")
+    lines.append("how the graph is read (L3/L4: the walk and the connection)")
+    for cond in conds:
+        rd = report["conditions"][cond].get("read") or {}
+        if not rd:
+            continue
+        lines.append(
+            f"{cond:<14} hops={rd.get('hops')} norm={rd.get('normalization')} "
+            f"nb={rd.get('non_backtracking')} dense_seed={rd.get('dense_seed')} "
+            f"bridgeable={rd.get('bridgeable_frac')} of {rd.get('n_slots')} slots"
+        )
+        st = rd.get("steiner")
+        if st:
+            lines.append(
+                f"{'':<14} steiner w={st.get('weight')} "
+                f"terminals<={st.get('max_terminals')} "
+                f"abstain={st.get('abstain')} "
+                f"null={(st.get('null') or {}).get('threshold_by_k')}"
+            )
+
+    lines.append("")
+    lines.append("deterministic abstention (corner test / connection cost)")
     for cond in conds:
         ct = report["conditions"][cond]["corner_test"]
         if not ct["adversarial_fired"] and not ct["substantive_fired"]:

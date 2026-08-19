@@ -563,6 +563,104 @@ class SlotsConfig:
 
 
 @dataclass
+class PropagationConfig:
+    """Knobs for condition L3 (``retrieval.mode=propagation``).
+
+    Inert for every other condition. The operator is documented in
+    :mod:`fgl.retrieval.propagation`; what follows is only what each knob
+    trades off.
+
+    **The reduction is the design constraint.** ``hops=1`` with
+    ``normalization="none"`` and ``dense_seed=0`` reproduces condition L2's
+    structural read exactly -- not approximately, not "in spirit". That is
+    asserted in ``tests/test_propagation.py`` and reported by
+    :func:`fgl.retrieval.propagation.reduces_to_l2`, and it is what makes the
+    sweep over ``hops`` a curve whose leftmost point is the published L2
+    number instead of a comparison between two unrelated systems.
+    """
+
+    #: length of the walk, counted in ARRIVALS AT EPISODES. 1 = L2's single
+    #: hop. 2 = the join: episodes sharing a slot with an episode the question
+    #: named, which is what a multi-hop question asks for and the only place
+    #: the extra structure can pay. 3 rarely adds reach that damping has not
+    #: already erased, but it is in the sweep grid so that claim is measured.
+    hops: int = 2
+    #: mass kept per further hop (the complement of PageRank's restart
+    #: probability). Below 1 it guarantees a direct mention always outranks a
+    #: shared neighbour at equal support, which is the right prior.
+    decay: float = 0.5
+    #: ``none`` | ``rw`` | ``sym`` -- see fgl.retrieval.propagation.
+    #: ``sym`` is the spectral normalisation and the principled default: it
+    #: damps the EPISODE side too, which ``1/(1+log deg)`` never did.
+    #: ``none`` exists so the reduction to L2 is exact.
+    normalization: str = "sym"
+    #: subtract each incidence's own incoming flow before relaying, i.e. run
+    #: the Hashimoto non-backtracking operator. Without it, hop 2 is mostly the
+    #: seed reflected off its own episodes -- it looks like a join and is not
+    #: one. Costs one extra bincount per hop.
+    non_backtracking: bool = True
+    #: how much of the walk's personalisation comes from the dense channel, so
+    #: a turn that resembles the question can lend that resemblance to the
+    #: episode next to it in the graph. 0 keeps the dense channel purely
+    #: additive at emission, exactly as L2 has it.
+    dense_seed: float = 0.0
+    #: let hub slots relay mass. OFF, and it is the same rule the scorer and
+    #: the Steiner metric obey: **a hub is a filter, never a bridge.** Turning
+    #: it on is the ablation that shows why -- mass enters the actor vertex and
+    #: leaves smeared over half the corpus.
+    bridge_hubs: bool = False
+
+
+@dataclass
+class SteinerConfig:
+    """Knobs for the connection read of condition L4 (``retrieval.mode=unified``).
+
+    The read itself is documented in :mod:`fgl.retrieval.steiner`. Note what is
+    NOT here: an abstention threshold. It is calibrated per conversation against
+    the cost of random slot tuples of the same size, so the only thing to
+    configure is which tail counts as far.
+    """
+
+    enabled: bool = True
+    #: weight of the join channel, relative to the typed channels. The score is
+    #: scale-free by construction (best root gets ``weight``, twice as far gets
+    #: half), so there is no sharpness exponent to sweep alongside it.
+    weight: float = 1.5
+    #: how many of the question's slots the connection must hold together,
+    #: rarest first. More terminals means a stricter conjunction and one more
+    #: shortest-path computation each; beyond four the rarest slots are already
+    #: doing the discriminating.
+    max_terminals: int = 4
+    #: path cost beyond which two things are not connected in any useful sense.
+    #: In units of ``1 + log(degree)`` per slot hop plus 1 per episode, so ~12
+    #: is three or four hops through moderately common slots.
+    max_cost: float = 12.0
+    #: per-source distance cache. Questions in one conversation reuse each
+    #: other's sources heavily, and the null calibration reuses them again.
+    cache_size: int = 4096
+
+    #: use the connection cost as the abstention signal, superseding the binary
+    #: corner test where it has more resolution. Unlike the corner test this
+    #: ships ON: the corner test was measured as a losing trade (20/446 caught
+    #: for 38/1540 false positives), and the last run's adversarial regression
+    #: (0.666 -> 0.608, as retrieval improved) is what it was supposed to
+    #: prevent.
+    abstain: bool = True
+    #: tail of the NULL distribution above which a question counts as
+    #: unsupported: "these slots sit further apart than 95% of arbitrary
+    #: combinations of the same size in this memory". Derived per conversation,
+    #: never fitted to an answer key.
+    abstain_quantile: float = 0.95
+    #: random tuples drawn per terminal count when building that null
+    null_samples: int = 120
+    #: size of the slot pool the tuples are drawn from. Small on purpose: every
+    #: tuple reuses the same few dozen sources, so the calibration costs about
+    #: ``null_pool`` shortest-path computations rather than
+    #: ``null_samples * k``.
+    null_pool: int = 64
+
+
+@dataclass
 class BaselineConfig:
     rag_top_k: int = 10
     full_context_max_tokens: int = 110_000
@@ -595,6 +693,8 @@ SECTIONS: dict[str, type] = {
     "retrieval": RetrievalConfig,
     "bipartite": BipartiteConfig,
     "slots": SlotsConfig,
+    "propagation": PropagationConfig,
+    "steiner": SteinerConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
 }
@@ -622,6 +722,8 @@ class Config:
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
     bipartite: BipartiteConfig = field(default_factory=BipartiteConfig)
     slots: SlotsConfig = field(default_factory=SlotsConfig)
+    propagation: PropagationConfig = field(default_factory=PropagationConfig)
+    steiner: SteinerConfig = field(default_factory=SteinerConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
 
@@ -741,23 +843,34 @@ class Config:
             raise ConfigError(
                 f"ingest.mode must be triples|bipartite|slots, got {self.ingest.mode!r}"
             )
-        if self.retrieval.mode not in ("walk", "bipartite", "slots"):
+        if self.retrieval.mode not in (
+            "walk", "bipartite", "slots", "propagation", "unified"
+        ):
             raise ConfigError(
-                f"retrieval.mode must be walk|bipartite|slots, got "
-                f"{self.retrieval.mode!r}"
+                "retrieval.mode must be walk|bipartite|slots|propagation|"
+                f"unified, got {self.retrieval.mode!r}"
             )
         # Each non-default memory model builds its own kind of vertex, and a
         # retriever that does not know that kind cannot interpret the graph at
         # all (it would silently score turn vertices as if they were entities).
         # So the pair is checked as a pair, not as two independent settings.
-        _MODEL_PAIRS = {"bipartite": "bipartite", "slots": "slots", "triples": "walk"}
-        if _MODEL_PAIRS[self.ingest.mode] != self.retrieval.mode:
+        # One ingest can serve several reads: L2, L3 and L4 are three
+        # questions asked of the SAME typed episode-slot graph, which is why
+        # they can borrow each other's graphs byte for byte and why a delta
+        # between them isolates the read. What must never pair is an ingest
+        # with a retriever that cannot interpret its vertex kinds.
+        _MODEL_PAIRS = {
+            "bipartite": ("bipartite",),
+            "slots": ("slots", "propagation", "unified"),
+            "triples": ("walk",),
+        }
+        allowed = _MODEL_PAIRS[self.ingest.mode]
+        if self.retrieval.mode not in allowed:
             raise ConfigError(
                 f"ingest.mode={self.ingest.mode!r} builds vertices that "
                 f"retrieval.mode={self.retrieval.mode!r} cannot interpret: "
-                f"expected retrieval.mode="
-                f"{_MODEL_PAIRS[self.ingest.mode]!r} -- the two must be "
-                "switched together"
+                f"expected retrieval.mode in {list(allowed)!r} -- the two must "
+                "be switched together"
             )
         if self.ingest.mode == "bipartite":
             if self.bipartite.bridge_max_degree < 2:
@@ -840,6 +953,42 @@ class Config:
                     "slots.time_granularities must name at least one of "
                     "year,month,day -- an empty time channel is `time_weight=0`, "
                     "not an empty granularity list"
+                )
+        if self.retrieval.mode in ("propagation", "unified"):
+            pg = self.propagation
+            if pg.hops < 1:
+                raise ConfigError("propagation.hops must be >= 1")
+            if not 0.0 < pg.decay <= 1.0:
+                raise ConfigError("propagation.decay must be in (0, 1]")
+            if pg.normalization not in ("none", "rw", "sym"):
+                raise ConfigError(
+                    "propagation.normalization must be none|rw|sym, got "
+                    f"{pg.normalization!r}"
+                )
+            if pg.dense_seed < 0.0:
+                raise ConfigError("propagation.dense_seed must be >= 0")
+        if self.retrieval.mode == "unified":
+            st = self.steiner
+            if st.max_terminals < 2:
+                raise ConfigError(
+                    "steiner.max_terminals must be >= 2 -- a connection needs "
+                    "two things to connect"
+                )
+            if st.max_cost <= 0.0:
+                raise ConfigError("steiner.max_cost must be > 0")
+            if st.weight < 0.0:
+                raise ConfigError("steiner.weight must be >= 0")
+            if not 0.5 <= st.abstain_quantile < 1.0:
+                raise ConfigError(
+                    "steiner.abstain_quantile must be in [0.5, 1) -- it is the "
+                    "upper tail of a null distribution, not a score"
+                )
+            if st.null_samples < 10:
+                raise ConfigError("steiner.null_samples must be >= 10")
+            if st.null_pool <= st.max_terminals:
+                raise ConfigError(
+                    "steiner.null_pool must exceed steiner.max_terminals: a "
+                    "tuple cannot be drawn without replacement otherwise"
                 )
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(

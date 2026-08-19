@@ -1,0 +1,173 @@
+# L4 -- everything in the L line that earned its place, in one condition.
+#
+# This is the only condition in the family that is not an isolation. L1..L3 and
+# L2d each change one thing so a delta means something; L4 exists to answer the
+# other question, the one an isolation cannot: **do the pieces compose?** Every
+# component here has already been measured on its own, which is what makes
+# combining them a synthesis rather than a hopeful pile.
+#
+# What it is made of, and where each piece was justified
+# -------------------------------------------------------
+#   typed slots over episodes           L2   (D26) -- the vocabulary and the unit
+#   corpus-derived thresholds           L2d  (D30) -- no number set from the gold
+#   multi-resolution time               L2d  (D30) -- the granularity knob deleted
+#   non-backtracking walk, 2 hops       L3   (D31) -- the join, as an operator
+#   dense as a second personalisation   here       -- see below
+#   group-Steiner connection channel    here       -- the conjunction
+#   abstention from connection cost     here       -- replaces the corner test
+#
+# The one rule that makes it a design
+# ------------------------------------
+# **A hub is a filter, never a bridge.** Stated once, in
+# `SlotRetriever.is_hub`, and obeyed by all three reads: the scorer flattens a
+# hub to `hub_weight`, the walk refuses to relay through it, the Steiner metric
+# refuses to route through it. Without that single rule every one of these
+# channels would be swamped by the actor and month vertices -- and with it,
+# they are the same idea applied at three depths.
+#
+# The two things L4 adds
+# -----------------------
+# **A channel with an AND in it.** Every score up to here is a sum, so an
+# episode wins by matching one slot hard and nothing in the arithmetic can say
+# "and also the other two". The rooted-star group-Steiner score is a
+# conjunction by construction: an episode that cannot reach one terminal drops
+# out of the intersection however close it is to the rest. Multi-hop was 0.376
+# in the last run; that is the shape it needs.
+#
+# **An abstention with resolution.** Adversarial F1 fell 0.666 -> 0.608 from L1
+# to L2 *while retrieval improved*, and cost roughly 45% of the gross gain:
+# better recall means the context always holds something plausible, so the
+# answerer stops abstaining on its own. The corner test was supposed to cover
+# this and was measured as a losing trade (20/446 caught, 38/1540 false
+# positives). It is replaced rather than retuned. The connection cost is
+# continuous, and its threshold is the upper tail of the cost of RANDOM slot
+# tuples of the same size in this same memory -- so the criterion reads "these
+# things sit further apart than 95% of arbitrary combinations here" and is set
+# without an answer key. See docs/ASSUMPTIONS.md, S8.
+#
+# Why this one builds its own graphs
+# -----------------------------------
+# Multi-resolution time changes the vertex set, so L4 cannot borrow L2's
+# graphs: doing so would compare two memories while claiming to compare two
+# reads. It is the only L condition that pays for an ingest, and the ingest is
+# still zero LLM calls.
+extends: base.yaml
+condition: L4-unified
+
+ingest:
+  mode: slots
+  detect_incongruence: false
+
+entities:
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: unified
+  top_m_anchors: 8
+  # the same budget as every other L condition. The comparison is at equal
+  # cost or it is not a comparison.
+  budget_tokens: 2000
+  max_facts_in_prompt: 80
+
+slots:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  lift_types: true
+  max_types_per_concept: 6
+
+  episode_min_turns: 2
+  episode_max_turns: 4
+  episode_cohesion: 0.15
+
+  max_concepts: 24
+  max_predicates: 12
+  max_types: 24
+
+  max_question_concepts: 6
+  max_question_predicates: 4
+  max_question_types: 8
+
+  # Channel weights are inherited from L2 unchanged and NOT calibrated away:
+  # they encode a claim about the model ("a concept match tells you more than a
+  # hypernym guess"), not about the corpus, and dressing a design decision up
+  # as a measurement would be the dishonest move. They get a sensitivity curve
+  # instead -- `fgl slots-sweep -C L4`.
+  dense_weight: 1.0
+  actor_weight: 1.0
+  predicate_weight: 1.2
+  concept_weight: 1.5
+  type_weight: 0.6
+  time_weight: 0.8
+  mention_weight: 0.25
+  sibling_frac: 0.2
+  slot_damping: 1.0
+
+  enumerate_sets: true
+  set_orbit_boost: 2.0
+
+  # OFF, and superseded rather than merely disabled: `steiner.abstain` below is
+  # the same job done with resolution. Leaving both on would double-count the
+  # same evidence for abstaining.
+  abstain_on_empty_corner: false
+  corner_actor_min: 0.5
+
+  # --- every threshold estimated from the unlabelled corpus (D30) ----------
+  calibration: derived
+  hub_degree_quantile: 0.99
+  hub_degree_min: 8
+  concept_link_quantile: 0.995
+  concept_link_min: 0.55
+  question_stop: derived
+  question_stop_df: 0.01
+  question_stop_ratio: 3.0
+  time_granularities: year,month,day
+
+  # fallbacks, used only where a corpus is too small for a quantile to mean
+  # anything -- and recorded as `fallback`, never applied silently
+  hub_degree: 60
+  hub_weight: 0.2
+  concept_link_threshold: 0.75
+  actor_prior_floor: 0.35
+  actor_prior_full: 0.5
+
+propagation:
+  hops: 2
+  decay: 0.5
+  normalization: sym
+  non_backtracking: true
+  # ON here, unlike L3. In L2 the dense and structural channels never spoke: a
+  # turn that resembled the question could not lend that resemblance to the
+  # episode beside it in the graph. Seeding the walk from both sources costs
+  # nothing -- it is the same walk with a second personalisation vector -- and
+  # open-domain (0.249) is the category that lives entirely on the dense
+  # channel and has no structure of its own to fall back on.
+  dense_seed: 0.5
+  bridge_hubs: false
+
+steiner:
+  enabled: true
+  # scale-free by construction: the best root gets `weight`, twice as far gets
+  # half. No sharpness exponent to sweep alongside it.
+  weight: 1.5
+  # rarest first. Beyond four, the rare slots are already doing the
+  # discriminating and each extra terminal is one more shortest path.
+  max_terminals: 4
+  # in units of (1 + log degree) per slot hop plus 1 per episode: ~three or
+  # four hops through moderately common slots. Beyond that, "connected" is not
+  # a word anyone would use.
+  max_cost: 12.0
+  cache_size: 4096
+
+  abstain: true
+  abstain_quantile: 0.95
+  null_samples: 120
+  null_pool: 64
+
+paths:
+  # its own graphs: multi-resolution time changes the vertex set, so borrowing
+  # L2's would compare two memories while claiming to compare two reads.
+  graphs_condition: ""

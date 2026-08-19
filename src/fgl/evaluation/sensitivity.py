@@ -101,6 +101,32 @@ DEFAULT_GRID: dict[str, list[Any]] = {
     "slots.mention_weight": [0.0, 0.25, 0.5, 1.0],
     "slots.episode_max_turns": [2, 3, 4, 6, 8],
     "slots.episode_cohesion": [0.0, 0.05, 0.15, 0.3, 0.5],
+    # --- L3 / L4. Inert on a condition that does not use them, and the
+    # sweep reports them as perfectly flat, which is the correct answer.
+    #
+    # `propagation.hops` is the one curve in this grid whose leftmost point is
+    # a PUBLISHED NUMBER: at hops=1 with normalization=none the operator is
+    # L2's structural read exactly. Sweeping it is therefore not "tuning a new
+    # knob", it is measuring the size of the generalisation.
+    "propagation.hops": [1, 2, 3],
+    "propagation.decay": [0.25, 0.5, 0.75, 1.0],
+    "propagation.normalization": ["none", "rw", "sym"],
+    "propagation.non_backtracking": [False, True],
+    "propagation.dense_seed": [0.0, 0.25, 0.5, 1.0],
+    "propagation.bridge_hubs": [False, True],
+    "steiner.weight": [0.0, 0.75, 1.5, 3.0],
+    "steiner.max_terminals": [2, 3, 4, 6],
+    "steiner.max_cost": [6.0, 9.0, 12.0, 18.0],
+    "steiner.abstain_quantile": [0.80, 0.90, 0.95, 0.99],
+}
+
+#: Knobs that only exist for L3/L4. Sweeping them on L2 is a no-op, so
+#: `fgl slots-sweep` drops them unless the condition can read them -- a flat
+#: curve for a knob that was never consulted is the most misleading output
+#: this tool can produce.
+MODE_KNOBS: dict[str, tuple[str, ...]] = {
+    "propagation": ("propagation", "unified"),
+    "steiner": ("unified",),
 }
 
 #: Categories, in the order they are reported and coloured.
@@ -310,6 +336,20 @@ def sweep(
     say = progress or (lambda *a: None)
 
     base = Config.load(condition, root=root)
+    # Drop knobs this condition's retriever never reads: a knob that was not
+    # consulted produces a perfectly flat curve, and a flat curve is this
+    # tool's way of saying "not a result" -- so reporting one for a knob that
+    # simply does not apply would be a lie in the tool's own vocabulary.
+    dropped = [
+        k for k in grid
+        if k.split(".")[0] in MODE_KNOBS
+        and base.retrieval.mode not in MODE_KNOBS[k.split(".")[0]]
+    ]
+    for k in dropped:
+        grid.pop(k)
+    if dropped:
+        say("sweep", 0, 1,
+            f"skipping {len(dropped)} knob(s) {base.retrieval.mode!r} does not read")
     base.llm.provider = "fake"
     base.llm.cache_enabled = False
 

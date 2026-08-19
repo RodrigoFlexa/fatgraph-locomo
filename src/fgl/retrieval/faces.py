@@ -168,6 +168,22 @@ class RetrievalResult:
     #: how many episodes the enumerated orbit contributed, for auditing
     n_enumerated: int = 0
 
+    # --- propagation / connection telemetry (L3, L4) ------------------------
+    #: episodes the walk reached that no linked slot is incident to -- i.e. the
+    #: ones that exist only because of hop 2+. If this is ~0 the walk collapsed
+    #: to L2 whatever `propagation.hops` says, and the condition is not testing
+    #: what it claims to.
+    n_walk_only: int = 0
+    #: rooted-star group-Steiner cost of the best episode: how tightly this
+    #: memory holds the question's slots together. ``None`` when the read did
+    #: not apply (fewer than two terminals) or nothing connected them.
+    steiner_cost: Optional[float] = None
+    #: the episode achieving that cost
+    steiner_root: str = ""
+    #: episodes reaching EVERY terminal -- the size of the conjunction, which
+    #: is what distinguishes "one strong match" from "a real join"
+    n_steiner_reaching: int = 0
+
     @property
     def turn_ids(self) -> list[str]:
         out: list[str] = []

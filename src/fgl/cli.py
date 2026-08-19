@@ -810,6 +810,75 @@ def _autotype(raw: str):
     return raw
 
 
+@app.command("hop-profile")
+def hop_profile(
+    condition: str = typer.Option("L2", "--condition", "-C",
+                                  help="Condition whose retriever defines 'missed'."),
+    conversation: Optional[list[str]] = OptConversations,
+    limit_conversations: int = OptLimitConv,
+    force: bool = typer.Option(False, "--force", help="Rebuild existing graphs."),
+    out: Optional[str] = typer.Option(
+        None, "--out", help="Write the report as JSON to this path."
+    ),
+) -> None:
+    """How far the annotated evidence is, in hops — the gate on condition L3.
+
+    A longer walk can only find evidence that is reachable in that many hops.
+    This measures where it actually sits: the share of MISSED evidence at hop 2
+    is the ceiling `propagation.hops=2` can reach, and the share unreachable is
+    what no walk on this graph will ever find (that would need a different
+    ingest, not a different read).
+
+    Also prints the ribbon-structure numbers: achieved faces against the
+    bipartite ceiling E/2, genus against its floor, and the count of episode
+    pairs sharing two or more non-hub slots — the 4-cycles a minimum-genus
+    rotation would turn into faces. Zero LLM calls.
+    """
+    import json as _json
+
+    from fgl.evaluation.hops import format_hop_profile, run_hop_profile
+
+    cfg0 = _load(condition, None, dry_run=True)
+    convs = _dataset(cfg0, conversation, limit_conversations)
+    console.print(
+        f"[bold]hop-profile[/] · {cfg0.condition} · {len(convs)} conversation(s) "
+        f"· [dim]zero LLM calls[/]"
+    )
+    with _progress() as bar:
+        report = run_hop_profile(
+            condition, convs, force_ingest=force, progress=_Bar(bar, "hops")
+        )
+    console.print()
+    console.print(format_hop_profile(report))
+
+    missed = report.get("missed", {})
+    reachable2 = [
+        (cat, b["share_by_hop"].get(2, b["share_by_hop"].get("2", 0.0)))
+        for cat, b in missed.items()
+    ]
+    console.print()
+    if reachable2 and max(v for _c, v in reachable2) >= 0.10:
+        worst = max(reachable2, key=lambda kv: kv[1])
+        console.print(
+            f"[green]A second hop has a target: {worst[1]:.1%} of the "
+            f"{worst[0]} evidence this condition missed is reachable at hop 2. "
+            f"Run `fgl slots-oracle -C {condition} -C L3`.[/]"
+        )
+    else:
+        console.print(
+            "[yellow]Little missed evidence sits at hop 2 — a longer walk has "
+            "nothing to reach here, and the gap is an ingest problem rather "
+            "than a retrieval one.[/]"
+        )
+
+    if out:
+        _p = Path(out)
+        _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_text(_json.dumps(report, ensure_ascii=False, indent=2),
+                      encoding="utf-8")
+        console.print(f"[dim]wrote {_p}[/]")
+
+
 @app.command("scope-check")
 def scope_check(
     condition: str = typer.Option("L2", "--condition", "-C",

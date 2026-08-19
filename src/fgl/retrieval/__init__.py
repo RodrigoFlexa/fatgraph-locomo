@@ -44,6 +44,19 @@ from fgl.retrieval.slots import (
     QuestionSlots,
     SlotRetriever,
 )
+from fgl.retrieval.propagation import (
+    NORMALIZATIONS,
+    PropagationRetriever,
+    propagate,
+    reduces_to_l2,
+)
+from fgl.retrieval.steiner import (
+    NullDistribution,
+    SteinerMetric,
+    SteinerRead,
+    calibrate_null,
+)
+from fgl.retrieval.unified import UnifiedRetriever
 
 __all__ = [
     "AzureEmbedder", "CachedEmbedder", "Embedder", "HashingEmbedder",
@@ -57,4 +70,7 @@ __all__ = [
     "SlotRetriever", "QuestionSlots", "SLOT_SOURCES", "SOURCE_SLOT_ACTOR",
     "SOURCE_SLOT_PREDICATE", "SOURCE_SLOT_CONCEPT", "SOURCE_SLOT_TYPE",
     "SOURCE_SLOT_TIME", "SOURCE_SLOT_DENSE",
+    "PropagationRetriever", "propagate", "reduces_to_l2", "NORMALIZATIONS",
+    "SteinerMetric", "SteinerRead", "NullDistribution", "calibrate_null",
+    "UnifiedRetriever",
 ]

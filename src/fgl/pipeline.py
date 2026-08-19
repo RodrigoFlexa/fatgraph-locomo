@@ -40,7 +40,9 @@ from fgl.retrieval import (
     CachedEmbedder,
     Embedder,
     FaceRetriever,
+    PropagationRetriever,
     SlotRetriever,
+    UnifiedRetriever,
     build_embedder,
 )
 
@@ -89,10 +91,16 @@ _INGESTORS = {
     "bipartite": BipartiteIngestor,
     "slots": SlotIngestor,
 }
+#: One typed memory, three questions asked of it. The nesting is real -- L3
+#: subclasses L2 and L4 subclasses L3 -- so "L3 is L2 with one more hop" is a
+#: fact about the class hierarchy, and a condition that borrows another's
+#: graphs is comparing reads and nothing else.
 _RETRIEVERS = {
     "walk": FaceRetriever,
     "bipartite": BipartiteRetriever,
-    "slots": SlotRetriever,
+    "slots": SlotRetriever,           # L2: which episodes TOUCH the slots
+    "propagation": PropagationRetriever,  # L3: which are REACHED from them
+    "unified": UnifiedRetriever,      # L4: which HOLD THEM TOGETHER
 }
 
 #: Above these the memory graph is a star and multi-hop retrieval is redundant

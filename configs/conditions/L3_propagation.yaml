@@ -1,0 +1,136 @@
+# L3 -- the same memory, read by a walk instead of by one hop.
+#
+# The whole point of this file is what it does NOT change
+# -------------------------------------------------------
+# L3 borrows L2's graphs byte for byte (`paths.graphs_condition: L2-slots`) and
+# inherits every stage of L2's retriever by subclassing. It overrides exactly
+# one method -- `_structural_channels`. So a delta between L2 and L3 cannot be
+# a different memory, a different question parser, a different actor prior, a
+# different emission policy or a different calibration. It can only be the
+# thing this condition is about.
+#
+# Every knob below that is not in the `propagation` block is copied from L2
+# verbatim, including the pinned `calibration: absolute` -- the derived
+# estimators are a separate axis (L2 vs L2d) and mixing them in here would
+# confound two changes in one number.
+#
+# What the walk is
+# ----------------
+# L2's structural score is one iteration of a random walk with restart: the
+# query's slots are the personalisation vector, the incidence is the
+# transition, and `1/(1+log deg)` is a hand-rolled degree normalisation. This
+# condition runs the same operator for longer. On a bipartite episode-slot
+# graph the extra hop has an exact meaning:
+#
+#   hop 1   slot_q -> episode                            L2's read
+#   hop 2   slot_q -> episode -> slot -> episode'        the JOIN
+#
+# and hop 2 closing back onto an episode already reached, through a *different*
+# slot, is the 4-cycle e1-s_a-e2-s_b-e1 -- the face of a quadrangular embedding
+# of a bipartite graph. So this is the ribbon theory's own object, computed
+# without a rotation, a genus minimisation or an embedding. Run
+# `fgl hop-profile` first: it measures how much evidence actually lives at hop
+# 2, and therefore whether this condition has anything to find.
+#
+# The reduction is exact
+# ----------------------
+# `propagation.hops: 1` + `normalization: none` + `dense_seed: 0` reproduces L2
+# vertex for vertex (asserted in tests/test_propagation.py). Sweeping
+# `propagation.hops` therefore produces a curve whose leftmost point IS the
+# published L2 number:
+#
+#   fgl slots-sweep -C L3 -k propagation.hops
+#
+# Cost: zero LLM calls to ingest (the graphs already exist), and a handful of
+# numpy bincounts per question on top of L2.
+extends: base.yaml
+condition: L3-propagation
+
+ingest:
+  mode: slots
+  detect_incongruence: false
+
+entities:
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: propagation
+  top_m_anchors: 8
+  budget_tokens: 2000
+  max_facts_in_prompt: 80
+
+# --- identical to L2, deliberately -----------------------------------------
+slots:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  lift_types: true
+  max_types_per_concept: 6
+
+  episode_min_turns: 2
+  episode_max_turns: 4
+  episode_cohesion: 0.15
+
+  max_concepts: 24
+  max_predicates: 12
+  max_types: 24
+
+  max_question_concepts: 6
+  max_question_predicates: 4
+  max_question_types: 8
+  concept_link_threshold: 0.75
+
+  dense_weight: 1.0
+  actor_weight: 1.0
+  predicate_weight: 1.2
+  concept_weight: 1.5
+  type_weight: 0.6
+  time_weight: 0.8
+  mention_weight: 0.25
+  actor_prior_floor: 0.35
+  actor_prior_full: 0.5
+  sibling_frac: 0.2
+
+  enumerate_sets: true
+  set_orbit_boost: 2.0
+  slot_damping: 1.0
+
+  hub_degree: 60
+  hub_weight: 0.2
+
+  abstain_on_empty_corner: false
+  corner_actor_min: 0.5
+
+  calibration: absolute
+  question_stop: literal
+  time_granularities: month
+
+# --- the one thing this condition is about ---------------------------------
+propagation:
+  # 2 = the join. Sweep it; 1 is L2 and 3 is the claim that damping has not
+  # already erased the third ring.
+  hops: 2
+  # a direct mention must outrank a shared neighbour at equal support
+  decay: 0.5
+  # the spectral normalisation. Damps the EPISODE side too, which
+  # `1/(1+log deg)` never did -- an episode that mentions forty things is now
+  # discounted for it exactly as a slot on forty episodes is.
+  normalization: sym
+  # the Hashimoto operator. Without it hop 2 is mostly the seed reflected off
+  # its own episodes: it looks like a join and is not one.
+  non_backtracking: true
+  # keep the dense channel purely additive at emission, exactly as L2 has it.
+  # `L4` turns this on; isolating it here would be a second change.
+  dense_seed: 0.0
+  # a hub is a filter, never a bridge. The ablation that shows why is
+  # `--set propagation.bridge_hubs=true`, which smears mass through the actor
+  # vertex over half the corpus.
+  bridge_hubs: false
+
+paths:
+  # L2's graphs, unchanged. This is what makes the comparison a comparison of
+  # reads -- and it means L3 costs nothing to ingest.
+  graphs_condition: L2-slots
