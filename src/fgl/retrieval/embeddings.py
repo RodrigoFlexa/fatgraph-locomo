@@ -83,7 +83,7 @@ class SentenceTransformerEmbedder(Embedder):
         from sentence_transformers import SentenceTransformer  # lazy import
 
         self._model = SentenceTransformer(model_name)
-        self.dim = int(self._model.get_sentence_embedding_dimension())
+        self.dim = int(self._model.get_embedding_dimension())
         self.normalize = normalize
         self.batch_size = batch_size
 
