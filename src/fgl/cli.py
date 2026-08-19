@@ -651,6 +651,7 @@ def slots_oracle(
     ),
     conversation: Optional[list[str]] = OptConversations,
     limit_conversations: int = OptLimitConv,
+    set_: Optional[list[str]] = OptSet,
     force: bool = typer.Option(False, "--force", help="Rebuild existing graphs."),
     out: Optional[str] = typer.Option(
         None, "--out", help="Also write the report as JSON to this path."
@@ -667,6 +668,7 @@ def slots_oracle(
     """
     import json as _json
 
+    from fgl.evaluation.sensitivity import INGEST_KNOBS
     from fgl.evaluation.slots_oracle import TARGETS, format_oracle, run_oracle
 
     names = list(conditions) if conditions else ["L1", "L2"]
@@ -678,11 +680,21 @@ def slots_oracle(
     console.print(
         f"[bold]slots-oracle[/] · {', '.join(names)} · {len(convs)} conversation(s) "
         f"· [dim]zero LLM calls[/]"
+        + (f"\n[yellow]--set {' '.join(set_)}[/]" if set_ else "")
     )
+    if set_ and not force and any(
+        k.split("=")[0].strip() in INGEST_KNOBS for k in set_
+    ):
+        console.print(
+            "[yellow]One of those overrides changes the GRAPH, and graphs are "
+            "cached per condition — add --force or you will be reading a graph "
+            "built under a different setting.[/]"
+        )
 
     with _progress() as bar:
         report = run_oracle(
-            names, convs, force_ingest=force, progress=_Bar(bar, "oracle")
+            names, convs, force_ingest=force, progress=_Bar(bar, "oracle"),
+            overrides=list(set_ or ()),
         )
 
     console.print()

@@ -109,18 +109,33 @@ def run_oracle(
     root=None,
     force_ingest: bool = False,
     progress=None,
+    overrides: Sequence[str] = (),
 ) -> dict:
     """Retrieve for every question under every ``condition``; answer none.
 
     Graphs are built through :class:`fgl.pipeline.Runner`, so they land in the
     same ``artifacts/graphs/<condition>/`` a real run would use and the run
     that follows reuses them instead of rebuilding.
+
+    ``overrides`` are ``dotted.key=value`` strings applied to EVERY condition,
+    which is what makes an ablation a one-liner instead of a new config file:
+    ``-C L3 --set propagation.bridge_hubs=true`` asks "what does the hub rule
+    buy?" and answers it in two minutes. They are recorded in the report so a
+    number produced under an override cannot later be mistaken for the
+    condition's own.
+
+    A caveat that matters: an override touching an INGEST knob changes the
+    graph, and graphs are cached per condition. Pass ``force_ingest=True``
+    alongside those, or the run silently reads a graph built under a different
+    setting.
     """
-    report: dict = {"conditions": {}, "targets": TARGETS}
+    report: dict = {
+        "conditions": {}, "targets": TARGETS, "overrides": list(overrides),
+    }
     say = progress or (lambda *a: None)
 
     for condition in conditions:
-        cfg = Config.load(condition)
+        cfg = Config.load(condition, overrides=overrides)
         # Pinned, not inherited: this command retrieves and never answers, so a
         # misconfigured condition must not be able to open a billable client.
         cfg.llm.provider = "fake"
@@ -197,6 +212,12 @@ def format_oracle(report: dict) -> str:
     conds = list(report["conditions"])
     lines: list[str] = []
 
+    if report.get("overrides"):
+        lines.append(
+            "OVERRIDES APPLIED TO EVERY CONDITION: "
+            + ", ".join(report["overrides"])
+        )
+        lines.append("")
     lines.append("recall_context (evidence reaching the prompt), by category")
     lines.append(f"{'condition':<14}" + "".join(f"{c[:11]:>13}" for c in cats))
     for cond in conds:

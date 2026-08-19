@@ -1,0 +1,161 @@
+# L5 -- L2d plus the one channel that measured positive, and nothing else.
+#
+# Why this exists, and why it is SIMPLER than L4
+# -----------------------------------------------
+# L4 bundled two ideas: a two-hop walk and a group-Steiner connection channel.
+# Measured against L2d on all 10 conversations, zero LLM:
+#
+#   category      L2d      L4     delta   questions   weighted
+#   multi-hop    0.641   0.655   +0.014      282        +3.9
+#   single-hop   0.910   0.904   -0.006      841        -5.0
+#   temporal     0.899   0.892   -0.007      321        -2.2
+#   open-domain  0.565   0.533   -0.032       96        -3.1
+#   adversarial  0.866   0.827   -0.039      446       -17.4
+#   overall      0.8435  0.8315  -0.012                 -23.8 questions
+#
+# Two facts fall out of that table.
+#
+# **The connection channel works.** +0.014 on multi-hop is the only gain any
+# condition in the L line has produced over L2d in any category. The rooted-star
+# conjunction is doing the thing it was built to do.
+#
+# **The walk does not, and it never did.** `fgl hop-profile` said so before L3
+# ran -- 98.6% of the evidence L2 missed is already one hop away, so a longer
+# walk adds reach to a graph whose reach is saturated, which can only add noise.
+# L3 confirmed it, and L4 inherited it. The losses above are concentrated
+# exactly where extra reach hurts most: adversarial, where the whole task is
+# NOT finding a confident-looking answer.
+#
+# So this condition is L4 with the walk taken back out. It is
+#
+#     L2d  +  the group-Steiner connection channel
+#
+# and nothing else -- `hops: 1` and `normalization: none` make the propagation
+# operator provably identical to L2's single hop (see
+# `fgl.retrieval.propagation.reduces_to_l2` and the test that pins it score for
+# score), so the ONLY difference from L2d is the conjunction.
+#
+# The hypothesis, stated so it can lose
+# --------------------------------------
+# If the multi-hop gain survives and the four losses vanish, L5 beats L2d
+# overall and is the condition to run. If the losses follow the Steiner channel
+# rather than the walk -- which is entirely possible, since an adversarial
+# question's terminals connect badly by definition and a rooted-star boost could
+# be promoting the wrong episodes -- then the connection channel is also
+# net-negative here and the L line ends at L2d. Both outcomes are worth the
+# three minutes.
+#
+#     fgl slots-oracle -C L2d -C L4 -C L5
+#
+# What this condition deliberately does NOT do
+# ---------------------------------------------
+# It does not re-tune anything to recover the losses. Every knob below is
+# L2d's, unchanged. Sweeping the weights until L4's losses go away would be
+# fitting to the same 10 conversations the number is reported on -- exactly
+# what D30 spent an iteration removing. The walk comes out because a
+# measurement said it does not belong, not because a search found a better
+# corner of the space.
+extends: base.yaml
+condition: L5-conjunction
+
+ingest:
+  mode: slots
+  detect_incongruence: false
+
+entities:
+  llm_threshold: 0.85
+
+curation:
+  curation: false
+  consolidation: false
+
+retrieval:
+  mode: unified
+  top_m_anchors: 8
+  budget_tokens: 2000
+  max_facts_in_prompt: 80
+
+# --- identical to L2d, line for line ---------------------------------------
+slots:
+  ner_model: en_core_web_sm
+  resolve_temporal: true
+  lift_types: true
+  max_types_per_concept: 6
+
+  episode_min_turns: 2
+  episode_max_turns: 4
+  episode_cohesion: 0.15
+
+  max_concepts: 24
+  max_predicates: 12
+  max_types: 24
+
+  max_question_concepts: 6
+  max_question_predicates: 4
+  max_question_types: 8
+
+  dense_weight: 1.0
+  actor_weight: 1.0
+  predicate_weight: 1.2
+  concept_weight: 1.5
+  type_weight: 0.6
+  time_weight: 0.8
+  mention_weight: 0.25
+  sibling_frac: 0.2
+  slot_damping: 1.0
+
+  enumerate_sets: true
+  set_orbit_boost: 2.0
+
+  abstain_on_empty_corner: false
+  corner_actor_min: 0.5
+
+  calibration: derived
+  hub_degree_quantile: 0.99
+  hub_degree_min: 8
+  concept_link_quantile: 0.995
+  concept_link_min: 0.55
+  question_stop: derived
+  question_stop_df: 0.01
+  question_stop_ratio: 3.0
+  time_granularities: year,month,day
+
+  hub_degree: 60
+  hub_weight: 0.2
+  concept_link_threshold: 0.75
+  actor_prior_floor: 0.35
+  actor_prior_full: 0.5
+
+propagation:
+  # THE WALK IS OFF. These three values are not a setting, they are an
+  # identity: `reduces_to_l2` returns True for them, and a test asserts the
+  # scores match L2's single hop to 1e-9. So the propagation stage contributes
+  # exactly nothing here and L5 - L2d is the Steiner channel, alone.
+  hops: 1
+  normalization: none
+  dense_seed: 0.0
+  # inert at one hop; left at L4's values so a future `hops: 2` is one edit
+  decay: 0.5
+  non_backtracking: true
+  bridge_hubs: false
+
+steiner:
+  # the one thing this condition adds
+  enabled: true
+  weight: 1.5
+  max_terminals: 4
+  max_cost: 12.0
+  cache_size: 4096
+  # off, from the measurement in L4_unified.yaml: 10/446 caught for 28/1540
+  # false positives. The signal is still computed and reported for free.
+  abstain: false
+  abstain_quantile: 0.95
+  null_samples: 120
+  null_pool: 64
+
+paths:
+  # L2d's graphs, byte for byte. Multi-resolution time and the derived
+  # calibration are identical, so there is nothing to rebuild -- and borrowing
+  # them is what makes L5 - L2d a comparison of ONE channel rather than of two
+  # memories. Costs no ingest.
+  graphs_condition: L2d-derived

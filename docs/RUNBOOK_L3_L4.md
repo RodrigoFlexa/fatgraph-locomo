@@ -1,4 +1,10 @@
-# Runbook — rodar L3 e L4 no servidor
+# Runbook — rodar a linha L no servidor
+
+> **Atualizado 2026-08-19, depois do primeiro oracle completo.** O veredito
+> mudou: **rode a L2d**, não a L3 nem a L4. Ver `docs/DECISIONS.md` D32 para os
+> números. A L3 está medida como negativa (o `hop-profile` avisou antes) e a L4
+> perde 0.012 de recall geral para a L2d. A pergunta em aberto é a **L5**
+> (`L2d + só o canal de conexão`), que custa 3 minutos: `fgl slots-oracle -C L2d -C L5`.
 
 Escrito para ser seguido de cima para baixo. **As três primeiras etapas não
 gastam um único token de LLM** e decidem se as duas últimas valem a pena — se

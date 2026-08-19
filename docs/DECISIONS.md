@@ -874,3 +874,80 @@ perguntas*, o que é outro estimador e outro experimento.
 argumento metodológico, e o delta L2→L2d é limpo. A L3 não deve rodar. A L4
 só depois de a re-rodada do oracle confirmar que os bugs eram a causa das duas
 quedas.
+
+## D33 — Re-rodada limpa: a L2d vence, e a L4 se separa em duas metades
+
+Com os dois bugs de D32 corrigidos (`question_corpus` chegando de verdade,
+`steiner.abstain` honesto), oracle nas 10 conversas:
+
+| categoria | n | L2d | L4 | delta | peso |
+|---|---|---|---|---|---|
+| single-hop | 841 | 0.910 | 0.904 | −0.006 | −5.0 perguntas |
+| multi-hop | 282 | 0.641 | **0.655** | **+0.014** | **+3.9** |
+| temporal | 321 | 0.899 | 0.892 | −0.007 | −2.2 |
+| open-domain | 96 | 0.565 | 0.533 | −0.032 | −3.1 |
+| adversarial | 446 | 0.866 | 0.827 | −0.039 | **−17.4** |
+| **overall** | 1986 | **0.8435** | 0.8315 | **−0.012** | −23.8 |
+
+**O stoplist não era a causa.** Com o bug corrigido, open-domain da L4 foi de
+0.528 para 0.533 — +0.005. A hipótese de D32 estava errada e fica registrada
+como errada. O que sobra como explicação é o passeio.
+
+**A L2d é a condição para rodar com LLM.** Melhor que a L2 em todas as cinco
+categorias e melhor que a L4 no agregado, e é a condição em que nenhum número
+foi escolhido olhando para as respostas.
+
+### A L4 se separa limpamente em duas metades, e só uma presta
+
+**O canal de conexão funciona.** +0.014 em multi-hop é o **único ganho que
+qualquer condição da linha L produziu sobre a L2d em qualquer categoria**. A
+conjunção do group Steiner faz exatamente o que foi construída para fazer.
+
+**O passeio não funciona, e nunca funcionou.** O `hop-profile` disse isso antes
+da L3 rodar: 98,6% da evidência que a L2 erra já está a um salto. Um passeio
+mais longo adiciona alcance a um grafo cujo alcance está saturado — só pode
+adicionar ruído. E as perdas estão concentradas exatamente onde alcance extra
+machuca mais: **adversarial**, onde a tarefa inteira é *não* encontrar uma
+resposta convincente. −17,4 perguntas contra +3,9.
+
+### D31 revisado: o que estava certo e o que estava errado
+
+Certo: reconhecer que o scorer da L2 já era um passeio de um salto, e formular
+multi-hop como *conexão* em vez de proximidade. O segundo produziu o único
+ganho da linha.
+
+Errado: assumir que generalizar o passeio para dois saltos seria uma melhoria
+porque a operação é mais geral. Generalidade não é ganho quando a restrição
+está em outro lugar. O `hop-profile` foi construído justamente para pegar isso
+e pegou — o erro foi ter shipado a L3 e a L4 com `hops: 2` **antes** de olhar
+para o que ele disse.
+
+### L5 — a correção que a medição forçou
+
+`configs/conditions/L5_conjunction.yaml`: **L2d + o canal de conexão, e nada
+mais.** `hops: 1`, `normalization: none`, `dense_seed: 0` não são um ajuste,
+são uma *identidade* — `reduces_to_l2()` retorna True e um teste pina que os
+scores batem com o salto único da L2 a 1e-9. Então `L5 − L2d` é a conjunção,
+sozinha. Empresta os grafos da L2d, custo de ingest zero, ~3 minutos.
+
+Hipótese enunciada de modo que possa perder: se o ganho de multi-hop sobreviver
+e as quatro perdas sumirem, a L5 ganha da L2d. Se as perdas seguirem o canal
+Steiner em vez do passeio — perfeitamente possível, já que os terminais de uma
+pergunta adversarial se conectam mal por definição e o boost por estrela
+enraizada pode estar promovendo os episódios errados — então a conexão também é
+negativa aqui e a linha L termina na L2d. Os dois desfechos valem os 3 minutos.
+
+**O que a L5 deliberadamente não faz:** re-tunar nada para recuperar as perdas
+da L4. Todo knob é o da L2d, intocado. Varrer os pesos até as perdas sumirem
+seria ajustar nas mesmas 10 conversas em que o número é reportado — exatamente
+o que D30 gastou uma iteração removendo. O passeio sai porque uma medição disse
+que ele não pertence, não porque uma busca achou um canto melhor do espaço.
+
+### Bug de documentação corrigido junto
+
+O runbook de D31 mandava rodar `fgl slots-oracle -C L3 --set propagation.bridge_hubs=true`
+e o comando **não aceitava `--set`**. Aceita agora, os overrides são registrados
+no relatório (para que um número produzido sob override nunca seja confundido
+com o da condição), e o comando avisa quando um override mexe num knob de
+ingestão sem `--force` — caso em que o grafo em cache foi construído com outra
+configuração.

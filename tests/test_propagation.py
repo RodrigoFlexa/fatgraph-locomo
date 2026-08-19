@@ -745,3 +745,76 @@ def test_l4_ships_with_the_abstention_off_and_says_why():
     assert c.slots.abstain_on_empty_corner is False
     # ...but the signal is still computed, so its rates stay measurable for free
     assert c.steiner.enabled is True
+
+
+# --------------------------------------------------------------------------- #
+# L5 -- the correction the measurement forced                                  #
+# --------------------------------------------------------------------------- #
+
+
+def test_l5_is_l2d_plus_exactly_one_channel():
+    """L5 exists because L4 bundled a channel that works with a walk that does
+    not. The isolation only means something if it really is an isolation.
+
+    Every slot knob must equal L2d's, the propagation stage must be the
+    provable identity (`reduces_to_l2`), and only `steiner` may differ. If any
+    of that drifts, `L5 - L2d` stops being "the connection channel" and becomes
+    an uninterpretable bundle -- which is the mistake L5 was created to undo.
+    """
+    from fgl.retrieval.propagation import reduces_to_l2
+
+    l2d, l5 = Config.load("L2d"), Config.load("L5")
+
+    for knob in vars(l2d.slots):
+        assert getattr(l5.slots, knob) == getattr(l2d.slots, knob), knob
+    assert l5.retrieval.budget_tokens == l2d.retrieval.budget_tokens
+    assert l5.retrieval.max_facts_in_prompt == l2d.retrieval.max_facts_in_prompt
+
+    # the walk is off by identity, not by a setting that merely looks small
+    assert reduces_to_l2(l5)
+    # and the one thing it adds
+    assert l5.steiner.enabled is True
+    assert l5.retrieval.mode == "unified"
+    # borrowing L2d's graphs is what keeps this a comparison of reads
+    assert l5.paths.graphs_condition == "L2d-derived"
+
+
+def test_l5_scores_l2d_plus_the_steiner_boost_and_nothing_else(
+    built, embedder, cfg
+):
+    """The identity, exercised rather than asserted from the config.
+
+    With the Steiner channel switched off, L5 must reproduce L2d's retrieval
+    exactly -- same turns, same scores. Anything else means the propagation
+    stage is contributing when it claims not to.
+    """
+    l2d_cfg = _condition("L2d", cfg)
+    l5_cfg = _condition("L5", cfg)
+    l5_cfg.steiner.enabled = False
+
+    base = SlotRetriever(built, embedder, l2d_cfg, {})
+    l5 = UnifiedRetriever(built, embedder, l5_cfg, {})
+    for q in QUESTIONS:
+        a, b = base.retrieve(q), l5.retrieve(q)
+        assert [f.turn_ids for f in a.facts] == [f.turn_ids for f in b.facts], q
+        np.testing.assert_allclose(
+            [f.anchor_score for f in a.facts],
+            [f.anchor_score for f in b.facts],
+            rtol=1e-9, atol=1e-12, err_msg=q,
+        )
+
+
+def test_the_oracle_can_run_an_ablation_without_a_new_config_file():
+    """`--set` on `slots-oracle`. The runbook documented ablations like
+    `--set propagation.bridge_hubs=true` before the command could accept them;
+    this pins that the plumbing exists, and that the overrides are recorded in
+    the report so a number produced under one is never mistaken for the
+    condition's own.
+    """
+    import inspect
+
+    from fgl.evaluation.slots_oracle import run_oracle
+
+    assert "overrides" in inspect.signature(run_oracle).parameters
+    c = Config.load("L4", overrides=["propagation.bridge_hubs=true"])
+    assert c.propagation.bridge_hubs is True
