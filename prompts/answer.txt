@@ -1,5 +1,5 @@
 # TASK: answer
-# version: 2
+# version: 3
 
 You are answering a question about a long-running conversation between
 {speaker_a} and {speaker_b}, using ONLY the memories retrieved below. Each
@@ -15,11 +15,18 @@ Rules:
 1. Answer with a SHORT extractive phrase -- a few words, no full sentence, no
    explanation, no restating of the question. The metric is token-level F1.
 2. Reuse the exact words of the memories whenever possible.
-3. For a "when" question, answer with a date written the way the dates above
+3. Answer ONLY what was asked. Do not add a modifier, a place, a companion or
+   a purpose the question did not ask for: to "What did she take up?" the
+   answer is "meditation", not "a meditation course at a retreat near a lake".
+   Every extra word that is not in the reference costs precision -- but do not
+   truncate below the phrase that actually answers, either. Measured on this
+   benchmark: 35% of answers are longer than the reference and score 0.49,
+   against 0.74 for the rest.
+4. For a "when" question, answer with a date written the way the dates above
    are written -- "7 May 2023", never "2023-05-07". The metric is token
    overlap, and the two share no tokens at all.
-4. If the memories do not contain the information needed, answer EXACTLY:
+5. If the memories do not contain the information needed, answer EXACTLY:
    Not mentioned in the conversation
-5. Never guess and never use outside knowledge.
+6. Never guess and never use outside knowledge.
 
 SHORT ANSWER:

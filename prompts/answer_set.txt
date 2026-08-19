@@ -1,0 +1,31 @@
+# TASK: answer_set
+# version: 1
+
+You are answering a question about a long-running conversation between
+{speaker_a} and {speaker_b}, using ONLY the memories retrieved below. Each
+memory is prefixed with the date of the session it came from. Memories are
+grouped by narrative trail and listed in trail order.
+
+MEMORIES:
+{context}
+
+QUESTION: {question}
+
+This question asks for a LIST. The reference answer names SEVERAL items, and
+the score is computed item by item against it: naming one correct item out of
+four scores a quarter, however right that one item is. Scanning every memory
+for another item is therefore always worth it.
+
+Rules:
+1. Answer with a comma-separated list of the items the memories support --
+   every distinct one you can find, not just the first or the clearest.
+2. Each item is a SHORT phrase, a few words. No sentence, no explanation, no
+   numbering, no restating of the question.
+3. Reuse the exact words of the memories for each item.
+4. Do NOT invent items to lengthen the list, and do NOT repeat the same item
+   in two wordings -- a wrong or duplicated item costs precision.
+5. If the memories support exactly one item, answer with that one item alone.
+6. If the memories contain no item at all, answer EXACTLY:
+   Not mentioned in the conversation
+
+SHORT ANSWER:

@@ -458,6 +458,15 @@ class SlotsConfig:
     #: (high degree, still useful) instead of a hub (high degree, useless).
     hub_degree: int = 60
     hub_weight: float = 0.2
+    #: answer a list question by enumerating an orbit instead of ranking
+    #: episodes (fgl.retrieval.slots, step 2b). Category 1 is scored item by
+    #: item, so an incomplete list is penalised in proportion -- and the
+    #: sigma-orbit of a slot IS the list, already in chronological order.
+    enumerate_sets: bool = True
+    #: score added to every episode of the enumerated orbit. Deliberately above
+    #: any single channel weight: on a set question the orbit is not evidence
+    #: *for* an answer, it is the answer, and it has to survive truncation.
+    set_orbit_boost: float = 2.0
     #: exponent on the degree damping ``1/(1+log(deg)) ** slot_damping``.
     #: 0 disables it (every orbit member scores the same, which is what L1
     #: does); 1 is full damping. Between them is the precision/enumeration
@@ -477,6 +486,80 @@ class SlotsConfig:
     #: pair, so both speakers appear in nearly all of them; at 0.0 the corner
     #: exists everywhere and the test never fires. 0.5 = the majority.
     corner_actor_min: float = 0.5
+
+    # --- calibration: where the numbers above come from --------------------
+    # Every threshold in this section began as a value swept against one
+    # benchmark's annotations. That is normal practice and it is also the
+    # method's main liability: a number chosen by looking at the answers
+    # cannot be inherited by a second corpus, and a reviewer cannot check it.
+    # The knobs below switch each one from a literal to an estimator measured
+    # on the unlabelled corpus at build time (fgl.memory.calibration), so the
+    # question "does this parameter need the gold labels?" has the answer
+    # "no" for every one of them. Provenance is recorded per knob in the
+    # ingest report -- `derived` vs `absolute` vs `fallback` -- rather than
+    # asserted in a comment.
+    #
+    # DEFAULT IS `derived`: the honest default of the method is the estimator.
+    # `configs/conditions/L2_slots.yaml` pins `absolute` explicitly so the
+    # already-measured L2 numbers reproduce byte for byte, and
+    # `L2d_derived.yaml` is the same condition with every estimator on -- the
+    # delta between the two IS the calibration debt, measured rather than
+    # argued about.
+    calibration: str = "derived"
+
+    #: hub cut-off as a quantile of the per-KIND degree distribution instead of
+    #: an absolute incidence count. The absolute form is not merely inelegant,
+    #: it is wrong under rescaling: on a corpus ten times longer every slot
+    #: crosses a fixed 60 and the whole graph becomes a hub. Per kind because
+    #: the kinds have incomparable degree scales by construction -- an actor is
+    #: incident to about half the episodes and a concept to three.
+    hub_degree_quantile: float = 0.99
+    #: floor under the derived cut-off. Not a tuning knob: it comes from the
+    #: arithmetic of the damping term (below ~e^2 incidences the damping factor
+    #: is still above 1/3, so the slot is still contributing and flattening it
+    #: to `hub_weight` would lose more than it saves).
+    hub_degree_min: int = 8
+
+    #: concept_link_threshold as a quantile of the observed concept-to-concept
+    #: cosine distribution rather than an absolute cosine. An absolute cosine
+    #: is a property of the encoder at least as much as of the task: swap the
+    #: embedding model and 0.75 means something else. The quantile asks the
+    #: question the literal was standing in for -- "closer than chance in this
+    #: corpus under this encoder".
+    concept_link_quantile: float = 0.995
+    #: never link below this cosine however loose the corpus' own distribution
+    concept_link_min: float = 0.55
+
+    #: source of the question-side noun stoplist.
+    #: ``literal``  the frozen LEGACY_QUESTION_NOUN_STOP -- reproduces the
+    #:              measured numbers, and is the only honest setting when the
+    #:              question distribution is not available in advance;
+    #: ``derived``  estimated by contrasting how often a noun appears in the
+    #:              question corpus against how often it appears in the memory
+    #:              (fgl.memory.calibration.derive_question_stop). Uses no gold
+    #:              answer, evidence or category -- but it does read the text of
+    #:              the questions, which is transductive; see ASSUMPTIONS.md S5;
+    #: ``none``     no question-side filtering at all, i.e. the ablation that
+    #:              says how much the stoplist was worth in the first place.
+    question_stop: str = "derived"
+    #: minimum share of questions a noun must appear in before it can be called
+    #: framing at all -- keeps a rare accident out of the list.
+    question_stop_df: float = 0.01
+    #: how over-represented in questions relative to the memory a noun has to
+    #: be. A topic word is common in questions BECAUSE it is common in the
+    #: conversations, so its ratio sits near 1; a template word is common in
+    #: questions and absent from what anyone said.
+    question_stop_ratio: float = 3.0
+
+    #: granularities the time channel indexes, comma-separated, coarse to fine.
+    #: ``month`` alone is the original single-resolution index, chosen because
+    #: it is the grain LoCoMo questions happen to use -- a true observation
+    #: about one question generator and a bad reason for a parameter. Indexing
+    #: every level instead REMOVES the parameter: a question emits every level
+    #: it names and the degree damping already in the scorer decides which one
+    #: carries the match (a year vertex sits on most of the corpus and is
+    #: damped to nothing; a day vertex sits on a handful and scores full).
+    time_granularities: str = "year,month,day"
 
 
 @dataclass
@@ -703,6 +786,8 @@ class Config:
                 raise ConfigError("slots.concept_link_threshold must be in [0, 1]")
             if not 0.0 <= sl.corner_actor_min <= 1.0:
                 raise ConfigError("slots.corner_actor_min must be in [0, 1]")
+            if sl.set_orbit_boost < 0.0:
+                raise ConfigError("slots.set_orbit_boost must be >= 0")
             if sl.slot_damping < 0.0:
                 raise ConfigError("slots.slot_damping must be >= 0")
             if not 0.0 <= sl.actor_prior_floor <= 1.0:
@@ -716,6 +801,46 @@ class Config:
                          "max_question_types", "max_types_per_concept"):
                 if getattr(sl, name) < 1:
                     raise ConfigError(f"slots.{name} must be >= 1")
+            if sl.calibration not in ("absolute", "derived"):
+                raise ConfigError(
+                    "slots.calibration must be absolute|derived, got "
+                    f"{sl.calibration!r}"
+                )
+            if sl.question_stop not in ("literal", "derived", "none"):
+                raise ConfigError(
+                    "slots.question_stop must be literal|derived|none, got "
+                    f"{sl.question_stop!r}"
+                )
+            if not 0.5 <= sl.hub_degree_quantile < 1.0:
+                raise ConfigError("slots.hub_degree_quantile must be in [0.5, 1)")
+            if sl.hub_degree_min < 2:
+                raise ConfigError("slots.hub_degree_min must be >= 2")
+            if not 0.5 <= sl.concept_link_quantile < 1.0:
+                raise ConfigError("slots.concept_link_quantile must be in [0.5, 1)")
+            if not 0.0 <= sl.concept_link_min <= 1.0:
+                raise ConfigError("slots.concept_link_min must be in [0, 1]")
+            if not 0.0 <= sl.question_stop_df <= 1.0:
+                raise ConfigError("slots.question_stop_df must be in [0, 1]")
+            if sl.question_stop_ratio < 1.0:
+                raise ConfigError(
+                    "slots.question_stop_ratio must be >= 1 (below 1 a word "
+                    "commoner in the memory than in the questions would be "
+                    "called framing, which inverts the estimator)"
+                )
+            # imported here, not at module scope: fgl.memory.slots reaches
+            # fgl.memory.entities, which imports this module back.
+            from fgl.memory.slots import parse_granularities
+
+            try:
+                grans = parse_granularities(sl.time_granularities)
+            except ValueError as exc:
+                raise ConfigError(f"slots.time_granularities: {exc}") from exc
+            if not grans:
+                raise ConfigError(
+                    "slots.time_granularities must name at least one of "
+                    "year,month,day -- an empty time channel is `time_weight=0`, "
+                    "not an empty granularity list"
+                )
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(
                 "ingest.extract_prompt must be extract_facts|extract_facts_topical, "

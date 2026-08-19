@@ -64,10 +64,12 @@ from fgl.memory.slots import (
     actor_key,
     episode_vertex_id,
     lift_types,
-    month_bucket,
+    parse_granularities,
     slot_vertex_id,
+    time_buckets,
     types_available,
 )
+from fgl.memory.calibration import calibrate
 from fgl.memory.temporal import annotate_text, resolve_all
 from fgl.retrieval.embeddings import Embedder
 
@@ -122,6 +124,11 @@ class SlotIngestor:
             max_turns=sl.episode_max_turns,
             cohesion_min=sl.episode_cohesion,
         )
+        # Parsed once: the time channel is multi-resolution (year/month/day)
+        # rather than a chosen grain, so which levels exist is a property of
+        # the ingest and has to be recorded in the graph for the retriever to
+        # query the same ones. See fgl.memory.slots, "Time".
+        self.granularities = parse_granularities(sl.time_granularities)
 
     # ------------------------------------------------------------------ api --
     def ingest(self, conv: Conversation) -> tuple[FatGraph, IngestReport]:
@@ -214,6 +221,16 @@ class SlotIngestor:
         report.graph_stats["n_episodes"] = n_episodes_total
         report.graph_stats["slot_kinds"] = _kind_histogram(graph)
         report.graph_stats["wordnet_types"] = types_available()
+        report.graph_stats["time_granularities"] = list(self.granularities)
+        # The calibration is a property of the finished graph, so it is
+        # measured here and written into the report: a results directory then
+        # records "hub_degree=73, derived, 99th percentile of 412 concept
+        # degrees" instead of a literal whose sweep nobody can rerun. The
+        # question corpus is not available at ingest time, so the framing
+        # stoplist is resolved later, by the retriever.
+        report.graph_stats["calibration"] = calibrate(
+            self.cfg, graph, concept_matrix=_concept_matrix(graph)
+        ).as_dict()
         report.llm_usage = self.llm.usage.to_dict() if self.llm else {}
         return graph, report
 
@@ -253,9 +270,12 @@ class SlotIngestor:
             )
             texts.append(annotate_text(turn.rendered, resolved))
             for r in resolved:
-                bucket = month_bucket(r.resolved)
-                if bucket and bucket not in time_keys:
-                    time_keys.append(bucket)
+                # every level this date supports, not a chosen one: a question
+                # asking by day and a memory dated to the month still meet,
+                # and the damping term decides which level does the work
+                for bucket in time_buckets(r.resolved, self.granularities):
+                    if bucket not in time_keys:
+                        time_keys.append(bucket)
 
             key = actor_key(turn.speaker)
             n_content = len(ex.candidates) + len(ex.verbs)
@@ -273,9 +293,12 @@ class SlotIngestor:
                 if pkey and pkey not in mentioned:
                     mentioned.append(pkey)
 
-        session_bucket = month_bucket(base_dt)
-        if session_bucket and session_bucket not in time_keys:
-            time_keys.insert(0, session_bucket)
+        # the session's own date, at every level, in front of the resolved
+        # relatives: it is the one date every episode certainly has
+        for i, bucket in enumerate(time_buckets(base_dt, self.granularities)):
+            if bucket in time_keys:
+                time_keys.remove(bucket)
+            time_keys.insert(i, bucket)
 
         episode = Episode(
             index=index,
@@ -413,6 +436,26 @@ def _ner_input(turn: Turn) -> str:
     comes from on a photo-only turn.
     """
     return f"{turn.speaker}: {turn.text} {turn.img_caption}".strip()
+
+
+def _concept_matrix(graph: FatGraph) -> Optional[np.ndarray]:
+    """Unit-normalised concept embeddings, for the concept-link calibration.
+
+    Built from the graph rather than passed in, so the number recorded in the
+    report is the one a retriever loading this graph back would compute.
+    """
+    rows = [
+        vx.embedding
+        for vx in graph.vertices.values()
+        if vx.meta.get("kind", KIND_CONCEPT) == KIND_CONCEPT
+        and vx.embedding is not None
+    ]
+    if not rows:
+        return None
+    mat = np.vstack(rows).astype(float)
+    norms = np.linalg.norm(mat, axis=1, keepdims=True)
+    norms[norms == 0.0] = 1.0
+    return mat / norms
 
 
 def _kind_histogram(graph: FatGraph) -> dict[str, int]:

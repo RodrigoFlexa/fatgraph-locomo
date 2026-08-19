@@ -22,11 +22,25 @@ question's slots are incident to it, per channel::
 
 Every structural channel is degree-damped (``1 / (1 + log(deg))``): a slot
 incident to 200 episodes cannot discriminate between them, so it contributes
-almost nothing, while a slot incident to three carries the query. Above
-``hub_degree`` a slot stops being enumerated altogether and becomes a filter
+almost nothing, while a slot incident to three carries the query. Above the
+hub cut-off a slot stops being enumerated altogether and becomes a filter
 bonus -- the same "do not index a stopword" rule L1 applies to entities, now
 applied per *kind*, which is what makes a high-degree ``actor`` a partition
 instead of a hub.
+
+Where the thresholds come from
+------------------------------
+Nothing in this module reads a literal out of the config any more. The hub
+cut-off, the paraphrase cosine floor, the actor prior and the question-side
+stoplist all arrive through a :class:`fgl.memory.calibration.Calibration`
+built once per conversation, which either returns the swept constants
+(``slots.calibration="absolute"``) or estimates each one from the unlabelled
+graph and the question *texts* (``"derived"``), recording per knob which of
+the two happened. That is the difference between a parameter and a fitted
+number: a derived threshold can be inherited by a corpus nobody annotated.
+The time channel goes further and deletes its parameter outright -- it indexes
+year, month and day and lets the damping term pick the level (see
+:mod:`fgl.memory.slots`).
 
 Abstention without an LLM
 -------------------------
@@ -56,6 +70,7 @@ import numpy as np
 from fgl.config import Config
 from fgl.core import Face, FatGraph, HalfEdge
 from fgl.memory.entities import normalize_name
+from fgl.memory.calibration import Calibration, calibrate
 from fgl.memory.ner import NonGenerativeExtractor
 from fgl.memory.slots import (
     KIND_ACTOR,
@@ -64,12 +79,14 @@ from fgl.memory.slots import (
     KIND_PREDICATE,
     KIND_TIME,
     KIND_TYPE,
-    QUESTION_NOUN_STOP,
     QUESTION_PREDICATE_STOP,
     SPECIFIC_KINDS,
+    granularity_of,
+    is_set_question,
     lift_types,
     match_actor,
-    question_time_buckets,
+    parse_granularities,
+    question_time_slots,
 )
 from fgl.retrieval.embeddings import Embedder, VectorIndex, build_index
 from fgl.retrieval.faces import RetrievalResult, RetrievedFact, _unit
@@ -124,6 +141,9 @@ class QuestionSlots:
     concepts: list[str] = field(default_factory=list)
     types: list[str] = field(default_factory=list)
     times: list[str] = field(default_factory=list)
+    #: the question asks for a LIST ("what foods", "what has X read"), decided
+    #: from its wording alone -- never from the LoCoMo category
+    is_set: bool = False
 
     def as_pairs(self) -> list[tuple[str, str]]:
         return (
@@ -165,11 +185,17 @@ class SlotRetriever:
         embedder: Embedder,
         cfg: Config,
         date_by_session: dict[str, str] | None = None,
+        question_corpus: Sequence[str] | None = None,
     ) -> None:
         self.graph = graph
         self.embedder = embedder
         self.cfg = cfg
         self.dates = date_by_session or {}
+        #: question TEXTS only -- never an answer, an evidence list or a
+        #: category. The framing-stoplist estimator needs the query
+        #: distribution and nothing else; keeping the parameter typed as bare
+        #: strings is what makes that checkable at every call site.
+        self.question_corpus = list(question_corpus or ())
         self._face_by_half_edge: dict[str, Face] | None = None
 
         # --- episode side: dense index + a text handle per episode ----------
@@ -241,6 +267,38 @@ class SlotRetriever:
         self.actor_keys: list[str] = sorted(self._by_kind[KIND_ACTOR])
         self._extractor: Optional[NonGenerativeExtractor] = None
 
+        # Which time levels this graph actually carries, read off the graph
+        # rather than off the config. The two normally agree, but a graph
+        # built under one setting and queried under another would otherwise
+        # emit question keys no vertex can answer -- a silent recall loss that
+        # looks like a scoring bug. Falls back to the config for an empty
+        # time channel.
+        observed = {
+            granularity_of(vx.meta.get("key", ""))
+            for vx in graph.vertices.values()
+            if vx.meta.get("kind") == KIND_TIME
+        }
+        observed.discard("")
+        self.time_granularities: tuple[str, ...] = (
+            parse_granularities(",".join(sorted(observed)))
+            if observed
+            else parse_granularities(cfg.slots.time_granularities)
+        )
+
+        # Every threshold that used to be a literal, resolved once per
+        # conversation with its provenance attached. `slots.calibration=
+        # "absolute"` returns the swept numbers unchanged; "derived" measures
+        # them here off the unlabelled graph (and, for the framing stoplist,
+        # off the question TEXTS). Exposed as an attribute so a run can dump
+        # `retriever.calibration.as_dict()` and show which is which.
+        self.calibration: Calibration = calibrate(
+            cfg,
+            graph,
+            concept_matrix=self._concept_matrix,
+            question_corpus=self.question_corpus,
+            extractor=self.extractor if self.question_corpus else None,
+        )
+
     # ------------------------------------------------------------- helpers --
     @property
     def extractor(self) -> NonGenerativeExtractor:
@@ -287,10 +345,11 @@ class SlotRetriever:
             v.text for v in ex.verbs if v.text not in QUESTION_PREDICATE_STOP
         ][: sl.max_question_predicates]
 
+        stop = self.calibration.question_noun_stop
         concepts: list[str] = []
         for cand in ex.candidates:
             key = normalize_name(cand.text)
-            if not key or key in QUESTION_NOUN_STOP or key in concepts:
+            if not key or key in stop or key in concepts:
                 continue
             concepts.append(key)
         concepts = concepts[: sl.max_question_concepts]
@@ -310,9 +369,15 @@ class SlotRetriever:
                         types.append(t)
             types = types[: sl.max_question_types]
 
-        times = question_time_buckets(question)
-        return QuestionSlots(actors=actors, predicates=predicates,
-                             concepts=concepts, types=types, times=times)
+        # finest level first, coarser ones behind it as backoff: see
+        # fgl.memory.slots.question_time_slots for why emitting all of them is
+        # free once scoring is degree-damped.
+        times = question_time_slots(question, self.time_granularities)
+        return QuestionSlots(
+            actors=actors, predicates=predicates, concepts=concepts,
+            types=types, times=times,
+            is_set=sl.enumerate_sets and is_set_question(question, ex.doc),
+        )
 
     def _resolve_slot(self, kind: str, key: str) -> Optional[str]:
         """Slot key -> vertex id, with L1's embedding fallback for concepts."""
@@ -334,7 +399,7 @@ class SlotRetriever:
         if kind == KIND_CONCEPT and self._concept_matrix is not None:
             sims = self._concept_matrix @ _unit(self.embedder.encode_one(key))
             best = int(np.argmax(sims))
-            if float(sims[best]) >= self.cfg.slots.concept_link_threshold:
+            if float(sims[best]) >= self.calibration.concept_link_threshold:
                 return self._concept_ids[best]
         return None
 
@@ -360,6 +425,7 @@ class SlotRetriever:
         result.question_vertices = [vid for _, _, vid in linked]
         result.question_entities = [f"{kind}:{key}" for kind, key, _ in linked]
         result.all_anchor_ranking = [(vid, 1.0) for _, _, vid in linked]
+        result.set_question = slots.is_set
         result.slot_channels = {
             kind: [k for kk, k, _ in linked if kk == kind]
             for kind in (KIND_ACTOR, KIND_PREDICATE, KIND_CONCEPT, KIND_TYPE, KIND_TIME)
@@ -445,7 +511,10 @@ class SlotRetriever:
             # common topic IS the answer). Swept, not assumed -- see
             # slots.slot_damping.
             damped = base / (1.0 + math.log(degree)) ** sl.slot_damping
-            hub = degree >= sl.hub_degree
+            # per KIND: an actor incident to half the episodes and a concept
+            # incident to half the episodes are not the same event, and one
+            # absolute cut-off cannot say so. See fgl.memory.calibration.
+            hub = degree >= self.calibration.hub_degree(kind)
             for ep_vid in self._orbit_episodes(vid):
                 touch(
                     ep_vid,
@@ -454,6 +523,38 @@ class SlotRetriever:
                     via=vid,
                     label=self.graph.vertices[vid].name,
                 )
+
+        # 2b. ENUMERATION. A set question is not answered by the most similar
+        # episode -- it is answered by the whole orbit. sigma at a slot vertex
+        # is already that orbit, in chronological order, so this needs no
+        # ranking and no second retrieval pass: take the RAREST specific slot
+        # the question linked (the one that actually discriminates), intersect
+        # its orbit with the episodes the named actor owns, and lift every
+        # member into the prompt. This is the one place in the design where the
+        # ribbon structure does something a dense retriever cannot: the answer
+        # is a list, and the rotation IS the list.
+        #
+        # Rarest, not all: enumerating a common slot's orbit would flood the
+        # budget with everything the conversation ever touched, which is the
+        # hub mistake this project already made once.
+        if slots.is_set:
+            enumerable = [
+                (self.graph.degree(vid), vid) for kind, _, vid in linked
+                if kind in SPECIFIC_KINDS
+                and 0 < self.graph.degree(vid) < self.calibration.hub_degree(kind)
+            ]
+            if enumerable:
+                _, vid = min(enumerable)
+                owners = [key for kind, key, _ in linked if kind == KIND_ACTOR]
+                name = self.graph.vertices[vid].name
+                for ep_vid in self._orbit_episodes(vid):
+                    if owners and not any(
+                        self._actor_weight(k, ep_vid) > 0.0 for k in owners
+                    ):
+                        continue
+                    result.n_enumerated += 1
+                    touch(ep_vid, sl.set_orbit_boost, KIND_CONCEPT,
+                          via=vid, label=name)
 
         # 3. the actor is a PARTITION, not a channel. Adding a constant per
         # named actor to every episode that actor touches shifts half the graph
@@ -471,10 +572,15 @@ class SlotRetriever:
         # the other speaker's turn as by the named one's.
         actor_keys = [key for kind, key, _ in linked if kind == KIND_ACTOR]
         if actor_keys and candidates:
-            floor = sl.actor_prior_floor
+            # floor and full are 1/n_speakers and the median dominant-
+            # contributor share when `slots.calibration=derived`, so the prior
+            # sharpens on its own as the number of participants grows instead
+            # of needing a re-sweep. See fgl.memory.calibration.
+            floor = self.calibration.actor_prior_floor
+            full = self.calibration.actor_prior_full
             for ep_vid, c in candidates.items():
                 own = max(self._actor_weight(k, ep_vid) for k in actor_keys)
-                c.score *= floor + (1.0 - floor) * min(own / sl.actor_prior_full, 1.0)
+                c.score *= floor + (1.0 - floor) * min(own / full, 1.0)
 
         if not candidates:
             return result
@@ -626,7 +732,8 @@ class SlotRetriever:
         actors = [vid for kind, _, vid in linked if kind == KIND_ACTOR]
         specific = [
             vid for kind, _, vid in linked
-            if kind in SPECIFIC_KINDS and self.graph.degree(vid) < sl.hub_degree
+            if kind in SPECIFIC_KINDS
+            and self.graph.degree(vid) < self.calibration.hub_degree(kind)
         ]
         asked_specific = specific or [
             k for kind, k in unlinked if kind in SPECIFIC_KINDS

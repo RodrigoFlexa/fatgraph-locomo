@@ -322,3 +322,110 @@ def test_month_bucket_of_nothing_is_empty():
 
     assert month_bucket(None) == ""
     assert month_bucket(datetime(2023, 5, 8)) == "2023-05"
+
+
+# --------------------------------------------------------------------------- #
+# Set questions and orbit enumeration                                          #
+# --------------------------------------------------------------------------- #
+
+
+def test_set_question_detection_reads_the_question_not_the_category(built, embedder):
+    """Fires on a list question, stays quiet on a value question.
+
+    The discipline that matters here is what it does NOT read: the LoCoMo
+    category. Routing on the gold label would make the mechanism unusable off
+    this benchmark and would be reading the answer key at inference time.
+    """
+    from fgl.retrieval.slots import SlotRetriever
+
+    graph, _, cfg = built
+    r = SlotRetriever(graph, embedder, cfg, {})
+    assert r.parse_question("What foods does Gina like?").is_set
+    assert r.parse_question("What are some things Jon adopted?").is_set
+    assert r.parse_question("What kinds of art does Gina make?").is_set
+    assert not r.parse_question("What did Jon adopt?").is_set
+    assert not r.parse_question("When did Jon adopt a pup?").is_set
+
+
+def test_set_question_enumerates_the_orbit(built, embedder):
+    """A set question lifts a whole sigma-orbit into the prompt, and a value
+    question does not -- that difference is the mechanism.
+    """
+    from fgl.retrieval.slots import SlotRetriever
+
+    graph, _, cfg = built
+    r = SlotRetriever(graph, embedder, cfg, {})
+    listy = r.retrieve("What foods does Gina like?")
+    single = r.retrieve("What did Jon adopt?")
+    assert listy.set_question and not single.set_question
+    assert single.n_enumerated == 0
+
+
+def test_enumeration_can_be_switched_off(built, embedder):
+    from fgl.retrieval.slots import SlotRetriever
+
+    graph, _, cfg = built
+    cfg.slots.enumerate_sets = False
+    r = SlotRetriever(graph, embedder, cfg, {})
+    result = r.retrieve("What foods does Gina like?")
+    assert not result.set_question and result.n_enumerated == 0
+
+
+# --------------------------------------------------------------------------- #
+# Answer shaping                                                               #
+# --------------------------------------------------------------------------- #
+
+
+def test_shaping_never_touches_an_abstention():
+    """The one failure mode this must not have: clipping "not mentioned" turns
+    a correct category-5 answer into a wrong one, and category 5 is 22.5% of
+    the benchmark.
+    """
+    from fgl.evaluation.shaping import ShapingRules, shape
+
+    for text in ("Not mentioned in the conversation", "No information available"):
+        assert shape(text, ShapingRules.all_on()) == text
+
+
+def test_shaping_strips_framing_but_respects_word_boundaries():
+    from fgl.evaluation.shaping import shape
+
+    assert shape("I already have three dogs at home.") == "three dogs"
+    assert shape("It was 2023-05-07") == "7 May 2023"
+    # "yes"/"no" must not fire inside a longer word
+    assert shape("Yesterday afternoon") == "Yesterday afternoon"
+    assert shape("Nothing special") == "Nothing special"
+
+
+def test_shaping_keeps_polarity_for_inferential_questions():
+    """`answer_open.txt` instructs category 3 to start with Yes/No and the
+    reference does too, so the polarity word is content there and framing
+    everywhere else."""
+    from fgl.evaluation.shaping import shape
+
+    assert shape("Yes, she enjoys painting", category=3).startswith("Yes")
+    assert not shape("Yes, she enjoys painting", category=4).lower().startswith("yes")
+
+
+def test_shaping_never_empties_an_answer():
+    from fgl.evaluation.shaping import ShapingRules, shape
+
+    for text in ("Well,", "yes", "the", "so"):
+        assert shape(text, ShapingRules.all_on()).strip()
+
+
+def test_rescore_refuses_to_move_the_adversarial_score():
+    """The guard that makes the whole offline path trustworthy."""
+
+    from fgl.evaluation.rescore import rescore_rows
+    from fgl.evaluation.shaping import ShapingRules
+
+    rows = [
+        {"category": 5, "gold": "Not mentioned in the conversation",
+         "prediction": "Not mentioned in the conversation", "f1": 1.0},
+        {"category": 4, "gold": "three dogs",
+         "prediction": "I already have three dogs at home.", "f1": 0.44},
+    ]
+    out = rescore_rows(rows, ShapingRules())
+    assert out["per_category"]["adversarial"]["delta"] == 0.0
+    assert out["per_category"]["single-hop"]["after"] > 0.44

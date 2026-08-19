@@ -162,6 +162,11 @@ class RetrievalResult:
     slot_support: float = 1.0
     #: why the corner test fired ("empty_corner"), empty when it did not
     abstain_reason: str = ""
+    #: the question asks for a LIST, detected from its wording alone. Routes
+    #: the Answerer to the enumerating prompt -- see fgl.memory.slots.
+    set_question: bool = False
+    #: how many episodes the enumerated orbit contributed, for auditing
+    n_enumerated: int = 0
 
     @property
     def turn_ids(self) -> list[str]:
@@ -1153,6 +1158,12 @@ class Answerer:
         open_domain = (
             self.cfg.retrieval.open_domain_inference and question.category == 3
         )
+        # A question asking for a list gets the enumerating prompt. The flag is
+        # set by the retriever from the QUESTION's wording, never from the gold
+        # category, so this stays a property of the input rather than of the
+        # label -- and open-domain keeps its own prompt, which already asks for
+        # an inference and would fight an instruction to enumerate.
+        enumerate_set = bool(getattr(result, "set_question", False)) and not open_domain
         # Seeded per question, so the permutation is fixed across runs but not
         # identical for every question. `crc32`, not `hash()`: string hashing is
         # salted per process, which would make the ablation unreproducible --
@@ -1164,7 +1175,7 @@ class Answerer:
             else None
         )
         prompt = self.prompts.render(
-            "answer_open" if open_domain else "answer",
+            "answer_open" if open_domain else ("answer_set" if enumerate_set else "answer"),
             speaker_a=conv.speaker_a,
             speaker_b=conv.speaker_b,
             context=render_context(result, shuffle_seed=seed),
@@ -1173,7 +1184,10 @@ class Answerer:
         out = self.llm.complete(
             prompt,
             system=SYSTEM_ANSWERER_OPEN if open_domain else SYSTEM_ANSWERER,
-            purpose="qa/answer_open" if open_domain else "qa/answer",
+            purpose=(
+                "qa/answer_open" if open_domain
+                else ("qa/answer_set" if enumerate_set else "qa/answer")
+            ),
             max_tokens=self.cfg.retrieval.answer_max_tokens,
         )
         return clean_answer(out)

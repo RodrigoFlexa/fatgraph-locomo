@@ -156,13 +156,29 @@ QUESTION_PREDICATE_STOP = PREDICATE_STOP | frozenset({
 #: filtered on the question side rather than added to ``ner._GENERIC_NOUNS``
 #: (where they would also delete real turn content: a turn saying "our
 #: conversation" is at least about something).
-QUESTION_NOUN_STOP = frozenset({
+#:
+#: LEGACY, and named so on purpose. This list is the clearest piece of
+#: calibration debt in the condition: it does not encode a property of English
+#: questions, it encodes the *template* of one benchmark's question generator,
+#: and on any other corpus it would neither help nor hurt -- it would simply be
+#: unrelated. :func:`fgl.memory.calibration.derive_question_stop` replaces it
+#: with an estimator that contrasts question frequency against memory
+#: frequency, and ``tests/test_calibration.py`` pins that the estimator
+#: recovers these words on LoCoMo. The list is kept so ``question_stop=
+#: "literal"`` reproduces the swept numbers exactly and so the recovery test
+#: has something to compare against.
+LEGACY_QUESTION_NOUN_STOP = frozenset({
     "conversation", "date", "answer", "question", "type", "kind", "sort",
     "one", "ones", "some", "any", "example", "examples", "reason", "reasons",
     "detail", "details", "information", "activity", "activities", "thing",
     "things", "stuff", "way", "ways", "favorite", "favourite", "plan", "plans",
     "approximate date", "use date",
 })
+
+#: Backwards-compatible alias. Retrieval no longer reads this: the active
+#: stoplist arrives through :class:`fgl.memory.calibration.Calibration`, whose
+#: provenance field records whether it was this list or a derived one.
+QUESTION_NOUN_STOP = LEGACY_QUESTION_NOUN_STOP
 
 
 # --------------------------------------------------------------------------- #
@@ -283,21 +299,128 @@ _MONTH_YEAR_RE = re.compile(
 )
 _YEAR_RE = re.compile(r"\b(19|20)(\d{2})\b")
 
+#: "7 May 2023" / "7th of May, 2023" -- day first, the format LoCoMo's own
+#: session dates and gold answers use (see fgl.memory.temporal.ResolvedDate).
+_DAY_MONTH_YEAR_RE = re.compile(
+    r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?("
+    + "|".join(_MONTH_NAMES)
+    + r")\w*\.?,?\s+(\d{4})\b",
+    re.IGNORECASE,
+)
+#: "May 7, 2023" / "May 7th 2023" -- month first.
+_MONTH_DAY_YEAR_RE = re.compile(
+    r"\b(" + "|".join(_MONTH_NAMES) + r")\w*\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})\b",
+    re.IGNORECASE,
+)
+#: "2023-05-07"
+_ISO_DATE_RE = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
+
+# --------------------------------------------------------------------------- #
+# Time: a multi-resolution index, not a chosen granularity                     #
+# --------------------------------------------------------------------------- #
+#
+# This used to be one vertex per month, and the justification in the code was
+# "month is the granularity LoCoMo questions actually use". That is a true
+# observation about one benchmark's question generator and a bad reason for a
+# parameter: a productivity assistant asks by day, a legal corpus by year, and
+# a per-corpus grain would have to be re-measured every time -- from the
+# questions, which is exactly the dependence this method should not have.
+#
+# The parameter is removed rather than retuned. Every date is indexed at every
+# granularity it supports (year, month, day), a question emits every level it
+# names, and the level that ends up carrying the match is decided by the
+# degree damping that was already there: a year vertex is incident to most of
+# the corpus, so ``1/(1+log(deg))`` all but erases it, while a day vertex is
+# incident to a handful of episodes and scores nearly full weight. Multi-
+# resolution time therefore needs no granularity knob AND no new weighting
+# rule -- the existing damping term is exactly the mechanism that picks the
+# level, which is the argument for having made damping degree-based in the
+# first place.
+#
+# Cost is bounded: at most three time slots per distinct date instead of one.
+
+#: Coarse to fine. Order matters: it is the order slots are emitted in, hence
+#: the order they sit in ``sigma`` at an episode.
+TIME_GRANULARITIES: tuple[str, ...] = ("year", "month", "day")
+
+#: Character length of each granularity's key, which is what makes the level
+#: recoverable from a bare vertex key ("2023" / "2023-05" / "2023-05-07").
+_GRANULARITY_BY_LEN = {4: "year", 7: "month", 10: "day"}
+
+
+def parse_granularities(spec: str | Sequence[str] | None) -> tuple[str, ...]:
+    """``"year,month,day"`` -> ``("year", "month", "day")``, coarse first.
+
+    A string rather than a list because :func:`fgl.config.coerce` types a
+    ``--set`` override from the value it replaces, and it has no list case --
+    so a comma-separated string is the form that survives the CLI unchanged.
+    Unknown names raise here rather than being ignored: silently indexing
+    fewer levels than asked for would look like a retrieval regression.
+    """
+    if spec is None:
+        return TIME_GRANULARITIES
+    parts = (
+        [p.strip().lower() for p in spec.split(",")]
+        if isinstance(spec, str)
+        else [str(p).strip().lower() for p in spec]
+    )
+    parts = [p for p in parts if p]
+    if not parts:
+        return ()
+    unknown = [p for p in parts if p not in TIME_GRANULARITIES]
+    if unknown:
+        raise ValueError(
+            f"unknown time granularity {unknown}; valid: {list(TIME_GRANULARITIES)}"
+        )
+    return tuple(g for g in TIME_GRANULARITIES if g in parts)
+
+
+def granularity_of(key: str) -> str:
+    """Which level a time vertex key belongs to, from the key alone."""
+    return _GRANULARITY_BY_LEN.get(len(key or ""), "")
+
+
+def time_key(dt: datetime | None, granularity: str) -> str:
+    """One bucket key: ``2023`` / ``2023-05`` / ``2023-05-07``."""
+    if dt is None:
+        return ""
+    if granularity == "year":
+        return f"{dt.year:04d}"
+    if granularity == "month":
+        return f"{dt.year:04d}-{dt.month:02d}"
+    if granularity == "day":
+        return f"{dt.year:04d}-{dt.month:02d}-{dt.day:02d}"
+    return ""
+
+
+def time_buckets(
+    dt: datetime | None, granularities: Sequence[str] = TIME_GRANULARITIES
+) -> list[str]:
+    """Every bucket key one date belongs to, coarse to fine."""
+    if dt is None:
+        return []
+    out: list[str] = []
+    for g in granularities:
+        key = time_key(dt, g)
+        if key and key not in out:
+            out.append(key)
+    return out
+
 
 def month_bucket(dt: datetime | None) -> str:
-    """``2023-05``. One vertex per month is the granularity LoCoMo questions
-    actually use ("in April 2022", "in August 2023"); a per-day vertex would
-    be a leaf per turn and carry no join at all.
+    """``2023-05``. Kept as the month-only view of :func:`time_buckets`, for
+    callers (and tests) that mean the month specifically.
     """
-    return f"{dt.year:04d}-{dt.month:02d}" if dt is not None else ""
+    return time_key(dt, "month")
 
 
 def question_time_buckets(question: str) -> list[str]:
-    """Month/year buckets named literally in a question.
+    """Month/year buckets named literally in a question -- the single-resolution
+    view, kept so ``slots.time_granularities=month`` behaves exactly as before.
 
-    Deliberately does *not* try to resolve relative phrases here: the question
-    has no session date to resolve against, so "last summer" is unanswerable
-    from the question text alone -- that resolution belongs on the turn side
+    Deliberately does *not* try to resolve relative phrases: the question has
+    no session date to resolve against, so "last summer" is unanswerable from
+    the question text alone -- that resolution belongs on the turn side
     (:mod:`fgl.memory.temporal`), where a base date exists.
     """
     out: list[str] = []
@@ -311,6 +434,71 @@ def question_time_buckets(question: str) -> list[str]:
             year = f"{c}{yy}"
             if year not in out:
                 out.append(year)  # year-only prefix, matched by str.startswith
+    return out
+
+
+def question_time_slots(
+    question: str, granularities: Sequence[str] = TIME_GRANULARITIES
+) -> list[str]:
+    """Every time bucket a question names, **finest first**, with backoff.
+
+    "What did James adopt on 7 May 2023?" yields ``["2023-05-07", "2023-05",
+    "2023"]``: the day if the question is that precise, and the coarser levels
+    behind it so a turn the memory only dated to the month is still reachable.
+    Emitting all of them is safe precisely because scoring is degree-damped --
+    the year vertex sits on most of the corpus and contributes almost nothing,
+    so the backoff costs recall nothing and buys the case where the memory is
+    vaguer than the question.
+
+    With ``granularities=("month",)`` this reduces to
+    :func:`question_time_buckets`, which is what makes the multi-resolution
+    change a strict generalisation rather than a different retriever.
+    """
+    gran = tuple(granularities)
+    if gran == ("month",):
+        return question_time_buckets(question)
+
+    text = question or ""
+    days: list[tuple[int, int, int]] = []
+    months: list[tuple[int, int]] = []
+    years: list[int] = []
+
+    for y, m, d in _ISO_DATE_RE.findall(text):
+        days.append((int(y), int(m), int(d)))
+    for d, mon, y in _DAY_MONTH_YEAR_RE.findall(text):
+        days.append((int(y), _MONTH_NAMES[mon.lower()], int(d)))
+    for mon, d, y in _MONTH_DAY_YEAR_RE.findall(text):
+        days.append((int(y), _MONTH_NAMES[mon.lower()], int(d)))
+    for mon, y in _MONTH_YEAR_RE.findall(text):
+        months.append((int(y), _MONTH_NAMES[mon.lower()]))
+    for c, yy in _YEAR_RE.findall(text):
+        years.append(int(f"{c}{yy}"))
+
+    # a day implies its month and year, a month implies its year -- that IS the
+    # backoff, and it is generated rather than special-cased per level
+    for y, m, _d in days:
+        if (y, m) not in months:
+            months.append((y, m))
+    for y, _m in months:
+        if y not in years:
+            years.append(y)
+
+    out: list[str] = []
+    if "day" in gran:
+        for y, m, d in days:
+            key = f"{y:04d}-{m:02d}-{d:02d}"
+            if key not in out:
+                out.append(key)
+    if "month" in gran:
+        for y, m in months:
+            key = f"{y:04d}-{m:02d}"
+            if key not in out:
+                out.append(key)
+    if "year" in gran:
+        for y in years:
+            key = f"{y:04d}"
+            if key not in out:
+                out.append(key)
     return out
 
 
@@ -408,6 +596,60 @@ class EpisodeSegmenter:
         if current:
             episodes.append(current)
         return episodes
+
+
+# --------------------------------------------------------------------------- #
+# Set questions                                                                #
+# --------------------------------------------------------------------------- #
+
+#: Words that make a question ask for a *list* rather than a value. Measured
+#: motivation: LoCoMo category 1 is scored by ``f1_multi``, which splits the
+#: gold on commas and averages the best match per gold ITEM -- so a gold with
+#: four items caps a one-item answer at ~0.25 by construction, however correct
+#: that one item is. Inspecting the run, most multi-hop predictions return one
+#: item: only 20% of them contain a substring scoring 1.0 against the whole
+#: gold, against 49% for single-hop. They are incomplete, not wrong.
+_SET_CUES = re.compile(
+    r"\b(some|all|any|several|various|different|"
+    r"kinds?\s+of|types?\s+of|sorts?\s+of|examples?\s+of|list)\b",
+    re.IGNORECASE,
+)
+
+#: Plural POS tags. Kept as tags rather than a morphology lookup so the check
+#: works on any spaCy English pipeline without the `morphologizer`.
+_PLURAL_TAGS = frozenset({"NNS", "NNPS"})
+
+
+def is_set_question(question: str, doc=None) -> bool:
+    """Does this question ask for a set of items?
+
+    Deterministic and derived from the question text ALONE -- never from the
+    LoCoMo category. That matters: routing on the gold category would make the
+    mechanism unusable outside this benchmark and would be reading the label at
+    inference time. The cost of that discipline is a few misses on
+    category-1 questions phrased in the singular, which is the right trade.
+
+    Two independent signals, either sufficient:
+
+    * an explicit quantifier or enumeration cue ("some", "all", "kinds of");
+    * a plural noun inside the interrogative phrase ("What **foods**...",
+      "What **books** has Melanie read?"), which is what a "give me the list"
+      question looks like when it does not say so.
+    """
+    q = (question or "").strip()
+    if not q:
+        return False
+    if _SET_CUES.search(q):
+        return True
+    if doc is None:
+        return False
+    # plural inside the wh-phrase: the head of the question, not any plural
+    # anywhere ("What did Melanie paint for her friends?" is not a set question
+    # just because "friends" is plural)
+    head = list(doc)[:6]
+    if not head or head[0].text.lower() not in ("what", "which", "who", "name"):
+        return False
+    return any(t.tag_ in _PLURAL_TAGS for t in head)
 
 
 # --------------------------------------------------------------------------- #
