@@ -951,3 +951,160 @@ no relatório (para que um número produzido sob override nunca seja confundido
 com o da condição), e o comando avisa quando um override mexe num knob de
 ingestão sem `--force` — caso em que o grafo em cache foi construído com outra
 configuração.
+
+## D34 — L6: pontes sintetizadas por LLM entre episódios sem slot em comum
+
+Implementado conforme `docs/L6_DESIGN_bridge_synthesis.md`, código em
+`fgl.memory.bridges`. Resumo do que muda em relação à L5.
+
+**A lacuna que nenhum canal anterior fecha.** O vocabulário tipado da L2 e o
+canal de conjunção Steiner da L4/L5 conectam episódios *através de vocabulário
+compartilhado* — o mesmo lema, a mesma entidade nomeada, o mesmo mês. Nenhum
+dos dois conecta dois episódios que são sobre a mesma coisa mas não compartilham
+nenhuma forma de superfície (o mesmo evento contado com outras palavras, um
+plano numa sessão e sua consequência três sessões depois). Essa lacuna não
+aparece como uma aresta faltando no grafo da L5 — não há nada ali para apontar
+— por isso exigiu um desenho novo em vez de um ajuste de peso.
+
+**Duas etapas, para que o LLM só seja gasto onde a etapa barata disse que vale
+a pena.**
+
+1. `find_bridge_candidates` — **zero chamadas de LLM.** Similaridade de cosseno
+   entre embeddings de episódio, com limiar derivado do próprio corpus pela
+   mesma receita de `concept_link_threshold_by_quantile` que já calibra a
+   fusão de conceitos (aqui aplicada a episódios em vez de conceitos), e um
+   filtro que descarta qualquer par que o grafo de slots já conecta em até
+   `skip_within_hops` saltos (`fgl.evaluation.hops.episode_hops`, semeado
+   pelos slots *não-hub* do episódio — um hub é filtro, nunca ponte, mesma
+   regra da L4/L5). Um par que já está conectado não vale uma chamada de LLM.
+2. `synthesize_bridges` — uma chamada de LLM por par sobrevivente, com um
+   prompt deliberadamente genérico (`prompts/bridge_synthesis.txt`): dois
+   grupos anônimos de fatos ("GROUP A" / "GROUP B"), pergunta se há uma
+   conexão específica e concreta — não similaridade temática geral — e, se
+   sim, uma frase autocontida mais os dois nomes que ela liga. Nenhum rótulo
+   de falante, nenhuma estrutura de sessão/turno, nada que pressuponha um
+   diálogo de duas pessoas ou qualquer outro formato que um benchmark futuro
+   não tenha. Essa restrição foi explícita do usuário: nada no desenho pode
+   antecipar o que vai ocorrer nas conversas.
+
+Um "linked: true" vira um vértice de episódio sintético, incidente aos dois
+vértices *pré-existentes* que o LLM nomeou (resolvidos por um cascata
+exato→embedding restrito a vértices concept/actor — um `EntityResolver`
+comum não serve aqui porque ele indexa qualquer vértice do grafo em que é
+construído, e o grafo da ponte já tem episódios/predicados/tipos/tempo nele).
+A partir daí o vértice é só mais um episódio: entra no índice denso, no canal
+estrutural, em `render_context` — nada rio abaixo trata ponte como caso
+especial, exceto o rótulo (abaixo).
+
+**Disciplina de proveniência.** Todo vértice/aresta de ponte carrega
+`meta["bridge"]=True` / `meta["source"]="ingest_bridge"`, e o turno sintético
+usa o formato `"BRIDGE:<ep_a>|<ep_b>"`, que nunca colide com um turno real
+(`"D<sessão>:<n>"`) — `evidence_recall` em `fgl.pipeline` faz correspondência
+exata de conjunto de turn ids, então uma colisão inflaria recall sem ter
+recuperado a evidência de verdade.
+
+### Achado 2 corrigido junto: o rótulo do canal Steiner
+
+Ao desenhar a L6 apareceu um bug em código já existente: `UnifiedRetriever._join_channels`
+chamava `touch(ep_vid, peso, "", via=terminals[0], label="steiner")` — `kind=""`
+cai no canal `slot_dense` (prioridade mais baixa) e o rótulo era o literal
+`"steiner"`, nunca o nome dos termos que a árvore uniu. `render_context` também
+não tinha nenhum `elif` para esse `source`. Ou seja: o canal que produz o único
+ganho medido da linha L (D33, +0,014 em multi-hop) nunca mostrava ao leitor
+*por que* aquele episódio foi trazido. Corrigido:
+
+* `SOURCE_SLOT_STEINER` (`"slot_steiner"`) criado em `fgl.retrieval.slots`,
+  com a prioridade mais alta (é uma rota, não uma coincidência pontual);
+* `_join_channels` agora chama `touch(ep_vid, peso, "steiner", via=terminals[0],
+  label=", ".join(nomes dos terminais))`;
+* `render_context` ganhou `elif f.source == "slot_steiner": "--- chain linking {via_entity} ---"`,
+  e o mesmo rótulo é usado por `SOURCE_SLOT_BRIDGE` (a ponte da L6) —
+  sobrescrito incondicionalmente em `SlotRetriever._make_fact` quando o
+  episódio tem `meta["bridge_entities"]`, porque a conexão que ele afirma é o
+  próprio motivo do episódio existir, não um acidente de qual canal o achou.
+
+Verificado numa conversa sintética de duas sessões (a mesma de
+`test_propagation.py`): a pergunta "Where did Jon adopt the pup from?" agora
+rotula o grupo como `--- chain linking adopt, pup ---` em vez de
+`--- chain linking steiner ---`. Teste: `test_steiner_channel_reports_the_terminals_it_actually_joined`
+em `tests/test_bridges.py`.
+
+### Config e reprodutibilidade
+
+`bridges.enabled` é `False` por padrão em todo `BridgeConfig` — L1 a L5 ficam
+byte a byte inalteradas pela mera existência do módulo. `configs/conditions/L6_bridges.yaml`
+estende a L5 linha por linha e liga `bridges.enabled: true`, com
+`paths.graphs_condition: ""` — a L6 **não pode** emprestar o grafo de ninguém
+porque ela muda a ingestão, ao contrário da L5 que empresta o da L2d. `Config.validate()`
+recusa `bridges.enabled=true` fora de `ingest.mode=slots` e valida cada knob de
+`bridges.*` contra o intervalo que faz sentido (quantil em `[0.5, 1)`, floor em
+`[0, 1]`, etc.).
+
+### Verificação
+
+Suíte completa (`pytest`, com o dataset LoCoMo e o modelo `en_core_web_sm`
+presentes): **505 testes, 0 falhas, 0 erros** — as 484 pré-existentes mais 21
+novas em `tests/test_bridges.py` (candidatos, filtro de alcançabilidade,
+materialização, resolução de entidade em vértices pré-existentes, rejeição
+pelo responder padrão do `FakeLLM`, `bridges.enabled=false` é no-op, validação
+de config, e os dois rótulos de `render_context`).
+
+### Dry run zero-LLM nas 10 conversas de calibração (etapa 1 apenas)
+
+Grafos construídos com `SentenceTransformerEmbedder` (`all-MiniLM-L6-v2`, o
+embedder real de produção, não o `HashingEmbedder` dos testes) e `bridges.enabled=false`
+(só para poder chamar `find_bridge_candidates` isoladamente, sem gastar LLM):
+
+| conversa | episódios | limiar (derived) | pares > limiar | já-alcançáveis | candidatos |
+|---|---|---|---|---|---|
+| conv-26 | 154 | 0.7291 | 224 | 216 | 8 |
+| conv-30 | 133 | 0.7872 | 154 | 111 | 43 |
+| conv-41 | 273 | 0.7312 | 501 | 491 | 10 |
+| conv-42 | 241 | 0.7334 | 401 | 373 | 28 |
+| conv-43 | 267 | 0.6174 | 585 | 579 | 6 |
+| conv-44 | 257 | 0.6734 | 505 | 500 | 5 |
+| conv-47 | 284 | 0.6203 | 559 | 543 | 16 |
+| conv-48 | 282 | 0.6383 | 581 | 564 | 17 |
+| conv-49 | 212 | 0.6972 | 303 | 301 | 2 |
+| conv-50 | 200 | 0.7045 | 357 | 350 | 7 |
+| **total** | 2303 | — | 4170 | 4028 | **142** |
+
+Achados, ditos como são:
+
+**O orçamento é barato.** ~14 chamadas de LLM por conversa (142/10), bem
+abaixo do teto `max_candidates=400`. Uma rodada real das 1986 perguntas nas 10
+conversas custaria, na ingestão, menos de 150 chamadas extras no total —
+desprezível ao lado do custo de responder as perguntas.
+
+**A etapa 1 não é precisa sozinha, e não precisa ser.** Inspecionando os
+candidatos (não só o par de maior similaridade, que quase sempre é uma
+despedida repetida quase palavra por palavra — "Bye Nate!" / "Bye Joanna!" a
+0,99 de cosseno — mas uma amostra ao longo da lista ordenada), a maioria dos
+pares acima do limiar são trocas de cortesia genéricas (agradecimentos,
+despedidas, "keep chasing your dreams") que soam parecidas por *registro*
+conversacional, não por conteúdo. Isso é esperado de um embedder de frase
+sobre o texto inteiro do episódio, e é exatamente para isso que existe a etapa
+2: o prompt pergunta explicitamente por uma conexão "específica e concreta...
+não uma similaridade temática geral", e um par de despedidas deve cair nisso
+como `linked: false`. A etapa 1 é recall, a etapa 2 é precisão — por desenho,
+não por acidente.
+
+**A etapa 1 também acha o que foi desenhada para achar.** Em conv-26, o
+candidato de índice 4 (similaridade 0,7538, não o topo) liga:
+
+> A: "Thanks, Melanie! That's really sweet. Is this your own painting? [...]
+> Yeah, I painted that lake sunrise last year! It's special to me."
+> B: "Wow, Caroline! It really conveys unity and strength - such a gorgeous
+> piece! My kids and I just finished another painting like our last one."
+
+— duas menções à mesma prática de pintura da Melanie, sem vocabulário
+suficiente em comum para o grafo de slots já ter ligado os dois episódios.
+Esse é exatamente o par que a L6 existe para encontrar.
+
+**O que isto NÃO é:** uma rodada real com LLM. Nenhuma chamada de
+`bridge_synthesis` foi feita contra um modelo de verdade — só a etapa 1, zero
+LLM, para checar se os números fazem sentido antes de gastar uma chamada paga.
+O próximo passo, fora do escopo desta implementação, é `fgl slots-oracle -C L6`
+(ou equivalente) com um LLM real e comparar contra a L5 nas mesmas 1986
+perguntas — só então a hipótese "pontes ajudam multi-hop" vira medição, do
+mesmo jeito que D32/D33 fizeram para a conjunção Steiner.

@@ -1,0 +1,69 @@
+# L6 -- L5 plus one LLM-synthesised channel: bridges between episodes that
+# share no slot at all.
+#
+# What L5 still cannot reach
+# ---------------------------
+# L5 is L2d's typed-slot graph plus the group-Steiner join channel, and both
+# of those connect episodes THROUGH SHARED VOCABULARY -- the same lemma, the
+# same named entity, the same month bucket. Neither can connect two episodes
+# that are about the same underlying thing but share no surface form: the
+# same event described in different words two sessions apart, a plan stated
+# in one session and its consequence in another with no repeated noun. That
+# gap does not show up as a missing edge anywhere in L5's own graph -- there
+# is nothing there to point at -- which is exactly why it needed a design
+# document rather than a knob sweep. See docs/L6_DESIGN_bridge_synthesis.md
+# and fgl.memory.bridges for the full reasoning.
+#
+# How it stays honest
+# --------------------
+# Nothing here is allowed to know what a LoCoMo conversation looks like.
+# Stage 1 (fgl.memory.bridges.find_bridge_candidates) is zero LLM calls and
+# spends nothing extra: it reuses the same corpus-derived-quantile recipe
+# concept merging already uses (`slots.concept_link_quantile`, here applied
+# to episode embeddings instead of concept embeddings) and skips any pair the
+# slot graph already connects within a hop, so an LLM call is spent only
+# where nothing else already found the connection. Stage 2
+# (fgl.memory.bridges.synthesize_bridges) asks a generic yes/no-plus-sentence
+# question of two anonymous groups of facts (prompts/bridge_synthesis.txt) --
+# no speaker labels, no session or turn structure, nothing that presupposes a
+# two-person dialogue or any other shape a future benchmark might not share.
+#
+# Why this condition builds its own graphs
+# ------------------------------------------
+# L5 borrows L2d's cached graphs (paths.graphs_condition) because it changes
+# nothing about ingestion, only retrieval. L6 changes ingestion -- it adds
+# vertices and edges to the graph itself -- so it cannot borrow anyone's
+# cache and must not be compared against a borrowed one either.
+extends: L5_conjunction.yaml
+condition: L6-bridges
+
+bridges:
+  enabled: true
+  # --- stage 1: candidate pairs, zero LLM -------------------------------
+  # Same shape as slots.concept_link_quantile/concept_link_min: a corpus-
+  # derived quantile with an absolute floor as a backstop for a conversation
+  # too small for the quantile to mean anything.
+  top_k: 6
+  quantile: 0.98
+  floor: 0.35
+  # Candidate pairs the existing slot graph already connects within this many
+  # hops are dropped before stage 2 -- an LLM call is wasted rediscovering a
+  # connection Steiner already has for free.
+  skip_within_hops: 1
+  # Hard ceiling on stage-2 LLM calls per conversation, so a pathological
+  # corpus (everything above the quantile) cannot silently turn into an
+  # unbounded bill. Candidates are ranked by similarity first, so this caps
+  # the least-promising tail, not an arbitrary prefix.
+  max_candidates: 400
+  # --- stage 2: judgment + synthesis, one LLM call per surviving pair ----
+  # A "linked: true" whose bridge_text is this short is more likely a
+  # malformed response than a real one-sentence connection; reject rather
+  # than materialise a near-empty episode.
+  min_bridge_chars: 8
+
+paths:
+  # Ingestion changed, so this condition MUST build its own graphs -- it
+  # cannot borrow L2d's or L5's cache the way L5 borrows L2d's. An empty
+  # string here overrides L5_conjunction.yaml's `graphs_condition:
+  # L2d-derived` rather than merging with it.
+  graphs_condition: ""

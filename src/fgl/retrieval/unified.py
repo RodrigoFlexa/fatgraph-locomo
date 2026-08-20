@@ -162,6 +162,11 @@ class UnifiedRetriever(PropagationRetriever):
         terminals = self._terminals_used
 
         best = read.cost
+        # The names the tree actually connects, not the literal string
+        # "steiner" -- render_context shows `label` verbatim as "chain
+        # linking {label}", so the connective insight the tree found (which
+        # terminals) has to reach the text, not just the retrieval telemetry.
+        terminal_names = ", ".join(self.graph.vertices[t].name for t in terminals)
         for ep_vid, total in read.per_episode.items():
             if total <= 0.0:
                 continue
@@ -169,8 +174,8 @@ class UnifiedRetriever(PropagationRetriever):
             # something twice as far gets half. No sharpness exponent to sweep,
             # which is the point -- this project has spent an iteration
             # removing numbers that were chosen by looking at the answers.
-            touch(ep_vid, st.weight * (best / total), "", via=terminals[0],
-                  label="steiner")
+            touch(ep_vid, st.weight * (best / total), "steiner", via=terminals[0],
+                  label=terminal_names)
 
     # ----------------------------------------------------------- abstention --
     def _abstention_acts(self) -> bool:

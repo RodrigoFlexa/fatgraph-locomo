@@ -101,6 +101,21 @@ SOURCE_SLOT_CONCEPT = "slot_concept"
 SOURCE_SLOT_TYPE = "slot_type"
 SOURCE_SLOT_TIME = "slot_time"
 SOURCE_SLOT_DENSE = "slot_dense"
+#: The Steiner join channel (L4/L5, :meth:`UnifiedRetriever._join_channels`)
+#: found this episode by *routing* between the question's linked terminals,
+#: not by matching any one of them directly -- so it gets its own source
+#: rather than silently falling through to ``SOURCE_SLOT_DENSE`` (which used
+#: to make the connective insight invisible in ``render_context``: the whole
+#: point of paying for the Steiner tree was lost the moment the label did not
+#: say so).
+SOURCE_SLOT_STEINER = "slot_steiner"
+#: An L6 bridge episode (:mod:`fgl.memory.bridges`) -- synthesised, not
+#: observed. Always wins the label regardless of which channel actually
+#: fetched it (see the unconditional override in ``_make_fact``), because the
+#: fact this episode exists to state IS the connection, and that is what a
+#: reader needs to see, not "matched on concept X" for whichever of the two
+#: bridged entities happened to be in the question.
+SOURCE_SLOT_BRIDGE = "slot_bridge"
 
 SLOT_SOURCES = (
     SOURCE_SLOT_CONCEPT,
@@ -109,6 +124,8 @@ SLOT_SOURCES = (
     SOURCE_SLOT_ACTOR,
     SOURCE_SLOT_TIME,
     SOURCE_SLOT_DENSE,
+    SOURCE_SLOT_STEINER,
+    SOURCE_SLOT_BRIDGE,
 )
 
 _SOURCE_BY_KIND = {
@@ -117,11 +134,13 @@ _SOURCE_BY_KIND = {
     KIND_CONCEPT: SOURCE_SLOT_CONCEPT,
     KIND_TYPE: SOURCE_SLOT_TYPE,
     KIND_TIME: SOURCE_SLOT_TIME,
+    "steiner": SOURCE_SLOT_STEINER,
 }
 
 #: Which channel gets to label an episode when several hit it. Ordered by how
 #: much the hit actually tells you: a concept match is specific, a type match
-#: is a category guess, a dense match is a resemblance.
+#: is a category guess, a dense match is a resemblance, and a Steiner route
+#: is the most specific of all -- it is a *path*, not a single coincidence.
 _SOURCE_PRIORITY = {
     SOURCE_SLOT_DENSE: 0,
     SOURCE_SLOT_TIME: 1,
@@ -129,6 +148,7 @@ _SOURCE_PRIORITY = {
     SOURCE_SLOT_TYPE: 3,
     SOURCE_SLOT_PREDICATE: 4,
     SOURCE_SLOT_CONCEPT: 5,
+    SOURCE_SLOT_STEINER: 6,
 }
 
 
@@ -856,22 +876,39 @@ class SlotRetriever:
         # face_id is the EPISODE, not the channel: it is what render_context
         # groups by, and the group that means something to a reader is the
         # exchange, not "everything the concept channel happened to find".
+        source = c.source
+        via_entity = c.via_entity
+        # An L6 bridge always overrides whichever channel actually fetched
+        # it (dense resemblance, or a slot match on one of its two linked
+        # entities) -- the connection it states is the point of the episode,
+        # so that is what render_context should show regardless of source.
+        bridge_entities = self.graph.vertices[c.vid].meta.get("bridge_entities")
+        if bridge_entities:
+            source = SOURCE_SLOT_BRIDGE
+            via_entity = " and ".join(bridge_entities)
+        fact_turn_ids = [turn_id]
+        if bridge_entities:
+            for source_turn_id in self.graph.vertices[c.vid].meta.get(
+                "bridge_source_turn_ids", []
+            ):
+                if source_turn_id not in fact_turn_ids:
+                    fact_turn_ids.append(source_turn_id)
         return RetrievedFact(
             edge_id=he.edge_id,
             text=text,
             timestamp=he.timestamp,
             date_raw=self.dates.get(he.session_id, he.timestamp),
             session_id=he.session_id,
-            turn_ids=[turn_id],
+            turn_ids=fact_turn_ids,
             state=he.state,
             level=he.level,
             anchor_rank=0,
             anchor_score=score,
             face_id=c.vid,
             position_in_face=0,
-            source=c.source,
+            source=source,
             via_vertex=c.via_vertex,
-            via_entity=c.via_entity,
+            via_entity=via_entity,
         )
 
     # ------------------------------------------------------------- metrics --

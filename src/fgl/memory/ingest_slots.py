@@ -3,8 +3,15 @@
 Same public contract as :class:`fgl.memory.ingest.Ingestor` and
 :class:`fgl.memory.ingest_bipartite.BipartiteIngestor`: ``ingest(conv) ->
 (FatGraph, IngestReport)``, and the same hard guarantee as L1 -- **zero LLM
-calls**. One spaCy pass per turn produces every channel at once (noun chunks,
-verbs, PERSON spans, DATE spans); WordNet and a date resolver do the rest.
+calls** by default. One spaCy pass per turn produces every channel at once
+(noun chunks, verbs, PERSON spans, DATE spans); WordNet and a date resolver
+do the rest.
+
+The zero-LLM guarantee holds unconditionally through condition L5. Condition
+L6 (``cfg.bridges.enabled``) adds one optional pass at the very end of
+:meth:`SlotIngestor.ingest`, after this graph is otherwise complete: see
+:mod:`fgl.memory.bridges`. It is off by default, so every existing condition
+is unaffected by its mere presence in this module.
 
 What the graph looks like
 -------------------------
@@ -69,6 +76,7 @@ from fgl.memory.slots import (
     time_buckets,
     types_available,
 )
+from fgl.memory.bridges import synthesize_bridges
 from fgl.memory.calibration import calibrate
 from fgl.memory.temporal import annotate_text, resolve_all
 from fgl.retrieval.embeddings import Embedder
@@ -107,9 +115,9 @@ class SlotIngestor:
         logger: JsonlLogger | None = None,
     ) -> None:
         self.cfg = cfg
-        self.llm = llm  # unused: zero LLM calls in this ingest path
+        self.llm = llm  # unused unless cfg.bridges.enabled -- see synthesize_bridges
         self.embedder = embedder
-        self.prompts = prompts  # unused, kept for interface parity
+        self.prompts = prompts  # unused unless cfg.bridges.enabled
         self.log = logger or NullLogger()
         sl = cfg.slots
         self.extractor = NonGenerativeExtractor(
@@ -231,6 +239,20 @@ class SlotIngestor:
         report.graph_stats["calibration"] = calibrate(
             self.cfg, graph, concept_matrix=_concept_matrix(graph)
         ).as_dict()
+
+        # L6 only: LLM-synthesised bridge episodes between episodes the slot
+        # vocabulary above cannot connect at all. Gated on a single flag,
+        # default False, so every existing condition (L1-L5) is byte-for-byte
+        # unaffected by this module even existing -- see fgl.memory.bridges
+        # for what "bridging" means and why it is safe to bolt on at the end.
+        if self.cfg.bridges.enabled:
+            bridge_report = synthesize_bridges(
+                graph, self.cfg, self.llm, self.embedder, self.prompts, logger=self.log
+            )
+            report.graph_stats["bridges"] = bridge_report.as_dict()
+            report.graph_stats["n_episodes"] += bridge_report.n_linked
+            report.graph_stats["slot_kinds"] = _kind_histogram(graph)
+
         report.llm_usage = self.llm.usage.to_dict() if self.llm else {}
         return graph, report
 

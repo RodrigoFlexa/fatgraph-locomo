@@ -421,6 +421,8 @@ def default_fake_responder(prompt: str, system: str | None) -> str:
         )
     if marker == "consolidate":
         return json.dumps({"summary": "fake consolidation of the face"})
+    if marker == "bridge_synthesis":
+        return json.dumps({"linked": False})
     if marker == "answer" or marker == "answer_open":
         return _fake_answer(prompt)
     if marker == "judge":

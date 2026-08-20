@@ -1131,6 +1131,10 @@ def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) 
                 lines.append(f"--- around {f.via_entity} ---")
             elif f.source == "slot_dense":
                 lines.append("--- similar memories ---")
+            elif f.source == "slot_steiner":
+                lines.append(f"--- chain linking {f.via_entity} ---")
+            elif f.source == "slot_bridge":
+                lines.append(f"--- chain linking {f.via_entity} ---")
             else:
                 trail_no += 1
                 lines.append(f"--- trail {trail_no} ---")

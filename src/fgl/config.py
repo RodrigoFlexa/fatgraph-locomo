@@ -661,6 +661,59 @@ class SteinerConfig:
 
 
 @dataclass
+class BridgeConfig:
+    """Condition L6: LLM-synthesised connections between episodes that share
+    no slot at all.
+
+    Everything up to L5 can only score an edge the deterministic ingest
+    already put in the graph -- Steiner, the walk, sigma all operate on
+    incidences ``extract`` and ``ingest_slots`` already wrote. Two episodes
+    whose connection is thematic or causal but names no entity in common
+    (different surface forms, or genuinely no shared noun) are invisible to
+    every one of those channels by construction: none of them reads two
+    episodes' text at the same time. This is the one place in the L line an
+    LLM looks at raw content during ingestion rather than during the answer
+    call, and it is off by default -- L1 through L5 must stay byte-identical
+    when this section is untouched.
+
+    See ``docs/L6_DESIGN_bridge_synthesis.md`` for the two-stage design and
+    why the prompt takes no speaker/session parameters (an ingest mechanism
+    that only works on two-party dated dialogue is not a general mechanism).
+    """
+
+    enabled: bool = False
+
+    # --- stage 1: candidate pairs, zero LLM -------------------------------
+    #: nearest neighbours considered per episode, by embedding cosine
+    top_k: int = 6
+    #: quantile of the observed episode-episode cosine distribution that
+    #: counts as "close enough to investigate" -- same estimator as
+    #: `slots.concept_link_quantile`, just over episode vectors instead of
+    #: concept vectors (see `fgl.memory.calibration.concept_link_threshold_by_quantile`,
+    #: which this reuses directly). Derived PER CONVERSATION: a corpus of
+    #: another size or domain gets its own threshold, never this number.
+    quantile: float = 0.98
+    #: floor under the derived quantile, and the value used outright when the
+    #: conversation has too few episodes for a quantile to mean anything.
+    floor: float = 0.35
+    #: a candidate pair already reachable within this many hops through the
+    #: EXISTING slot vocabulary (see `fgl.evaluation.hops.episode_hops`) is
+    #: skipped -- sigma/Steiner/the walk already have a shot at it for zero
+    #: LLM cost, so spending a call there would be redundant with achado 2,
+    #: not a test of achado 3.
+    skip_within_hops: int = 1
+    #: hard ceiling on candidate pairs sent to stage 2, independent of how
+    #: loose the derived quantile turns out to be on an unfamiliar corpus.
+    #: Exists so a bad derivation costs a warning, never an unbounded bill.
+    max_candidates: int = 400
+
+    # --- stage 2: judgment + synthesis, one LLM call per surviving pair ----
+    #: minimum characters of `bridge_text` accepted -- guards against a
+    #: parseable but empty/near-empty response being treated as a real link.
+    min_bridge_chars: int = 8
+
+
+@dataclass
 class BaselineConfig:
     rag_top_k: int = 10
     full_context_max_tokens: int = 110_000
@@ -695,6 +748,7 @@ SECTIONS: dict[str, type] = {
     "slots": SlotsConfig,
     "propagation": PropagationConfig,
     "steiner": SteinerConfig,
+    "bridges": BridgeConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
 }
@@ -724,6 +778,7 @@ class Config:
     slots: SlotsConfig = field(default_factory=SlotsConfig)
     propagation: PropagationConfig = field(default_factory=PropagationConfig)
     steiner: SteinerConfig = field(default_factory=SteinerConfig)
+    bridges: BridgeConfig = field(default_factory=BridgeConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
 
@@ -990,6 +1045,27 @@ class Config:
                     "steiner.null_pool must exceed steiner.max_terminals: a "
                     "tuple cannot be drawn without replacement otherwise"
                 )
+        if self.bridges.enabled:
+            if self.ingest.mode != "slots":
+                raise ConfigError(
+                    "bridges.enabled requires ingest.mode=slots -- a bridge is "
+                    "a synthetic episode incident to existing slot vertices, "
+                    f"which only the typed-slot graph has, got ingest.mode="
+                    f"{self.ingest.mode!r}"
+                )
+            br = self.bridges
+            if br.top_k < 1:
+                raise ConfigError("bridges.top_k must be >= 1")
+            if not 0.5 <= br.quantile < 1.0:
+                raise ConfigError("bridges.quantile must be in [0.5, 1)")
+            if not 0.0 <= br.floor <= 1.0:
+                raise ConfigError("bridges.floor must be in [0, 1]")
+            if br.skip_within_hops < 1:
+                raise ConfigError("bridges.skip_within_hops must be >= 1")
+            if br.max_candidates < 1:
+                raise ConfigError("bridges.max_candidates must be >= 1")
+            if br.min_bridge_chars < 1:
+                raise ConfigError("bridges.min_bridge_chars must be >= 1")
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(
                 "ingest.extract_prompt must be extract_facts|extract_facts_topical, "

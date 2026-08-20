@@ -1,0 +1,30 @@
+# TASK: bridge_synthesis
+# version: 1
+
+You are looking at two groups of facts from the same memory store. They were
+flagged as related, but do not share a named entity already linked in the
+store.
+
+GROUP A:
+{facts_a}
+
+GROUP B:
+{facts_b}
+
+Is there a SPECIFIC, CONCRETE connection between these two groups -- the same
+underlying person, place, event, plan, or feeling referenced, continued,
+caused, or contradicted -- as opposed to a general topical similarity? Do not
+invent a connection that requires information not present in the text above.
+
+If NO: respond with exactly this JSON:
+{{"linked": false}}
+
+If YES: respond with one SELF-CONTAINED sentence stating the connection
+explicitly, naming only what is named in the text above. Do not restate
+either group in full -- name only what connects them. Also name the two
+things it connects, in the same words you used in the sentence, so they can
+be linked back to the store.
+
+{{"linked": true, "bridge_text": "...", "entity_1": "...", "entity_2": "..."}}
+
+Return STRICT JSON, no prose.
