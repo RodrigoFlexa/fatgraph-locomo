@@ -1,0 +1,681 @@
+{
+  "sample_id": "conv-30",
+  "condition": "L2d-derived",
+  "n_facts": 4400,
+  "n_edges": 4400,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 0,
+  "n_collapses": 0,
+  "n_consolidations": 0,
+  "per_session": [
+    {
+      "session": 1,
+      "session_id": "S1",
+      "timestamp": "2023-01-20T16:04:00",
+      "n_facts": 305,
+      "n_episodes": 11,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 210,
+      "E": 305,
+      "F": 3,
+      "C": 1,
+      "genus": 47,
+      "face_length_hist": {
+        "86": 1,
+        "140": 1,
+        "384": 1
+      }
+    },
+    {
+      "session": 2,
+      "session_id": "S2",
+      "timestamp": "2023-01-29T14:32:00",
+      "n_facts": 241,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 340,
+      "E": 546,
+      "F": 8,
+      "C": 1,
+      "genus": 100,
+      "face_length_hist": {
+        "4": 1,
+        "10": 1,
+        "12": 1,
+        "18": 1,
+        "46": 1,
+        "232": 1,
+        "308": 1,
+        "462": 1
+      }
+    },
+    {
+      "session": 3,
+      "session_id": "S3",
+      "timestamp": "2023-02-01T00:48:00",
+      "n_facts": 212,
+      "n_episodes": 6,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 423,
+      "E": 758,
+      "F": 5,
+      "C": 1,
+      "genus": 166,
+      "face_length_hist": {
+        "4": 1,
+        "18": 1,
+        "262": 1,
+        "550": 1,
+        "682": 1
+      }
+    },
+    {
+      "session": 4,
+      "session_id": "S4",
+      "timestamp": "2023-02-04T10:43:00",
+      "n_facts": 199,
+      "n_episodes": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 492,
+      "E": 957,
+      "F": 5,
+      "C": 1,
+      "genus": 231,
+      "face_length_hist": {
+        "4": 1,
+        "78": 1,
+        "128": 1,
+        "694": 1,
+        "1010": 1
+      }
+    },
+    {
+      "session": 5,
+      "session_id": "S5",
+      "timestamp": "2023-02-08T09:32:00",
+      "n_facts": 371,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 612,
+      "E": 1328,
+      "F": 6,
+      "C": 1,
+      "genus": 356,
+      "face_length_hist": {
+        "4": 1,
+        "128": 1,
+        "134": 1,
+        "254": 1,
+        "314": 1,
+        "1822": 1
+      }
+    },
+    {
+      "session": 6,
+      "session_id": "S6",
+      "timestamp": "2023-03-16T14:35:00",
+      "n_facts": 243,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 704,
+      "E": 1571,
+      "F": 5,
+      "C": 1,
+      "genus": 432,
+      "face_length_hist": {
+        "4": 1,
+        "86": 1,
+        "558": 1,
+        "796": 1,
+        "1698": 1
+      }
+    },
+    {
+      "session": 7,
+      "session_id": "S7",
+      "timestamp": "2023-03-23T19:28:00",
+      "n_facts": 173,
+      "n_episodes": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 747,
+      "E": 1744,
+      "F": 5,
+      "C": 1,
+      "genus": 497,
+      "face_length_hist": {
+        "4": 1,
+        "68": 1,
+        "146": 1,
+        "176": 1,
+        "3094": 1
+      }
+    },
+    {
+      "session": 8,
+      "session_id": "S8",
+      "timestamp": "2023-04-03T13:26:00",
+      "n_facts": 345,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 838,
+      "E": 2089,
+      "F": 5,
+      "C": 1,
+      "genus": 624,
+      "face_length_hist": {
+        "4": 2,
+        "490": 1,
+        "818": 1,
+        "2862": 1
+      }
+    },
+    {
+      "session": 9,
+      "session_id": "S9",
+      "timestamp": "2023-04-09T10:33:00",
+      "n_facts": 206,
+      "n_episodes": 5,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 885,
+      "E": 2295,
+      "F": 8,
+      "C": 1,
+      "genus": 702,
+      "face_length_hist": {
+        "4": 2,
+        "370": 1,
+        "386": 1,
+        "436": 1,
+        "496": 1,
+        "542": 1,
+        "2352": 1
+      }
+    },
+    {
+      "session": 10,
+      "session_id": "S10",
+      "timestamp": "2023-04-25T11:24:00",
+      "n_facts": 188,
+      "n_episodes": 5,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 923,
+      "E": 2483,
+      "F": 4,
+      "C": 1,
+      "genus": 779,
+      "face_length_hist": {
+        "4": 2,
+        "48": 1,
+        "4910": 1
+      }
+    },
+    {
+      "session": 11,
+      "session_id": "S11",
+      "timestamp": "2023-05-11T15:14:00",
+      "n_facts": 241,
+      "n_episodes": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 981,
+      "E": 2724,
+      "F": 9,
+      "C": 1,
+      "genus": 868,
+      "face_length_hist": {
+        "4": 2,
+        "16": 1,
+        "26": 1,
+        "80": 1,
+        "468": 1,
+        "668": 1,
+        "2018": 1,
+        "2164": 1
+      }
+    },
+    {
+      "session": 12,
+      "session_id": "S12",
+      "timestamp": "2023-05-27T19:18:00",
+      "n_facts": 192,
+      "n_episodes": 6,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1033,
+      "E": 2916,
+      "F": 7,
+      "C": 1,
+      "genus": 939,
+      "face_length_hist": {
+        "4": 2,
+        "6": 1,
+        "158": 1,
+        "314": 1,
+        "2200": 1,
+        "3146": 1
+      }
+    },
+    {
+      "session": 13,
+      "session_id": "S13",
+      "timestamp": "2023-06-13T20:29:00",
+      "n_facts": 207,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1086,
+      "E": 3123,
+      "F": 9,
+      "C": 1,
+      "genus": 1015,
+      "face_length_hist": {
+        "4": 2,
+        "6": 1,
+        "18": 1,
+        "134": 1,
+        "310": 1,
+        "424": 1,
+        "2406": 1,
+        "2940": 1
+      }
+    },
+    {
+      "session": 14,
+      "session_id": "S14",
+      "timestamp": "2023-06-16T21:38:00",
+      "n_facts": 236,
+      "n_episodes": 7,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1127,
+      "E": 3359,
+      "F": 12,
+      "C": 1,
+      "genus": 1111,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "24": 1,
+        "70": 1,
+        "154": 1,
+        "182": 1,
+        "270": 1,
+        "582": 1,
+        "652": 1,
+        "2146": 1,
+        "2622": 1
+      }
+    },
+    {
+      "session": 15,
+      "session_id": "S15",
+      "timestamp": "2023-06-19T10:04:00",
+      "n_facts": 208,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1180,
+      "E": 3567,
+      "F": 11,
+      "C": 1,
+      "genus": 1189,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "24": 1,
+        "32": 1,
+        "40": 1,
+        "70": 1,
+        "656": 1,
+        "816": 1,
+        "1370": 1,
+        "4110": 1
+      }
+    },
+    {
+      "session": 16,
+      "session_id": "S16",
+      "timestamp": "2023-06-21T14:15:00",
+      "n_facts": 151,
+      "n_episodes": 5,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1213,
+      "E": 3718,
+      "F": 11,
+      "C": 1,
+      "genus": 1248,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "24": 1,
+        "32": 1,
+        "68": 1,
+        "70": 1,
+        "508": 1,
+        "1172": 1,
+        "2552": 1,
+        "2994": 1
+      }
+    },
+    {
+      "session": 17,
+      "session_id": "S17",
+      "timestamp": "2023-07-09T13:25:00",
+      "n_facts": 252,
+      "n_episodes": 8,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1278,
+      "E": 3970,
+      "F": 8,
+      "C": 1,
+      "genus": 1343,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "32": 1,
+        "264": 1,
+        "1428": 1,
+        "2674": 1,
+        "3526": 1
+      }
+    },
+    {
+      "session": 18,
+      "session_id": "S18",
+      "timestamp": "2023-07-21T17:44:00",
+      "n_facts": 307,
+      "n_episodes": 6,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1358,
+      "E": 4277,
+      "F": 5,
+      "C": 1,
+      "genus": 1458,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "670": 1,
+        "7868": 1
+      }
+    },
+    {
+      "session": 19,
+      "session_id": "S19",
+      "timestamp": "2023-07-23T18:46:00",
+      "n_facts": 123,
+      "n_episodes": 5,
+      "n_incongruent_new": 0,
+      "n_collapses": 0,
+      "n_consolidations": 0,
+      "V": 1380,
+      "E": 4400,
+      "F": 10,
+      "C": 1,
+      "genus": 1506,
+      "face_length_hist": {
+        "4": 1,
+        "6": 2,
+        "28": 1,
+        "64": 1,
+        "114": 1,
+        "258": 1,
+        "452": 1,
+        "3874": 1,
+        "3994": 1
+      }
+    }
+  ],
+  "graph_stats": {
+    "V": 1380,
+    "E": 4400,
+    "F": 10,
+    "C": 1,
+    "genus": 1506,
+    "chi": -3010,
+    "components": [
+      {
+        "index": 0,
+        "V": 1380,
+        "E": 4400,
+        "F": 10,
+        "genus": 1506
+      }
+    ],
+    "n_faces_nontrivial": 10,
+    "face_length_hist": {
+      "4": 1,
+      "6": 2,
+      "28": 1,
+      "64": 1,
+      "114": 1,
+      "258": 1,
+      "452": 1,
+      "3874": 1,
+      "3994": 1
+    },
+    "face_length_mean": 880.0,
+    "face_length_max": 3994,
+    "n_leaf_faces": 0,
+    "n_bigon_faces": 0,
+    "edges_by_state": {
+      "emergente": 4400,
+      "consolidada": 0,
+      "incongruente": 0
+    },
+    "n_level2_edges": 0,
+    "n_shadowed_edges": 0,
+    "degree_mean": 6.3768115942028984,
+    "degree_1_frac": 0.5377,
+    "hub_share": 0.0298,
+    "fingerprint": "681b461bc8447b3567c415bee208b191",
+    "n_episodes": 133,
+    "slot_kinds": {
+      "actor": 11,
+      "concept": 592,
+      "episode": 133,
+      "predicate": 205,
+      "time": 48,
+      "type": 391
+    },
+    "wordnet_types": true,
+    "time_granularities": [
+      "year",
+      "month",
+      "day"
+    ],
+    "calibration": {
+      "hub_degree_by_kind": {
+        "actor": 60,
+        "concept": 18,
+        "predicate": 44,
+        "time": 84,
+        "type": 29
+      },
+      "hub_degree_default": 60,
+      "concept_link_threshold": 0.5522,
+      "actor_prior_floor": 0.5,
+      "actor_prior_full": 0.625,
+      "n_question_noun_stop": 31,
+      "question_noun_stop": [
+        "activities",
+        "activity",
+        "answer",
+        "any",
+        "approximate date",
+        "conversation",
+        "date",
+        "detail",
+        "details",
+        "example",
+        "examples",
+        "favorite",
+        "favourite",
+        "information",
+        "kind",
+        "one",
+        "ones",
+        "plan",
+        "plans",
+        "question",
+        "reason",
+        "reasons",
+        "some",
+        "sort",
+        "stuff",
+        "thing",
+        "things",
+        "type",
+        "use date",
+        "way",
+        "ways"
+      ],
+      "source": {
+        "actor_prior_floor": "derived",
+        "actor_prior_full": "derived",
+        "concept_link_threshold": "derived",
+        "hub_degree": "derived",
+        "question_noun_stop": "fallback"
+      },
+      "evidence": {
+        "hub_degree": {
+          "quantile": 0.99,
+          "per_kind": {
+            "actor": {
+              "n_vertices": 11,
+              "threshold": 60,
+              "source": "fallback"
+            },
+            "predicate": {
+              "n_vertices": 205,
+              "median_degree": 2.0,
+              "max_degree": 58,
+              "threshold": 44,
+              "frac_above": 0.0146,
+              "source": "derived"
+            },
+            "concept": {
+              "n_vertices": 592,
+              "median_degree": 1.0,
+              "max_degree": 108,
+              "threshold": 18,
+              "frac_above": 0.0101,
+              "source": "derived"
+            },
+            "type": {
+              "n_vertices": 391,
+              "median_degree": 1.0,
+              "max_degree": 38,
+              "threshold": 29,
+              "frac_above": 0.0128,
+              "source": "derived"
+            },
+            "time": {
+              "n_vertices": 48,
+              "median_degree": 5.5,
+              "max_degree": 133,
+              "threshold": 84,
+              "frac_above": 0.0208,
+              "source": "derived"
+            }
+          }
+        },
+        "concept_link_threshold": {
+          "n_concepts": 592,
+          "n_pairs_sampled": 174936,
+          "quantile": 0.995,
+          "median_pair_cosine": 0.2023,
+          "threshold": 0.5522,
+          "clipped_to_floor": false,
+          "source": "derived"
+        },
+        "actor_prior_floor": {
+          "n_speakers": 2,
+          "n_episodes_with_content": 133,
+          "median_dominant_share": 0.625,
+          "floor": 0.5,
+          "source": "derived"
+        },
+        "actor_prior_full": {
+          "n_speakers": 2,
+          "n_episodes_with_content": 133,
+          "median_dominant_share": 0.625,
+          "floor": 0.5,
+          "source": "derived"
+        },
+        "question_noun_stop": {
+          "mode": "derived",
+          "n_questions": 0,
+          "why": "derivation needs a question corpus of at least 50 and an extractor"
+        }
+      }
+    }
+  },
+  "llm_usage": {
+    "calls": 199,
+    "cached_calls": 199,
+    "prompt_tokens": 625772,
+    "completion_tokens": 37613,
+    "total_tokens": 663385,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "qa/answer": {
+        "calls": 149,
+        "cached_calls": 149,
+        "prompt_tokens": 469347,
+        "completion_tokens": 24614,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "qa/answer_open": {
+        "calls": 13,
+        "cached_calls": 13,
+        "prompt_tokens": 41392,
+        "completion_tokens": 1566,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "qa/answer_set": {
+        "calls": 37,
+        "cached_calls": 37,
+        "prompt_tokens": 115033,
+        "completion_tokens": 11433,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "genus_optimization": {}
+}
