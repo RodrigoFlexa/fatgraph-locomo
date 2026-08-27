@@ -3,8 +3,9 @@
 Backends
 --------
 ``sentence-transformers``  local, default (``all-MiniLM-L6-v2``);
-``azure``                  ``text-embedding-3-small`` through Azure (optional,
-                           flag-gated, for a future comparison);
+``azure``                  Azure OpenAI ``text-embedding-3-*`` through the same
+                           client (and the same private CA) as the chat
+                           backend; ``azure_dimensions`` truncates the vector.
 ``hashing``                deterministic, dependency-free hashed bag-of-ngrams.
                            Not competitive, but it makes the *entire* pipeline
                            runnable and testable with no model download -- the
@@ -99,31 +100,136 @@ class SentenceTransformerEmbedder(Embedder):
 
 
 class AzureEmbedder(Embedder):
-    def __init__(self, deployment: str, normalize: bool = True, batch_size: int = 64):
-        import os
+    """Azure OpenAI embeddings, through the same client the chat backend uses.
 
-        from openai import AzureOpenAI
+    Four things this has to get right, and the previous version got none of
+    them, which is why ``provider: azure`` had never actually run against the
+    gateway:
 
-        self._client = AzureOpenAI(
-            azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
-            api_key=os.environ["AZURE_OPENAI_API_KEY"],
-            api_version=os.environ["AZURE_OPENAI_API_VERSION"],
-        )
+    **The gateway.** Credentials, the private CA bundle and the
+    ``base_url``-vs-``azure_endpoint`` distinction all come from
+    :func:`fgl.llm.azure.build_azure_client`. The old implementation read
+    ``os.environ`` directly and so ignored ``FGL_CA_BUNDLE`` and any endpoint
+    that carries a routing path.
+
+    **The token limit.** ``text-embedding-3-*`` takes 8192 tokens per input.
+    An episode is 2-6 turns and stays far inside that, but a *batch* of 64 of
+    them does not always stay inside the per-request total a gateway will
+    accept. Batches are therefore cut by an estimated token budget as well as
+    by a count, and an over-long single input is truncated rather than sent to
+    fail.
+
+    **The dimension.** Read from the first response, never assumed. The old
+    code hard-coded 1536, which is silently wrong for
+    ``text-embedding-3-large`` (3072) and would have mis-shaped the index.
+
+    **Retries.** Embedding a whole corpus is thousands of calls; a single 429
+    must not abort an ingest. Same backoff classification as the chat client.
+
+    ``dimensions`` (Matryoshka truncation, supported by the ``-3-`` family) is
+    passed through when set. It is the one knob that trades index memory for
+    quality: 3072 -> 1024 cuts the vector store 3x.
+    """
+
+    #: chars per token, deliberately pessimistic so the estimate over-counts
+    CHARS_PER_TOKEN = 3.5
+
+    def __init__(
+        self,
+        deployment: str,
+        normalize: bool = True,
+        batch_size: int = 64,
+        dimensions: int | None = None,
+        max_input_tokens: int = 8192,
+        max_batch_tokens: int = 60_000,
+        max_retries: int = 6,
+    ):
+        from fgl.llm.azure import build_azure_client
+
+        self._client, _ = build_azure_client()
         self._deployment = deployment
         self.normalize = normalize
-        self.batch_size = batch_size
-        self.dim = 1536
+        self.batch_size = max(1, batch_size)
+        self.dimensions = dimensions
+        self.max_input_tokens = max_input_tokens
+        self.max_batch_tokens = max_batch_tokens
+        self.max_retries = max(1, max_retries)
+        #: provisional; overwritten by the first real response
+        self.dim = dimensions or 1536
+        self._dim_known = False
+
+    # ------------------------------------------------------------ batching --
+    def _prepare(self, text: str) -> str:
+        # The API rejects an empty input outright, and a whitespace-only one is
+        # the cheapest legal stand-in that keeps positions aligned.
+        t = text if text and text.strip() else " "
+        cap = int(self.max_input_tokens * self.CHARS_PER_TOKEN)
+        return t[:cap]
+
+    def _batches(self, texts: Sequence[str]) -> Iterable[list[str]]:
+        budget = int(self.max_batch_tokens * self.CHARS_PER_TOKEN)
+        batch: list[str] = []
+        size = 0
+        for raw in texts:
+            t = self._prepare(raw)
+            # A single item over budget still goes out alone: it was already
+            # truncated to the per-input cap, so the server can take it.
+            if batch and (len(batch) >= self.batch_size or size + len(t) > budget):
+                yield batch
+                batch, size = [], 0
+            batch.append(t)
+            size += len(t)
+        if batch:
+            yield batch
+
+    # ---------------------------------------------------------------- call --
+    def _embed(self, batch: list[str]) -> np.ndarray:
+        import random
+        import time
+
+        from fgl.llm.azure import _is_retryable, _retry_after_seconds
+
+        kwargs: dict = {"model": self._deployment, "input": batch}
+        if self.dimensions:
+            kwargs["dimensions"] = self.dimensions
+
+        last: Exception | None = None
+        for attempt in range(self.max_retries):
+            try:
+                resp = self._client.embeddings.create(**kwargs)
+                # order is not guaranteed by contract; the index field is
+                return np.asarray(
+                    [d.embedding for d in sorted(resp.data, key=lambda d: d.index)],
+                    dtype=np.float32,
+                )
+            except Exception as exc:  # noqa: BLE001 - classified below
+                last = exc
+                # A gateway that does not implement Matryoshka rejects
+                # `dimensions`; drop it once and keep the full width rather
+                # than failing the whole ingest over an optional parameter.
+                if self.dimensions and "dimensions" in str(exc):
+                    kwargs.pop("dimensions", None)
+                    self.dimensions = None
+                    continue
+                if not _is_retryable(exc) or attempt == self.max_retries - 1:
+                    break
+                delay = min(60.0, 2.0**attempt) * (0.5 + random.random())
+                time.sleep(max(delay, _retry_after_seconds(exc)))
+        raise RuntimeError(
+            f"embeddings do Azure falharam (deployment={self._deployment!r}, "
+            f"batch de {len(batch)} textos): {last}"
+        ) from last
 
     def encode(self, texts: Sequence[str]) -> np.ndarray:
         chunks: list[np.ndarray] = []
-        for i in range(0, len(texts), self.batch_size):
-            batch = [t or " " for t in texts[i : i + self.batch_size]]
-            resp = self._client.embeddings.create(model=self._deployment, input=batch)
-            chunks.append(
-                np.asarray([d.embedding for d in resp.data], dtype=np.float32)
-            )
-        out = np.vstack(chunks) if chunks else np.zeros((0, self.dim), np.float32)
-        self.dim = out.shape[1] if out.size else self.dim
+        for batch in self._batches(texts):
+            chunks.append(self._embed(batch))
+        if not chunks:
+            return np.zeros((0, self.dim), np.float32)
+        out = np.vstack(chunks)
+        if not self._dim_known:
+            self.dim = int(out.shape[1])
+            self._dim_known = True
         return _l2(out) if self.normalize else out
 
 
@@ -172,8 +278,19 @@ def build_embedder(cfg: EmbeddingConfig) -> Embedder:
         inner = SentenceTransformerEmbedder(cfg.model, cfg.normalize, cfg.batch_size)
         tag = f"st-{cfg.model}"
     elif cfg.provider == "azure":
-        inner = AzureEmbedder(cfg.azure_deployment, cfg.normalize, cfg.batch_size)
-        tag = f"azure-{cfg.azure_deployment}"
+        inner = AzureEmbedder(
+            cfg.azure_deployment,
+            cfg.normalize,
+            cfg.batch_size,
+            dimensions=cfg.azure_dimensions,
+            max_input_tokens=cfg.azure_max_input_tokens,
+            max_batch_tokens=cfg.azure_max_batch_tokens,
+        )
+        # The width is part of the cache key, not a detail: vectors written at
+        # 3072 and read back as 1024 would concatenate into a silently
+        # corrupt index instead of a cache miss.
+        width = cfg.azure_dimensions or "full"
+        tag = f"azure-{cfg.azure_deployment}-d{width}"
     else:
         raise ValueError(f"unknown embedding provider {cfg.provider!r}")
     return CachedEmbedder(inner, cfg.cache_dir, tag)

@@ -63,7 +63,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from typing import Optional, Sequence
+from typing import Mapping, Optional, Sequence
 
 import numpy as np
 
@@ -205,6 +205,15 @@ class SlotRetriever:
     #: exactly how L4 spent a full run silently falling back to the legacy
     #: stoplist. Inherited by L3 and L4, so the flag cannot drift from reality.
     WANTS_QUESTION_CORPUS = True
+
+    #: Cut the support score is compared against. Left at 0.0 (abstain on
+    #: nothing) because a single retriever cannot see the score distribution it
+    #: would need to calibrate on -- Otsu needs the corpus's own histogram. The
+    #: caller that DOES see it (fgl.evaluation.slots_oracle, fgl.pipeline) runs
+    #: one scoring pass, calls `fgl.retrieval.support.calibrate_threshold` and
+    #: assigns it here before the pass that acts. A threshold of 0.0 is a
+    #: no-op, never a silent default that deletes answers.
+    support_threshold: float = 0.0
 
     def __init__(
         self,
@@ -583,6 +592,23 @@ class SlotRetriever:
                 own = max(self._actor_weight(k, ep_vid) for k in actor_keys)
                 c.score *= floor + (1.0 - floor) * min(own / full, 1.0)
 
+        # 3b. the attestation: what SHAPE of support this question has here.
+        # After the actor prior because it reads the final scores, before
+        # emission because an `absent` verdict must cost no context at all.
+        if self.cfg.support.enabled:
+            att = self._attest(slots, linked, unlinked, candidates,
+                               best_dense, support, reason)
+            result.support_shape = att.shape
+            result.support_score = att.score
+            result.support_threshold = att.threshold
+            result.support_features = dict(att.features)
+            result.support_witness = list(att.witness)
+            result.slot_support = att.score
+            if att.abstains:
+                result.abstain_reason = att.reason
+                if self.cfg.support.abstain:
+                    return result  # no facts -> Answerer abstains
+
         if not candidates:
             return result
 
@@ -869,6 +895,59 @@ class SlotRetriever:
         if best > 0.0:
             return best, ""
         return 0.0, "empty_corner"
+
+    def _attest(
+        self,
+        slots: QuestionSlots,
+        linked: Sequence[tuple[str, str, str]],
+        unlinked: Sequence[tuple[str, str]],
+        candidates: Mapping[str, _Episode],
+        best_dense: Mapping[str, float],
+        corner: float,
+        corner_reason: str,
+    ):
+        """Assemble the attestation inputs from this graph and this query.
+
+        Everything here is already computed for other reasons -- the orbits are
+        the ribbon read, the candidate scores are the ranking, the corner value
+        is the test that already ran. The attestation costs one pass over the
+        top-k candidates and no LLM call, which is what makes it measurable on
+        the free oracle before a single token is spent on it.
+        """
+        from fgl.retrieval.support import SupportInputs, attest
+
+        sp = self.cfg.support
+        specific = [
+            (kind, key, vid) for kind, key, vid in linked if kind in SPECIFIC_KINDS
+        ]
+        orbits = {
+            vid: frozenset(self._orbit_episodes(vid)) for _, _, vid in specific
+        }
+        ranked = sorted(candidates.items(), key=lambda kv: -kv[1].score)[: sp.top_k]
+        ep_slots = {
+            ep_vid: frozenset(v for v, eps in orbits.items() if ep_vid in eps)
+            for ep_vid, _ in ranked
+        }
+        ep_sessions = {
+            ep_vid: str(self.graph.vertices[ep_vid].meta.get("session_id", ""))
+            for ep_vid, _ in ranked
+        }
+        inputs = SupportInputs(
+            # `unlinked` is already filtered to the specific kinds upstream, so
+            # asked = resolved + unresolved is the question's whole content
+            # vocabulary -- the signal the retriever computed and then threw away.
+            asked_specific=len(specific) + len(unlinked),
+            linked_specific=len(specific),
+            corner=corner,
+            corner_reason=corner_reason,
+            slot_orbits=orbits,
+            candidate_scores=[c.score for c in candidates.values()],
+            episode_slots=ep_slots,
+            episode_sessions=ep_sessions,
+            dense_top=max(best_dense.values()) if best_dense else None,
+            is_set=slots.is_set,
+        )
+        return attest(inputs, threshold=self.support_threshold, top_k=sp.top_k)
 
     def _make_fact(
         self, he: HalfEdge, c: "_Episode", turn_id: str, text: str, score: float

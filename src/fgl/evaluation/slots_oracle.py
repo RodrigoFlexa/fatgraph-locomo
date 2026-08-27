@@ -103,6 +103,62 @@ class _CornerAcc:
         }
 
 
+@dataclass
+class _SupportAcc:
+    """Support scores split by the only distinction that matters for the cut.
+
+    Not a second scorer either: the oracle never *acts* on a threshold, it
+    reports what every threshold would do. That is the whole reform. The old
+    objective was ``recall_context`` alone, and on 22.5% of this benchmark
+    recall is anticorrelated with the correct behaviour -- retrieving plausible
+    context for a question that has no answer is what produces the
+    hallucination. A knob that raises recall and lowers the separation below is
+    a trade, not an improvement, and this is the instrument that can say so
+    before an LLM call is spent.
+    """
+
+    substantive: list = field(default_factory=list)
+    adversarial: list = field(default_factory=list)
+    shapes: dict = field(default_factory=dict)
+    shapes_adversarial: dict = field(default_factory=dict)
+
+    def add(self, score: float, shape: str, is_adversarial: bool) -> None:
+        (self.adversarial if is_adversarial else self.substantive).append(score)
+        self.shapes[shape] = self.shapes.get(shape, 0) + 1
+        if is_adversarial:
+            self.shapes_adversarial[shape] = self.shapes_adversarial.get(shape, 0) + 1
+
+    def as_dict(self, cfg) -> dict:
+        from fgl.retrieval.support import auc, calibrate_threshold, operating_curve
+
+        if not self.substantive and not self.adversarial:
+            return {}
+        sp = cfg.support
+        threshold, source = calibrate_threshold(
+            self.substantive + self.adversarial,
+            method=sp.method, quantile=sp.quantile, floor=sp.floor, bins=sp.bins,
+        )
+        curve = operating_curve(self.substantive, self.adversarial)
+        at = operating_curve(self.substantive, self.adversarial, [threshold])[0]
+        best = max(curve, key=lambda r: r["net_questions"]) if curve else {}
+        return {
+            "n_substantive": len(self.substantive),
+            "n_adversarial": len(self.adversarial),
+            # P(an unanswerable question scores below an answerable one). 0.5
+            # is a coin flip and means the mechanism has no chain at all.
+            "separation_auc": round(
+                auc(self.substantive, self.adversarial), 4
+            ),
+            "threshold": round(threshold, 4),
+            "threshold_source": source,
+            "at_threshold": at,
+            "best_achievable": best,
+            "shapes": dict(sorted(self.shapes.items())),
+            "shapes_adversarial": dict(sorted(self.shapes_adversarial.items())),
+            "curve": curve,
+        }
+
+
 def run_oracle(
     conditions: Sequence[str],
     conversations: Sequence[Conversation],
@@ -140,11 +196,19 @@ def run_oracle(
         # misconfigured condition must not be able to open a billable client.
         cfg.llm.provider = "fake"
         cfg.llm.cache_enabled = False
+        # The attestation is computed for EVERY slots condition and is never
+        # allowed to act here: `abstain=False` keeps the early return off, so
+        # recall_context is byte-identical to a run without it and the two
+        # halves of the objective are measured on the same retrieval.
+        if cfg.ingest.mode == "slots":
+            cfg.support.enabled = True
+            cfg.support.abstain = False
         runner = Runner(cfg, root=root, llm=build_llm(cfg.llm))
         retriever_cls = _RETRIEVERS[cfg.retrieval.mode]
 
         per_cat: dict[str, _Acc] = {name: _Acc() for name in CATEGORY_NAMES.values()}
         corner = _CornerAcc()
+        support = _SupportAcc()
         calibration: dict = {}
         read_stats: dict = {}
 
@@ -182,6 +246,12 @@ def run_oracle(
                     result.tokens_used,
                     len(result.facts),
                 )
+                if cfg.support.enabled and getattr(result, "support_shape", ""):
+                    support.add(
+                        float(result.support_score),
+                        result.support_shape,
+                        q.category == 5,
+                    )
                 reason = getattr(result, "abstain_reason", "")
                 if q.category == 5:
                     corner.adversarial_total += 1
@@ -198,6 +268,7 @@ def run_oracle(
             "max_facts_in_prompt": cfg.retrieval.max_facts_in_prompt,
             "per_category": {k: v.as_dict() for k, v in per_cat.items() if v.n},
             "corner_test": corner.as_dict(),
+            "support": support.as_dict(cfg),
             "calibration": calibration,
             "read": read_stats,
         }
@@ -298,4 +369,76 @@ def format_oracle(report: dict) -> str:
             f"false positives {ct['substantive_fired']}/{ct['substantive_total']} "
             f"({ct['false_positive_rate']:.1%})   {ct['reasons']}"
         )
+
+    lines.extend(_format_support(report, conds))
     return "\n".join(lines)
+
+
+def _format_support(report: dict, conds: Sequence[str]) -> list[str]:
+    """The other half of the objective: does support separate the two halves?
+
+    Printed as a curve rather than a number on purpose. A system that always
+    abstains scores 1.000 on adversarial and zero on everything else, so no
+    single operating point can be read as a result -- the shape of the trade is
+    the result. `net_questions` does the arithmetic that the per-category
+    tables invite you to skip: adversarial is 446 questions and multi-hop is
+    282, so a mechanism is judged on both columns or on neither.
+    """
+    lines: list[str] = []
+    have = [c for c in conds if report["conditions"][c].get("support")]
+    if not have:
+        return lines
+
+    lines.append("")
+    lines.append("support attestation -- separation between answerable and not")
+    lines.append(
+        f"{'condition':<14} {'AUC':>6} {'cut':>7} {'source':>9} "
+        f"{'caught':>7} {'deleted':>8} {'net Q':>7} {'net micro':>10}"
+    )
+    for cond in have:
+        sp = report["conditions"][cond]["support"]
+        at = sp["at_threshold"]
+        lines.append(
+            f"{cond:<14} {sp['separation_auc']:>6.3f} {sp['threshold']:>7.3f} "
+            f"{sp['threshold_source']:>9} {at['adversarial_caught']:>7.1%} "
+            f"{at['substantive_deleted']:>8.1%} {at['net_questions']:>7.1f} "
+            f"{at['net_micro']:>+10.4f}"
+        )
+
+    lines.append("")
+    lines.append(
+        "  AUC 0.5 = coin flip (the mechanism has no chain). `net Q` = "
+        "questions won minus destroyed,"
+    )
+    lines.append(
+        "  against the reference F1 of results/L2d-derived (substantive "
+        "0.5263, adversarial 0.5762)."
+    )
+
+    for cond in have:
+        sp = report["conditions"][cond]["support"]
+        best = sp.get("best_achievable") or {}
+        lines.append("")
+        lines.append(f"{cond} -- best cut on this curve")
+        lines.append(
+            f"{'':<4}threshold {best.get('threshold')}  caught "
+            f"{best.get('adversarial_caught', 0):.1%}  deleted "
+            f"{best.get('substantive_deleted', 0):.1%}  net "
+            f"{best.get('net_questions')} questions "
+            f"({best.get('net_micro', 0):+.4f} micro)"
+        )
+        lines.append(f"{'':<4}shapes, all questions: {sp['shapes']}")
+        lines.append(f"{'':<4}shapes, adversarial:   {sp['shapes_adversarial']}")
+        lines.append(
+            f"{'':<4}{'cut':>7} {'caught':>8} {'deleted':>8} {'net Q':>8}"
+        )
+        curve = sp.get("curve") or []
+        step = max(1, len(curve) // 12)
+        for row in curve[::step]:
+            lines.append(
+                f"{'':<4}{row['threshold']:>7.3f} "
+                f"{row['adversarial_caught']:>8.1%} "
+                f"{row['substantive_deleted']:>8.1%} "
+                f"{row['net_questions']:>8.1f}"
+            )
+    return lines

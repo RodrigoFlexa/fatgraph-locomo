@@ -1,10 +1,13 @@
 """Corporate-gateway and reasoning-model support.
 
-Modelled on a real deployment: credentials in a ConfigParser ``.ini``, a private
-CA bundle, a ``base_url`` that already carries the routing path, and a
-``gpt-5-mini`` deployment -- a *reasoning* model, which takes
-``max_completion_tokens``, rejects a custom ``temperature``, and returns an empty
-string when the budget is spent on internal reasoning.
+Modelled on a real deployment: a private CA bundle, a ``base_url`` that already
+carries the routing path, and a ``gpt-5-mini`` deployment -- a *reasoning*
+model, which takes ``max_completion_tokens``, rejects a custom ``temperature``,
+and returns an empty string when the budget is spent on internal reasoning.
+
+``.env`` is the only configuration file: the ``FGL_AZURE_CONFIG_INI`` path was
+removed, so the tests below pin that credentials come from the environment and
+from nowhere else.
 """
 
 from __future__ import annotations
@@ -40,50 +43,59 @@ def test_reasoning_deployments_are_recognised(deployment, expected):
 
 
 # --------------------------------------------------------------------------- #
-# Credentials from an .ini                                                     #
+# One source of truth: .env / the environment                                  #
 # --------------------------------------------------------------------------- #
 
 
-PETROBRAS_INI = """\
-[OPENAI]
-OPENAI_API_KEY = abc-123-secret
-OPENAI_API_VERSION = 2024-12-01-preview
-AZURE_OPENAI_BASE_URL = https://gateway.corp.example.com/openai/v1
-"""
-
-
-def test_credentials_load_from_a_config_ini(tmp_path, monkeypatch):
-    ini = tmp_path / "config-v1.x.ini"
-    ini.write_text(PETROBRAS_INI, encoding="utf-8")
-    monkeypatch.setenv("FGL_AZURE_CONFIG_INI", str(ini))
-
+def test_credentials_come_from_the_environment(tmp_path, monkeypatch):
+    monkeypatch.setenv("AZURE_OPENAI_API_KEY", "abc-123-secret")
+    monkeypatch.setenv("AZURE_OPENAI_API_VERSION", "2024-12-01-preview")
+    monkeypatch.setenv(
+        "AZURE_OPENAI_ENDPOINT", "https://gateway.corp.example.com/openai/v1"
+    )
     s = Settings.load(tmp_path / "no.env")
     assert s.azure_ready is True
     assert s.azure_api_key == "abc-123-secret"
-    assert s.azure_api_version == "2024-12-01-preview"
-    assert s.azure_endpoint == "https://gateway.corp.example.com/openai/v1"
-    assert s.ini_path == str(ini)
+    assert s.use_base_url is True
 
 
-def test_the_environment_still_beats_the_ini(tmp_path, monkeypatch):
-    ini = tmp_path / "c.ini"
-    ini.write_text(PETROBRAS_INI, encoding="utf-8")
+def test_credentials_come_from_a_dotenv_file(tmp_path):
+    env = tmp_path / ".env"
+    env.write_text(
+        "AZURE_OPENAI_API_KEY=from-dotenv\n"
+        "AZURE_OPENAI_API_VERSION=2024-10-21\n"
+        "AZURE_OPENAI_ENDPOINT=https://gateway.corp.example.com/openai/v1\n",
+        encoding="utf-8",
+    )
+    s = Settings.load(env)
+    assert s.dotenv_found is True
+    assert s.azure_api_key == "from-dotenv"
+
+
+def test_there_is_no_second_config_path(tmp_path, monkeypatch):
+    """The .ini loader is gone: setting it must not resurrect credentials.
+
+    Regression guard for the thing the removal was for -- two places to look
+    meant "where did this key come from?" had two possible answers.
+    """
+    ini = tmp_path / "config-v1.x.ini"
+    ini.write_text(
+        "[OPENAI]\nOPENAI_API_KEY = from-ini\nOPENAI_API_VERSION = v\n"
+        "AZURE_OPENAI_BASE_URL = https://gateway.corp.example.com/openai/v1\n",
+        encoding="utf-8",
+    )
     monkeypatch.setenv("FGL_AZURE_CONFIG_INI", str(ini))
-    monkeypatch.setenv("AZURE_OPENAI_API_KEY", "from-environment")
 
-    assert Settings.load(tmp_path / "no.env").azure_api_key == "from-environment"
-
-
-def test_a_missing_ini_is_a_clear_error(tmp_path, monkeypatch):
-    monkeypatch.setenv("FGL_AZURE_CONFIG_INI", str(tmp_path / "nope.ini"))
-    with pytest.raises(RuntimeError, match="não existe"):
-        Settings.load(tmp_path / "no.env")
+    s = Settings.load(tmp_path / "no.env")
+    assert s.azure_ready is False
+    assert not hasattr(s, "ini_path")
+    assert "from-ini" not in str(s.redacted())
 
 
-def test_the_ini_key_never_reaches_the_manifest(tmp_path, monkeypatch):
-    ini = tmp_path / "c.ini"
-    ini.write_text(PETROBRAS_INI, encoding="utf-8")
-    monkeypatch.setenv("FGL_AZURE_CONFIG_INI", str(ini))
+def test_the_key_never_reaches_the_manifest(tmp_path, monkeypatch):
+    monkeypatch.setenv("AZURE_OPENAI_API_KEY", "abc-123-secret")
+    monkeypatch.setenv("AZURE_OPENAI_API_VERSION", "v")
+    monkeypatch.setenv("AZURE_OPENAI_ENDPOINT", "https://r.openai.azure.com/")
 
     red = Settings.load(tmp_path / "no.env").redacted()
     assert "abc-123-secret" not in str(red)

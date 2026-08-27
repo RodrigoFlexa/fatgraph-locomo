@@ -1108,3 +1108,120 @@ O próximo passo, fora do escopo desta implementação, é `fgl slots-oracle -C 
 (ou equivalente) com um LLM real e comparar contra a L5 nas mesmas 1986
 perguntas — só então a hipótese "pontes ajudam multi-hop" vira medição, do
 mesmo jeito que D32/D33 fizeram para a conjunção Steiner.
+
+## D35 — O atestado de suporte, e a reforma do objetivo do oracle
+
+**O que a rodada nova disse.** Em toda métrica em disco, para toda condição,
+`adversarial/f1 == adversarial/abstention_rate`, dígito por dígito (L2d 0,5762
+== 0,5762; L5 0,6166 == 0,6166). Adversarial não é uma categoria de pergunta:
+é a medição direta da política de abstenção, sobre 446 de 1986 perguntas —
+mais que multi-hop (282) e open-domain (96) somados.
+
+Entre a rodada de 2026-08-20 e a nova, na MESMA condição e com o MESMO config:
+
+| | 20/08 | nova | delta |
+|---|---|---|---|
+| f1 substantivo (n=1540) | 0,5263 | 0,5347 | **+0,008** |
+| abstenção adversarial (n=446) | 0,5762 | 0,2420 | **−0,334** |
+| micro (n=1986) | 0,5375 | 0,4690 | −0,069 |
+
+O sistema melhorou no que tem resposta e todo o prejuízo de micro é a taxa de
+abstenção. A aritmética fecha exatamente: (1540×0,5263 + 446×0,5762)/1986 =
+0,5375. Na mesma unidade, resolver multi-hop POR COMPLETO vale +0,081 micro;
+resolver a decisão de responder vale +0,170 (teto 0,639, ou 0,655 recuperando
+as 83 abstenções erradas em substantivo; porta realista a 80% dá 0,594 contra
+0,546 do B1-full).
+
+**Por que o instrumento não viu.** `fgl slots-oracle` otimizava
+`recall_context`, e em 22,5% do benchmark recall é ANTICORRELACIONADO com o
+comportamento correto — recuperar contexto plausível para uma pergunta sem
+resposta é o que produz alucinação. A calibração derivada alarga a recuperação,
+ganha nas categorias respondíveis e paga a conta onde o oráculo é cego.
+Armadilha metodológica, não bug; corrigi-la faz parte da contribuição.
+
+**O que foi implementado.**
+
+`src/fgl/retrieval/support.py` — o atestado. A pergunta chega como tupla de
+slots com um buraco; como essa tupla se projeta no grafo é um fato estrutural
+com quatro casos: `direct` (um episódio cobre tudo), `composed` (só um par
+cobre — o caso multi-hop, que deve ser apresentado COMO junção), `conflict`
+(dois cobrem, em sessões diferentes — atualização, em ordem temporal) e
+`absent` (não coocorre acima do piso — abstenção, com contexto quase nulo).
+
+O escore não tem peso nenhum, e suas duas metades combinam de formas
+diferentes de propósito: o **portão** (vocabulário presente, canto possuído) é
+*conjuntivo*, porque seus termos são refutações e uma basta — média
+geométrica; a **evidência** (coocorrência, concentração, margem, pico denso) é
+*média com peso igual*, porque nenhum termo é decisivo e ponderá-los seria um
+parâmetro varrido disfarçado. Pesos iguais e a escolha dos combinadores são
+premissas de modelo declaradas, mesmo status de `w_kappa`, `lambda` e `gamma`.
+
+O corte vem de **Otsu** sobre o histograma do próprio corpus — o limiar
+bimodal clássico, sem rótulo e **sem parâmetro livre algum**. Distribuição
+degenerada devolve 0,0 (não abstém em nada) em vez de inventar um vale: um
+único modo não tem vale, e inventá-lo deletaria respostas corretas para
+satisfazer uma fórmula. Tirar o corte da taxa conhecida de adversarial seria
+exatamente a engenharia reversa que a D30 existe para evitar, e não é feita.
+
+Isso substitui o `corner test` binário (20/446 TP contra 38/1540 FP, quase
+break-even, desligado desde a D26): um predicado único não separa duas
+distribuições — o que um escore dá é um ponto de operação que se enxerga.
+
+`SupportConfig` em `fgl.config`, `support.enabled` default **False**: L1–L6
+continuam byte a byte iguais. `abstain: false` calcula e reporta sem deletar
+nada — é assim que a curva é medida antes de ser paga.
+
+**A reforma do oracle.** `fgl slots-oracle` agora liga o atestado para toda
+condição `ingest.mode=slots`, com `abstain=False` (o retorno antecipado fica
+desligado, então `recall_context` é byte a byte igual a uma rodada sem ele) e
+reporta o objetivo de DOIS LADOS, tudo com zero chamadas de LLM: recall no
+substantivo E a separação substantivo/adversarial do escore — AUC
+(Mann-Whitney, empates valendo meio) mais a curva de operação inteira. A coluna
+que decide é `net_questions`:
+
+    capturadas × n_adv × (1 − f1_adversarial)   perguntas ganhas
+  − deletadas  × n_sub × f1_substantivo          perguntas destruídas
+
+que é a aritmética que as tabelas por categoria convidam a pular. Uma curva
+cujo `net_questions` máximo fica perto de zero é a proposta morrendo barato,
+que é para o que o número serve. As constantes de referência
+(`REFERENCE_F1_SUBSTANTIVE = 0,5263`, `REFERENCE_F1_ADVERSARIAL = 0,5762`) vêm
+de `results/L2d-derived/metrics.json` e só escalam uma projeção — nada no
+escore nem no limiar as lê.
+
+**Backend de embeddings do Azure.** `provider: azure` nunca poderia ter
+funcionado contra o gateway: construía o próprio `AzureOpenAI` a partir de
+`os.environ`, ignorando `FGL_CA_BUNDLE` e qualquer endpoint com caminho de
+roteamento, e fixava `dim = 1536` — silenciosamente errado para
+`text-embedding-3-large` (3072), o que teria deformado o índice inteiro. Agora
+`fgl.llm.azure.build_azure_client()` é único e compartilhado pelos dois
+backends (o SDK acrescenta `/deployments/<model>/<verbo>` nos dois casos, então
+o mesmo cliente serve `/chat/completions` e `/embeddings` sem caso especial);
+os lotes são cortados por orçamento de tokens além da contagem; a dimensão é
+lida da primeira resposta; há retry com a mesma classificação do cliente de
+chat; e `dimensions` (truncagem Matryoshka) entra na CHAVE DO CACHE — vetores
+gravados a 3072 e lidos como 1024 seriam um índice corrompido, não um miss.
+Default: `embedding-3-large-global`.
+
+**Configuração unificada.** Havia dois caminhos — `.env` e um `config.ini` via
+`FGL_AZURE_CONFIG_INI` — e ter dois significava que "de onde veio a chave?",
+"qual modelo esta rodada usou?" e "por que o TLS falhou?" tinham duas respostas
+possíveis e nenhuma forma de saber qual estava valendo. O `.env` já carregava
+todos os campos que o `.ini` carregava (chave, endpoint, api-version, caminho
+do .pem, nomes de deployment), então o `.ini` era o redundante e foi removido,
+com teste de regressão que pina que apontar `FGL_AZURE_CONFIG_INI` não
+ressuscita credencial nenhuma. Os YAML em `configs/` descrevem o EXPERIMENTO;
+o `.env` descreve a MÁQUINA.
+
+**Testes.** `tests/test_support.py` (33) e `tests/test_azure_embeddings.py`
+(13), mais a seção de fonte única em `tests/test_azure_gateway.py`. Suíte
+inteira passando, sem regressão. O teste que mais importa é
+`test_disabled_support_is_a_byte_identical_no_op`: com a seção intocada, os
+fatos recuperados e os tokens usados são idênticos.
+
+**O que NÃO foi feito, e é o próximo passo.** Prompt por forma de suporte e
+orçamento assimétrico (`absent` → contexto quase nulo; `composed` → região A ·
+conector · região B rotulados como junção). Isso só vale a pena depois que
+`fgl slots-oracle` disser que a separação existe — se a AUC vier em 0,5, a
+proposta morreu de graça e nenhum prompt a salva. Proposta completa em
+`docs/PROPOSTA_ATESTADO.md`.

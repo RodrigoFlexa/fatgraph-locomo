@@ -1,5 +1,15 @@
 """Runtime settings loaded from ``.env`` and the process environment.
 
+``.env`` is the ONLY configuration file for runtime/credential settings. There
+used to be a second path -- ``FGL_AZURE_CONFIG_INI`` pointing at a
+``ConfigParser`` file, mirroring the vendor notebooks -- and having two meant
+every question ("where does the key come from?", "which model is this run
+using?", "why is TLS failing?") had two possible answers and no way to tell
+which was live. The ``.env`` already carried every field the ``.ini`` did (key,
+endpoint, api-version, CA bundle path, deployment names), so the ``.ini`` was
+the redundant one and it is gone. YAML under ``configs/`` still describes the
+*experiment*; ``.env`` describes the *machine*.
+
 Precedence, highest first:
 
 1. real environment variables (CI, ``export``, ``docker run -e``);
@@ -102,6 +112,7 @@ class Settings:
     embedding_provider: Optional[str] = None
     embedding_model: Optional[str] = None
     embedding_azure_deployment: Optional[str] = None
+    embedding_azure_dimensions: Optional[int] = None
 
     # --- corporate gateway support ----------------------------------------
     #: private CA bundle for TLS (``FGL_CA_BUNDLE``), resolved to an absolute path
@@ -113,8 +124,6 @@ class Settings:
     dotenv_found: bool = False
     #: variables left at their ``.env.example`` value
     placeholders: tuple[str, ...] = ()
-    #: ``config.ini`` the credentials came from, when not from the environment
-    ini_path: Optional[str] = None
 
     # ------------------------------------------------------------------ io --
     @classmethod
@@ -123,19 +132,15 @@ class Settings:
         found = bool(load_dotenv(p, override=override))
         env = os.environ.get
 
-        # A corporate gateway often ships credentials in an .ini instead of the
-        # environment. FGL_AZURE_CONFIG_INI points at it; the environment still
-        # wins for anything it defines.
-        ini_path, ini = _load_ini(env("FGL_AZURE_CONFIG_INI"), env("FGL_AZURE_CONFIG_SECTION"))
-
         raw = {
-            "azure_endpoint": env("AZURE_OPENAI_ENDPOINT") or ini.get("endpoint"),
-            "azure_api_key": env("AZURE_OPENAI_API_KEY") or ini.get("api_key"),
-            "azure_api_version": env("AZURE_OPENAI_API_VERSION") or ini.get("api_version"),
+            "azure_endpoint": env("AZURE_OPENAI_ENDPOINT"),
+            "azure_api_key": env("AZURE_OPENAI_API_KEY"),
+            "azure_api_version": env("AZURE_OPENAI_API_VERSION"),
             "llm_deployment": env("FGL_LLM_DEPLOYMENT") or None,
             "embedding_provider": env("FGL_EMBEDDING_PROVIDER") or None,
             "embedding_model": env("FGL_EMBEDDING_MODEL") or None,
             "embedding_azure_deployment": env("FGL_EMBEDDING_AZURE_DEPLOYMENT") or None,
+            "embedding_azure_dimensions": _int_or_none(env("FGL_EMBEDDING_AZURE_DIMENSIONS")),
         }
         env_names = {
             "azure_endpoint": "AZURE_OPENAI_ENDPOINT",
@@ -152,7 +157,7 @@ class Settings:
 
         from fgl.llm.azure import resolve_ca_bundle
 
-        ca_raw = env("FGL_CA_BUNDLE") or ini.get("ca_bundle")
+        ca_raw = env("FGL_CA_BUNDLE")
         ca = resolve_ca_bundle(ca_raw)
         if ca_raw and not ca:
             raise RuntimeError(
@@ -176,7 +181,6 @@ class Settings:
             dotenv_path=p,
             dotenv_found=found,
             placeholders=stale,
-            ini_path=ini_path,
         )
 
     # ------------------------------------------------------------ validation -
@@ -230,13 +234,15 @@ class Settings:
             cfg.embeddings.model = self.embedding_model
         if self.embedding_azure_deployment:
             cfg.embeddings.azure_deployment = self.embedding_azure_deployment
+        if self.embedding_azure_dimensions:
+            cfg.embeddings.azure_dimensions = self.embedding_azure_dimensions
 
     # -------------------------------------------------------------- report ---
     def redacted(self) -> dict:
         """Safe to write into ``metrics.json``: keys become fingerprints."""
         out: dict[str, object] = {}
         for f in fields(self):
-            if f.name in ("dotenv_path", "dotenv_found", "placeholders", "ini_path"):
+            if f.name in ("dotenv_path", "dotenv_found", "placeholders"):
                 continue
             value = getattr(self, f.name)
             if value is None:
@@ -248,8 +254,6 @@ class Settings:
             else:
                 out[f.name] = value
         out["dotenv_found"] = self.dotenv_found
-        if self.ini_path:
-            out["config_ini"] = self.ini_path
         if self.placeholders:
             out["placeholders"] = list(self.placeholders)
         return out
@@ -259,62 +263,17 @@ def load_settings(dotenv_path: str | Path | None = None, override: bool = False)
     return Settings.load(dotenv_path, override=override)
 
 
-#: Keys we look for inside an ``.ini`` section, in order of preference.
-INI_KEYS = {
-    "api_key": ("OPENAI_API_KEY", "AZURE_OPENAI_API_KEY", "API_KEY"),
-    "api_version": ("OPENAI_API_VERSION", "AZURE_OPENAI_API_VERSION", "API_VERSION"),
-    "endpoint": (
-        "AZURE_OPENAI_BASE_URL", "AZURE_OPENAI_ENDPOINT", "OPENAI_BASE_URL",
-        "BASE_URL", "ENDPOINT",
-    ),
-    "ca_bundle": ("CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE"),
-}
-
-
-def _load_ini(path: str | None, section: str | None) -> tuple[Optional[str], dict[str, str]]:
-    """Read Azure credentials from an ``.ini`` (ConfigParser) file.
-
-    Supports the shape used by corporate gateways::
-
-        [OPENAI]
-        OPENAI_API_KEY = ...
-        OPENAI_API_VERSION = ...
-        AZURE_OPENAI_BASE_URL = ...
-
-    Section defaults to ``OPENAI`` (then ``AZURE``, then ``DEFAULT``).
-    ``ExtendedInterpolation`` is enabled, matching the usual conventions.
-    """
-    if not path:
-        return None, {}
-    from configparser import ConfigParser, ExtendedInterpolation
-
-    p = Path(path).expanduser()
-    if not p.is_absolute():
-        for base in (project_root(), Path.cwd()):
-            if (base / p).exists():
-                p = (base / p).resolve()
-                break
-    if not p.exists():
+def _int_or_none(value: str | None) -> Optional[int]:
+    """``FGL_EMBEDDING_AZURE_DIMENSIONS=`` (empty) means "the full width"."""
+    if not value or not value.strip():
+        return None
+    try:
+        n = int(value.strip())
+    except ValueError as exc:
         raise RuntimeError(
-            f"FGL_AZURE_CONFIG_INI aponta para {path!r}, que não existe "
-            f"(resolvido como {p}). Use um caminho absoluto."
-        )
-
-    parser = ConfigParser(interpolation=ExtendedInterpolation())
-    parser.read(p, encoding="UTF-8")
-
-    candidates = [section] if section else ["OPENAI", "AZURE", "azure", "openai"]
-    chosen = next((s for s in candidates if s and parser.has_section(s)), None)
-    values = dict(parser[chosen]) if chosen else dict(parser.defaults())
-    upper = {k.upper(): v for k, v in values.items()}
-
-    out: dict[str, str] = {}
-    for target, names in INI_KEYS.items():
-        for name in names:
-            if upper.get(name):
-                out[target] = upper[name]
-                break
-    return str(p), out
+            f"FGL_EMBEDDING_AZURE_DIMENSIONS={value!r} não é um inteiro."
+        ) from exc
+    return n if n > 0 else None
 
 
 def _looks_like_base_url(endpoint: str) -> bool:

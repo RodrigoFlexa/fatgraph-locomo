@@ -133,23 +133,40 @@ python -m spacy download en_core_web_sm
 | **todas as condições com o MESMO F1 e adversarial = 1.000** | o backend devolveu respostas vazias; toda pergunta virou abstenção | `fgl doctor` |
 | `fgl doctor` mostra resposta vazia com `finish_reason='length'` | deployment de *reasoning*: o orçamento de tokens acabou no raciocínio interno | `--set retrieval.answer_max_tokens=3000 --set llm.max_tokens=8000` |
 
-### Gateway corporativo (credenciais num `.ini`, CA própria)
+### Gateway corporativo (CA própria, `base_url`)
 
-Se o seu acesso é por gateway — credenciais num `config.ini`, certificado
-privado, `base_url` em vez de `azure_endpoint` — não é preciso editar código.
-Três variáveis no `.env`:
+Se o seu acesso é por gateway — certificado privado, `base_url` em vez de
+`azure_endpoint` — não é preciso editar código. **Toda a configuração de
+runtime vive num arquivo só, o `.env`**; não há `config.ini` (havia, e ter dois
+lugares significava que "de onde veio a chave?" tinha duas respostas possíveis
+e nenhuma maneira de saber qual estava valendo).
 
 ```bash
-FGL_AZURE_CONFIG_INI=config-v1.x.ini     # ConfigParser, seção [OPENAI]
+AZURE_OPENAI_ENDPOINT=https://apit.exemplo.com.br/ia/openai/v1/openai-azure/openai
+AZURE_OPENAI_API_KEY=...
+AZURE_OPENAI_API_VERSION=2024-10-21
 FGL_CA_BUNDLE=petrobras-ca-root.pem      # resolvido a partir da raiz do projeto
 FGL_LLM_DEPLOYMENT=gpt-5-mini-petrobras
 ```
 
-O `.ini` é lido com `ExtendedInterpolation` e aceita as chaves
-`OPENAI_API_KEY`, `OPENAI_API_VERSION` e `AZURE_OPENAI_BASE_URL`. Um endpoint
-que já contém caminho (`.../openai/v1`) é passado como `base_url`
-automaticamente. `fgl info` mostra o que foi reconhecido; `fgl doctor` mostra a
-requisição exata antes de enviá-la.
+Um endpoint que já contém caminho (`.../openai/v1/...`) é passado como
+`base_url` automaticamente — force com `FGL_AZURE_USE_BASE_URL=true` se a
+heurística errar. O mesmo cliente serve `/chat/completions` e `/embeddings`,
+então os embeddings do Azure herdam a CA e o `base_url` sem configuração extra.
+`fgl info` mostra o que foi reconhecido; `fgl doctor` mostra a requisição exata
+antes de enviá-la.
+
+#### Embeddings pelo Azure
+
+```bash
+FGL_EMBEDDING_PROVIDER=azure
+FGL_EMBEDDING_AZURE_DEPLOYMENT=embedding-3-large-global   # 3072 dimensões
+FGL_EMBEDDING_AZURE_DIMENSIONS=                           # vazio = largura cheia
+```
+
+`FGL_EMBEDDING_AZURE_DIMENSIONS=1024` trunca o vetor (Matryoshka) e corta a
+memória do índice em 3x. A largura entra na chave do cache, então trocá-la
+invalida o cache em vez de corrompê-lo.
 
 ### Deployments de reasoning (gpt-5, o1, o3, o4-mini)
 

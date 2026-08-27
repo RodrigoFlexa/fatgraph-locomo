@@ -40,3 +40,6 @@ results_v3/*
 artifacts/*
 results-backup-l1el2/*
 .cache/embeddings/st-all-MiniLM-L6-v2.npz
+_transfer/coverage.patch
+_transfer/fgl.tar.gz
+_transfer/fgl_src.tar.gz

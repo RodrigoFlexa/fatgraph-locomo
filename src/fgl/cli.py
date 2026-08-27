@@ -211,8 +211,6 @@ def info() -> None:
         if k == "dotenv_found":
             continue
         e.add_row(k, str(v) if v is not None else "[dim]unset[/]")
-    if settings.ini_path:
-        e.add_row("config.ini", settings.ini_path)
     e.add_row(
         "azure ready",
         "[green]yes[/]" if settings.azure_ready
@@ -283,7 +281,6 @@ def doctor(
         t0.add_row("reasoning_effort", cfg.llm.reasoning_effort)
     t0.add_row("endpoint como", "base_url" if settings.use_base_url else "azure_endpoint")
     t0.add_row("CA bundle", settings.ca_bundle or "(padrão do sistema)")
-    t0.add_row("config.ini", settings.ini_path or "(usando .env/ambiente)")
     console.print(Panel(t0, title="[bold]0. forma da requisição", border_style="cyan"))
 
     # ---- 1. chat completion ------------------------------------------------
