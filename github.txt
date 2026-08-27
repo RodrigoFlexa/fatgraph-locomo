@@ -1,1 +1,6 @@
 git push --force-with-lease origin main
+
+# Se tiver conflito prefira o servidor: 
+git pull -X theirs
+
+git pull --no-rebase -X theirs
