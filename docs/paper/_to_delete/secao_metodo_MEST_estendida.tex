@@ -1,0 +1,167 @@
+% =====================================================================
+% Seção de Método -- MEST (condição L2d) -- VERSÃO ESTENDIDA (~2,7 páginas SBC)
+% Padrão SBC: \input{secao_metodo_MEST} no corpo do artigo.
+% Pacotes assumidos: amsmath, amssymb.
+% =====================================================================
+
+\section{MEST: Memória Episódica de Slots Tipados}
+\label{sec:metodo}
+
+Chamamos de \textbf{MEST} (\emph{Memória Episódica de Slots Tipados}) o método
+desta seção: dado um histórico de conversas em sessões e uma pergunta em
+linguagem natural, ele seleciona turnos \emph{verbatim} que caibam em um
+orçamento fixo de \emph{tokens} e os entrega ao gerador. Duas restrições governam
+o desenho --- a construção da memória não faz nenhuma chamada a modelo de
+linguagem, e nenhum parâmetro é fixado a partir de rótulos de ouro.
+
+\subsection{Diagnóstico e princípio de projeto}
+\label{sec:metodo:diagnostico}
+
+Partimos de uma medição sobre a linha de base de grafo de incidência
+entidade--turno. Apenas $0{,}5\%$ dos turnos de evidência estão ausentes do grafo
+--- a cobertura é total ---, mas, entre os turnos de evidência \emph{não
+recuperados}, a fração que compartilha algum vértice de entidade com a pergunta é
+de $13\%$ (\emph{single-hop}), $7\%$ (\emph{multi-hop}), $10\%$ (temporal) e $5\%$
+(\emph{open-domain}). De $87\%$ a $95\%$ dos erros são turnos para os quais o
+grafo não oferece caminho algum: não é falha de ranqueamento, porque não há o que
+ranquear. Quatro pontes ausentes se repetem nesses casos, e cada uma vira uma
+espécie de vértice. \emph{A resposta}: a evidência costuma ser o turno que carrega
+o valor e nenhum termo do tópico, que ficou no turno acima --- logo a unidade
+atômica do diálogo é o par adjacente, não o turno. \emph{O predicado}: a pergunta
+é enquadrada por um verbo (``o que James \emph{adotou}''), invisível a um índice
+de substantivos. \emph{O tipo}: pergunta-se por categoria (``quais
+\emph{comidas}'') e responde-se por instância (``\emph{frango assado}'').
+\emph{A pessoa}: de $98{,}5\%$ a $99{,}7\%$ das perguntas nomeiam exatamente um
+falante, e a evidência é dele em $96\%$ a $100\%$ dos casos. Daí o princípio do
+método: uma pergunta de memória conversacional é uma \emph{tupla com um buraco}
+--- (quem, fez-o-quê, com-o-quê, quando) com um campo vazio --- e a memória deve
+ser indexada no mesmo vocabulário em que a pergunta é formulada.
+
+\subsection{Substrato e ingestão}
+\label{sec:metodo:substrato}
+
+Cada conversa vira um grafo com rotação (\emph{fatgraph})
+$G=(V,H,\alpha,\sigma)$, com $H$ as meias-arestas, $\alpha$ o emparelhamento que
+as agrupa em arestas e $\sigma$ a permutação que fixa, em cada vértice, uma ordem
+cíclica das incidências. O conjunto de vértices é bipartido,
+$V=\mathcal{E}\uplus\mathcal{S}$: em $\mathcal{E}$, os \emph{episódios} --- turnos
+contíguos e topicamente coesos ---; em $\mathcal{S}=\biguplus_{\kappa\in K}
+\mathcal{S}_\kappa$, os \emph{slots}, tipados por $K=\{\textsf{ator},
+\textsf{predicado},\textsf{conceito},\textsf{tipo},\textsf{tempo}\}$, isto é, as
+quatro pontes acima mais o conceito, que a linha de base já indexava. Uma aresta
+$\varepsilon\!-\!v$ é uma \emph{incidência observada} --- $v$ foi literalmente
+pronunciado nos turnos de $\varepsilon$ ---, de modo que $\deg(v)$ é frequência
+real e não artefato de parafraseamento.
+
+A rotação é projetada, não herdada da ordem de processamento. Em um vértice de
+slot, $\sigma$ é cronológica: a órbita $\mathrm{Orb}(v)$ é ``tudo o que esta
+pessoa, este verbo ou este tópico tocou, em ordem'', obtida por leitura e não por
+ranqueamento. Em um vértice de episódio, $\sigma$ segue a ordem fixa
+$\textsf{ator}\prec\textsf{pred}\prec\textsf{conc}\prec\textsf{tipo}\prec
+\textsf{tempo}$, e assim seus \emph{cantos} --- pares de incidências consecutivas
+--- são (quem, fez-o-quê), (fez-o-quê, com-o-quê) e (com-o-quê, quando): uma
+pergunta é um canto com um lado em branco. As \emph{faces} não são usadas, pois
+uma só delas absorve milhares de meias-arestas. A ingestão é determinística: uma
+passagem de análise sintática por turno produz sintagmas nominais, lemas verbais,
+menções a pessoas e datas de uma vez. Um episódio começa em fronteira de sessão,
+cola incondicionalmente os $m_{\min}$ primeiros turnos --- é o par adjacente, e
+uma resposta \emph{não} sobrepõe vocabulário com a pergunta justamente quando a
+responde --- e admite os seguintes enquanto a coesão de conceitos se mantiver.
+Conceitos são elevados a hiperônimos WordNet; datas relativas são resolvidas
+contra a data da sessão e indexadas em \emph{todos} os níveis que suportam (ano,
+mês, dia).
+
+\subsection{Consulta: a pergunta no vocabulário da memória}
+\label{sec:metodo:consulta}
+
+A pergunta $q$ é analisada pelo mesmo extrator, produzindo o conjunto
+$\Lambda(q)\subseteq\mathcal{S}$ dos slots que resolvem em vértices existentes.
+Cada slot ligado contribui com um peso amortecido pelo grau, e o escore de um
+episódio soma canais estruturais e canal denso:
+\begin{equation}
+\begin{aligned}
+\psi(v)&=w_{\kappa(v)}\bigl(1+\ln \deg(v)\bigr)^{-\gamma}\ \ \text{se}\ \deg(v)<h_{\kappa(v)};\quad
+\psi(v)=w_{H}\ \text{caso contrário (\emph{hub})},\\
+s(\varepsilon)&=w_{D}\,\delta(q,\varepsilon)+\sum_{v\in\Lambda^{*}(q,\varepsilon)}\psi(v)
++\beta\,\mathbb{1}\bigl[\varepsilon\in\mathrm{Orb}(v^{\star})\bigr],
+\end{aligned}
+\label{eq:psi}
+\end{equation}
+em que $\Lambda^{*}(q,\varepsilon)$ são os slots não-\textsf{ator} de $\Lambda(q)$ cuja
+órbita contém $\varepsilon$, e $\delta(q,\varepsilon)$ é o maior cosseno entre a pergunta
+e o episódio ou qualquer um de seus turnos. A intuição do amortecimento é direta: um slot incidente a $200$
+episódios não distingue nenhum deles, enquanto um incidente a três carrega a
+consulta inteira; acima do corte $h_\kappa$ ele deixa de ser enumerado e vira
+bônus constante --- ``\emph{um hub é filtro, nunca ponte}''. O corte é \emph{por
+espécie}, pois as escalas de grau são incomparáveis por construção: um ator incide
+em metade dos episódios e um conceito, em poucos. É também o amortecimento que
+dispensa qualquer parâmetro de granularidade temporal, já que o vértice de ano é
+praticamente apagado e o de dia recebe peso quase pleno. O termo $\beta$ é a
+\textbf{enumeração por órbita}, ativada quando a pergunta pede uma lista (decidido
+pela redação, nunca pela categoria anotada): $v^{\star}$ é o slot específico
+\emph{mais raro} entre os ligados e toda a sua órbita entra, pois a resposta é uma
+lista e a rotação já \emph{é} a lista.
+
+O ator, por sua vez, é uma \emph{partição}: somar uma constante por ator nomeado
+deslocaria metade do grafo pelo mesmo valor e não distinguiria nada. A medição da
+Seção~\ref{sec:metodo:diagnostico} diz quais episódios são \emph{elegíveis}, e por
+isso se aplica multiplicativamente, $\hat{s}(\varepsilon)=s(\varepsilon)\,
+[\pi+(1-\pi)\min(\omega(a,\varepsilon)/\Omega,1)]$, com $\omega(a,\varepsilon)$ a
+fração do conteúdo do episódio contribuída por $a$, $\pi$ o piso do prior e
+$\Omega$ o ponto em que ``este episódio é dele'' já é verdade --- como todo
+episódio contém um turno de cada falante, ``$a$ falou aqui'' não discrimina, mas
+``$a$ disse a maior parte'' discrimina. A estrutura de cantos fornece ainda um
+sinal determinístico de \textbf{abstenção}: com $A_a=\{\varepsilon:
+\omega(a,\varepsilon)\ge\tau\}$ e $\Lambda_{\mathrm{esp}}(q)$ os slots específicos
+ligados e não-\emph{hub}, $\mathrm{supp}(q)=\max_{v}|\mathrm{Orb}(v)\cap A_a|/
+|\mathrm{Orb}(v)|$ distingue \emph{slot ausente} (nada do conteúdo existe na
+memória) de \emph{canto vazio} (o conteúdo existe, mas nunca em episódio dessa
+pessoa) --- é o que uma pergunta adversarial produz, por nomear uma combinação que
+nunca ocorreu. O sinal é sempre reportado, mas mantido \emph{inativo} nesta
+configuração: é o único mecanismo capaz de apagar uma resposta correta, e sua taxa
+de falsos positivos é medida antes de ser ligada.
+
+\subsection{Emissão e calibração derivada do corpus}
+\label{sec:metodo:emissao}
+
+A distinção entre \emph{unidade de índice} e \emph{unidade de emissão} é onde a
+aposta do método se realiza. Ao mesmo orçamento, emitir episódios inteiros põe
+$18{,}9$ unidades no contexto contra $58{,}7$ da linha de base e perde tudo o que
+precisa de amplitude; emitir um turno por episódio em rodadas recupera a amplitude
+e derruba o \emph{recall} de \emph{single-hop} de $0{,}858$ para $0{,}682$, porque
+o turno que \emph{responde} é quase sempre o parceiro do turno que \emph{casa}. A
+forma final pontua turnos, deixando o episódio ser apenas o que os torna
+encontráveis:
+\begin{equation}
+s(t)=\hat{s}\bigl(\varepsilon(t)\bigr)+w_{D}\cos(q,x_t)
++\lambda\,w_{D}\!\!\max_{t'\in\varepsilon(t),\,t'\neq t}\!\!\cos(q,x_{t'}),
+\label{eq:turno}
+\end{equation}
+cujo último termo é a regra da resposta escrita como aritmética: o turno herda uma
+fração $\lambda$ da melhor similaridade entre seus irmãos, e o par sobe junto sem
+que nada precise ser agrupado. Tomam-se os turnos em ordem decrescente até esgotar
+o orçamento.
+
+Resta de onde vêm os limiares. Varrê-los contra o conjunto anotado é prática comum
+e é também o que impede transferir o método a outro corpus; adotamos o critério
+\emph{``o parâmetro precisa dos rótulos de ouro para ser fixado?''} e substituímos
+cada literal por um estimador medido, em tempo de construção, sobre o grafo não
+anotado. O corte de \emph{hub} vira $h_\kappa=\lceil Q_{0{,}99}\{\deg(v):v\in
+\mathcal{S}_\kappa\}\rceil$: uma contagem absoluta é errada sob mudança de escala,
+pois num corpus dez vezes maior todo slot a cruzaria e o mecanismo se desligaria
+sozinho (aqui, o corte derivado para conceitos é $16$ contra $60$ absoluto). O
+limiar de paráfrase entre conceitos vira um quantil alto dos cossenos observados,
+por ser propriedade do codificador tanto quanto da tarefa, e o prior de ator vira
+$\pi=1/|\Sigma|$ e $\Omega=\mathrm{mediana}_\varepsilon\max_a\omega(a,\varepsilon)$,
+de sorte que nomear um entre oito falantes o fortalece sozinho. A lista de
+palavras de enquadramento (``conversa'', ``data'', ``tipo'') deixa de ser manual e
+vira $\{w:\mathrm{df}_q(w)\ge d_0 \wedge \mathrm{df}_q(w)/\max(\mathrm{df}_m(w),
+m_0)\ge\rho\}$, o análogo do IDF do lado da pergunta: uma palavra de tópico é
+frequente nas perguntas \emph{porque} é frequente nas conversas, e sua razão fica
+próxima de $1$; uma palavra de \emph{template} é frequente nas perguntas e ausente
+da memória. Já os pesos $w_\kappa$, a fração $\lambda$ e o expoente $\gamma$ não
+são derivados de propósito: codificam uma afirmação sobre o \emph{modelo} --- ``um
+casamento de conceito informa mais que um palpite de hiperônimo'' --- e não sobre
+o corpus. Declaramos, por fim, que o estimador de enquadramento é
+\emph{transdutivo}, pois lê o texto das perguntas, embora nunca as respostas, a
+evidência ou a categoria.

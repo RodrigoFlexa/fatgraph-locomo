@@ -28,10 +28,9 @@ MANAGED_ENV = (
     "FGL_EMBEDDING_PROVIDER",
     "FGL_EMBEDDING_MODEL",
     "FGL_EMBEDDING_AZURE_DEPLOYMENT",
-    # corporate-gateway settings; a real .env pointing at a config.ini used to
-    # leak straight into the suite and fail the credential tests
-    "FGL_AZURE_CONFIG_INI",
-    "FGL_AZURE_CONFIG_SECTION",
+    "FGL_EMBEDDING_AZURE_DIMENSIONS",
+    # corporate-gateway settings; a developer's real .env used to leak
+    # straight into the suite and fail the credential tests
     "FGL_CA_BUNDLE",
     "FGL_AZURE_USE_BASE_URL",
 )

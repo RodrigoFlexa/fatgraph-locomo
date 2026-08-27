@@ -1,0 +1,135 @@
+% =====================================================================
+% Seção de Método -- MEST (condição L2d)
+% Padrão SBC: \input{secao_metodo_MEST} no corpo do artigo.
+% Pacotes assumidos: amsmath, amssymb.
+% =====================================================================
+
+\section{MEST: Memória Episódica de Slots Tipados}
+\label{sec:metodo}
+
+A ideia do método cabe em uma frase: \emph{uma pergunta sobre uma conversa passada
+já chega estruturada, e a memória deve ser guardada com a mesma estrutura}. Quando
+alguém pergunta ``o que o James adotou em abril de 2022?'', a pergunta nomeia uma
+pessoa (James), uma ação (adotar) e uma data (abril de 2022), e deixa exatamente um
+campo em branco --- o objeto ---, que é justamente o que ela quer saber. Perguntas
+de memória conversacional são, quase sempre, uma tupla \textbf{(quem, fez-o-quê,
+com-o-quê, quando)} com um dos campos vazio. Um índice comum de palavras não
+enxerga essa estrutura: ele só sabe responder ``quais trechos mencionam a palavra
+$X$''. O \textbf{MEST} (\emph{Memória Episódica de Slots Tipados}) guarda cada
+trecho da conversa já anotado com \emph{quem} falou, \emph{que ação} ocorreu,
+\emph{sobre o quê}, de \emph{que tipo} de coisa se trata e \emph{quando} --- e
+responde a pergunta procurando quem completa o campo que ficou vazio.
+
+Em resumo, o método faz três movimentos. \textbf{(1)~Recorta} cada conversa em
+\emph{episódios}: pequenos blocos de turnos consecutivos que tratam do mesmo
+assunto, sendo o menor deles o par ``pergunta e resposta'' do diálogo.
+\textbf{(2)~Pendura} cada episódio em cinco tipos de rótulo, os
+\emph{slots}: ator, predicado, conceito, tipo e tempo. \textbf{(3)~Traduz} a pergunta para
+esses mesmos cinco rótulos e pontua os episódios pelos rótulos que eles têm em
+comum com a pergunta, somando ainda um canal de similaridade textual. Duas
+propriedades atravessam os três movimentos: a memória é construída \emph{sem
+nenhuma chamada a modelo de linguagem}, e \emph{nenhum limiar foi escolhido
+olhando as respostas certas} --- todos são estimados do próprio corpus
+(Seção~\ref{sec:metodo:calibracao}).
+
+\subsection{Como a memória é construída}
+\label{sec:metodo:substrato}
+
+Uma única passagem de análise sintática por turno entrega de uma só vez quatro dos
+cinco slots: sintagmas nominais (\textsf{conceito}), lemas de verbos de conteúdo
+(\textsf{predicado}), menções a pessoas (\textsf{ator}) e datas (\textsf{tempo},
+resolvidas contra a data da sessão e indexadas por ano, mês e dia). O quinto vem de elevar cada conceito aos seus hiperônimos na WordNet: é o
+slot \textsf{tipo}, que faz ``quais \emph{comidas}'' alcançar um turno que diz
+``\emph{frango assado}''.
+
+O resultado é um grafo bipartido: de um lado os episódios, do outro os slots, e uma
+aresta sempre que aquele rótulo foi \emph{literalmente pronunciado} naquele
+episódio --- nada é inventado nem reescrito. Sobre esse grafo colocamos uma \emph{rotação}
+(estrutura de \emph{fatgraph}): uma ordem cíclica fixa das arestas em torno de cada
+vértice, $G=(V,H,\alpha,\sigma)$. A rotação é projetada, e rende dois objetos úteis. Em torno de um \textbf{slot}, a ordem é cronológica: percorrer
+essa órbita é ler ``tudo o que esta pessoa, este verbo ou este tópico tocou, em
+ordem'', sem precisar ranquear nada. Em torno de um \textbf{episódio}, a ordem é
+sempre $\textsf{ator}\prec\textsf{predicado}\prec\textsf{conceito}\prec
+\textsf{tipo}\prec\textsf{tempo}$, e portanto os pares vizinhos --- os
+\emph{cantos} --- são exatamente (quem, fez-o-quê), (fez-o-quê, com-o-quê) e
+(com-o-quê, quando). É a mesma tupla do primeiro parágrafo: uma pergunta é um canto
+com um lado em branco.
+
+\subsection{Como uma pergunta é respondida}
+\label{sec:metodo:consulta}
+
+A pergunta passa pelo mesmo extrator, o que produz o conjunto $\Lambda(q)$ dos
+slots que ela nomeia e que existem na memória. Cada slot encontrado ``acende'' os
+episódios ligados a ele, mas não com o mesmo peso: um rótulo que aparece em $200$
+episódios não distingue nenhum deles, ao passo que um rótulo presente em três
+praticamente resolve a busca sozinho. Por isso o peso de um slot cai com o seu
+grau, e acima de um corte $h_\kappa$ ele deixa de apontar episódios e vira só um
+bônus fixo --- a regra é ``\emph{um rótulo muito comum serve de filtro, nunca de
+ponte}''. Somando os canais estruturais com um canal de similaridade textual, o
+escore de um episódio $\varepsilon$ é
+\begin{equation}
+\begin{aligned}
+\psi(v)&=w_{\kappa(v)}\bigl(1+\ln \deg(v)\bigr)^{-\gamma}\ \ \text{se}\ \deg(v)<h_{\kappa(v)};\quad
+\psi(v)=w_{H}\ \text{caso contrário},\\
+s(\varepsilon)&=w_{D}\,\delta(q,\varepsilon)+\sum_{v\in\Lambda^{*}(q,\varepsilon)}\psi(v)
++\beta\,\mathbb{1}\bigl[\varepsilon\in\mathrm{Orb}(v^{\star})\bigr],
+\end{aligned}
+\label{eq:psi}
+\end{equation}
+em que $\Lambda^{*}(q,\varepsilon)$ são os slots da pergunta (exceto os de ator)
+ligados a $\varepsilon$, e $\delta(q,\varepsilon)$ é o maior cosseno entre a
+pergunta e o episódio ou qualquer um de seus turnos.
+
+O termo $\beta$ trata das perguntas que pedem uma \emph{lista} (``quais comidas
+ela gosta?''). Aqui a estrutura de rotação faz algo que um buscador denso não faz:
+como a órbita de um slot já \emph{é} a lista cronológica de tudo o que ele tocou,
+basta tomar o slot mais raro entre os que a pergunta nomeou e promover a órbita
+inteira --- sem segunda busca nem reordenação.
+
+O ator recebe tratamento diferente dos demais, e a razão é simples: como quase toda
+pergunta nomeia um dos falantes, somar um bônus por ator empurraria metade do grafo
+para cima e não separaria nada. O ator, portanto, não é um canal, é um
+\emph{filtro}: $\hat{s}(\varepsilon)=s(\varepsilon)\,[\pi+(1-\pi)
+\min(\omega(a,\varepsilon)/\Omega,1)]$, onde $\omega(a,\varepsilon)$ mede quanto do
+conteúdo daquele episódio saiu da boca de $a$. Um episódio é um par de turnos e
+contém, por construção, fala dos dois participantes; então ``$a$ falou aqui'' não
+diz nada, mas ``$a$ disse a maior parte disto'' diz.
+
+Uma última assimetria é proposital: quem torna um trecho \emph{encontrável} é o
+episódio, mas quem ocupa o orçamento de \emph{tokens} é o turno. Entregar episódios inteiros gastaria o
+orçamento com poucos blocos grandes e perderia amplitude; entregar turnos soltos,
+por outro lado, quebraria justamente o par pergunta--resposta que motivou o
+episódio. A solução é pontuar turnos, deixando que cada um herde o que o seu
+episódio conquistou:
+\begin{equation}
+s(t)=\hat{s}\bigl(\varepsilon(t)\bigr)+w_{D}\cos(q,x_t)
++\lambda\,w_{D}\!\!\max_{t'\in\varepsilon(t),\,t'\neq t}\!\!\cos(q,x_{t'}).
+\label{eq:turno}
+\end{equation}
+O último termo é a regra do par escrita como aritmética: um turno herda uma fração
+$\lambda$ da melhor semelhança entre os seus vizinhos de episódio. Assim, a
+resposta ``era uma peça contemporânea chamada \emph{Finding Freedom}'' sobe junto
+com o turno que menciona o assunto, mesmo não tendo palavra alguma em comum com a
+pergunta. Tomam-se então os turnos em ordem decrescente até esgotar o orçamento.
+
+\subsection{De onde vêm os limiares}
+\label{sec:metodo:calibracao}
+
+Resta uma pergunta incômoda: de onde saem $h_\kappa$, $\pi$ e os demais números?
+Ajustá-los contra o conjunto anotado é prática comum, e é também o que impede levar
+um método a outro corpus. Adotamos um critério simples --- \emph{o parâmetro
+precisa das respostas certas para ser fixado?} --- e trocamos cada constante por um
+estimador medido, durante a construção, sobre o corpus \emph{não} anotado. O corte de rótulo comum vira o quantil $0{,}99$ dos graus
+daquele tipo, $h_\kappa=\lceil Q_{0,99}\{\deg(v):v\in\mathcal{S}_\kappa\}\rceil$:
+uma contagem absoluta quebraria com a escala, pois num corpus dez vezes maior todo
+slot a ultrapassaria e o mecanismo se desligaria sozinho. Pelo mesmo raciocínio, o
+limiar de paráfrase vira um quantil alto dos cossenos realmente observados --- é
+propriedade do codificador, não da tarefa --- e o filtro de ator vira
+$\pi=1/|\Sigma|$ e $\Omega=\mathrm{mediana}_\varepsilon\max_a\omega(a,\varepsilon)$,
+apertando-se sozinho quando há mais falantes. Já as palavras que só servem de
+moldura (``conversa'', ``data'', ``tipo'') passam a ser detectadas por um contraste
+de frequências, o análogo do IDF do lado da pergunta: uma palavra de tópico é
+frequente nas perguntas \emph{porque} o é nas conversas, ao passo que uma de
+moldura é frequente nas perguntas e ausente do que as pessoas disseram. Os pesos $w_\kappa$, $\lambda$ e $\gamma$ seguem fixos de propósito: afirmam algo
+sobre o \emph{modelo} --- que um casamento de conceito informa mais do que um
+palpite de hiperônimo ---, não sobre o corpus.

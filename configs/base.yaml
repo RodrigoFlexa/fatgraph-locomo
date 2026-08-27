@@ -35,8 +35,17 @@ llm:
 embeddings:
   provider: sentence-transformers   # sentence-transformers | azure | hashing
   model: all-MiniLM-L6-v2
-  azure_deployment: text-embedding-3-small
-  dim: 384
+
+  # Azure: nome do DEPLOYMENT, não do modelo. embedding-3-large-global tem
+  # saída de 3072 dimensões e é o mais forte do hub; -3-small tem 1536.
+  azure_deployment: embedding-3-large-global
+  # Truncagem Matryoshka. Vazio = largura cheia (3072). 1024 corta a memória
+  # do índice em 3x com perda pequena. Entra na chave do cache.
+  azure_dimensions:
+  azure_max_input_tokens: 8192
+  azure_max_batch_tokens: 60000
+
+  dim: 384                          # provider `hashing` apenas
   batch_size: 64
   cache_dir: .cache/embeddings
   normalize: true

@@ -72,11 +72,24 @@ class LLMConfig:
 class EmbeddingConfig:
     provider: str = "sentence-transformers"  # sentence-transformers | azure | hashing
     model: str = "all-MiniLM-L6-v2"
-    azure_deployment: str = "text-embedding-3-small"
+    azure_deployment: str = "embedding-3-large-global"
     dim: int = 384  # hashing provider only
     batch_size: int = 64
     cache_dir: str = ".cache/embeddings"
     normalize: bool = True
+
+    # --- azure provider only ----------------------------------------------
+    #: Matryoshka truncation (``text-embedding-3-*``). None = the deployment's
+    #: full width (3072 for -3-large, 1536 for -3-small). This is the one knob
+    #: that trades index memory for quality; it is part of the cache key, so
+    #: changing it invalidates rather than corrupts.
+    azure_dimensions: Optional[int] = None
+    #: per-input cap. The -3- family accepts 8192 tokens; a longer input is
+    #: truncated rather than sent to fail.
+    azure_max_input_tokens: int = 8192
+    #: per-request cap, summed over the batch. Gateways enforce a total that
+    #: ``batch_size`` alone does not respect.
+    azure_max_batch_tokens: int = 60_000
 
 
 @dataclass
@@ -661,6 +674,49 @@ class SteinerConfig:
 
 
 @dataclass
+class SupportConfig:
+    """The abstention decision, moved out of the prompt and into the graph.
+
+    Why this exists, in one measurement: in every results file this project has
+    produced, ``adversarial/f1`` equals ``adversarial/abstention_rate`` exactly.
+    Adversarial is not a category of question -- it is the direct measurement of
+    the abstention policy, over 446 of 1986 questions. Between two runs of the
+    SAME condition, substantive F1 rose (0.5263 -> 0.5347) while micro fell
+    0.069, and every point of the loss was that rate collapsing from 0.5762 to
+    0.2420. In the same unit, solving multi-hop completely is worth +0.081
+    micro; solving the decision to answer is worth +0.170.
+
+    Off by default, like every other mechanism here that can DELETE a correct
+    answer: L1 through L6 must stay byte-identical when this section is
+    untouched. See :mod:`fgl.retrieval.support` and
+    ``docs/PROPOSTA_ATESTADO.md``.
+    """
+
+    enabled: bool = False
+    #: act on an ``absent`` verdict. False scores and reports the attestation
+    #: without letting it remove anything -- which is how you measure the
+    #: operating curve before paying for it.
+    abstain: bool = True
+
+    # --- where the cut comes from -----------------------------------------
+    #: ``otsu`` (default) is the label-free bimodal cut and has no free
+    #: parameter at all; ``quantile`` asserts what fraction of the question set
+    #: is unanswerable, which is a fact about the benchmark and therefore the
+    #: honest fallback rather than the default; ``absolute`` pins ``floor`` to
+    #: reproduce an old number.
+    method: str = "otsu"
+    quantile: float = 0.2
+    floor: float = 0.0
+    #: histogram resolution for Otsu. Not a tuning knob: the cut moves by less
+    #: than one bin width, which is what a sweep over it should show.
+    bins: int = 64
+
+    #: candidates read for the concentration and margin features, and for the
+    #: shape classification
+    top_k: int = 8
+
+
+@dataclass
 class BridgeConfig:
     """Condition L6: LLM-synthesised connections between episodes that share
     no slot at all.
@@ -749,6 +805,7 @@ SECTIONS: dict[str, type] = {
     "propagation": PropagationConfig,
     "steiner": SteinerConfig,
     "bridges": BridgeConfig,
+    "support": SupportConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
 }
@@ -779,6 +836,7 @@ class Config:
     propagation: PropagationConfig = field(default_factory=PropagationConfig)
     steiner: SteinerConfig = field(default_factory=SteinerConfig)
     bridges: BridgeConfig = field(default_factory=BridgeConfig)
+    support: SupportConfig = field(default_factory=SupportConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
 
@@ -1066,6 +1124,31 @@ class Config:
                 raise ConfigError("bridges.max_candidates must be >= 1")
             if br.min_bridge_chars < 1:
                 raise ConfigError("bridges.min_bridge_chars must be >= 1")
+
+        if self.support.enabled:
+            if self.ingest.mode != "slots":
+                raise ConfigError(
+                    "support.enabled requires ingest.mode=slots -- the attestation "
+                    "is a statement about the typed-slot projection of a question, "
+                    "and there are no slots to project onto otherwise."
+                )
+            sp = self.support
+            if sp.method not in ("otsu", "quantile", "absolute"):
+                raise ConfigError(
+                    "support.method must be otsu | quantile | absolute "
+                    f"(got {sp.method!r})"
+                )
+            if not 0.0 <= sp.quantile < 1.0:
+                raise ConfigError("support.quantile must be in [0, 1)")
+            if not 0.0 <= sp.floor <= 1.0:
+                raise ConfigError("support.floor must be in [0, 1]")
+            if sp.bins < 8:
+                raise ConfigError("support.bins must be >= 8")
+            if sp.top_k < 2:
+                raise ConfigError(
+                    "support.top_k must be >= 2 -- concentration and margin are "
+                    "undefined on a single candidate"
+                )
         if self.ingest.extract_prompt not in ("extract_facts", "extract_facts_topical"):
             raise ConfigError(
                 "ingest.extract_prompt must be extract_facts|extract_facts_topical, "

@@ -3,10 +3,11 @@
 Three things make a real deployment differ from the textbook example, and all
 three are handled here rather than by hand-patching the client:
 
-**Corporate gateways.** Credentials may live in an ``.ini`` file rather than the
-environment, the endpoint may be a full ``base_url`` instead of an
-``azure_endpoint``, and TLS may need a private CA bundle. See
-:class:`fgl.settings.Settings` and ``FGL_CA_BUNDLE``.
+**Corporate gateways.** The endpoint may be a full ``base_url`` instead of an
+``azure_endpoint`` and TLS may need a private CA bundle. Both come from
+:class:`fgl.settings.Settings` (a single ``.env``) through
+:func:`build_azure_client`, which the chat backend and the embedding backend
+share so they cannot drift apart.
 
 **Reasoning models** (``o1``/``o3``/``o4-mini``, the ``gpt-5`` family) take
 ``max_completion_tokens`` instead of ``max_tokens``, reject a custom
@@ -49,40 +50,69 @@ def is_reasoning_deployment(name: str) -> bool:
     return any(m in n for m in REASONING_MARKERS)
 
 
+def http_client_for(ca_bundle: str | None):
+    """An ``httpx.Client`` pinned to a private CA, or ``None`` for the default."""
+    if not ca_bundle:
+        return None
+    try:
+        import httpx
+    except ImportError as exc:  # pragma: no cover
+        raise LLMError("FGL_CA_BUNDLE exige httpx: pip install httpx") from exc
+    return httpx.Client(verify=ca_bundle)
+
+
+def build_azure_client(settings=None):
+    """Build one ``AzureOpenAI`` client from the environment. Shared on purpose.
+
+    The chat backend and the embedding backend must agree about all three
+    things a corporate gateway changes -- the private CA bundle, whether the
+    endpoint is a bare ``azure_endpoint`` or an already-routed ``base_url``,
+    and which credentials are in play. They used to disagree: the embedder read
+    ``os.environ`` directly and therefore ignored ``FGL_CA_BUNDLE`` and the
+    gateway URL entirely, so ``provider: azure`` could only ever have worked
+    against a plain Azure resource. One constructor removes the whole class of
+    bug.
+
+    Returns ``(client, settings)``.
+    """
+    try:
+        from openai import AzureOpenAI
+    except ImportError as exc:  # pragma: no cover
+        raise LLMError(
+            "o pacote 'openai' (>=1.x) é necessário para o backend azure: pip install openai"
+        ) from exc
+
+    from fgl.settings import load_settings
+
+    settings = settings or load_settings()
+    settings.require_azure()
+
+    kwargs: dict[str, Any] = dict(
+        api_key=settings.azure_api_key,
+        api_version=settings.azure_api_version,
+    )
+    http_client = http_client_for(settings.ca_bundle)
+    if http_client is not None:
+        kwargs["http_client"] = http_client
+
+    # A gateway URL already contains the routing path, so it must be passed as
+    # base_url; a bare resource host is an azure_endpoint. The SDK appends
+    # `/deployments/<model>/<verb>` either way, which is why the same client
+    # serves /chat/completions and /embeddings with no special casing.
+    endpoint = settings.azure_endpoint or ""
+    if settings.use_base_url:
+        kwargs["base_url"] = endpoint
+    else:
+        kwargs["azure_endpoint"] = endpoint
+    return AzureOpenAI(**kwargs), settings
+
+
 class AzureLLM(LLMClient):
     """Azure OpenAI chat completions with backoff and parameter negotiation."""
 
     def __init__(self, cfg: LLMConfig) -> None:
         super().__init__(cfg)
-        try:
-            from openai import AzureOpenAI
-        except ImportError as exc:  # pragma: no cover
-            raise LLMError(
-                "o pacote 'openai' (>=1.x) é necessário para o backend azure: "
-                "pip install openai"
-            ) from exc
-
-        from fgl.settings import load_settings
-
-        settings = load_settings()
-        settings.require_azure()
-
-        http_client = self._http_client(settings.ca_bundle)
-        kwargs: dict[str, Any] = dict(
-            api_key=settings.azure_api_key,
-            api_version=settings.azure_api_version,
-        )
-        if http_client is not None:
-            kwargs["http_client"] = http_client
-
-        # A gateway URL already contains the routing path, so it must be passed
-        # as base_url; a bare resource host is an azure_endpoint.
-        endpoint = settings.azure_endpoint or ""
-        if settings.use_base_url:
-            kwargs["base_url"] = endpoint
-        else:
-            kwargs["azure_endpoint"] = endpoint
-        self._client = AzureOpenAI(**kwargs)
+        self._client, _settings = build_azure_client()
 
         self.reasoning = (
             is_reasoning_deployment(cfg.deployment)
@@ -95,15 +125,8 @@ class AzureLLM(LLMClient):
         self.last_reasoning_tokens: int = 0
 
     # ------------------------------------------------------------------ io --
-    @staticmethod
-    def _http_client(ca_bundle: str | None):
-        if not ca_bundle:
-            return None
-        try:
-            import httpx
-        except ImportError as exc:  # pragma: no cover
-            raise LLMError("FGL_CA_BUNDLE exige httpx: pip install httpx") from exc
-        return httpx.Client(verify=ca_bundle)
+    #: kept as an alias so existing callers/tests keep working
+    _http_client = staticmethod(http_client_for)
 
     # -------------------------------------------------------------- params --
     def _budget(self, max_tokens: int) -> int:

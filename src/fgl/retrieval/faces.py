@@ -162,6 +162,19 @@ class RetrievalResult:
     slot_support: float = 1.0
     #: why the corner test fired ("empty_corner"), empty when it did not
     abstain_reason: str = ""
+
+    # --- support attestation (all inert when `support.enabled` is false) ---
+    #: "direct" | "composed" | "conflict" | "absent" -- how the question's slot
+    #: tuple projects into this memory. See fgl.retrieval.support.
+    support_shape: str = ""
+    #: the continuous support score and the cut it was compared against
+    support_score: float = 0.0
+    support_threshold: float = 0.0
+    #: every feature that produced the score, for the audit column
+    support_features: dict = field(default_factory=dict)
+    #: episodes that justify the shape: one for `direct`, two for `composed`
+    #: and `conflict`, none for `absent`
+    support_witness: list[str] = field(default_factory=list)
     #: the question asks for a LIST, detected from its wording alone. Routes
     #: the Answerer to the enumerating prompt -- see fgl.memory.slots.
     set_question: bool = False
