@@ -1,0 +1,78 @@
+# M1 -- MECA com o leitor FLAT.
+#
+# O que muda em relação a tudo que veio antes
+# --------------------------------------------
+# A linha L (L1-L6) guarda PONTEIROS PARA TEXTO: os slots são formas de
+# superfície incidentes aos turnos que as contêm. A memória nunca afirma nada,
+# então toda pergunta re-deriva o fato a partir do diálogo cru na hora de
+# responder — sob ruído e orçamento apertado. É por isso que multi-hop trava em
+# f1 0,476 mesmo com recall_context = 1,0: a evidência está toda lá e a
+# proposição não está.
+#
+# MECA guarda o RESULTADO DA COMPREENSÃO. A unidade é a proposição atestada:
+# sujeito, predicado, objeto e qualificadores resolvidos, com intervalo de
+# validade, modalidade, polaridade e o span exato que a sustenta. A ingestão
+# acontece uma vez por documento e pode ser cara; responder acontece N vezes e
+# tem de ser barato. Desenho completo em docs/MECA_DESIGN.md.
+#
+# Três chamadas de LLM por passagem, cada uma uma ablação de uma linha:
+#   meca_extract   o que a passagem afirma, com o span de cada alegação
+#   meca_infer     o que se segue e não foi dito (marcado como derivado)
+#   meca_verify    cada alegação é acarretada pelo span que ela cita?
+# A terceira é o que torna as duas primeiras defensáveis: a extração pede ao
+# modelo o que ele faz pior (produzir estrutura sem inventar) e a verificação
+# pede o que ele faz bem (julgar acarretamento num par curto). `meca.verify:
+# false` é a ablação que MEDE o que a verificação compra — não é uma opção de
+# desempenho.
+#
+# Nada aqui sabe o que é falante, sessão ou diálogo de duas pessoas. Uma fonte é
+# uma sequência de enunciados com autor opcional e data opcional; o LoCoMo é uma
+# dessas fontes e não é o molde. Por isso esta condição também troca o prompt de
+# resposta: `answer.txt` recebe {speaker_a}/{speaker_b} e roteia por formato de
+# pergunta, e as duas coisas são específicas deste benchmark.
+condition: M1-meca-flat
+
+ingest:
+  mode: meca
+
+retrieval:
+  mode: meca
+  answer_prompt: meca_answer
+  # Mesmo orçamento das condições da linha L, para que a comparação signifique
+  # alguma coisa. O que muda é o que ocupa o orçamento: afirmações verificadas
+  # com sua fonte, em vez de turnos crus.
+  budget_tokens: 2000
+  max_facts_in_prompt: 80
+
+meca:
+  # --- segmentação: limites estruturais declarados, corte derivado ---------
+  # Em MECA a segmentação importa MUITO menos do que na MEST: lá a passagem era
+  # a unidade indexada e emitida, aqui é só a janela que o extrator lê. Uma
+  # fronteira errada custa um pouco de contexto para o extrator e nada depois.
+  passage_min: 2
+  passage_max: 6
+  passage_quantile: 0.65
+
+  infer: true
+  verify: true
+
+  # --- consolidação: cada estágio é uma ablação ----------------------------
+  resolve_entities: true
+  deduplicate: true
+  timeline: true
+  # Todos os limiares são quantis da distribuição DO PRÓPRIO CORPUS, nunca
+  # literais varridos: o critério de docs/ASSUMPTIONS.md ("o parâmetro precisa
+  # dos rótulos de ouro?") tem de responder NÃO para cada um.
+  entity_quantile: 0.995
+  entity_floor: 0.80
+  predicate_quantile: 0.99
+  predicate_floor: 0.82
+  functional_quantile: 0.75
+  functional_floor: 0.60
+
+  # --- leitura ------------------------------------------------------------
+  reader: flat
+  join_steps: 1
+  join_budget: 8
+  emit_non_factual: true
+  emit_superseded: true

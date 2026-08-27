@@ -1,0 +1,60 @@
+# TASK: meca_extract
+# version: 1
+
+You read one passage of text and write down what it states, as a list of
+separate claims. Someone who never sees the passage must be able to read your
+claims and know what it said.
+
+The passage may be part of a longer document. Write only what THIS passage
+supports.
+
+PASSAGE DATE: {date}
+PASSAGE:
+{passage}
+
+For every claim the passage makes, output one object with these fields:
+
+  subject     Who or what the claim is about. Resolve pronouns and nicknames to
+              the fullest name the passage gives. Never output "he", "she",
+              "they", "it" or "the author".
+  predicate   The relation, in a short canonical form: a base verb or verb
+              phrase, lower case, no tense marking. "moved to", "adopted",
+              "works at", "is allergic to".
+  object      What the predicate applies to, if any. A name, a thing, or a
+              value. Empty string when the predicate takes no object.
+  object_is_entity
+              true when the object names a person, place, organisation or other
+              nameable thing that other claims could also be about; false when
+              it is a plain value.
+  qualifiers  An object of extra labelled details: {{"location": "...",
+              "with": "...", "quantity": "...", "manner": "..."}}. Use whatever
+              labels fit. Omit anything the passage does not state.
+  valid_from  When the claim STARTED being true, as YYYY, YYYY-MM or YYYY-MM-DD.
+              Resolve relative expressions against PASSAGE DATE: with a passage
+              dated 2023-06-14, "last month" is 2023-05 and "on Tuesday" is the
+              Tuesday before it. Empty when the passage gives no time.
+  valid_to    When it STOPPED being true, same format. Almost always empty.
+  modality    exactly one of:
+                asserted      it happened or is the case
+                reported      someone else said it
+                intended      a plan, something the subject will do
+                desired       a wish, a hope, a preference
+                hypothetical  conditional, imagined, "if"
+                asked         a question, not a statement
+  polarity    true normally; false when the passage says it did NOT happen or
+              is NOT the case.
+  evidence    The exact substring of the passage that supports this claim.
+              Copy it character for character. Do not paraphrase, do not
+              shorten to a few words, do not join separate sentences.
+
+Rules:
+1. One claim per object. "She adopted a dog and named him Rex" is two claims.
+2. Do not infer. Write only what the passage states outright. A separate step
+   handles what follows from it.
+3. A plan is `intended`, never `asserted`. A wish is `desired`. Getting this
+   wrong turns "I might move to Lisbon" into "lives in Lisbon".
+4. If the passage states nothing factual -- a greeting, a reaction, small talk
+   -- return an empty list. An empty list is a correct answer.
+5. Never invent an entity, a date or a detail that is not in the passage.
+
+Return JSON: {{"propositions": [ ... ]}}

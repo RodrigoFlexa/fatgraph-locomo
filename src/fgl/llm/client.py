@@ -423,11 +423,68 @@ def default_fake_responder(prompt: str, system: str | None) -> str:
         return json.dumps({"summary": "fake consolidation of the face"})
     if marker == "bridge_synthesis":
         return json.dumps({"linked": False})
+    if marker == "meca_extract":
+        return json.dumps({"propositions": _fake_meca_extract(prompt)})
+    if marker == "meca_infer":
+        # Conservative, like every other marker here: the offline backend
+        # proposes no inference, so a test that wants one must say so.
+        return json.dumps({"propositions": []})
+    if marker == "meca_verify":
+        # Accept-all, which is exactly NullVerifier. The REJECTING path is the
+        # one that can empty a memory, so it is exercised by tests with an
+        # explicit responder rather than by the default -- a default that
+        # rejected everything would make every offline run trivially pass with
+        # no propositions at all, which is the failure mode hardest to notice.
+        n = len(re.findall(r"^\s*(\d+)\.\s+CLAIM:", prompt, flags=re.MULTILINE))
+        return json.dumps(
+            {"verdicts": [{"id": i + 1, "supported": True} for i in range(n)]}
+        )
+    if marker == "meca_answer":
+        return _fake_answer(prompt)
     if marker == "answer" or marker == "answer_open":
         return _fake_answer(prompt)
     if marker == "judge":
         return json.dumps(_fake_judge(prompt))
     return "Not mentioned in the conversation"
+
+
+def _fake_meca_extract(prompt: str) -> list[dict]:
+    """One crude proposition per line of the passage. Deterministic, offline.
+
+    Not a tagger and not trying to be: it exists so the whole MECA path --
+    segmentation, coercion, provenance, consolidation, both readers -- runs end
+    to end in `pytest` and `--dry-run` without a network call. The shape of
+    what it returns is real; the quality is not.
+    """
+    m = re.search(r"^PASSAGE:\n(.*?)(?:\n\nFor every claim|\Z)", prompt,
+                  flags=re.MULTILINE | re.DOTALL)
+    if not m:
+        return []
+    out: list[dict] = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        author, _, said = line.partition(": ")
+        if not said:
+            author, said = "", line
+        words = [w for w in re.findall(r"[\w'-]+", said) if w]
+        if len(words) < 2:
+            continue
+        subject = author or words[0]
+        predicate = words[1].lower() if len(words) > 1 else "mentioned"
+        obj = " ".join(words[2:6])
+        out.append({
+            "subject": subject,
+            "predicate": predicate,
+            "object": obj,
+            "object_is_entity": False,
+            "qualifiers": {},
+            "modality": "asserted",
+            "polarity": True,
+            "evidence": said,
+        })
+    return out
 
 
 def _task_marker(prompt: str) -> str:

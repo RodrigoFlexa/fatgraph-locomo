@@ -1225,3 +1225,206 @@ conector · região B rotulados como junção). Isso só vale a pena depois que
 `fgl slots-oracle` disser que a separação existe — se a AUC vier em 0,5, a
 proposta morreu de graça e nenhum prompt a salva. Proposta completa em
 `docs/PROPOSTA_ATESTADO.md`.
+
+## D36 — O portão do atestado RODOU e disse não (2026-08-27)
+
+`fgl slots-oracle -C L2d --set slots.concept_link_min=0.75`, 10 conversas, zero
+chamadas de LLM. **A tese estrutural da D35 está refutada, e custou nada.**
+
+```
+condition         AUC     cut    source  caught  deleted   net Q  net micro
+L2d-derived     0.579   0.434      otsu   66.4%    54.2%  -314.0    -0.1581
+best cut on this curve: threshold 0.0 -> net 0.0 questions
+```
+
+**O melhor corte da curva é não cortar.** Todo limiar positivo destrói mais do
+que ganha, monotonicamente.
+
+### A economia, que é o número a lembrar
+
+Com n_adv=446 e n_sub=1540, o ponto de equilíbrio exige
+
+    capturadas × 446 × (1 − 0,5762)  >  deletadas × 1540 × 0,5263
+    capturadas/deletadas > 810,5/189,0 = **4,3**
+
+A curva entrega **1,2** em todo o seu comprimento. Não é questão de achar o
+corte certo: a razão nunca chega perto. Abstenção é intrinsecamente cara aqui
+porque o lado substantivo é 3,45× maior E cada pergunta dele vale mais
+(0,5263 perdido) do que se ganha por uma adversarial capturada (0,4238).
+
+### Por que falha: as formas são indistinguíveis
+
+| forma | substantivo (n=1540) | adversarial (n=446) |
+|---|---|---|
+| direct | 47,8% | **47,5%** |
+| composed | 30,9% | 32,5% |
+| conflict | 17,7% | 12,8% |
+| absent | 3,6% | **7,2%** |
+
+Uma pergunta adversarial do LoCoMo se projeta no grafo **exatamente como uma
+respondível**. Isso não é acidente: ela é construída com o vocabulário da
+própria conversa — nomeia gente real, tópico real, tempo real — e pergunta algo
+que nunca foi dito. Todo slot resolve. O canto coocorre. `direct` em 47,5%
+contra 47,8% é a medição disso.
+
+O único discriminante é `absent`, a 2:1 — e a economia exige 4,3:1.
+
+**O erro de desenho, nomeado:** o escore mede se os slots PREENCHIDOS da
+pergunta têm suporte. O que falta numa pergunta adversarial é o **buraco**.
+Presença estrutural dos slots nomeados não é evidência da presença da resposta,
+e o escore da D35 nunca olha para o buraco.
+
+### Corolário: o corner test tem preço, e ele é negativo
+
+Na mesma rodada: 32/446 capturadas contra 56/1540 falsos positivos.
+32×0,4238 = 13,6 ganhas contra 56×0,5263 = 29,5 destruídas = **−15,9 perguntas
+(−0,008 micro)**. `abstain_on_empty_corner: false` desde a D26 estava certo, e
+agora tem número em vez de "quase break-even".
+
+### O que continua de pé
+
+Nada disto refuta o achado da D35, que é aritmética sobre dado medido e não
+hipótese: `adversarial/f1 == abstention_rate`, e a decisão de responder vale
++0,170 micro contra +0,081 de resolver multi-hop inteiro. O que foi refutado é
+**a rota estrutural** para essa decisão: a memória não consegue decidir
+respondibilidade porque as perguntas sem resposta são estruturalmente iguais às
+com resposta.
+
+### O que a rodada entrega no lugar
+
+O maior número em cima da mesa não é mecanismo novo, é um que já está medido:
+**L2-slots faz 0,542 de micro contra 0,469 da L2d**, com `recall_context`
+praticamente igual (0,770 vs 0,776) e o MESMO orçamento emitido (~1992 tokens,
+~58 unidades). A diferença inteira é adversarial (0,608 vs 0,242).
+
+Mesmo orçamento, mesma quantidade de unidades, recall igual — então não é
+volume, é **precisão do contexto**. A calibração derivada puxa episódios
+frouxamente relacionados que PARECEM plausíveis, e o gerador responde em vez de
+abster. A alavanca da abstenção é a precisão do que entra no prompt, não um
+portão na frente dele.
+
+Isso deixa a D30 numa tensão que precisa ser dita no artigo em vez de escondida:
+a calibração derivada é a defensável E é hoje a pior, e a razão é um mecanismo
+que ninguém modelou.
+
+### Pendência de execução
+`fgl slots-oracle -C L2d -C L5` (sem override) **não imprimiu relatório nenhum**
+— só carregou os pesos e voltou ao prompt. Os números acima são todos da rodada
+com `concept_link_min=0.75`. Rodar de novo capturando stderr antes de citar
+qualquer coisa sobre a L5.
+
+## D37 — MECA: a unidade da memória deixa de ser um ponteiro para texto
+
+Motivação, em um número: depois de L1–L6, **a linha L nunca bateu o baseline
+trivial**. B1-full-context 0,546; L2-slots 0,542; L2d 0,469; L5/L6 0,462. O ganho
+real é de custo (5% dos tokens ao mesmo F1), que é contribuição de eficiência, não
+de conhecimento. E o diagnóstico da D36 fechou a explicação: com
+`recall_context = 1,0`, multi-hop trava em f1 0,476 — a evidência está toda no
+contexto e a resposta não sai. Não falta recuperação; falta **proposição**.
+
+Tudo até aqui guarda PONTEIROS PARA TEXTO. Os slots do MEST são formas de
+superfície (noun chunks, lemas, hiperônimos) incidentes aos turnos que as contêm;
+a memória nunca afirma nada. Então toda pergunta re-deriva o fato a partir do
+diálogo cru na hora de responder, sob ruído e orçamento.
+
+**MECA guarda o resultado da compreensão.** A estrutura de custo do RAG está
+invertida — ingestão barata e burra, resposta cara pagando o preço N vezes — e a
+tese é inverter: *leia uma vez, profundamente; responda muitas vezes, barato*.
+Desenho completo em `docs/MECA_DESIGN.md`.
+
+### A unidade: a proposição atestada
+sujeito · predicado · objeto · qualificadores (dicionário ABERTO sob esquema fixo,
+que é a resposta ao "muitos slots") · **dois relógios** (`valid_from` quando ficou
+verdade, `asserted_at` quando foi dito — quase todo KG-RAG funde os dois) ·
+**modalidade** (afirmado/relatado/pretendido/desejado/hipotético/perguntado) e
+polaridade, porque um plano não é um fato e uma negação não é uma ausência ·
+**evidência obrigatória** (span exato; nada existe sem proveniência) ·
+`derived_from` · `superseded_by`.
+
+### Três chamadas por passagem, três ablações
+`meca_extract` (o que a passagem afirma, com o span) · `meca_infer` (o que se
+segue e não foi dito, marcado como derivado) · `meca_verify` (cada alegação é
+acarretada pelo span que cita?). A terceira torna as duas primeiras defensáveis:
+a extração pede ao modelo o que ele faz pior (produzir estrutura sem inventar) e a
+verificação pede o que ele faz bem (julgar acarretamento num par curto).
+**`meca.verify: false` é a ablação que MEDE o que a verificação compra, não uma
+opção de desempenho.** Um veredito malformado REJEITA — a direção do default é o
+argumento de segurança inteiro.
+
+### Consolidação: de um monte de alegações para um ESTADO
+Resolução de entidades (forma mais longa vence) · deduplicação por predicado
+próximo (repetição vira SUPORTE — uma proposição com dois spans — em vez de
+duplicata disputando orçamento) · **funcionalidade do predicado estimada do
+corpus** · linha do tempo por supersessão · `elabora`/`contradiz` (contradição
+fica com os dois lados e aparece na resposta).
+
+Achado de desenho que custou um teste vermelho: a forma "fração de sujeitos com
+exatamente um objeto" tem uma **circularidade** — quem MUDOU de cidade tem dois
+valores, então a própria supersessão que se quer licenciar faz o predicado parecer
+não-funcional. Um mudancista entre quatro pessoas derruba o escore agudo para 0,75.
+A forma suave, `média de 1/|objetos distintos|`, custa 0,125 pelo mesmo caso e
+continua punindo acumulação pesada ("read", com uma dúzia de livros). É a versão
+que ficou.
+
+### A resposta: plano de consulta, não similaridade
+A pergunta vira proposição-alvo com um buraco. Estrutura primeiro, similaridade
+depois; segundo passo do plano sobre proposições (evidence closure onde ele é
+exato, e não sobre grafo de similaridade, onde a L3 mediu ruído); emissão agrupada
+pelo passo, com a junção apresentada COMO junção. A abstenção sai de graça:
+"existe proposição com esta forma?" é consulta com resposta, e "nunca ouvi falar
+dessa pessoa" é diferente de "conheço e ninguém disse isso" — foi exatamente o que
+faltou ao atestado da D35/D36, e o motivo de ele não poder funcionar é que o MEST
+guarda formas de superfície.
+
+### M1 × M2: um store, dois leitores
+**A ingestão e a consolidação são as MESMAS LINHAS DE CÓDIGO** — a M2 estende a M1
+e empresta seus grafos (`graphs_condition: M1-meca-flat`) —, então um delta medido
+não pode ser outra coisa senão o leitor. O store é sempre um fatgraph; a rotação é
+estrutura adicional e o leitor flat a ignora.
+
+Quatro discordâncias permitidas, e só elas: linha do tempo (índice+ordenação vs
+**órbita de σ**, cronológica por construção); teste do buraco (campo vs **canto**);
+junção (reconsulta vs **caminhada de face φ**); ordem sob truncagem (escore vs
+posição na órbita). As duas últimas são os únicos lugares onde a rotação pode
+pagar. **`ribbon_order=score` + `ribbon_join=index` reproduz a M1 fato a fato,
+fixado por teste** — mesma disciplina do `reduces_to_l2()`, sem a qual a
+comparação não valeria nada.
+
+Bug de comparabilidade pego pelo mesmo teste: a junção flat pivotava só por
+entidades resolvidas enquanto a caminhada φ pivota por QUALQUER vértice de
+argumento. Corrigido com um índice `by_argument` — senão os dois braços
+divergiriam por um motivo que nada tem a ver com rotação.
+
+**Expectativa declarada antes de medir:** espero M1 e M2 próximos, porque os dois
+são exatos sobre o mesmo store. Se forem, é a ablação honesta da topologia que a
+linha L nunca teve (a G8 é `shuffle_context` — embaralha os fatos NO PROMPT, é
+ablação de apresentação).
+
+### O que sai, por ser específico do LoCoMo
+Extração por spaCy+WordNet como FONTE da memória; o episódio como unidade de
+emissão; os cinco canais com pesos; o prior de ator (construído sobre "98,5% das
+perguntas nomeiam um falante", propriedade do gerador de perguntas);
+`enumerate_sets`; e o prompt `answer.txt` com `{speaker_a}`/`{speaker_b}` e
+roteamento por formato de pergunta. Novo gancho `retrieval.answer_prompt`
+(default vazio: a linha L não muda um byte).
+
+### Testes
+`tests/test_meca.py`, 47 testes; suíte inteira passando. Armadilha registrada: o
+embedder de teste usava `hash()`, que é salgado por processo — uma rodada ficou
+verde e a seguinte vermelha. `zlib.crc32`, como o comentário da ablação de shuffle
+em `faces.py` já avisava.
+
+### Portões, na ordem (nada disto foi medido ainda)
+1. **fidelidade da extração**: que fração dos turnos de evidência anotados tem ao
+   menos uma proposição cujo span cai dentro? Se as proposições não cobrem a
+   evidência, nada a jusante funciona. Mata a tese antes de qualquer F1.
+2. **composição**: no subconjunto com toda a evidência no contexto, multi-hop sai
+   de 0,476?
+3. **ribbon**: M1 × M2, mesmo store, mesmo orçamento.
+4. **custo**: `tokens_ingest` vs `tokens_QA` separados (a coluna existe e não está
+   instrumentada — ver a L6 com `tokens ingest = 0`) e o N\* de amortização.
+5. **portabilidade**: config congelado num segundo corpus.
+
+E a régua que a linha L nunca passou: **B1-full = 0,546**. Sem bater isso, MECA é
+contribuição de custo, não de conhecimento — e o artigo tem de dizer com essas
+palavras.

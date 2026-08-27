@@ -203,6 +203,12 @@ class RetrievalConfig:
     #: for the reader. Deterministic, seeded from `seed`.
     shuffle_context: bool = False
 
+    #: Override the answer prompt family. Empty keeps the open-domain/set
+    #: routing above; a name here uses that prompt for every question. A memory
+    #: model whose context is not raw dialogue lines needs its own instructions,
+    #: and the routing it replaces keys off THIS benchmark's question shapes.
+    answer_prompt: str = ""
+
     # --- sigma expansion (multi-hop) --------------------------------------
     # A multi-hop question needs two memories that *share an entity*, i.e. two
     # half-edges in the same sigma-orbit. phi = sigma o alpha leaves the vertex
@@ -674,6 +680,86 @@ class SteinerConfig:
 
 
 @dataclass
+class MecaConfig:
+    """MECA: read once, deeply; answer many times, cheaply.
+
+    The cost structure of ordinary RAG is inverted -- ingestion is cheap and
+    dumb, answering is expensive and pays that price once per question, redoing
+    the same comprehension every time. MECA moves resolution (coreference,
+    temporal grounding, modality, implicature, entity identity) to ingest,
+    where it is paid once, and stores the *result*: attested propositions
+    rather than pointers into text.
+
+    Every knob here is either a structural bound declared as a premise or a
+    corpus-derived quantile. None of them needs the gold labels, which is the
+    criterion ``docs/ASSUMPTIONS.md`` holds every threshold in this repo to.
+    """
+
+    # --- segmentation (structural bounds, not swept knobs) -----------------
+    passage_min: int = 2
+    passage_max: int = 6
+    #: cut at this quantile of THIS source's own coherence-drop distribution
+    passage_quantile: float = 0.65
+
+    # --- comprehension -----------------------------------------------------
+    #: second pass: what follows from the passage that was not said outright
+    infer: bool = True
+    #: entailment check against the cited span. Off is the ablation that
+    #: measures what verification buys -- it is not a performance option.
+    verify: bool = True
+    extract_max_tokens: int = 2000
+    infer_max_tokens: int = 1200
+    verify_max_tokens: int = 1200
+
+    # --- consolidation (each stage is one ablation) ------------------------
+    resolve_entities: bool = True
+    deduplicate: bool = True
+    timeline: bool = True
+    entity_quantile: float = 0.995
+    entity_floor: float = 0.80
+    predicate_quantile: float = 0.99
+    predicate_floor: float = 0.82
+    #: a predicate is single-valued (and so can be superseded) above this
+    #: quantile of the corpus's own functionality distribution
+    functional_quantile: float = 0.75
+    #: floor on functionality. Low on purpose: the estimator is a mean of
+    #: 1/|distinct objects|, and one subject who moved house costs a predicate
+    #: 0.125 rather than a whole vote, so a high floor would refuse to
+    #: supersede exactly where supersession is called for.
+    functional_floor: float = 0.60
+
+    # --- reading -----------------------------------------------------------
+    #: ``flat`` = inverted indexes; ``ribbon`` = sigma orbits, corners and face
+    #: walks over the SAME store. One memory, two readers: any measured delta
+    #: is the reader and cannot be anything else.
+    reader: str = "flat"
+    #: second step of the query plan, over propositions rather than over a
+    #: similarity graph. 0 disables the join entirely.
+    join_steps: int = 1
+    #: how many propositions the second step may bring back
+    join_budget: int = 8
+    #: emit statements whose modality is not factual (plans, wishes). They are
+    #: labelled either way; this decides whether they compete for budget.
+    emit_non_factual: bool = True
+    #: emit propositions the timeline marked superseded, labelled as such. A
+    #: question that names a past time needs them.
+    emit_superseded: bool = True
+    #: weight of the dense channel when structure alone under-fills the budget
+    dense_weight: float = 1.0
+
+    # --- ribbon reader only ------------------------------------------------
+    #: ``orbit`` = emit in sigma order (chronological, local); ``score`` = emit
+    #: by score, which reproduces the flat reader exactly. The identity is
+    #: pinned by a test, the same discipline that proved L5 reduces to L2.
+    ribbon_order: str = "orbit"
+    #: ``face`` = find the join by a phi-walk; ``index`` = by re-query, which is
+    #: what the flat reader does.
+    ribbon_join: str = "face"
+    #: bound on the face walk, in half-edges
+    ribbon_walk_max: int = 64
+
+
+@dataclass
 class SupportConfig:
     """The abstention decision, moved out of the prompt and into the graph.
 
@@ -805,6 +891,7 @@ SECTIONS: dict[str, type] = {
     "propagation": PropagationConfig,
     "steiner": SteinerConfig,
     "bridges": BridgeConfig,
+    "meca": MecaConfig,
     "support": SupportConfig,
     "baselines": BaselineConfig,
     "paths": PathsConfig,
@@ -836,6 +923,7 @@ class Config:
     propagation: PropagationConfig = field(default_factory=PropagationConfig)
     steiner: SteinerConfig = field(default_factory=SteinerConfig)
     bridges: BridgeConfig = field(default_factory=BridgeConfig)
+    meca: MecaConfig = field(default_factory=MecaConfig)
     support: SupportConfig = field(default_factory=SupportConfig)
     baselines: BaselineConfig = field(default_factory=BaselineConfig)
     paths: PathsConfig = field(default_factory=PathsConfig)
@@ -952,16 +1040,17 @@ class Config:
             )
         if self.index.backend not in ("numpy", "faiss"):
             raise ConfigError(f"index.backend must be numpy|faiss")
-        if self.ingest.mode not in ("triples", "bipartite", "slots"):
+        if self.ingest.mode not in ("triples", "bipartite", "slots", "meca"):
             raise ConfigError(
-                f"ingest.mode must be triples|bipartite|slots, got {self.ingest.mode!r}"
+                "ingest.mode must be triples|bipartite|slots|meca, got "
+                f"{self.ingest.mode!r}"
             )
         if self.retrieval.mode not in (
-            "walk", "bipartite", "slots", "propagation", "unified"
+            "walk", "bipartite", "slots", "propagation", "unified", "meca"
         ):
             raise ConfigError(
                 "retrieval.mode must be walk|bipartite|slots|propagation|"
-                f"unified, got {self.retrieval.mode!r}"
+                f"unified|meca, got {self.retrieval.mode!r}"
             )
         # Each non-default memory model builds its own kind of vertex, and a
         # retriever that does not know that kind cannot interpret the graph at
@@ -976,6 +1065,11 @@ class Config:
             "bipartite": ("bipartite",),
             "slots": ("slots", "propagation", "unified"),
             "triples": ("walk",),
+            # MECA is one memory read two ways: `meca.reader` picks flat or
+            # ribbon, and both interpret the same proposition vertices. The
+            # reader is NOT a retrieval.mode, precisely so the two arms cannot
+            # accidentally end up reading two different memories.
+            "meca": ("meca",),
         }
         allowed = _MODEL_PAIRS[self.ingest.mode]
         if self.retrieval.mode not in allowed:
@@ -1124,6 +1218,32 @@ class Config:
                 raise ConfigError("bridges.max_candidates must be >= 1")
             if br.min_bridge_chars < 1:
                 raise ConfigError("bridges.min_bridge_chars must be >= 1")
+
+        if self.ingest.mode == "meca" or self.retrieval.mode == "meca":
+            # The ingest/retrieval pairing itself is already enforced by
+            # _MODEL_PAIRS above -- MECA is a memory model, not a read, and
+            # reading a proposition store with a slot retriever would compare
+            # two different memories while claiming to compare two reads.
+            mc = self.meca
+            if mc.reader not in ("flat", "ribbon"):
+                raise ConfigError(
+                    f"meca.reader must be flat | ribbon (got {mc.reader!r})"
+                )
+            if mc.ribbon_order not in ("orbit", "score"):
+                raise ConfigError("meca.ribbon_order must be orbit | score")
+            if mc.ribbon_join not in ("face", "index"):
+                raise ConfigError("meca.ribbon_join must be face | index")
+            if mc.passage_min < 1 or mc.passage_max < mc.passage_min:
+                raise ConfigError(
+                    "meca.passage_min >= 1 and meca.passage_max >= passage_min"
+                )
+            if not 0.0 <= mc.passage_quantile < 1.0:
+                raise ConfigError("meca.passage_quantile must be in [0, 1)")
+            for name in ("entity_quantile", "predicate_quantile", "functional_quantile"):
+                if not 0.0 <= getattr(mc, name) < 1.0:
+                    raise ConfigError(f"meca.{name} must be in [0, 1)")
+            if mc.join_steps < 0:
+                raise ConfigError("meca.join_steps must be >= 0")
 
         if self.support.enabled:
             if self.ingest.mode != "slots":

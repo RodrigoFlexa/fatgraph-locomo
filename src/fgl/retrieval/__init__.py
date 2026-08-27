@@ -56,9 +56,27 @@ from fgl.retrieval.steiner import (
     SteinerRead,
     calibrate_null,
 )
+from fgl.retrieval.meca import (
+    SOURCE_MECA_DENSE,
+    SOURCE_MECA_DIRECT,
+    SOURCE_MECA_JOIN,
+    FlatReader,
+    MecaRetriever,
+    RibbonReader,
+    Target,
+    parse_question,
+)
 from fgl.retrieval.unified import UnifiedRetriever
 
 __all__ = [
+    "SOURCE_MECA_DENSE",
+    "SOURCE_MECA_JOIN",
+    "SOURCE_MECA_DIRECT",
+    "Target",
+    "parse_question",
+    "RibbonReader",
+    "FlatReader",
+    "MecaRetriever",
     "AzureEmbedder", "CachedEmbedder", "Embedder", "HashingEmbedder",
     "SentenceTransformerEmbedder", "VectorIndex", "build_embedder", "build_index",
     "cosine", "Answerer", "FaceRetriever", "RetrievalResult", "RetrievedFact",

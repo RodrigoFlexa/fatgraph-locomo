@@ -1128,6 +1128,17 @@ def render_context(result: RetrievalResult, shuffle_seed: Optional[int] = None) 
                 lines.append(f"--- also about {f.via_entity} ---")
             elif f.source == "bp_bridge":
                 lines.append(f"--- links back to {f.via_entity} ---")
+            elif f.source == "meca_direct":
+                # MECA groups by PLAN STEP, not by trail: what the memory holds
+                # about the bound arguments, then what a join reached, then
+                # what only resembled the question. Presenting a join AS a join
+                # is the point -- the composition step is the thing multi-hop
+                # questions fail at, and it is free to say it out loud.
+                lines.append("--- what the memory holds ---")
+            elif f.source == "meca_join":
+                lines.append(f"--- linked through: {f.via_entity} ---")
+            elif f.source == "meca_dense":
+                lines.append("--- possibly related ---")
             elif f.source == "bp_dense":
                 lines.append("--- similar memories ---")
             # L2 channels (fgl.retrieval.slots). String literals for the same
@@ -1207,8 +1218,17 @@ class Answerer:
             if self.cfg.retrieval.shuffle_context
             else None
         )
+        # A memory model may bring its own answer prompt. MECA does: its context
+        # is verified statements with their sources, not raw dialogue lines, and
+        # it deliberately does NOT want the open-domain/set routing above --
+        # that routing keys off this benchmark's question shapes, which is
+        # exactly the kind of thing a general method must not carry.
+        override = self.cfg.retrieval.answer_prompt
         prompt = self.prompts.render(
-            "answer_open" if open_domain else ("answer_set" if enumerate_set else "answer"),
+            override or (
+                "answer_open" if open_domain
+                else ("answer_set" if enumerate_set else "answer")
+            ),
             speaker_a=conv.speaker_a,
             speaker_b=conv.speaker_b,
             context=render_context(result, shuffle_seed=seed),
@@ -1218,7 +1238,8 @@ class Answerer:
             prompt,
             system=SYSTEM_ANSWERER_OPEN if open_domain else SYSTEM_ANSWERER,
             purpose=(
-                "qa/answer_open" if open_domain
+                f"qa/{override}" if override
+                else "qa/answer_open" if open_domain
                 else ("qa/answer_set" if enumerate_set else "qa/answer")
             ),
             max_tokens=self.cfg.retrieval.answer_max_tokens,

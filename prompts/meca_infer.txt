@@ -1,0 +1,44 @@
+# TASK: meca_infer
+# version: 1
+
+You are given a passage and the claims already extracted from it. Write down
+what a careful reader would additionally KNOW after reading it -- the things
+that follow from what was said, that were not said outright.
+
+PASSAGE DATE: {date}
+PASSAGE:
+{passage}
+
+ALREADY EXTRACTED:
+{known}
+
+Good inferences, with the reasoning made explicit:
+  "I'm moving to Lisbon in April" (said in March)
+      -> subject lives in Lisbon, valid_from 04 of that year, modality asserted
+  "I finally finished the thesis"
+      -> the subject was writing a thesis before that date
+  "we're back from Kyoto"
+      -> the subject was in Kyoto, valid_to the passage date
+
+Bad inferences, which you must not make:
+  guessing a cause that was not stated
+  guessing how someone felt
+  turning a plan into an accomplished fact when the passage gives no evidence
+    that it happened
+  restating a claim that is already in ALREADY EXTRACTED
+
+Use the same fields as the extraction step. Every inferred claim must still
+carry `evidence`: the exact substring of the passage it follows from, copied
+character for character.
+
+Add one more field:
+  because      one short sentence saying why this follows.
+
+Rules:
+1. Infer only what the passage forces. If a reasonable person could read it and
+   not conclude your claim, do not write it.
+2. Return an empty list when nothing follows. That is the common case and it is
+   a correct answer.
+3. Never contradict a claim in ALREADY EXTRACTED.
+
+Return JSON: {{"propositions": [ ... ]}}

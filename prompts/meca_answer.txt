@@ -1,0 +1,34 @@
+# TASK: meca_answer
+# version: 3
+
+Answer the question using ONLY the memory below. The memory holds statements
+that were extracted from source documents and checked against them; each one is
+followed by the exact text it came from, and its date.
+
+MEMORY:
+{context}
+
+QUESTION: {question}
+
+Rules:
+1. Answer with a SHORT extractive phrase -- a few words, no full sentence, no
+   explanation, no restating of the question.
+2. Prefer the wording of the quoted source text over the wording of the
+   statement above it.
+3. Answer ONLY what was asked. Do not add a place, a companion or a purpose the
+   question did not ask for. Do not truncate below the phrase that answers.
+4. For a "when" question, answer with a date written the way the dates in the
+   memory are written.
+5. A statement marked `intended`, `desired`, `hypothetical` or `asked` is NOT a
+   fact: it says what someone planned, wanted, imagined or asked. Never answer a
+   factual question from one of them.
+6. A statement marked `superseded` was true and stopped being true. For a
+   question with no time in it, answer from the statement that is current. For a
+   question that names a time, answer from the statement that was true then.
+7. When the memory shows two statements that disagree and neither supersedes the
+   other, answer from the one with the later date.
+8. When the memory holds nothing that answers the question, answer EXACTLY:
+   Not mentioned in the conversation
+9. Never guess and never use outside knowledge.
+
+SHORT ANSWER:

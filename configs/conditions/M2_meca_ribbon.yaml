@@ -1,0 +1,55 @@
+# M2 -- MECA com o leitor RIBBON. Mesma memória, leitor diferente.
+#
+# A regra que faz esta comparação valer alguma coisa
+# ---------------------------------------------------
+# UM STORE, DOIS LEITORES. A ingestão e a consolidação são as MESMAS LINHAS DE
+# CÓDIGO da M1 — esta condição estende `M1_meca_flat.yaml` e só troca
+# `meca.reader` — então um delta medido não pode ser outra coisa senão o leitor.
+# É a disciplina que provou que a L5 se reduz à L2 (`reduces_to_l2()`, fixado por
+# teste), aplicada antes do experimento em vez de depois.
+#
+# O store é SEMPRE um fatgraph, nas duas condições: a rotação é estrutura
+# adicional sobre as mesmas incidências, e o leitor flat simplesmente não olha
+# para ela.
+#
+# As quatro coisas — e só elas — em que os leitores podem discordar
+# -----------------------------------------------------------------
+#   linha do tempo de uma entidade   flat: índice invertido + ordenação
+#                                    ribbon: ÓRBITA DE SIGMA, cronológica por
+#                                    construção, custo O(grau), sem ordenar
+#   teste do buraco                  flat: comparação de campo
+#                                    ribbon: CANTO no vértice de proposição
+#   achar a junção                   flat: reconsulta ao índice
+#                                    ribbon: CAMINHADA DE FACE (phi)
+#   ordem de emissão sob truncagem   flat: por escore
+#                                    ribbon: por posição na órbita/face
+#
+# As duas últimas são os únicos lugares onde a rotação pode realmente pagar:
+# sob orçamento a órbita dá uma ordem principiada (cronológica, local) onde o
+# índice dá ordem por escore; e a caminhada de face alcança uma cadeia cuja
+# ligação intermediária nunca entrou num top-k.
+#
+# EXPECTATIVA DECLARADA ANTES DE MEDIR, para não haver como ajustar a narrativa
+# depois: espero M1 e M2 PRÓXIMOS, porque os dois são exatos sobre o mesmo
+# store. Se ficarem, o resultado é publicável e é a ablação honesta da topologia
+# que a linha L nunca teve (a G8 embaralhava os fatos NO PROMPT, o que é ablação
+# de apresentação, não da rotação). Se a M2 ganhar, ganha nas duas linhas acima,
+# e o mecanismo estará nomeado antes do experimento.
+#
+# Identidade fixada por teste: com `ribbon_order: score` e `ribbon_join: index`
+# este leitor reproduz a M1 fato a fato. Sem esse teste a comparação não vale
+# nada.
+extends: M1_meca_flat.yaml
+condition: M2-meca-ribbon
+
+meca:
+  reader: ribbon
+  ribbon_order: orbit
+  ribbon_join: face
+  ribbon_walk_max: 64
+
+paths:
+  # A M2 NÃO reconstrói a memória: empresta os grafos da M1, porque a ingestão é
+  # idêntica e reconstruí-los abriria a porta para as duas condições compararem
+  # memórias diferentes acreditando comparar leituras.
+  graphs_condition: M1-meca-flat

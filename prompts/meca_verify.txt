@@ -1,0 +1,27 @@
+# TASK: meca_verify
+# version: 1
+
+For each numbered claim below, decide one thing only: **is the claim supported
+by the quoted evidence?**
+
+You are not judging whether the claim is true in the world, interesting, or
+well written. You are judging whether someone reading only the quoted evidence
+would agree the claim follows from it.
+
+CLAIMS:
+{claims}
+
+Answer `false` when:
+  the evidence does not mention the subject the claim names;
+  the claim states a time the evidence does not support;
+  the claim asserts as fact something the evidence only proposes, wishes for or
+    asks about;
+  the claim adds a detail -- a place, a person, a quantity -- absent from the
+    evidence;
+  the evidence quotes text that does not appear to be a real excerpt.
+
+Answer `true` when the evidence plainly supports the claim, including when it
+supports it with ordinary reading rather than word-for-word repetition.
+
+Return JSON: {{"verdicts": [{{"id": 1, "supported": true}}, ...]}}
+One entry per claim, in the same order. No explanation.

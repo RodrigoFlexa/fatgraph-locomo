@@ -28,6 +28,7 @@ from fgl.llm import LLMClient, PromptLibrary, build_llm
 from fgl.logging_utils import JsonlLogger
 from fgl.memory.ingest import Ingestor
 from fgl.memory.ingest_bipartite import BipartiteIngestor
+from fgl.memory.comprehend import MecaIngestor
 from fgl.memory.ingest_slots import SlotIngestor
 from fgl.paths import Paths, project_root
 from fgl.retrieval import (
@@ -40,6 +41,7 @@ from fgl.retrieval import (
     CachedEmbedder,
     Embedder,
     FaceRetriever,
+    MecaRetriever,
     PropagationRetriever,
     SlotRetriever,
     UnifiedRetriever,
@@ -97,6 +99,7 @@ _INGESTORS = {
     "triples": Ingestor,
     "bipartite": BipartiteIngestor,
     "slots": SlotIngestor,
+    "meca": MecaIngestor,
 }
 #: One typed memory, three questions asked of it. The nesting is real -- L3
 #: subclasses L2 and L4 subclasses L3 -- so "L3 is L2 with one more hop" is a
@@ -108,6 +111,10 @@ _RETRIEVERS = {
     "slots": SlotRetriever,           # L2: which episodes TOUCH the slots
     "propagation": PropagationRetriever,  # L3: which are REACHED from them
     "unified": UnifiedRetriever,      # L4: which HOLD THEM TOGETHER
+    # M1/M2: not a fourth question asked of the same memory -- a different
+    # memory. The unit is a proposition, not a pointer into text, so the read
+    # is a query plan rather than a ranking. `meca.reader` picks flat/ribbon.
+    "meca": MecaRetriever,
 }
 
 #: Above these the memory graph is a star and multi-hop retrieval is redundant
