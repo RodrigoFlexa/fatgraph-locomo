@@ -591,6 +591,10 @@ def test_ingest_builds_a_proposition_memory_offline(meca_built):
     assert len(store) > 0, "the offline backend must exercise the whole path"
     assert all(p.evidence for p in store), "no proposition without provenance"
     assert report.graph_stats["n_propositions"] == len(store)
+    # Every ingestor feeds the common CLI summary, including M1/M2's
+    # proposition memory.
+    for key in ("V", "E", "F", "C", "genus"):
+        assert report.graph_stats[key] == graph.stats()[key]
 
 
 def test_every_proposition_points_at_a_real_turn(meca_built):

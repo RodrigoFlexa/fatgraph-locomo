@@ -332,6 +332,10 @@ class MecaIngestor:
         report.n_edges = len(graph.edges())
         report.llm_usage = self.llm.usage.to_dict() if hasattr(self.llm, "usage") else {}
         report.graph_stats = {
+            # The CLI's common ingest summary expects the topology metrics
+            # (V, E, F, C, genus) regardless of the memory representation.
+            # MECA keeps its proposition-specific metrics alongside them.
+            **graph.stats(),
             **store.stats(),
             "consolidation": consolidation.as_dict(),
             "comprehension": counts,
