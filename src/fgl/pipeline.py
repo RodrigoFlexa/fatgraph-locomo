@@ -456,20 +456,27 @@ class Runner:
         checks: list[str] = []
         graphs = [c.get("graph") or {} for c in per_conversation]
 
-        # 1. identity collapse: one entity absorbing many times the corpus's
-        # own median incidence -- the "Caroline's friends, family and
-        # mentors' support" bug, named to a number instead of an eyeball.
+        # 1. identity collapse: a NON-anchor entity absorbing many times the
+        # corpus's own median incidence -- the "Caroline's friends, family
+        # and mentors' support" bug, named to a number instead of an
+        # eyeball. Conversation participants are excluded on purpose: a
+        # two-person dialogue is ABOUT those two people, so the real
+        # speakers legitimately sit at hundreds of incidences while most
+        # other entities sit at 1 -- that is the shape of a healthy run, not
+        # a symptom. (A first version of this gate read the un-excluded
+        # ratio and fired on Caroline herself; caught on the first real
+        # smoke test, 2026-08-28.)
         ratios = [
-            g["max_entity_incidence_ratio"] for g in graphs
-            if g.get("max_entity_incidence_ratio")
+            g["max_non_anchor_entity_incidence_ratio"] for g in graphs
+            if g.get("max_non_anchor_entity_incidence_ratio")
         ]
         if ratios and max(ratios) > 20:
             checks.append(
-                f"uma entidade chegou a {max(ratios):.0f}x a incidência "
-                "mediana de alguma conversa -- assinatura de colapso de "
-                "identidade (D37): descrições ou frases sendo fundidas com "
-                "uma pessoa real. Confira resolve_entities antes de aceitar "
-                "estes números."
+                f"uma entidade (não-participante da conversa) chegou a "
+                f"{max(ratios):.0f}x a incidência mediana de alguma "
+                "conversa -- assinatura de colapso de identidade (D37): "
+                "descrições ou frases sendo fundidas com uma pessoa real. "
+                "Confira resolve_entities antes de aceitar estes números."
             )
 
         # 2. contradiction explosion: once identity collapses, everything

@@ -483,6 +483,21 @@ def test_an_unknown_entity_is_reported_as_unknown():
     assert r.store.knows_entity("Zoltan") is False
 
 
+def test_a_possessive_question_binds_the_known_entity():
+    """``normalise()`` deliberately keeps the apostrophe (so "O'Brien" is not
+    mangled), so the entity table is keyed on the bare form ("ana") while a
+    possessive question ("Ana's mural") never appears in that form. Without
+    its own fallback, ``parse_question`` reads every possessive question
+    about a known person as an unknown entity -- this was found empirically:
+    it accounted for 15/16 of the ``unbound_question`` abstentions in a
+    single-conversation smoke test."""
+    from fgl.retrieval.meca import parse_question
+
+    store = _memory()
+    target = parse_question("What did Ana's mural depict?", store)
+    assert "Ana" in target.entities
+
+
 def test_a_plan_is_labelled_and_ranked_below_a_fact():
     store = _memory()
     store.add(_prop("Ana", "painted", "a portrait", when="2023-03",

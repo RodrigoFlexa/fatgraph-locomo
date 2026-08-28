@@ -134,6 +134,21 @@ _NON_FACTUAL_CUE = re.compile(
 )
 
 
+def _strip_possessive(phrase: str) -> str:
+    """``"Caroline's"`` -> ``"Caroline"``; ``"the Smiths'"`` -> ``"the Smiths"``.
+
+    A question binds a person by their possessive at least as often as by
+    their bare name -- "What are Caroline's plans", "What is Melanie's
+    favorite book" -- but the entity table is keyed on the bare form the
+    extractor wrote down. Without this, every possessive question about a
+    known person reads as an unknown entity.
+    """
+    for suffix in ("'s", "’s", "'", "’"):
+        if phrase.endswith(suffix):
+            return phrase[: -len(suffix)]
+    return phrase
+
+
 def parse_question(question: str, store: PropositionStore) -> Target:
     """Turn a question into a target proposition. Reads only the question text.
 
@@ -150,13 +165,24 @@ def parse_question(question: str, store: PropositionStore) -> Target:
     for size in (3, 2, 1):
         for i in range(len(words) - size + 1):
             phrase = " ".join(words[i:i + size])
-            key = normalise(phrase)
+            candidate, key = phrase, normalise(phrase)
             if not key or key in _STOP:
                 continue
-            if store.knows_entity(key) and not any(
+            if not store.knows_entity(key):
+                stripped = _strip_possessive(phrase)
+                stripped_key = normalise(stripped)
+                if (
+                    stripped_key and stripped_key != key
+                    and stripped_key not in _STOP
+                    and store.knows_entity(stripped_key)
+                ):
+                    candidate, key = stripped, stripped_key
+                else:
+                    continue
+            if not any(
                 normalise(e) == key or key in normalise(e) for e in entities
             ):
-                entities.append(phrase)
+                entities.append(candidate)
 
     content = [w for w in lowered if w not in _STOP and len(w) > 2]
     predicate = " ".join(content[:4])

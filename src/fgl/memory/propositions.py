@@ -550,9 +550,25 @@ class PropositionStore:
         # the tens or hundreds is the signature of an identity collapse: one
         # node absorbing what should have been many distinct people, the
         # failure a corrupted run of MECA once produced (D37).
+        #
+        # Conversation participants (`entity_anchors`) are the one legitimate
+        # exception: a two-person dialogue is ABOUT those two people, so they
+        # are named in most propositions by construction -- on a real
+        # ingestion, Caroline alone sits at 500+ incidences while the median
+        # entity sits at 1, and that is correct, not corruption. The signal
+        # that actually distinguishes "identity collapse" from "this is who
+        # the conversation is about" has to look past the anchors: it is a
+        # NON-anchor entity absorbing an anchor-sized share that is the
+        # "Caroline's friends, family and mentors' support" bug.
         incidences = sorted(len(pids) for pids in self.by_entity.values())
         max_incidence = incidences[-1] if incidences else 0
         median_incidence = incidences[len(incidences) // 2] if incidences else 0
+        non_anchor = sorted(
+            len(pids) for key, pids in self.by_entity.items()
+            if key not in self.entity_anchors
+        )
+        max_non_anchor = non_anchor[-1] if non_anchor else 0
+        median_non_anchor = non_anchor[len(non_anchor) // 2] if non_anchor else 0
         return {
             "n_propositions": len(self.propositions),
             "n_entities": len(self.by_entity),
@@ -561,9 +577,16 @@ class PropositionStore:
             "n_superseded": superseded,
             "mean_evidence": round(n_ev / max(len(self.propositions), 1), 3),
             "by_modality": dict(sorted(mods.items())),
+            #: informational only -- includes anchors, so it is expected to be
+            #: large. The health gate reads the non-anchor pair below instead.
             "max_entity_incidence": max_incidence,
             "max_entity_incidence_ratio": (
                 round(max_incidence / median_incidence, 2) if median_incidence else 0.0
+            ),
+            "max_non_anchor_entity_incidence": max_non_anchor,
+            "max_non_anchor_entity_incidence_ratio": (
+                round(max_non_anchor / median_non_anchor, 2)
+                if median_non_anchor else 0.0
             ),
         }
 

@@ -491,3 +491,158 @@ cegamente nisto no servidor: `pytest tests/test_meca.py` lá, onde há espaço e
 as dependências (a mesma rotina já usada antes, extraindo
 `_transfer/fgl_src.tar.gz` num container com `pytest numpy pyyaml rich typer
 spacy dateparser nltk`).
+
+---
+
+# Smoke test real no servidor (2026-08-28) — o erro de incidência e o que ele confirma
+
+Primeira rodada de verdade pós-correção: `fgl ingest M1-meca-flat --force -n 1`
++ `fgl run M1-meca-flat -n 1` (conv-26, 199 perguntas). O `sanity` disparou:
+
+> "uma entidade chegou a 522x a incidência mediana de alguma conversa —
+> assinatura de colapso de identidade"
+
+## Causa raiz: o bug era NO PORTÃO, não na correção
+
+Investigando o grafo baixado (`artifacts/graphs/M1-meca-flat/conv-26.json`)
+direto: a entidade de incidência 522 é `"caroline"`, e a de 364 é `"melanie"`
+— os dois PARTICIPANTES da conversa, corretamente resolvidos como eles
+mesmos. `"melanie's kids"` e `"melanie's family"` continuam entidades
+DISTINTAS de `"melanie"` (6 e 6 incidências, não fundidas). Excluindo as
+duas âncoras, a maior entidade não-participante tem incidência 7, mediana 1
+— razão 7,0, longe do limiar de 20.
+
+O gate 1 que escrevi na sessão anterior comparava a incidência máxima contra
+a mediana **incluindo os participantes da conversa**. Mas um participante
+DEVE dominar — é a pessoa sobre quem a conversa é. Comparei a coisa errada
+contra a coisa errada: o sinal de colapso de identidade tem que olhar só
+para quem NÃO é âncora, porque é aí que "Caroline's friends, family and
+mentors' support" apareceria se a corrupção tivesse voltado.
+
+## O que foi corrigido
+`PropositionStore.stats()` ganhou `max_non_anchor_entity_incidence` /
+`_ratio`, calculado excluindo `store.entity_anchors`. `Pipeline.
+_meca_health_gates` (gate 1) passou a ler esse campo em vez do antigo
+`max_entity_incidence_ratio` (que continua existindo, só informativo).
+Verificado três vezes: (a) contra o dado REAL do conv-26 baixado do servidor
+— zero avisos agora; (b) sintético, dois falantes dominando de propósito
+(200/150 incidências) — zero avisos; (c) sintético, uma entidade
+NÃO-âncora absorvendo 300 proposições — dispara, como deveria.
+
+## O que este smoke test CONFIRMA sobre a correção de verdade
+Isto é a primeira evidência real (não sintética) de que a correção da sessão
+anterior funciona: no `conv-26.report.json` de uma ingestão fresca,
+`link_leaks: 0`, `contradictions: 0`, Caroline e Melanie permanecem nós
+distintos, e descrições possessivas não fundiram com elas. O F1 desta
+conversa sozinha (199 perguntas): multi-hop 0,36, single-hop 0,41, temporal
+0,30 — direção compatível com a melhora esperada (a comparação de verdade só
+vale com as 1986 perguntas completas).
+
+E, como esperado pelo addendum anterior: **`adversarial/f1 ==
+abstention_rate` de novo, exatamente (0,3617 == 0,3617)**, já nesta amostra
+de 47 perguntas adversariais. A previsão de que o mecanismo de abstenção sem
+portão estrutural reproduziria essa identidade se confirmou na primeira
+amostra real disponível — não é surpresa quando aparecer na rodada completa.
+
+---
+
+# Investigação do single-hop e a pergunta sobre entidades de alta frequência (2026-08-28)
+
+Duas perguntas foram levantadas depois do smoke test: (1) uma entidade de
+incidência muito alta (Caroline, 522; Melanie, 364) não pode **poluir a
+busca** em vez de só inflar um gate de sanidade? A solução atual é a melhor
+para isso? (2) o F1 de single-hop (0,41 na amostra de conv-26) está baixo —
+as correções feitas vão subir isso?
+
+Em vez de responder de memória, fui aos 199 exemplos reais de
+`results/M1-meca-flat/predictions.jsonl`, filtrei `category_name ==
+"single-hop"` (70 perguntas, 33 com F1 < 0,3) e li 12 casos de erro concretos
+com pergunta/gabarito/predição/entidades-extraídas/`abstain_reason`.
+
+## Achado novo: forma possessiva não resolve para a entidade
+
+Um padrão dominava a amostra: perguntas como *"What are Caroline's plans for
+the summer?"* chegavam ao `parse_question()` com `entities: []`. Causa raiz,
+confirmada lendo o código, não suposta: `normalise()` preserva apóstrofos de
+propósito (`_PUNCT = re.compile(r"[^\w\s'-]")`, para não destruir nomes como
+"O'Brien"), então a tabela de entidades é indexada pela forma nua ("caroline"),
+mas o token que a pergunta produz para "Caroline's" nunca vira "caroline" —
+vira "caroline's". O `store.knows_entity()` nunca bate, a pergunta cai em
+`unbound_question`, e o LLM nunca vê nenhum fato.
+
+Quantifiquei antes de mexer: das 199 perguntas do smoke test, 16 tiveram
+`abstain_reason == "unbound_question"`; 15 dessas 16 (94%) continham a forma
+possessiva do nome de um participante registrado (`Caroline's`/`Melanie's`/
+`Mel's`, testado por regex contra o texto da pergunta). Não é um caso de
+canto — é a causa isolada mais comum de abstenção estrutural nesta amostra.
+
+**Correção**: `parse_question()` em `src/fgl/retrieval/meca.py` ganhou
+`_strip_possessive()` — quando a frase candidata não bate com nenhuma
+entidade conhecida, tenta de novo com o apóstrofo final removido
+(`"Caroline's"` → `"Caroline"`, cobre `'s`, `’s`, `'`, `’`), e só aceita o
+fallback se a forma sem possessivo bater com uma entidade que a memória
+realmente conhece — nunca inventa uma entidade nova. Verificado contra os 8
+exemplos reais falhos da amostra: todos os 8 agora resolvem a entidade certa
+(`Caroline`/`Melanie`), incluindo o caso mais díficil, gabinetes duplos como
+*"What are Melanie's pets' names?"*. Adicionei também um teste de regressão
+determinístico (`test_a_possessive_question_binds_the_known_entity` em
+`tests/test_meca.py`) que fixa esse comportamento com uma entidade sintética,
+sem depender do servidor.
+
+Isto é um efeito **estrutural**, não um ajuste de threshold: antes da
+correção, ~8% de TODAS as perguntas de uma conversa abstinham só por causa da
+forma possessiva, independente do quão bem a extração e a consolidação
+tivessem ido. Espero que suba single-hop (é onde a pergunta é "O que X faz/é",
+a forma possessiva mais comum), mas também temporal e multi-hop na medida em
+que dependem do primeiro hop resolver. Não vou prometer um número — a amostra
+é uma conversa de 199 perguntas, não as 1986 do benchmark completo — mas a
+direção é inequívoca e o mecanismo é auditável ponta a ponta.
+
+## A pergunta sobre entidades de alta frequência: dois problemas diferentes debaixo do mesmo sintoma
+
+A pergunta do Rodrigo mistura, com razão, dois riscos que parecem a mesma
+coisa mas não são:
+
+**Risco A — colapso de identidade** (o que already corrompeu a rodada
+anterior): uma entidade de alta incidência não é ela mesma; é uma fusão
+espúria de várias entidades diferentes (Caroline + Melanie + "Caroline's
+friends, family and mentors' support"). Este está mitigado — resolução
+lexical não-transitiva, `entity_anchors` sempre vencendo, e agora o gate 1
+corrigido para separar participante-de-verdade de blob-espúrio. O smoke test
+real confirmou: incidência 522 para Caroline é ela mesma, não uma fusão.
+
+**Risco B — poluição de busca por grau alto (o "haystack problem")**: mesmo
+uma entidade CORRETAMENTE resolvida, se tem 500 proposições, é um alvo de
+busca ruim — `store.about("caroline")` ou `store.by_entity["caroline"]`
+retorna 500 candidatos, e o que decide quais entram no contexto final é o
+plano de recuperação (seed → join → scoring), não a identidade. Isto é
+**real e NÃO está mitigado** hoje. Não é o mesmo bug que causou a corrupção
+anterior — é um risco estrutural diferente, que só aparece DEPOIS que a
+identidade está certa: quanto mais precisa a resolução de entidade, mais
+degrau único e correto essa entidade acumula, mais grau ela tem, mais esse
+risco importa.
+
+Onde ele entraria, concretamente, olhando `meca.py`: o filtro de âncora do
+plano de consulta usa `Target.predicate_key` para restringir dentro do
+conjunto de proposições de uma entidade (`by_argument`/`about()` + o
+`predicate` extraído da pergunta), então HOJE já não é "pega as 500 e reza" —
+é "pega as 500 e filtra por predicado". Isso já reduz bastante o risco de
+poluição pura por volume. O que ainda não existe é um ranqueamento
+DENTRO do conjunto filtrado quando o predicado da pergunta é vago ou
+combina com várias proposições da mesma entidade (ex.: "What did Caroline
+say about her family?" pode bater com dezenas de proposições `Caroline
+mentioned/said` sem um segundo critério de desempate além de recência/score
+denso).
+
+**A solução atual é a melhor?** Não, é a mais segura dado o que já foi
+corrigido nesta sessão, mas não é a mais completa. Ela resolve o Risco A e
+mitiga parcialmente o B (via o filtro por `predicate_key`), mas não ataca o
+B diretamente. Duas alavancas concretas, corpus-derived (D30), que ficaram
+de fora desta sessão por escolha do Rodrigo (queria rodar "valendo" antes):
+(1) casar `predicate_key` por lema/sinônimo em vez de string exata, o que
+reduziria falsos-negativos do filtro sem aumentar o volume não-filtrado;
+(2) um segundo critério de desempate dentro do conjunto já filtrado —
+recência (`asserted_at`) combinada com a similaridade densa da pergunta
+inteira, com o corte derivado da distribuição de scores da própria
+conversa, não um threshold fixo. Nenhuma das duas foi implementada — são
+uma resposta honesta a "é o melhor jeito", não uma correção desta sessão.
