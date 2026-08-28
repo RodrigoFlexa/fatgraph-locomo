@@ -179,9 +179,22 @@ def parse_question(question: str, store: PropositionStore) -> Target:
                     candidate, key = stripped, stripped_key
                 else:
                     continue
-            if not any(
-                normalise(e) == key or key in normalise(e) for e in entities
-            ):
+            # a longer phrase already covering this one normally wins (no
+            # duplicate binding for "Melanie" once "Melanie Carter" matched)
+            # -- EXCEPT a registered participant, who must never be dropped
+            # just because some other passage described them with a vague
+            # collective phrase ("Audrey's dogs", "her furry friends"). That
+            # phrase is itself a real, separately-held entity -- keeping it
+            # is correct -- but losing the anchor loses the one lexically
+            # guaranteed path back to every individually-named thing under
+            # it (Audrey -> Toby, Scout, Pixie...), which a collective noun
+            # never points to on its own.
+            is_anchor = key in store.entity_anchors
+            covered = any(
+                normalise(e) == key or (key in normalise(e) and not is_anchor)
+                for e in entities
+            )
+            if not covered:
                 entities.append(candidate)
 
     content = [w for w in lowered if w not in _STOP and len(w) > 2]
@@ -440,19 +453,64 @@ class MecaRetriever:
         elif not seeds:
             result.abstain_reason = "unbound_question"
 
-        qvec = _unit(np.asarray(self.embedder.encode_one(question), dtype=np.float32))
-        scores = self._score(seeds, target, qvec)
+        # a collective/generic phrase ("Audrey's dogs") bound above is its
+        # own entity, never fused with anything -- but it points forward to
+        # the individually-named things it groups, so a proposition that
+        # names one of them (Andrew has Toby, Audrey adopted Pixie...) is
+        # what actually answers a question about the group, and needs to
+        # outrank the generic chatter that the collective phrase itself
+        # dominates in volume.
+        collective_members: set[str] = set()
+        for ent in target.entities:
+            collective_members.update(
+                self.store.entity_links.get(normalise(ent), ())
+            )
 
-        # --- step 5: the join ---------------------------------------------
+        qvec = _unit(np.asarray(self.embedder.encode_one(question), dtype=np.float32))
+        scores = self._score(seeds, target, qvec, collective_members)
+
+        # --- step 5: the join, up to ``join_steps`` hops --------------------
+        # ``join_steps`` used to be read only as a boolean (>0 or not) --
+        # every configured value above 1 walked exactly one hop, same as 1.
+        # Multi-hop and open-domain are the categories a single hop starves
+        # (recall_context 0.536 and 0.549 against 0.752-0.801 elsewhere on
+        # the real 10-conversation run) precisely because their answer is two
+        # steps from the bound entity, not one -- and a bound participant's
+        # own seed pool is never "thin" (500+ propositions is the common
+        # case, not the exception), so a thinness gate here would silently
+        # never fire for exactly the questions that most need the extra hop.
+        # Each hop is already self-limiting: it only walks forward from the
+        # top ``join_budget`` frontier members, so a further hop costs a
+        # bounded amount of scoring, not a search over the whole store, and
+        # a hop that finds nothing new stops the walk on its own.
         joined: list[Proposition] = []
         if m.join_steps > 0 and seeds:
-            ranked_seeds = self.reader.order(seeds, scores)[: m.join_budget]
-            joined = self.reader.join(ranked_seeds, target)
-            join_scores = self._score(joined, target, qvec)
-            # A joined proposition is evidence about the connector, not about
-            # the question, so it never outranks a directly bound one.
-            for pid, value in join_scores.items():
-                scores[pid] = value * 0.5
+            all_seen = {p.pid for p in seeds}
+            frontier = seeds
+            hop = 0
+            while hop < m.join_steps and frontier:
+                ranked_frontier = self.reader.order(frontier, scores)[: m.join_budget]
+                hop_result = [
+                    p for p in self.reader.join(ranked_frontier, target)
+                    if p.pid not in all_seen
+                ]
+                if not hop_result:
+                    break
+                all_seen.update(p.pid for p in hop_result)
+                join_scores = self._score(
+                    hop_result, target, qvec, collective_members
+                )
+                # A joined proposition is evidence about the connector, not
+                # about the question, and a proposition reached two hops out
+                # is weaker evidence than one reached in a single hop -- each
+                # further hop discounts again, so the ranking never lets a
+                # distant connector outrank a closer one.
+                discount = 0.5 ** (hop + 1)
+                for pid, value in join_scores.items():
+                    scores[pid] = value * discount
+                joined.extend(hop_result)
+                frontier = hop_result
+                hop += 1
 
         # --- dense fallback ------------------------------------------------
         dense: list[Proposition] = []
@@ -478,7 +536,8 @@ class MecaRetriever:
 
     # -------------------------------------------------------------- scoring --
     def _score(
-        self, props: Sequence[Proposition], target: Target, qvec: np.ndarray
+        self, props: Sequence[Proposition], target: Target, qvec: np.ndarray,
+        collective_members: Optional[set[str]] = None,
     ) -> dict[str, float]:
         """Binding coverage first, resemblance second, recency as tie-break."""
         if not props:
@@ -496,6 +555,14 @@ class MecaRetriever:
             score = 0.0
             hits = sum(1 for e in prop.entities() if normalise(e) in bound)
             score += 1.5 * hits
+            if collective_members:
+                # a proposition that names one of the group's actual members
+                # answers the question; generic chatter about the group as a
+                # whole does not, even though it binds just as directly.
+                member_hits = sum(
+                    1 for e in prop.entities() if normalise(e) in collective_members
+                )
+                score += 1.5 * member_hits
             if pred_words:
                 pw = set(normalise(prop.predicate).split()) | set(
                     normalise(prop.object).split()
@@ -535,29 +602,61 @@ class MecaRetriever:
             ("linked through", SOURCE_MECA_JOIN, joined),
             ("possibly related", SOURCE_MECA_DENSE, dense),
         )
-        used = 0
-        rank = 0
-        #: A turn may support several selected propositions.  Cite it once,
-        #: then spend subsequent tokens on new claims rather than repeating
-        #: the same source span over and over.
-        cited_evidence: set[tuple[str, str]] = set()
+        filtered: list[tuple[str, str, list[Proposition]]] = []
         for label, source, props in groups:
             keep = [
                 p for p in props
                 if (m.emit_non_factual or p.is_factual)
                 and (m.emit_superseded or p.is_current)
             ]
-            for prop in self.reader.order(keep, scores):
-                if rank >= max_facts:
-                    return used
+            ordered = self.reader.order(keep, scores)
+            if ordered:
+                filtered.append((label, source, ordered))
+
+        # A bound participant's own timeline routinely runs into the
+        # hundreds -- "what the memory holds" alone can fill the whole
+        # budget before "linked through"/"possibly related" ever get a
+        # single fact rendered, no matter how many hops the join walked or
+        # how well the dense fallback scored. Reserve an EQUAL share of both
+        # budgets for every group that has anything to offer -- corpus-
+        # derived in the sense that D30 asks (no gold label sets it, no
+        # sweep tunes it), just split by how many groups are actually
+        # competing, not a fixed literal. A group that does not spend its
+        # whole share hands the rest to the ones after it, so a thin join or
+        # dense group never wastes budget the direct group could have used.
+        n_groups = len(filtered) or 1
+        fact_share = max(1, max_facts // n_groups)
+        token_share = max(1, budget // n_groups)
+
+        used = 0
+        rank = 0
+        #: A turn may support several selected propositions.  Cite it once,
+        #: then spend subsequent tokens on new claims rather than repeating
+        #: the same source span over and over.
+        cited_evidence: set[tuple[str, str]] = set()
+        carry_facts = 0
+        carry_tokens = 0
+        for label, source, ordered in filtered:
+            group_fact_budget = fact_share + carry_facts
+            group_token_budget = token_share + carry_tokens
+            group_used = 0
+            group_rank = 0
+            for prop in ordered:
+                if rank >= max_facts or used >= budget:
+                    break
+                if group_rank >= group_fact_budget:
+                    break
                 text, newly_cited = self._render(prop, cited_evidence)
                 # the graph's own counter, so a MECA budget and an L-line
                 # budget are the same unit and the comparison at "equal
                 # budget" means what it says
                 cost = self.graph._token_counter(text)
+                if group_used + cost > group_token_budget and group_rank > 0:
+                    break
                 if used + cost > budget and rank > 0:
-                    return used
+                    break
                 used += cost
+                group_used += cost
                 cited_evidence.update(newly_cited)
                 ev = prop.evidence[0] if prop.evidence else None
                 result.facts.append(RetrievedFact(
@@ -578,6 +677,9 @@ class MecaRetriever:
                     via_entity=self._via.get(prop.pid, label),
                 ))
                 rank += 1
+                group_rank += 1
+            carry_facts = max(0, group_fact_budget - group_rank)
+            carry_tokens = max(0, group_token_budget - group_used)
         return used
 
     def _render(

@@ -432,6 +432,11 @@ class PropositionStore:
         #: Conversation participants are identity anchors, never candidates
         #: for semantic consolidation with a description or another speaker.
         self.entity_anchors: set[str] = set()
+        #: collective/generic phrase (its own entity, never fused with
+        #: anything) -> the individually-named entities it plausibly groups.
+        #: Built by ``consolidate.link_collective_references``; consulted at
+        #: retrieval time only, never rendered into ``statement()``/``roles()``.
+        self.entity_links: dict[str, list[str]] = {}
 
     def register_entity_anchor(self, name: str) -> None:
         """Register a source-supplied participant as an immutable identity."""
@@ -673,6 +678,13 @@ def build_graph(store: PropositionStore, embedder=None) -> object:
                     "key": key[1],
                     "identity_anchor": kind == KIND_ENTITY
                     and key[1] in store.entity_anchors,
+                    # a collective/generic phrase's members, if any -- never
+                    # identity, just a one-hop pointer forward at read time
+                    "collective_members": (
+                        sorted(store.entity_links.get(key[1], []))
+                        if kind == KIND_ENTITY and key[1] in store.entity_links
+                        else []
+                    ),
                 },
             )
             vids[key] = vid
@@ -851,15 +863,26 @@ def store_from_graph(graph) -> PropositionStore:
         for value in prop.arguments():
             store.by_argument.setdefault(value, []).append(prop.pid)
     for vx in graph.vertices.values():
-        if vx.meta.get("kind") == KIND_ENTITY and vx.aliases:
-            canonical = vx.meta.get("key", normalise(vx.name))
+        if vx.meta.get("kind") != KIND_ENTITY:
+            continue
+        canonical = vx.meta.get("key", normalise(vx.name))
+        # aliases/alias_to_canonical only mean something when there ARE
+        # aliases; identity_anchor and collective_members are per-vertex
+        # facts that must survive the round trip regardless -- most
+        # collective-phrase entities ("audrey's dogs") never pick up an
+        # alias at all, and gating on `vx.aliases` here would silently drop
+        # them on every cached-graph run.
+        if vx.aliases:
             aliases = store.entity_aliases.setdefault(canonical, set())
             aliases.update(vx.aliases)
             aliases.add(vx.name)
             for alias in aliases:
                 store.alias_to_canonical[normalise(alias)] = canonical
-            if vx.meta.get("identity_anchor"):
-                store.entity_anchors.add(canonical)
+        if vx.meta.get("identity_anchor"):
+            store.entity_anchors.add(canonical)
+        members = vx.meta.get("collective_members")
+        if members:
+            store.entity_links[canonical] = list(members)
     for key in store.by_entity:
         store.alias_to_canonical.setdefault(key, key)
     return store

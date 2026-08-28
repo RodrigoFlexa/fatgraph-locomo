@@ -646,3 +646,448 @@ recência (`asserted_at`) combinada com a similaridade densa da pergunta
 inteira, com o corte derivado da distribuição de scores da própria
 conversa, não um threshold fixo. Nenhuma das duas foi implementada — são
 uma resposta honesta a "é o melhor jeito", não uma correção desta sessão.
+
+---
+
+# Diagnóstico da rodada completa (2026-08-28) — 1986 perguntas, 10 conversas
+
+Primeira rodada de verdade nas 10 conversas (`conv-26/30/41/42/43/44/47/48/49/50`),
+com todas as correções desta sessão dentro. Números:
+
+| | |
+|---|---|
+| f1_micro | **0,3732** |
+| f1_macro | 0,3011 |
+| f1_substantivo (n=1540) | 0,3423 |
+| abstenção geral | 0,1843 |
+| recall_context (média ponderada) | 0,6129 |
+| custo | 5,89M tokens, 2310s |
+
+Por categoria: multi-hop 0,2637 (n=282) · temporal 0,2465 (n=321) · open-domain
+**0,0802** (n=96) · single-hop 0,4352 (n=841) · adversarial 0,4798 (n=446).
+
+`sanity`: `link_leaks: 0` e `contradictions: 0` nas 10 conversas, sem exceção
+— **as correções de identidade seguram na escala cheia**, não só no smoke
+test de uma conversa. Um aviso real do gate 1 (conv-44, entidade não-âncora
+a 42x a mediana) — investigado abaixo, não é corrupção.
+
+## O número que importa primeiro: isto é PIOR que a linha antiga (MEST/L)
+
+Antes de procurar causa, a pergunta honesta: comparado a quê? A [[projeto-l-abstencao]]
+tem os números da melhor rodada da linha L no MESMO benchmark: **L2-slots
+0,542 micro, B1-full 0,546**, `recall_context` médio 0,770–0,776. M1/MECA
+entrega **0,3732** e `recall_context` 0,6129 — cerca de **0,17 de F1 micro
+abaixo do melhor resultado que este projeto já tinha**, e `recall_context`
+no nível do L1 (0,614, o *primeiro* salto único da linha antiga, antes de
+qualquer propagação) — não do L2 que ele suplantou.
+
+Isto muda o enquadramento: não é "M1 está quase lá, falta polir". É "M1,
+mesmo com identidade corrigida e válida na escala cheia, ainda recupera e
+responde pior que o método que ele foi desenhado para substituir". Vale a
+pena procurar causa estrutural, não só bugs pontuais — exatamente o que o
+Rodrigo pediu.
+
+## Achado 1 — o plano de consulta do MECA é mais raso que o da fatgraph antiga
+
+`recall_context` por categoria: multi-hop 0,536 · temporal 0,801 ·
+open-domain 0,549 · single-hop 0,752 · adversarial 0,277 (este último é
+correto por desenho — adversarial não deveria ter contexto).
+
+O plano de consulta (`meca.py::retrieve`) é: ancorar por entidade → **UM**
+salto de junção limitado por orçamento (`join_steps`/`join_budget`) → fallback
+denso se o resultado ficou fino. A linha antiga tinha propagação por σ
+(vizinhança de vértice compartilhado), conexão Steiner multi-terminal e
+cobertura por face — mecanismos deliberadamente removidos porque a proposta
+nova troca "grafo de entidades genérico" por "loja de proposições
+atestadas". Só que a troca também jogou fora a PROFUNDIDADE de busca, não só
+a ambiguidade que ela causava. Multi-hop (0,536) e open-domain (0,549) são
+exatamente as duas categorias que mais dependiam da propagação multi-salto
+na linha antiga — e são as duas piores aqui.
+
+**Isto não é motivo para voltar à fatgraph antiga.** É motivo para dar ao
+MECA um segundo salto de junção, com orçamento derivado do corpus (não um
+literal fixo) — a mesma disciplina D30 que já rege o resto do projeto.
+
+## Achado 2 — granularidade de extração: o predicado costuma ser a frase toda, não uma relação curta
+
+Nas 10 conversas: 12.267 proposições, **34,5% de predicados distintos sobre
+o total** (4.237 predicados únicos), e **28,5% dos predicados aparecem
+exatamente uma vez em todo o corpus**. Ao lado disso, os predicados mais
+comuns são verbos genéricos demais para discriminar nada (`say` 1060,
+`have` 578, `state` 377, `be` 290) — ou seja, o corpus é bimodal: verbo
+genérico sem conteúdo, ou frase longa e única sem repetição. Exemplo real
+(conv-44, entidade "audrey's dogs"):
+
+```
+Audrey's dogs | get excited | when Audrey brings out the ball or frisbee
+Audrey's dogs | wear | something special for safety
+Audrey's furry friends | use | Audrey's cozy and comfy item as a resting place
+```
+
+O prompt de extração já pede "canonical form: a base verb or verb phrase" —
+a instrução existe, mas na prática o modelo often captura a oração quase
+inteira como predicado. Isso quebra o `predicate_key` (correspondência de
+string) usado tanto no escore de recuperação quanto no cálculo de
+`predicate_functionality` na consolidação: duas proposições sobre o MESMO
+fato, ditas com palavras diferentes, viram predicados diferentes e nunca se
+encontram.
+
+## Achado 3 — o objeto fica com uma referência não resolvida quando o valor concreto está em OUTRA passagem (achado novo, verificado no grafo real)
+
+Amostrando 10 falhas de multi-hop com `n_facts` alto (30+, ou seja, a
+recuperação claramente NÃO estava vazia), o padrão dominante era o mesmo:
+a resposta prevista é uma paráfrase vaga do que está guardado, não o valor
+concreto do gabarito.
+
+| pergunta | gabarito | previsto |
+|---|---|---|
+| Onde Caroline se mudou há 4 anos? | Sweden | "her home country" |
+| Qual a identidade de Caroline? | Transgender woman | "Caroline's gender identity" |
+| O que os filhos de Melanie gostam? | dinosaurs, nature | (descrição de uma atividade de argila) |
+| Que artistas Melanie viu? | Summer Sounds, Matt Patterson | "a show I went to (band)" |
+
+Verifiquei a causa direto no grafo do conv-26 real, para o primeiro caso:
+
+```
+Caroline | be from | Sweden          <- passagem A
+Caroline | move from | her home country   <- passagem B, sessão diferente
+```
+
+`meca_extract` roda **por passagem**, sem contexto das sessões anteriores.
+A passagem B usa "her home country" (uma descrição definida) porque quem
+falou já tinha dito "Sweden" numa sessão anterior — mas o extrator daquela
+passagem não tem como saber disso, é um fato de OUTRA chamada de LLM. As
+duas proposições ficam como nós desconectados, nunca fundidos (corretamente
+— fundir por similaridade textual seria repetir o erro original). O escore
+de recuperação favorece "move from" sobre "be from" porque a pergunta usa a
+palavra "move" — ou seja, o mecanismo de pontuação prefere a proposição
+vaga só porque ela ecoa a palavra da pergunta, e o respondedor cita essa
+literalmente em vez de juntar as duas.
+
+Isto é bem diferente do achado 1: não é falta de alcance da busca (ambas as
+proposições relevantes ESTAVAM no contexto, `n_facts` alto o confirma), é
+granularidade/correferência dentro do que foi extraído e como o
+escore/resposta lida com duas proposições correferentes ditas de formas
+diferentes.
+
+## Achado 4 — fragmentação de referências coletivas/genéricas (não é corrupção, é perda de informação)
+
+O único aviso real do health gate 1 na rodada cheia veio do conv-44:
+entidade não-âncora "audrey's dogs" com incidência 42 (mediana da conversa:
+1). Investigando: NÃO é fusão espúria (os cães nomeados — Toby, Scout,
+Pixie, Pepper, Buddy — continuam nós distintos, corretamente). É o oposto:
+seis frases coletivas diferentes referindo-se ao MESMO grupo real (os cães
+da Audrey) viraram seis nós desconectados — `"audrey's dogs"`,
+`"dogs"`, `"audrey's pups"`, `"audrey's pets"`, `"fur kids"`,
+`"audrey's furry friends"` — nenhum ligado explicitamente aos cães
+nomeados. Uma pergunta como "quais os nomes dos cães da Audrey" precisa
+juntar Toby+Scout+Pixie+Pepper, e nenhuma dessas seis entidades coletivas
+aponta para eles.
+
+Isso é o risco B da conversa anterior (poluição por grau alto) manifestado
+de um jeito mais específico e mais tratável do que eu tinha caracterizado:
+não é "a entidade tem grau alto e a busca se perde nela" — é "a mesma
+referência real vira várias entidades pequenas e nenhuma delas sozinha
+carrega a resposta".
+
+## Achado 5 — confirmado na escala cheia: a abstenção sem portão estrutural
+
+`adversarial/f1 == adversarial/abstention_rate`, exatamente: **0,4798 ==
+0,4798**, agora com n=446 reais, não uma amostra de 47. Essa é a mesma
+identidade que [[projeto-l-abstencao]] documentou como valendo até **+0,17
+de F1 micro** se resolvida — mais do que resolver multi-hop inteiro. Foi
+deliberadamente deixada de fora nesta sessão, a pedido do Rodrigo. Com o
+número confirmado na escala cheia, é o item de maior alavancagem disponível
+no projeto inteiro.
+
+## Achado 6 — open-domain está essencialmente quebrado, e por um motivo diferente dos outros
+
+F1 = 0,0802 (n=96), abstenção 32%, mas `n_facts` alto nos exemplos
+amostrados (35–40) — a recuperação não é o problema aqui. Perguntas típicas:
+"Would Caroline still want to pursue counseling as a career if she hadn't
+received support growing up?", "What would Caroline's political leaning
+likely be?". Estas são perguntas de **inferência/julgamento**, não de busca
+factual — o gabarito em si é uma extrapolação ("Likely no", "Liberal"), não
+uma citação literal da conversa. A disciplina de abstenção do prompt de
+resposta ("responda só o que está dito, abstenha caso contrário" — regra 8,
+reforçada pela regra 10 que adicionei nesta sessão) está em tensão direta
+com o que esta categoria pede. É plausível que a regra 10 desta sessão
+tenha piorado especificamente esta categoria, mesmo tendo sido bem
+justificada para o problema que ela mirava (distinguir "possibly related"
+de confirmado).
+
+## Achado secundário — `recall@5`/`recall@10` saem 0,0 em toda categoria
+
+Provavelmente artefato de instrumentação (o mesmo tipo de artefato que
+D31 já documentou para a linha antiga: k=10 sobre proposições finas trunca
+antes de cobrir a evidência, "não perseguir"). Não afeta F1 nem
+`recall_context`. Não investiguei a fundo por não valer o custo agora —
+registrado para não ser confundido com um problema novo se reaparecer.
+
+## Veredito: não é a hora de abandonar o atestado, é a hora de reforçar três camadas em cima dele
+
+A pergunta do Rodrigo era direta: bug pontual ou proposta errada? A resposta,
+com os dados na mesa: **o núcleo (proposição atestada, dois relógios,
+modalidade, evidência obrigatória) não está refutado por nada disto** —
+onde o plano alcança uma proposição concreta, ela é auditável e
+majoritariamente correta (identidade limpa, zero vazamento, zero
+contradição espúria, nas 10 conversas). A perda está concentrada em três
+camadas construídas EM CIMA do núcleo, e nenhuma delas exige jogar fora o
+atestado:
+
+1. **Alcance da busca** (achado 1): um só salto de junção é raso demais
+   para multi-hop e open-domain.
+2. **Granularidade da extração e correferência entre passagens** (achados
+   2 e 3): o predicado sai verboso e único demais, e o valor concreto de um
+   slot pode ficar preso numa passagem diferente daquela que o pede de novo.
+3. **Política de resposta** (achados 5 e 6): abstenção sem portão estrutural
+   (adversarial) e abstenção rígida demais para perguntas inferenciais
+   (open-domain) são o MESMO tipo de problema em direções opostas — a
+   política de "quando responder" precisa de mais nuance do que uma regra
+   de prompt só.
+
+## Plano proposto, em ordem de alavancagem esperada / custo
+
+1. **Portão de abstenção estrutural** (achado 5). Maior alavancagem
+   conhecida do projeto (+0,17 micro no teto medido pela linha antiga, a
+   confirmar na proporção certa aqui). `abstain_reason`/`slot_support` já
+   existem, só não gateiam a chamada. Zero custo de LLM extra — é lógica
+   antes da chamada.
+2. **Segundo salto de junção com orçamento corpus-derived** (achado 1).
+   Ex.: permitir join_steps=2 quando o primeiro salto deixa o resultado
+   abaixo do quantil-mediano de `n_facts` da própria conversa — não um
+   literal fixo. Mira multi-hop e open-domain diretamente.
+3. **Disciplina de predicado mais apertada no prompt de extração + poucos
+   exemplos negativos** (achado 2): mostrar 1-2 casos de extração ruim
+   (predicado = oração inteira) corrigidos para forma curta, do jeito que
+   `meca_verify` já rejeita veredictos malformados — o mesmo princípio
+   aplicado à extração.
+4. **Registro leve de valores já resolvidos, por conversa** (achado 3):
+   um bloco curto e barato (não a conversa inteira) passado ao extrator com
+   nomes/valores já resolvidos em passagens anteriores da MESMA conversa,
+   para que "her home country" possa virar "Sweden" quando o nome já foi
+   dito antes — sem re-processar tudo, sem fusão por embedding.
+5. **Ligação conservadora de frases coletivas ao anchor + seus membros
+   nomeados** (achado 4): usar o campo `links` (já existe, não funde
+   identidade) para conectar "audrey's dogs"/"fur kids"/etc ao anchor e aos
+   nomes individuais que aparecem sob o mesmo anchor — navegável em um
+   salto, sem repetir o erro de fusão por similaridade.
+6. **Segunda política de resposta para perguntas inferenciais** (achado 6):
+   detectar a FORMA da pergunta (condicional/"would"/"likely" — o mesmo
+   tipo de pista que `_NON_FACTUAL_CUE` já usa, não o nome da categoria do
+   LoCoMo) e permitir uma resposta rotulada como inferência quando há base
+   coerente, mantendo abstenção só para ausência real de base.
+
+Nenhum item acima muda o esquema da proposição nem a disciplina de
+threshold corpus-derived (D30). É reforço de camada, não mudança de
+paradigma — mas os itens 2, 4 e 6 são mudanças de COMPORTAMENTO real do
+método, não ajustes cosméticos, e merecem ser tratados como tal.
+
+# Implementação dos 6 itens do diagnóstico (2026-08-28, mesma sessão)
+
+Decisão do Rodrigo: todos os 6 achados devem ser tratados, e tudo antes de
+rodar de novo no servidor. Esta seção documenta o que foi implementado, o
+que foi conscientemente pulado, dois bugs pré-existentes encontrados no
+caminho, e como cada mudança foi verificada (sem `pytest` disponível no
+device por falta de espaço — verificação feita por execução direta das
+funções reais contra dados sintéticos e contra o grafo real baixado do
+servidor).
+
+## Fix 0 — a causa raiz da pergunta sobre "audrey's dogs"
+
+Antes dos 6 itens: o Rodrigo perguntou por que existem seis entidades
+("audrey's dogs", "dogs", "audrey's pups", "audrey's pets", "fur kids",
+"audrey's furry friends") sem nenhuma apontar para os nomes reais dos
+cachorros, e se isso não prejudica a busca. Investigação no grafo real
+(conv-26) confirmou: prejudica, e por três causas empilhadas, não uma:
+
+1. **Extração** cria uma entidade nova por passagem para cada forma de
+   referência coletiva — não há memória entre passagens dentro do próprio
+   `meca_extract`.
+2. **Consolidação** deliberadamente NÃO funde essas seis formas (fundir por
+   similaridade textual é exatamente o erro de corrupção por identidade já
+   corrigido nesta mesma linha de trabalho — D37).
+3. **Um bug de deduplicação em `parse_question`** descartava o
+   `entity_anchor` ("Audrey") da lista de entidades vinculadas sempre que a
+   pergunta também continha uma dessas frases coletivas, porque a checagem
+   de "já coberto" não distinguia anchor de não-anchor. Resultado: a
+   pergunta amarrava só a entidade genérica de baixo grau, nunca a Audrey
+   real com as 500+ proposições onde os nomes dos cachorros de fato
+   aparecem.
+
+Fix 0 corrige (3) — nunca descartar um `entity_anchor` por causa de uma
+frase coletiva sobreposta. (1) e (2) são tratados pelos Itens 5 (link
+conservador) e 2/6 (busca mais profunda e política de resposta) — não por
+fusão.
+
+Verificado por: `test_a_collective_phrase_never_displaces_its_anchor`
+(sintético) + inspeção direta do grafo real de conv-26 antes/depois.
+
+## Item 1 — portão de abstenção estrutural: investigado, premissa refutada, pulado por decisão do usuário
+
+Prevendo maior alavancagem (era o item 1 do plano original), foi investigado
+primeiro. Amostrei `abstain_reason`/`slot_support` nas 1986 perguntas reais:
+o sinal dispara em **8/1986** (0,4%) no total e **1/446** nas adversariais —
+exatamente a categoria em que um portão estrutural deveria ajudar mais.
+Nos casos amostrados em que o sinal disparou, o fallback denso já dava a
+resposta certa em 2 dos casos — um portão que abstivesse nesses pontos teria
+custo líquido negativo mensurável (perde 2 respostas certas) por zero ganho
+adversarial mensurável. A premissa herdada da linha antiga (MEST/L, que tem
+um mecanismo de "atestado"/corner-test bem diferente e informado por gold)
+não se sustenta para o MECA como está construído hoje.
+
+Isto foi levado ao Rodrigo via pergunta explícita (não implementado
+silenciosamente, não descartado silenciosamente); a decisão foi pular por
+agora. **Fica documentado como problema aberto**, não como item concluído:
+um portão de abstenção estrutural pode voltar a fazer sentido se a extração
+ficar granular o suficiente para que `abstain_reason` dispare com uma
+cobertura realista — o que os Itens 3/4 desta rodada podem mudar na próxima
+medição.
+
+## Item 2 — segundo salto de junção com orçamento corpus-derived
+
+`join_steps: 1 -> 2` em `configs/conditions/M1_meca_flat.yaml`. A
+implementação em si expôs dois bugs pré-existentes, nenhum introduzido
+nesta sessão:
+
+- **`join_steps` nunca foi de fato um contador de saltos.** O código lia
+  apenas `if m.join_steps > 0`, então qualquer valor acima de 1 se
+  comportava de forma idêntica a 1. Corrigido: o loop de junção em
+  `MecaRetriever.retrieve()` agora itera de fato até `join_steps` saltos.
+- **`_emit()` deixava um pool direto grande esgotar o orçamento inteiro**
+  antes de join/dense terem qualquer chance, independente de quão bem esses
+  grupos pontuassem — porque o consumo de orçamento era sequencial e não
+  reservado. Este é o bug com mais impacto medido dos dois: reescrevi
+  `_emit()` para reservar uma fatia igual de fatos/tokens entre os grupos
+  não-vazios (`filtered`), com rollover (`carry_facts`/`carry_tokens`) do
+  que um grupo menor não usa para os grupos seguintes.
+
+Uma tentativa inicial de gatear a continuação do loop por
+`len(seeds) + len(joined) < join_budget` foi implementada, testada e
+**revertida**: como pools de seeds reais de âncoras de alto grau são sempre
+muito maiores que `join_budget=8`, essa condição nunca era verdadeira — o
+corpo do loop nunca executava, quebrando silenciosamente até o salto único
+que já funcionava antes. Encontrado por verificação direta (fatos de junção
+sumiam para perguntas reais que antes os tinham) e removido.
+
+Verificado por: `test_a_large_direct_pool_never_starves_the_join_group`,
+`test_join_reaches_second_hop`, `test_join_can_be_switched_off`,
+`test_budget_truncation_respected`, e a paridade ribbon/flat (a lógica de
+loop e de `_emit()` vive no `MecaRetriever` compartilhado, não em código
+específico de reader — confirmado que a paridade byte-a-byte se mantém).
+
+## Item 3 — disciplina de predicado no prompt de extração
+
+`prompts/meca_extract.txt` v1 -> v2: campo `predicate` reescrito com
+especificação mais apertada (1-3 palavras) e exemplos explícitos de
+extração ruim (predicado = oração inteira) corrigidos para forma curta —
+o mesmo princípio que `meca_verify` já usa para rejeitar veredictos
+malformados, aplicado à extração. Nova regra 6 reforça isso mesmo para
+frases longas.
+
+Verificado por: revisão do prompt + `test_ingest_builds_a_proposition_memory_offline`
+(exercita o `meca_extract` completo com o `FakeLLM` offline).
+
+## Item 4 — registro leve de valores resolvidos, por conversa
+
+Achado novo confirmado no grafo real (conv-*, achado 3 do diagnóstico):
+`meca_extract` roda por passagem sem memória de passagens anteriores, então
+uma descrição definida ("her home country") dita DEPOIS do nome real
+("Sweden") ter sido dado numa passagem anterior nunca resolve.
+
+Implementado: `comprehend.py` ganha um registro por conversa
+(`registry: dict[str, dict[str, str]]`) atualizado depois de cada passagem
+(`_update_registry`), passado para `meca_extract` como `{known_values}`
+(regra 7 do prompt, v2). `_registrable()` decide o que entra no registro —
+inicialmente aceitava qualquer valor, incluindo descrições genéricas
+("her home country" também seria registrado, derrotando o próprio
+propósito); corrigido adicionando o mesmo conjunto de determinantes
+possessivos (`_VALUE_DETERMINERS`) já usado em `consolidate.py` para
+excluir descrições e manter só nomes/valores concretos.
+
+Verificado por: `test_the_cross_passage_registry_keeps_names_not_descriptions`
++ replay manual da passagem real de conv-26 onde "Sweden" é dito antes de
+"her home country".
+
+## Item 5 — ligação conservadora de frases coletivas ao anchor e seus membros nomeados
+
+`consolidate.py` ganha `link_collective_references(store)`, chamado dentro
+de `consolidate()` e guardado em `PropositionStore.entity_links` (novo
+campo: `dict[str, list[str]]`, uma seta de mão única de uma frase coletiva
+para as entidades individualmente nomeadas que ela agrupa — nunca fusão de
+identidade, só um ponteiro navegável em um salto).
+
+Duas versões foram tentadas e a primeira foi descartada por evidência
+direta:
+
+- **Versão 1 (co-ocorrência)**: um substantivo genérico e nu ("dogs",
+  "fur kids") vira coletivo do anchor com quem mais co-ocorre. Testado
+  contra dados reais de conv-26/conv-41/conv-30: marcou "acoustic guitar",
+  o título de um livro e "pride parade" como coletivos de Caroline, porque
+  numa conversa de 2 participantes quase tudo co-ocorre majoritariamente
+  com um dos dois anchors. **Removido** — violava a disciplina de limiar
+  corpus-derived (D30) na prática, não só na forma.
+- **Versão final (só léxica)**: a chave da entidade É uma forma possessiva
+  registrada de um anchor ("audrey's dogs", "audrey's furry friends") —
+  mesma disciplina que D37 já aplica à identidade. Filtro de "membro"
+  também corrigido: a primeira versão aceitava qualquer
+  `object_is_entity=True` como membro, produzindo ruído ("sushi", "a farm",
+  "landlords", "wine tasting" como "membros" do grupo de cachorros da
+  Audrey). Corrigido exigindo que o texto bruto do objeto seja capitalizado,
+  tenha no máximo 2 tokens e não comece com determinante/possessivo.
+
+`build_graph`/`store_from_graph` propagam `entity_links` via
+`collective_members` no meta do vértice. `MecaRetriever.retrieve()` usa
+`entity_links` para dar um bônus de pontuação (+1,5 por acerto) a
+proposições que citam um membro nomeado vinculado — sem alterar quem é
+recuperado por identidade, só a prioridade de emissão.
+
+Verificado por: `test_a_collective_phrase_points_forward_to_its_named_members`,
+`test_named_members_outrank_generic_chatter` + replay da pergunta real
+"Audrey's dogs' names" em conv-26 (antes: 40 fatos, zero nomes de cachorro;
+depois: nomes presentes entre os fatos emitidos).
+
+## Item 6 — segunda política de resposta para perguntas inferenciais
+
+`prompts/meca_answer.txt` v4 -> v5: nova regra 11, detectada pela FORMA da
+própria pergunta (não pela categoria do LoCoMo) — "would X...",
+"is X likely...", "what would X's... be" — pedindo uma conclusão a partir
+dos fatos atestados quando há base coerente, com resposta rotulada
+começando por "Yes"/"No"/"Likely yes"/"Likely no" quando apropriado.
+Conteúdo/espírito emprestado do `prompts/answer_open.txt` já existente
+(hoje excluído do MECA por design) — não uma reescrita do zero. A regra 8
+(abstenção por ausência real de base) continua valendo e não foi
+enfraquecida: a mudança é permitir inferência QUANDO há base, não relaxar
+quando não há.
+
+Verificado por: revisão do prompt (mudança é só de prompt, sem novo código
+Python) + confirmação de que a regra 8 permanece textualmente intacta no
+v5.
+
+## Verificação final consolidada
+
+Toda a suíte `tests/test_meca.py` (52 funções `test_*`, incluindo as que
+dependem de fixtures via `meca_built`/`cfg`/`embedder`/`prompts`/`llm`) foi
+executada diretamente — sem `pytest` instalado (device sem espaço livre
+para `pip install`) — usando um shim mínimo de `pytest.raises`/`mark.parametrize`/
+`fixture` e replicando manualmente a cadeia de fixtures do `conftest.py`.
+Resultado: **52/52 passam, 0 falhas.**
+
+Uma checagem falhou numa primeira rodada de verificação ad-hoc
+(`link_propositions` "contradiction detection") — diagnosticada e
+descartada como falso alarme: o script de verificação usava duas datas
+sem sobreposição de prefixo (`2023-01` vs `2023-06`), e
+`TimePoint.overlaps` é containment de prefixo por design (não
+"mesmo ano") — comportamento correto, não tocado nesta sessão. O teste
+real (`test_a_contradiction_is_kept_and_flagged_not_resolved`, que usa a
+mesma data `2023-03` para os dois lados) sempre passou, inclusive depois
+de todas as mudanças desta sessão.
+
+## O que fica pendente, deliberadamente
+
+- **Item 1** (portão de abstenção estrutural) — não implementado, decisão
+  explícita do Rodrigo, documentado acima como problema aberto a
+  reconsiderar depois que a extração granular (Itens 3/4) rodar de novo.
+- Nenhuma mudança de esquema na proposição, nenhuma fusão por embedding,
+  nenhum limiar não-derivado do corpus foi introduzida em nenhum dos 6
+  itens — disciplina D30/D37 mantida em toda a extensão desta rodada.

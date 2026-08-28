@@ -72,7 +72,7 @@ meca:
 
   # --- leitura ------------------------------------------------------------
   reader: flat
-  join_steps: 1
+  join_steps: 2
   join_budget: 8
   emit_non_factual: true
   emit_superseded: true

@@ -45,6 +45,8 @@ from fgl.logging_utils import JsonlLogger, NullLogger
 from fgl.memory.consolidate import consolidate, count_leaked_links
 from fgl.memory.ingest import IngestReport
 from fgl.memory.propositions import (
+    MOD_ASSERTED,
+    MOD_REPORTED,
     Evidence,
     Proposition,
     PropositionStore,
@@ -251,6 +253,69 @@ class LLMVerifier(Verifier):
 
 
 # --------------------------------------------------------------------------- #
+# Cross-passage value registry                                                #
+# --------------------------------------------------------------------------- #
+
+#: A value opening with one of these is a description, not the settled short
+#: value ``meca_extract`` would need to resolve a LATER passage's "her home
+#: country" back to a name -- registering it would just teach the registry
+#: to echo the same vagueness back.
+_VALUE_DETERMINERS = (
+    "a ", "an ", "the ", "another ", "some ", "any ", "this ", "that ",
+    "these ", "those ", "her ", "his ", "my ", "our ", "their ", "its ",
+)
+
+
+def _registrable(prop: Proposition, anchors: set[str]) -> bool:
+    """A short, settled, named value about a participant -- found empirically
+    (D37 follow-up): "Caroline be from Sweden" in one passage and "Caroline
+    move from her home country" in a later one never meet, because
+    extraction runs per-passage with no memory of earlier passages. This is
+    the filter for what is worth remembering FORWARD across passages, kept
+    deliberately narrow: subject is a registered participant, the claim is
+    asserted or reported (not a plan, wish or hypothetical -- those are not
+    settled), and the object is short and looks like a name, not a
+    description already."""
+    if normalise(prop.subject) not in anchors:
+        return False
+    if prop.modality not in (MOD_ASSERTED, MOD_REPORTED) or not prop.polarity:
+        return False
+    obj = prop.object.strip()
+    if not obj or len(obj.split()) > 3:
+        return False
+    if obj.lower().startswith(_VALUE_DETERMINERS):
+        return False
+    return True
+
+
+def _render_known_values(registry: dict[str, dict[str, str]]) -> str:
+    if not registry:
+        return ""
+    lines = []
+    for subject in sorted(registry):
+        for predicate in sorted(registry[subject]):
+            lines.append(f"- {subject} {predicate}: {registry[subject][predicate]}")
+    header = (
+        "KNOWN VALUES FROM EARLIER IN THIS CONVERSATION (use the name, not a "
+        "description, when a claim in THIS passage refers back to one of "
+        "these -- but only extract what THIS passage actually states):"
+    )
+    return header + chr(10) + chr(10).join(lines)
+
+
+def _update_registry(
+    registry: dict[str, dict[str, str]], props: Sequence[Proposition],
+    anchors: set[str],
+) -> None:
+    for prop in props:
+        if not _registrable(prop, anchors):
+            continue
+        subj = normalise(prop.subject)
+        pred = normalise(prop.predicate)
+        registry.setdefault(subj, {})[pred] = prop.object.strip()
+
+
+# --------------------------------------------------------------------------- #
 # The ingestor                                                                 #
 # --------------------------------------------------------------------------- #
 
@@ -298,6 +363,12 @@ class MecaIngestor:
             "passages": 0, "extracted": 0, "inferred": 0,
             "rejected_unverified": 0, "rejected_malformed": 0, "no_evidence": 0,
         }
+        anchors = {normalise(conv.speaker_a), normalise(conv.speaker_b)}
+        #: settled short values about a participant, accumulated forward
+        #: across passages IN THIS CONVERSATION ONLY -- never across
+        #: conversations, and never anything beyond subject/predicate/object,
+        #: so this cannot become a second identity-resolution mechanism.
+        registry: dict[str, dict[str, str]] = {}
 
         for session in conv.sessions:
             utterances = [
@@ -314,9 +385,10 @@ class MecaIngestor:
             counts["passages"] += len(passages)
             n_session = 0
             for passage in passages:
-                props = self._comprehend(passage, counts)
+                props = self._comprehend(passage, counts, registry)
                 for prop in props:
                     store.add(prop)
+                _update_registry(registry, props, anchors)
                 n_session += len(props)
             report.per_session.append(
                 {"session_id": session.id, "n_propositions": n_session,
@@ -354,14 +426,17 @@ class MecaIngestor:
         return graph, report
 
     # ------------------------------------------------------------ one passage -
-    def _comprehend(self, passage: Passage, counts: dict) -> list[Proposition]:
+    def _comprehend(
+        self, passage: Passage, counts: dict,
+        registry: dict[str, dict[str, str]] | None = None,
+    ) -> list[Proposition]:
         m = self.cfg.meca
         asserted_at = TimePoint.parse(passage.timestamp)
         text = passage.render()
         if not text.strip():
             return []
 
-        stated = self._extract(passage, text, asserted_at, counts)
+        stated = self._extract(passage, text, asserted_at, counts, registry)
         counts["extracted"] += len(stated)
 
         derived: list[Proposition] = []
@@ -379,10 +454,11 @@ class MecaIngestor:
 
     def _extract(
         self, passage: Passage, text: str, asserted_at: Optional[TimePoint],
-        counts: dict,
+        counts: dict, registry: dict[str, dict[str, str]] | None = None,
     ) -> list[Proposition]:
         prompt = self.prompts.render(
-            "meca_extract", passage=text, date=passage.date_raw or "unknown"
+            "meca_extract", passage=text, date=passage.date_raw or "unknown",
+            known_values=_render_known_values(registry or {}),
         )
         data = self.llm.complete_json(
             prompt, purpose="ingest/meca_extract",

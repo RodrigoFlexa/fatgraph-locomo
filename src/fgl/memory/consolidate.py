@@ -57,6 +57,7 @@ class ConsolidationReport:
     functional_threshold: float = 0.0
     functional_predicates: int = 0
     source: str = "derived"
+    collective_links: int = 0
 
     def as_dict(self) -> dict:
         return {
@@ -77,6 +78,7 @@ class ConsolidationReport:
                 "functional": round(self.functional_threshold, 4),
                 "source": self.source,
             },
+            "collective_links": self.collective_links,
         }
 
 
@@ -402,6 +404,110 @@ def link_propositions(
     return elaborations, contradictions
 
 
+def _collective_anchor_by_form(key: str, anchors: set[str]) -> str | None:
+    """Lexical only: ``"audrey's dogs"`` -> ``"audrey"``. No embeddings, no
+    transitivity -- extraction's own fallback when one passage makes a claim
+    about several things at once and there is no single name to give it."""
+    for a in anchors:
+        for suffix in ("'s ", "\u2019s "):
+            prefix = a + suffix
+            if key.startswith(prefix) and len(key) > len(prefix):
+                return a
+    return None
+
+
+def link_collective_references(store: PropositionStore) -> dict[str, list[str]]:
+    """Entity-level, non-identity links from a collective/generic phrase to
+    the individually-named things it plausibly groups.
+
+    Found empirically (D37 follow-up): a participant's dogs, adopted one at a
+    time across a conversation, end up under SIX different entities --
+    ``"audrey's dogs"``, ``"dogs"``, ``"audrey's pups"``, ``"audrey's pets"``,
+    ``"fur kids"``, ``"audrey's furry friends"`` -- none pointing at Toby,
+    Scout, Pixie... A question about the group binds one of the six and reads
+    only generic chatter, never a name. Merging them would repeat the D37
+    corruption (synonymy is exactly the judgment embedding clustering got
+    wrong); this instead adds a ONE-HOP POINTER FORWARD, still fully
+    auditable, from the collective phrase to the specific entities it stands
+    in for.
+
+    Detection is lexical only, not transitive, not embedding-based -- the
+    same discipline D37 already applies to identity: the key IS a possessive
+    of a registered participant ("audrey's dogs", "audrey's furry friends").
+    A co-occurrence rule (a bare generic noun like "dogs" or "fur kids"
+    naming one anchor as the other argument in most of its own propositions)
+    was tried and dropped: verified on real data, it flagged "acoustic
+    guitar" and a book title as collective phrases just as readily as
+    "dogs", because in a two-participant conversation almost everything
+    co-occurs with one of the two anchors most of the time -- the count
+    cannot discriminate here, so a bare generic noun is left unlinked rather
+    than linked on a signal this domain does not support.
+
+    Returns ``{collective_key: [member_key, ...]}``. Never mutates the store;
+    the caller decides where this lives (``store.entity_links``).
+    """
+    anchors = store.entity_anchors
+    if not anchors:
+        return {}
+
+    # anchor -> the entities it directly, individually names -- the
+    # candidate "members". object_is_entity=True alone is far too loose in
+    # practice (extraction marks "sushi", "a farm", "landlords" the same
+    # way it marks "Pixie"), so a member also has to look like an actual
+    # name: capitalised, one or two tokens, not led by a determiner. That is
+    # a property of the TEXT, not a threshold, and it is what separates
+    # Toby/Scout/Pixie/Pepper from the generic nouns sharing the same
+    # object_is_entity flag.
+    _DETERMINERS = (
+        "a ", "an ", "the ", "another ", "some ", "any ", "this ", "that ",
+        "these ", "those ", "her ", "his ", "my ", "our ", "their ", "its ",
+    )
+    anchor_named: dict[str, set[str]] = {a: set() for a in anchors}
+    for prop in store:
+        subj = normalise(prop.subject)
+        if subj not in anchors or not prop.object or not prop.object_is_entity:
+            continue
+        raw = prop.object.strip()
+        if not raw or not raw[0].isupper():
+            continue
+        if raw.lower().startswith(_DETERMINERS):
+            continue
+        if len(raw.split()) > 2:
+            continue
+        obj_key = normalise(raw)
+        if obj_key and obj_key not in anchors:
+            anchor_named[subj].add(obj_key)
+
+    # Rule 2 (bare generic noun -> majority co-occurrence with one anchor)
+    # was tried and dropped: in a two-participant conversation almost every
+    # entity co-occurs with one of the two anchors most of the time, simply
+    # because that anchor authors most of the turns -- it flagged "acoustic
+    # guitar" and a book title as collective phrases for Caroline as readily
+    # as it flagged "dogs" for Audrey. Verified on real data before cutting
+    # it; kept here as rule 1 only, which stays precise because it is a
+    # property of the TEXT (a possessive of a registered participant), not
+    # a count that this domain cannot discriminate on.
+    collective_of: dict[str, str] = {}
+    for key in store.by_entity:
+        if key in anchors:
+            continue
+        by_form = _collective_anchor_by_form(key, anchors)
+        if by_form:
+            collective_of[key] = by_form
+
+    links: dict[str, list[str]] = {}
+    for key, anchor in collective_of.items():
+        # a member must be a genuinely distinct, individually-named entity --
+        # never another collective phrase, never the collective itself.
+        members = sorted(
+            m for m in anchor_named.get(anchor, ())
+            if m not in collective_of and m != key
+        )
+        if members:
+            links[key] = members
+    return links
+
+
 def _note(prop: Proposition, link: str, pid: str) -> None:
     bucket = prop.links.setdefault(link, [])
     if pid not in bucket:
@@ -492,6 +598,9 @@ def consolidate(
         report.elaborations, report.contradictions = link_propositions(
             store, functional_predicates
         )
+
+    store.entity_links = link_collective_references(store)
+    report.collective_links = len(store.entity_links)
 
     report.propositions_after = len(store)
     return report

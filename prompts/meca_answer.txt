@@ -1,5 +1,5 @@
 # TASK: meca_answer
-# version: 4
+# version: 5
 
 Answer the question using ONLY the memory below. The memory holds statements
 that were extracted from source documents and checked against them; each one is
@@ -38,5 +38,19 @@ Rules:
     never as a plausible-sounding guess. When the only thing that fits is
     "possibly related" and it does not explicitly say what was asked, follow
     rule 8.
+11. Some questions ask what is LIKELY or PLAUSIBLE rather than what happened
+    -- "would X...", "is X likely to...", "what would X's ... be", "could X
+    be considered...". The answer to these is normally NOT stated literally
+    anywhere: it has to be drawn from what the memory shows about the person
+    -- their stated preferences, behaviour, values, circumstances. That is
+    the task rule 9 exists alongside, not a violation of it: rule 9 forbids
+    inventing a fact with no basis in the memory, not reasoning from facts
+    the memory actually states. For a yes/no question of this shape, START
+    the answer with "Yes" or "No" (or "Likely yes" / "Likely no" when the
+    memory only supports a tendency, not a certainty), then add the few
+    words that carry the reason, reusing the memory's own words rather than
+    paraphrasing them abstractly. Still follow rule 8 when the memory holds
+    NOTHING about the person or topic the question asks about -- inferring
+    from nothing is guessing, and rule 9 still forbids that.
 
 SHORT ANSWER:

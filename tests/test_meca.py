@@ -30,6 +30,7 @@ import pytest
 from fgl.config import Config, ConfigError
 from fgl.memory.consolidate import (
     consolidate,
+    link_collective_references,
     link_propositions,
     predicate_functionality,
 )
@@ -498,6 +499,109 @@ def test_a_possessive_question_binds_the_known_entity():
     assert "Ana" in target.entities
 
 
+def test_a_collective_phrase_never_displaces_its_anchor():
+    """A participant is never dropped from ``Target.entities`` just because
+    a vaguer collective phrase about them ("Ana's paintings") also matched.
+
+    Found empirically: a question like "What are Audrey's dogs' names?"
+    matched the collective entity "audrey's dogs" (a real, separately-held
+    node -- extraction has no single name to give a plural statement) and,
+    under the old substring-containment rule, that match silently dropped
+    "audrey" -- the one entity lexically guaranteed to reach the actually
+    named dogs, since they are individually adopted/owned BY Audrey, never
+    by the collective phrase. The fix: an ``entity_anchors`` member is kept
+    even when it is a substring of a longer match."""
+    from fgl.retrieval.meca import parse_question
+
+    store = _memory()
+    store.register_entity_anchor("Ana")
+    store.add(_prop("Ana", "adopted", "Rex", when="2023-01", doc_id="D9:1",
+                    span="I adopted a dog named Rex"))
+    store.add(_prop("Ana's paintings", "hang", "in the hallway", when="2023-02",
+                    doc_id="D9:2", span="Ana's paintings hang in the hallway"))
+
+    target = parse_question("What are Ana's paintings about?", store)
+    assert "Ana" in target.entities, "the anchor must survive the longer match"
+    assert "Ana's paintings" in target.entities, "and the collective phrase still binds"
+
+
+def test_a_collective_phrase_points_forward_to_its_named_members():
+    """A question about a group ("Ana's dogs") must surface the individually
+    named things it groups (Rex, Mia), not just generic chatter about the
+    group as a whole -- both are directly bound, but only one of them
+    actually names an answer.
+
+    Found on real LoCoMo data (conv-44): a participant's dogs, adopted one at
+    a time, ended up under six disconnected entities ("audrey's dogs",
+    "dogs", "audrey's pups", "audrey's pets", "fur kids", "audrey's furry
+    friends"), none pointing at Toby/Scout/Pixie/Pepper/Panda/Precious/Max.
+    ``link_collective_references`` finds the lexical ones (a possessive of a
+    registered participant) and stores a one-hop, non-identity pointer in
+    ``store.entity_links`` -- merging them would repeat the D37 corruption,
+    since synonymy is exactly the judgment embedding clustering got wrong.
+    """
+    store = PropositionStore()
+    store.register_entity_anchor("Ana")
+    store.add(_prop("Ana", "adopted", "Rex", object_is_entity=True,
+                    doc_id="D1:1", span="I adopted a dog named Rex"))
+    store.add(_prop("Ana", "adopted", "Mia", object_is_entity=True,
+                    doc_id="D1:2", span="and also a dog named Mia"))
+    store.add(_prop("Ana's dogs", "love", "walks",
+                    doc_id="D2:1", span="Ana's dogs love walks"))
+    store.add(_prop("Ana's dogs", "get excited", "at the park",
+                    doc_id="D2:2", span="they get excited at the park"))
+    store.add(_prop("Ana's dogs", "have", "a lot of energy",
+                    doc_id="D2:3", span="they have a lot of energy"))
+
+    links = link_collective_references(store)
+    assert links == {"ana's dogs": ["mia", "rex"]}
+    store.entity_links = links
+
+    from fgl.retrieval.meca import MecaRetriever
+
+    cfg = Config.load("M1_meca_flat")
+    graph = build_graph(store, _Embedder())
+    r = MecaRetriever(graph, _Embedder(), cfg, {})
+    texts = [f.text for f in r.retrieve("What are Ana's dogs like?").facts]
+    named = [i for i, t in enumerate(texts) if "Rex" in t or "Mia" in t]
+    generic = [i for i, t in enumerate(texts) if "Ana's dogs" in t]
+    assert named and generic, "both the names and the generic chatter must surface"
+    assert max(named) < min(generic), "a name outranks every generic mention"
+
+
+def test_the_cross_passage_registry_keeps_names_not_descriptions():
+    """Found on real data (conv-26): "Caroline be from Sweden" in one passage
+    and "Caroline move from her home country" in a later one never meet,
+    because ``meca_extract`` runs per-passage with no memory of earlier
+    passages -- the retrieved answer ends up quoting "her home country"
+    verbatim. The registry is the fix: a short, settled, named value about a
+    participant is remembered forward within the SAME conversation and
+    handed to the next passage's extraction call, so it can write "Sweden"
+    instead of repeating the description. It must stay narrow: a plan, a
+    wish, or a value that is itself already a description never enters it.
+    """
+    from fgl.memory.comprehend import _render_known_values, _update_registry
+
+    anchors = {"caroline"}
+    registry: dict[str, dict[str, str]] = {}
+    props = [
+        _prop("Caroline", "be from", "Sweden"),
+        _prop("Caroline", "move from", "her home country"),
+        _prop("Caroline", "plan to move to", "Norway", modality=MOD_INTENDED),
+        _prop("Caroline", "live in", "a small apartment"),
+    ]
+    _update_registry(registry, props, anchors)
+    assert registry == {"caroline": {"be from": "Sweden"}}, (
+        "a plan, and a value that is already a description, must not enter "
+        "the registry -- only the settled, named one does"
+    )
+    rendered = _render_known_values(registry)
+    assert "Sweden" in rendered
+    assert "her home country" not in rendered
+    assert "Norway" not in rendered
+    assert _render_known_values({}) == "", "an empty registry renders to nothing"
+
+
 def test_a_plan_is_labelled_and_ranked_below_a_fact():
     store = _memory()
     store.add(_prop("Ana", "painted", "a portrait", when="2023-03",
@@ -564,6 +668,27 @@ def test_the_ribbon_timeline_matches_the_flat_timeline():
     flat_ids = {p.pid for p in FlatReader(r).timeline("Ana")}
     ribbon_ids = {p.pid for p in RibbonReader(r).timeline("Ana")}
     assert flat_ids == ribbon_ids
+
+
+def test_a_large_direct_pool_never_starves_the_join_group():
+    """A bound participant's own timeline routinely runs into the hundreds
+    on real data (conv-26: Caroline at 522 incidences) -- large enough on
+    its own to fill the whole emission budget before "linked through" ever
+    gets a single fact rendered, no matter how well the join scored.
+    Verified on real data: a real multi-hop question went from 0 join facts
+    emitted (out of ~50, all direct) to 26. This fixture is the small,
+    deterministic version of that same shape."""
+    store = _memory()
+    for i in range(60):
+        store.add(_prop("Ana", "mentioned", f"topic {i}", when="2023-03",
+                        doc_id=f"D9:{i}", span=f"random small talk number {i}"))
+    from fgl.retrieval.meca import MecaRetriever
+
+    cfg = Config.load("M1_meca_flat")
+    r = MecaRetriever(build_graph(store, _Embedder()), _Embedder(), cfg, {})
+    result = r.retrieve("Who photographed what Ana painted?")
+    joined = [f for f in result.facts if f.source == "meca_join"]
+    assert joined, "the join group must get a reserved share of the budget"
 
 
 def test_budget_truncation_is_respected():
