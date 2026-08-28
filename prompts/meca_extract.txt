@@ -16,7 +16,11 @@ For every claim the passage makes, output one object with these fields:
 
   subject     Who or what the claim is about. Resolve pronouns and nicknames to
               the fullest name the passage gives. Never output "he", "she",
-              "they", "it" or "the author".
+              "they", "it" or "the author". A line written as "NAME: I ..."
+              has NAME as the subject of "I" and "my". Keep a person, object,
+              organisation or event as the subject itself: do not replace it
+              with a related description, a summary of several people, or a
+              possessive phrase such as "NAME's support network".
   predicate   The relation, in a short canonical form: a base verb or verb
               phrase, lower case, no tense marking. "moved to", "adopted",
               "works at", "is allergic to".

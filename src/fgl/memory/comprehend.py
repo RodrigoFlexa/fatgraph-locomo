@@ -42,7 +42,7 @@ from fgl.data.locomo import Conversation
 from fgl.llm.client import LLMClient
 from fgl.llm.prompts import PromptLibrary
 from fgl.logging_utils import JsonlLogger, NullLogger
-from fgl.memory.consolidate import consolidate
+from fgl.memory.consolidate import consolidate, count_leaked_links
 from fgl.memory.ingest import IngestReport
 from fgl.memory.propositions import (
     Evidence,
@@ -289,6 +289,10 @@ class MecaIngestor:
         m = self.cfg.meca
         report = IngestReport(sample_id=conv.sample_id, condition=self.cfg.condition)
         store = PropositionStore()
+        # The dataset supplies these identities directly.  They are anchors,
+        # not semantic phrases to be merged with a related description later.
+        store.register_entity_anchor(conv.speaker_a)
+        store.register_entity_anchor(conv.speaker_b)
 
         counts = {
             "passages": 0, "extracted": 0, "inferred": 0,
@@ -339,6 +343,10 @@ class MecaIngestor:
             **store.stats(),
             "consolidation": consolidation.as_dict(),
             "comprehension": counts,
+            # Checked here, once, right after consolidation -- not trusted to
+            # a later reader. `Pipeline._sanity` reads this back as a health
+            # gate before any metrics.json is presented as a result.
+            "link_leaks": count_leaked_links(store),
         }
         # No sidecar file: every proposition rides in its own vertex's meta,
         # so `store_from_graph` reconstructs the memory exactly from a cached

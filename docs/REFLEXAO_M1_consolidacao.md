@@ -1,0 +1,493 @@
+# Reflexão — modelagem do conhecimento no M1 (MECA): o que quebrou, o que já foi corrigido, o que falta
+
+Data: 2026-08-28. Escopo: só o M1 (flat). Nada aqui fala do M2 — a comparação de
+leitores só vale depois que o store estiver limpo.
+
+## 1. O problema, para não perder de vista
+
+MECA aposta que o gargalo da linha L nunca foi recuperação: com
+`recall_context = 1,0` o multi-hop travava em f1 0,476 (D36). A evidência
+chegava inteira ao prompt e a resposta não saía porque a memória guardava
+**ponteiro para texto** — slots de superfície incidentes a turnos — e cada
+pergunta tinha de re-derivar o fato do diálogo cru, sob ruído e orçamento, toda
+vez. A aposta do M1 é trocar a unidade: guardar o resultado da compreensão (a
+proposição atestada: sujeito · predicado · objeto · qualificadores · dois
+relógios · modalidade/polaridade · evidência obrigatória) em vez do texto que a
+sustenta. Isso é modelagem de conhecimento de verdade — decidir o que existe,
+quando, com que grau de certeza — não é engenharia de recuperação com um passo
+a mais.
+
+O ponto fino, que vale repetir porque a rodada quebrada o escondeu: trocar a
+unidade não elimina o problema de **identidade**. Ao contrário, ele piora,
+porque agora a memória precisa decidir se duas menções falam da mesma pessoa
+ANTES de guardar qualquer coisa, e um erro aqui não derruba uma resposta — ele
+contamina toda proposição que aquele sujeito jamais vier a ter.
+
+## 2. Como o M1 modela conhecimento hoje
+
+Três chamadas de LLM por passagem, cada uma uma ablação isolável:
+`meca_extract` (o que a passagem afirma, com span) → `meca_infer` (o que se
+segue e não foi dito, marcado `derived`) → `meca_verify` (a alegação é
+acarretada pelo span citado?). Um veredito malformado rejeita — a proposição
+não entra. Isso é o argumento de segurança inteiro contra invenção na
+extração, e não muda nesta reflexão.
+
+O que muda de mão em mão é a **consolidação** (`src/fgl/memory/consolidate.py`),
+que transforma o monte de alegações extraídas em um estado:
+
+1. **resolução de entidades** — decidir que menções são a mesma coisa;
+2. **deduplicação** — a mesma alegação dita duas vezes vira uma proposição com
+   duas evidências, não duas proposições competindo por orçamento;
+3. **funcionalidade do predicado**, estimada do corpus (`predicate_functionality`)
+   — "mora em" admite um valor por vez, "leu" admite muitos, sem ontologia e
+   sem rótulo;
+4. **linha do tempo** — uma alegação mais nova num predicado funcional fecha a
+   mais antiga (`apply_supersession`);
+5. **vínculos analíticos** — `elaborates`/`contradicts`, guardados, nunca
+   resolvidos silenciosamente (`link_propositions`).
+
+Todo limiar aqui é quantil derivado do corpus com piso absoluto, nunca um
+literal varrido contra o rótulo — a mesma disciplina da D30. Isso continua
+certo e não é o que quebrou.
+
+## 3. O que quebrou (o diagnóstico, como aconteceu)
+
+A rodada registrada em `results/M1-meca-flat/metrics.json` (8,77 M tokens,
+5,9 h, 1.986 perguntas): f1_micro **0,3259**, multi-hop 0,2214, open-domain
+0,0794, adversarial 0,3161. Setenta por cento das perguntas não ligavam a
+nenhuma entidade da memória.
+
+A causa, confirmada nos próprios grafos: resolução de entidade fazia união
+transitiva sobre similaridade de embedding, tratando QUALQUER sujeito extraído
+— pessoa, evento, descrição, sintagma possessivo — como candidato à mesma
+resolução de identidade. Isso funde "Caroline", "Melanie" e frases como "o
+apoio dos amigos e mentores de Caroline" no mesmo nó, com grau na casa das
+centenas. E o vínculo analítico `contradicts` morava dentro de
+`qualifiers["_links"]` como string — entrava no `statement()`, no embedding, na
+aresta — então a topologia que qualquer leitor veria já estava poluída antes de
+qualquer rotação entrar em jogo.
+
+Eu verifiquei isso direto no artefato: `artifacts/graphs/M1-meca-flat/conv-26.json`,
+vértice `v1`, sujeito ainda é `"Caroline's friends, family and mentors' support"`,
+e a qualifier `_links` carrega seis `contradicts:` concatenados em texto. **Este
+grafo é o artefato ANTES da correção** — a evidência abaixo mostra que ele não
+foi regenerado ainda (seção 7).
+
+## 4. Auditoria do código atual: o que já foi corrigido
+
+Lendo `consolidate.py`, `propositions.py` e `comprehend.py` como estão agora
+(editados hoje, ainda não commitados — o último commit que tocou
+`consolidate.py` é `242ee063 MECA`, de ontem), a maior parte do Nível A da
+lista anterior já está no código, e de um jeito mais conservador do que o
+pedido original:
+
+**Identidade deixou de usar embedding.** `resolve_entities` não faz mais
+clusterização semântica nenhuma. A única operação permitida é
+`_is_short_form`: prefixo de palavra inteira ("mel" é forma curta de "melanie
+carter" porque `"melanie carter".startswith("mel ")`... na prática o teste
+exige o token inteiro, então é "melanie" prefixo de "melanie carter", não
+substring solta). Sem union-find: cada candidato só pode casar com uma forma
+já aceita, não em cadeia. Participantes da conversa
+(`store.entity_anchors`, populados em `comprehend.py:294-295` a partir de
+`conv.speaker_a`/`speaker_b`) sempre ganham o desempate e nunca entram como
+candidatos a fundir com uma descrição. Isso é estritamente mais seguro que o
+Nível A #1/#3 pedia — não é só "sem transitividade", é "sem semântica
+nenhuma" para essa decisão específica. O preço é nomeado na seção 5.
+
+**Aliases ficaram consultáveis.** `store.entity_aliases` e
+`store.alias_to_canonical` existem e são povoados na resolução; `knows_entity`/
+`entity_key` consultam essa tabela. `parse_question`
+(`src/fgl/retrieval/meca.py:137`) casa a pergunta contra `store.knows_entity`,
+que por sua vez resolve pelo alias — não só pela chave canônica. Nível A #2,
+feito.
+
+**`_links` virou campo de primeira classe.** `Proposition.links:
+dict[str, list[str]]` é um atributo próprio, fora de `qualifiers`.
+`statement()`, `roles()` e `arguments()` — as três superfícies que alimentam
+texto, embedding e aresta — nunca leem `links` nem qualquer qualifier que
+comece com `_`. Há migração de compatibilidade (`coerce_proposition` extrai
+`_links` de grafos antigos e realoca para o campo novo), então o formato velho
+não quebra ao ser lido, só nunca mais é escrito. Nível A #4, feito, e é o mais
+importante dos cinco porque destrava o resto: sem isso, qualquer correção de
+contradição continuaria vazando para o contexto de resposta.
+
+**Contradição parou de ser "objetos diferentes".** `link_propositions` agora
+exige: predicado funcional (calculado no mesmo lote, pela mesma estimativa
+suave da funcionalidade) **e** objetos diferentes **e** as duas proposições
+`is_current` **e** `is_factual` **e** mesma polaridade **e** os dois têm objeto
+**e** as janelas de validade se sobrepõem (`a.when().overlaps(b.when())`).
+Isso é o Nível A #5 quase inteiro — falta só checar modalidade igual entre os
+dois lados, ver seção 5.
+
+**A disciplina de sujeito entrou no prompt.** `prompts/meca_extract.txt` agora
+proíbe explicitamente sujeito como frase descritiva ou possessiva ("Keep a
+person, object, organisation or event as the subject itself: do not replace it
+with a related description... such as 'NAME's support network'") e resolve
+"I"/"my" para quem fala o turno. Isso é a metade suave do Nível B #6 — a
+recomendação certa foi não impor regra dura de contagem de palavras, e não foi
+imposta. A rede de segurança REAL, porém, não é o prompt — é a resolução
+lexical da seção anterior: mesmo que a extração desobedeça e ainda produza
+"o apoio de Caroline", esse sujeito não compartilha prefixo com "Caroline" e
+**não pode mais fundir com ela**, prompt à parte. Isso é defesa em
+profundidade bem desenhada.
+
+## 5. Duas tensões conceituais que a correção não fecha sozinha
+
+**A troca é precisão por recall de alias, e vale nomear o custo.** Cortar toda
+semântica da resolução de identidade impede a fusão categórica que corrompeu a
+rodada anterior — mas também significa que apelidos que não são prefixo lexical
+da forma completa ("Bob" para "Robert", "Peggy" para "Margaret", ou uma menção
+consistente como "minha irmã" para alguém já nomeado) nunca mais vão se
+resolver ao mesmo nó. Isso é conservador na direção certa (melhor perder um
+alias do que fundir duas pessoas), mas é uma perda de recall real e silenciosa
+— nenhuma métrica hoje mede quantas entidades ficam fragmentadas por esse
+motivo. Se isso continuar custando F1 depois da rodada nova, o próximo passo
+NÃO é reintroduzir transitividade — é uma lista de aliases pequena, verificada
+por LLM par a par (nunca em cadeia, com teto de tamanho de grupo), o mesmo
+espírito do `entity_anchors` mas para apelidos não óbvios.
+
+**Modalidade compatível não é checada na contradição.** `is_factual` aceita
+`{asserted, reported}` (`propositions.py:75`). Duas proposições podem
+contradizer hoje com uma `asserted` e a outra `reported` — alguém disse que X
+aconteceu, outra pessoa relatou que X foi diferente. Isso pode ser
+legitimamente uma contradição ou pode ser só relato de segunda mão divergindo
+de um fato direto, que é uma categoria de informação diferente. Não é bug —
+é uma decisão de modelagem que ainda não foi tomada conscientemente. Vale
+decidir e documentar, não necessariamente mudar.
+
+## 6. Dois problemas concretos, achados agora ao ler o código
+
+Não fiquei só na leitura — reproduzi as duas peças centrais isoladamente
+(`python3` direto contra `src/fgl/memory/consolidate.py`, sem rodar a suíte
+inteira porque o device não tem `pytest`). Duas coisas quebraram e ainda não
+foram percebidas porque **a suíte não rodou desde a edição de hoje**:
+
+- `resolve_entities(store, embedder)` com `"Melanie Carter"` e `"Melanie"`
+  agora resolve para **`"melanie"`** (a forma curta vence, empate por
+  contagem e depois por comprimento ascendente). O teste
+  `tests/test_meca.py::test_entity_resolution_collapses_short_forms` ainda
+  afirma `subjects == {"melanie carter"}` com o comentário "the longest
+  surface wins". Isso é um teste desatualizado, não um bug de produção — o
+  comportamento novo (forma curta vence) é exatamente o que a lista de
+  correções pediu ("nunca a mais longa"). Mas o teste, do jeito que está,
+  falha, o que quer dizer que ninguém confirmou o comportamento novo
+  rodando a suíte.
+- `link_propositions(store)` chamado sem o segundo argumento — exatamente
+  como `tests/test_meca.py::test_a_contradiction_is_kept_and_flagged_not_resolved`
+  chama — devolve **zero contradições** para o par clássico "Ana trabalha na
+  Acme" / "Ana trabalha na Globex" no mesmo mês, porque
+  `functional_predicates` default para conjunto vazio e a nova regra exige
+  que o predicado esteja nesse conjunto. O caminho de produção
+  (`consolidate()`) passa `functional_predicates` corretamente, então isto
+  provavelmente não é um bug ao vivo — mas é um contrato de função que mudou
+  de significado sem um valor-padrão que reproduza o comportamento antigo, e
+  é fácil esquecer de recalcular e passar esse conjunto em qualquer segundo
+  lugar que chame `link_propositions` diretamente.
+
+Nenhuma das duas invalida o desenho da correção. As duas dizem a mesma coisa:
+**o código mudou mais rápido do que a suíte foi reconferida**, e é exatamente
+o tipo de coisa que `pytest tests/test_meca.py` pega em segundos, de graça,
+sem gastar um token de LLM.
+
+## 7. O que ainda não foi feito
+
+- **Lematização de predicado para o MECA.** A deduplicação continua só por
+  limiar de embedding sobre a forma de superfície do predicado
+  (`deduplicate`, em `consolidate.py`); não há chave lematizada como a que já
+  existe para o L2/slots (`ner.py`, `tok.lemma_`). "went to" e "attended"
+  continuam duas formas a menos que o embedding os aproxime o bastante — Nível
+  B #7 segue pendente, e é uma correção de precisão de dedup, não de
+  segurança.
+- **Nenhum health gate.** O `sanity` que já existe (`report.py:sanity_banner`)
+  só pega respostas todas idênticas ou falha de parse de JSON. Não existe
+  ainda: alarme de grupo de alias grande demais, contagem de contradições por
+  proposição/conversa fora de ordem de grandeza plausível, checagem de que
+  nenhum `links`/`_links` aparece em `statement()` renderizado, ou taxa de
+  `unbound_question` acima de um limiar. É exatamente o tipo de portão que a
+  D35/D36 já usaram noutro lugar (o portão do atestado matou uma hipótese de
+  graça, com zero chamada de LLM) e que este ponto do projeto pede de novo.
+- **Nenhuma rodada nova foi feita.** Isto é o fato operacional mais
+  importante desta reflexão: `results/M1-meca-flat/` e
+  `artifacts/graphs/M1-meca-flat/` no disco **são o estado de ANTES da
+  correção**. Confirmado direto no artefato (seção 3). Os 0,3259 de F1, os
+  70% de `unbound_question`, as milhares de contradições — nenhum desses
+  números diz nada sobre o código que existe agora. Ainda não há UMA linha de
+  evidência de que a correção funciona.
+
+## 8. Prevenção — blindar o pipeline antes de aceitar a próxima rodada como experimento
+
+Um portão de saúde, rodável sobre o grafo já construído, sem LLM, antes de
+aceitar qualquer F1 como resultado:
+
+1. **Tamanho de componente de identidade.** Nenhum nó de entidade deveria ter
+   grau ordens de magnitude acima da mediana da conversa. Um limiar por
+   quantil do próprio grafo (a mesma receita de `pairwise_quantile`) recusa e
+   reporta em vez de deixar passar — a mesma disciplina que já existe para os
+   limiares de consolidação, aplicada como verificação e não como parâmetro.
+2. **Contagem de contradições por proposição/conversa.** Um número por
+   conversa muitas ordens de grandeza acima do que uma leitura de dez
+   proposições sugeriria plausível é sinal de over-merge a montante, não de
+   corpus contraditório de verdade.
+3. **Vazamento de metadado analítico.** Grep determinístico: nenhum
+   `statement()` gerado deveria conter `contradicts:`/`elaborates:`/`_links`.
+   Isso é barato e pega exatamente a classe de bug que causou a explosão de
+   tokens na rodada anterior.
+4. **Taxa de `unbound_question`.** Acima de um piso (o quê, é uma decisão a
+   tomar — mas certamente bem abaixo de 70%) bloqueia aceitar a rodada como
+   medição de recuperação/resposta; sinaliza problema de resolução de
+   identidade, não de geração.
+
+Os quatro juntos custam segundos e zero chamada de LLM — a mesma economia que
+já pagou dividendo nesta linha de pesquisa toda vez que foi aplicada (hop-profile
+matou a L3 de graça; o portão do atestado matou a rota estrutural de graça).
+
+## 9. Ordem recomendada dos próximos passos
+
+1. `pytest tests/test_meca.py` — antes de qualquer outra coisa. As duas
+   quebras da seção 6 são baratas de resolver e vão dizer se há uma terceira
+   que eu não vi por leitura estática.
+2. Isolar o efeito da consolidação, de graça. `prompts/meca_extract.txt` foi
+   editado hoje (a chave de cache do `LLMClient` inclui o texto do prompt —
+   confirmado em `src/fgl/llm/client.py`), então qualquer rodada nova já paga
+   extração de novo. Para medir SÓ o efeito da consolidação, sem gastar
+   tokens: `git stash push -- prompts/meca_extract.txt` (volta o prompt para
+   a versão do commit `242ee063`, que ainda bate com o cache de
+   `.cache/llm`), reconstruir os grafos com `--force`, olhar os quatro
+   portões da seção 8 nos grafos novos. Depois `git stash pop` e pagar a
+   rodada completa com o prompt novo também.
+3. Implementar os quatro portões da seção 8 no pipeline de avaliação, não só
+   como script avulso — para que a próxima rodada corrompida seja pega antes
+   de queimar 5,9 h e 8,77 M tokens de novo.
+4. Só então rodar o Portão 1 do D37 (fidelidade da extração: fração dos
+   turnos de evidência anotados com pelo menos uma proposição cujo span cai
+   dentro) e medir F1 de novo.
+5. Lematização de predicado (Nível B #7) como ganho incremental de precisão
+   de dedup, depois que houver um número novo para comparar contra.
+
+## 10. A lição, no nível que generaliza
+
+O erro de desenho original não foi "threshold errado" — foi usar uma operação
+**métrica e transitiva** (similaridade de embedding + união) para uma decisão
+que é **categórica** (esta menção é esta pessoa, sim ou não). Qualquer
+relação de proximidade, por mais bem calibrada, tende a formar um componente
+gigante quando fechada por transitividade sobre um corpus grande o bastante —
+não é uma falha de calibração, é uma propriedade estrutural de fechar
+transitivamente uma relação ruidosa. A correção certa não foi um limiar
+melhor: foi trocar a classe de operação (só prefixo lexical, sem cadeia,
+âncoras vencem sempre) e aceitar o custo de recall que isso traz, em vez de
+tentar calibrar o problema para fora.
+
+A segunda lição é sobre separação de camadas: `contradicts`/`elaborates` são
+metadado ANALÍTICO sobre o estado da memória, não conteúdo FACTUAL sobre o
+mundo. Misturar as duas coisas no mesmo campo (`qualifiers`) foi o que deixou
+a poluição vazar para texto, embedding e aresta ao mesmo tempo por um único
+descuido de tipagem. Separar por construção (campo `links` que `statement()`
+nunca lê) é mais forte que qualquer disciplina de "lembrar de filtrar" — é
+o tipo de correção que se mede uma vez e nunca mais se paga de novo.
+
+---
+
+# Addendum — expectativa no LoCoMo e riscos de execução (2026-08-28, mesma sessão)
+
+Pergunta que motivou este addendum: dado tudo que foi corrigido na seção acima,
+a proposta está sólida olhando para o benchmark? Qual o comportamento esperado
+categoria a categoria, e o que pode falhar na hora de rodar de verdade, antes
+de subir para o servidor? Escopo: só o que generaliza — nada aqui deveria ser
+uma regra que só faz sentido porque o LoCoMo tem essa forma.
+
+## O achado central: existe um segundo mecanismo de corrupção, ortogonal ao da seção 3, e ele não foi tocado
+
+A seção 3-6 acima conserta a MEMÓRIA (identidade, `_links`, contradição). Mas
+há uma segunda peça, na RECUPERAÇÃO, que a correção de hoje não tocou: quando
+nenhuma entidade da pergunta liga a uma proposição, `MecaRetriever.retrieve`
+registra `abstain_reason` ("unknown_entity"/"unbound_question") **mas
+continua emitindo contexto de qualquer jeito**, via fallback denso — top-k por
+cosseno entre a pergunta e o `statement()` de qualquer proposição do grafo,
+rotulado `"--- possibly related ---"` no contexto renderizado
+(`render_context`, `faces.py:1088`). A decisão de abster fica inteiramente
+para o LLM na resposta, olhando a regra 8 do `meca_answer.txt` ("quando a
+memória não tem nada que responda, devolva Not mentioned"), sem que o rótulo
+"possibly related" venha acompanhado de nenhuma instrução sobre o que ele
+significa.
+
+Isso é literalmente o mecanismo que a D35/D36 diagnosticaram no `atestado`:
+contexto plausível para pergunta sem resposta é o que produz alucinação, e o
+sinal estrutural (aqui, `abstain_reason`/`result.slot_support`) é calculado e
+**nunca usado** para decidir nada — só é logado em `QAOutcome` para
+diagnóstico pós-hoc. Confirmei isso lendo `Answerer.answer()`
+(`faces.py:1170-1240`): o único curto-circuito real é
+`if not result.facts: return ABSTAIN_ANSWER`, que quase nunca dispara, porque
+o fallback denso praticamente sempre encontra alguma coisa num grafo com
+centenas de proposições.
+
+E o resultado congelado (pré-correção, seção 3) já mostra a assinatura: no
+`metrics.json` atual, categoria adversarial, `f1 == abstention_rate ==
+0,3161`, EXATAMENTE — a mesma identidade que a D35 achou em toda a linha L
+(`adversarial/f1 == abstention_rate`). Isso não é coincidência de uma rodada
+corrompida; é a assinatura de "a decisão de responder é decidida só pelo
+gerador, sem portão estrutural", e essa causa continua de pé no código de
+hoje.
+
+## Por que não dá para presumir que a correção de identidade resolve isso de graça
+
+Vale nomear com precisão por que o achado da D36 (rota estrutural refutada,
+AUC 0,579) pode ou não se repetir aqui — são mecanismos parecidos mas não
+idênticos, e a diferença importa:
+
+A D36 testou um sinal fraco: co-ocorrência de SLOTS TIPADOS perto uns dos
+outros (o corner test). MECA calcula um sinal mais forte em princípio: existe
+uma PROPOSIÇÃO com este sujeito e este predicado? Isso é uma checagem de
+existência bem mais específica que "os tipos de slot certos estão por perto".
+Então há uma razão estrutural genuína para esperar que MECA separe melhor —
+não é otimismo vazio.
+
+Mas o motivo pelo qual a D36 falhou não era a fraqueza do sinal — era que uma
+pergunta adversarial do LoCoMo é construída com o VOCABULÁRIO da própria
+conversa: nomeia gente real, tópico real. Isso quer dizer que
+`parse_question` vai achar a entidade (ela é conhecida!) na maioria dos casos
+adversariais também — `result.slot_support` fica 1,0 (existem seeds) tanto
+para a substantiva quanto para boa parte da adversarial, porque o teste hoje
+só pergunta "a entidade é conhecida", não "existe proposição com este
+PREDICADO para esta entidade". O ponto fino da adversarial não costuma estar
+em nomear alguém desconhecido — está em perguntar uma relação que nunca foi
+dita sobre alguém conhecido. `abstain_reason` como está hoje não distingue os
+dois casos. Essa é a mesma lacuna, com uma cara ligeiramente diferente.
+
+**Prognóstico, categoria a categoria, com o grau de confiança que cada um merece:**
+
+- **single-hop e temporal**: devem melhorar de forma robusta em relação ao
+  0,42/0,26 congelados. A causa da queda anterior (identidade fundida, spans
+  contaminados) ataca justamente essas categorias mais diretamente — uma
+  pergunta de um salto só precisa que o sujeito certo exista como nó e que o
+  fato certo não tenha sido sepultado sob milhares de `_links`. Confiança
+  alta de que sobe; nenhuma aposta segura sobre o número exato.
+- **multi-hop**: deve melhorar, mas por um motivo estrutural genuíno e não só
+  por limpeza — o `join` via `by_argument` pivota por QUALQUER valor de
+  argumento, não só por entidade resolvida, então não depende tanto da
+  precisão da resolução de identidade quanto as outras categorias dependem.
+  Ainda assim, o travamento em f1~0,476 mesmo com `recall_context=1,0`
+  (D36, achado 1 da reflexão de ingestão) era um problema de SÍNTESE na
+  geração, não só de recuperação — isso é uma incógnita que a correção de
+  hoje não visa e pode continuar limitando o teto.
+- **open-domain**: o desenho já evita o erro de rotear pelo prompt errado — a
+  MECA usa `retrieval.answer_prompt` só se configurado, e delibera não herdar
+  o roteamento por categoria do LoCoMo (`faces.py`, comentário explícito:
+  "that routing keys off this benchmark's question shapes, which is exactly
+  the kind of thing a general method must not carry"). Isso é uma decisão de
+  desenho boa e já tomada, vale reconhecer. Mas open-domain nunca passou de
+  ~0,56-0,65 em nenhuma condição da linha L — não há razão estrutural nova
+  aqui para esperar um salto.
+- **adversarial**: esta é a categoria onde eu discordo de qualquer
+  expectativa otimista sem ressalva. Pela leitura do código, o mecanismo que
+  produziu `f1 == abstention_rate` na rodada congelada não foi tocado pela
+  correção de hoje. Espero que o número mude (a rodada estava corrompida de
+  um jeito que também distorcia adversarial), mas não tenho base para esperar
+  que a IDENTIDADE `f1 == abstention_rate` desapareça, porque a causa dela —
+  decisão de responder sem portão estrutural, delegada inteira ao LLM sobre
+  um contexto que sempre existe — continua lá.
+
+## O que fazer antes do servidor — só o que é genérico, nada afinado ao LoCoMo
+
+Ordenado por custo, do mais barato ao mais caro:
+
+1. **Meça antes de mexer, com o mesmo instrumento que o projeto já validou.**
+   Não implementar nada de portão de abstenção ainda. Em vez disso, sobre os
+   grafos que já existem (ou os que saírem do `git stash` da seção 9),
+   computar, por pergunta, um sinal de existência mais fino que
+   `abstain_reason` hoje dá: existe proposição com o SUJEITO **e** o
+   PREDICADO da pergunta (não só o sujeito)? Correlacionar com
+   adversarial/substantiva do jeito que `support.py`/`slots-oracle` já fazem
+   (AUC, razão capturadas/deletadas, `net_questions`). Isso custa zero LLM e
+   responde, antes de qualquer prompt ou código novo, se esse sinal separa
+   melhor que o corner test antigo (AUC 0,579) ou se cai na mesma refutação.
+   É a mesma disciplina que já matou a L3 e a rota estrutural de graça —
+   reaplicá-la aqui é o oposto de afinar para o LoCoMo, é o método do projeto
+   generalizando para uma unidade de memória nova.
+2. **Rodar a suíte** (`pytest tests/test_meca.py`) antes de tudo — as duas
+   quebras da seção 6 continuam de pé.
+3. **Clarificar, no prompt de resposta, o que os rótulos já dizem.**
+   `meca_answer.txt` não tem hoje nenhuma regra sobre a diferença entre
+   `--- what the memory holds ---`/`--- linked through: ... ---` (achado
+   estrutural) e `--- possibly related ---` (só similaridade, sem checagem de
+   predicado). Uma frase a mais nas regras — algo como "conteúdo listado sob
+   'possibly related' não foi confirmado como resposta a esta relação
+   específica; não é motivo suficiente para responder sozinho" — é uma
+   instrução sobre a ESTRUTURA que o retriever já produz, não sobre o LoCoMo.
+   Custa reingestão? Não — é só o prompt de RESPOSTA (`meca_answer`), que roda
+   por pergunta, não por passagem; não invalida o cache caro de extração/
+   inferência/verificação.
+4. **Os quatro health gates da seção 8**, para não descobrir problema depois
+   de 5-6h rodando no servidor.
+5. **Só depois disso**, se o passo 1 mostrar que o sinal separa bem, considerar
+   um curto-circuito real (responder "Not mentioned" sem chamar o LLM quando
+   o sinal indicar ausência com confiança) — e mesmo aí, testar primeiro em
+   modo observação (logar o que TERIA sido decidido, sem agir) antes de
+   deixar decidir de verdade. É o padrão que o próprio projeto já usa em
+   outros lugares (`support.enabled=false` como default até o portão passar).
+
+## Resposta direta às duas perguntas
+
+**A proposta está sólida?** Como modelagem de conhecimento, sim — proposição
+atestada com evidência obrigatória, dois relógios e modalidade é uma unidade
+estritamente mais expressiva que ponteiro-para-texto, e a correção de
+identidade desta sessão tira o motivo mais grave de desconfiar do substrato.
+Como PIPELINE DE DECISÃO, não — falta o portão entre "a memória achou uma
+proposição estrutural" e "o modelo respondeu porque algo parecido apareceu no
+prompt", e esse é o mesmo buraco que já custou uma rodada inteira uma vez.
+
+**O que esperar quando rodar?** Ganho real e provável em single-hop, temporal
+e (com reserva) multi-hop; open-domain plano, sem razão nova para subir;
+adversarial é o risco concreto — a expectativa mais honesta é que ele
+reproduza `f1 ≈ abstention_rate` de novo, porque a causa disso não foi
+tocada. Se isso acontecer, não é evidência de que a correção de identidade
+falhou — é evidência de que ela resolveu um problema diferente do problema da
+abstenção, exatamente como a D35 já separou esses dois eixos uma vez.
+
+---
+
+# Implementado nesta sessão (2026-08-28, depois do addendum acima)
+
+A pedido do usuário: corrigir os 2 testes quebrados, os 4 health gates como
+portão automático (não script avulso), e a frase no prompt de resposta sobre
+"possibly related". Deliberadamente NÃO implementado: o oráculo de graça para
+medir o sinal de abstenção (o usuário decidiu rodar valendo direto).
+
+- **Testes**: `test_entity_resolution_collapses_short_forms` agora espera
+  `{"melanie"}` (forma curta vence, como o código já fazia); o teste de
+  contradição agora passa `functional_predicates={"works at"}` explicitamente,
+  testando `link_propositions` isolado do estimador de funcionalidade
+  derivado do corpus. Os dois foram verificados por execução direta (sem
+  pytest — o device não tem espaço em disco para instalar; ver nota abaixo).
+- **`meca_answer.txt` (version 4)**: regra 10 nova — explica que "what the
+  memory holds"/"linked through" são achado estrutural e "possibly related" é
+  só similaridade, não confirmado contra a relação perguntada; instrui a
+  seguir a regra 8 (abster) quando só "possibly related" existir e não disser
+  explicitamente o que foi perguntado. Só o prompt de RESPOSTA muda — não
+  invalida o cache caro de extração/inferência/verificação.
+- **`PropositionStore.stats()`**: dois campos novos, `max_entity_incidence` e
+  `max_entity_incidence_ratio` (o degrau contra a mediana do próprio corpus,
+  não um literal).
+- **`consolidate.count_leaked_links(store)`**: nova função, conta
+  proposições cujo `statement()` ainda carrega `_links`/`contradicts:`/
+  `elaborates:`/`updates:` como texto, ou cuja qualifier tem prefixo `_`.
+  Chamada em `MecaIngestor.ingest()` e guardada em
+  `report.graph_stats["link_leaks"]`.
+- **`Pipeline._meca_health_gates`** (`src/fgl/pipeline.py`), chamada de
+  dentro de `_sanity()`: os quatro portões — razão de incidência de entidade
+  > 20x a mediana; vínculos `contradicts` > proposições na mesma conversa;
+  qualquer `link_leaks` > 0; taxa de `unbound_question`/`unknown_entity` >
+  40%. Testado com dois cenários sintéticos (um saudável, sem warnings; um
+  replicando os números reais do `conv-26.json` corrompido — os quatro
+  dispararam, com as mensagens certas).
+
+## O que eu NÃO consegui verificar
+O device não tem `pytest` instalado nem espaço em disco para instalar (`pip
+install pytest` falhou com "No space left on device", confirmando a nota já
+registrada na memória do projeto). Validei cada peça isoladamente, chamando
+as funções diretamente com dados sintéticos que reproduzem os casos que os
+testes/gates deveriam pegar — mas a suíte completa (`pytest
+tests/test_meca.py`, os 47+ testes) não rodou nesta sessão. Antes de confiar
+cegamente nisto no servidor: `pytest tests/test_meca.py` lá, onde há espaço e
+as dependências (a mesma rotina já usada antes, extraindo
+`_transfer/fgl_src.tar.gz` num container com `pytest numpy pyyaml rich typer
+spacy dateparser nltk`).

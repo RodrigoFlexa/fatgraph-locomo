@@ -437,6 +437,98 @@ class Runner:
             for o in outcomes:
                 fh.write(json.dumps(o.to_dict(), ensure_ascii=False) + "\n")
 
+    def _meca_health_gates(
+        self, per_conversation: Sequence[dict], outcomes: Sequence[QAOutcome],
+    ) -> list[str]:
+        """Zero-LLM checks that would have caught the D37 corruption for free.
+
+        Everything here reads numbers `MecaIngestor`/`consolidate` already
+        computed -- no new pass over the corpus, no LLM call. A run that
+        trips one of these should not be read as a result until the cause is
+        understood; that is the whole point of a gate that runs before the
+        F1 table, not a script someone remembers to run after.
+
+        A silent no-op on every non-MECA condition: the keys these checks
+        read (``max_entity_incidence_ratio``, ``consolidation``,
+        ``link_leaks``, a non-empty ``abstain_reason``) only exist on a
+        `PropositionStore`-backed run.
+        """
+        checks: list[str] = []
+        graphs = [c.get("graph") or {} for c in per_conversation]
+
+        # 1. identity collapse: one entity absorbing many times the corpus's
+        # own median incidence -- the "Caroline's friends, family and
+        # mentors' support" bug, named to a number instead of an eyeball.
+        ratios = [
+            g["max_entity_incidence_ratio"] for g in graphs
+            if g.get("max_entity_incidence_ratio")
+        ]
+        if ratios and max(ratios) > 20:
+            checks.append(
+                f"uma entidade chegou a {max(ratios):.0f}x a incidência "
+                "mediana de alguma conversa -- assinatura de colapso de "
+                "identidade (D37): descrições ou frases sendo fundidas com "
+                "uma pessoa real. Confira resolve_entities antes de aceitar "
+                "estes números."
+            )
+
+        # 2. contradiction explosion: once identity collapses, everything
+        # with the same artificial subject and a different object looks
+        # contradictory. More contradiction links than propositions is never
+        # a healthy corpus, whatever the conversation.
+        cons = [g.get("consolidation") or {} for g in graphs]
+        contradiction_ratios = []
+        for c in cons:
+            after = (c.get("propositions") or {}).get("after") or 0
+            contradictions = (c.get("timeline") or {}).get("contradictions") or 0
+            if after:
+                contradiction_ratios.append(contradictions / after)
+        if contradiction_ratios and max(contradiction_ratios) > 1.0:
+            checks.append(
+                "alguma conversa terminou com mais vínculos `contradicts` do "
+                f"que proposições ({max(contradiction_ratios):.1f}x) -- "
+                "sinal de identidade fundida antes da checagem de "
+                "contradição rodar, não de um corpus genuinamente "
+                "contraditório."
+            )
+
+        # 3. analytical metadata leaking into the text the generator reads --
+        # exactly the `_links` bug: `links` is a field so this never has to
+        # happen again, and this checks that it in fact does not.
+        leaks = sum(g.get("link_leaks") or 0 for g in graphs)
+        if leaks:
+            checks.append(
+                f"{leaks} proposições ainda mostram metadado analítico "
+                "(`_links`/`contradicts:`/`elaborates:`) como texto -- isso "
+                "vaza para statement(), para o embedding e para o contexto "
+                "que o gerador lê. `links` deveria ser sempre um campo "
+                "próprio, nunca aparecer no texto."
+            )
+
+        # 4. unbound questions: the retriever never binds an entity, falls
+        # back to dense similarity, and the generator answers from noise.
+        # The corrupted D37 run sat at 70%; this is not a benchmark-difficulty
+        # threshold, it is a floor well below that failure.
+        reasons = [
+            getattr(o, "abstain_reason", "") for o in outcomes
+            if getattr(o, "abstain_reason", "")
+        ]
+        if reasons:
+            unbound = sum(
+                1 for r in reasons if r in ("unbound_question", "unknown_entity")
+            )
+            rate = unbound / len(outcomes)
+            if rate > 0.4:
+                checks.append(
+                    f"{unbound}/{len(outcomes)} perguntas ({rate:.0%}) não "
+                    "ligaram a nenhuma entidade da memória -- a rodada "
+                    "corrompida de referência (D37) estava em 70%; acima de "
+                    "40% já é sinal de identidade fragmentada ou extração "
+                    "perdendo sujeitos, não de dificuldade normal do "
+                    "benchmark."
+                )
+        return checks
+
     def _topology_warnings(self, per_conversation: Sequence[dict]) -> list[str]:
         """Is the memory shaped so that multi-hop retrieval *can* work at all?
 
@@ -501,6 +593,7 @@ class Runner:
 
         checks.extend(self.llm.usage.warnings())
         checks.extend(self._topology_warnings(per_conversation))
+        checks.extend(self._meca_health_gates(per_conversation, outcomes))
 
         abstained = sum(o.abstained for o in outcomes)
         non_adv = [o for o in outcomes if o.category != 5]

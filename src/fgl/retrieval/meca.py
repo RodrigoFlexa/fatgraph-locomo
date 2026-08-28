@@ -511,6 +511,10 @@ class MecaRetriever:
         )
         used = 0
         rank = 0
+        #: A turn may support several selected propositions.  Cite it once,
+        #: then spend subsequent tokens on new claims rather than repeating
+        #: the same source span over and over.
+        cited_evidence: set[tuple[str, str]] = set()
         for label, source, props in groups:
             keep = [
                 p for p in props
@@ -520,7 +524,7 @@ class MecaRetriever:
             for prop in self.reader.order(keep, scores):
                 if rank >= max_facts:
                     return used
-                text = self._render(prop)
+                text, newly_cited = self._render(prop, cited_evidence)
                 # the graph's own counter, so a MECA budget and an L-line
                 # budget are the same unit and the comparison at "equal
                 # budget" means what it says
@@ -528,6 +532,7 @@ class MecaRetriever:
                 if used + cost > budget and rank > 0:
                     return used
                 used += cost
+                cited_evidence.update(newly_cited)
                 ev = prop.evidence[0] if prop.evidence else None
                 result.facts.append(RetrievedFact(
                     edge_id=prop.pid,
@@ -549,19 +554,27 @@ class MecaRetriever:
                 rank += 1
         return used
 
-    def _render(self, prop: Proposition) -> str:
+    def _render(
+        self, prop: Proposition, cited_evidence: set[tuple[str, str]] | None = None
+    ) -> tuple[str, set[tuple[str, str]]]:
         """The claim, then the exact text it came from. Both, always.
 
         The statement is what the generator can compose over; the span is the
         proof and the wording the answer should reuse. Emitting only the
         statement would make the memory unfalsifiable to its own reader.
         """
+        seen = cited_evidence or set()
         lines = [f"{prop.label()} {prop.statement()}"]
+        newly_cited: set[tuple[str, str]] = set()
         for ev in prop.evidence[:2]:
+            key = ev.key()
+            if key in seen:
+                continue
             where = ev.date_raw or ev.timestamp
             who = f"{ev.author}, " if ev.author else ""
             lines.append(f'    "{ev.span.strip()}"  ({who}{where})')
-        return "\n".join(lines)
+            newly_cited.add(key)
+        return "\n".join(lines), newly_cited
 
     # ----------------------------------------------------- retriever contract -
     def top_edges(self, question: str, k: int = 10) -> list[tuple[str, float]]:

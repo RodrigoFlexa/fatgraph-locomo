@@ -208,6 +208,9 @@ class Proposition:
     evidence: list[Evidence] = field(default_factory=list)
     derived_from: list[str] = field(default_factory=list)
     superseded_by: Optional[str] = None
+    #: Analytical relationships between propositions.  They are deliberately
+    #: not qualifiers: a link is neither a fact argument nor answer context.
+    links: dict[str, list[str]] = field(default_factory=dict)
 
     confidence: float = 1.0
     embedding: Optional[np.ndarray] = field(default=None, repr=False)
@@ -297,7 +300,7 @@ class Proposition:
             ))
         for role in sorted(self.qualifiers):
             value = self.qualifiers[role]
-            if value:
+            if value and not role.startswith("_"):
                 out.append((role, value, KIND_LITERAL))
         point = self.when()
         if point is not None:
@@ -311,7 +314,10 @@ class Proposition:
         head = f"{self.subject} {neg}{self.predicate}"
         if self.object:
             head = f"{head} {self.object}"
-        extra = [f"{role}: {val}" for role, val in sorted(self.qualifiers.items()) if val]
+        extra = [
+            f"{role}: {val}" for role, val in sorted(self.qualifiers.items())
+            if val and not role.startswith("_")
+        ]
         if extra:
             head = f"{head} ({'; '.join(extra)})"
         return head.strip()
@@ -339,6 +345,7 @@ class Proposition:
             "evidence": [e.as_dict() for e in self.evidence],
             "derived_from": list(self.derived_from),
             "superseded_by": self.superseded_by,
+            "links": {kind: list(pids) for kind, pids in self.links.items()},
             "confidence": round(self.confidence, 4),
         }
 
@@ -351,12 +358,24 @@ def proposition_from_dict(d: dict) -> Proposition:
     reconstructs the store exactly and there is no second file to drift out of
     sync with it.
     """
+    qualifiers = dict(d.get("qualifiers") or {})
+    # Graphs written before links became a first-class field put them in a
+    # private qualifier.  Read them safely, but never let them re-enter the
+    # semantic proposition or its rendered text.
+    links = {kind: list(pids) for kind, pids in (d.get("links") or {}).items()}
+    legacy = qualifiers.pop("_links", "")
+    for tag in str(legacy).split():
+        if ":" not in tag:
+            continue
+        kind, pid = tag.split(":", 1)
+        if kind and pid:
+            links.setdefault(kind, []).append(pid)
     return Proposition(
         subject=d.get("subject", ""),
         predicate=d.get("predicate", ""),
         object=d.get("object", ""),
         object_is_entity=bool(d.get("object_is_entity", False)),
-        qualifiers=dict(d.get("qualifiers") or {}),
+        qualifiers=qualifiers,
         valid_from=TimePoint.parse(d.get("valid_from")),
         valid_to=TimePoint.parse(d.get("valid_to")),
         asserted_at=TimePoint.parse(d.get("asserted_at")),
@@ -372,6 +391,7 @@ def proposition_from_dict(d: dict) -> Proposition:
         ],
         derived_from=list(d.get("derived_from") or []),
         superseded_by=d.get("superseded_by"),
+        links=links,
         confidence=float(d.get("confidence", 1.0)),
         pid=d.get("pid", ""),
     )
@@ -406,6 +426,26 @@ class PropositionStore:
         self.by_argument: dict[str, list[str]] = {}
         #: canonical entity name -> aliases seen for it
         self.entity_aliases: dict[str, set[str]] = {}
+        #: any normalised surface form -> the canonical entity lookup key.
+        #: This is consulted by readers; aliases are not display-only data.
+        self.alias_to_canonical: dict[str, str] = {}
+        #: Conversation participants are identity anchors, never candidates
+        #: for semantic consolidation with a description or another speaker.
+        self.entity_anchors: set[str] = set()
+
+    def register_entity_anchor(self, name: str) -> None:
+        """Register a source-supplied participant as an immutable identity."""
+        key = normalise(name)
+        if not key:
+            return
+        self.entity_anchors.add(key)
+        self.entity_aliases.setdefault(key, set()).add(name)
+        self.alias_to_canonical[key] = key
+
+    def entity_key(self, entity: str) -> str:
+        """Resolve a surface form through the alias table, if it has one."""
+        key = normalise(entity)
+        return self.alias_to_canonical.get(key, key)
 
     # ------------------------------------------------------------------ io --
     def add(self, prop: Proposition) -> str:
@@ -462,7 +502,7 @@ class PropositionStore:
         the difference between those two is one of the four things M1 and M2
         are allowed to disagree about.
         """
-        pids = self.by_entity.get(normalise(entity), [])
+        pids = self.by_entity.get(self.entity_key(entity), [])
         return sorted(
             (self.propositions[p] for p in pids if p in self.propositions),
             key=_chrono_key,
@@ -489,7 +529,7 @@ class PropositionStore:
         said that about them" are different answers, and only a store of
         resolved propositions can tell them apart.
         """
-        return normalise(entity) in self.by_entity
+        return self.entity_key(entity) in self.by_entity
 
     def predicates(self) -> list[str]:
         return sorted(self.by_predicate)
@@ -504,6 +544,15 @@ class PropositionStore:
         derived = sum(1 for p in self.propositions.values() if p.is_derived)
         superseded = sum(1 for p in self.propositions.values() if not p.is_current)
         n_ev = sum(len(p.evidence) for p in self.propositions.values())
+        # How many propositions touch the single busiest entity, against the
+        # corpus's own median -- a ratio, so the health gate that reads it
+        # does not need re-tuning when the corpus size changes. A ratio in
+        # the tens or hundreds is the signature of an identity collapse: one
+        # node absorbing what should have been many distinct people, the
+        # failure a corrupted run of MECA once produced (D37).
+        incidences = sorted(len(pids) for pids in self.by_entity.values())
+        max_incidence = incidences[-1] if incidences else 0
+        median_incidence = incidences[len(incidences) // 2] if incidences else 0
         return {
             "n_propositions": len(self.propositions),
             "n_entities": len(self.by_entity),
@@ -512,6 +561,10 @@ class PropositionStore:
             "n_superseded": superseded,
             "mean_evidence": round(n_ev / max(len(self.propositions), 1), 3),
             "by_modality": dict(sorted(mods.items())),
+            "max_entity_incidence": max_incidence,
+            "max_entity_incidence_ratio": (
+                round(max_incidence / median_incidence, 2) if median_incidence else 0.0
+            ),
         }
 
 
@@ -543,6 +596,11 @@ def merge_into(target: Proposition, other: Proposition) -> None:
     for pid in other.derived_from:
         if pid not in target.derived_from:
             target.derived_from.append(pid)
+    for kind, pids in other.links.items():
+        bucket = target.links.setdefault(kind, [])
+        for pid in pids:
+            if pid not in bucket:
+                bucket.append(pid)
     # Confidence is whatever the extractor reported, taken at its best. It is
     # NOT raised on merge: the honest measure of "the corpus said this more
     # than once" is len(evidence), which is auditable and cannot be inflated by
@@ -587,7 +645,12 @@ def build_graph(store: PropositionStore, embedder=None) -> object:
                 name=value,
                 aliases=sorted(store.entity_aliases.get(normalise(value), ()))
                 if kind == KIND_ENTITY else (),
-                meta={"kind": kind, "key": key[1]},
+                meta={
+                    "kind": kind,
+                    "key": key[1],
+                    "identity_anchor": kind == KIND_ENTITY
+                    and key[1] in store.entity_anchors,
+                },
             )
             vids[key] = vid
         return vid
@@ -766,9 +829,16 @@ def store_from_graph(graph) -> PropositionStore:
             store.by_argument.setdefault(value, []).append(prop.pid)
     for vx in graph.vertices.values():
         if vx.meta.get("kind") == KIND_ENTITY and vx.aliases:
-            store.entity_aliases.setdefault(
-                vx.meta.get("key", normalise(vx.name)), set()
-            ).update(vx.aliases)
+            canonical = vx.meta.get("key", normalise(vx.name))
+            aliases = store.entity_aliases.setdefault(canonical, set())
+            aliases.update(vx.aliases)
+            aliases.add(vx.name)
+            for alias in aliases:
+                store.alias_to_canonical[normalise(alias)] = canonical
+            if vx.meta.get("identity_anchor"):
+                store.entity_anchors.add(canonical)
+    for key in store.by_entity:
+        store.alias_to_canonical.setdefault(key, key)
     return store
 
 

@@ -1,5 +1,5 @@
 # TASK: meca_answer
-# version: 3
+# version: 4
 
 Answer the question using ONLY the memory below. The memory holds statements
 that were extracted from source documents and checked against them; each one is
@@ -30,5 +30,13 @@ Rules:
 8. When the memory holds nothing that answers the question, answer EXACTLY:
    Not mentioned in the conversation
 9. Never guess and never use outside knowledge.
+10. The memory below is grouped under headings. "what the memory holds" and
+    "linked through" are statements the memory found BOUND to the question's
+    own subject. "possibly related" was retrieved by resemblance only -- it
+    was never checked against the specific relation asked. Use a
+    "possibly related" statement only if it explicitly states the fact asked;
+    never as a plausible-sounding guess. When the only thing that fits is
+    "possibly related" and it does not explicitly say what was asked, follow
+    rule 8.
 
 SHORT ANSWER:

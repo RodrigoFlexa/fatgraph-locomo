@@ -271,7 +271,14 @@ def test_a_contradiction_is_kept_and_flagged_not_resolved():
     b = _prop("Ana", "works at", "Globex", when="2023-03")
     store.add(a)
     store.add(b)
-    elaborations, contradictions = link_propositions(store)
+    # Contradiction now requires the predicate to be pre-classified functional
+    # (see consolidate.link_propositions) -- consolidate() computes that set
+    # from the whole corpus; this unit test passes it directly so it tests
+    # the linking rule in isolation from the corpus-derived estimator, which
+    # has its own coverage.
+    elaborations, contradictions = link_propositions(
+        store, functional_predicates={"works at"}
+    )
     assert contradictions == 1
     assert a.is_current and b.is_current, "both sides survive"
 
@@ -282,7 +289,10 @@ def test_entity_resolution_collapses_short_forms():
     store.add(_prop("Melanie", "joined", "a class"))
     consolidate(store, _Embedder(), resolve=True, dedupe=False, timeline=False)
     subjects = {normalise(p.subject) for p in store}
-    assert subjects == {"melanie carter"}, "the longest surface wins"
+    # Never the longest: a corrupted run once picked the longest surface as
+    # canonical and that is how "Caroline's friends, family and mentors'
+    # support" became a person. Shortest wins, frequency breaking ties first.
+    assert subjects == {"melanie"}, "the shortest surface wins, never the longest"
 
 
 # --------------------------------------------------------------------------- #

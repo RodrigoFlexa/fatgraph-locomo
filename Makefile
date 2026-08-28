@@ -13,7 +13,7 @@ install:         ## editable install with every optional extra
 setup:           ## fetch the LoCoMo dataset and create .env from the template
 	fgl setup
 
-test:            ## full offline test suite (no network, no spend)
+test:            ## full offline test git (no network, no spend)
 	$(PY) -m pytest tests/
 
 lint:            ## ruff check + format check

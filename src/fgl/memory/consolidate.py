@@ -156,61 +156,77 @@ def predicate_functionality(store: PropositionStore) -> dict[str, float]:
 def resolve_entities(
     store: PropositionStore, embedder, quantile: float = 0.995, floor: float = 0.80
 ) -> tuple[int, int, float, str]:
-    """Collapse entity surface forms onto canonical names.
+    """Resolve only lexical aliases, never semantic neighbours.
 
-    The canonical form is the **longest** surface seen, not the most frequent:
-    "Melanie Carter" absorbs "Melanie" and "Mel", which is the direction that
-    keeps the alias table useful for matching a question later.
+    Every proposition subject is an entity in the current schema, including
+    descriptions such as "Caroline's support network".  Embedding-based
+    transitive clustering therefore turns related descriptions into a single
+    person and destroys the query key.  A memory can safely collapse only
+    surface forms with a direct lexical relationship (``Mel``/``Melanie``),
+    while embeddings remain useful for predicates and retrieval.
+
+    ``quantile`` and ``floor`` remain in the public signature for compatible
+    configs/reports, but no longer authorise identity merges.
     """
     names: dict[str, str] = {}
+    counts: dict[str, int] = {}
     for prop in store:
         for ent in prop.entities():
             key = normalise(ent)
-            if key and (key not in names or len(ent) > len(names[key])):
+            if not key:
+                continue
+            counts[key] = counts.get(key, 0) + 1
+            if key not in names or (len(ent), ent) < (len(names[key]), names[key]):
                 names[key] = ent
     before = len(names)
-    if before < 2:
-        return before, before, floor, "fallback"
+    if before == 0:
+        return 0, 0, 0.0, "lexical_safe"
 
-    keys = sorted(names)
-    vectors = _unit(np.asarray(embedder.encode([names[k] for k in keys]), dtype=np.float32))
-    threshold, source = pairwise_quantile(vectors, quantile, floor)
+    # A candidate can join only a directly related canonical form.  There is
+    # intentionally no union-find: A~B and B~C must not make A and C one
+    # identity by accident.  Conversation participants win every tie; other
+    # aliases use frequency, then the shorter display form.
+    canonical: dict[str, str] = {key: names[key] for key in names}
+    ordered = sorted(
+        names,
+        key=lambda key: (
+            key not in store.entity_anchors,
+            -counts[key],
+            len(names[key]),
+            names[key],
+        ),
+    )
+    accepted: list[str] = []
+    for key in ordered:
+        matches = [
+            candidate for candidate in accepted
+            if _is_short_form(key, candidate) or _is_short_form(candidate, key)
+        ]
+        if matches:
+            best = min(
+                matches,
+                key=lambda candidate: (
+                    candidate not in store.entity_anchors,
+                    -counts[candidate],
+                    len(names[candidate]),
+                    names[candidate],
+                ),
+            )
+            canonical[key] = names[best]
+        else:
+            accepted.append(key)
 
-    # union-find over pairs above the derived cut, plus containment: a shorter
-    # name that is a whole-word prefix of a longer one is the same person far
-    # more often than not, and embeddings alone miss it
-    parent = {k: k for k in keys}
-
-    def find(x: str) -> str:
-        while parent[x] != x:
-            parent[x] = parent[parent[x]]
-            x = parent[x]
-        return x
-
-    def union(a: str, b: str) -> None:
-        ra, rb = find(a), find(b)
-        if ra != rb:
-            parent[rb] = ra
-
-    sims = vectors @ vectors.T
-    for i, a in enumerate(keys):
-        for j in range(i + 1, len(keys)):
-            b = keys[j]
-            if float(sims[i, j]) >= threshold or _is_short_form(a, b):
-                union(a, b)
-
-    canonical: dict[str, str] = {}
     groups: dict[str, list[str]] = {}
-    for k in keys:
-        groups.setdefault(find(k), []).append(k)
-    for members in groups.values():
-        best = max(members, key=lambda k: (len(names[k]), k))
-        for k in members:
-            canonical[k] = names[best]
-            store.entity_aliases.setdefault(normalise(names[best]), set()).add(names[k])
+    for key, value in canonical.items():
+        groups.setdefault(normalise(value), []).append(key)
+    for target, members in groups.items():
+        aliases = store.entity_aliases.setdefault(target, set())
+        aliases.add(names[target])
+        for member in members:
+            aliases.add(names[member])
 
     _rewrite_entities(store, canonical)
-    return before, len(groups), threshold, source
+    return before, len(groups), 0.0, "lexical_safe"
 
 
 def _is_short_form(a: str, b: str) -> bool:
@@ -227,12 +243,21 @@ def _rewrite_entities(store: PropositionStore, canonical: dict[str, str]) -> Non
     store.by_subject.clear()
     store.by_entity.clear()
     store.by_predicate.clear()
+    store.by_argument.clear()
+    store.alias_to_canonical.clear()
     for prop in props:
         prop.subject = canonical.get(normalise(prop.subject), prop.subject)
         if prop.object_is_entity:
             prop.object = canonical.get(normalise(prop.object), prop.object)
         prop.pid = ""  # identity depends on the resolved names
         store.add(prop)
+    for source, target in canonical.items():
+        store.alias_to_canonical[source] = normalise(target)
+    for canonical_key, aliases in store.entity_aliases.items():
+        for alias in aliases:
+            store.alias_to_canonical[normalise(alias)] = canonical_key
+    for key in store.by_entity:
+        store.alias_to_canonical.setdefault(key, key)
 
 
 # --------------------------------------------------------------------------- #
@@ -331,7 +356,9 @@ def apply_supersession(
     return superseded, cut, len(functional)
 
 
-def link_propositions(store: PropositionStore) -> tuple[int, int]:
+def link_propositions(
+    store: PropositionStore, functional_predicates: set[str] | None = None,
+) -> tuple[int, int]:
     """``elaborates`` and ``contradicts``. Both are read at answer time.
 
     A contradiction is NOT resolved here. Two current claims that disagree,
@@ -347,7 +374,8 @@ def link_propositions(store: PropositionStore) -> tuple[int, int]:
             (normalise(prop.subject), normalise(prop.predicate)), []
         ).append(prop)
 
-    for chain in groups.values():
+    functional_predicates = functional_predicates or set()
+    for (_subject, predicate), chain in groups.items():
         if len(chain) < 2:
             continue
         for i, a in enumerate(chain):
@@ -358,11 +386,15 @@ def link_propositions(store: PropositionStore) -> tuple[int, int]:
                     _note(b, LINK_ELABORATES, a.pid)
                     elaborations += 1
                 elif (
+                    predicate in functional_predicates
+                    and
                     not same_object
                     and a.is_current and b.is_current
                     and a.is_factual and b.is_factual
                     and a.polarity == b.polarity
                     and a.object and b.object
+                    and a.when() is not None and b.when() is not None
+                    and a.when().overlaps(b.when())
                 ):
                     _note(a, LINK_CONTRADICTS, b.pid)
                     _note(b, LINK_CONTRADICTS, a.pid)
@@ -371,18 +403,41 @@ def link_propositions(store: PropositionStore) -> tuple[int, int]:
 
 
 def _note(prop: Proposition, link: str, pid: str) -> None:
-    bucket = prop.qualifiers.setdefault("_links", "")
-    tag = f"{link}:{pid}"
-    if tag not in bucket:
-        prop.qualifiers["_links"] = f"{bucket} {tag}".strip()
+    bucket = prop.links.setdefault(link, [])
+    if pid not in bucket:
+        bucket.append(pid)
 
 
 def links_of(prop: Proposition, link: str) -> list[str]:
-    return [
-        tag.split(":", 1)[1]
-        for tag in prop.qualifiers.get("_links", "").split()
-        if tag.startswith(link + ":")
-    ]
+    return list(prop.links.get(link, ()))
+
+
+#: Substrings that must never appear in a proposition's own text. Every one
+#: of these once leaked into ``statement()`` -- the corrupted run that
+#: motivated D37 rendered ``contradicts:p...`` straight into the context the
+#: generator read. ``links`` is a first-class field precisely so this cannot
+#: happen again; ``count_leaked_links`` checks that invariant directly on
+#: what the generator will actually see, rather than trusting the field split.
+_LEAK_MARKERS = ("_links", "contradicts:", "elaborates:", "updates:")
+
+
+def count_leaked_links(store: PropositionStore) -> int:
+    """How many propositions still show analytical metadata as text.
+
+    Zero on a healthy store, always -- this is not a threshold to tune, it is
+    a structural invariant. A non-zero count means a link or a stray
+    underscore-prefixed qualifier is bleeding into ``statement()``/``roles()``
+    and therefore into the embedding, the render and the answer prompt.
+    """
+    leaked = 0
+    for prop in store:
+        text = prop.statement()
+        if any(marker in text for marker in _LEAK_MARKERS):
+            leaked += 1
+            continue
+        if any(role.startswith("_") for role in prop.qualifiers):
+            leaked += 1
+    return leaked
 
 
 # --------------------------------------------------------------------------- #
@@ -430,7 +485,13 @@ def consolidate(
         report.superseded = superseded
         report.functional_threshold = cut
         report.functional_predicates = functional
-        report.elaborations, report.contradictions = link_propositions(store)
+        functionality = predicate_functionality(store)
+        functional_predicates = {
+            predicate for predicate, value in functionality.items() if value >= cut
+        }
+        report.elaborations, report.contradictions = link_propositions(
+            store, functional_predicates
+        )
 
     report.propositions_after = len(store)
     return report
