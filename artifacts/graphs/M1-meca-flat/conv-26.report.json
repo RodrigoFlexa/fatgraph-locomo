@@ -164,6 +164,8 @@
     },
     "max_entity_incidence": 522,
     "max_entity_incidence_ratio": 522.0,
+    "max_non_anchor_entity_incidence": 7,
+    "max_non_anchor_entity_incidence_ratio": 7.0,
     "consolidation": {
       "entities": {
         "before": 147,
@@ -199,7 +201,7 @@
   },
   "llm_usage": {
     "calls": 349,
-    "cached_calls": 4,
+    "cached_calls": 349,
     "prompt_tokens": 262000,
     "completion_tokens": 98902,
     "total_tokens": 360902,
@@ -209,7 +211,7 @@
     "by_purpose": {
       "ingest/meca_extract": {
         "calls": 119,
-        "cached_calls": 0,
+        "cached_calls": 119,
         "prompt_tokens": 106857,
         "completion_tokens": 75854,
         "empty_responses": 0,
@@ -217,7 +219,7 @@
       },
       "ingest/meca_infer": {
         "calls": 115,
-        "cached_calls": 4,
+        "cached_calls": 115,
         "prompt_tokens": 85400,
         "completion_tokens": 10605,
         "empty_responses": 0,
@@ -225,7 +227,7 @@
       },
       "ingest/meca_verify": {
         "calls": 115,
-        "cached_calls": 0,
+        "cached_calls": 115,
         "prompt_tokens": 69743,
         "completion_tokens": 12443,
         "empty_responses": 0,

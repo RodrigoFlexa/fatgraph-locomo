@@ -1,0 +1,239 @@
+{
+  "sample_id": "conv-30",
+  "condition": "M1-meca-flat",
+  "n_facts": 836,
+  "n_edges": 3502,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 0,
+  "n_collapses": 0,
+  "n_consolidations": 0,
+  "per_session": [
+    {
+      "session_id": "S1",
+      "n_propositions": 48,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S2",
+      "n_propositions": 47,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S3",
+      "n_propositions": 46,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S4",
+      "n_propositions": 52,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S5",
+      "n_propositions": 73,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S6",
+      "n_propositions": 38,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S7",
+      "n_propositions": 42,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S8",
+      "n_propositions": 52,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S9",
+      "n_propositions": 42,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S10",
+      "n_propositions": 45,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S11",
+      "n_propositions": 43,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S12",
+      "n_propositions": 43,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S13",
+      "n_propositions": 40,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S14",
+      "n_propositions": 54,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S15",
+      "n_propositions": 46,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S16",
+      "n_propositions": 32,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S17",
+      "n_propositions": 38,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S18",
+      "n_propositions": 74,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S19",
+      "n_propositions": 26,
+      "n_passages": 4
+    }
+  ],
+  "graph_stats": {
+    "V": 2110,
+    "E": 3502,
+    "F": 10,
+    "C": 1,
+    "genus": 692,
+    "chi": -1382,
+    "components": [
+      {
+        "index": 0,
+        "V": 2110,
+        "E": 3502,
+        "F": 10,
+        "genus": 692
+      }
+    ],
+    "n_faces_nontrivial": 10,
+    "face_length_hist": {
+      "2": 1,
+      "4": 1,
+      "10": 1,
+      "258": 1,
+      "326": 1,
+      "414": 1,
+      "446": 1,
+      "528": 1,
+      "568": 1,
+      "4448": 1
+    },
+    "face_length_mean": 700.4,
+    "face_length_max": 4448,
+    "n_leaf_faces": 0,
+    "n_bigon_faces": 1,
+    "edges_by_state": {
+      "emergente": 3502,
+      "consolidada": 0,
+      "incongruente": 0
+    },
+    "n_level2_edges": 0,
+    "n_shadowed_edges": 0,
+    "degree_mean": 3.319431279620853,
+    "degree_1_frac": 0.518,
+    "hub_share": 0.1196,
+    "fingerprint": "705a5e5b9696960db39bc44e38f610f6",
+    "n_propositions": 836,
+    "n_entities": 87,
+    "n_predicates": 406,
+    "n_derived": 92,
+    "n_superseded": 0,
+    "mean_evidence": 1.051,
+    "by_modality": {
+      "asked": 20,
+      "asserted": 667,
+      "desired": 32,
+      "hypothetical": 2,
+      "intended": 94,
+      "reported": 21
+    },
+    "max_entity_incidence": 439,
+    "max_entity_incidence_ratio": 439.0,
+    "max_non_anchor_entity_incidence": 8,
+    "max_non_anchor_entity_incidence_ratio": 8.0,
+    "consolidation": {
+      "entities": {
+        "before": 99,
+        "after": 87
+      },
+      "propositions": {
+        "before": 877,
+        "after": 836,
+        "merged": 41
+      },
+      "timeline": {
+        "superseded": 0,
+        "contradictions": 0,
+        "elaborations": 1,
+        "functional_predicates": 242
+      },
+      "thresholds": {
+        "entity": 0.0,
+        "predicate": 0.82,
+        "functional": 1.0,
+        "source": "lexical_safe"
+      }
+    },
+    "comprehension": {
+      "passages": 109,
+      "extracted": 825,
+      "inferred": 112,
+      "rejected_unverified": 56,
+      "rejected_malformed": 0,
+      "no_evidence": 0
+    },
+    "link_leaks": 0
+  },
+  "llm_usage": {
+    "calls": 660,
+    "cached_calls": 355,
+    "prompt_tokens": 490615,
+    "completion_tokens": 183987,
+    "total_tokens": 674602,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "ingest/meca_extract": {
+        "calls": 228,
+        "cached_calls": 119,
+        "prompt_tokens": 202699,
+        "completion_tokens": 141454,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/meca_infer": {
+        "calls": 216,
+        "cached_calls": 119,
+        "prompt_tokens": 158471,
+        "completion_tokens": 19076,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/meca_verify": {
+        "calls": 216,
+        "cached_calls": 117,
+        "prompt_tokens": 129445,
+        "completion_tokens": 23457,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "genus_optimization": {}
+}

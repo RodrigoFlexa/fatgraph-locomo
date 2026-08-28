@@ -1,0 +1,309 @@
+{
+  "sample_id": "conv-41",
+  "condition": "M1-meca-flat",
+  "n_facts": 1424,
+  "n_edges": 6048,
+  "n_skipped_self_loops": 0,
+  "n_incongruent": 0,
+  "n_collapses": 0,
+  "n_consolidations": 0,
+  "per_session": [
+    {
+      "session_id": "S1",
+      "n_propositions": 30,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S2",
+      "n_propositions": 64,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S3",
+      "n_propositions": 33,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S4",
+      "n_propositions": 46,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S5",
+      "n_propositions": 50,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S6",
+      "n_propositions": 42,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S7",
+      "n_propositions": 35,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S8",
+      "n_propositions": 62,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S9",
+      "n_propositions": 26,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S10",
+      "n_propositions": 49,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S11",
+      "n_propositions": 58,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S12",
+      "n_propositions": 46,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S13",
+      "n_propositions": 91,
+      "n_passages": 10
+    },
+    {
+      "session_id": "S14",
+      "n_propositions": 59,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S15",
+      "n_propositions": 37,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S16",
+      "n_propositions": 34,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S17",
+      "n_propositions": 33,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S18",
+      "n_propositions": 58,
+      "n_passages": 7
+    },
+    {
+      "session_id": "S19",
+      "n_propositions": 69,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S20",
+      "n_propositions": 45,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S21",
+      "n_propositions": 45,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S22",
+      "n_propositions": 53,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S23",
+      "n_propositions": 45,
+      "n_passages": 4
+    },
+    {
+      "session_id": "S24",
+      "n_propositions": 45,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S25",
+      "n_propositions": 37,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S26",
+      "n_propositions": 42,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S27",
+      "n_propositions": 38,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S28",
+      "n_propositions": 35,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S29",
+      "n_propositions": 33,
+      "n_passages": 5
+    },
+    {
+      "session_id": "S30",
+      "n_propositions": 69,
+      "n_passages": 8
+    },
+    {
+      "session_id": "S31",
+      "n_propositions": 34,
+      "n_passages": 6
+    },
+    {
+      "session_id": "S32",
+      "n_propositions": 37,
+      "n_passages": 5
+    }
+  ],
+  "graph_stats": {
+    "V": 3677,
+    "E": 6048,
+    "F": 19,
+    "C": 1,
+    "genus": 1177,
+    "chi": -2352,
+    "components": [
+      {
+        "index": 0,
+        "V": 3677,
+        "E": 6048,
+        "F": 19,
+        "genus": 1177
+      }
+    ],
+    "n_faces_nontrivial": 19,
+    "face_length_hist": {
+      "8": 2,
+      "10": 3,
+      "14": 2,
+      "16": 1,
+      "18": 1,
+      "24": 1,
+      "26": 1,
+      "32": 1,
+      "122": 1,
+      "280": 1,
+      "588": 1,
+      "1262": 1,
+      "2340": 1,
+      "3236": 1,
+      "4078": 1
+    },
+    "face_length_mean": 636.6315789473684,
+    "face_length_max": 4078,
+    "n_leaf_faces": 0,
+    "n_bigon_faces": 0,
+    "edges_by_state": {
+      "emergente": 6048,
+      "consolidada": 0,
+      "incongruente": 0
+    },
+    "n_level2_edges": 0,
+    "n_shadowed_edges": 0,
+    "degree_mean": 3.2896382920859395,
+    "degree_1_frac": 0.5203,
+    "hub_share": 0.1096,
+    "fingerprint": "d9d5494a4e064d23a8cf81445ecf0fe5",
+    "n_propositions": 1424,
+    "n_entities": 182,
+    "n_predicates": 677,
+    "n_derived": 171,
+    "n_superseded": 0,
+    "mean_evidence": 1.037,
+    "by_modality": {
+      "asked": 31,
+      "asserted": 1222,
+      "desired": 17,
+      "hypothetical": 3,
+      "intended": 87,
+      "reported": 64
+    },
+    "max_entity_incidence": 769,
+    "max_entity_incidence_ratio": 769.0,
+    "max_non_anchor_entity_incidence": 24,
+    "max_non_anchor_entity_incidence_ratio": 24.0,
+    "consolidation": {
+      "entities": {
+        "before": 210,
+        "after": 182
+      },
+      "propositions": {
+        "before": 1473,
+        "after": 1424,
+        "merged": 49
+      },
+      "timeline": {
+        "superseded": 0,
+        "contradictions": 0,
+        "elaborations": 0,
+        "functional_predicates": 384
+      },
+      "thresholds": {
+        "entity": 0.0,
+        "predicate": 0.82,
+        "functional": 1.0,
+        "source": "lexical_safe"
+      }
+    },
+    "comprehension": {
+      "passages": 189,
+      "extracted": 1404,
+      "inferred": 210,
+      "rejected_unverified": 134,
+      "rejected_malformed": 0,
+      "no_evidence": 2
+    },
+    "link_leaks": 0
+  },
+  "llm_usage": {
+    "calls": 1213,
+    "cached_calls": 369,
+    "prompt_tokens": 898916,
+    "completion_tokens": 333747,
+    "total_tokens": 1232663,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "ingest/meca_extract": {
+        "calls": 417,
+        "cached_calls": 119,
+        "prompt_tokens": 371062,
+        "completion_tokens": 256059,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/meca_infer": {
+        "calls": 398,
+        "cached_calls": 129,
+        "prompt_tokens": 288974,
+        "completion_tokens": 35203,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "ingest/meca_verify": {
+        "calls": 398,
+        "cached_calls": 121,
+        "prompt_tokens": 238880,
+        "completion_tokens": 42485,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "genus_optimization": {}
+}
