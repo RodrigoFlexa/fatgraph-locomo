@@ -37,7 +37,7 @@ _DEMO_QUESTIONS = [
 ]
 
 
-def _build_clio(fake: bool):
+def _build_clio(fake: bool, no_cache: bool = False):
     from fgl.clio.config import ClioConfig
     from fgl.clio.facade import Clio
 
@@ -65,7 +65,11 @@ def _build_clio(fake: bool):
     settings = load_settings()
     shim = Config()
     settings.apply_to(shim)
-    shim.llm.cache_enabled = False
+    # Cached by default, like every other real call in this repository
+    # (fgl run/fgl qa) -- re-running the same turns/questions (e.g. after
+    # bumping --sessions) must not re-pay for prompts already answered.
+    # --no-cache is for deliberately forcing a fresh call.
+    shim.llm.cache_enabled = not no_cache
     llm = build_llm(shim.llm)
     embedder = build_embedder(shim.embeddings)
     return Clio.build(config=ClioConfig.default(), llm=llm, embedder=embedder)
@@ -112,6 +116,9 @@ def demo(
     turns_per_session: int = typer.Option(
         6, "--turns-per-session", help="Turns per session to ingest, with --locomo."
     ),
+    no_cache: bool = typer.Option(
+        False, "--no-cache", help="Force fresh LLM calls instead of reusing the on-disk cache."
+    ),
 ) -> None:
     """Ingests a conversation, consolidates (with folding), and answers a
     few questions -- end to end, M5 through M8.
@@ -120,7 +127,9 @@ def demo(
 
         fgl clio demo --fake
 
-    Against the real deployment in .env (the credentials `fgl doctor` uses):
+    Against the real deployment in .env (the credentials `fgl doctor` uses).
+    Cached like every other real command in this repo, so re-running with a
+    bigger --sessions only pays for the NEW calls:
 
         fgl clio demo
 
@@ -128,7 +137,7 @@ def demo(
 
         fgl clio demo --locomo 0 --sessions 3
     """
-    clio = _build_clio(fake)
+    clio = _build_clio(fake, no_cache=no_cache)
     backend = "FakeLLM (offline)" if fake else clio.llm.cfg.deployment
     console.print(f"[bold]Backend:[/] {backend}")
 
