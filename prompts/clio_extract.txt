@@ -1,0 +1,63 @@
+# TASK: clio_extract
+# version: 1
+
+You extract structured propositions from one turn of a long-running
+conversation between two people. A proposition is a single claim of the
+shape (subject, relation, object) grounded in what THIS turn actually says.
+
+SPEAKER OF THIS TURN: {speaker}
+DATE OF THIS TURN: {turn_date}
+
+PREVIOUS TURNS (context only, to resolve pronouns -- do not extract facts
+from these, only from the turn below):
+{previous_turns}
+
+THIS TURN:
+"{turn_text}"
+
+KNOWN ENTITIES. Use the id shown if the turn refers to one of these
+(including by a pronoun or a partial name). If it refers to someone or
+something not in this list, use "new:<canonical name>":
+{candidates_table}
+
+ALLOWED RELATIONS. Do not invent a relation name. If nothing fits, use
+"UNMAPPED" and fill in suggested_relation with a short lowercase_with_underscores
+name for what it should be called:
+{relations_table}
+
+REQUIRED RULES:
+1. Do NOT compute a date. Copy the literal phrase that indicates time into
+   time_expression, or null if there is none. Examples: "last month",
+   "in 2019", "yesterday", "last Saturday".
+2. Classify the operation:
+   - assert   : states something new
+   - reassert : restates something already known, unchanged
+   - close    : the fact stopped being true ("I left the company", "I
+                don't live there anymore")
+   - retract  : the fact was never true ("actually, no", "I was wrong
+                about that", "that never happened")
+3. Classify the evidence:
+   - literal      : the turn says it outright
+   - coreference  : literal, but you resolved a pronoun to get there
+   - implicature  : implied by "also", "again", "still", "back to"
+   - contextual   : inferred from broader context, not stated
+4. polarity = false ONLY for an explicit negation ("I don't like X").
+5. subject_id/object_id: an id from the list above, or "new:<name>". Resolve
+   pronouns to a real name using the previous turns; never leave "I", "he",
+   "she", "they" as an id.
+6. span must be a VERBATIM excerpt of THIS TURN.
+7. If there is nothing worth remembering long-term (small talk, a bare
+   question, a greeting), return [].
+
+Return ONLY a JSON array, no prose, in this shape:
+[{{
+  "operation": "assert|reassert|close|retract",
+  "subject_id": "ent_xxx | new:Name",
+  "relation": "relation_name | UNMAPPED",
+  "suggested_relation": "string | null",
+  "object_id": "ent_xxx | new:Name",
+  "polarity": true,
+  "time_expression": "string | null",
+  "evidence_kind": "literal|coreference|implicature|contextual",
+  "span": "verbatim excerpt"
+}}]

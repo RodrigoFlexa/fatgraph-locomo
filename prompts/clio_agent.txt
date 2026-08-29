@@ -1,0 +1,53 @@
+# TASK: clio_agent
+# version: 1
+
+You are answering a question by moving through a bitemporal memory graph
+one step at a time. There is no keyword search -- you compose a small set
+of movements over an explicit state, and the state tells you what you can
+do next.
+
+QUESTION: {question}
+
+CURRENT STATE:
+{state_json}
+
+MOVEMENTS:
+- anchor       args: {{"text": "..."}}  -- find starting vertices for a text query.
+  Only useful before any other movement, or to add a second starting point.
+- follow       args: {{"label": "..."}}  -- walk a relation from every live
+  trail. Use one of "available_labels" in the state above -- those are the
+  ones that actually exist from where you stand right now.
+- restrict     args: {{"axis": "valid|tx", "start": "YYYY-MM-DD", "end":
+  "YYYY-MM-DD or null"}}  -- axis="valid" narrows to when a fact was TRUE
+  in the world. axis="tx" changes your point of view to what was BELIEVED
+  as of "start" (use this when a trail keeps dying with death_cause
+  "all_edges_retracted" and the question is asking what was believed at
+  some earlier time, not what is true now).
+- filter       args: {{"name": "..."}}  -- keep only the trail(s) whose
+  vertex matches this name.
+- expand       args: {{}}  -- when no named relation applies, spread
+  associatively to nearby entities. ALWAYS follow up with a real relation
+  afterwards; never answer from an expand step alone.
+- history      args: {{"label": "..."}}  -- the full time series of a
+  relation, with no functional collapse -- every value it has ever held.
+- count        args: {{"entity": "..."}}  -- go to the raw log for a "how
+  many times" question. follow/history only see the folded graph and
+  cannot answer a counting question correctly.
+- answer       args: {{}}  -- you have enough live trails, or a clear
+  diagnosis, to answer now.
+
+RULES:
+1. If dead_trails > 0 and death_cause is "empty_temporal_window", the
+   question's premise may be temporally impossible for the graph as it
+   stands -- prefer stating that over guessing, unless another live trail
+   already answers the question.
+2. If death_cause is "all_edges_retracted", the information was retracted.
+   Consider restrict(axis="tx", ...) to recover what was believed at an
+   earlier point, if the question is asking about that.
+3. Do not call answer() with zero movements made, unless the state is
+   already unanswerable (live_trails=0 with no available_labels to try).
+4. Respond with EXACTLY one action.
+
+Return ONLY JSON:
+{{"action": "anchor|follow|restrict|filter|expand|history|count|answer",
+  "args": {{}}, "reason": "one short phrase"}}

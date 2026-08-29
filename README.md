@@ -17,7 +17,16 @@ sobre fatos soltos.
 
 ---
 
-## Início rápido (Linux)
+## Início rápido
+
+O pacote (`src/fgl/`) é puro Python e roda igual nos três sistemas — paths via
+`pathlib`, UTF-8 explícito, sem nenhuma dependência de shell unix. Testes e
+qualquer comando `fgl --dry-run` funcionam 100% offline, sem LLM nem rede; só
+os comandos que fazem chamada real (`fgl run`, `fgl qa`, `fgl run-all` sem
+`--dry-run`, `fgl doctor`) precisam de credenciais Azure no `.env` — locais,
+se você tiver as credenciais, ou só no servidor onde já rodam hoje.
+
+### Linux / macOS
 
 A partir da pasta `fatgraph-locomo`:
 
@@ -38,19 +47,45 @@ fgl run-all --dry-run -n 1 -q 10   # offline, sem custo, ~2 s
 fgl run G1 -n 1                    # primeira corrida real, 1 conversa
 ```
 
-`fgl info` mostra `package: editable → .../src/fgl` quando o install está são.
-Se aparecer `COPY, not editable`, refaça o upgrade acima e reinstale.
-
 Pacotes de sistema, se faltarem: `sudo apt install python3-venv git`.
 
-**macOS**: idem. **Windows (PowerShell)**: `py -3.11 -m venv .venv` e
-`.\.venv\Scripts\Activate.ps1`; se o PowerShell recusar, rode uma vez
-`Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned`.
+### Windows (PowerShell)
+
+Os mesmos comandos, sem `make` (que não existe nativamente no Windows) —
+`tasks.py` faz esse papel, veja [## Desenvolvimento](#desenvolvimento).
+A partir da pasta `fatgraph-locomo`:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+# se o PowerShell recusar o script de ativação, rode uma vez:
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+
+python -m pip install --upgrade pip setuptools wheel
+pip install -e ".[all]"
+fgl setup                          # cria .env e busca o dataset (idempotente)
+notepad .env                       # preencha AZURE_OPENAI_ENDPOINT e API_KEY
+fgl info                           # confere tudo antes de gastar
+fgl run-all --dry-run -n 1 -q 10   # offline, sem custo, ~2 s
+fgl run G1 -n 1                    # primeira corrida real, 1 conversa
+```
+
+Precisa de [Git for Windows](https://git-scm.com/download/win) instalado (para
+`fgl setup` clonar o dataset) e Python 3.10+ com o `py launcher` (já vem no
+instalador oficial python.org).
+
+### Em qualquer SO
+
+`fgl info` mostra `package: editable → .../src/fgl` quando o install está são.
+Se aparecer `COPY, not editable`, refaça o upgrade do `pip`/`setuptools` acima
+e reinstale.
 
 ### Rodar o estudo completo em segundo plano
 
 O `run-all` leva horas. A saída redirecionada sai limpa (o Rich desliga a
-animação quando não está num terminal), então dá para logar direto:
+animação quando não está num terminal), então dá para logar direto.
+
+**Linux / macOS:**
 
 ```bash
 tmux new -s fgl                     # ou: screen
@@ -66,8 +101,22 @@ nohup fgl run-all > results/run.log 2>&1 &
 tail -f results/run.log
 ```
 
-Pode matar e retomar quando quiser: grafos são persistidos e toda chamada de LLM
-fica em cache por hash de prompt, então reexecutar pula o que já foi feito.
+**Windows (PowerShell)** — não há `nohup`/`tmux` nativos; use um job em
+segundo plano na mesma sessão, ou abra outra aba do Windows Terminal:
+
+```powershell
+Start-Job -Name fgl -ScriptBlock {
+    Set-Location $using:PWD
+    .\.venv\Scripts\Activate.ps1
+    fgl run-all *> results\run.log
+}
+Get-Content results\run.log -Wait   # acompanha o log ao vivo
+# Receive-Job fgl para ver o status; Stop-Job fgl para cancelar
+```
+
+Pode matar e retomar quando quiser, nos três sistemas: grafos são persistidos
+e toda chamada de LLM fica em cache por hash de prompt, então reexecutar pula
+o que já foi feito.
 
 ### Notebooks numa máquina remota
 
@@ -449,16 +498,35 @@ e incongruência) vão para `artifacts/logs/<condição>/<conversa>.jsonl`.
 
 ## Desenvolvimento
 
+`make` depende de `grep`/`awk`/`rm`/`find`, que não existem nativamente no
+Windows — por isso a lógica real de cada alvo vive em `tasks.py` (stdlib
+puro, chamado em forma de lista, sem `shell=True`), e o `Makefile` é só um
+wrapper fino em cima dele para quem já usa `make` no Linux/macOS.
+
 ```bash
+# Linux / macOS, com make:
 make test        # 108 testes, offline, ~5s
 make lint        # ruff
 make smoke       # 6 condições ponta a ponta, offline
 make clean-dry   # remove só os artefatos de dry-run
 ```
 
+```powershell
+# Qualquer SO, sem depender de make (obrigatório no Windows):
+python tasks.py test
+python tasks.py lint
+python tasks.py smoke
+python tasks.py clean-dry
+```
+
 A suíte roda sem rede, sem credenciais e sem download de modelo: o backend
 `FakeLLM` é determinístico e o `HashingEmbedder` não tem dependências. Testes que
 precisam do dataset são pulados automaticamente até você rodar `fgl setup`.
+
+`sentence-transformers`, `faiss-cpu` e `spacy` (extras `[all]`/`[embeddings]`/
+`[speed]`/`[bipartite]`) publicam wheel pré-compilada para Windows nas versões
+fixadas em `pyproject.toml`, então `pip install -e ".[all]"` não exige
+toolchain de compilação lá.
 
 ## Fase 2
 

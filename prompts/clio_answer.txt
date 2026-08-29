@@ -1,0 +1,40 @@
+# TASK: clio_answer
+# version: 1
+
+Answer the question using ONLY the evidence below, in this priority order:
+episode text is the source of truth; structured facts exist only to tell
+you WHEN and under what conditions to trust that text; the diagnosis
+explains what happened if there is no live evidence at all.
+
+QUESTION: {question}
+
+EPISODES (the source text -- prefer this over the structured facts below
+whenever they seem to disagree; the fact only located the episode, it did
+not replace it):
+{episodes}
+
+STRUCTURED FACTS (window = when this was true; a conflict flag means two
+sources disagree and neither has been resolved):
+{facts}
+
+DIAGNOSIS (only relevant if there is no live evidence above):
+{diagnosis}
+
+RULES:
+1. Answer with a SHORT extractive phrase, reusing the wording of the
+   episodes wherever possible. No full sentence, no restating the
+   question.
+2. If DIAGNOSIS says the premise involves an empty temporal window, say
+   the premise appears to be false, and name the conflicting periods.
+3. If DIAGNOSIS says the information was retracted, say there is no
+   currently valid record -- optionally mention what was believed earlier
+   if the episodes above provide it.
+4. If a fact is flagged as a conflict, present both versions with their
+   dates rather than picking one.
+5. If a date granularity is month or year (not day), hedge it ("around
+   May 2023") rather than stating a precise day that was never given.
+6. If there is no evidence and no useful diagnosis, answer EXACTLY:
+   Not mentioned in the conversation
+7. Never guess and never use outside knowledge.
+
+SHORT ANSWER:

@@ -1,0 +1,143 @@
+# Sigma: minimum viable relation catalog for personal dialogue memory.
+# See CLIO-especificacao-tecnica.md section 4.3. Grown only through
+# clio.catalog.mine_unmapped + a human review of unmapped_queue (section
+# 4.4) -- never by widening the extractor's freedom to invent labels.
+
+# NOTE on lives_in: the spec's own catalog (section 4.3) declares it
+# invertible: false, but its own worked access trace (T3, section 17.3)
+# walks FROM a place BACK to whoever lives there -- unreachable without an
+# inverse. Multiple people can share a residence, so the inverse is a real,
+# useful query ("who lives/lived here"), not just a T3 patch -- declared
+# invertible here, unlike the spec document.
+
+types: [Person, Organization, Place, Activity, Object, Event, Topic]
+
+relations:
+  # --- residence and location ---
+  - name: lives_in
+    signature: [Person, Place]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: resided_by
+    dependents: []
+
+  - name: born_in
+    signature: [Person, Place]
+    cardinality: functional
+    volatility: static
+    invertible: false
+
+  # --- work ---
+  - name: works_at
+    signature: [Person, Organization]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: employs
+    dependents: [managed_by, works_with, has_role]
+
+  - name: has_role
+    signature: [Person, Topic]
+    cardinality: functional
+    volatility: slow
+    invertible: false
+
+  - name: managed_by
+    signature: [Person, Person]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: manages
+
+  - name: works_with
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: works_with
+
+  - name: hired
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: static
+    invertible: true
+    inverse_name: hired_by
+
+  # --- personal relationships ---
+  - name: family_of
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: static
+    invertible: true
+    inverse_name: family_of
+
+  - name: partner_of
+    signature: [Person, Person]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: partner_of
+
+  - name: friend_of
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: friend_of
+
+  # --- likes and activities ---
+  - name: practices
+    signature: [Person, Activity]
+    cardinality: multi
+    volatility: slow
+    invertible: false
+
+  - name: likes
+    signature: [Person, Topic]
+    cardinality: multi
+    volatility: slow
+    invertible: false
+
+  - name: dislikes
+    signature: [Person, Topic]
+    cardinality: multi
+    volatility: slow
+    invertible: false
+
+  # --- possessions ---
+  - name: owns
+    signature: [Person, Object]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: owned_by
+
+  # --- plans and events ---
+  - name: attended
+    signature: [Person, Event]
+    cardinality: multi
+    volatility: fast
+    invertible: true
+    inverse_name: attended_by
+
+  - name: plans_to
+    signature: [Person, Event]
+    cardinality: multi
+    volatility: fast
+    invertible: false
+
+  # --- study ---
+  - name: studies_at
+    signature: [Person, Organization]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: enrolls
+    dependents: [studies_subject]
+
+  - name: studies_subject
+    signature: [Person, Topic]
+    cardinality: multi
+    volatility: slow
+    invertible: false

@@ -39,6 +39,7 @@ from rich.syntax import Syntax
 from rich.table import Table
 
 from fgl import __version__
+from fgl.clio.cli import clio_app
 from fgl.config import Config, ConfigError, list_conditions, resolve_condition
 from fgl.paths import Paths, project_root
 from fgl.settings import load_settings
@@ -51,6 +52,7 @@ app = typer.Typer(
 )
 config_app = typer.Typer(help="Inspect and resolve configurations.", no_args_is_help=True)
 app.add_typer(config_app, name="config")
+app.add_typer(clio_app, name="clio")
 
 console = Console()
 err = Console(stderr=True)

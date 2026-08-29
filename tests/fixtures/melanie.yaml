@@ -1,0 +1,157 @@
+# Integration fixture from CLIO-especificacao-tecnica.md section 17.2,
+# translated to English: the spec document's own worked example is
+# written in pt-BR, but the target corpus (LoCoMo) is English dialogue, so
+# every implementation piece -- including this fixture -- stays English.
+# Only the dates and the relation/operation/evidence_kind classifications
+# are load-bearing; the wording is free translation.
+#
+# Propositions are hand-authored here rather than produced by an extractor
+# (milestone M5) -- this is exactly the "feed consolidation with
+# hand-written propositions" mode milestone M4's plan calls for. E7 (the
+# Rui / Rui Sampaio fold) IS included: tests that only exercise M1-M4 load
+# this file with folding turned off (see tests/clio/helpers.py's
+# `with_fold`), so E7 just adds a second, unmerged "Rui Sampaio" vertex
+# they never assert anything about; the M6 fold tests load it with folding
+# on, which is the whole point of E7 being here.
+#
+# time_expression is always the literal span an extractor would have
+# copied (spec 6.3 rule 1) -- never a computed date. The test that loads
+# this file resolves it with the real `resolve_time` and computes
+# confidence with the real `compute_confidence`, so this fixture exercises
+# M1-M3 as much as M4's consolidation phases.
+
+episodes:
+  - id: E1
+    date: "2023-01-14"
+    speaker: Melanie
+    text: "I started at Vertex this week, I'm living in Recife"
+    propositions:
+      - subject: "new:Melanie"
+        relation: works_at
+        object: "new:Vertex"
+        operation: assert
+        evidence_kind: literal
+        time_expression: "this week"
+        span: "I started at Vertex this week"
+      - subject: "new:Melanie"
+        relation: lives_in
+        object: "new:Recife"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "I'm living in Recife"
+
+  - id: E2
+    date: "2023-03-02"
+    speaker: Melanie
+    text: "My manager here is Bia, she also likes climbing"
+    mentions: ["climbing"]
+    propositions:
+      - subject: "new:Melanie"
+        relation: managed_by
+        object: "new:Bia"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "My manager here is Bia"
+      - subject: "new:Bia"
+        relation: practices
+        object: "new:climbing"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "she also likes climbing"
+      - subject: "new:Melanie"
+        relation: practices
+        object: "new:climbing"
+        operation: assert
+        evidence_kind: implicature
+        time_expression: null
+        span: "she also likes climbing"
+
+  - id: E3
+    date: "2023-06-20"
+    speaker: Melanie
+    text: "I moved to Salvador last month, I'm still at Vertex remotely"
+    propositions:
+      - subject: "new:Melanie"
+        relation: lives_in
+        object: "new:Salvador"
+        operation: assert
+        evidence_kind: literal
+        time_expression: "last month"
+        span: "I moved to Salvador last month"
+      - subject: "new:Melanie"
+        relation: works_at
+        object: "new:Vertex"
+        operation: reassert
+        evidence_kind: literal
+        time_expression: null
+        span: "I'm still at Vertex remotely"
+
+  - id: E4
+    date: "2023-09-05"
+    speaker: Melanie
+    text: "I left Vertex, joined Kaia. My boss now is Rui"
+    propositions:
+      - subject: "new:Melanie"
+        relation: works_at
+        object: "new:Vertex"
+        operation: close
+        evidence_kind: literal
+        time_expression: null
+        span: "I left Vertex"
+      - subject: "new:Melanie"
+        relation: works_at
+        object: "new:Kaia"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "joined Kaia"
+      - subject: "new:Melanie"
+        relation: managed_by
+        object: "new:Rui"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "My boss now is Rui"
+
+  - id: E5
+    date: "2023-11-11"
+    speaker: Melanie
+    text: "Went climbing again over the weekend"
+    mentions: ["climbing"]
+    propositions:
+      - subject: "new:Melanie"
+        relation: practices
+        object: "new:climbing"
+        operation: assert
+        evidence_kind: implicature
+        time_expression: "over the weekend"
+        span: "Went climbing again over the weekend"
+
+  - id: E6
+    date: "2023-12-01"
+    speaker: Melanie
+    text: "Actually Bia was never my manager, she was on another team"
+    propositions:
+      - subject: "new:Melanie"
+        relation: managed_by
+        object: "new:Bia"
+        operation: retract
+        evidence_kind: literal
+        time_expression: null
+        span: "Bia was never my manager"
+
+  - id: E7
+    date: "2024-01-20"
+    speaker: Melanie
+    text: "Rui, my boss -- Rui Sampaio -- was the one who hired me at Kaia"
+    propositions:
+      - subject: "new:Rui Sampaio"
+        relation: hired
+        object: "new:Melanie"
+        operation: assert
+        evidence_kind: literal
+        time_expression: null
+        span: "Rui Sampaio was the one who hired me at Kaia"
