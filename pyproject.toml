@@ -64,6 +64,14 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --strict-markers"
+# Three CLIO test modules import their shared scaffolding as
+# `from tests.clio.helpers import ...`, which needs the REPO ROOT on
+# sys.path. `python -m pytest` puts it there implicitly (the -m form
+# prepends the working directory); the bare `pytest` console script does
+# not, so the same suite passed one way and failed to even collect the
+# other. Declaring it here makes both invocations behave identically
+# instead of leaving it to how the runner was spelled.
+pythonpath = ["."]
 markers = [
     "dataset: needs the LoCoMo dataset (run `fgl setup`)",
     "slow: takes more than a couple of seconds",
