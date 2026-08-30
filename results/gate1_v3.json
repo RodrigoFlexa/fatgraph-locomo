@@ -1,0 +1,94 @@
+{
+  "sample_id": "conv-26",
+  "n_turns": 419,
+  "n_questions": 150,
+  "evidence_turns": 201,
+  "evidence_turns_covered": 165,
+  "turn_coverage": 0.8209,
+  "questions_fully_covered": 116,
+  "question_coverage": 0.7733,
+  "dangling_evidence": 1,
+  "extraction": {
+    "raw": 534,
+    "kept": 365,
+    "unmapped": 149,
+    "rejected": 20,
+    "rejections_by_reason": {
+      "subject_type_violates_signature": 12,
+      "relation_not_in_sigma": 5,
+      "person_ref_lacks_a_name": 2,
+      "object_type_violates_signature": 1
+    },
+    "span_downgrades": 23,
+    "turns_with_propositions": 201,
+    "turns_fully_suppressed": 37
+  },
+  "uncovered_evidence": {
+    "silent": [
+      "D10:18",
+      "D12:14",
+      "D15:13",
+      "D17:25",
+      "D18:6",
+      "D18:9",
+      "D2:15",
+      "D4:1",
+      "D7:19",
+      "D7:21",
+      "D7:4",
+      "D8:5"
+    ],
+    "suppressed": [
+      "D11:12",
+      "D12:15",
+      "D13:6",
+      "D14:15",
+      "D15:11",
+      "D15:16",
+      "D16:18",
+      "D18:7",
+      "D1:12",
+      "D2:12",
+      "D2:14",
+      "D2:3",
+      "D2:8",
+      "D3:11",
+      "D3:5",
+      "D8:12"
+    ]
+  },
+  "per_category": {
+    "multi-hop": {
+      "n": 32,
+      "fully_covered": 20,
+      "partially_covered": 9,
+      "uncovered": 3,
+      "question_coverage": 0.625,
+      "turn_coverage": 0.8356
+    },
+    "temporal": {
+      "n": 37,
+      "fully_covered": 33,
+      "partially_covered": 0,
+      "uncovered": 4,
+      "question_coverage": 0.8919,
+      "turn_coverage": 0.8919
+    },
+    "open-domain": {
+      "n": 11,
+      "fully_covered": 9,
+      "partially_covered": 2,
+      "uncovered": 0,
+      "question_coverage": 0.8182,
+      "turn_coverage": 0.85
+    },
+    "single-hop": {
+      "n": 70,
+      "fully_covered": 54,
+      "partially_covered": 0,
+      "uncovered": 16,
+      "question_coverage": 0.7714,
+      "turn_coverage": 0.7606
+    }
+  }
+}

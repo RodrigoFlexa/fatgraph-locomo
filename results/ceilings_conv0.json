@@ -1,0 +1,54 @@
+{
+  "sample_id": "conv-26",
+  "graph": {
+    "entities": 195,
+    "edges": 274,
+    "propositions": 395,
+    "promoted_propositions": 358
+  },
+  "evidence_turns": 201,
+  "ceilings": {
+    "extraction": 0.8507,
+    "promotion": 0.7811,
+    "reachability": 0.7711
+  },
+  "question_ceilings": {
+    "extraction": 0.8133,
+    "promotion": 0.72,
+    "reachability": 0.7067
+  },
+  "per_category": {
+    "multi-hop": {
+      "n": 32,
+      "evidence_turns": 73,
+      "extraction": 0.8767,
+      "promotion": 0.8082,
+      "reachability": 0.7945,
+      "questions_fully_reachable": 18
+    },
+    "temporal": {
+      "n": 37,
+      "evidence_turns": 37,
+      "extraction": 0.973,
+      "promotion": 0.9459,
+      "reachability": 0.9459,
+      "questions_fully_reachable": 35
+    },
+    "open-domain": {
+      "n": 11,
+      "evidence_turns": 20,
+      "extraction": 0.85,
+      "promotion": 0.75,
+      "reachability": 0.75,
+      "questions_fully_reachable": 7
+    },
+    "single-hop": {
+      "n": 70,
+      "evidence_turns": 71,
+      "extraction": 0.7606,
+      "promotion": 0.6761,
+      "reachability": 0.662,
+      "questions_fully_reachable": 46
+    }
+  }
+}
