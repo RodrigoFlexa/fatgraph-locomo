@@ -1,0 +1,129 @@
+{
+  "condition": "CLIO_REFORMED_CONV0",
+  "overall": {
+    "n": 199,
+    "f1_micro": 0.3783,
+    "f1_macro": 0.3262,
+    "f1_substantive": 0.4163,
+    "n_substantive": 152,
+    "abstention_rate": 0.1055,
+    "abstention_rate_substantive": 0.0592,
+    "mean_context_tokens": 13989.6,
+    "tokens_per_f1_point": 33607.6
+  },
+  "per_category": {
+    "multi-hop": {
+      "n": 32,
+      "f1": 0.2181,
+      "abstention_rate": 0.0938,
+      "recall_context": 0.3646
+    },
+    "temporal": {
+      "n": 37,
+      "f1": 0.5875,
+      "abstention_rate": 0.027,
+      "recall_context": 0.9189
+    },
+    "open-domain": {
+      "n": 13,
+      "f1": 0.094,
+      "abstention_rate": 0.1538,
+      "recall_context": 0.5769
+    },
+    "single-hop": {
+      "n": 70,
+      "f1": 0.4762,
+      "abstention_rate": 0.0429,
+      "recall_context": 0.5929
+    },
+    "adversarial": {
+      "n": 47,
+      "f1": 0.2553,
+      "abstention_rate": 0.2553,
+      "recall_context": 0.2979
+    }
+  },
+  "stemmer": "porter",
+  "per_conversation": [
+    {
+      "sample_id": "conv-26",
+      "n_turns": 419,
+      "n_questions": 199,
+      "f1": 0.3783,
+      "n_entities": 250,
+      "n_edges": 340,
+      "n_folds": 11,
+      "ingest_seconds": 794.0,
+      "qa_seconds": 2042.7
+    }
+  ],
+  "cost": {
+    "calls": 2202,
+    "cached_calls": 0,
+    "prompt_tokens": 3577222,
+    "completion_tokens": 107995,
+    "total_tokens": 3685217,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "clio_extract": {
+        "calls": 419,
+        "cached_calls": 0,
+        "prompt_tokens": 793292,
+        "completion_tokens": 51721,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "clio_agent": {
+        "calls": 1584,
+        "cached_calls": 0,
+        "prompt_tokens": 2617015,
+        "completion_tokens": 54533,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "clio_answer": {
+        "calls": 199,
+        "cached_calls": 0,
+        "prompt_tokens": 166915,
+        "completion_tokens": 1741,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "clio_run": {
+    "config": {
+      "catalog_path": "/home/gbs2/fatgraph-locomo/src/fgl/clio/catalog/personal_dialogue.yaml",
+      "temporal": {
+        "fast_window_days": 1,
+        "locale": "en_US"
+      },
+      "thresholds": {
+        "tau_promote": 0.7,
+        "tau_fold": 0.8
+      },
+      "extraction": {
+        "coref_window": 3,
+        "max_candidates": 20,
+        "max_tokens": 2000
+      },
+      "access": {
+        "movement_budget": 8,
+        "expand_k": 10,
+        "ppr_alpha": 0.15,
+        "expand_max_hops": 2,
+        "trail_limit": 20,
+        "anchor_episode_k": 5,
+        "answer_evidence_limit": 12
+      }
+    },
+    "llm_provider": "azure",
+    "llm_deployment": "gpt-4-1-mini-petrobras",
+    "embedder": "CachedEmbedder",
+    "embedder_tag": "azure-embedding-3-large-global-dfull",
+    "memory_snapshots": true
+  },
+  "wall_seconds": 2836.8
+}

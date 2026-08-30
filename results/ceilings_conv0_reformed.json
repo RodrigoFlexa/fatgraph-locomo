@@ -1,0 +1,70 @@
+{
+  "sample_id": "conv-26",
+  "graph": {
+    "entities": 239,
+    "edges": 340,
+    "propositions": 460,
+    "promoted_propositions": 439
+  },
+  "evidence_turns": 201,
+  "ceilings": {
+    "extraction": 0.8756,
+    "promotion": 0.8458,
+    "reachability": 0.8458
+  },
+  "question_ceilings": {
+    "extraction": 0.8333,
+    "promotion": 0.8067,
+    "reachability": 0.8067
+  },
+  "episodic_anchor": {
+    "evidence_turns": 0.5821,
+    "questions_fully": 0.6133
+  },
+  "combined_access": {
+    "evidence_turns": 0.9204,
+    "questions_fully": 0.9
+  },
+  "per_category": {
+    "multi-hop": {
+      "n": 32,
+      "evidence_turns": 73,
+      "extraction": 0.8904,
+      "promotion": 0.863,
+      "reachability": 0.863,
+      "episodic_anchor": 0.3151,
+      "combined_access": 0.9041,
+      "questions_fully_reachable": 23
+    },
+    "temporal": {
+      "n": 37,
+      "evidence_turns": 37,
+      "extraction": 0.973,
+      "promotion": 0.9189,
+      "reachability": 0.9189,
+      "episodic_anchor": 0.8649,
+      "combined_access": 0.9459,
+      "questions_fully_reachable": 34
+    },
+    "open-domain": {
+      "n": 11,
+      "evidence_turns": 20,
+      "extraction": 0.95,
+      "promotion": 0.9,
+      "reachability": 0.9,
+      "episodic_anchor": 0.35,
+      "combined_access": 0.9,
+      "questions_fully_reachable": 10
+    },
+    "single-hop": {
+      "n": 70,
+      "evidence_turns": 71,
+      "extraction": 0.7887,
+      "promotion": 0.7746,
+      "reachability": 0.7746,
+      "episodic_anchor": 0.7746,
+      "combined_access": 0.9296,
+      "questions_fully_reachable": 54
+    }
+  }
+}
