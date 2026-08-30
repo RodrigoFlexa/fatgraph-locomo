@@ -15,7 +15,7 @@ from fgl.clio.graph.store import GraphStore
 from fgl.clio.index import EntityIndex
 from fgl.clio.ingest.context import build_extraction_context
 from fgl.clio.ingest.extractor import extract_propositions
-from fgl.clio.ingest.validate import validate_and_bind
+from fgl.clio.ingest.validate import Rejection, validate_and_bind
 from fgl.clio.log.mentions import MentionStore
 from fgl.clio.log.store import LogStore
 from fgl.clio.staging import StagingStore
@@ -31,9 +31,44 @@ class IngestResult:
     episode: Episode
     propositions: list[Proposition] = field(default_factory=list)
     unmapped: list[UnmappedEntry] = field(default_factory=list)
+    #: how many items the model actually produced, before any filtering.
+    #: `propositions == []` with `raw_count == 0` means the model said
+    #: nothing; with `raw_count > 0` it means everything it said was
+    #: refused or unmapped, which is a completely different problem.
+    raw_count: int = 0
+    #: what was refused and why (spec 6.5's "log, never accept silently")
+    rejected: list[Rejection] = field(default_factory=list)
+    #: spans that were not verbatim and got downgraded to `contextual`,
+    #: i.e. confidence 0.40 -- below tau_promote, needing three
+    #: independent episodes to ever reach the graph
+    span_downgrades: int = 0
+
+    def summary(self) -> str:
+        """One line for a per-turn log: what came in, what survived."""
+        parts = [f"raw={self.raw_count}", f"kept={len(self.propositions)}"]
+        if self.unmapped:
+            parts.append(f"unmapped={len(self.unmapped)}")
+        if self.rejected:
+            counts: dict[str, int] = {}
+            for r in self.rejected:
+                counts[r.reason] = counts.get(r.reason, 0) + 1
+            parts.append(
+                "rejected=" + ",".join(f"{k}:{v}" for k, v in sorted(counts.items()))
+            )
+        if self.span_downgrades:
+            parts.append(f"span_downgraded={self.span_downgrades}")
+        return " ".join(parts)
 
 
-def _mention_surface(ref: str, graph: GraphStore) -> str:
+def _mention_surface(ref: str | None, graph: GraphStore) -> str:
+    """The human-readable name behind an entity reference, for the mention
+    table. Tolerates a missing reference (returns ""): an UNMAPPED item
+    legitimately has no object id -- spec 4.4's own example carries
+    ``object_surface`` instead -- and a model is free to send an explicit
+    ``null`` for a field it has nothing to put in.
+    """
+    if not ref:
+        return ""
     if ref.startswith("new:"):
         return ref[len("new:") :]
     try:
@@ -75,16 +110,23 @@ def ingest_turn(
         episode, log, entity_index, catalog, coref_window, max_candidates
     )
     raw = extract_propositions(llm, prompts, context)
-    valid, unmapped_raw = validate_and_bind(raw, episode, graph, catalog)
+    validation = validate_and_bind(raw, episode, graph, catalog)
+    valid, unmapped_raw = validation.valid, validation.unmapped
 
+    # `.get(key, "")` is NOT enough here: a key PRESENT with an explicit
+    # JSON null returns None, not the default, and an UNMAPPED item is
+    # exactly where that happens -- the relation has no catalog entry, so
+    # the model often has no id to give and sends null, or names the thing
+    # in `object_surface` the way spec 4.4's own example does. Both shapes
+    # normalise to a plain string here so nothing downstream has to know.
     unmapped: list[UnmappedEntry] = []
     for item in unmapped_raw:
         unmapped.append(
             unmapped_queue.append(
                 suggested_relation=item.get("suggested_relation"),
-                subject_ref=item.get("subject_id", ""),
-                object_ref=item.get("object_id", ""),
-                span=item.get("span", ""),
+                subject_ref=item.get("subject_id") or item.get("subject_surface") or "",
+                object_ref=item.get("object_id") or item.get("object_surface") or "",
+                span=item.get("span") or "",
                 episode_id=episode.id,
             )
         )
@@ -164,4 +206,11 @@ def ingest_turn(
         mentions.append(episode_id=episode.id, surface=surface, ts=ts)
 
     staging.insert(props)
-    return IngestResult(episode=episode, propositions=props, unmapped=unmapped)
+    return IngestResult(
+        episode=episode,
+        propositions=props,
+        unmapped=unmapped,
+        raw_count=len(raw),
+        rejected=validation.rejected,
+        span_downgrades=validation.span_downgrades,
+    )

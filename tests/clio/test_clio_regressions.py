@@ -440,3 +440,101 @@ def test_consolidation_schedule_does_not_change_the_graph(catalog):
         "and the later retraction closes the belief -- a different axis, "
         "untouched by the above"
     )
+
+
+# --------------------------------------------------------------------- #
+# 7. an UNMAPPED item with no object id crashed ingestion                 #
+# --------------------------------------------------------------------- #
+
+
+def _unmapped_responder(shape: dict):
+    import json
+
+    def responder(prompt: str, system):
+        return json.dumps({"propositions": [shape]})
+
+    return responder
+
+
+@pytest.mark.parametrize(
+    "shape",
+    [
+        pytest.param(
+            {
+                "operation": "assert",
+                "subject_id": "new:Melanie",
+                "relation": "UNMAPPED",
+                "suggested_relation": "event_was_thought_provoking",
+                "object_id": None,
+                "polarity": True,
+                "time_expression": None,
+                "evidence_kind": "literal",
+                "span": "The event was really thought-provoking",
+            },
+            id="object_id present but null",
+        ),
+        pytest.param(
+            {
+                "operation": "assert",
+                "subject_id": "new:Melanie",
+                "relation": "UNMAPPED",
+                "suggested_relation": "adopted_pet",
+                "object_id": None,
+                "object_surface": "a cat",
+                "polarity": True,
+                "time_expression": None,
+                "evidence_kind": "literal",
+                "span": "I adopted a cat last week",
+            },
+            id="object named in object_surface, spec 4.4's own shape",
+        ),
+    ],
+)
+def test_unmapped_without_an_object_id_does_not_crash_ingestion(catalog, shape):
+    """A relation outside Sigma has no object id to give -- the model
+    sends an explicit null, or names the thing in ``object_surface`` the
+    way spec 4.4's own example does. ``.get(key, "")`` returns None for a
+    key that is PRESENT and null, so the default never applied and the
+    mention loop dereferenced it.
+    """
+    from fgl.clio.index import EntityIndex
+    from fgl.clio.ingest.pipeline import ingest_turn
+    from fgl.clio.unmapped import UnmappedQueue
+    from fgl.config import LLMConfig
+    from fgl.llm.client import FakeLLM
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    graph, staging = GraphStore(), StagingStore()
+    log, mentions = LogStore(), MentionStore()
+    queue = UnmappedQueue()
+
+    result = ingest_turn(
+        text="I adopted a cat last week",
+        speaker="Melanie",
+        session_id="s1",
+        ts=MAY,
+        log=log,
+        graph=graph,
+        staging=staging,
+        mentions=mentions,
+        entity_index=EntityIndex(HashingEmbedder(dim=64)),
+        catalog=catalog,
+        llm=FakeLLM(
+            LLMConfig(provider="fake", cache_enabled=False),
+            responder=_unmapped_responder(shape),
+        ),
+        prompts=PromptLibrary("prompts"),
+        unmapped_queue=queue,
+    )
+
+    assert result.propositions == []
+    assert len(result.unmapped) == 1
+    entry = result.unmapped[0]
+    assert entry.suggested_relation == shape["suggested_relation"]
+    assert isinstance(entry.object_ref, str), "never None -- the mention loop indexes it"
+    # the surface, when the model gave one, still reaches the mention
+    # table: a turn the catalog cannot express still MENTIONED the thing
+    expected = shape.get("object_surface")
+    surfaces = [m.surface for m in mentions.all()]
+    assert surfaces == ([expected] if expected else [])

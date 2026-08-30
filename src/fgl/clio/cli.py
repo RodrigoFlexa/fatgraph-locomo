@@ -12,6 +12,7 @@ in this repository does, so there is nothing new to configure.
 
 from __future__ import annotations
 
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -132,6 +133,14 @@ def demo(
         "--debug",
         help="On a 0-proposition turn, print the raw LLM response that produced it.",
     ),
+    debug_chars: int = typer.Option(
+        0,
+        "--debug-chars",
+        help="Truncate the --debug raw response to this many characters. "
+        "0 (the default) prints it whole -- the old 500-char cut made a "
+        "complete response look truncated, which sends you hunting for a "
+        "JSON error that is not there.",
+    ),
 ) -> None:
     """Ingests a conversation, consolidates (with folding), and answers a
     few questions -- end to end, M5 through M8.
@@ -160,12 +169,78 @@ def demo(
     backend = "FakeLLM (offline)" if fake else clio.llm.cfg.deployment
     console.print(f"[bold]Backend:[/] {backend}")
 
+    # Turn-level tallies, so the run ends with the one number that decides
+    # whether a benchmark is worth paying for: of everything the extractor
+    # produced, how much reached the graph, and where the rest went.
+    tally = {
+        "turns": 0,
+        "silent_turns": 0,
+        "raw": 0,
+        "kept": 0,
+        "unmapped": 0,
+        "span_downgraded": 0,
+    }
+    suggestions: Counter[str] = Counter()
+    rejections: Counter[str] = Counter()
+
     def _ingest_and_report(text: str, speaker: str, session_id: str, ts: datetime):
         result = clio.ingest(text, speaker=speaker, session_id=session_id, ts=ts)
-        if debug and not fake and not result.propositions:
+        tally["turns"] += 1
+        tally["raw"] += result.raw_count
+        tally["kept"] += len(result.propositions)
+        tally["unmapped"] += len(result.unmapped)
+        tally["span_downgraded"] += result.span_downgrades
+        if result.raw_count == 0:
+            tally["silent_turns"] += 1
+        for entry in result.unmapped:
+            suggestions[entry.suggested_relation or "(unnamed)"] += 1
+        for rejection in result.rejected:
+            rejections[rejection.reason] += 1
+        # A turn that produced nothing AT ALL is the only one whose raw
+        # response is worth printing. A turn that produced items which
+        # were then unmapped or rejected is explained by the counters
+        # instead -- printing its JSON just buries them.
+        if debug and not fake and result.raw_count == 0:
             raw = clio.llm.last_raw.get("text", "")
-            console.print(f"    [red]raw response:[/] {raw[:500]!r}")
+            shown = raw[:debug_chars] if debug_chars else raw
+            console.print(f"    [red]raw response:[/] {shown!r}")
         return result
+
+    def _report_extraction() -> None:
+        console.print(
+            f"\n[bold]Extraction:[/] {tally['turns']} turns, "
+            f"{tally['raw']} item(s) proposed, {tally['kept']} kept, "
+            f"{tally['unmapped']} unmapped, {sum(rejections.values())} rejected"
+        )
+        if tally["turns"]:
+            silent = tally["silent_turns"] / tally["turns"]
+            console.print(
+                f"  [dim]{tally['silent_turns']}/{tally['turns']} turns "
+                f"({silent:.0%}) produced nothing at all[/]"
+            )
+        if tally["span_downgraded"]:
+            console.print(
+                f"  [yellow]{tally['span_downgraded']} span(s) were not verbatim[/] "
+                "-> downgraded to `contextual` = confidence 0.40, below "
+                "tau_promote: each needs THREE independent episodes to "
+                "reach the graph"
+            )
+        if rejections:
+            t = Table(title="Rejected by reason (spec 6.5)")
+            t.add_column("reason")
+            t.add_column("n", justify="right")
+            for reason, n in rejections.most_common():
+                t.add_row(reason, str(n))
+            console.print(t)
+        if suggestions:
+            t = Table(title="UNMAPPED: what the catalog could not express (spec 4.4)")
+            t.add_column("suggested_relation")
+            t.add_column("n", justify="right")
+            for name, n in suggestions.most_common(15):
+                t.add_row(name, str(n))
+            console.print(t)
+            if len(suggestions) > 15:
+                console.print(f"  [dim]... and {len(suggestions) - 15} more[/]")
 
     if locomo >= 0:
         conv, turns = _load_locomo_turns(locomo, sessions, turns_per_session)
@@ -176,23 +251,27 @@ def demo(
         for ts, speaker, text in turns:
             result = _ingest_and_report(text, speaker, conv.sample_id, ts)
             console.print(
-                f"[dim]{ts.date()}[/] {speaker}: {text[:70]}  "
-                f"->  {len(result.propositions)} proposition(s)"
+                f"[dim]{ts.date()}[/] {speaker}: {text[:70]}  ->  {result.summary()}"
             )
+            if result.unmapped:
+                console.print(
+                    f"    [yellow]unmapped:[/] "
+                    f"{[u.suggested_relation for u in result.unmapped]}"
+                )
     else:
         console.print("[bold]Conversation:[/] built-in demo (Melanie)")
         for date, text in _DEMO_CONVERSATION:
             result = _ingest_and_report(
                 text, "Melanie", "demo", datetime.strptime(date, "%Y-%m-%d")
             )
-            console.print(
-                f"[dim]{date}[/] {text}  ->  {len(result.propositions)} proposition(s)"
-            )
+            console.print(f"[dim]{date}[/] {text}  ->  {result.summary()}")
             if result.unmapped:
                 console.print(
                     f"  [yellow]unmapped:[/] "
                     f"{[u.suggested_relation for u in result.unmapped]}"
                 )
+
+    _report_extraction()
 
     report = clio.consolidate()
     console.print(
@@ -207,7 +286,7 @@ def demo(
         )
 
     t = Table(title="Graph state")
-    for col in ("subject", "relation", "object", "valid", "conflict"):
+    for col in ("subject", "relation", "object", "valid", "r", "flags"):
         t.add_column(col)
     for e in clio.graph.all_edges():
         src = clio.graph.get_entity(e.src_id).canonical_name
@@ -216,7 +295,21 @@ def demo(
             f"{e.t_valid.start.date() if e.t_valid.start else '-inf'}.."
             f"{e.t_valid.end.date() if e.t_valid.end else 'now'}"
         )
-        t.add_row(src, e.label, dst, window, str(e.conflict_flag))
+        # NEG and UNANCHORED are the two states a plain valid-interval
+        # column cannot show, and both change what the edge MEANS: a
+        # denial is not a claim, and an undated fact is a volatility
+        # default rather than something the conversation actually said.
+        flags = " ".join(
+            f
+            for f, on in (
+                ("NEG", not e.polarity),
+                ("UNANCHORED", e.unanchored),
+                ("CONFLICT", e.conflict_flag),
+                ("RETRACTED", e.t_tx.end is not None),
+            )
+            if on
+        )
+        t.add_row(src, e.label, dst, window, str(e.reinforcement), flags)
     console.print(t)
 
     questions = question or (_DEMO_QUESTIONS if locomo < 0 else [])
