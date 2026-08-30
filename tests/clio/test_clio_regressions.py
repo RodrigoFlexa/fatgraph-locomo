@@ -825,3 +825,226 @@ def test_a_mistyped_id_is_still_refused_where_nothing_can_reconcile_it(catalog):
     assert result.valid == []
     assert result.rebindings == 0
     assert [r.reason for r in result.rejected] == ["object_type_violates_signature"]
+
+
+# --------------------------------------------------------------------- #
+# 13. persistence and the access ceilings (the reading-side instruments)  #
+# --------------------------------------------------------------------- #
+
+
+def test_a_memory_round_trips_through_disk(catalog, tmp_path):
+    """Every access experiment used to cost re-ingesting a whole
+    conversation. This is what makes the reading side debuggable offline,
+    so it has to round-trip EXACTLY -- the canonical form is the test,
+    because it is id-free and covers polarity, both clocks and the
+    unanchored flag."""
+    from fgl.clio.facade import Clio
+    from fgl.clio.persist import load_memory, save_memory
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(
+        catalog,
+        llm=None,
+        embedder=HashingEmbedder(dim=64),
+        prompts=PromptLibrary("prompts"),
+        config=ClioConfig.default(),
+    )
+    for pid, relation, obj, ts in [
+        ("e1_p0", "works_at", "new:Vertex", datetime(2023, 1, 14)),
+        ("e2_p0", "managed_by", "new:Bia", datetime(2023, 3, 2)),
+        ("e3_p0", "works_at", "new:Kaia", datetime(2023, 9, 5)),
+        ("e4_p0", "likes", "new:running", datetime(2023, 9, 5)),
+    ]:
+        clio.log.append(
+            session_id="s", speaker="Melanie", text="...", ts_ingest=ts, episode_id=pid
+        )
+        clio.staging.insert([_prop(pid, SPEAKER, relation, obj, ts)])
+        clio.mentions.append(episode_id=pid, surface=obj[4:], ts=ts, proposition_id=pid)
+        clio.consolidate()
+
+    before = canonical_form(clio.graph)
+    assert before
+
+    path = save_memory(clio, tmp_path / "mem.json")
+    restored = load_memory(path, catalog)
+
+    assert canonical_form(restored.graph) == before
+    assert canonical_entities(restored.graph) == canonical_entities(clio.graph)
+    assert len(restored.staging.all()) == len(clio.staging.all())
+    assert [m.entity_id for m in restored.mentions.all()] == [
+        m.entity_id for m in clio.mentions.all()
+    ]
+
+
+def test_a_restored_memory_keeps_minting_fresh_ids(catalog, tmp_path):
+    """A loaded store that restarted its counters would hand out ids that
+    collide with the ones it just read."""
+    from fgl.clio.facade import Clio
+    from fgl.clio.persist import load_memory, save_memory
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(catalog, None, HashingEmbedder(dim=64), PromptLibrary("prompts"))
+    clio.log.append(session_id="s", speaker="M", text="...", ts_ingest=MAY, episode_id="e1")
+    clio.staging.insert([_prop("e1_p0", SPEAKER, "likes", "new:running", MAY)])
+    clio.consolidate()
+
+    restored = load_memory(save_memory(clio, tmp_path / "m.json"), catalog)
+    existing = {e.id for e in restored.graph.all_entities()}
+    fresh = restored.graph.create_entity("Someone", "Person")
+    assert fresh.id not in existing
+
+
+def test_the_ceilings_are_nested(catalog, tmp_path):
+    """extraction >= promotion >= reachability, by construction: a
+    proposition cannot reach the graph without existing, and an edge
+    cannot be walked to without being in the graph. If this ever inverts,
+    the measurement is lying."""
+    from fgl.clio.access_audit import reachable_episodes
+    from fgl.clio.facade import Clio
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(catalog, None, HashingEmbedder(dim=64), PromptLibrary("prompts"))
+    for pid, relation, obj, ts in [
+        ("e1", "works_at", "new:Vertex", datetime(2023, 1, 14)),
+        ("e2", "managed_by", "new:Bia", datetime(2023, 3, 2)),
+    ]:
+        clio.log.append(
+            session_id="s", speaker="Melanie", text="...", ts_ingest=ts, episode_id=pid
+        )
+        clio.staging.insert([_prop(pid, SPEAKER, relation, obj, ts)])
+        clio.consolidate()
+
+    melanie = next(e for e in clio.graph.all_entities() if e.canonical_name == "Melanie")
+    reached = reachable_episodes(clio, [melanie.id], max_hops=6)
+    assert reached == {"e1", "e2"}
+
+    promoted_ids = {p for e in clio.graph.all_edges() for p in e.provenance}
+    assert reached <= {clio.staging.get(p).episode_id for p in promoted_ids}
+
+
+def test_an_unpromoted_proposition_is_invisible_to_the_reader(catalog):
+    """The gate gate 1 deliberately did not measure. A single implicature
+    scores 0.55, below tau_promote, so it stays in staging -- and the
+    reader walks EDGES, so its episode can never be materialised. Gate 1
+    counts that turn as covered; the reader cannot use it."""
+    from fgl.clio.access_audit import reachable_episodes
+    from fgl.clio.facade import Clio
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(catalog, None, HashingEmbedder(dim=64), PromptLibrary("prompts"))
+    clio.log.append(
+        session_id="s", speaker="Melanie", text="...", ts_ingest=MAY, episode_id="e1"
+    )
+    clio.staging.insert(
+        [
+            _prop(
+                "e1_p0",
+                SPEAKER,
+                "practices",
+                "new:climbing",
+                MAY,
+                kind=EvidenceKind.IMPLICATURE,
+                confidence=0.55,
+            )
+        ]
+    )
+    clio.consolidate()
+
+    assert clio.graph.all_edges() == [], "0.55 is below tau_promote 0.70"
+    assert clio.staging.all()[0].status == "staged"
+    people = [e for e in clio.graph.all_entities() if e.type == "Person"]
+    assert reachable_episodes(clio, [e.id for e in people], max_hops=6) == set()
+
+
+def test_the_ceilings_separate_promotion_from_reachability(catalog, tmp_path):
+    """The instrument itself needs a case with a known answer, or it can
+    report a plausible-looking lie. Two evidence turns: one whose
+    proposition reaches the graph, one that stays in staging at 0.55.
+    Extraction must see both, promotion only one, and reachability must
+    follow promotion -- and it must survive a round-trip through disk,
+    because that is how every future experiment will read it."""
+    from fgl.clio.access_audit import measure_ceilings
+    from fgl.clio.facade import Clio
+    from fgl.clio.persist import load_memory, save_memory
+    from fgl.data.locomo import Conversation, Question, Session, Turn
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(catalog, None, HashingEmbedder(dim=64), PromptLibrary("prompts"))
+    for pid, relation, obj, kind, conf in [
+        ("D1:1", "works_at", "new:Vertex", EvidenceKind.LITERAL, 0.9),
+        ("D1:2", "practices", "new:climbing", EvidenceKind.IMPLICATURE, 0.55),
+    ]:
+        clio.log.append(
+            session_id="s", speaker="Melanie", text="...", ts_ingest=MAY, episode_id=pid
+        )
+        clio.staging.insert(
+            [
+                _prop(
+                    pid + "_p",
+                    SPEAKER,
+                    relation,
+                    obj,
+                    MAY,
+                    kind=kind,
+                    confidence=conf,
+                    episode=pid,
+                )
+            ]
+        )
+    clio.consolidate()
+
+    conv = Conversation(
+        sample_id="synth",
+        speaker_a="Melanie",
+        speaker_b="Bia",
+        sessions=[
+            Session(
+                num=1,
+                date_time_raw="",
+                timestamp=MAY.isoformat(),
+                turns=[
+                    Turn(
+                        dia_id="D1:1",
+                        session_num=1,
+                        speaker="Melanie",
+                        text="I work at Vertex",
+                    ),
+                    Turn(
+                        dia_id="D1:2",
+                        session_num=1,
+                        speaker="Melanie",
+                        text="climbing again",
+                    ),
+                ],
+            )
+        ],
+        questions=[
+            Question(
+                question="Where does Melanie work?",
+                answer="Vertex",
+                category=1,
+                evidence=["D1:1"],
+            ),
+            Question(
+                question="What does Melanie do?",
+                answer="climbing",
+                category=1,
+                evidence=["D1:2"],
+            ),
+        ],
+    )
+
+    report = measure_ceilings(conv, clio, max_hops=6).to_dict()
+    assert report["ceilings"] == {
+        "extraction": 1.0,
+        "promotion": 0.5,
+        "reachability": 0.5,
+    }
+
+    restored = load_memory(save_memory(clio, tmp_path / "m.json"), catalog)
+    assert measure_ceilings(conv, restored, max_hops=6).to_dict() == report

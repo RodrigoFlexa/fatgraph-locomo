@@ -26,6 +26,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
+from fgl.clio.access.movements import evidence as clio_evidence
 from fgl.clio.catalog import Catalog, load_catalog
 from fgl.clio.config import ClioConfig
 from fgl.clio.facade import Clio
@@ -42,6 +43,12 @@ class ConversationResult:
     n_turns: int
     n_questions: int
     outcomes: list[QAOutcome] = field(default_factory=list)
+    #: one record per question of what the agent actually DID -- the
+    #: movements it chose, why, and what died. `AgentTrace` was being
+    #: built and thrown away, so a bad F1 could not be attributed to a
+    #: movement: "0.26" said the reader failed without saying where. This
+    #: is what makes the next fix measurable instead of guessed.
+    traces: list[dict] = field(default_factory=list)
     ingest_seconds: float = 0.0
     qa_seconds: float = 0.0
     n_entities: int = 0
@@ -76,7 +83,11 @@ def run_conversation(
         ts = datetime.fromisoformat(session.timestamp)
         for turn in session.turns:
             clio.ingest(
-                _turn_text(turn), speaker=turn.speaker, session_id=conv.sample_id, ts=ts
+                _turn_text(turn),
+                speaker=turn.speaker,
+                session_id=conv.sample_id,
+                ts=ts,
+                episode_id=turn.dia_id,
             )
             n_turns += 1
         clio.consolidate()  # spec's own "end of session" trigger (section 7)
@@ -85,8 +96,36 @@ def run_conversation(
     questions = conv.questions[:limit_questions] if limit_questions else conv.questions
     t0 = time.monotonic()
     outcomes: list[QAOutcome] = []
+    traces: list[dict] = []
     for q in questions:
-        prediction = clio.ask(q.prompt_question()).answer
+        trace = clio.ask(q.prompt_question())
+        prediction = trace.answer
+        state = trace.final_state
+        outcomes_trace = {
+            "question": q.question,
+            "category": q.category_name,
+            "gold": q.answer,
+            "prediction": prediction,
+            "evidence": list(q.evidence),
+            "movements": [
+                {"action": s.action, "args": s.args, "reason": s.reason}
+                for s in trace.steps
+            ],
+            "n_movements": len(trace.steps),
+            "budget_used": state.budget_used,
+            "live_trails": len(state.trails),
+            "dead_trails": state.dead_count,
+            "death_cause": state.death_cause,
+            "valid_restricted": state.valid_restricted,
+            # the episodes the answer was actually written from (P5) --
+            # an empty list with a non-abstaining answer means the model
+            # answered from nothing
+            "evidence_episodes": [
+                ep.id for ep in clio_evidence(state, clio.staging, clio.log)
+            ],
+            "count_result": trace.count_result,
+        }
+        traces.append(outcomes_trace)
         outcomes.append(
             QAOutcome(
                 question=q.question,
@@ -113,6 +152,7 @@ def run_conversation(
         n_turns=n_turns,
         n_questions=len(questions),
         outcomes=outcomes,
+        traces=traces,
         ingest_seconds=ingest_seconds,
         qa_seconds=qa_seconds,
         n_entities=len(clio.graph.all_entities()),
@@ -151,6 +191,7 @@ def run_benchmark(
         conversations = conversations[:limit_conversations]
 
     all_outcomes: list[QAOutcome] = []
+    all_traces: list[dict] = []
     per_conversation: list[dict] = []
     t0 = time.monotonic()
     for conv in conversations:
@@ -158,6 +199,7 @@ def run_benchmark(
             conv, catalog, llm, embedder, prompts, cfg, limit_questions
         )
         all_outcomes.extend(result.outcomes)
+        all_traces.extend(result.traces)
         conv_f1 = (
             sum(o.f1 for o in result.outcomes) / len(result.outcomes)
             if result.outcomes
@@ -196,5 +238,12 @@ def run_benchmark(
     with (out_dir / "predictions.jsonl").open("w", encoding="utf-8") as f:
         for o in all_outcomes:
             f.write(json.dumps(o.to_dict(), ensure_ascii=False) + "\n")
+    # separate file, not extra columns in predictions.jsonl: that file's
+    # schema is shared with every other condition in this repository and
+    # `fgl report` reads it, so widening it here would be a cross-cutting
+    # change to serve one condition's debugging
+    with (out_dir / "traces.jsonl").open("w", encoding="utf-8") as f:
+        for tr in all_traces:
+            f.write(json.dumps(tr, ensure_ascii=False) + "\n")
 
     return metrics

@@ -94,6 +94,7 @@ def ingest_turn(
     coref_window: int = 3,
     max_candidates: int = 20,
     extraction_max_tokens: int = 2000,
+    episode_id: str | None = None,
 ) -> IngestResult:
     """Spec 6.1's eight steps: append the episode, build context, extract,
     validate, resolve time, score confidence, record mentions, stage.
@@ -104,7 +105,17 @@ def ingest_turn(
     and every write from every earlier turn, including ones from a
     consolidation run that happened since the last call.
     """
-    episode = log.append(session_id=session_id, speaker=speaker, text=text, ts_ingest=ts)
+    # The caller's own id when it has one. A corpus that cites evidence by
+    # turn id (LoCoMo's "D3:12") is unmeasurable otherwise: the log would
+    # mint "ep_000041" and nothing could line an episode up with the
+    # question that depends on it.
+    episode = log.append(
+        session_id=session_id,
+        speaker=speaker,
+        text=text,
+        ts_ingest=ts,
+        episode_id=episode_id,
+    )
     entity_index.rebuild(graph)
 
     context = build_extraction_context(

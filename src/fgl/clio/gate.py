@@ -191,10 +191,14 @@ def run_gate1(
             if turn.img_caption:
                 text = f"{text} [shares {turn.img_caption}]"
             result = clio.ingest(
-                text, speaker=turn.speaker, session_id=conv.sample_id, ts=ts
+                text,
+                speaker=turn.speaker,
+                session_id=conv.sample_id,
+                ts=ts,
+                episode_id=turn.dia_id,
             )
-            # the log assigns its own episode id; key coverage by dia_id,
-            # which is what the questions cite
+            # the episode IS the dataset's turn now, so an evidence
+            # reference resolves to it directly
             covered[turn.dia_id] = bool(result.propositions)
             outcomes[turn.dia_id] = result
             report.n_turns += 1

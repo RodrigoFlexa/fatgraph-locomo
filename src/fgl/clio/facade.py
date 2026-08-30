@@ -87,7 +87,12 @@ class Clio:
         return cls(catalog, llm, embedder, PromptLibrary(prompts_dir), cfg)
 
     def ingest(
-        self, text: str, speaker: str, session_id: str, ts: datetime
+        self,
+        text: str,
+        speaker: str,
+        session_id: str,
+        ts: datetime,
+        episode_id: str | None = None,
     ) -> IngestResult:
         """Spec section 6: one LLM call, never blocks on consolidation."""
         return ingest_turn(
@@ -107,6 +112,7 @@ class Clio:
             coref_window=self.config.extraction.coref_window,
             max_candidates=self.config.extraction.max_candidates,
             extraction_max_tokens=self.config.extraction.max_tokens,
+            episode_id=episode_id,
         )
 
     def consolidate(self) -> ConsolidationReport:

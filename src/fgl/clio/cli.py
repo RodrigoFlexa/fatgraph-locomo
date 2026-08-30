@@ -473,6 +473,130 @@ def gate1(
 
 
 @clio_app.command()
+def access(
+    locomo: int = typer.Option(0, "--locomo", help="Conversation index (0-9)."),
+    memory: str = typer.Option(
+        "", "--memory", help="Memory file to load, or to write after ingesting."
+    ),
+    fake: bool = typer.Option(False, "--fake", help="Offline structural check only."),
+    no_cache: bool = typer.Option(False, "--no-cache", help="Force fresh LLM calls."),
+    max_hops: int = typer.Option(
+        6, "--max-hops", help="Traversals a perfect agent is allowed."
+    ),
+    out: str = typer.Option("", "--out", help="Write the report as JSON here."),
+) -> None:
+    """Where questions are lost: extraction, promotion, or reachability.
+
+    Three nested ceilings, each bounding the next, measured with ZERO LLM
+    calls once a memory exists on disk:
+
+      extraction    the evidence turn produced a proposition at all
+      promotion     that proposition reached the graph (passed tau_promote)
+      reachability  that edge is reachable from this question's anchor
+
+    Build a memory once and reuse it -- every later experiment on the
+    reading side is then free:
+
+        fgl clio access --locomo 0 --memory results/mem_conv0.json
+
+    The first run with --memory ingests and saves; later ones load it and
+    make no model calls at all.
+    """
+    import json as _json
+
+    from fgl.clio.access_audit import measure_ceilings
+    from fgl.clio.config import ClioConfig
+    from fgl.clio.gate import run_gate1
+    from fgl.clio.persist import load_memory, save_memory
+    from fgl.data.locomo import load_conversations
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.paths import Paths, project_root
+
+    paths = Paths.build(project_root())
+    if not paths.locomo_file.exists():
+        raise typer.BadParameter(f"LoCoMo dataset not found at {paths.locomo_file}")
+    conv = load_conversations(paths.locomo_file)[locomo]
+    cfg = ClioConfig.default()
+    catalog = load_catalog(cfg.catalog_path)
+
+    memory_path = Path(memory) if memory else None
+    if memory_path is not None and memory_path.exists():
+        console.print(f"[bold]Loading memory:[/] {memory_path} [dim](no LLM calls)[/]")
+        clio = load_memory(memory_path, catalog, config=cfg)
+    else:
+        llm, embedder = _build_backends(fake, no_cache)
+        console.print(
+            f"[bold]Backend:[/] {'FakeLLM (offline)' if fake else llm.cfg.deployment}\n"
+            f"[bold]Ingesting:[/] {conv.sample_id}, {conv.n_turns} turns"
+        )
+        done = {"n": 0}
+
+        def _on_turn(turn, result) -> None:
+            done["n"] += 1
+            if done["n"] % 50 == 0:
+                console.print(f"  [dim]{done['n']}/{conv.n_turns}[/]")
+
+        _, clio = run_gate1(
+            conv,
+            catalog,
+            llm,
+            embedder,
+            PromptLibrary(paths.prompts),
+            cfg,
+            on_turn=_on_turn,
+        )
+        if memory_path is not None:
+            save_memory(clio, memory_path)
+            console.print(f"[bold]Saved memory:[/] {memory_path}")
+
+    report = measure_ceilings(conv, clio, max_hops=max_hops)
+    d = report.to_dict()
+
+    console.print(
+        f"\n[bold]Graph:[/] {d['graph']['entities']} entities, "
+        f"{d['graph']['edges']} edges, "
+        f"{d['graph']['promoted_propositions']}/{d['graph']['propositions']} "
+        "propositions reached the graph"
+    )
+    t = Table(title=f"Access ceilings ({d['evidence_turns']} evidence turns)")
+    for col in ("stage", "evidence turns", "questions fully"):
+        t.add_column(col)
+    for stage in ("extraction", "promotion", "reachability"):
+        t.add_row(
+            stage,
+            f"{d['ceilings'][stage]:.1%}",
+            f"{d['question_ceilings'][stage]:.1%}",
+        )
+    console.print(t)
+
+    t = Table(title="By category (fraction of evidence turns)")
+    for col in ("category", "n", "extraction", "promotion", "reachability"):
+        t.add_column(col)
+    for name, row in d["per_category"].items():
+        t.add_row(
+            name,
+            str(row["n"]),
+            f"{row['extraction']:.1%}",
+            f"{row['promotion']:.1%}",
+            f"{row['reachability']:.1%}",
+        )
+    console.print(t)
+
+    if report.lost_to_promotion:
+        console.print("\n[bold yellow]Extracted but never promoted[/] (below tau_promote):")
+        for dia_id, text in report.lost_to_promotion:
+            console.print(f"  {dia_id} {text[:105]}")
+    if report.lost_to_reach:
+        console.print("\n[bold yellow]In the graph but unreachable from the anchor:[/]")
+        for dia_id, text in report.lost_to_reach:
+            console.print(f"  {dia_id} {text[:105]}")
+
+    if out:
+        Path(out).write_text(_json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")
+        console.print(f"\n[bold]Wrote:[/] {out}")
+
+
+@clio_app.command()
 def bench(
     fake: bool = typer.Option(
         False,
