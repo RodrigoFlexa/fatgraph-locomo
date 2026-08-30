@@ -52,6 +52,37 @@ def build_prompt(prompts: PromptLibrary, context: ExtractionContext) -> str:
     )
 
 
+def _coerce_propositions(raw: object) -> list[dict]:
+    """Tolerates every shape a real deployment has been observed to
+    produce, not only the one the prompt asks for.
+
+    The prompt's top-level object wrapper (``{"propositions": [...]}``,
+    not a bare array) is not a style choice: ``complete_json`` requests
+    Azure/OpenAI's JSON mode (``response_format={"type": "json_object"}``),
+    which *forbids* a top-level array outright -- measured against a real
+    deployment (gpt-4.1-mini): every single extraction call on a real
+    LoCoMo conversation returned a bare object or ``{}``, and once even a
+    literal ``{"error": "Output must be a JSON array."}``, because a bare
+    top-level array is not a legal response under that response format at
+    all. But a model given the corrected object-wrapped schema can still
+    have a good day and skip the wrapper anyway, sending the one fact
+    directly as the top-level object -- so this accepts a bare list, a
+    bare single-proposition object, and ``{"propositions": ...}`` holding
+    either a list or a single dict, rather than only the one shape asked
+    for.
+    """
+    if isinstance(raw, list):
+        return raw
+    if not isinstance(raw, dict):
+        return []
+    props = raw.get("propositions", raw)
+    if isinstance(props, list):
+        return props
+    if isinstance(props, dict):
+        return [props] if props else []
+    return []
+
+
 def extract_propositions(
     llm: LLMClient, prompts: PromptLibrary, context: ExtractionContext
 ) -> list[dict]:
@@ -61,6 +92,9 @@ def extract_propositions(
     ``llm.usage.json_failures`` rather than aborting the whole ingest."""
     prompt = build_prompt(prompts, context)
     raw = llm.complete_json(
-        prompt, system=SYSTEM_EXTRACTOR, purpose="clio_extract", default=[]
+        prompt,
+        system=SYSTEM_EXTRACTOR,
+        purpose="clio_extract",
+        default={"propositions": []},
     )
-    return raw if isinstance(raw, list) else []
+    return _coerce_propositions(raw)

@@ -23,6 +23,7 @@ from fgl.clio.consolidate.pipeline import consolidate
 from fgl.clio.graph.store import GraphStore
 from fgl.clio.index import EntityIndex
 from fgl.clio.ingest.context import build_extraction_context
+from fgl.clio.ingest.extractor import _coerce_propositions
 from fgl.clio.ingest.pipeline import ingest_turn
 from fgl.clio.ingest.validate import validate_and_bind
 from fgl.clio.log.mentions import MentionStore
@@ -86,6 +87,60 @@ def test_context_carries_the_coreference_window_not_further():
     index.rebuild(graph)
     ctx = build_extraction_context(ep, log, index, catalog, coref_window=2)
     assert [e.text for e in ctx.previous_turns] == ["turn 3", "turn 4"]
+
+
+# --------------------------------------------------------------------- #
+# _coerce_propositions: every shape observed on a real deployment          #
+# (gpt-4.1-mini, Azure JSON mode) once the top-level-array bug in the      #
+# prompt was found and fixed -- Azure/OpenAI's response_format=json_object #
+# FORBIDS a top-level array outright, which is why the prompt now asks    #
+# for {"propositions": [...]}, and why this still has to tolerate a model #
+# that skips the wrapper on a good day.                                   #
+# --------------------------------------------------------------------- #
+_ONE_FACT = {"operation": "assert", "relation": "works_at", "span": "..."}
+
+
+def test_coerce_accepts_the_documented_wrapped_shape():
+    assert _coerce_propositions({"propositions": [_ONE_FACT]}) == [_ONE_FACT]
+
+
+def test_coerce_accepts_wrapper_holding_a_bare_dict_not_a_list():
+    assert _coerce_propositions({"propositions": _ONE_FACT}) == [_ONE_FACT]
+
+
+def test_coerce_accepts_the_wrapper_skipped_entirely():
+    """Observed for real: the model emits the one fact directly as the
+    top-level object, with no "propositions" key at all."""
+    assert _coerce_propositions(_ONE_FACT) == [_ONE_FACT]
+
+
+def test_coerce_accepts_a_bare_list_too():
+    """Not what the prompt asks for, but not wrong either -- FakeLLM and
+    any future non-JSON-mode backend can return this directly."""
+    assert _coerce_propositions([_ONE_FACT]) == [_ONE_FACT]
+
+
+def test_coerce_empty_object_means_nothing_extracted():
+    """Observed for real: json_object mode's closest legal stand-in for
+    "nothing to report" when the model wants to return []."""
+    assert _coerce_propositions({}) == []
+    assert _coerce_propositions({"propositions": []}) == []
+
+
+def test_coerce_an_unrelated_object_produces_no_crash():
+    """Observed for real: '{"error": "Output must be a JSON array."}' --
+    the model correctly diagnosing the OLD prompt's bug and still being
+    unable to comply under json_object mode. Must not crash; validate_and_bind
+    downstream will reject it for missing required fields regardless."""
+    assert _coerce_propositions({"error": "Output must be a JSON array."}) == [
+        {"error": "Output must be a JSON array."}
+    ]
+
+
+def test_coerce_tolerates_garbage_types():
+    assert _coerce_propositions(None) == []
+    assert _coerce_propositions("not json-shaped") == []
+    assert _coerce_propositions(42) == []
 
 
 # --------------------------------------------------------------------- #
@@ -293,7 +348,7 @@ def _scripted_responder(prompt: str, system):
     # would replay turn N's facts on turn N+1 as a false match.
     for turn_text, facts in _SCRIPT.items():
         if f'THIS TURN:\n"{turn_text}"' in prompt:
-            return json.dumps(facts)
+            return json.dumps({"propositions": facts})
     return "[]"
 
 

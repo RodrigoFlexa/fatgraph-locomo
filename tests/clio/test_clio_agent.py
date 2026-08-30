@@ -71,7 +71,7 @@ _EXTRACT_SCRIPT: dict[str, list[dict]] = {
 def _extract_responder(prompt: str, system):
     for turn_text, facts in _EXTRACT_SCRIPT.items():
         if f'THIS TURN:\n"{turn_text}"' in prompt:
-            return json.dumps(facts)
+            return json.dumps({"propositions": facts})
     return "[]"
 
 

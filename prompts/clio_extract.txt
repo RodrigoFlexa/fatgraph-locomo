@@ -47,17 +47,22 @@ REQUIRED RULES:
    "she", "they" as an id.
 6. span must be a VERBATIM excerpt of THIS TURN.
 7. If there is nothing worth remembering long-term (small talk, a bare
-   question, a greeting), return [].
+   question, a greeting), return an empty list for "propositions".
+8. Always return every proposition you found, not just the first one. A
+   single turn commonly supports more than one.
 
-Return ONLY a JSON array, no prose, in this shape:
-[{{
-  "operation": "assert|reassert|close|retract",
-  "subject_id": "ent_xxx | new:Name",
-  "relation": "relation_name | UNMAPPED",
-  "suggested_relation": "string | null",
-  "object_id": "ent_xxx | new:Name",
-  "polarity": true,
-  "time_expression": "string | null",
-  "evidence_kind": "literal|coreference|implicature|contextual",
-  "span": "verbatim excerpt"
-}}]
+Return ONLY a JSON object, no prose, in this shape -- "propositions" is a
+JSON ARRAY even when it holds only one item or none at all:
+{{"propositions": [
+  {{
+    "operation": "assert|reassert|close|retract",
+    "subject_id": "ent_xxx | new:Name",
+    "relation": "relation_name | UNMAPPED",
+    "suggested_relation": "string | null",
+    "object_id": "ent_xxx | new:Name",
+    "polarity": true,
+    "time_expression": "string | null",
+    "evidence_kind": "literal|coreference|implicature|contextual",
+    "span": "verbatim excerpt"
+  }}
+]}}

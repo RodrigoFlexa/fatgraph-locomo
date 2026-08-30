@@ -234,7 +234,7 @@ def demo_fake_responder():
         if task == "clio_extract":
             for turn_text, facts in _EXTRACT_SCRIPT.items():
                 if f'THIS TURN:\n"{turn_text}"' in prompt:
-                    return json.dumps(facts)
+                    return json.dumps({"propositions": facts})
             return "[]"
         if task == "clio_agent":
             m = re.search(r"^QUESTION:\s*(.+)$", prompt, flags=re.MULTILINE)
