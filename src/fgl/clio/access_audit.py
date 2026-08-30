@@ -44,10 +44,14 @@ class CeilingRow:
     extracted: int = 0
     promoted: int = 0
     reachable: int = 0
+    episodic: int = 0
+    combined: int = 0
     #: questions all of whose evidence turns clear each bar
     full_extracted: int = 0
     full_promoted: int = 0
     full_reachable: int = 0
+    full_episodic: int = 0
+    full_combined: int = 0
 
     @property
     def name(self) -> str:
@@ -93,6 +97,14 @@ class CeilingReport:
                 "promotion": round(self._sum("full_promoted") / questions, 4),
                 "reachability": round(self._sum("full_reachable") / questions, 4),
             },
+            "episodic_anchor": {
+                "evidence_turns": round(self._sum("episodic") / turns, 4),
+                "questions_fully": round(self._sum("full_episodic") / questions, 4),
+            },
+            "combined_access": {
+                "evidence_turns": round(self._sum("combined") / turns, 4),
+                "questions_fully": round(self._sum("full_combined") / questions, 4),
+            },
             "per_category": {
                 r.name: {
                     "n": r.n_questions,
@@ -100,6 +112,8 @@ class CeilingReport:
                     "extraction": round(r.extracted / (r.evidence_turns or 1), 4),
                     "promotion": round(r.promoted / (r.evidence_turns or 1), 4),
                     "reachability": round(r.reachable / (r.evidence_turns or 1), 4),
+                    "episodic_anchor": round(r.episodic / (r.evidence_turns or 1), 4),
+                    "combined_access": round(r.combined / (r.evidence_turns or 1), 4),
                     "questions_fully_reachable": r.full_reachable,
                 }
                 for r in sorted(self.per_category.values(), key=lambda r: r.category)
@@ -179,12 +193,26 @@ def measure_ceilings(
         row = report.per_category.setdefault(q.category, CeilingRow(q.category))
         row.n_questions += 1
 
-        state = anchor(q.prompt_question(), clio.graph, index=clio.entity_index, k=5)
+        state = anchor(
+            q.prompt_question(),
+            clio.graph,
+            index=clio.entity_index,
+            episode_index=clio.episode_index,
+            k=5,
+            episode_k=clio.config.access.anchor_episode_k,
+        )
+        episodic = set(state.candidate_episode_ids)
         reach = reachable_episodes(
             clio, [t.vertex_id for t in state.trails], max_hops=max_hops
         )
 
-        hits = {"extracted": 0, "promoted": 0, "reachable": 0}
+        hits = {
+            "extracted": 0,
+            "promoted": 0,
+            "reachable": 0,
+            "episodic": 0,
+            "combined": 0,
+        }
         total = 0
         for dia_id in q.evidence:
             if dia_id not in by_dia:
@@ -213,6 +241,12 @@ def measure_ceilings(
                 turn = conv.turn_by_id(dia_id)
                 if turn is not None:
                     report.lost_to_reach.append((dia_id, f"{turn.speaker}: {turn.text}"))
+            if dia_id in episodic:
+                hits["episodic"] += 1
+                row.episodic += 1
+            if dia_id in reach or dia_id in episodic:
+                hits["combined"] += 1
+                row.combined += 1
 
         if total and hits["extracted"] == total:
             row.full_extracted += 1
@@ -220,6 +254,10 @@ def measure_ceilings(
             row.full_promoted += 1
         if total and hits["reachable"] == total:
             row.full_reachable += 1
+        if total and hits["episodic"] == total:
+            row.full_episodic += 1
+        if total and hits["combined"] == total:
+            row.full_combined += 1
 
     return report
 

@@ -62,6 +62,13 @@ class AccessConfig:
     ppr_alpha: float = 0.15
     #: hop radius `expand`'s spreading activation is restricted to
     expand_max_hops: int = 2
+    #: hard cap after relevance ranking; prevents a high-degree speaker from
+    #: flooding both the next decision prompt and the final answer.
+    trail_limit: int = 20
+    #: direct log candidates contributed by the episodic half of anchor.
+    anchor_episode_k: int = 5
+    #: source episodes the answer writer may see after deterministic ranking.
+    answer_evidence_limit: int = 12
 
 
 @dataclass

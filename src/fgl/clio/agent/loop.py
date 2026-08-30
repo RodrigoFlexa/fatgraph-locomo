@@ -25,6 +25,7 @@ from fgl.clio.access.movements import (
     follow,
     history,
     restrict,
+    select_evidence,
 )
 from fgl.clio.access.render import render_state
 from fgl.clio.access.state import AccessState, Trail
@@ -44,6 +45,7 @@ _ACTIONS = (
     "filter",
     "expand",
     "history",
+    "evidence",
     "count",
     "answer",
 )
@@ -74,7 +76,11 @@ def _parse_date(s: str | None) -> datetime | None:
 
 def _decide(memory: Any, question: str, state: AccessState) -> dict:
     rendered = render_state(
-        state, memory.graph, memory.catalog, memory.config.access.movement_budget
+        state,
+        memory.graph,
+        memory.catalog,
+        memory.config.access.movement_budget,
+        log=memory.log,
     )
     prompt = memory.prompts.render(
         "clio_agent", question=question, state_json=json.dumps(rendered, indent=2)
@@ -94,11 +100,36 @@ def _apply_movement(
     action: str, args: dict, state: AccessState, memory: Any
 ) -> AccessState:
     if action == "anchor":
-        return anchor(
+        anchored = anchor(
             args.get("text", ""),
             memory.graph,
             index=memory.entity_index,
+            episode_index=memory.episode_index,
+            episode_k=memory.config.access.anchor_episode_k,
             tx_point=state.tx_point,
+        )
+        if not state.query:
+            return anchored
+        # A later anchor adds a second entry point; it must not erase the
+        # path, temporal restriction, evidence, or budget already spent.
+        by_vertex = {t.vertex_id: t for t in state.trails}
+        for trail in anchored.trails:
+            previous = by_vertex.get(trail.vertex_id)
+            if previous is None or trail.score > previous.score:
+                by_vertex[trail.vertex_id] = trail
+        candidate_episode_ids = tuple(
+            dict.fromkeys((*state.candidate_episode_ids, *anchored.candidate_episode_ids))
+        )
+        return AccessState(
+            trails=list(by_vertex.values()),
+            tx_point=state.tx_point,
+            dead_count=state.dead_count,
+            death_cause=state.death_cause,
+            budget_used=state.budget_used + 1,
+            valid_restricted=state.valid_restricted,
+            candidate_episode_ids=candidate_episode_ids,
+            evidence_ids=state.evidence_ids,
+            query=state.query,
         )
     if action == "follow":
         return follow(state, args["label"], memory.graph, memory.catalog)
@@ -122,19 +153,86 @@ def _apply_movement(
     if action == "history":
         entries = history(state, args["label"], memory.graph, memory.catalog)
         trails = [
-            Trail(vertex_id=e.vertex_id, window=e.t_valid, labels=(args["label"],))
+            Trail(
+                vertex_id=e.vertex_id,
+                window=e.t_valid,
+                path=e.provenance,
+                labels=(args["label"],),
+            )
             for e in entries
         ]
         return AccessState(
-            trails=trails, tx_point=state.tx_point, budget_used=state.budget_used + 1
+            trails=trails,
+            tx_point=state.tx_point,
+            budget_used=state.budget_used + 1,
+            valid_restricted=state.valid_restricted,
+            candidate_episode_ids=state.candidate_episode_ids,
+            evidence_ids=state.evidence_ids,
+            query=state.query,
         )
+    if action == "evidence":
+        episode_ids = args.get("episode_ids", [])
+        if not isinstance(episode_ids, list) or not all(
+            isinstance(episode_id, str) for episode_id in episode_ids
+        ):
+            raise ValueError("evidence.episode_ids must be a list of strings")
+        return select_evidence(state, episode_ids)
     raise ValueError(f"{action!r} is not a state-producing movement")
+
+
+def _prune_state(
+    state: AccessState, memory: Any, episode_scores: dict[str, float]
+) -> AccessState:
+    """Rank valid trails by question relevance, then enforce a finite fan-out."""
+    ranked: list[Trail] = []
+    for trail in state.trails:
+        scores = []
+        for proposition_id in trail.path:
+            try:
+                episode_id = memory.staging.get(proposition_id).episode_id
+            except KeyError:
+                continue
+            scores.append(episode_scores.get(episode_id, 0.0))
+        score = max([trail.score, *scores])
+        ranked.append(
+            Trail(
+                trail.vertex_id,
+                trail.window,
+                trail.path,
+                trail.labels,
+                score,
+            )
+        )
+    ranked.sort(key=lambda trail: (-trail.score, len(trail.path), trail.vertex_id))
+    candidate_episode_ids = tuple(
+        sorted(
+            dict.fromkeys(state.candidate_episode_ids),
+            key=lambda episode_id: -episode_scores.get(episode_id, 0.0),
+        )
+    )
+    return AccessState(
+        trails=ranked[: memory.config.access.trail_limit],
+        tx_point=state.tx_point,
+        dead_count=state.dead_count,
+        death_cause=state.death_cause,
+        budget_used=state.budget_used,
+        valid_restricted=state.valid_restricted,
+        candidate_episode_ids=candidate_episode_ids,
+        evidence_ids=state.evidence_ids,
+        query=state.query,
+    )
 
 
 def run_agent_loop(question: str, memory: Any) -> AgentTrace:
     trace = AgentTrace(question=question)
     state = AccessState(trails=[], tx_point=datetime.now())
     budget = memory.config.access.movement_budget
+    episode_scores = {
+        episode.id: score
+        for episode, score in memory.episode_index.search_scored(
+            question, k=min(50, len(memory.log.all())), min_score=-1.0
+        )
+    }
 
     for _ in range(budget):
         decision = _decide(memory, question, state)
@@ -152,10 +250,13 @@ def run_agent_loop(question: str, memory: Any) -> AgentTrace:
                 memory.graph,
                 entity=args.get("entity"),
                 surface=args.get("surface"),
+                start=_parse_date(args.get("start")),
+                end=_parse_date(args.get("end")),
             )
             break
         try:
             state = _apply_movement(action, args, state, memory)
+            state = _prune_state(state, memory, episode_scores)
         except (UnknownLabel, KeyError, ValueError):
             # A bad tool call (unknown label, missing arg) stops movement
             # rather than crashing the whole question -- the agent answers
@@ -176,5 +277,6 @@ def run_agent_loop(question: str, memory: Any) -> AgentTrace:
             memory.graph,
             memory.staging,
             memory.log,
+            max_episodes=memory.config.access.answer_evidence_limit,
         )
     return trace

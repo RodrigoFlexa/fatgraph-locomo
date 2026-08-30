@@ -22,7 +22,7 @@ from __future__ import annotations
 import json
 import time
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 
@@ -31,7 +31,13 @@ from fgl.clio.catalog import Catalog, load_catalog
 from fgl.clio.config import ClioConfig
 from fgl.clio.facade import Clio
 from fgl.data.locomo import Conversation, load_conversations
-from fgl.evaluation.scorer import QAOutcome, aggregate, is_abstention, score_question
+from fgl.evaluation.scorer import (
+    QAOutcome,
+    aggregate,
+    evidence_recall,
+    is_abstention,
+    score_question,
+)
 from fgl.llm.client import LLMClient
 from fgl.llm.prompts import PromptLibrary
 from fgl.retrieval.embeddings import Embedder
@@ -98,9 +104,16 @@ def run_conversation(
     outcomes: list[QAOutcome] = []
     traces: list[dict] = []
     for q in questions:
+        calls_before = llm.usage.calls
+        prompt_tokens_before = llm.usage.prompt_tokens
+        completion_tokens_before = llm.usage.completion_tokens
         trace = clio.ask(q.prompt_question())
         prediction = trace.answer
         state = trace.final_state
+        evidence_episodes = clio_evidence(state, clio.staging, clio.log)
+        retrieved_turn_ids = [episode.id for episode in evidence_episodes]
+        prompt_tokens = llm.usage.prompt_tokens - prompt_tokens_before
+        completion_tokens = llm.usage.completion_tokens - completion_tokens_before
         outcomes_trace = {
             "question": q.question,
             "category": q.category_name,
@@ -120,10 +133,11 @@ def run_conversation(
             # the episodes the answer was actually written from (P5) --
             # an empty list with a non-abstaining answer means the model
             # answered from nothing
-            "evidence_episodes": [
-                ep.id for ep in clio_evidence(state, clio.staging, clio.log)
-            ],
+            "evidence_episodes": retrieved_turn_ids,
             "count_result": trace.count_result,
+            "llm_calls": llm.usage.calls - calls_before,
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
         }
         traces.append(outcomes_trace)
         outcomes.append(
@@ -134,14 +148,13 @@ def run_conversation(
                 prediction=prediction,
                 f1=score_question(q, prediction),
                 evidence=q.evidence,
+                retrieved_turn_ids=retrieved_turn_ids,
+                recall={"recall_context": evidence_recall(q.evidence, retrieved_turn_ids)},
                 n_facts=len(clio.graph.all_edges()),
-                # Not measured: CLIO's answer isn't one retrieved "context"
-                # the way a RAG condition's is -- it is the agent loop's
-                # own trajectory of several prompts. 0 here is honest
-                # (spec's own tokens_per_f1_point column degrades to 0.0
-                # on an all-zero tokens_context, per aggregate()), not a
-                # placeholder pretending to be a measurement.
-                tokens_context=0,
+                # For an agentic reader the comparable finite resource is
+                # every prompt token spent deciding and answering this
+                # question, not a fictitious single RAG context.
+                tokens_context=prompt_tokens,
                 abstained=is_abstention(prediction),
             )
         )
@@ -173,6 +186,7 @@ def run_benchmark(
     condition_name: str = "CLIO",
     prompts_dir: str | Path | None = None,
     on_conversation_done: Callable[[Conversation, ConversationResult], None] | None = None,
+    save_memory_snapshots: bool = True,
 ) -> dict:
     """Runs every (or the first ``limit_conversations``) LoCoMo
     conversation through CLIO end to end and writes the results directory
@@ -190,6 +204,8 @@ def run_benchmark(
     if limit_conversations:
         conversations = conversations[:limit_conversations]
 
+    out_dir = Path(results_dir) / condition_name
+    out_dir.mkdir(parents=True, exist_ok=True)
     all_outcomes: list[QAOutcome] = []
     all_traces: list[dict] = []
     per_conversation: list[dict] = []
@@ -218,6 +234,10 @@ def run_benchmark(
                 "qa_seconds": round(result.qa_seconds, 1),
             }
         )
+        if save_memory_snapshots:
+            from fgl.clio.persist import save_memory
+
+            save_memory(clio, out_dir / f"memory_{conv.sample_id}.json")
         if on_conversation_done:
             on_conversation_done(conv, result)
 
@@ -227,11 +247,17 @@ def run_benchmark(
         **aggregate(all_outcomes),
         "per_conversation": per_conversation,
         "cost": llm.usage.to_dict(),
+        "clio_run": {
+            "config": asdict(cfg),
+            "llm_provider": getattr(llm.cfg, "provider", type(llm).__name__),
+            "llm_deployment": getattr(llm.cfg, "deployment", ""),
+            "embedder": type(embedder).__name__,
+            "embedder_tag": getattr(embedder, "tag", ""),
+            "memory_snapshots": save_memory_snapshots,
+        },
         "wall_seconds": round(wall_seconds, 1),
     }
 
-    out_dir = Path(results_dir) / condition_name
-    out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "metrics.json").write_text(
         json.dumps(metrics, indent=2, ensure_ascii=False), encoding="utf-8"
     )

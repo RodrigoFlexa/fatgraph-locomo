@@ -6,6 +6,7 @@ staging without a deterministic check that CODE, not the model, decided.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 from fgl.clio.catalog import Catalog
@@ -24,6 +25,28 @@ REQUIRED_FIELDS = (
 
 def _normalize_ws(text: str) -> str:
     return " ".join((text or "").split()).lower()
+
+
+def _verbatim_span(span: str, episode_text: str) -> str | None:
+    """Return the exact usable span, tolerating only decorative outer quotes.
+
+    Models often serialize a perfectly literal excerpt as ``\"I play clarinet\"``
+    even though the quote marks are not present in the turn.  Treating that as
+    contextual drops confidence from 0.90 to 0.40 for punctuation, not evidence.
+    No interior edits or fuzzy matching are allowed here.
+    """
+    candidates = [span.strip()]
+    if (
+        len(candidates[0]) >= 2
+        and candidates[0][0] == candidates[0][-1]
+        and candidates[0][0] in "\"'"
+    ):
+        candidates.append(candidates[0][1:-1].strip())
+    normalized_episode = _normalize_ws(episode_text)
+    for candidate in candidates:
+        if candidate and _normalize_ws(candidate) in normalized_episode:
+            return candidate
+    return None
 
 
 def _type_compatible(
@@ -108,6 +131,37 @@ def _looks_like_a_person_name(ref: str | None) -> bool:
         return True  # an existing id was already type-checked
     name = ref[len("new:") :].strip()
     return any(token[:1].isupper() for token in name.split() if token)
+
+
+def _bind_first_person_subject(
+    item: dict, spec, episode: Episode, graph: GraphStore
+) -> tuple[dict, int]:
+    """Bind singular first-person Person claims to the canonical speaker.
+
+    The extractor is still free to create a collective for ``we``. What it
+    may not do is reuse that collective as the subject of a later ``I``/``me``
+    claim merely because dense candidate search ranked it near the speaker.
+    """
+    if spec.signature[0] != PERSON_TYPE:
+        return item, 0
+    raw_span = item.get("span") or ""
+    # Never let a hallucinated/non-verbatim span rewrite the graph address.
+    # Such spans are downgraded later, but they are not reliable coreference.
+    verbatim = _verbatim_span(raw_span, episode.text)
+    if verbatim is None:
+        return item, 0
+    span = verbatim.strip(" \t\r\n\"'").casefold()
+    if re.match(r"^we(?:\b|['’])", span):
+        return item, 0
+    singular = bool(re.search(r"\b(?:i|me|my|mine|myself)\b|\bi['’](?:m|ve|d|ll)\b", span))
+    ref = item.get("subject_id")
+    if not singular or not ref:
+        return item, 0
+    speaker = graph.find_entity_by_name_in_types(episode.speaker, {PERSON_TYPE})
+    canonical_ref = speaker.id if speaker is not None else f"new:{episode.speaker}"
+    if ref == canonical_ref:
+        return item, 0
+    return {**item, "subject_id": canonical_ref}, 1
 
 
 @dataclass
@@ -240,6 +294,8 @@ def validate_and_bind(
             continue
 
         spec = catalog[relation]
+        item, speaker_rebound = _bind_first_person_subject(item, spec, episode, graph)
+        result.rebindings += speaker_rebound
         item, rebound = _rebind_type_mismatches(item, spec, graph, catalog)
         result.rebindings += rebound
         if not _type_compatible(item.get("subject_id"), spec.signature[0], graph, catalog):
@@ -255,10 +311,13 @@ def validate_and_bind(
             continue
 
         span = item.get("span") or ""
-        if _normalize_ws(span) not in _normalize_ws(episode.text):
+        verbatim = _verbatim_span(span, episode.text)
+        if verbatim is None:
             # not a literal excerpt after all -- the evidence is weaker
             # than the model claimed (spec 6.5), not grounds to drop it
             item = {**item, "evidence_kind": "contextual"}
             result.span_downgrades += 1
+        elif verbatim != span:
+            item = {**item, "span": verbatim}
         result.valid.append(item)
     return result

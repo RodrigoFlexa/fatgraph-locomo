@@ -1045,6 +1045,12 @@ def test_the_ceilings_separate_promotion_from_reachability(catalog, tmp_path):
         "promotion": 0.5,
         "reachability": 0.5,
     }
+    # The episodic side can still retrieve the staged-only turn, so the
+    # combined ceiling is intentionally higher than graph reachability.
+    assert report["combined_access"] == {
+        "evidence_turns": 1.0,
+        "questions_fully": 1.0,
+    }
 
     restored = load_memory(save_memory(clio, tmp_path / "m.json"), catalog)
     assert measure_ceilings(conv, restored, max_hops=6).to_dict() == report

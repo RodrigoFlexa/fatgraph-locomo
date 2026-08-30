@@ -66,6 +66,7 @@ def test_context_finds_known_entities_as_candidates():
     ids = {c.id for c in ctx.candidates}
     assert vertex.id in ids
     assert melanie.id not in ids  # not mentioned by name in this turn
+    assert ctx.speaker_entity_id == melanie.id
     assert any(r.name == "works_at" for r in ctx.relations)
 
 
@@ -236,6 +237,73 @@ def test_validate_downgrades_evidence_when_span_is_not_verbatim():
     ]
     valid, _ = validate_and_bind(raw, ep, graph, catalog)
     assert valid[0]["evidence_kind"] == "contextual"
+
+
+def test_validate_ignores_only_decorative_outer_quotes_on_a_literal_span():
+    catalog = load_catalog(ClioConfig.default().catalog_path)
+    graph = GraphStore()
+    from fgl.clio.types import Episode
+
+    ep = Episode(
+        id="e1",
+        session_id="s1",
+        speaker="Melanie",
+        text="Yeah, I play clarinet!",
+        ts_ingest=datetime(2023, 1, 1),
+        seq=0,
+    )
+    raw = [
+        {
+            "operation": "assert",
+            "subject_id": "new:Melanie",
+            "relation": "practices",
+            "object_id": "new:clarinet",
+            "polarity": True,
+            "time_expression": None,
+            "evidence_kind": "literal",
+            "span": '"I play clarinet!"',
+        }
+    ]
+
+    result = validate_and_bind(raw, ep, graph, catalog)
+
+    assert result.span_downgrades == 0
+    assert result.valid[0]["evidence_kind"] == "literal"
+    assert result.valid[0]["span"] == "I play clarinet!"
+
+
+def test_validate_rebinds_singular_first_person_from_a_collective_to_speaker():
+    catalog = load_catalog(ClioConfig.default().catalog_path)
+    graph = GraphStore()
+    speaker = graph.create_entity("Caroline", "Person")
+    collective = graph.create_entity("Caroline and her mentee", "Person")
+    from fgl.clio.types import Episode
+
+    ep = Episode(
+        id="e1",
+        session_id="s1",
+        speaker="Caroline",
+        text="I went hiking last week",
+        ts_ingest=datetime(2023, 1, 1),
+        seq=0,
+    )
+    raw = [
+        {
+            "operation": "assert",
+            "subject_id": collective.id,
+            "relation": "attended",
+            "object_id": "new:hike",
+            "polarity": True,
+            "time_expression": "last week",
+            "evidence_kind": "literal",
+            "span": "I went hiking last week",
+        }
+    ]
+
+    result = validate_and_bind(raw, ep, graph, catalog)
+
+    assert result.rebindings == 1
+    assert result.valid[0]["subject_id"] == speaker.id
 
 
 def test_validate_rejects_type_mismatch_against_a_known_entity():

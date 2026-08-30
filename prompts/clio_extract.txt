@@ -6,6 +6,7 @@ conversation between two people. A proposition is a single claim of the
 shape (subject, relation, object) grounded in what THIS turn actually says.
 
 SPEAKER OF THIS TURN: {speaker}
+CANONICAL SPEAKER ENTITY: {speaker_entity_id}
 DATE OF THIS TURN: {turn_date}
 
 PREVIOUS TURNS (context only, to resolve pronouns -- do not extract facts
@@ -45,6 +46,10 @@ REQUIRED RULES:
 5. subject_id/object_id: an id from the list above, or "new:<name>". Resolve
    pronouns to a real name using the previous turns; never leave "I", "he",
    "she", "they" as an id.
+5a. First-person singular references (I, me, my, mine) MUST use
+    {speaker_entity_id}. Never bind them to a group or another Person candidate.
+    "We" may denote a group, but that group must not replace the speaker in
+    later first-person singular turns.
 5b. Check the TYPE shown beside each known id before you use it. The id
    must be the right kind of thing for the slot: a relation written
    "(Person -> Activity)" needs a Person id as subject and an Activity id

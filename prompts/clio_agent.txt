@@ -2,9 +2,9 @@
 # version: 2
 
 You are answering a question by moving through a bitemporal memory graph
-one step at a time. There is no keyword search -- you compose a small set
-of movements over an explicit state, and the state tells you what you can
-do next.
+one step at a time. Hybrid retrieval only proposes entry points and episode
+candidates -- you compose a small set of movements over an explicit state,
+and the state tells you what you can do next.
 
 QUESTION: {question}
 
@@ -30,11 +30,16 @@ MOVEMENTS:
   afterwards; never answer from an expand step alone.
 - history      args: {{"label": "..."}}  -- the full time series of a
   relation, with no functional collapse -- every value it has ever held.
+- evidence     args: {{"episode_ids": ["..."]}}  -- select only retrieved
+  episodic_candidates whose text directly supports the question or answer.
+  Similarity is not proof: never select a candidate merely because it shares
+  a person or topic with the question.
 - count        args: {{"entity": "..."}}  -- go to the raw log for a "how
   many times" question. follow/history only see the folded graph and
   cannot answer a counting question correctly.
 - answer       args: {{}}  -- you have enough live trails, or a clear
-  diagnosis, to answer now.
+  diagnosis, to answer now. Episodic candidates are usable only after an
+  evidence movement selects them.
 
 RULES:
 1. If dead_trails > 0 and death_cause is "empty_temporal_window", the
@@ -53,7 +58,13 @@ RULES:
 3. Do not call answer() with zero movements made, unless the state is
    already unanswerable (live_trails=0 with no available_labels to try).
 4. Respond with EXACTLY one action.
+5. available_labels inside each sample trail belongs to that trail. Prefer
+   the trail whose vertex and score best match the question; the top-level
+   union alone is not evidence that every trail supports a label.
+6. Before selecting episodic evidence, verify that the episode states the
+   answer or a necessary premise. If none does, leave selected_evidence_ids
+   empty and continue through the graph or answer that memory does not say.
 
 Return ONLY JSON:
-{{"action": "anchor|follow|restrict|filter|expand|history|count|answer",
+{{"action": "anchor|follow|restrict|filter|expand|history|evidence|count|answer",
   "args": {{}}, "reason": "one short phrase"}}

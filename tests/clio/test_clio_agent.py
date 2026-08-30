@@ -196,15 +196,82 @@ def test_count_action_returns_the_number_directly_without_an_llm_call():
     assert scripted.answer_prompts == []  # the answer LLM call never happened
 
 
+def test_a_second_anchor_adds_a_seed_without_resetting_the_budget():
+    scripted = ScriptedAgent(
+        agent_steps=[
+            {"action": "anchor", "args": {"text": "Melanie"}, "reason": "first"},
+            {"action": "anchor", "args": {"text": "Caroline"}, "reason": "second"},
+            {"action": "answer", "args": {}, "reason": "both anchored"},
+        ],
+        final_answer="Not mentioned in the conversation",
+    )
+    clio = _build_clio(scripted)
+    clio.graph.create_entity("Melanie", "Person")
+    clio.graph.create_entity("Caroline", "Person")
+
+    trace = clio.ask("What did Melanie and Caroline do together?")
+
+    names = {
+        clio.graph.get_entity(t.vertex_id).canonical_name for t in trace.final_state.trails
+    }
+    assert names == {"Melanie", "Caroline"}
+    assert trace.final_state.budget_used == 2
+
+
+def test_agent_must_select_an_episodic_candidate_before_answering_from_it():
+    scripted = ScriptedAgent(
+        agent_steps=[
+            {
+                "action": "anchor",
+                "args": {"text": "adoption agencies"},
+                "reason": "retrieve candidates",
+            },
+            {
+                "action": "evidence",
+                "args": {"episode_ids": ["e1"]},
+                "reason": "the turn directly states the answer",
+            },
+            {"action": "answer", "args": {}, "reason": "grounded"},
+        ],
+        final_answer="Adoption agencies",
+    )
+    clio = _build_clio(scripted)
+    clio.log.append(
+        session_id="s",
+        speaker="Caroline",
+        text="I researched adoption agencies.",
+        ts_ingest=datetime(2023, 5, 25),
+        episode_id="e1",
+    )
+    clio.episode_index.rebuild(clio.log)
+
+    trace = clio.ask("What did Caroline research?")
+
+    assert trace.final_state.candidate_episode_ids == ("e1",)
+    assert trace.final_state.evidence_ids == ("e1",)
+    assert "I researched adoption agencies." in scripted.answer_prompts[0]
+
+
 @pytest.mark.parametrize(
     "action",
-    ["anchor", "follow", "restrict", "filter", "expand", "history", "count", "answer"],
+    [
+        "anchor",
+        "follow",
+        "restrict",
+        "filter",
+        "expand",
+        "history",
+        "evidence",
+        "count",
+        "answer",
+    ],
 )
 def test_every_documented_action_is_recognised(action):
-    """A decision naming any of spec 10.1's eight movements must not be
-    treated as malformed -- checked directly against the loop's own
-    action whitelist rather than trusting the prompt text to stay in
-    sync with the code."""
+    """Every movement plus the terminal answer control must be accepted.
+
+    Checked directly against the loop's own action whitelist rather than
+    trusting the prompt text to stay in sync with the code.
+    """
     from fgl.clio.agent.loop import _ACTIONS
 
     assert action in _ACTIONS

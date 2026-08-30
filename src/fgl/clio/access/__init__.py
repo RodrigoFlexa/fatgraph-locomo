@@ -10,6 +10,7 @@ from fgl.clio.access.movements import (
     follow,
     history,
     restrict,
+    select_evidence,
 )
 from fgl.clio.access.render import render_state
 from fgl.clio.access.state import AccessState, Trail
@@ -25,6 +26,7 @@ __all__ = [
     "filter_trails",
     "expand",
     "history",
+    "select_evidence",
     "evidence",
     "count",
     "available_labels",

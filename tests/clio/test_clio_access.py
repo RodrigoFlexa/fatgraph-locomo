@@ -175,6 +175,44 @@ def test_anchor_returns_no_trails_for_an_unknown_name(memory: HandFedMemory):
     assert state.trails == []
 
 
+def test_anchor_can_retrieve_an_unmapped_episode_directly_from_the_log():
+    from fgl.clio.graph.store import GraphStore
+    from fgl.clio.index import EpisodeIndex
+    from fgl.clio.log.store import LogStore
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    log = LogStore()
+    log.append(
+        session_id="s",
+        speaker="Melanie",
+        text="I researched adoption agencies",
+        ts_ingest=TODAY,
+        episode_id="e1",
+    )
+    episode_index = EpisodeIndex(HashingEmbedder(dim=128))
+    episode_index.rebuild(log)
+
+    state = access.anchor(
+        "What adoption agencies did Melanie research?",
+        GraphStore(),
+        episode_index=episode_index,
+    )
+
+    assert state.trails == []
+    assert state.candidate_episode_ids == ("e1",)
+    assert state.evidence_ids == ()
+
+    state = access.select_evidence(state, ["e1"])
+    assert state.evidence_ids == ("e1",)
+
+
+def test_evidence_selection_rejects_an_episode_outside_the_candidate_set():
+    state = access.AccessState(trails=[], candidate_episode_ids=("e1",))
+
+    with pytest.raises(ValueError, match="not retrieved candidates"):
+        access.select_evidence(state, ["invented"])
+
+
 def test_available_labels_reflects_real_out_edges(memory: HandFedMemory):
     state = _anchor_melanie(memory)
     labels = access.available_labels(state, memory.graph, memory.catalog)
@@ -194,3 +232,32 @@ def test_expand_never_reintroduces_the_seed_itself(memory: HandFedMemory):
     state = _anchor_melanie(memory)
     expanded = access.expand(state, memory.graph, k=2)
     assert memory.entity("Melanie").id not in {t.vertex_id for t in expanded.trails}
+
+
+def test_expand_preserves_the_seed_window_and_provenance(memory: HandFedMemory):
+    """Associative expansion may choose a vertex; it may not erase history."""
+    state = _anchor_melanie(memory)
+    state = access.follow(state, "works_at", memory.graph, memory.catalog)
+    seed = state.trails[0]
+    alternate = access.Trail(
+        seed.vertex_id,
+        Interval(seed.window.start, TODAY),
+        seed.path,
+        seed.labels,
+        seed.score,
+    )
+    state.trails = [seed, alternate]
+    source_provenance = {(t.window, t.path) for t in state.trails}
+
+    expanded = access.expand(state, memory.graph, k=2)
+
+    assert expanded.trails
+    assert source_provenance <= {(t.window, t.path) for t in expanded.trails}
+
+
+def test_history_keeps_provenance_for_episode_materialisation(memory: HandFedMemory):
+    entries = access.history(
+        _anchor_melanie(memory), "works_at", memory.graph, memory.catalog
+    )
+    assert entries
+    assert all(entry.provenance for entry in entries)

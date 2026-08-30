@@ -12,6 +12,7 @@ from fgl.clio.access.movements import available_labels
 from fgl.clio.access.state import AccessState
 from fgl.clio.catalog import Catalog
 from fgl.clio.graph.store import GraphStore
+from fgl.clio.log.store import LogStore
 from fgl.clio.types import Interval
 
 
@@ -26,7 +27,8 @@ def render_state(
     graph: GraphStore,
     catalog: Catalog,
     budget_total: int,
-    sample_size: int = 5,
+    log: LogStore | None = None,
+    sample_size: int = 10,
 ) -> dict:
     sample = []
     for t in state.trails[:sample_size]:
@@ -38,20 +40,41 @@ def render_state(
                 "window": _format_window(t.window),
                 "hops": len(t.labels),
                 "labels": list(t.labels),
+                "score": round(t.score, 4),
+                "available_labels": available_labels(
+                    AccessState([t], state.tx_point), graph, catalog
+                ),
             }
         )
     labels: set[str] = set()
     for t in state.trails:
         labels |= set(available_labels(AccessState([t], state.tx_point), graph, catalog))
+    candidate_sample = []
+    if log is not None:
+        for episode_id in state.candidate_episode_ids[:5]:
+            try:
+                episode = log.get(episode_id)
+            except KeyError:
+                continue
+            candidate_sample.append(
+                {
+                    "episode_id": episode.id,
+                    "speaker": episode.speaker,
+                    "text": episode.text[:240],
+                }
+            )
     return {
         "live_trails": len(state.trails),
         "sample": sample,
         "dead_trails": state.dead_count,
         "death_cause": state.death_cause,
         "available_labels": sorted(labels),
+        "episodic_candidates": candidate_sample,
+        "selected_evidence_ids": list(state.evidence_ids),
         "tx_point": state.tx_point.date().isoformat()
         if isinstance(state.tx_point, datetime)
         else str(state.tx_point),
         "budget_used": state.budget_used,
         "budget_left": max(0, budget_total - state.budget_used),
+        "query": state.query,
     }

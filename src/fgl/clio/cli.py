@@ -487,8 +487,8 @@ def access(
 ) -> None:
     """Where questions are lost: extraction, promotion, or reachability.
 
-    Three nested ceilings, each bounding the next, measured with ZERO LLM
-    calls once a memory exists on disk:
+    Three nested graph ceilings plus an independent episodic-retrieval
+    ceiling, measured with ZERO LLM calls once a memory exists on disk:
 
       extraction    the evidence turn produced a proposition at all
       promotion     that proposition reached the graph (passed tau_promote)
@@ -522,7 +522,11 @@ def access(
     memory_path = Path(memory) if memory else None
     if memory_path is not None and memory_path.exists():
         console.print(f"[bold]Loading memory:[/] {memory_path} [dim](no LLM calls)[/]")
-        clio = load_memory(memory_path, catalog, config=cfg)
+        # Rebuild the query indexes with the same configured embedder used by
+        # a live benchmark. Falling back silently to HashingEmbedder here made
+        # access ceilings incomparable with end-to-end results.
+        _, embedder = _build_backends(fake, no_cache)
+        clio = load_memory(memory_path, catalog, embedder=embedder, config=cfg)
     else:
         llm, embedder = _build_backends(fake, no_cache)
         console.print(
@@ -567,10 +571,28 @@ def access(
             f"{d['ceilings'][stage]:.1%}",
             f"{d['question_ceilings'][stage]:.1%}",
         )
+    t.add_row(
+        "episodic_anchor",
+        f"{d['episodic_anchor']['evidence_turns']:.1%}",
+        f"{d['episodic_anchor']['questions_fully']:.1%}",
+    )
+    t.add_row(
+        "combined_access",
+        f"{d['combined_access']['evidence_turns']:.1%}",
+        f"{d['combined_access']['questions_fully']:.1%}",
+    )
     console.print(t)
 
     t = Table(title="By category (fraction of evidence turns)")
-    for col in ("category", "n", "extraction", "promotion", "reachability"):
+    for col in (
+        "category",
+        "n",
+        "extraction",
+        "promotion",
+        "reachability",
+        "episodic",
+        "combined",
+    ):
         t.add_column(col)
     for name, row in d["per_category"].items():
         t.add_row(
@@ -579,6 +601,8 @@ def access(
             f"{row['extraction']:.1%}",
             f"{row['promotion']:.1%}",
             f"{row['reachability']:.1%}",
+            f"{row['episodic_anchor']:.1%}",
+            f"{row['combined_access']:.1%}",
         )
     console.print(t)
 

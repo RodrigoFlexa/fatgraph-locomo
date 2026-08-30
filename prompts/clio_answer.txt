@@ -21,9 +21,14 @@ DIAGNOSIS (only relevant if there is no live evidence above):
 {diagnosis}
 
 RULES:
-1. Answer with a SHORT extractive phrase, reusing the wording of the
-   episodes wherever possible. No full sentence, no restating the
-   question.
+1. Answer with a SHORT phrase that directly matches the requested answer
+   type. Reuse episode wording for names and factual values; do not dump a
+   list of every related memory.
+1a. For a WHEN question, convert relative wording using the structured
+    validity window and return the normalized calendar date or period. Do
+    not answer "last week before <date>" when the window provides the date.
+1b. For WOULD/LIKELY/WHY questions, make the smallest well-supported
+    inference from the episodes. State the conclusion, not merely the clues.
 2. If DIAGNOSIS says the premise involves an empty temporal window, say
    the premise appears to be false, and name the conflicting periods.
 3. If DIAGNOSIS says the information was retracted, say there is no
@@ -35,6 +40,9 @@ RULES:
    May 2023") rather than stating a precise day that was never given.
 6. If there is no evidence and no useful diagnosis, answer EXACTLY:
    Not mentioned in the conversation
-7. Never guess and never use outside knowledge.
+7. Never invent a personal fact. Ordinary reasoning needed to interpret the
+   supplied evidence is allowed; unrelated outside facts are not.
+8. Prefer at most 12 words unless the gold concept genuinely has multiple
+   requested items.
 
 SHORT ANSWER:

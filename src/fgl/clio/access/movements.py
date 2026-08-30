@@ -6,6 +6,7 @@ prior classification of the question.
 
 from __future__ import annotations
 
+from collections import defaultdict, deque
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Literal
@@ -28,6 +29,7 @@ __all__ = [
     "filter_trails",
     "expand",
     "history",
+    "select_evidence",
     "evidence",
     "count",
     "classify_death",
@@ -64,7 +66,9 @@ def anchor(
     text: str,
     graph: GraphStore,
     index=None,
+    episode_index=None,
     k: int = 5,
+    episode_k: int = 5,
     tx_point: datetime | None = None,
 ) -> AccessState:
     """Entry point: finds vertices to start trails from. ``index`` is an
@@ -73,11 +77,27 @@ def anchor(
     still makes this usable standalone.
     """
     if index is not None:
-        entity_ids = [e.id for e in index.search(text, k=k)]
+        entity_hits = index.search_scored(text, k=k)
     else:
-        entity_ids = _lexical_entity_search(text, graph, k)
-    trails = [Trail(vertex_id=eid, window=Interval(None, None)) for eid in entity_ids]
-    return AccessState(trails=trails, tx_point=tx_point or datetime.now())
+        entity_hits = [
+            (graph.get_entity(eid), 1.0) for eid in _lexical_entity_search(text, graph, k)
+        ]
+    trails = [
+        Trail(vertex_id=ent.id, window=Interval(None, None), score=score)
+        for ent, score in entity_hits
+    ]
+    episode_ids: tuple[str, ...] = ()
+    if episode_index is not None:
+        episode_ids = tuple(
+            ep.id for ep, _ in episode_index.search_scored(text, k=episode_k)
+        )
+    return AccessState(
+        trails=trails,
+        tx_point=tx_point or datetime.now(),
+        budget_used=1,
+        candidate_episode_ids=episode_ids,
+        query=text,
+    )
 
 
 # --------------------------------------------------------------------- #
@@ -179,6 +199,7 @@ def follow(
                     window=w,
                     path=t.path + tuple(e.provenance),
                     labels=t.labels + (label,),
+                    score=t.score,
                 )
             )
             matched = True
@@ -193,6 +214,9 @@ def follow(
         death_cause=cause if not new_trails else None,
         budget_used=state.budget_used + 1,
         valid_restricted=state.valid_restricted,
+        candidate_episode_ids=state.candidate_episode_ids,
+        evidence_ids=state.evidence_ids,
+        query=state.query,
     )
 
 
@@ -219,13 +243,16 @@ def restrict(
             tx_point=interval.start or state.tx_point,
             budget_used=state.budget_used + 1,
             valid_restricted=state.valid_restricted,
+            candidate_episode_ids=state.candidate_episode_ids,
+            evidence_ids=state.evidence_ids,
+            query=state.query,
         )
     if axis == "valid":
         new_trails = []
         for t in state.trails:
             w = t.window.intersect(interval)
             if w is not None:
-                new_trails.append(Trail(t.vertex_id, w, t.path, t.labels))
+                new_trails.append(Trail(t.vertex_id, w, t.path, t.labels, t.score))
         dead = len(state.trails) - len(new_trails)
         return AccessState(
             trails=new_trails,
@@ -234,6 +261,9 @@ def restrict(
             death_cause="empty_temporal_window" if dead and not new_trails else None,
             budget_used=state.budget_used + 1,
             valid_restricted=True,
+            candidate_episode_ids=state.candidate_episode_ids,
+            evidence_ids=state.evidence_ids,
+            query=state.query,
         )
     raise ValueError(f"restrict: axis must be 'valid' or 'tx', got {axis!r}")
 
@@ -274,6 +304,9 @@ def filter_trails(
         death_cause="filtered_out" if dead and not kept else None,
         budget_used=state.budget_used + 1,
         valid_restricted=state.valid_restricted,
+        candidate_episode_ids=state.candidate_episode_ids,
+        evidence_ids=state.evidence_ids,
+        query=state.query,
     )
 
 
@@ -290,10 +323,10 @@ def expand(
     alpha: float = 0.15,
 ) -> AccessState:
     """Associative spreading activation (spec 9.5) for when the question
-    does not name a relation. Expansion trails carry an OPEN window and an
-    empty path on purpose: PPR does not track which seed reached a vertex
-    by which route, so the only honest claim is "associatively nearby" --
-    a real, checkable path is what a subsequent ``follow`` has to supply.
+    does not name a relation. PPR ranks nearby vertices; a bounded BFS maps
+    each result back to a seed so its temporal window and prior provenance
+    remain intact. A subsequent ``follow`` must still supply a real relation
+    for the associative hop itself.
     """
     if not state.trails:
         return state
@@ -301,10 +334,42 @@ def expand(
     scores = personalized_pagerank(graph, seeds, state.tx_point, alpha=alpha, max_hops=k)
     ranked = sorted((v for v in scores if v not in seeds), key=lambda v: -scores[v])
     top = ranked[:expand_k]
-    new_trails = [
-        Trail(vertex_id=v, window=Interval(None, None), path=(), labels=("expand",))
-        for v in top
-    ]
+    # Associate every expanded vertex with its nearest seed so the seed's
+    # temporal window and provenance survive the associative detour.  PPR
+    # ranks candidates; this bounded BFS supplies the provenance-preserving
+    # origin that PPR itself intentionally does not return.
+    by_vertex: dict[str, list[Trail]] = defaultdict(list)
+    for trail in state.trails:
+        by_vertex[trail.vertex_id].append(trail)
+    origins = {vertex_id: vertex_id for vertex_id in by_vertex}
+    frontier = deque((vertex_id, 0) for vertex_id in by_vertex)
+    while frontier:
+        vertex, depth = frontier.popleft()
+        if depth >= k:
+            continue
+        for edge in graph.edges_incident(vertex, live_only=True):
+            if not edge.t_tx.contains(state.tx_point):
+                continue
+            other = edge.dst_id if edge.src_id == vertex else edge.src_id
+            if other in origins:
+                continue
+            origins[other] = origins[vertex]
+            frontier.append((other, depth + 1))
+    new_trails = []
+    for vertex in top:
+        seed_vertex_id = origins.get(vertex)
+        if seed_vertex_id is None:
+            continue
+        for seed in by_vertex[seed_vertex_id]:
+            new_trails.append(
+                Trail(
+                    vertex_id=vertex,
+                    window=seed.window,
+                    path=seed.path,
+                    labels=seed.labels + ("expand",),
+                    score=max(seed.score, scores.get(vertex, 0.0)),
+                )
+            )
     return AccessState(
         trails=new_trails,
         tx_point=state.tx_point,
@@ -312,6 +377,9 @@ def expand(
         death_cause=None if new_trails else "no_edge_with_label",
         budget_used=state.budget_used + 1,
         valid_restricted=state.valid_restricted,
+        candidate_episode_ids=state.candidate_episode_ids,
+        evidence_ids=state.evidence_ids,
+        query=state.query,
     )
 
 
@@ -325,6 +393,35 @@ class HistoryEntry:
     vertex_id: str
     t_valid: Interval
     edge_id: str
+    provenance: tuple[str, ...] = ()
+
+
+def select_evidence(
+    state: AccessState, episode_ids: list[str] | tuple[str, ...]
+) -> AccessState:
+    """Promote retrieved episode candidates to answer evidence.
+
+    Selection is deliberately separate from retrieval.  A dense neighbour is
+    a useful reading candidate, not proof.  Unknown ids are rejected so an LLM
+    cannot fabricate provenance or reach outside the bounded candidate set.
+    """
+    requested = tuple(dict.fromkeys(episode_ids))
+    candidates = set(state.candidate_episode_ids)
+    unknown = [episode_id for episode_id in requested if episode_id not in candidates]
+    if unknown:
+        raise ValueError(f"episodes were not retrieved candidates: {unknown!r}")
+    selected = tuple(dict.fromkeys((*state.evidence_ids, *requested)))
+    return AccessState(
+        trails=state.trails,
+        tx_point=state.tx_point,
+        dead_count=state.dead_count,
+        death_cause=state.death_cause,
+        budget_used=state.budget_used + 1,
+        valid_restricted=state.valid_restricted,
+        candidate_episode_ids=state.candidate_episode_ids,
+        evidence_ids=selected,
+        query=state.query,
+    )
 
 
 def history(
@@ -345,7 +442,7 @@ def history(
             if not e.polarity:
                 continue  # a denial is not a value the relation ever held
             seen.add(e.id)
-            out.append(HistoryEntry(neighbor, e.t_valid, e.id))
+            out.append(HistoryEntry(neighbor, e.t_valid, e.id, tuple(e.provenance)))
     out.sort(key=lambda h: h.t_valid.start or datetime.min)
     return out
 
@@ -359,15 +456,23 @@ def evidence(state: AccessState, staging: StagingStore, log: LogStore) -> list[E
     """Materialises the raw episode text behind every live trail (spec
     P5): the answer is written from THIS, never from the proposition that
     merely located it."""
-    episode_ids: list[str] = []
-    seen: set[str] = set()
+    episode_ids: list[str] = list(state.evidence_ids)
+    seen: set[str] = set(episode_ids)
     for t in state.trails:
         for prop_id in t.path:
             eid = staging.get(prop_id).episode_id
             if eid not in seen:
                 seen.add(eid)
                 episode_ids.append(eid)
-    return [log.get(eid) for eid in episode_ids]
+    episodes = []
+    for episode_id in episode_ids:
+        try:
+            episodes.append(log.get(episode_id))
+        except KeyError:
+            # A corrupt imported snapshot should not take down every answer;
+            # persistence validation remains responsible for reporting it.
+            continue
+    return episodes
 
 
 # --------------------------------------------------------------------- #

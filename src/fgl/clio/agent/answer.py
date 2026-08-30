@@ -21,7 +21,8 @@ def _render_episodes(episodes) -> str:
     if not episodes:
         return "(no evidence retrieved)"
     return "\n".join(
-        f"[{e.ts_ingest.strftime('%d %B %Y')}] {e.speaker}: {e.text}" for e in episodes
+        f"[{e.id}; {e.ts_ingest.strftime('%d %B %Y')}] {e.speaker}: {e.text}"
+        for e in episodes
     )
 
 
@@ -32,21 +33,40 @@ def _format_window(window: Interval) -> str:
     return f"{start} -> {end}{hedge}"
 
 
-def _render_facts(state: AccessState, graph: GraphStore) -> str:
+def _render_facts(state: AccessState, graph: GraphStore, staging: StagingStore) -> str:
     if not state.trails:
         return "(no live facts)"
     lines = []
+    seen: set[str] = set()
     for t in state.trails:
-        ent = graph.get_entity(t.vertex_id)
-        via = "/".join(t.labels) or "anchor"
-        lines.append(
-            f"- {ent.canonical_name} ({ent.type}), valid {_format_window(t.window)}, via {via}"
-        )
+        for proposition_id in t.path:
+            if proposition_id in seen:
+                continue
+            seen.add(proposition_id)
+            try:
+                proposition = staging.get(proposition_id)
+                subject = graph.get_entity(proposition.subject_id).canonical_name
+                object_ = graph.get_entity(proposition.object_id).canonical_name
+            except KeyError:
+                continue
+            polarity = "" if proposition.polarity else "NOT "
+            lines.append(
+                f"- {subject} --{polarity}{proposition.relation}--> {object_}; "
+                f"valid {_format_window(proposition.t_valid)}; source {proposition.episode_id}"
+            )
+    if not lines:
+        for trail in state.trails:
+            entity = graph.get_entity(trail.vertex_id)
+            via = "/".join(trail.labels) or "anchor"
+            lines.append(
+                f"- {entity.canonical_name} ({entity.type}), "
+                f"valid {_format_window(trail.window)}, via {via}"
+            )
     return "\n".join(lines)
 
 
 def _render_diagnosis(state: AccessState) -> str:
-    if state.trails:
+    if state.is_alive:
         return "(not needed -- live evidence above)"
     cause = state.death_cause or "no movement has been made yet"
     return f"No live trail survived. Cause: {cause}."
@@ -60,13 +80,14 @@ def generate_answer(
     graph: GraphStore,
     staging: StagingStore,
     log: LogStore,
+    max_episodes: int = 12,
 ) -> str:
-    episodes = evidence(state, staging, log)
+    episodes = evidence(state, staging, log)[:max_episodes]
     prompt = prompts.render(
         "clio_answer",
         question=question,
         episodes=_render_episodes(episodes),
-        facts=_render_facts(state, graph),
+        facts=_render_facts(state, graph, staging),
         diagnosis=_render_diagnosis(state),
     )
     return llm.complete(

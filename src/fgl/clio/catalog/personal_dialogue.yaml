@@ -155,3 +155,65 @@ relations:
     cardinality: multi
     volatility: slow
     invertible: false
+
+  # --- high-value relations mined from LoCoMo's UNMAPPED queue ---
+  # These are deliberately canonical families, not one label per phrasing.
+  - name: researches
+    signature: [Person, Topic]
+    cardinality: multi
+    volatility: fast
+    invertible: false
+
+  - name: created
+    signature: [Person, Object]
+    cardinality: multi
+    volatility: static
+    invertible: true
+    inverse_name: created_by
+
+  - name: member_of
+    signature: [Person, Organization]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: has_member
+
+  - name: supports
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: supported_by
+
+  - name: received_support_from
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: slow
+    invertible: true
+    inverse_name: gave_support_to
+
+  - name: parent_of
+    signature: [Person, Person]
+    cardinality: multi
+    volatility: static
+    invertible: true
+    inverse_name: child_of
+
+  - name: married_to
+    signature: [Person, Person]
+    cardinality: functional
+    volatility: slow
+    invertible: true
+    inverse_name: married_to
+
+  - name: learned
+    signature: [Person, Topic]
+    cardinality: multi
+    volatility: slow
+    invertible: false
+
+  - name: symbolizes
+    signature: [Topic, Topic]
+    cardinality: multi
+    volatility: static
+    invertible: false

@@ -44,6 +44,7 @@ def build_prompt(prompts: PromptLibrary, context: ExtractionContext) -> str:
     return prompts.render(
         "clio_extract",
         speaker=context.episode.speaker,
+        speaker_entity_id=context.speaker_entity_id or f"new:{context.episode.speaker}",
         turn_date=context.episode.ts_ingest.strftime("%d %B %Y"),
         previous_turns=_render_previous_turns(context.previous_turns),
         turn_text=context.episode.text,

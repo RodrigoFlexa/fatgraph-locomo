@@ -20,6 +20,7 @@ class ExtractionContext:
     previous_turns: list[Episode]
     candidates: list[Entity]
     relations: list[RelationSpec]
+    speaker_entity_id: str | None = None
 
 
 def build_extraction_context(
@@ -38,8 +39,21 @@ def build_extraction_context(
     pulling in a POS tagger this package otherwise has no use for)."""
     previous = log.previous_turns(episode, coref_window)
     candidates = entity_index.search(episode.text, k=max_candidates)
+    # Candidate retrieval may be approximate; the identity of the person
+    # speaking is not.  Put that canonical vertex first so a collective such
+    # as "Caroline and her mentee" cannot steal later first-person facts.
+    speaker_entity = entity_index.exact_person(episode.speaker)
+    # The id is exposed separately in the prompt rather than consuming a
+    # semantic candidate slot. That keeps candidate search honest while
+    # making first-person binding deterministic.
     types_present = {c.type for c in candidates} | {
         "Person"
     }  # the speaker is always a Person
     relations = catalog.filter_by_types(types_present)
-    return ExtractionContext(episode, previous, candidates, relations)
+    return ExtractionContext(
+        episode,
+        previous,
+        candidates,
+        relations,
+        speaker_entity.id if speaker_entity is not None else None,
+    )

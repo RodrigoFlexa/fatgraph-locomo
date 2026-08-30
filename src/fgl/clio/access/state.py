@@ -28,6 +28,10 @@ class Trail:
     path: tuple[str, ...] = ()
     #: labels traversed, kept only to explain a trail to the reader/agent
     labels: tuple[str, ...] = ()
+    #: retrieval relevance carried across movements.  Algebraic validity is
+    #: still decided exclusively by the intervals/path above; this score only
+    #: decides which of many valid trails fit in the reader's finite budget.
+    score: float = 0.0
 
 
 @dataclass
@@ -51,7 +55,19 @@ class AccessState:
     #: never narrowed from one the caller deliberately narrowed to
     #: everything.
     valid_restricted: bool = False
+    #: Episodes found by the episodic half of ``anchor``. Candidates are shown
+    #: to the reader, but are not answer evidence until an explicit
+    #: ``select_evidence`` movement promotes them. This distinction prevents a
+    #: merely similar turn from silently supporting a false premise.
+    candidate_episode_ids: tuple[str, ...] = ()
+    #: Candidate episodes explicitly selected as support by the reader.  They
+    #: live on the state rather than on a synthetic graph vertex: P1 says the
+    #: log is truth, and an UNMAPPED turn must remain retrievable even when
+    #: Sigma has no edge capable of locating it yet.
+    evidence_ids: tuple[str, ...] = ()
+    #: Original query retained for deterministic ranking and diagnostics.
+    query: str = ""
 
     @property
     def is_alive(self) -> bool:
-        return bool(self.trails)
+        return bool(self.trails or self.evidence_ids)
