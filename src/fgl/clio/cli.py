@@ -127,6 +127,11 @@ def demo(
         "--no-cache",
         help="Force fresh LLM calls instead of reusing the on-disk cache.",
     ),
+    debug: bool = typer.Option(
+        False,
+        "--debug",
+        help="On a 0-proposition turn, print the raw LLM response that produced it.",
+    ),
 ) -> None:
     """Ingests a conversation, consolidates (with folding), and answers a
     few questions -- end to end, M5 through M8.
@@ -144,10 +149,23 @@ def demo(
     Against a real LoCoMo conversation instead of the built-in toy one:
 
         fgl clio demo --locomo 0 --sessions 3
+
+    Every turn extracting 0 propositions is NOT normal on real dialogue --
+    diagnose it with --debug --no-cache (the second flag forces a fresh
+    call so you see what the model says now, not a replayed empty result):
+
+        fgl clio demo --locomo 0 --sessions 2 --debug --no-cache
     """
     clio = _build_clio(fake, no_cache=no_cache)
     backend = "FakeLLM (offline)" if fake else clio.llm.cfg.deployment
     console.print(f"[bold]Backend:[/] {backend}")
+
+    def _ingest_and_report(text: str, speaker: str, session_id: str, ts: datetime):
+        result = clio.ingest(text, speaker=speaker, session_id=session_id, ts=ts)
+        if debug and not fake and not result.propositions:
+            raw = clio.llm.last_raw.get("text", "")
+            console.print(f"    [red]raw response:[/] {raw[:500]!r}")
+        return result
 
     if locomo >= 0:
         conv, turns = _load_locomo_turns(locomo, sessions, turns_per_session)
@@ -156,7 +174,7 @@ def demo(
             f"({conv.speaker_a} & {conv.speaker_b}), {len(turns)} turns"
         )
         for ts, speaker, text in turns:
-            result = clio.ingest(text, speaker=speaker, session_id=conv.sample_id, ts=ts)
+            result = _ingest_and_report(text, speaker, conv.sample_id, ts)
             console.print(
                 f"[dim]{ts.date()}[/] {speaker}: {text[:70]}  "
                 f"->  {len(result.propositions)} proposition(s)"
@@ -164,11 +182,8 @@ def demo(
     else:
         console.print("[bold]Conversation:[/] built-in demo (Melanie)")
         for date, text in _DEMO_CONVERSATION:
-            result = clio.ingest(
-                text,
-                speaker="Melanie",
-                session_id="demo",
-                ts=datetime.strptime(date, "%Y-%m-%d"),
+            result = _ingest_and_report(
+                text, "Melanie", "demo", datetime.strptime(date, "%Y-%m-%d")
             )
             console.print(
                 f"[dim]{date}[/] {text}  ->  {len(result.propositions)} proposition(s)"
@@ -216,8 +231,16 @@ def demo(
         u = clio.llm.usage
         console.print(
             f"\n[dim]LLM usage: {u.calls} calls, {u.total_tokens} tokens, "
-            f"{u.empty_responses} empty[/]"
+            f"{u.empty_responses} empty, {u.json_failures} JSON parse failures[/]"
         )
+        if u.json_failures:
+            console.print(
+                f"[yellow]{u.json_failures} extraction responses did not parse as "
+                "JSON and silently became 0 propositions each -- rerun with "
+                "--debug --no-cache to see one raw response and find out why "
+                "(markdown fences, a truncated/reasoning-truncated response, "
+                "or a different schema than the prompt asked for).[/]"
+            )
 
 
 @clio_app.command()
