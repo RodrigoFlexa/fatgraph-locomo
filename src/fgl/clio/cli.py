@@ -407,8 +407,16 @@ def gate1(
         f"\n[bold]Extraction:[/] {report.raw_items} proposed, "
         f"{report.kept_items} kept, {report.unmapped_items} unmapped, "
         f"{report.rejected_items} rejected  "
-        f"({report.turns_with_propositions}/{report.n_turns} turns produced something)"
+        f"({report.turns_with_propositions}/{report.n_turns} turns produced something, "
+        f"{report.turns_fully_suppressed} proposed something that was wholly refused)"
     )
+    if report.rejections_by_reason:
+        t = Table(title="Rejected by reason")
+        t.add_column("reason")
+        t.add_column("n", justify="right")
+        for reason, n in sorted(report.rejections_by_reason.items(), key=lambda kv: -kv[1]):
+            t.add_row(reason, str(n))
+        console.print(t)
     console.print(
         f"[bold]GATE 1 -- evidence turn coverage:[/] "
         f"[bold cyan]{report.turn_coverage:.1%}[/] "
@@ -416,6 +424,13 @@ def gate1(
         f"questions fully covered: {report.fully_covered_questions}/"
         f"{report.n_questions}"
     )
+    silent = len(report.evidence_turns_silent)
+    suppressed = len(report.evidence_turns_fully_suppressed)
+    if silent or suppressed:
+        console.print(
+            f"  [dim]uncovered evidence turns: {silent} the model said nothing "
+            f"about, {suppressed} it spoke about and the pipeline refused[/]"
+        )
     if report.dangling_evidence:
         console.print(
             f"  [dim]{len(report.dangling_evidence)} evidence id(s) cited by a "

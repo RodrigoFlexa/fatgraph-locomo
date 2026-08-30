@@ -84,6 +84,20 @@ class GateReport:
     kept_items: int = 0
     unmapped_items: int = 0
     rejected_items: int = 0
+    #: rejections by reason. Reporting only the TOTAL was a real gap: the
+    #: coverage number says the memory is missing turns, and this is what
+    #: says whether the pipeline threw them away on purpose and under
+    #: which rule -- so a rule costing more recall than it buys precision
+    #: can be found and reverted instead of suspected.
+    rejections_by_reason: dict[str, int] = field(default_factory=dict)
+    #: turns where the model DID propose something and none of it
+    #: survived. Distinct from a silent turn in the way that matters: the
+    #: model saw a fact worth stating and the pipeline refused it.
+    turns_fully_suppressed: int = 0
+    #: uncovered evidence turns, split by cause
+    evidence_turns_fully_suppressed: list[str] = field(default_factory=list)
+    evidence_turns_silent: list[str] = field(default_factory=list)
+    span_downgrades: int = 0
 
     @property
     def evidence_turns(self) -> int:
@@ -123,7 +137,16 @@ class GateReport:
                 "kept": self.kept_items,
                 "unmapped": self.unmapped_items,
                 "rejected": self.rejected_items,
+                "rejections_by_reason": dict(
+                    sorted(self.rejections_by_reason.items(), key=lambda kv: -kv[1])
+                ),
+                "span_downgrades": self.span_downgrades,
                 "turns_with_propositions": self.turns_with_propositions,
+                "turns_fully_suppressed": self.turns_fully_suppressed,
+            },
+            "uncovered_evidence": {
+                "silent": sorted(self.evidence_turns_silent),
+                "suppressed": sorted(self.evidence_turns_fully_suppressed),
             },
             "per_category": {
                 c.name: {
@@ -160,6 +183,7 @@ def run_gate1(
     report = GateReport(sample_id=conv.sample_id)
 
     covered: dict[str, bool] = {}
+    outcomes: dict[str, object] = {}
     for session in conv.sessions:
         ts = datetime.fromisoformat(session.timestamp)
         for turn in session.turns:
@@ -172,13 +196,21 @@ def run_gate1(
             # the log assigns its own episode id; key coverage by dia_id,
             # which is what the questions cite
             covered[turn.dia_id] = bool(result.propositions)
+            outcomes[turn.dia_id] = result
             report.n_turns += 1
             report.raw_items += result.raw_count
             report.kept_items += len(result.propositions)
             report.unmapped_items += len(result.unmapped)
             report.rejected_items += len(result.rejected)
+            report.span_downgrades += result.span_downgrades
+            for rejection in result.rejected:
+                report.rejections_by_reason[rejection.reason] = (
+                    report.rejections_by_reason.get(rejection.reason, 0) + 1
+                )
             if result.propositions:
                 report.turns_with_propositions += 1
+            elif result.raw_count > 0:
+                report.turns_fully_suppressed += 1
             if on_turn is not None:
                 on_turn(turn, result)
         clio.consolidate()
@@ -215,12 +247,35 @@ def run_gate1(
         else:
             cat.partially_covered += 1
 
+    # Split the uncovered evidence by CAUSE. "The model said nothing" and
+    # "the model spoke and the pipeline refused it" are different failures
+    # with different fixes -- a prompt problem versus a validation-rule
+    # problem -- and one coverage number hides which one you are looking at.
+    for dia_id in per_question_uncovered:
+        result = outcomes.get(dia_id)
+        if result is None:
+            continue
+        if getattr(result, "raw_count", 0) > 0:
+            report.evidence_turns_fully_suppressed.append(dia_id)
+        else:
+            report.evidence_turns_silent.append(dia_id)
+
     for dia_id, _ in sorted(per_question_uncovered.items(), key=lambda kv: -kv[1])[
         :max_examples
     ]:
         turn = conv.turn_by_id(dia_id)
-        if turn is not None:
-            report.uncovered_examples.append((dia_id, f"{turn.speaker}: {turn.text}"))
+        if turn is None:
+            continue
+        result = outcomes.get(dia_id)
+        cause = "silent"
+        if result is not None and getattr(result, "raw_count", 0) > 0:
+            reasons = sorted({r.reason for r in result.rejected})
+            if result.unmapped:
+                reasons.append("unmapped")
+            cause = "+".join(reasons) or "suppressed"
+        # parentheses, not brackets: this line is printed through rich,
+        # which reads "[silent]" as a style tag and swallows it whole
+        report.uncovered_examples.append((dia_id, f"({cause}) {turn.speaker}: {turn.text}"))
 
     return report, clio
 
