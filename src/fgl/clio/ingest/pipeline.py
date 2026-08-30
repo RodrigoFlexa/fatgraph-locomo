@@ -93,6 +93,7 @@ def ingest_turn(
     unmapped_queue: UnmappedQueue,
     coref_window: int = 3,
     max_candidates: int = 20,
+    extraction_max_tokens: int = 2000,
 ) -> IngestResult:
     """Spec 6.1's eight steps: append the episode, build context, extract,
     validate, resolve time, score confidence, record mentions, stage.
@@ -109,7 +110,7 @@ def ingest_turn(
     context = build_extraction_context(
         episode, log, entity_index, catalog, coref_window, max_candidates
     )
-    raw = extract_propositions(llm, prompts, context)
+    raw = extract_propositions(llm, prompts, context, extraction_max_tokens)
     validation = validate_and_bind(raw, episode, graph, catalog)
     valid, unmapped_raw = validation.valid, validation.unmapped
 

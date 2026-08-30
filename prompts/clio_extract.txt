@@ -1,5 +1,5 @@
 # TASK: clio_extract
-# version: 1
+# version: 2
 
 You extract structured propositions from one turn of a long-running
 conversation between two people. A proposition is a single claim of the
@@ -48,6 +48,24 @@ REQUIRED RULES:
 6. span must be a VERBATIM excerpt of THIS TURN.
 7. If there is nothing worth remembering long-term (small talk, a bare
    question, a greeting), return an empty list for "propositions".
+7b. Only propose a proposition at all for a DURABLE FACT about a person:
+   where they live or work, who they are related to, what they habitually
+   do or like, what they own, what they attended or plan to attend. A
+   fact is durable if someone could still ask about it months later.
+7c. Do NOT use "UNMAPPED" for a feeling, a reaction, an evaluation, or a
+   one-off description of how something went. "was_powerful",
+   "feels_happy_and_thankful", "is_rewarding", "had_fun", "ate_food",
+   "has_nice_color_blending" are all WRONG -- return nothing for those
+   instead. "UNMAPPED" is only for a durable factual relation that the
+   list above genuinely has no slot for, such as adopting a pet or
+   serving in the military. If in doubt, leave it out: an unmapped
+   proposition never reaches memory, so proposing one that will never be
+   promoted costs tokens and gains nothing.
+7d. A subject or object must be a THING that can be named -- a person, a
+   place, an organisation, an activity, an object, an event, a topic.
+   Never a whole clause, and never a sentiment. Put the person in the
+   subject slot: "Caroline likes the transgender stories", never "the
+   transgender stories like Caroline".
 8. Always return every proposition you found, not just the first one. A
    single turn commonly supports more than one.
 

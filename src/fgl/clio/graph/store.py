@@ -8,6 +8,8 @@ phases narrow them in place and that mutation IS the write.
 
 from __future__ import annotations
 
+from collections import defaultdict
+
 from fgl.clio.catalog import Catalog
 from fgl.clio.graph.queries import edges_at, live_edges_at
 from fgl.clio.graph.queries import out_edges as _out_edges
@@ -20,6 +22,14 @@ class GraphStore:
         self._edges: dict[str, Edge] = {}
         self._next_entity_seq = 0
         self._next_edge_seq = 0
+        #: vertex id -> edges touching it on either end. Spec 12.2 asks
+        #: for adjacency lists held in memory and there were none: every
+        #: `edges_incident` call scanned every edge, and fold calls it
+        #: about six times per candidate PAIR while enumerating pairs
+        #: quadratically. Measured before this index: 5.2s for one fold
+        #: over 260 entities / 600 edges, once per session, growing
+        #: superlinearly.
+        self._incident: dict[str, set[str]] = defaultdict(set)
 
     # ------------------------------------------------------------ entities --
     def create_entity(
@@ -161,6 +171,8 @@ class GraphStore:
             unanchored=unanchored,
         )
         self._edges[edge.id] = edge
+        self._incident[src_id].add(edge.id)
+        self._incident[dst_id].add(edge.id)
         return edge
 
     def get_edge(self, edge_id: str) -> Edge:
@@ -185,9 +197,8 @@ class GraphStore:
         vertex's edges."""
         return [
             e
-            for e in self._edges.values()
-            if (e.src_id == vertex_id or e.dst_id == vertex_id)
-            and (not live_only or e.t_tx.end is None)
+            for e in (self._edges[eid] for eid in self._incident.get(vertex_id, ()))
+            if not live_only or e.t_tx.end is None
         ]
 
     def out_edges(
@@ -210,11 +221,56 @@ class GraphStore:
         """Fold (spec 8.3): every edge touching ``from_id`` now touches
         ``to_id`` instead. Includes retracted/closed edges -- provenance
         must follow the vertex even into its history."""
-        for e in self._edges.values():
-            if e.src_id == from_id:
-                e.src_id = to_id
-            if e.dst_id == from_id:
-                e.dst_id = to_id
+        for e in list(self.edges_incident(from_id, live_only=False)):
+            self._reattach(
+                e,
+                to_id if e.src_id == from_id else e.src_id,
+                to_id if e.dst_id == from_id else e.dst_id,
+            )
+
+    def _reattach(self, edge: Edge, src_id: str, dst_id: str) -> None:
+        """Moves one edge's endpoints, keeping the adjacency index true."""
+        self._incident[edge.src_id].discard(edge.id)
+        self._incident[edge.dst_id].discard(edge.id)
+        edge.src_id, edge.dst_id = src_id, dst_id
+        self._incident[src_id].add(edge.id)
+        self._incident[dst_id].add(edge.id)
+
+    def absorb_edge(self, kept: Edge, absorbed: Edge) -> None:
+        """Merges ``absorbed`` into ``kept`` and drops its row.
+
+        Not a violation of P2 ("nothing is deleted"): P2 protects FACTS,
+        and these two rows are one fact written twice. The absorbed row's
+        provenance, reinforcement and confidence all move onto the kept
+        edge, so nothing about what was said, or about which episode said
+        it, is lost -- only the duplicate row is.
+
+        This exists because folding runs after phase 3: two vertices merge,
+        and edges that were distinct because their destinations were
+        distinct become identical. Spec 8.3 migrates edges but never
+        reconciles them, so on conv-26 the graph ended with "Melanie likes
+        Our family and moments" twice, each claiming reinforcement 1.
+        """
+        kept.reinforcement += absorbed.reinforcement
+        kept.provenance.extend(
+            pid for pid in absorbed.provenance if pid not in kept.provenance
+        )
+        kept.confidence = max(kept.confidence, absorbed.confidence)
+        kept.conflict_flag = kept.conflict_flag or absorbed.conflict_flag
+        kept.unanchored = kept.unanchored and absorbed.unanchored
+        if absorbed.last_confirmed is not None:
+            kept.last_confirmed = (
+                absorbed.last_confirmed
+                if kept.last_confirmed is None
+                else max(kept.last_confirmed, absorbed.last_confirmed)
+            )
+        for start_attr in ("t_valid", "t_tx"):
+            k, a = getattr(kept, start_attr), getattr(absorbed, start_attr)
+            if a.start is not None and (k.start is None or a.start < k.start):
+                setattr(kept, start_attr, Interval(a.start, k.end, k.granularity))
+        self._incident[absorbed.src_id].discard(absorbed.id)
+        self._incident[absorbed.dst_id].discard(absorbed.id)
+        del self._edges[absorbed.id]
 
     def migrate_specific_edges(self, edge_ids: set[str], from_id: str, to_id: str) -> None:
         """Unfold's narrower counterpart to :meth:`migrate_edges`: moves
@@ -223,8 +279,11 @@ class GraphStore:
         which may include edges from a second, later fold onto the same
         vertex, or ordinary new writes since."""
         for eid in edge_ids:
-            e = self._edges[eid]
-            if e.src_id == from_id:
-                e.src_id = to_id
-            if e.dst_id == from_id:
-                e.dst_id = to_id
+            e = self._edges.get(eid)
+            if e is None:
+                continue  # absorbed into a duplicate since the fold
+            self._reattach(
+                e,
+                to_id if e.src_id == from_id else e.src_id,
+                to_id if e.dst_id == from_id else e.dst_id,
+            )

@@ -72,7 +72,37 @@ REJECTION_REASONS = (
     "unknown_evidence_kind",
     "subject_type_violates_signature",
     "object_type_violates_signature",
+    "person_ref_lacks_a_name",
 )
+
+#: A `new:` reference cannot violate a signature by TYPE -- it has none
+#: until phase 1 gives it one, from that very signature. That is the hole
+#: an inverted subject/object falls through: "transgender stories | likes
+#: | Caroline" put a topic in the subject slot of a [Person, Topic]
+#: relation, and phase 1 dutifully created a vertex of type Person called
+#: "transgender stories" (observed on conv-26). Nothing downstream can
+#: recover from it -- the vertex is a person as far as the whole graph is
+#: concerned.
+#:
+#: The one property a person's name has in this corpus and a description
+#: does not is a capital letter. So a `new:` reference landing in a Person
+#: slot must carry at least one capitalised token.
+#:
+#: The known cost, stated rather than hidden: this also drops unnamed
+#: relational nouns -- "husband", "kids", "friends", "family" as the
+#: object of family_of/friend_of. That is a defensible loss and arguably a
+#: gain: a vertex named "husband" is indistinguishable from every other
+#: husband, can never be resolved to a real person, and no question the
+#: memory is asked can be answered by reaching it. It is a placeholder,
+#: not a person. The count is reported per run so the trade stays visible.
+PERSON_TYPE = "Person"
+
+
+def _looks_like_a_person_name(ref: str | None) -> bool:
+    if not ref or not ref.startswith("new:"):
+        return True  # an existing id was already type-checked
+    name = ref[len("new:") :].strip()
+    return any(token[:1].isupper() for token in name.split() if token)
 
 
 @dataclass
@@ -145,6 +175,17 @@ def validate_and_bind(
             continue
         if not _type_compatible(item.get("object_id"), spec.signature[1], graph, catalog):
             result.rejected.append(Rejection("object_type_violates_signature", item))
+            continue
+        person_slots = [
+            ref
+            for ref, slot_type in (
+                (item.get("subject_id"), spec.signature[0]),
+                (item.get("object_id"), spec.signature[1]),
+            )
+            if slot_type == PERSON_TYPE
+        ]
+        if not all(_looks_like_a_person_name(ref) for ref in person_slots):
+            result.rejected.append(Rejection("person_ref_lacks_a_name", item))
             continue
 
         span = item.get("span") or ""

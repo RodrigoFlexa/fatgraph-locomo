@@ -106,6 +106,7 @@ class Clio:
             unmapped_queue=self.unmapped,
             coref_window=self.config.extraction.coref_window,
             max_candidates=self.config.extraction.max_candidates,
+            extraction_max_tokens=self.config.extraction.max_tokens,
         )
 
     def consolidate(self) -> ConsolidationReport:

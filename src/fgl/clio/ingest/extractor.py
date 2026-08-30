@@ -84,7 +84,10 @@ def _coerce_propositions(raw: object) -> list[dict]:
 
 
 def extract_propositions(
-    llm: LLMClient, prompts: PromptLibrary, context: ExtractionContext
+    llm: LLMClient,
+    prompts: PromptLibrary,
+    context: ExtractionContext,
+    max_tokens: int = 2000,
 ) -> list[dict]:
     """Returns the raw, not-yet-validated JSON objects the model produced.
     Never raises on a malformed response -- ``complete_json``'s ``default``
@@ -96,5 +99,6 @@ def extract_propositions(
         system=SYSTEM_EXTRACTOR,
         purpose="clio_extract",
         default={"propositions": []},
+        max_tokens=max_tokens,
     )
     return _coerce_propositions(raw)

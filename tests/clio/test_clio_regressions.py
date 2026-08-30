@@ -538,3 +538,194 @@ def test_unmapped_without_an_object_id_does_not_crash_ingestion(catalog, shape):
     expected = shape.get("object_surface")
     surfaces = [m.surface for m in mentions.all()]
     assert surfaces == ([expected] if expected else [])
+
+
+# --------------------------------------------------------------------- #
+# 8. the fold scorer was inverted for dialogue                            #
+# --------------------------------------------------------------------- #
+
+
+def _fold_memory(catalog, props):
+    """A memory with folding enabled, fed hand-classified propositions."""
+    from fgl.clio.consolidate.journal import FoldJournal
+
+    graph, staging = GraphStore(), StagingStore()
+    log, journal = LogStore(), FoldJournal()
+    episodes = {p.episode_id for p in props}
+    for eid in sorted(episodes):
+        log.append(
+            session_id="s", speaker="Melanie", text="...", ts_ingest=MAY, episode_id=eid
+        )
+    staging.insert(props)
+    report = consolidate(
+        catalog, graph, staging, ClioConfig.default(), log=log, journal=journal
+    )
+    return graph, report
+
+
+def test_a_nickname_folds_into_the_full_name(catalog):
+    """ "Mel" and "Melanie" are one person. The old scorer topped out at
+    0.765 for this pair even with both structural and role evidence,
+    permanently under tau_fold's 0.80, because `contains_as_token`
+    demanded whole-token containment and a shortened first name scores 0
+    there. Measured on conv-26: she was two people, each holding half her
+    facts."""
+    graph, report = _fold_memory(
+        catalog,
+        [
+            _prop("p0", "new:Melanie", "attended", "new:charity race", MAY, episode="e1"),
+            _prop("p1", "new:Mel", "attended", "new:charity race", MAY, episode="e2"),
+        ],
+    )
+    people = [
+        e for e in graph.all_entities() if e.type == "Person" and e.merged_into is None
+    ]
+    assert len(people) == 1, [e.canonical_name for e in people]
+    assert report.folded, "the merge should be journalled, not silent"
+    assert "mel" in {a.lower() for a in people[0].aliases} | {
+        people[0].canonical_name.lower()
+    }
+
+
+def test_a_common_noun_is_not_absorbed_by_a_phrase_that_mentions_it(catalog):
+    """ "family" is not "Our family and moments". The old scorer gave that
+    pair 0.9 for substring similarity AND a further 1.0 for token
+    containment -- one weak piece of evidence counted twice -- and merged
+    them at 0.86 on conv-26."""
+    graph, report = _fold_memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "likes", "new:family", MAY, episode="e1"),
+            _prop("p1", SPEAKER, "likes", "new:Our family and moments", MAY, episode="e2"),
+        ],
+    )
+    names = {e.canonical_name for e in graph.all_entities() if e.merged_into is None}
+    assert {"family", "Our family and moments"} <= names
+    assert report.folded == []
+
+
+def test_the_specs_own_rui_example_still_folds(catalog):
+    """Spec 8.3's worked example must not regress: a surname appended to a
+    known first name is the same person."""
+    from fgl.clio.consolidate.fold import contains_as_token, name_similarity
+
+    assert name_similarity("Rui", "Rui Sampaio") == 0.9
+    assert contains_as_token("Rui", "Rui Sampaio") == 1.0
+
+
+# --------------------------------------------------------------------- #
+# 9. an inverted subject/object reached the graph as a Person             #
+# --------------------------------------------------------------------- #
+
+
+def test_a_description_cannot_be_created_as_a_person(catalog):
+    """`likes` is [Person, Topic]; "transgender stories | likes |
+    Caroline" put the topic in the subject slot, and phase 1 created a
+    vertex of type Person called "transgender stories" (observed on
+    conv-26). A `new:` ref has no type yet, so the signature check could
+    not see it -- the one property a name has and a description does not
+    is a capital letter."""
+    from fgl.clio.ingest.validate import validate_and_bind
+
+    graph = GraphStore()
+    log = LogStore()
+    episode = log.append(
+        session_id="s",
+        speaker="Caroline",
+        text="The transgender stories were so inspiring!",
+        ts_ingest=MAY,
+    )
+    inverted = {
+        "operation": "assert",
+        "subject_id": "new:transgender stories",
+        "relation": "likes",
+        "object_id": "new:Caroline",
+        "polarity": True,
+        "evidence_kind": "literal",
+        "span": "The transgender stories were so inspiring!",
+    }
+    result = validate_and_bind([inverted], episode, graph, catalog)
+    assert result.valid == []
+    assert [r.reason for r in result.rejected] == ["person_ref_lacks_a_name"]
+
+
+def test_a_real_name_in_a_person_slot_still_passes(catalog):
+    from fgl.clio.ingest.validate import validate_and_bind
+
+    graph = GraphStore()
+    log = LogStore()
+    episode = log.append(
+        session_id="s", speaker="Caroline", text="I like the stories", ts_ingest=MAY
+    )
+    ok = {
+        "operation": "assert",
+        "subject_id": "new:Caroline",
+        "relation": "likes",
+        "object_id": "new:the stories",
+        "polarity": True,
+        "evidence_kind": "literal",
+        "span": "I like the stories",
+    }
+    result = validate_and_bind([ok], episode, graph, catalog)
+    assert len(result.valid) == 1
+    assert result.rejected == []
+
+
+# --------------------------------------------------------------------- #
+# 10. folding created duplicate edges and nothing reconciled them         #
+# --------------------------------------------------------------------- #
+
+
+def test_folding_two_destinations_leaves_one_edge_not_two(catalog):
+    """Two edges distinct only because their destinations were distinct
+    become one fact once those destinations merge. Spec 8.3 migrates the
+    edges and stops; phase 4 skips pairs sharing a destination, so nothing
+    reconciled them and conv-26 ended with "Melanie likes Our family and
+    moments" twice, each claiming reinforcement 1."""
+    graph, report = _fold_memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "practices", "new:Rui", MAY, episode="e1"),
+            _prop("p1", SPEAKER, "practices", "new:Rui Sampaio", MAY, episode="e2"),
+        ],
+    )
+    assert report.folded, "the two destinations should merge"
+    practices = [e for e in graph.all_edges() if e.label == "practices"]
+    assert len(practices) == 1, "one fact, one edge"
+    assert practices[0].reinforcement == 2
+    assert sorted(practices[0].provenance) == ["p0", "p1"]
+
+
+# --------------------------------------------------------------------- #
+# 11. extraction ran on the repository-wide 512-token default             #
+# --------------------------------------------------------------------- #
+
+
+def test_extraction_asks_for_a_budget_that_fits_several_propositions():
+    """One proposition serialises to roughly 90 tokens, so 512 truncates a
+    turn yielding six of them mid-object and the whole response fails to
+    parse -- silently becoming "0 propositions", and it is the RICH turns
+    that get lost. 3 of 58 turns on conv-26 were lost exactly this way."""
+    from fgl.clio.config import ClioConfig
+    from fgl.clio.ingest.context import ExtractionContext
+    from fgl.clio.ingest.extractor import extract_propositions
+    from fgl.llm.prompts import PromptLibrary
+
+    assert ClioConfig.default().extraction.max_tokens >= 2000
+
+    seen = {}
+
+    class _Recorder:
+        def complete_json(self, prompt, **kw):
+            seen.update(kw)
+            return {"propositions": []}
+
+    log = LogStore()
+    episode = log.append(session_id="s", speaker="M", text="hi", ts_ingest=MAY)
+    extract_propositions(
+        _Recorder(),
+        PromptLibrary("prompts"),
+        ExtractionContext(episode, [], [], []),
+        max_tokens=2000,
+    )
+    assert seen["max_tokens"] == 2000

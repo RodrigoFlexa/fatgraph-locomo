@@ -40,6 +40,16 @@ class ExtractionConfig:
     coref_window: int = 3
     #: entity candidates offered to the extractor (spec 6.2b)
     max_candidates: int = 20
+    #: completion budget for ONE extraction call. The repository-wide
+    #: default (``LLMConfig.max_tokens = 512``) is sized for short answers
+    #: and is far too small here: one proposition serialises to roughly 90
+    #: tokens, so a turn yielding six of them is cut off mid-object and
+    #: the whole response fails to parse -- silently becoming "0
+    #: propositions" for that turn. Measured on conv-26: 3 of 58 turns
+    #: (5%) were lost exactly this way, and it is the RICH turns that get
+    #: lost, which is the worst possible bias. 2000 matches what
+    #: fgl.config's own MECA extractor already uses for the same job.
+    max_tokens: int = 2000
 
 
 @dataclass

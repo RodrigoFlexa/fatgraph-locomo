@@ -69,36 +69,85 @@ def mentions_distinction(text: str, name: str) -> bool:
     return bool(_DISTINCTION_RE.search(lowered)) and name.strip().lower() in lowered
 
 
+#: shortest abbreviation taken seriously. Two characters ("Al", "Jo") are
+#: too weak a signal to merge two people on; three is where nicknames
+#: actually live ("Mel", "Car", "Ben").
+_MIN_ABBREVIATION_CHARS = 3
+
+
+def _is_abbreviation(a_n: str, b_n: str) -> bool:
+    """One single-token name is a shortened form of the other: "mel" ->
+    "melanie", "car" -> "caroline".
+
+    This is the dominant identity shape in dialogue and the old scorer
+    could not see it at all. ``contains_as_token`` demanded WHOLE-token
+    containment, so a truncated first name scored 0 there, and the pair
+    topped out at 0.765 even with both structural and role evidence --
+    permanently under ``tau_fold``. Measured on conv-26, that left "Mel"
+    and "Melanie" as two different people, each holding half her facts.
+    """
+    if " " in a_n or " " in b_n:
+        return False
+    short, long_ = sorted((a_n, b_n), key=len)
+    if len(short) < _MIN_ABBREVIATION_CHARS or short == long_:
+        return False
+    return long_.startswith(short)
+
+
+def _is_name_extension(a_n: str, b_n: str) -> bool:
+    """The shorter name's tokens are a leading PREFIX of the longer's:
+    "rui" -> "rui sampaio", "melanie" -> "melanie cruz".
+
+    A prefix, deliberately, not a subset. A personal name grows by
+    APPENDING (a surname, a middle name); a word sitting in the middle of
+    a descriptive phrase is that phrase being ABOUT the thing, not naming
+    it. The subset rule could not tell those apart, and on conv-26 it
+    merged the vertex "family" into "Our family and moments" at 0.86 --
+    scoring 0.9 for substring similarity AND a further 1.0 for token
+    containment, counting one weak piece of evidence twice.
+    """
+    ta, tb = _normalize(a_n).split(), _normalize(b_n).split()
+    if not ta or not tb:
+        return False
+    short, long_ = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
+    return len(short) < len(long_) and long_[: len(short)] == short
+
+
 def name_similarity(a: str, b: str) -> float:
-    """Exact/alias match is 1.0. One name being a literal prefix/substring
-    of the other ("Rui" in "Rui Sampaio") is scored high but not perfect --
-    a strong nickname/partial-name signal, not proof: spec's own worked
-    example folds on exactly this pattern, and plain
-    ``difflib.SequenceMatcher`` ratio penalises it too heavily for the
-    length difference alone to explain (0.43 for "rui" vs "rui sampaio",
-    which no combination of the OTHER signals then lifts across
-    ``tau_fold``'s default 0.80 -- checked, not assumed).
+    """Exact/alias match is 1.0. A shortened first name or a name the
+    other extends by appending scores high but not perfect -- a strong
+    signal, not proof.
+
+    Plain ``difflib.SequenceMatcher`` ratio cannot carry either case (0.43
+    for "rui" vs "rui sampaio"), which is why they are recognised
+    explicitly; everything else falls through to the ratio, INCLUDING a
+    word merely embedded in a longer phrase, which used to be scored as
+    though it were a name.
     """
     a_n, b_n = _normalize(a), _normalize(b)
     if a_n == b_n:
         return 1.0
-    if a_n in b_n or b_n in a_n:
+    if _is_abbreviation(a_n, b_n) or _is_name_extension(a_n, b_n):
         return 0.9
     return difflib.SequenceMatcher(None, a_n, b_n).ratio()
 
 
 def contains_as_token(a: str, b: str) -> float:
-    """1.0 when the shorter name's tokens are a SUBSET of the longer
-    name's ("Rui" subset-of "Rui Sampaio"), 0.0 otherwise. A subset check,
-    not Jaccard: partial credit for "close but not quite contained" would
-    double-count what ``name_similarity`` already rewards, and containment
-    itself is a binary fact, not a matter of degree.
+    """1.0 when one name is a morphological narrowing of the other -- a
+    leading token prefix ("Rui" -> "Rui Sampaio") or a shortened single
+    token ("Mel" -> "Melanie") -- and 0.0 otherwise.
+
+    Binary, not a matter of degree, and NOT the old subset test. A subset
+    match fires for any word appearing anywhere in a longer phrase, which
+    is how a common noun gets absorbed into a description that merely
+    mentions it. Requiring the containment to be positional keeps the
+    signal this term was meant to carry (a name extended by a surname)
+    and drops the one it was accidentally carrying.
     """
-    ta, tb = set(_normalize(a).split()), set(_normalize(b).split())
-    if not ta or not tb:
+    a_n, b_n = _normalize(a), _normalize(b)
+    if not a_n or not b_n or a_n == b_n:
         return 0.0
-    shorter, longer = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
-    return 1.0 if shorter <= longer else 0.0
+    return 1.0 if (_is_abbreviation(a_n, b_n) or _is_name_extension(a_n, b_n)) else 0.0
 
 
 def _neighbors(vertex_id: str, graph: GraphStore) -> set[str]:
@@ -159,16 +208,35 @@ def temporal_compatibility(
     return 1.0
 
 
-def explicit_distinction(a: Entity, b: Entity, log: LogStore) -> float:
+def distinction_index(log: LogStore) -> list[str]:
+    """The lowercased text of every episode carrying a distinction marker,
+    computed ONCE per fold call.
+
+    :func:`explicit_distinction` used to re-run the marker regex over the
+    WHOLE log, for every name, for every candidate pair -- and fold
+    enumerates pairs quadratically. That was millions of regex searches
+    per consolidation call and it dominated the 5.2s measured before this.
+    The markers depend only on the log, which fold never modifies, so they
+    are a constant for the whole call.
+
+    Kept as a list of texts rather than a set of tokens on purpose: the
+    check has to stay a SUBSTRING test, because a name can be several
+    words ("the other Rui Sampaio"). This is exactly the old predicate
+    with the episodes that cannot possibly match filtered out first --
+    marker-bearing episodes are a tiny fraction of any real log.
+    """
+    return [ep.text.lower() for ep in log.all() if _DISTINCTION_RE.search(ep.text.lower())]
+
+
+def explicit_distinction(
+    a: Entity, b: Entity, log: LogStore, index: list[str] | None = None
+) -> float:
     """1.0 if some episode explicitly marks the two names as different
     people ("the other Rui", "a different Bob") -- spec 8.2: a single
     such marker should be enough to block a fold."""
-    names = {
-        a.canonical_name,
-        b.canonical_name,
-        *a.aliases,
-        *b.aliases,
-    }
+    names = {a.canonical_name, b.canonical_name, *a.aliases, *b.aliases}
+    if index is not None:
+        return 1.0 if any(_normalize(n) in text for text in index for n in names) else 0.0
     return (
         1.0
         if any(mentions_distinction(ep.text, n) for ep in log.all() for n in names)
@@ -177,7 +245,12 @@ def explicit_distinction(a: Entity, b: Entity, log: LogStore) -> float:
 
 
 def identity_score(
-    a: Entity, b: Entity, graph: GraphStore, log: LogStore, catalog: Catalog
+    a: Entity,
+    b: Entity,
+    graph: GraphStore,
+    log: LogStore,
+    catalog: Catalog,
+    distinctions: list[str] | None = None,
 ) -> float:
     # C2, read through the catalog's declared type classes rather than as
     # strict equality: "the charity race" typed Activity by `practices`
@@ -191,7 +264,7 @@ def identity_score(
     s += W_STRUCT * neighbor_overlap(a.id, b.id, graph)
     s += W_ROLE * same_role_context(a.id, b.id, graph)
     s += W_TEMPORAL * temporal_compatibility(a.id, b.id, graph, catalog)
-    s -= P_DISTINCT * explicit_distinction(a, b, log)
+    s -= P_DISTINCT * explicit_distinction(a, b, log, distinctions)
     return max(0.0, min(1.0, s))
 
 
@@ -274,6 +347,8 @@ def fold(
     uf = _UnionFind(e.id for e in graph.all_entities())
     heap: list[tuple[float, int, str, str]] = []
     counter = itertools.count()
+    distinctions = distinction_index(log)
+    merged_vertices: set[str] = set()
 
     def enqueue_from(vertex_id: str) -> None:
         v_id = uf.find(vertex_id)
@@ -286,7 +361,9 @@ def fold(
             o_id = uf.find(other.id)
             if o_id == v_id:
                 continue
-            score = identity_score(v, graph.get_entity(o_id), graph, log, catalog)
+            score = identity_score(
+                v, graph.get_entity(o_id), graph, log, catalog, distinctions
+            )
             if score >= config.tau_fold:  # C4
                 heapq.heappush(heap, (-score, next(counter), v_id, o_id))
 
@@ -330,8 +407,47 @@ def fold(
         records.append(rec)
 
         enqueue_from(kept_id)
+        merged_vertices.add(kept_id)
+
+    for vertex_id in merged_vertices:
+        reconcile_duplicate_edges(vertex_id, graph)
 
     return records
+
+
+def reconcile_duplicate_edges(vertex_id: str, graph: GraphStore) -> int:
+    """Merges edges that became identical because a fold merged their
+    endpoints. Returns how many rows were absorbed.
+
+    Folding runs after phase 3, so two edges that were legitimately
+    distinct -- different destinations -- can become the same fact once
+    those destinations turn out to be one vertex. Spec 8.3 migrates the
+    edges and stops there; nothing reconciles them, and phase 4 will not,
+    because it skips pairs sharing a destination. Observed on conv-26:
+    "Melanie likes Our family and moments" written twice, each claiming
+    reinforcement 1, inflating the edge count and emitting the same vertex
+    twice from a single ``follow``.
+
+    Only edges still in force AND still believed are merged: a closed or
+    retracted interval is history, and history is never collapsed into the
+    present (P2).
+    """
+    groups: dict[tuple[str, str, str, bool], list] = {}
+    for e in graph.edges_incident(vertex_id, live_only=False):
+        if e.t_tx.end is not None or e.t_valid.end is not None:
+            continue
+        groups.setdefault((e.src_id, e.label, e.dst_id, e.polarity), []).append(e)
+
+    absorbed = 0
+    for edges in groups.values():
+        if len(edges) < 2:
+            continue
+        edges.sort(key=lambda e: e.id)
+        kept = edges[0]
+        for duplicate in edges[1:]:
+            graph.absorb_edge(kept, duplicate)
+            absorbed += 1
+    return absorbed
 
 
 def unfold(fold_id: str, journal: FoldJournal, graph: GraphStore) -> None:

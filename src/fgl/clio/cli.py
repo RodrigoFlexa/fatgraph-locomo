@@ -20,6 +20,8 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+from fgl.clio.catalog import load_catalog
+
 clio_app = typer.Typer(help="CLIO: bitemporal-graph long-term memory (M1-M8).")
 console = Console()
 
@@ -334,6 +336,124 @@ def demo(
                 "(markdown fences, a truncated/reasoning-truncated response, "
                 "or a different schema than the prompt asked for).[/]"
             )
+
+
+@clio_app.command()
+def gate1(
+    locomo: int = typer.Option(0, "--locomo", help="Conversation index (0-9)."),
+    fake: bool = typer.Option(False, "--fake", help="Offline structural check only."),
+    no_cache: bool = typer.Option(
+        False, "--no-cache", help="Force fresh LLM calls instead of reusing the cache."
+    ),
+    out: str = typer.Option(
+        "", "--out", help="Also write the report as JSON to this path."
+    ),
+) -> None:
+    """Gate 1 -- extraction fidelity. Ingests one whole conversation and
+    reports what fraction of the turns the OFFICIAL QUESTIONS cite as
+    evidence actually produced a proposition.
+
+    This is the number that decides whether benchmarking is worth paying
+    for, and it costs about a third of what benchmarking the same
+    conversation costs, because it makes zero question-answering calls.
+    A question whose evidence turns produced nothing cannot be answered
+    from the graph however good the access algebra is -- so measuring F1
+    before this tells you a number without telling you which half of the
+    system to fix.
+
+        fgl clio gate1 --locomo 0
+    """
+    import json as _json
+
+    from fgl.clio.config import ClioConfig
+    from fgl.clio.gate import run_gate1
+    from fgl.data.locomo import load_conversations
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.paths import Paths, project_root
+
+    paths = Paths.build(project_root())
+    if not paths.locomo_file.exists():
+        raise typer.BadParameter(
+            f"LoCoMo dataset not found at {paths.locomo_file} -- run `fgl setup` first"
+        )
+    conv = load_conversations(paths.locomo_file)[locomo]
+    llm, embedder = _build_backends(fake, no_cache)
+    cfg = ClioConfig.default()
+    console.print(
+        f"[bold]Backend:[/] {'FakeLLM (offline)' if fake else llm.cfg.deployment}\n"
+        f"[bold]Conversation:[/] {conv.sample_id} "
+        f"({conv.speaker_a} & {conv.speaker_b}), {conv.n_turns} turns, "
+        f"{len(conv.questions)} questions"
+    )
+
+    done = {"n": 0}
+
+    def _on_turn(turn, result) -> None:
+        done["n"] += 1
+        if done["n"] % 25 == 0:
+            console.print(f"  [dim]ingested {done['n']}/{conv.n_turns} turns[/]")
+
+    report, _ = run_gate1(
+        conv,
+        load_catalog(cfg.catalog_path),
+        llm,
+        embedder,
+        PromptLibrary(paths.prompts),
+        cfg,
+        on_turn=_on_turn,
+    )
+
+    console.print(
+        f"\n[bold]Extraction:[/] {report.raw_items} proposed, "
+        f"{report.kept_items} kept, {report.unmapped_items} unmapped, "
+        f"{report.rejected_items} rejected  "
+        f"({report.turns_with_propositions}/{report.n_turns} turns produced something)"
+    )
+    console.print(
+        f"[bold]GATE 1 -- evidence turn coverage:[/] "
+        f"[bold cyan]{report.turn_coverage:.1%}[/] "
+        f"({report.evidence_turns_covered}/{report.evidence_turns} turns)  ·  "
+        f"questions fully covered: {report.fully_covered_questions}/"
+        f"{report.n_questions}"
+    )
+    if report.dangling_evidence:
+        console.print(
+            f"  [dim]{len(report.dangling_evidence)} evidence id(s) cited by a "
+            "question but absent from the conversation -- excluded[/]"
+        )
+
+    t = Table(title="Coverage by question category")
+    for col in ("category", "n", "full", "partial", "none", "turn coverage"):
+        t.add_column(col)
+    for cat in sorted(report.per_category.values(), key=lambda c: c.category):
+        t.add_row(
+            cat.name,
+            str(cat.n_questions),
+            str(cat.fully_covered),
+            str(cat.partially_covered),
+            str(cat.uncovered),
+            f"{cat.turn_coverage:.1%}",
+        )
+    console.print(t)
+
+    if report.uncovered_examples:
+        console.print("\n[bold]Most-cited evidence turns that produced nothing:[/]")
+        for dia_id, text in report.uncovered_examples:
+            console.print(f"  [yellow]{dia_id}[/] {text[:110]}")
+
+    if out:
+        Path(out).write_text(
+            _json.dumps(report.to_dict(), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        console.print(f"\n[bold]Wrote:[/] {out}")
+
+    if not fake:
+        u = llm.usage
+        console.print(
+            f"[dim]LLM usage: {u.calls} calls, {u.total_tokens} tokens, "
+            f"{u.json_failures} JSON parse failures[/]"
+        )
 
 
 @clio_app.command()
