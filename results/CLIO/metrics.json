@@ -1,0 +1,92 @@
+{
+  "condition": "CLIO",
+  "overall": {
+    "n": 199,
+    "f1_micro": 0.2586,
+    "f1_macro": 0.2415,
+    "f1_substantive": 0.1807,
+    "n_substantive": 152,
+    "abstention_rate": 0.4573,
+    "abstention_rate_substantive": 0.4408,
+    "mean_context_tokens": 0.0,
+    "tokens_per_f1_point": 0.0
+  },
+  "per_category": {
+    "multi-hop": {
+      "n": 32,
+      "f1": 0.1896,
+      "abstention_rate": 0.25
+    },
+    "temporal": {
+      "n": 37,
+      "f1": 0.2874,
+      "abstention_rate": 0.4595
+    },
+    "open-domain": {
+      "n": 13,
+      "f1": 0.0813,
+      "abstention_rate": 0.3846
+    },
+    "single-hop": {
+      "n": 70,
+      "f1": 0.1386,
+      "abstention_rate": 0.5286
+    },
+    "adversarial": {
+      "n": 47,
+      "f1": 0.5106,
+      "abstention_rate": 0.5106
+    }
+  },
+  "stemmer": "porter",
+  "per_conversation": [
+    {
+      "sample_id": "conv-26",
+      "n_turns": 419,
+      "n_questions": 199,
+      "f1": 0.2586,
+      "n_entities": 187,
+      "n_edges": 253,
+      "n_folds": 5,
+      "ingest_seconds": 379.2,
+      "qa_seconds": 1364.7
+    }
+  ],
+  "cost": {
+    "calls": 2192,
+    "cached_calls": 782,
+    "prompt_tokens": 3217849,
+    "completion_tokens": 100704,
+    "total_tokens": 3318553,
+    "empty_responses": 0,
+    "json_failures": 0,
+    "healthy": true,
+    "by_purpose": {
+      "clio_extract": {
+        "calls": 419,
+        "cached_calls": 243,
+        "prompt_tokens": 731444,
+        "completion_tokens": 52612,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "clio_agent": {
+        "calls": 1574,
+        "cached_calls": 539,
+        "prompt_tokens": 1670576,
+        "completion_tokens": 45963,
+        "empty_responses": 0,
+        "json_failures": 0
+      },
+      "clio_answer": {
+        "calls": 199,
+        "cached_calls": 0,
+        "prompt_tokens": 815829,
+        "completion_tokens": 2129,
+        "empty_responses": 0,
+        "json_failures": 0
+      }
+    }
+  },
+  "wall_seconds": 1743.9
+}
