@@ -13,6 +13,7 @@ in this repository does, so there is nothing new to configure.
 from __future__ import annotations
 
 from datetime import datetime
+from pathlib import Path
 
 import typer
 from rich.console import Console
@@ -37,20 +38,18 @@ _DEMO_QUESTIONS = [
 ]
 
 
-def _build_clio(fake: bool, no_cache: bool = False):
-    from fgl.clio.config import ClioConfig
-    from fgl.clio.facade import Clio
-
+def _build_backends(fake: bool, no_cache: bool = False):
+    """Returns ``(llm, embedder)``. Shared by ``demo`` and ``bench`` so
+    both hit the exact same credentials/cache behaviour."""
     if fake:
         from fgl.clio.demo_fake import demo_fake_responder
         from fgl.config import LLMConfig
         from fgl.llm.client import FakeLLM
         from fgl.retrieval.embeddings import HashingEmbedder
 
-        return Clio.build(
-            config=ClioConfig.default(),
-            llm=FakeLLM(LLMConfig(provider="fake"), responder=demo_fake_responder()),
-            embedder=HashingEmbedder(dim=128),
+        return (
+            FakeLLM(LLMConfig(provider="fake"), responder=demo_fake_responder()),
+            HashingEmbedder(dim=128),
         )
 
     from fgl.config import Config
@@ -67,11 +66,18 @@ def _build_clio(fake: bool, no_cache: bool = False):
     settings.apply_to(shim)
     # Cached by default, like every other real call in this repository
     # (fgl run/fgl qa) -- re-running the same turns/questions (e.g. after
-    # bumping --sessions) must not re-pay for prompts already answered.
-    # --no-cache is for deliberately forcing a fresh call.
+    # bumping --sessions, or resuming a `bench` run) must not re-pay for
+    # prompts already answered. --no-cache is for deliberately forcing a
+    # fresh call.
     shim.llm.cache_enabled = not no_cache
-    llm = build_llm(shim.llm)
-    embedder = build_embedder(shim.embeddings)
+    return build_llm(shim.llm), build_embedder(shim.embeddings)
+
+
+def _build_clio(fake: bool, no_cache: bool = False):
+    from fgl.clio.config import ClioConfig
+    from fgl.clio.facade import Clio
+
+    llm, embedder = _build_backends(fake, no_cache)
     return Clio.build(config=ClioConfig.default(), llm=llm, embedder=embedder)
 
 
@@ -117,7 +123,9 @@ def demo(
         6, "--turns-per-session", help="Turns per session to ingest, with --locomo."
     ),
     no_cache: bool = typer.Option(
-        False, "--no-cache", help="Force fresh LLM calls instead of reusing the on-disk cache."
+        False,
+        "--no-cache",
+        help="Force fresh LLM calls instead of reusing the on-disk cache.",
     ),
 ) -> None:
     """Ingests a conversation, consolidates (with folding), and answers a
@@ -210,3 +218,119 @@ def demo(
             f"\n[dim]LLM usage: {u.calls} calls, {u.total_tokens} tokens, "
             f"{u.empty_responses} empty[/]"
         )
+
+
+@clio_app.command()
+def bench(
+    fake: bool = typer.Option(
+        False,
+        "--fake",
+        help="Use FakeLLM instead of a real deployment (structural check only).",
+    ),
+    limit_conversations: int = typer.Option(
+        0, "-n", "--limit-conversations", help="0 = all 10 LoCoMo conversations."
+    ),
+    limit_questions: int = typer.Option(
+        0, "-q", "--limit-questions", help="Per conversation. 0 = all official questions."
+    ),
+    results_dir: str = typer.Option(
+        "results", "--results-dir", help="Where <name>/metrics.json gets written."
+    ),
+    name: str = typer.Option(
+        "CLIO", "--name", help="Condition/directory name -- what shows up in `fgl report`."
+    ),
+    no_cache: bool = typer.Option(
+        False,
+        "--no-cache",
+        help="Force fresh LLM calls instead of reusing the on-disk cache.",
+    ),
+) -> None:
+    """Runs the full LoCoMo benchmark through CLIO (ingest -> consolidate
+    -> fold -> answer every official question -> score with the same
+    scorer every other condition uses) and writes
+    results/<name>/{metrics.json,predictions.jsonl}. Pick it up with
+    `fgl report` afterwards -- no separate registration needed, it is a
+    plain directory scan.
+
+    Free structural check (extraction script only knows the built-in demo
+    conversation, so F1 will be near zero -- this proves the PLUMBING,
+    not answer quality):
+
+        fgl clio bench --fake -n 1 -q 5
+
+    Small real run, one conversation, first 20 questions:
+
+        fgl clio bench -n 1 -q 20
+
+    The full benchmark (expensive: 10 conversations, 1986 questions, each
+    needing several agent-loop calls plus one extraction call per turn):
+
+        fgl clio bench
+
+    Then:
+
+        fgl report
+    """
+    from fgl.clio.evaluation import run_benchmark
+    from fgl.paths import Paths, project_root
+
+    # Loaded for real even under --fake: the point of --fake here is to
+    # skip the LLM, not to fabricate conversation/session/turn counts too.
+    data_file = Paths.build(project_root()).locomo_file
+    if not data_file.exists():
+        raise typer.BadParameter(
+            f"LoCoMo dataset not found at {data_file} -- run `fgl setup` first"
+        )
+
+    llm, embedder = _build_backends(fake, no_cache)
+    console.print(
+        f"[bold]Backend:[/] {'FakeLLM (offline)' if fake else llm.cfg.deployment}"
+    )
+
+    running_f1: list[float] = []
+
+    def _on_done(conv, result) -> None:
+        conv_f1 = (
+            sum(o.f1 for o in result.outcomes) / len(result.outcomes)
+            if result.outcomes
+            else 0.0
+        )
+        running_f1.append(conv_f1)
+        console.print(
+            f"[green]done[/] {conv.sample_id}: {result.n_turns} turns, "
+            f"{result.n_questions} questions, f1={conv_f1:.4f} "
+            f"({result.n_entities} entities, {result.n_folds} folds) "
+            f"-- running mean f1={sum(running_f1) / len(running_f1):.4f}"
+        )
+
+    metrics = run_benchmark(
+        data_file=data_file,
+        llm=llm,
+        embedder=embedder,
+        limit_conversations=limit_conversations or None,
+        limit_questions=limit_questions or None,
+        results_dir=results_dir,
+        condition_name=name,
+        on_conversation_done=_on_done,
+    )
+
+    console.print(f"\n[bold]Wrote:[/] {Path(results_dir) / name}/metrics.json")
+    t = Table(title=f"{name}: per-category F1")
+    for col in ("category", "n", "f1", "abstention_rate"):
+        t.add_column(col)
+    for cat, row in metrics["per_category"].items():
+        t.add_row(cat, str(row["n"]), f"{row['f1']:.4f}", f"{row['abstention_rate']:.4f}")
+    console.print(t)
+    o = metrics["overall"]
+    console.print(
+        f"[bold]overall:[/] n={o['n']}  f1_micro={o['f1_micro']:.4f}  "
+        f"f1_macro={o['f1_macro']:.4f}  f1_substantive={o['f1_substantive']:.4f}  "
+        f"abstention_rate={o['abstention_rate']:.4f}"
+    )
+    if not fake:
+        u = metrics["cost"]
+        console.print(
+            f"[dim]LLM usage: {u['calls']} calls ({u['cached_calls']} cached), "
+            f"{u['total_tokens']} tokens, {u['empty_responses']} empty[/]"
+        )
+    console.print("\nRun [bold]fgl report[/] to see it alongside the other conditions.")
