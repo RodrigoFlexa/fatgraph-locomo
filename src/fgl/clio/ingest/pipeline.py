@@ -19,7 +19,7 @@ from fgl.clio.ingest.validate import validate_and_bind
 from fgl.clio.log.mentions import MentionStore
 from fgl.clio.log.store import LogStore
 from fgl.clio.staging import StagingStore
-from fgl.clio.temporal.resolver import resolve_time
+from fgl.clio.temporal.resolver import default_for_volatility, resolve_time
 from fgl.clio.types import Episode, EvidenceKind, Interval, Operation, Proposition
 from fgl.clio.unmapped import UnmappedEntry, UnmappedQueue
 from fgl.llm.client import LLMClient
@@ -95,6 +95,21 @@ def ingest_turn(
         spec = catalog[relation]
         time_expression = item.get("time_expression")
         t_valid, tconf = resolve_time(time_expression, ts, spec)
+        # An unresolvable time expression is NOT "true for all time".
+        # Writing `Interval(None, None)` for it (what the graph used to
+        # receive) makes the fact intersect every window a query could
+        # ask about, so a trail through it can never die of
+        # `empty_temporal_window` -- P4 and false-premise detection both
+        # stop working, silently. Spec 5.4 wants the proposition kept and
+        # flagged instead, reachable by transaction order but not by a
+        # validity restriction. The volatility default gives it a
+        # plausible shape; `unanchored` records that no date was actually
+        # read from the text. Common English phrasings really do land
+        # here -- "each day", "over the weekend", "a couple of months
+        # ago" all resolve to None.
+        unanchored = t_valid is None
+        if unanchored:
+            t_valid = default_for_volatility(ts, spec)
         evidence_kind = EvidenceKind(item["evidence_kind"])
         confidence = compute_confidence(evidence_kind, tconf)
         props.append(
@@ -112,6 +127,9 @@ def ingest_turn(
                 confidence=confidence,
                 span=item.get("span", ""),
                 episode_id=episode.id,
+                unanchored=unanchored,
+                subject_ref=item["subject_id"],
+                object_ref=item["object_id"],
             )
         )
 
@@ -124,10 +142,23 @@ def ingest_turn(
     # it came up, not how many separate propositions one sentence happened
     # to yield about it -- one turn stating that two different people both
     # like climbing is one mention of climbing, not two.
+    #
+    # UNMAPPED objects are recorded too. They never reach the graph (spec
+    # 4.4) and that is correct, but a turn whose every proposition came
+    # back UNMAPPED still MENTIONED the things it named -- excluding them
+    # made "how many times did X come up" undercount exactly the turns
+    # the catalog does not yet cover, which is the opposite of what a raw
+    # occurrence table is for.
     seen_surfaces: set[str] = set()
     for p in props:
         surface = _mention_surface(p.object_id, graph)
         if surface in seen_surfaces:
+            continue
+        seen_surfaces.add(surface)
+        mentions.append(episode_id=episode.id, surface=surface, ts=ts, proposition_id=p.id)
+    for entry in unmapped:
+        surface = _mention_surface(entry.object_ref, graph)
+        if not surface or surface in seen_surfaces:
             continue
         seen_surfaces.add(surface)
         mentions.append(episode_id=episode.id, surface=surface, ts=ts)

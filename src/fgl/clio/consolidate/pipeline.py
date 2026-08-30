@@ -44,6 +44,7 @@ from fgl.clio.consolidate.journal import FoldJournal, FoldRecord
 from fgl.clio.consolidate.operations import address, apply
 from fgl.clio.consolidate.promote import phase_7_promote_staged
 from fgl.clio.graph.store import GraphStore
+from fgl.clio.log.mentions import MentionStore
 from fgl.clio.log.store import LogStore
 from fgl.clio.staging import StagingStore
 from fgl.clio.types import Edge, EdgeAddress, Operation
@@ -68,6 +69,7 @@ def consolidate(
     config: ClioConfig,
     log: LogStore | None = None,
     journal: FoldJournal | None = None,
+    mentions: MentionStore | None = None,
 ) -> ConsolidationReport:
     """Runs phases 1-5, (6,) 7-8 over everything currently in ``staging``.
 
@@ -79,6 +81,11 @@ def consolidate(
     """
     props = staging.pending()
     phase_1_resolve_entities(props, graph, catalog, log)
+    if mentions is not None:
+        # phase 1 is what turns "new:X" into a vertex id, so this is the
+        # first moment a mention recorded at ingest time CAN be linked to
+        # an entity (see MentionStore.relink). Idempotent.
+        mentions.relink(props)
 
     tau_promote = config.thresholds.tau_promote
     applied: list[Edge] = []
@@ -86,7 +93,7 @@ def consolidate(
     touched: set[EdgeAddress] = set()
     for p in props:
         touched.add(address(p))
-        edges = apply(p, graph, staging, tau_promote)
+        edges = apply(p, graph, staging, tau_promote, catalog[p.relation])
         applied.extend(edges)
         if p.operation == Operation.CLOSE:
             explicitly_closed.extend(edges)

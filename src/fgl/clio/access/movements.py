@@ -85,7 +85,29 @@ def anchor(
 # --------------------------------------------------------------------- #
 
 
-def classify_death(trail: Trail, pairs: list[tuple], tx_point: datetime) -> str:
+def _walkable(edge, state: AccessState) -> bool:
+    """Whether ``follow`` may traverse this edge at all, before any
+    temporal arithmetic.
+
+    Two exclusions, both of which used to be impossible to express:
+
+    * A NEGATIVE edge ("she does not live in Recife") is a fact about a
+      path, not a path. Walking it would turn a denial into the very
+      assertion it denies. Edges only started carrying ``polarity`` when
+      it stopped being dropped at the graph boundary.
+    * An UNANCHORED edge (no date could be read from the text; spec 5.4)
+      is not reachable by a query that has explicitly restricted
+      validity. Its window is a volatility default, not evidence, and
+      answering a dated question from it would be inventing the date.
+    """
+    if not edge.polarity:
+        return False
+    return not (state.valid_restricted and edge.unanchored)
+
+
+def classify_death(
+    trail: Trail, pairs: list[tuple], tx_point: datetime, valid_restricted: bool = False
+) -> str:
     """Diagnoses why none of ``pairs`` produced a surviving trail.
 
     Checked in this order, not the reverse: a candidate whose WINDOW never
@@ -95,9 +117,25 @@ def classify_death(trail: Trail, pairs: list[tuple], tx_point: datetime) -> str:
     other, temporally-incompatible edges exist at the same address (spec's
     own T3: Rui's edge doesn't overlap the query window at all, and is not
     what makes the trail die -- Bia's retraction is).
+
+    Two causes come before the temporal ones, because they are about
+    whether an edge was a candidate at all rather than about when it held.
+    ``all_edges_negative`` says the only thing at this address is a
+    DENIAL, which is a real answer ("no, she doesn't") rather than
+    ignorance. ``unanchored_evidence`` says the facts here carry no date
+    read from the text, so a question that restricted validity cannot
+    honestly be answered from them (spec 5.4) -- reporting
+    "no_edge_with_label" for either would tell the agent to look
+    elsewhere when the memory in fact has something to say.
     """
     if not pairs:
         return "no_edge_with_label"
+    believed = [(e, n) for e, n in pairs if e.t_tx.contains(tx_point)]
+    if believed and all(not e.polarity for e, _ in believed):
+        return "all_edges_negative"
+    positive = [(e, n) for e, n in believed if e.polarity]
+    if valid_restricted and positive and all(e.unanchored for e, _ in positive):
+        return "unanchored_evidence"
     window_compatible = [
         (e, n) for e, n in pairs if trail.window.intersect(e.t_valid) is not None
     ]
@@ -122,9 +160,14 @@ def follow(
     dead = 0
     cause: str | None = None
     for t in state.trails:
+        # `pairs` keeps every candidate, including the ones `_walkable`
+        # rules out -- `classify_death` needs to see them to say WHY the
+        # trail died. Only traversal is filtered.
         pairs = graph.out_edges(t.vertex_id, label, catalog)
         matched = False
         for e, neighbor in pairs:
+            if not _walkable(e, state):
+                continue
             if not e.t_tx.contains(state.tx_point):
                 continue  # retracted in this transaction-time view
             w = t.window.intersect(e.t_valid)
@@ -141,7 +184,7 @@ def follow(
             matched = True
         if not matched:
             dead += 1
-            cause = classify_death(t, pairs, state.tx_point)
+            cause = classify_death(t, pairs, state.tx_point, state.valid_restricted)
 
     return AccessState(
         trails=new_trails,
@@ -149,6 +192,7 @@ def follow(
         dead_count=dead,
         death_cause=cause if not new_trails else None,
         budget_used=state.budget_used + 1,
+        valid_restricted=state.valid_restricted,
     )
 
 
@@ -174,6 +218,7 @@ def restrict(
             trails=state.trails,
             tx_point=interval.start or state.tx_point,
             budget_used=state.budget_used + 1,
+            valid_restricted=state.valid_restricted,
         )
     if axis == "valid":
         new_trails = []
@@ -188,6 +233,7 @@ def restrict(
             dead_count=dead,
             death_cause="empty_temporal_window" if dead and not new_trails else None,
             budget_used=state.budget_used + 1,
+            valid_restricted=True,
         )
     raise ValueError(f"restrict: axis must be 'valid' or 'tx', got {axis!r}")
 
@@ -227,6 +273,7 @@ def filter_trails(
         dead_count=dead,
         death_cause="filtered_out" if dead and not kept else None,
         budget_used=state.budget_used + 1,
+        valid_restricted=state.valid_restricted,
     )
 
 
@@ -264,6 +311,7 @@ def expand(
         dead_count=0 if new_trails else len(state.trails),
         death_cause=None if new_trails else "no_edge_with_label",
         budget_used=state.budget_used + 1,
+        valid_restricted=state.valid_restricted,
     )
 
 
@@ -294,6 +342,8 @@ def history(
         for e, neighbor in graph.out_edges(t.vertex_id, label, catalog):
             if e.id in seen or not e.t_tx.contains(state.tx_point):
                 continue
+            if not e.polarity:
+                continue  # a denial is not a value the relation ever held
             seen.add(e.id)
             out.append(HistoryEntry(neighbor, e.t_valid, e.id))
     out.sort(key=lambda h: h.t_valid.start or datetime.min)
@@ -348,10 +398,16 @@ def count(
         ent = graph.find_entity_by_name_any_type(entity)
         if ent is not None:
             names = {ent.canonical_name.lower(), *(a.lower() for a in ent.aliases)}
+            # entity_id OR surface: consolidation links what it can
+            # (MentionStore.relink), and the surface match still catches
+            # mentions from turns whose propositions never reached the
+            # graph -- an UNMAPPED relation, or one still below
+            # tau_promote in staging. Counting is about what was SAID,
+            # not about what got promoted.
             return sum(
                 1
                 for m in mentions.all()
-                if m.surface.lower() in names
+                if (m.entity_id == ent.id or m.surface.lower() in names)
                 and (start is None or m.ts >= start)
                 and (end is None or m.ts < end)
             )

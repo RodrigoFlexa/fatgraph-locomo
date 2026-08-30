@@ -36,9 +36,21 @@ class Catalog:
     same label read from the object's side already means the same thing.
     """
 
-    def __init__(self, types: list[str], relations: dict[str, RelationSpec]):
+    def __init__(
+        self,
+        types: list[str],
+        relations: dict[str, RelationSpec],
+        type_classes: list[list[str]] | None = None,
+    ):
         self.types = tuple(types)
         self._relations = relations
+        #: type -> the set of types interchangeable with it. A type in no
+        #: declared class is a class of its own.
+        self._type_class: dict[str, frozenset[str]] = {}
+        for group in type_classes or []:
+            frozen = frozenset(group)
+            for t in group:
+                self._type_class[t] = frozen
         #: inverse label -> forward relation name, excluding self-inverse
         #: relations (inverse_name == name), which need no separate entry.
         self._inverse_to_forward: dict[str, str] = {
@@ -89,6 +101,23 @@ class Catalog:
             return self._inverse_to_forward[inverse_label]
         except KeyError:
             raise CatalogError(f"{inverse_label!r} is not a known inverse label") from None
+
+    def type_class(self, type_: str) -> frozenset[str]:
+        """Every type interchangeable with ``type_``, including itself.
+
+        Phase 1 assigns a brand-new entity the type of the relation's own
+        signature slot, so one thing named once can be reached under two
+        different types (``practices`` -> Activity, ``attended`` ->
+        Event). Without a declared class, that mints two vertices and fold
+        can never merge them: ``identity_score`` returns 0.0 on a type
+        mismatch before it looks at anything else.
+        """
+        return self._type_class.get(type_, frozenset({type_}))
+
+    def types_compatible(self, a: str, b: str) -> bool:
+        """True when two types name the same kind of thing (spec's own
+        signature check, widened by the catalog's ``type_classes``)."""
+        return a == b or b in self.type_class(a)
 
     def is_known(self, label: str) -> bool:
         """A label the access algebra's ``follow`` can walk: a relation
@@ -171,5 +200,22 @@ def load_catalog(path: str | Path) -> Catalog:
                     f"relation {spec.name!r}: type {t!r} not in declared types {types}"
                 )
 
+    type_classes = raw.get("type_classes") or []
+    for group in type_classes:
+        if len(group) < 2:
+            raise CatalogError(f"{p}: type_class {group!r} needs at least two types")
+        for t in group:
+            if t not in types:
+                raise CatalogError(f"{p}: type_class {group!r} names undeclared type {t!r}")
+    seen_in_class: set[str] = set()
+    for group in type_classes:
+        overlap = seen_in_class & set(group)
+        if overlap:
+            raise CatalogError(
+                f"{p}: type(s) {sorted(overlap)} appear in more than one type_class; "
+                "classes must partition the types they cover"
+            )
+        seen_in_class |= set(group)
+
     _check_dag(relations)
-    return Catalog(types, relations)
+    return Catalog(types, relations, type_classes)

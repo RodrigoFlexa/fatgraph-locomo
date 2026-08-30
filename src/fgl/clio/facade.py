@@ -117,7 +117,40 @@ class Clio:
             self.config,
             log=self.log,
             journal=self.journal,
+            mentions=self.mentions,
         )
+
+    def rebuild(self) -> ConsolidationReport:
+        """Spec 12.3: discard everything derived and rebuild it from the
+        log. This is what makes P1 ("the log is truth, the graph is an
+        index") operational rather than a slogan, and the spec calls it a
+        test in itself.
+
+        The graph, the entities and the fold journal are thrown away and
+        rebuilt from scratch. The PROPOSITIONS are not re-extracted: they
+        are the extractor's derived record of the log, and re-deriving
+        them would mean re-calling the model, which is neither
+        deterministic nor free. They are instead rewound to the state
+        they had when they left ingestion -- back to the ``"new:X"``
+        references the extractor actually produced (``subject_ref`` /
+        ``object_ref``), and back to ``"staged"`` -- and replayed. Any
+        propositions predating that bookkeeping (hand-built in a test,
+        say) keep whatever ids they already carry, which replays
+        correctly as long as the entities were hand-built too.
+
+        Returns the report of the replayed consolidation.
+        """
+        self.graph = GraphStore()
+        self.journal = FoldJournal()
+        self.entity_index = EntityIndex(self.entity_index.embedder)
+        self.mentions.unlink()
+        for p in self.staging.all():
+            p.status = "staged"
+            if p.subject_ref:
+                p.subject_id = p.subject_ref
+            if p.object_ref:
+                p.object_id = p.object_ref
+        return self.consolidate()
 
     def ask(self, question: str) -> AgentTrace:
         """Spec sections 9-11: the access algebra, driven by the agent

@@ -67,6 +67,28 @@ class GraphStore:
                 return ent
         return None
 
+    def find_entity_by_name_in_types(self, name: str, types: set[str]) -> Entity | None:
+        """Exact name/alias match against any entity whose type is in
+        ``types`` -- the set a catalog ``type_class`` declares
+        interchangeable (see :meth:`fgl.clio.catalog.loader.Catalog.
+        type_class`). Prefers a match on the type the caller asked for
+        first, so reusing a vertex never depends on dictionary order.
+        """
+        needle = name.strip().lower()
+        matches = [
+            ent
+            for ent in self._entities.values()
+            if ent.merged_into is None
+            and ent.type in types
+            and (
+                ent.canonical_name.strip().lower() == needle
+                or any(a.strip().lower() == needle for a in ent.aliases)
+            )
+        ]
+        if not matches:
+            return None
+        return min(matches, key=lambda e: e.id)
+
     def find_entity_by_name_any_type(self, name: str) -> Entity | None:
         """Same exact-match rule as :meth:`find_entity_by_name`, without
         requiring the caller to know the type -- what a name-only tool
@@ -119,6 +141,8 @@ class GraphStore:
         confidence: float,
         reinforcement: int = 1,
         last_confirmed=None,
+        polarity: bool = True,
+        unanchored: bool = False,
     ) -> Edge:
         seq = self._next_edge_seq
         self._next_edge_seq += 1
@@ -133,6 +157,8 @@ class GraphStore:
             reinforcement=reinforcement,
             last_confirmed=last_confirmed,
             confidence=confidence,
+            polarity=polarity,
+            unanchored=unanchored,
         )
         self._edges[edge.id] = edge
         return edge

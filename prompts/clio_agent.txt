@@ -1,5 +1,5 @@
 # TASK: clio_agent
-# version: 1
+# version: 2
 
 You are answering a question by moving through a bitemporal memory graph
 one step at a time. There is no keyword search -- you compose a small set
@@ -44,6 +44,12 @@ RULES:
 2. If death_cause is "all_edges_retracted", the information was retracted.
    Consider restrict(axis="tx", ...) to recover what was believed at an
    earlier point, if the question is asking about that.
+2b. If death_cause is "all_edges_negative", the memory holds an explicit
+   DENIAL at this address -- the answer is "no", not "unknown". Answer.
+2c. If death_cause is "unanchored_evidence", the facts here were never
+   dated in the conversation, so they cannot answer a question about a
+   specific period. Either answer without the date restriction (redo the
+   follow without restrict), or say the date was never stated.
 3. Do not call answer() with zero movements made, unless the state is
    already unanswerable (live_trails=0 with no available_labels to try).
 4. Respond with EXACTLY one action.

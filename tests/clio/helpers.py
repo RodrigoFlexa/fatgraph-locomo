@@ -23,7 +23,7 @@ from fgl.clio.graph.store import GraphStore
 from fgl.clio.log.mentions import MentionStore
 from fgl.clio.log.store import LogStore
 from fgl.clio.staging import StagingStore
-from fgl.clio.temporal.resolver import resolve_time
+from fgl.clio.temporal.resolver import default_for_volatility, resolve_time
 from fgl.clio.types import Edge, EvidenceKind, Interval, Operation, Proposition
 
 FIXTURE_PATH = Path(__file__).parent.parent / "fixtures" / "melanie.yaml"
@@ -50,7 +50,7 @@ class HandFedMemory:
         self.journal = FoldJournal() if with_fold else None
         self.fold_records: list[FoldRecord] = []
 
-    def ingest_episode(self, raw: dict[str, Any]) -> None:
+    def ingest_episode(self, raw: dict[str, Any], defer: bool = False) -> None:
         """Stands in for :func:`fgl.clio.ingest.pipeline.ingest_turn`:
         resolves time and confidence with the real code, then hands the
         result to real consolidation. What is hand-authored is only the
@@ -73,6 +73,10 @@ class HandFedMemory:
             relation = raw_p["relation"]
             spec = self.catalog[relation]
             t_valid, tconf = resolve_time(raw_p.get("time_expression"), ts, spec)
+            # same unanchored fallback the real pipeline applies
+            unanchored = t_valid is None
+            if unanchored:
+                t_valid = default_for_volatility(ts, spec)
             evidence_kind = EvidenceKind(raw_p["evidence_kind"])
             confidence = compute_confidence(evidence_kind, tconf)
             props.append(
@@ -90,9 +94,17 @@ class HandFedMemory:
                     confidence=confidence,
                     span=raw_p["span"],
                     episode_id=ep.id,
+                    unanchored=unanchored,
+                    subject_ref=raw_p["subject"],
+                    object_ref=raw_p["object"],
                 )
             )
         self.staging.insert(props)
+        if defer:
+            return
+        self.consolidate()
+
+    def consolidate(self) -> None:
         report = consolidate(
             self.catalog,
             self.graph,
@@ -100,6 +112,7 @@ class HandFedMemory:
             self.config,
             log=self.log if self.journal is not None else None,
             journal=self.journal,
+            mentions=self.mentions,
         )
         self.fold_records.extend(report.folded)
 

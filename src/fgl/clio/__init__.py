@@ -42,6 +42,7 @@ from fgl.clio.access import (
     restrict,
 )
 from fgl.clio.agent import AgentStep, AgentTrace, generate_answer, run_agent_loop
+from fgl.clio.canonical import canonical_entities, canonical_form
 from fgl.clio.catalog import Catalog, RelationSpec, load_catalog
 from fgl.clio.confidence import CONFIDENCE_TABLE, compute_confidence
 from fgl.clio.config import ClioConfig
@@ -79,6 +80,8 @@ from fgl.clio.unmapped import UnmappedEntry, UnmappedQueue
 __all__ = [
     "Clio",
     "Catalog",
+    "canonical_form",
+    "canonical_entities",
     "RelationSpec",
     "load_catalog",
     "CONFIDENCE_TABLE",

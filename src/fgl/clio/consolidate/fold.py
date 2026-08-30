@@ -179,7 +179,11 @@ def explicit_distinction(a: Entity, b: Entity, log: LogStore) -> float:
 def identity_score(
     a: Entity, b: Entity, graph: GraphStore, log: LogStore, catalog: Catalog
 ) -> float:
-    if a.type != b.type:
+    # C2, read through the catalog's declared type classes rather than as
+    # strict equality: "the charity race" typed Activity by `practices`
+    # and Event by `attended` is one thing, and a bare `!=` here made it
+    # permanently two.
+    if not catalog.types_compatible(a.type, b.type):
         return 0.0
     s = 0.0
     s += W_NAME * name_similarity(a.canonical_name, b.canonical_name)
@@ -275,7 +279,9 @@ def fold(
         v_id = uf.find(vertex_id)
         v = graph.get_entity(v_id)
         for other in graph.all_entities():
-            if other.merged_into is not None or other.type != v.type:
+            if other.merged_into is not None or not catalog.types_compatible(
+                other.type, v.type
+            ):
                 continue  # C2
             o_id = uf.find(other.id)
             if o_id == v_id:

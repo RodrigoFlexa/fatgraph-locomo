@@ -28,6 +28,11 @@ class StagingStore:
         to the episodes that support it."""
         return self._by_id[prop_id]
 
+    def all(self) -> list[Proposition]:
+        """Every proposition ever staged, promoted or not, in insertion
+        order. Rebuild (spec 12.3) needs the promoted ones back."""
+        return list(self._propositions)
+
     def pending(self) -> list[Proposition]:
         """Staged propositions, in the order consolidation must apply them:
         by transaction time, i.e. the order the episodes that produced them

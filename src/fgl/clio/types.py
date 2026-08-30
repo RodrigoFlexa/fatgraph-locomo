@@ -133,6 +133,23 @@ class Proposition:
     polarity: bool = True  # False = explicit negation
     time_expression: str | None = None  # LITERAL span, never a date
     t_valid: Interval | None = None  # filled in by the temporal resolver
+    #: True when the time expression could not be resolved at all (spec
+    #: 5.4). ``t_valid`` then holds the relation's volatility DEFAULT so
+    #: the fact still has a plausible shape, but the flag records that no
+    #: date was actually read from the text -- which is what stops
+    #: ``restrict(axis="valid")`` from reaching it. Writing
+    #: ``Interval(None, None)`` here instead (the old behaviour) made an
+    #: unresolved date mean "true for all time", which intersects every
+    #: window and so can never kill a trail: the exact opposite of what
+    #: spec 5.4 asks for.
+    unanchored: bool = False
+    #: the extractor's ORIGINAL references, before phase 1 rewrote
+    #: ``subject_id``/``object_id`` into vertex ids. Kept because rebuild
+    #: (spec 12.3) has to replay consolidation from the log against a
+    #: fresh, empty graph, and phase 1's in-place rewrite would otherwise
+    #: have destroyed the only inputs it needs.
+    subject_ref: str = ""
+    object_ref: str = ""
     t_tx: Interval = field(default_factory=Interval)  # [episode ts, None)
     evidence_kind: EvidenceKind = EvidenceKind.LITERAL
     confidence: float = 0.0  # derived from evidence_kind, never from the LLM
@@ -154,6 +171,19 @@ class Edge:
     last_confirmed: datetime | None = None
     confidence: float = 0.0  # max confidence among contributing propositions
     conflict_flag: bool = False
+    #: False = this edge records an explicit NEGATION ("I don't live in
+    #: Recife"). Carrying it here is what stops a denial from being
+    #: written as, and then read back as, the corresponding affirmation:
+    #: ``Proposition`` has always had the field, but before this it was
+    #: dropped at the graph boundary and only ever compared between two
+    #: propositions of one batch. ``follow`` does not walk a negative
+    #: edge -- a denial is a fact ABOUT a path, not a path.
+    polarity: bool = True
+    #: True when the contributing proposition(s) had no resolvable date
+    #: (spec 5.4). ``t_valid`` is the relation's volatility default, not
+    #: something read from the text, so a query that explicitly restricts
+    #: validity must not be answered from this edge.
+    unanchored: bool = False
 
 
 @dataclass
@@ -171,6 +201,14 @@ class Mention:
     entity_id: str | None
     surface: str
     ts: datetime
+    #: the proposition this mention came from, when it came from one.
+    #: ``entity_id`` cannot be filled at ingest time -- the object is
+    #: still a ``"new:X"`` reference until consolidation's phase 1
+    #: resolves it -- so this is the handle
+    #: :meth:`~fgl.clio.log.mentions.MentionStore.relink` uses afterwards
+    #: to write ``entity_id`` back. Without it every mention a real
+    #: ingest ever produced stayed unlinked forever.
+    proposition_id: str | None = None
 
 
 @dataclass(frozen=True)

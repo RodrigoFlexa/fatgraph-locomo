@@ -24,6 +24,8 @@ from fgl.clio.types import Edge, Interval
 def combine_confidence(cs: list[float]) -> float:
     """Noisy-OR: P(at least one of these independent weak signals is
     right), not their average."""
+    # NB: the grouping key includes polarity, so a denial never
+    # corroborates the corresponding affirmation into the graph.
     prod = 1.0
     for c in cs:
         prod *= 1 - c
@@ -34,7 +36,9 @@ def phase_7_promote_staged(
     staging: StagingStore, graph: GraphStore, tau_promote: float
 ) -> list[Edge]:
     created: list[Edge] = []
-    for group in staging.group_by(lambda p: (p.subject_id, p.relation, p.object_id)):
+    for group in staging.group_by(
+        lambda p: (p.subject_id, p.relation, p.object_id, p.polarity)
+    ):
         if len(group) < 2:
             continue
         if len({p.episode_id for p in group}) < 2:
@@ -55,6 +59,10 @@ def phase_7_promote_staged(
             confidence=combined,
             reinforcement=len(group),
             last_confirmed=latest_tx,
+            polarity=group[0].polarity,
+            # only if EVERY contributing proposition was a guess: one
+            # dated confirmation is enough to anchor the promoted edge
+            unanchored=all(pr.unanchored for pr in group),
         )
         staging.mark_promoted(group)
         created.append(edge)

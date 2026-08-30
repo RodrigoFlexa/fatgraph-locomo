@@ -27,6 +27,11 @@ from fgl.clio.types import EdgeAddress, Proposition
 
 
 def phase_8_detect_conflicts(props: list[Proposition], graph: GraphStore) -> None:
+    _conflicts_within_batch(props, graph)
+    _conflicts_against_graph(props, graph)
+
+
+def _conflicts_within_batch(props: list[Proposition], graph: GraphStore) -> None:
     by_key: dict[tuple[str, str, str], list[Proposition]] = defaultdict(list)
     for p in props:
         by_key[(p.subject_id, p.relation, p.object_id)].append(p)
@@ -45,3 +50,25 @@ def phase_8_detect_conflicts(props: list[Proposition], graph: GraphStore) -> Non
             for e in graph.edges_at(addr):
                 if e.dst_id == a.object_id:
                     e.conflict_flag = True
+
+
+def _conflicts_against_graph(props: list[Proposition], graph: GraphStore) -> None:
+    """The cross-batch half, now that :class:`~fgl.clio.types.Edge` carries
+    its own ``polarity``: two believed edges at one address, same
+    destination, opposite polarity, overlapping validity. Before edges
+    recorded polarity at all this comparison was impossible -- a denial
+    and an affirmation were written as the identical edge -- so the
+    module could only ever compare two propositions inside one
+    consolidation call. A contradiction that arrives a session later is a
+    contradiction all the same.
+    """
+    addresses = {EdgeAddress(p.subject_id, p.relation) for p in props}
+    for addr in addresses:
+        believed = [e for e in graph.edges_at(addr) if e.t_tx.end is None]
+        for a, b in combinations(believed, 2):
+            if a.dst_id != b.dst_id or a.polarity == b.polarity:
+                continue
+            if not a.t_valid.overlaps(b.t_valid):
+                continue
+            a.conflict_flag = True
+            b.conflict_flag = True

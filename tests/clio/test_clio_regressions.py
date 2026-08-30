@@ -1,0 +1,442 @@
+"""One test per bug the 2026-08-30 audit found in a real run, each pinning
+the behaviour that was WRONG before, not just the behaviour that is right
+now. Every one of these passed silently as a plausible-looking graph.
+"""
+
+from __future__ import annotations
+
+import random
+from datetime import datetime
+
+import pytest
+
+from fgl.clio.access.movements import anchor, count, follow, restrict
+from fgl.clio.canonical import canonical_entities, canonical_form
+from fgl.clio.catalog import load_catalog
+from fgl.clio.config import ClioConfig
+from fgl.clio.consolidate.pipeline import consolidate
+from fgl.clio.graph.store import GraphStore
+from fgl.clio.log.mentions import MentionStore
+from fgl.clio.log.store import LogStore
+from fgl.clio.staging import StagingStore
+from fgl.clio.temporal.resolver import resolve_time
+from fgl.clio.types import EvidenceKind, Interval, Operation, Proposition
+
+MAY = datetime(2023, 5, 25)
+JUNE = datetime(2023, 6, 25)
+
+
+@pytest.fixture
+def catalog():
+    return load_catalog(ClioConfig.default().catalog_path)
+
+
+def _prop(
+    pid,
+    subject,
+    relation,
+    obj,
+    ts,
+    *,
+    operation=Operation.ASSERT,
+    polarity=True,
+    t_valid=None,
+    unanchored=False,
+    kind=EvidenceKind.LITERAL,
+    confidence=0.9,
+    episode=None,
+):
+    return Proposition(
+        id=pid,
+        subject_id=subject,
+        relation=relation,
+        object_id=obj,
+        operation=operation,
+        polarity=polarity,
+        t_valid=t_valid if t_valid is not None else Interval(ts, None),
+        t_tx=Interval(ts, None),
+        evidence_kind=kind,
+        confidence=confidence,
+        span="x",
+        episode_id=episode or pid,
+        unanchored=unanchored,
+        subject_ref=subject,
+        object_ref=obj,
+    )
+
+
+SPEAKER = "new:Melanie"
+
+
+def _memory(catalog, props):
+    graph, staging = GraphStore(), StagingStore()
+    staging.insert(props)
+    consolidate(catalog, graph, staging, ClioConfig.default())
+    return graph, staging
+
+
+# --------------------------------------------------------------------- #
+# 1. polarity was dropped at the graph boundary                           #
+# --------------------------------------------------------------------- #
+
+
+def test_negation_is_not_written_as_affirmation(catalog):
+    graph, _ = _memory(
+        catalog, [_prop("p0", SPEAKER, "likes", "new:running", MAY, polarity=False)]
+    )
+    (edge,) = graph.all_edges()
+    assert edge.polarity is False, "an explicit denial must not be stored as a claim"
+
+
+def test_follow_does_not_walk_a_negative_edge(catalog):
+    graph, _ = _memory(
+        catalog, [_prop("p0", SPEAKER, "likes", "new:running", MAY, polarity=False)]
+    )
+    state = follow(anchor("Melanie", graph), "likes", graph, catalog)
+    assert state.trails == []
+    assert state.death_cause == "all_edges_negative"
+
+
+def test_denial_and_claim_do_not_collapse_into_one_edge(catalog):
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "likes", "new:running", MAY),
+            _prop("p1", SPEAKER, "likes", "new:running", JUNE, polarity=False),
+        ],
+    )
+    assert len(graph.all_edges()) == 2
+    assert {e.polarity for e in graph.all_edges()} == {True, False}
+    assert all(e.conflict_flag for e in graph.all_edges()), (
+        "opposite polarity at one address over overlapping validity is the "
+        "contradiction phase 8 exists to flag"
+    )
+
+
+# --------------------------------------------------------------------- #
+# 2. an unresolvable date became "true for all time"                      #
+# --------------------------------------------------------------------- #
+
+
+def test_vague_time_expression_does_not_resolve(catalog):
+    """The trigger condition, straight from the failing run: these are
+    ordinary English, not exotic phrasings."""
+    for expression in (
+        "each day",
+        "over the weekend",
+        "recently",
+        "a couple of months ago",
+    ):
+        interval, tconf = resolve_time(expression, MAY, catalog["practices"])
+        assert interval is None and tconf == 0.0, expression
+
+
+def test_unanchored_fact_is_not_true_for_all_time(catalog):
+    graph, _ = _memory(
+        catalog,
+        [_prop("p0", SPEAKER, "practices", "new:running", MAY, unanchored=True)],
+    )
+    (edge,) = graph.all_edges()
+    assert edge.unanchored is True
+    assert edge.t_valid.start == MAY, (
+        "an unresolved date must fall back to the relation's volatility "
+        "default, never to an interval that intersects every query"
+    )
+    assert edge.t_valid.end is None
+
+
+def test_restrict_valid_does_not_reach_an_unanchored_fact(catalog):
+    graph, _ = _memory(
+        catalog,
+        [_prop("p0", SPEAKER, "practices", "new:running", MAY, unanchored=True)],
+    )
+    state = restrict(
+        anchor("Melanie", graph), "valid", Interval(datetime(2024, 1, 1), None)
+    )
+    state = follow(state, "practices", graph, catalog)
+    assert state.trails == []
+    assert state.death_cause == "unanchored_evidence"
+
+
+def test_an_unrestricted_query_still_reaches_it(catalog):
+    """The flag narrows validity queries only -- spec 5.4 keeps the
+    proposition consultable, it does not hide it."""
+    graph, _ = _memory(
+        catalog,
+        [_prop("p0", SPEAKER, "practices", "new:running", MAY, unanchored=True)],
+    )
+    state = follow(anchor("Melanie", graph), "practices", graph, catalog)
+    assert len(state.trails) == 1
+
+
+# --------------------------------------------------------------------- #
+# 3. a repeated ASSERT wrote a second identical edge                      #
+# --------------------------------------------------------------------- #
+
+
+def test_restating_a_fact_reinforces_instead_of_duplicating(catalog):
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "practices", "new:self-care", MAY, episode="e1"),
+            _prop("p1", SPEAKER, "practices", "new:self-care", JUNE, episode="e2"),
+        ],
+    )
+    edges = graph.all_edges()
+    assert len(edges) == 1, "the same fact stated twice is one edge, confirmed twice"
+    assert edges[0].reinforcement == 2
+    assert edges[0].provenance == ["p0", "p1"]
+
+
+def test_earlier_evidence_widens_the_edge_backwards(catalog):
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "practices", "new:self-care", JUNE, episode="e1"),
+            _prop(
+                "p1",
+                SPEAKER,
+                "practices",
+                "new:self-care",
+                JUNE,
+                t_valid=Interval(MAY, None),
+                episode="e2",
+            ),
+        ],
+    )
+    (edge,) = graph.all_edges()
+    assert edge.t_valid.start == MAY
+
+
+def test_a_closed_interval_does_not_absorb_a_later_restatement(catalog):
+    """ "Recife, then Salvador, then Recife again" is two intervals, and
+    reinforcement must not silently erase the gap."""
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "lives_in", "new:Recife", datetime(2023, 1, 1)),
+            _prop("p1", SPEAKER, "lives_in", "new:Salvador", datetime(2023, 3, 1)),
+            _prop("p2", SPEAKER, "lives_in", "new:Recife", datetime(2023, 9, 1)),
+        ],
+    )
+    recife_id = next(e.id for e in graph.all_entities() if e.canonical_name == "Recife")
+    recife_edges = [e for e in graph.all_edges() if e.dst_id == recife_id]
+    assert len(recife_edges) == 2
+    assert [e.t_valid.end is not None for e in recife_edges] == [True, False]
+
+
+# --------------------------------------------------------------------- #
+# 4. one name became two vertices when two relations disagreed on type    #
+# --------------------------------------------------------------------- #
+
+
+def test_one_name_is_one_vertex_across_a_type_class(catalog):
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "practices", "new:charity race", MAY),
+            _prop("p1", SPEAKER, "attended", "new:charity race", MAY),
+        ],
+    )
+    named = [e for e in graph.all_entities() if e.canonical_name == "charity race"]
+    assert len(named) == 1, (
+        "'the charity race' is one thing whether it is reached as an "
+        "Activity or as an Event"
+    )
+
+
+def test_both_relations_land_on_that_same_vertex(catalog):
+    graph, _ = _memory(
+        catalog,
+        [
+            _prop("p0", SPEAKER, "practices", "new:charity race", MAY),
+            _prop("p1", SPEAKER, "attended", "new:charity race", MAY),
+        ],
+    )
+    start = anchor("Melanie", graph)
+    via_practices = follow(start, "practices", graph, catalog).trails[0].vertex_id
+    via_attended = follow(start, "attended", graph, catalog).trails[0].vertex_id
+    assert via_practices == via_attended
+
+
+def test_place_and_organization_are_not_merged(catalog):
+    """The type classes are narrow on purpose: "Vertex the company" and
+    "Vertex the city" being one vertex would be a bug, not a repair."""
+    assert not catalog.types_compatible("Place", "Organization")
+    assert catalog.types_compatible("Activity", "Event")
+
+
+# --------------------------------------------------------------------- #
+# 5. mentions were never linked to an entity                              #
+# --------------------------------------------------------------------- #
+
+
+def test_mentions_are_linked_to_their_entity_by_consolidation(catalog):
+    graph, staging = GraphStore(), StagingStore()
+    mentions = MentionStore()
+    mentions.append(episode_id="e1", surface="climbing", ts=MAY, proposition_id="p0")
+    staging.insert([_prop("p0", SPEAKER, "practices", "new:climbing", MAY, episode="e1")])
+    consolidate(catalog, graph, staging, ClioConfig.default(), mentions=mentions)
+
+    (mention,) = mentions.all()
+    assert mention.entity_id is not None
+    assert graph.get_entity(mention.entity_id).canonical_name == "climbing"
+    assert count(mentions, graph, entity="climbing") == 1
+
+
+def test_relink_is_idempotent(catalog):
+    graph, staging = GraphStore(), StagingStore()
+    mentions = MentionStore()
+    staging.insert([_prop("p0", SPEAKER, "practices", "new:climbing", MAY, episode="e1")])
+    mentions.append(episode_id="e1", surface="climbing", ts=MAY, proposition_id="p0")
+    cfg = ClioConfig.default()
+    consolidate(catalog, graph, staging, cfg, mentions=mentions)
+    first = mentions.all()[0].entity_id
+    consolidate(catalog, graph, staging, cfg, mentions=mentions)
+    assert mentions.all()[0].entity_id == first
+    assert count(mentions, graph, entity="climbing") == 1
+
+
+# --------------------------------------------------------------------- #
+# 6. rebuild and order invariance (spec 12.3 and 17.4)                    #
+# --------------------------------------------------------------------- #
+
+SESSIONS = [
+    [
+        ("s1_p0", "works_at", "new:Vertex", datetime(2023, 1, 14)),
+        ("s1_p1", "lives_in", "new:Recife", datetime(2023, 1, 14)),
+    ],
+    [
+        ("s2_p0", "managed_by", "new:Bia", datetime(2023, 3, 2)),
+        ("s2_p1", "practices", "new:climbing", datetime(2023, 3, 2)),
+    ],
+    [
+        ("s3_p0", "lives_in", "new:Salvador", datetime(2023, 6, 20)),
+        ("s3_p1", "practices", "new:climbing", datetime(2023, 6, 20)),
+    ],
+    [
+        ("s4_p0", "works_at", "new:Kaia", datetime(2023, 9, 5)),
+        ("s4_p1", "managed_by", "new:Rui", datetime(2023, 9, 5)),
+    ],
+]
+
+
+def _build(catalog, session_order):
+    graph, staging = GraphStore(), StagingStore()
+    log, mentions = LogStore(), MentionStore()
+    cfg = ClioConfig.default()
+    for index in session_order:
+        props = []
+        for pid, relation, obj, ts in SESSIONS[index]:
+            log.append(
+                session_id=f"s{index}",
+                speaker="Melanie",
+                text="...",
+                ts_ingest=ts,
+                episode_id=pid,
+            )
+            props.append(_prop(pid, SPEAKER, relation, obj, ts))
+        staging.insert(props)
+        consolidate(catalog, graph, staging, cfg, mentions=mentions)
+    return graph, staging
+
+
+def test_order_invariance_over_shuffled_sessions(catalog):
+    """Spec 17.4, the property the spec calls the most important one for
+    publication: the CONSOLIDATED graph is a function of the episodes, not
+    of the order the sessions arrived in. Turn order inside a session is
+    preserved; only whole sessions move.
+    """
+    reference_graph, _ = _build(catalog, list(range(len(SESSIONS))))
+    reference = canonical_form(reference_graph)
+    assert reference, "the fixture must actually build a graph"
+
+    rng = random.Random(20)
+    for _ in range(20):
+        order = list(range(len(SESSIONS)))
+        rng.shuffle(order)
+        graph, _ = _build(catalog, order)
+        assert canonical_form(graph) == reference, f"order {order} diverged"
+        assert canonical_entities(graph) == canonical_entities(reference_graph)
+
+
+def test_rebuild_reproduces_the_same_graph(catalog):
+    """Spec 12.3: everything derived is rebuildable from the log. The
+    propositions are rewound to the references the extractor produced and
+    replayed against an empty graph."""
+    from fgl.clio.facade import Clio
+    from fgl.llm.prompts import PromptLibrary
+    from fgl.retrieval.embeddings import HashingEmbedder
+
+    clio = Clio(
+        catalog,
+        llm=None,
+        embedder=HashingEmbedder(dim=64),
+        prompts=PromptLibrary("prompts"),
+        config=ClioConfig.default(),
+    )
+    for session in SESSIONS:
+        props = []
+        for pid, relation, obj, ts in session:
+            clio.log.append(
+                session_id="s", speaker="Melanie", text="...", ts_ingest=ts, episode_id=pid
+            )
+            props.append(_prop(pid, SPEAKER, relation, obj, ts))
+        clio.staging.insert(props)
+        clio.consolidate()
+
+    before = canonical_form(clio.graph)
+    assert before
+
+    clio.rebuild()
+    # the rebuilt graph has its own fresh ids; only the canonical form
+    # is comparable, which is exactly the point of having one
+    assert canonical_form(clio.graph) == before
+
+
+def test_consolidation_schedule_does_not_change_the_graph(catalog):
+    """Canonicity's other axis: WHEN consolidation runs must not change
+    what it produces. Session by session and all-at-once have to agree,
+    including across a retraction -- phase 5 used to skip a dependent
+    whose belief had already been closed, so batching the retraction into
+    the same call left an interval open that the incremental schedule
+    closed.
+    """
+    episodes = [
+        [("e1_p0", "works_at", "new:Vertex", datetime(2023, 1, 14), Operation.ASSERT)],
+        [("e2_p0", "managed_by", "new:Bia", datetime(2023, 3, 2), Operation.ASSERT)],
+        [("e3_p0", "works_at", "new:Kaia", datetime(2023, 9, 5), Operation.ASSERT)],
+        [("e4_p0", "managed_by", "new:Bia", datetime(2023, 12, 1), Operation.RETRACT)],
+    ]
+
+    def build(per_episode: bool):
+        graph, staging = GraphStore(), StagingStore()
+        cfg = ClioConfig.default()
+        for episode in episodes:
+            staging.insert(
+                [
+                    _prop(pid, SPEAKER, relation, obj, ts, operation=operation)
+                    for pid, relation, obj, ts, operation in episode
+                ]
+            )
+            if per_episode:
+                consolidate(catalog, graph, staging, cfg)
+        if not per_episode:
+            consolidate(catalog, graph, staging, cfg)
+        return graph
+
+    incremental, batched = build(True), build(False)
+    assert canonical_form(incremental) == canonical_form(batched)
+
+    bia = next(
+        e
+        for e in incremental.all_edges()
+        if incremental.get_entity(e.dst_id).canonical_name == "Bia"
+    )
+    assert bia.t_valid.end == datetime(2023, 9, 5), (
+        "leaving the job ends who managed you there (phase 5), on the JOB's closing date"
+    )
+    assert bia.t_tx.end == datetime(2023, 12, 1), (
+        "and the later retraction closes the belief -- a different axis, "
+        "untouched by the above"
+    )

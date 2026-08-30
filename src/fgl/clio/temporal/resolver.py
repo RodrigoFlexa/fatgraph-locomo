@@ -181,7 +181,7 @@ def _match_ladder(span: str, anchor: datetime) -> tuple[Interval | None, float]:
     return None, _CONF_VAGUE
 
 
-def _default_for_volatility(anchor: datetime, relation: RelationSpec) -> Interval:
+def default_for_volatility(anchor: datetime, relation: RelationSpec) -> Interval:
     """Spec 5.3: what a relation defaults to when no time expression is
     given at all, keyed purely by volatility."""
     if relation.volatility == "static":
@@ -207,7 +207,7 @@ def resolve_time(
         raise NotImplementedError(f"resolve_time: unsupported locale {locale!r}")
 
     if not expression or not expression.strip():
-        return _default_for_volatility(anchor, relation), _CONF_ABSENT
+        return default_for_volatility(anchor, relation), _CONF_ABSENT
 
     base, tconf = _match_ladder(expression, anchor)
     if base is None:

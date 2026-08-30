@@ -43,6 +43,14 @@ class AccessState:
     #: causes not worth collapsing to one label)
     death_cause: str | None = None
     budget_used: int = 0
+    #: True once ``restrict(axis="valid", ...)`` has been applied. Spec
+    #: 5.4: a proposition whose date could not be resolved is reachable by
+    #: the log's partial order but NOT by a restriction on validity, so
+    #: ``follow`` stops walking ``unanchored`` edges once this is set.
+    #: Without the flag there is no way to tell an open window that was
+    #: never narrowed from one the caller deliberately narrowed to
+    #: everything.
+    valid_restricted: bool = False
 
     @property
     def is_alive(self) -> bool:

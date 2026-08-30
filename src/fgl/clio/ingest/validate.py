@@ -24,14 +24,23 @@ def _normalize_ws(text: str) -> str:
     return " ".join((text or "").split()).lower()
 
 
-def _type_compatible(ref: str | None, expected_type: str, graph: GraphStore) -> bool:
+def _type_compatible(
+    ref: str | None, expected_type: str, graph: GraphStore, catalog: Catalog
+) -> bool:
     """A ``new:`` reference has no type yet -- it gets one from the
     relation's own signature at consolidation's phase 1. Only an EXISTING
-    id can violate the signature at this stage."""
+    id can violate the signature at this stage.
+
+    Compared through the catalog's type classes, not by equality: an
+    entity first created as an Activity (via ``practices``) is the same
+    thing when a later turn ``attended`` it, and rejecting that here would
+    undo phase 1's cross-type reuse by refusing to let the proposition
+    through in the first place.
+    """
     if not ref or ref.startswith("new:"):
         return True
     try:
-        return graph.get_entity(ref).type == expected_type
+        return catalog.types_compatible(graph.get_entity(ref).type, expected_type)
     except KeyError:
         return False
 
@@ -65,9 +74,9 @@ def validate_and_bind(
             continue
 
         spec = catalog[relation]
-        if not _type_compatible(item.get("subject_id"), spec.signature[0], graph):
+        if not _type_compatible(item.get("subject_id"), spec.signature[0], graph, catalog):
             continue
-        if not _type_compatible(item.get("object_id"), spec.signature[1], graph):
+        if not _type_compatible(item.get("object_id"), spec.signature[1], graph, catalog):
             continue
 
         span = item.get("span", "")

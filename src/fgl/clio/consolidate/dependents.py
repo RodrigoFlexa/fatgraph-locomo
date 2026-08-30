@@ -28,7 +28,17 @@ def phase_5_propagate_dependents(
         spec = catalog[e.label]
         for dep_label in spec.dependents:
             addr = EdgeAddress(e.src_id, dep_label)
-            for d in graph.live_edges_at(addr):
+            # edges_at, not live_edges_at: a dependent that has since been
+            # RETRACTED must still get its t_valid closed. The two axes
+            # are independent (that is the whole point of the CLOSE /
+            # RETRACT split), and "what did the agent believe in October"
+            # -- restrict(tx, ...) -- has to find the interval the agent
+            # would have held then, which is the one this propagation
+            # writes. Filtering on t_tx here also made the result depend
+            # on WHEN consolidation ran: propagating episode by episode
+            # closed the interval, batching the same episodes into one
+            # call did not, because the retraction had already landed.
+            for d in graph.edges_at(addr):
                 if d.id == e.id:
                     continue
                 # A dependent that only starts at/after the cutoff is the

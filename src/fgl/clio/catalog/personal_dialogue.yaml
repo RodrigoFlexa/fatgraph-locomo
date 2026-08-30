@@ -12,6 +12,20 @@
 
 types: [Person, Organization, Place, Activity, Object, Event, Topic]
 
+# Types that name the same KIND of thing in ordinary dialogue and must
+# never yield two vertices for one name. Phase 1 types a brand-new entity
+# from the relation's own signature, so "the charity race" reached through
+# `practices` (Activity) and through `attended` (Event) used to become two
+# separate vertices with the same name -- and fold could never repair it,
+# because a type mismatch scores 0.0 before any other signal is looked at.
+# Every multi-hop path through that thing was simply absent.
+#
+# Kept deliberately narrow: Place and Organization are NOT in a class
+# together, because "Vertex the company" and "Vertex the place" being one
+# vertex is a real error, not a repair.
+type_classes:
+  - [Activity, Event, Topic]
+
 relations:
   # --- residence and location ---
   - name: lives_in
