@@ -729,3 +729,99 @@ def test_extraction_asks_for_a_budget_that_fits_several_propositions():
         max_tokens=2000,
     )
     assert seen["max_tokens"] == 2000
+
+
+# --------------------------------------------------------------------- #
+# 12. the person guard was too wide; type mismatches were dropped whole   #
+# --------------------------------------------------------------------- #
+
+
+def _validate_one(catalog, item, text="I said something", graph=None):
+    from fgl.clio.ingest.validate import validate_and_bind
+
+    graph = graph if graph is not None else GraphStore()
+    episode = LogStore().append(
+        session_id="s", speaker="Caroline", text=text, ts_ingest=MAY
+    )
+    return validate_and_bind([item], episode, graph, catalog), graph
+
+
+def _item(**kw):
+    base = {
+        "operation": "assert",
+        "subject_id": "new:Caroline",
+        "relation": "likes",
+        "object_id": "new:pottery",
+        "polarity": True,
+        "evidence_kind": "literal",
+        "span": "I said something",
+    }
+    base.update(kw)
+    return base
+
+
+def test_a_vague_common_noun_is_allowed_as_an_object(catalog):
+    """P5: the answer is written from the EPISODE; the proposition only
+    has to LOCATE it. A vertex named "friends" is imprecise but it anchors
+    the right turn, and that is its whole job. Applying the person-name
+    guard to objects made it the largest source of rejections on conv-26
+    (24 of 47) and cost real evidence coverage."""
+    result, _ = _validate_one(
+        catalog,
+        _item(relation="friend_of", object_id="new:friends"),
+        text="My friends have been there through everything",
+    )
+    assert len(result.valid) == 1
+    assert result.rejected == []
+
+
+def test_a_description_in_the_subject_slot_is_still_refused(catalog):
+    """The subject is different in kind: it is the write ADDRESS, and a
+    mistyped one corrupts the type system rather than merely naming
+    something loosely."""
+    result, _ = _validate_one(
+        catalog,
+        _item(subject_id="new:transgender stories", object_id="new:Caroline"),
+        text="The transgender stories were inspiring",
+    )
+    assert result.valid == []
+    assert [r.reason for r in result.rejected] == ["person_ref_lacks_a_name"]
+
+
+def test_a_mistyped_id_is_rebound_when_folding_can_reconcile_it(catalog):
+    """The extractor naming the right THING under an id carrying the wrong
+    type used to lose the whole proposition. Activity/Event/Topic form a
+    declared type class, so a fresh vertex folds back into the mistyped
+    one -- the fact survives and the entity does not stay split."""
+    graph = GraphStore()
+    # an Organization is NOT interchangeable with an Activity, so this is
+    # a real signature violation -- unlike Event, which shares Activity's
+    # type class and needs no rebinding at all
+    program = graph.create_entity("mentorship program", "Organization")
+    result, _ = _validate_one(
+        catalog,
+        _item(relation="practices", object_id=program.id),
+        text="I joined a mentorship program",
+        graph=graph,
+    )
+    assert len(result.valid) == 1
+    assert result.valid[0]["object_id"] == "new:mentorship program"
+    assert result.rebindings == 1
+
+
+def test_a_mistyped_id_is_still_refused_where_nothing_can_reconcile_it(catalog):
+    """Place and Organization form no type class and never fold, so
+    rebinding "I live in Vertex" would mint a place called Vertex beside
+    the company -- the identity error the narrow classes exist to
+    prevent. Rejection is the right answer there."""
+    graph = GraphStore()
+    vertex = graph.create_entity("Vertex", "Organization")
+    result, _ = _validate_one(
+        catalog,
+        _item(relation="lives_in", object_id=vertex.id),
+        text="I live in Vertex",
+        graph=graph,
+    )
+    assert result.valid == []
+    assert result.rebindings == 0
+    assert [r.reason for r in result.rejected] == ["object_type_violates_signature"]

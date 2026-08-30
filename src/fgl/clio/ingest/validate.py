@@ -85,16 +85,21 @@ REJECTION_REASONS = (
 #: concerned.
 #:
 #: The one property a person's name has in this corpus and a description
-#: does not is a capital letter. So a `new:` reference landing in a Person
-#: slot must carry at least one capitalised token.
+#: does not is a capital letter, so a `new:` reference in a Person slot
+#: must carry a capitalised token.
 #:
-#: The known cost, stated rather than hidden: this also drops unnamed
-#: relational nouns -- "husband", "kids", "friends", "family" as the
-#: object of family_of/friend_of. That is a defensible loss and arguably a
-#: gain: a vertex named "husband" is indistinguishable from every other
-#: husband, can never be resolved to a real person, and no question the
-#: memory is asked can be answered by reaching it. It is a placeholder,
-#: not a person. The count is reported per run so the trade stays visible.
+#: SUBJECT SLOT ONLY, and that restriction is the whole point. Applying it
+#: to objects too was a mistake with a measurable cost: it became the
+#: single largest source of rejections on conv-26 (24 of 47) and directly
+#: cost evidence coverage, throwing away "friend_of friends" and
+#: "family_of husband". The reasoning behind including objects -- "a
+#: vertex named husband is a placeholder no question can reach" --
+#: contradicts P5, the spec's own load-bearing principle: the answer is
+#: written from the EPISODE, and the proposition's job is only to LOCATE
+#: that episode with temporal precision. An imprecise vertex that anchors
+#: the right turn has done its job. An inverted SUBJECT is different in
+#: kind: it does not merely name something vaguely, it corrupts the type
+#: system and the write address itself.
 PERSON_TYPE = "Person"
 
 
@@ -110,6 +115,9 @@ class ValidationResult:
     valid: list[dict] = field(default_factory=list)
     unmapped: list[dict] = field(default_factory=list)
     rejected: list[Rejection] = field(default_factory=list)
+    #: references rewritten from a mistyped existing id to ``new:<name>``
+    #: rather than dropped (see :func:`_rebind_type_mismatches`)
+    rebindings: int = 0
     #: entries whose span was not a verbatim excerpt and were therefore
     #: downgraded to ``contextual`` (spec 6.5). Not a rejection -- but a
     #: high rate here means most facts land at confidence 0.40 and need
@@ -127,6 +135,68 @@ class ValidationResult:
         for r in self.rejected:
             counts[r.reason] = counts.get(r.reason, 0) + 1
         return counts
+
+
+def _rebind_type_mismatches(
+    item: dict, spec, graph: GraphStore, catalog: Catalog
+) -> tuple[dict, int]:
+    """Rewrites an existing-id reference whose TYPE cannot fill the slot
+    into ``new:<that entity's name>``, so the proposition survives with a
+    correctly-typed vertex instead of being dropped.
+
+    The failure this recovers is the extractor picking the wrong id out of
+    the candidate table -- naming the right THING under an id that carries
+    the wrong type. Dropping the whole proposition for that threw away the
+    fact as well as the mistake: on conv-26, "Last weekend I joined a
+    mentorship program for LGBTQ youth" -- an ``attended``/``practices``
+    fact with a resolvable date, cited as evidence by a real question --
+    produced nothing at all for exactly this reason.
+
+    Only RECONCILABLE slots are rebound, and that limit is load-bearing.
+    A slot whose type belongs to a declared type class is safe: the
+    catalog has said those types denote loosely, so fold merges the fresh
+    vertex back into the mistyped one. A Person slot is safe when the name
+    looks like a person's, which is the same test the inverted-subject
+    guard already applies. Everything else -- Place and Organization above
+    all -- is REJECTED rather than rebound, because those form no class
+    and never fold: rebinding "I live in Vertex" would mint a place called
+    Vertex beside the company of that name, which is exactly the identity
+    error the narrow type classes exist to prevent (pinned by
+    ``test_validate_rejects_type_mismatch_against_a_known_entity``).
+
+    Counted, not silent -- a high rate here means the candidate table is
+    confusing the extractor and should be fixed upstream.
+    """
+    rebound = 0
+    patched = item
+    for field_name, slot_type in (
+        ("subject_id", spec.signature[0]),
+        ("object_id", spec.signature[1]),
+    ):
+        ref = patched.get(field_name)
+        if not ref or ref.startswith("new:"):
+            continue
+        try:
+            entity = graph.get_entity(ref)
+        except KeyError:
+            continue  # an invented id -- not a type mistake, let it be rejected
+        if catalog.types_compatible(entity.type, slot_type):
+            continue
+        if not _slot_is_reconcilable(slot_type, entity.canonical_name, catalog):
+            continue  # leave it to be rejected below
+        patched = {**patched, field_name: f"new:{entity.canonical_name}"}
+        rebound += 1
+    return patched, rebound
+
+
+def _slot_is_reconcilable(slot_type: str, name: str, catalog: Catalog) -> bool:
+    """Whether re-minting ``name`` as a vertex of ``slot_type`` can be
+    undone later by folding, or is otherwise known-safe."""
+    if len(catalog.type_class(slot_type)) > 1:
+        return True  # the catalog says this family denotes loosely; fold reconciles
+    if slot_type == PERSON_TYPE:
+        return _looks_like_a_person_name(f"new:{name}")
+    return False
 
 
 def validate_and_bind(
@@ -170,21 +240,17 @@ def validate_and_bind(
             continue
 
         spec = catalog[relation]
+        item, rebound = _rebind_type_mismatches(item, spec, graph, catalog)
+        result.rebindings += rebound
         if not _type_compatible(item.get("subject_id"), spec.signature[0], graph, catalog):
             result.rejected.append(Rejection("subject_type_violates_signature", item))
             continue
         if not _type_compatible(item.get("object_id"), spec.signature[1], graph, catalog):
             result.rejected.append(Rejection("object_type_violates_signature", item))
             continue
-        person_slots = [
-            ref
-            for ref, slot_type in (
-                (item.get("subject_id"), spec.signature[0]),
-                (item.get("object_id"), spec.signature[1]),
-            )
-            if slot_type == PERSON_TYPE
-        ]
-        if not all(_looks_like_a_person_name(ref) for ref in person_slots):
+        if spec.signature[0] == PERSON_TYPE and not _looks_like_a_person_name(
+            item.get("subject_id")
+        ):
             result.rejected.append(Rejection("person_ref_lacks_a_name", item))
             continue
 

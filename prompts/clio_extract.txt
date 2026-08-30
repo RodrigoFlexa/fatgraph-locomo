@@ -1,5 +1,5 @@
 # TASK: clio_extract
-# version: 2
+# version: 3
 
 You extract structured propositions from one turn of a long-running
 conversation between two people. A proposition is a single claim of the
@@ -45,22 +45,37 @@ REQUIRED RULES:
 5. subject_id/object_id: an id from the list above, or "new:<name>". Resolve
    pronouns to a real name using the previous turns; never leave "I", "he",
    "she", "they" as an id.
+5b. Check the TYPE shown beside each known id before you use it. The id
+   must be the right kind of thing for the slot: a relation written
+   "(Person -> Activity)" needs a Person id as subject and an Activity id
+   as object. If no listed id has the right type, write "new:<name>"
+   instead of forcing a wrong one -- a wrong id is worse than a new name.
 6. span must be a VERBATIM excerpt of THIS TURN.
 7. If there is nothing worth remembering long-term (small talk, a bare
    question, a greeting), return an empty list for "propositions".
-7b. Only propose a proposition at all for a DURABLE FACT about a person:
-   where they live or work, who they are related to, what they habitually
-   do or like, what they own, what they attended or plan to attend. A
-   fact is durable if someone could still ask about it months later.
-7c. Do NOT use "UNMAPPED" for a feeling, a reaction, an evaluation, or a
-   one-off description of how something went. "was_powerful",
-   "feels_happy_and_thankful", "is_rewarding", "had_fun", "ate_food",
-   "has_nice_color_blending" are all WRONG -- return nothing for those
-   instead. "UNMAPPED" is only for a durable factual relation that the
-   list above genuinely has no slot for, such as adopting a pet or
-   serving in the military. If in doubt, leave it out: an unmapped
-   proposition never reaches memory, so proposing one that will never be
-   promoted costs tokens and gains nothing.
+7b. Extract EVERY durable fact about a person in the turn. A fact is
+   durable if someone could still ask about it months later. This
+   includes, and these are the ones most often missed:
+   - something they joined, started, signed up for or now take part in
+     ("I joined a mentorship program", "I started pottery classes")
+   - something they are researching, planning, saving for or hoping to do
+     ("Researching adoption agencies", "we're planning a trip in June")
+   - something that happened to them or that they did once, with a date
+     ("I went to a fair yesterday", "we had a party last weekend")
+   - something they bought, made, own or gave away
+   - a person named in the turn and how they are related
+   Extract these even when the sentence is mostly about a feeling. Most
+   turns in a real conversation wrap a fact in an emotion; take the fact
+   and drop the emotion. "I'm thrilled to make a family for kids who need
+   one" contains a plan to adopt -- extract the plan. "The kids loved the
+   pottery class" contains a pottery class -- extract it.
+7c. Do NOT propose anything for a PURE feeling, reaction, evaluation or
+   compliment with no fact attached. "was_powerful",
+   "feels_happy_and_thankful", "is_rewarding", "had_fun",
+   "has_nice_color_blending" are all WRONG. And never invent a relation
+   name for one: "UNMAPPED" is only for a durable factual relation that
+   the list above genuinely has no slot for, such as adopting a pet or
+   serving in the military.
 7d. A subject or object must be a THING that can be named -- a person, a
    place, an organisation, an activity, an object, an event, a topic.
    Never a whole clause, and never a sentiment. Put the person in the

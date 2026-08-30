@@ -466,8 +466,9 @@ def gate1(
     if not fake:
         u = llm.usage
         console.print(
-            f"[dim]LLM usage: {u.calls} calls, {u.total_tokens} tokens, "
-            f"{u.json_failures} JSON parse failures[/]"
+            f"[dim]LLM usage: {u.calls} calls ({u.cached_calls} served from "
+            f"cache), {u.total_tokens} tokens, {u.json_failures} JSON parse "
+            "failures[/]"
         )
 
 
