@@ -1,0 +1,62 @@
+# TASK: clio2_plan
+# version: 1
+
+Compile the question into ONE typed query over a long-term personal-memory
+ledger. Do not answer it. The executor, not you, will perform retrieval,
+joins, counting, intersection, ordering, and temporal filtering.
+
+QUESTION:
+{question}
+
+LINKED ENTITY CANDIDATES:
+{entities}
+
+CANONICAL RELATIONS:
+{relations}
+
+DETERMINISTIC FALLBACK PLAN:
+{fallback}
+
+OPERATORS:
+- lookup: one value or a small directly-supported answer
+- enumerate: all values matching a subject/relation/facet
+- count_distinct: count distinct events or values, never mentions
+- intersection: values shared by two or more subjects
+- join: compose two explicit relational steps
+- latest: most recent matching fact/event
+- temporal_lookup: return when a matching fact/event occurred
+- premise_check: verify a yes/no premise
+- infer: a minimal inference grounded in retrieved evidence
+
+RULES:
+1. Use only canonical relation names listed above.
+2. Use canonical entity names from candidates when possible.
+3. A plural/list question normally uses enumerate, not lookup.
+4. "How many" uses count_distinct.
+5. "Both" uses intersection.
+6. Put content words needed to distinguish relevant facts in constraints.terms.
+7. object_types may contain only Person, Organization, Place, Activity,
+   Object, Event, or Topic.
+8. answer_type is entity, entity_set, number, boolean, date, duration, or text.
+9. confidence measures confidence in the PLAN, not in the answer.
+10. Relations describe semantic intent. The runtime may add compatible
+    legacy relations and will validate them with constraints and event roles.
+
+Return only this JSON object:
+{{
+  "operator": "lookup|enumerate|count_distinct|intersection|join|latest|temporal_lookup|premise_check|infer",
+  "subjects": ["canonical entity name"],
+  "relations": ["canonical_relation"],
+  "constraints": {{
+    "start": "YYYY-MM-DD or null",
+    "end": "YYYY-MM-DD or null",
+    "object_types": ["type"],
+    "terms": ["content term"],
+    "companions": ["entity name"],
+    "current_only": false
+  }},
+  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "projection": "object|subject|date|event",
+  "confidence": 0.0,
+  "rationale": "short plan rationale"
+}}

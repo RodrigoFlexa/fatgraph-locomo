@@ -58,6 +58,15 @@ class Catalog:
             for name, spec in relations.items()
             if spec.invertible and spec.inverse_name != name
         }
+        self._surface_to_relation: dict[str, str] = {}
+        for name, spec in relations.items():
+            for alias in (name, *spec.aliases_surface):
+                key = alias.strip().casefold().replace(" ", "_")
+                previous = self._surface_to_relation.setdefault(key, name)
+                if previous != name:
+                    raise CatalogError(
+                        f"surface alias {alias!r} belongs to both {previous!r} and {name!r}"
+                    )
 
     def __contains__(self, name: str) -> bool:
         return name in self._relations
@@ -123,6 +132,13 @@ class Catalog:
         """A label the access algebra's ``follow`` can walk: a relation
         name, or one of its inverses."""
         return label in self._relations or label in self._inverse_to_forward
+
+    def canonical_relation(self, surface: str | None) -> str | None:
+        """Map a declared surface/proposal alias to its canonical relation."""
+        if not surface:
+            return None
+        key = surface.strip().casefold().replace(" ", "_")
+        return self._surface_to_relation.get(key)
 
 
 def _build_relation(name: str, raw: dict) -> RelationSpec:

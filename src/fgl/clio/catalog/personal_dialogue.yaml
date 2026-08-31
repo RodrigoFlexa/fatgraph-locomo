@@ -134,6 +134,7 @@ relations:
     volatility: fast
     invertible: true
     inverse_name: attended_by
+    aliases_surface: [participated_in_event, participated_in, went_to]
 
   - name: plans_to
     signature: [Person, Event]
@@ -163,6 +164,7 @@ relations:
     cardinality: multi
     volatility: fast
     invertible: false
+    aliases_surface: [researches_adoption_agencies, researching, researched]
 
   - name: created
     signature: [Person, Object]
@@ -170,6 +172,7 @@ relations:
     volatility: static
     invertible: true
     inverse_name: created_by
+    aliases_surface: [created_drawing, created_art, painted, drew, made]
 
   - name: member_of
     signature: [Person, Organization]
@@ -177,6 +180,7 @@ relations:
     volatility: slow
     invertible: true
     inverse_name: has_member
+    aliases_surface: [member_of_support_group, joined_group, belongs_to]
 
   - name: supports
     signature: [Person, Person]
@@ -184,6 +188,7 @@ relations:
     volatility: slow
     invertible: true
     inverse_name: supported_by
+    aliases_surface: [helped_and_supported, provides_support_to, wants_to_provide_support_to]
 
   - name: received_support_from
     signature: [Person, Person]
@@ -191,6 +196,11 @@ relations:
     volatility: slow
     invertible: true
     inverse_name: gave_support_to
+    aliases_surface:
+      - received_love_and_support
+      - has_support_network
+      - has_support_system
+      - having_support
 
   - name: parent_of
     signature: [Person, Person]
@@ -211,9 +221,11 @@ relations:
     cardinality: multi
     volatility: slow
     invertible: false
+    aliases_surface: [learned_lesson, was_taught]
 
   - name: symbolizes
     signature: [Topic, Topic]
     cardinality: multi
     volatility: static
     invertible: false
+    aliases_surface: [represent, represents, mean, stands_for, stand_for]

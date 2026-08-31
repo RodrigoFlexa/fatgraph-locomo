@@ -272,8 +272,17 @@ def validate_and_bind(
             continue
         relation = item["relation"]
         if relation == "UNMAPPED":
-            result.unmapped.append(item)
-            continue
+            canonical = catalog.canonical_relation(item.get("suggested_relation"))
+            if canonical is None:
+                result.unmapped.append(item)
+                continue
+            item = {**item, "relation": canonical, "suggested_relation": None}
+            relation = canonical
+        elif relation not in catalog:
+            canonical = catalog.canonical_relation(relation)
+            if canonical is not None:
+                item = {**item, "relation": canonical}
+                relation = canonical
         if relation not in catalog:
             # outside Sigma and not UNMAPPED (spec 6.5). Distinct from
             # UNMAPPED: the model invented a label instead of admitting

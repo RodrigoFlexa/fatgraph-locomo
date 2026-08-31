@@ -72,12 +72,26 @@ class AccessConfig:
 
 
 @dataclass
+class Clio2Config:
+    #: Staged facts remain lower-confidence ledger candidates. The immutable
+    #: episode is still required before they may support an answer.
+    include_staged_facts: bool = True
+    #: Actual raw episodes passed to the typed answerer after value coverage
+    #: ranking. Unlike CLIO1's metric, this is also the set reported as recall.
+    answer_evidence_limit: int = 16
+
+
+@dataclass
 class ClioConfig:
     catalog_path: str = str(Path(__file__).parent / "catalog" / "personal_dialogue.yaml")
     temporal: TemporalConfig = field(default_factory=TemporalConfig)
     thresholds: ThresholdsConfig = field(default_factory=ThresholdsConfig)
     extraction: ExtractionConfig = field(default_factory=ExtractionConfig)
     access: AccessConfig = field(default_factory=AccessConfig)
+    clio2: Clio2Config = field(default_factory=Clio2Config)
+    #: ``agent`` preserves the original experimental reader; ``clio2`` uses
+    #: the compiled query engine.
+    reader: str = "agent"
 
     @classmethod
     def from_yaml(cls, path: str | Path) -> ClioConfig:
@@ -95,6 +109,13 @@ class ClioConfig:
             kwargs["extraction"] = ExtractionConfig(**raw["extraction"])
         if "access" in raw:
             kwargs["access"] = AccessConfig(**raw["access"])
+        if "clio2" in raw:
+            kwargs["clio2"] = Clio2Config(**raw["clio2"])
+        if "reader" in raw:
+            reader = str(raw["reader"])
+            if reader not in ("agent", "clio2"):
+                raise ValueError("clio.reader must be 'agent' or 'clio2'")
+            kwargs["reader"] = reader
         return cls(**kwargs)
 
     @classmethod

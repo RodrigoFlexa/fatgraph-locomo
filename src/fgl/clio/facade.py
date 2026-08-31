@@ -95,7 +95,7 @@ class Clio:
         episode_id: str | None = None,
     ) -> IngestResult:
         """Spec section 6: one LLM call, never blocks on consolidation."""
-        return ingest_turn(
+        result = ingest_turn(
             text=text,
             speaker=speaker,
             session_id=session_id,
@@ -114,10 +114,12 @@ class Clio:
             extraction_max_tokens=self.config.extraction.max_tokens,
             episode_id=episode_id,
         )
+        self._clio2_runtime = None
+        return result
 
     def consolidate(self) -> ConsolidationReport:
         """Spec section 7 + 8: asynchronous, idempotent, includes folding."""
-        return consolidate(
+        report = consolidate(
             self.catalog,
             self.graph,
             self.staging,
@@ -126,6 +128,8 @@ class Clio:
             journal=self.journal,
             mentions=self.mentions,
         )
+        self._clio2_runtime = None
+        return report
 
     def rebuild(self) -> ConsolidationReport:
         """Spec 12.3: discard everything derived and rebuild it from the
@@ -150,6 +154,7 @@ class Clio:
         self.graph = GraphStore()
         self.journal = FoldJournal()
         self.entity_index = EntityIndex(self.entity_index.embedder)
+        self._clio2_runtime = None
         self.mentions.unlink()
         for p in self.staging.all():
             p.status = "staged"
@@ -159,9 +164,20 @@ class Clio:
                 p.object_id = p.object_ref
         return self.consolidate()
 
-    def ask(self, question: str) -> AgentTrace:
+    def ask(self, question: str, reader: str | None = None) -> AgentTrace:
         """Spec sections 9-11: the access algebra, driven by the agent
         loop, ending in an episode-grounded answer."""
         self.entity_index.rebuild(self.graph)
         self.episode_index.rebuild(self.log)
+        selected_reader = reader or self.config.reader
+        if selected_reader == "clio2":
+            from fgl.clio2.engine import run_clio2
+
+            return run_clio2(question, self)
+        if selected_reader != "agent":
+            raise ValueError(f"unknown CLIO reader {selected_reader!r}")
         return run_agent_loop(question, self)
+
+    def ask2(self, question: str) -> AgentTrace:
+        """Explicit CLIO2 entry point, independent of the configured default."""
+        return self.ask(question, reader="clio2")

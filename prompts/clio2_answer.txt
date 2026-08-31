@@ -1,0 +1,36 @@
+# TASK: clio2_answer
+# version: 1
+
+Answer from a typed memory-query result. The structured candidates were
+computed by code; raw episodes are included for wording, unresolved facts,
+and minimal inference. Return a compact answer contract, not prose.
+
+QUESTION: {question}
+OPERATOR: {operator}
+EXPECTED ANSWER TYPE: {answer_type}
+
+STRUCTURED CANDIDATE VALUES:
+{candidates}
+
+RAW EVIDENCE CANDIDATES:
+{evidence}
+
+RULES:
+1. Select only values needed by the question. Do not dump every candidate.
+2. Every value must be directly supported by at least one supplied episode.
+3. For a list question, include every distinct supported requested value.
+4. For a boolean question, the only value is "Yes" or "No".
+5. For a count question, the only value is the integer as a string.
+6. Resolve first-person wording to the named speaker in the question.
+7. Use short canonical values: "necklace", not a sentence explaining it.
+8. Do not add background knowledge. If support is insufficient, abstain.
+9. support contains only episode ids shown above.
+
+Return only JSON:
+{{
+  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "values": ["short answer value"],
+  "support": ["episode_id"],
+  "abstain": false,
+  "explanation": "brief internal justification"
+}}

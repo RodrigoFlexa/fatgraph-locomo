@@ -644,6 +644,11 @@ def bench(
         "--no-cache",
         help="Force fresh LLM calls instead of reusing the on-disk cache.",
     ),
+    reader: str = typer.Option(
+        "clio2",
+        "--reader",
+        help="Question reader: clio2 (compiled) or agent (legacy movement loop).",
+    ),
 ) -> None:
     """Runs the full LoCoMo benchmark through CLIO (ingest -> consolidate
     -> fold -> answer every official question -> score with the same
@@ -662,8 +667,8 @@ def bench(
 
         fgl clio bench -n 1 -q 20
 
-    The full benchmark (expensive: 10 conversations, 1986 questions, each
-    needing several agent-loop calls plus one extraction call per turn):
+    The full benchmark (expensive: 10 conversations, 1986 questions, with
+    ingestion plus compiled planning/answering calls for every question):
 
         fgl clio bench
 
@@ -683,6 +688,8 @@ def bench(
         )
 
     llm, embedder = _build_backends(fake, no_cache)
+    if reader not in ("clio2", "agent"):
+        raise typer.BadParameter("--reader must be clio2 or agent")
     console.print(
         f"[bold]Backend:[/] {'FakeLLM (offline)' if fake else llm.cfg.deployment}"
     )
@@ -703,6 +710,10 @@ def bench(
             f"-- running mean f1={sum(running_f1) / len(running_f1):.4f}"
         )
 
+    from fgl.clio.config import ClioConfig
+
+    cfg = ClioConfig.default()
+    cfg.reader = reader
     metrics = run_benchmark(
         data_file=data_file,
         llm=llm,
@@ -712,6 +723,7 @@ def bench(
         results_dir=results_dir,
         condition_name=name,
         on_conversation_done=_on_done,
+        config=cfg,
     )
 
     console.print(f"\n[bold]Wrote:[/] {Path(results_dir) / name}/metrics.json")
