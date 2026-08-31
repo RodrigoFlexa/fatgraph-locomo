@@ -155,7 +155,11 @@ def run_conversation(
                 evidence=q.evidence,
                 retrieved_turn_ids=retrieved_turn_ids,
                 recall={"recall_context": evidence_recall(q.evidence, retrieved_turn_ids)},
-                n_facts=len(clio.graph.all_edges()),
+                n_facts=(
+                    len(clio.clio3_store.records())
+                    if config.reader == "clio3"
+                    else len(clio.graph.all_edges())
+                ),
                 # For an agentic reader the comparable finite resource is
                 # every prompt token spent deciding and answering this
                 # question, not a fictitious single RAG context.
@@ -165,6 +169,7 @@ def run_conversation(
         )
     qa_seconds = time.monotonic() - t0
 
+    using_clio3 = config.reader == "clio3"
     result = ConversationResult(
         sample_id=conv.sample_id,
         n_turns=n_turns,
@@ -173,8 +178,12 @@ def run_conversation(
         traces=traces,
         ingest_seconds=ingest_seconds,
         qa_seconds=qa_seconds,
-        n_entities=len(clio.graph.all_entities()),
-        n_edges=len(clio.graph.all_edges()),
+        n_entities=(
+            len(clio.clio3_store.entities())
+            if using_clio3
+            else len(clio.graph.all_entities())
+        ),
+        n_edges=(clio.clio3_store.edge_count() if using_clio3 else len(clio.graph.all_edges())),
         n_folds=len(clio.journal.all()),
     )
     return result, clio

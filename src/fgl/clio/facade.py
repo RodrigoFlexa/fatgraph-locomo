@@ -52,6 +52,10 @@ class Clio:
         self.unmapped = UnmappedQueue()
         self.entity_index = EntityIndex(embedder)
         self.episode_index = EpisodeIndex(embedder)
+        from fgl.clio3.store import EventGraphStore
+
+        self.clio3_store = EventGraphStore()
+        self._clio3_runtime = None
 
     @classmethod
     def build(
@@ -95,6 +99,17 @@ class Clio:
         episode_id: str | None = None,
     ) -> IngestResult:
         """Spec section 6: one LLM call, never blocks on consolidation."""
+        if self.config.reader == "clio3":
+            from fgl.clio3.ingest import ingest_turn as ingest_clio3_turn
+
+            return ingest_clio3_turn(
+                text=text,
+                speaker=speaker,
+                session_id=session_id,
+                ts=ts,
+                memory=self,
+                episode_id=episode_id,
+            )
         result = ingest_turn(
             text=text,
             speaker=speaker,
@@ -119,6 +134,10 @@ class Clio:
 
     def consolidate(self) -> ConsolidationReport:
         """Spec section 7 + 8: asynchronous, idempotent, includes folding."""
+        if self.config.reader == "clio3":
+            self.clio3_store.consolidate()
+            self._clio3_runtime = None
+            return ConsolidationReport()
         report = consolidate(
             self.catalog,
             self.graph,
@@ -174,6 +193,10 @@ class Clio:
             from fgl.clio2.engine import run_clio2
 
             return run_clio2(question, self)
+        if selected_reader == "clio3":
+            from fgl.clio3.engine import run_clio3
+
+            return run_clio3(question, self)
         if selected_reader != "agent":
             raise ValueError(f"unknown CLIO reader {selected_reader!r}")
         return run_agent_loop(question, self)
@@ -181,3 +204,7 @@ class Clio:
     def ask2(self, question: str) -> AgentTrace:
         """Explicit CLIO2 entry point, independent of the configured default."""
         return self.ask(question, reader="clio2")
+
+    def ask3(self, question: str) -> AgentTrace:
+        """Explicit CLIO3 entry point, independent of the configured default."""
+        return self.ask(question, reader="clio3")

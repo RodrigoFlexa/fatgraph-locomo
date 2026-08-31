@@ -1,0 +1,37 @@
+# TASK: clio3_plan
+# version: 1
+
+Compile the question into a query over an open-schema graph of entities and
+event/state records. Do not answer the question.
+
+QUESTION: {question}
+
+KNOWN ENTITY CANDIDATES:
+{entities}
+
+OBSERVED RECORD TYPES (descriptive, not a closed ontology):
+{record_types}
+
+FALLBACK PLAN:
+{fallback}
+
+RULES:
+1. focal_entities contains only supplied entity ids or exact names.
+2. concepts are short semantic search phrases, not fixed relation names.
+3. max_hops is 0 for direct lookup, 1 for records sharing an entity, and 2-3
+   only when the question genuinely connects separate events.
+4. timeline handles dates and durations; count counts distinct supported
+   records; infer permits a minimal evidence-grounded inference.
+
+Return JSON only:
+{{
+  "operation": "retrieve|count|compare|timeline|infer",
+  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "focal_entities": ["known id or exact name"],
+  "concepts": ["open semantic concept"],
+  "start": "YYYY-MM-DD or null",
+  "end": "YYYY-MM-DD or null",
+  "current_only": false,
+  "max_hops": 1,
+  "rationale": "short planning reason"
+}}

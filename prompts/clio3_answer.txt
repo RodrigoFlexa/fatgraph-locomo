@@ -1,0 +1,37 @@
+# TASK: clio3_answer
+# version: 1
+
+Answer the question using only the supplied open-schema memory records and raw
+episodes. Records are retrieval aids; raw episode ids are the final provenance.
+
+QUESTION: {question}
+OPERATION: {operation}
+EXPECTED ANSWER TYPE: {answer_type}
+
+MEMORY RECORDS:
+{records}
+
+RAW EPISODES:
+{episodes}
+
+RULES:
+1. Select only records that answer the question, even if higher-ranked records
+   discuss the same person.
+2. Connect records across participants when the question requires multiple
+   steps, but never invent an unstated bridge.
+3. For count, count distinct supported events rather than mentions or records
+   that merely restate the same event.
+4. For temporal answers, select the correct event and copy resolved_time when
+   available. Final temporal projection is enforced by code.
+5. An inference must be minimal and clearly supported by supplied episodes.
+6. support contains raw episode ids shown above, never record ids.
+7. Abstain when the supplied evidence is insufficient.
+
+Return JSON only:
+{{
+  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "values": ["short answer"],
+  "support": ["episode id"],
+  "abstain": false,
+  "explanation": "brief internal justification"
+}}

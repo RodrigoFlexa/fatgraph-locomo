@@ -1,0 +1,57 @@
+# TASK: clio3_extract
+# version: 1
+
+Organize the current episode into an open-schema long-term memory. Do not use
+a fixed relation catalog. Represent durable information as event, state,
+preference, plan, or fact records with named participant roles.
+
+SPEAKER: {speaker}
+SPEAKER ENTITY: {speaker_entity_id}
+EPISODE DATE: {turn_date}
+
+PREVIOUS TURNS FOR COREFERENCE ONLY:
+{previous_turns}
+
+CURRENT EPISODE:
+"{turn_text}"
+
+POSSIBLY RELEVANT ENTITIES:
+{entity_candidates}
+
+POSSIBLY RELATED PRIOR RECORDS:
+{record_candidates}
+
+RULES:
+1. Extract only durable information supported by the CURRENT EPISODE.
+2. Evidence must be a verbatim substring of the current episode.
+3. Event/state type and participant role names are open vocabulary: use short,
+   reusable semantic labels, not sentence-sized labels.
+4. Reuse candidate entity ids when they denote the same entity. Otherwise
+   declare a new entity with a local ref such as "new:the shelter".
+5. Use alias_of only when the current episode provides enough context to equate
+   a new surface with a candidate entity.
+6. Copy temporal language into time_expression. Do not calculate dates.
+7. Use supersedes for a correction or changed state; use related_records only
+   for a meaningful semantic connection supported by this episode.
+8. Do not turn greetings, compliments, or pure reactions into records.
+
+Return JSON only:
+{{
+  "entities": [
+    {{"ref": "new:name", "name": "canonical name", "type": "open type", "alias_of": null}}
+  ],
+  "records": [
+    {{
+      "kind": "event|state|preference|plan|fact",
+      "type": "short open semantic type",
+      "participants": [{{"entity": "entity id or new:ref", "role": "semantic role"}}],
+      "attributes": {{"open attribute": "short value"}},
+      "time_expression": "literal phrase or null",
+      "operation": "assert|update|close|retract",
+      "polarity": true,
+      "supersedes": ["candidate record id"],
+      "related_records": [{{"record_id": "candidate id", "relation": "open relation"}}],
+      "evidence": "verbatim substring"
+    }}
+  ]
+}}

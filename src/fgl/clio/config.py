@@ -82,6 +82,20 @@ class Clio2Config:
 
 
 @dataclass
+class Clio3Config:
+    """Resource bounds for the open-schema event-memory reader."""
+
+    coref_window: int = 4
+    entity_candidate_limit: int = 20
+    record_candidate_limit: int = 16
+    seed_records: int = 12
+    max_hops: int = 3
+    answer_record_limit: int = 24
+    raw_episode_limit: int = 16
+    answer_evidence_limit: int = 24
+
+
+@dataclass
 class ClioConfig:
     catalog_path: str = str(Path(__file__).parent / "catalog" / "personal_dialogue.yaml")
     temporal: TemporalConfig = field(default_factory=TemporalConfig)
@@ -89,8 +103,9 @@ class ClioConfig:
     extraction: ExtractionConfig = field(default_factory=ExtractionConfig)
     access: AccessConfig = field(default_factory=AccessConfig)
     clio2: Clio2Config = field(default_factory=Clio2Config)
-    #: ``agent`` preserves the original experimental reader; ``clio2`` uses
-    #: the compiled query engine.
+    clio3: Clio3Config = field(default_factory=Clio3Config)
+    #: ``agent`` preserves the original reader; ``clio2`` is the compiled
+    #: catalog reader; ``clio3`` is the open-schema event-memory pipeline.
     reader: str = "agent"
 
     @classmethod
@@ -109,12 +124,14 @@ class ClioConfig:
             kwargs["extraction"] = ExtractionConfig(**raw["extraction"])
         if "access" in raw:
             kwargs["access"] = AccessConfig(**raw["access"])
+        if "clio3" in raw:
+            kwargs["clio3"] = Clio3Config(**raw["clio3"])
         if "clio2" in raw:
             kwargs["clio2"] = Clio2Config(**raw["clio2"])
         if "reader" in raw:
             reader = str(raw["reader"])
-            if reader not in ("agent", "clio2"):
-                raise ValueError("clio.reader must be 'agent' or 'clio2'")
+            if reader not in ("agent", "clio2", "clio3"):
+                raise ValueError("clio.reader must be 'agent', 'clio2' or 'clio3'")
             kwargs["reader"] = reader
         return cls(**kwargs)
 

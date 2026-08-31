@@ -647,7 +647,7 @@ def bench(
     reader: str = typer.Option(
         "clio2",
         "--reader",
-        help="Question reader: clio2 (compiled) or agent (legacy movement loop).",
+        help="Question reader: clio3 (open event graph), clio2, or agent (legacy).",
     ),
     memory: str = typer.Option(
         "",
@@ -693,8 +693,8 @@ def bench(
         )
 
     llm, embedder = _build_backends(fake, no_cache)
-    if reader not in ("clio2", "agent"):
-        raise typer.BadParameter("--reader must be clio2 or agent")
+    if reader not in ("clio3", "clio2", "agent"):
+        raise typer.BadParameter("--reader must be clio3, clio2 or agent")
     if memory and limit_conversations != 1:
         raise typer.BadParameter("--memory requires --limit-conversations 1")
     if memory and not Path(memory).exists():

@@ -64,7 +64,7 @@ def _uninterval(raw: dict | None) -> Interval | None:
 def dump_memory(clio) -> dict[str, Any]:
     """The whole memory as a plain dict. Separate from :func:`save_memory`
     so a caller can embed it in a bigger document or diff two memories."""
-    return {
+    out = {
         "format_version": FORMAT_VERSION,
         "episodes": [
             {
@@ -167,6 +167,53 @@ def dump_memory(clio) -> dict[str, Any]:
             for u in clio.unmapped.all()
         ],
     }
+    if hasattr(clio, "clio3_store"):
+        out["clio3"] = {
+            "entities": [
+                {
+                    "id": entity.id,
+                    "name": entity.name,
+                    "type": entity.type,
+                    "aliases": entity.aliases,
+                    "episode_ids": entity.episode_ids,
+                    "merged_into": entity.merged_into,
+                }
+                for entity in clio.clio3_store.entities()
+            ],
+            "records": [
+                {
+                    "id": record.id,
+                    "kind": record.kind,
+                    "type": record.type,
+                    "participants": [
+                        {"entity_id": p.entity_id, "role": p.role}
+                        for p in record.participants
+                    ],
+                    "attributes": record.attributes,
+                    "episode_id": record.episode_id,
+                    "evidence": record.evidence,
+                    "episode_ts": _dt(record.episode_ts),
+                    "time_expression": record.time_expression,
+                    "valid_time": _interval(record.valid_time),
+                    "operation": record.operation,
+                    "polarity": record.polarity,
+                    "confidence": record.confidence,
+                    "status": record.status,
+                    "supersedes": record.supersedes,
+                }
+                for record in clio.clio3_store.records()
+            ],
+            "links": [
+                {
+                    "source_id": link.source_id,
+                    "relation": link.relation,
+                    "target_id": link.target_id,
+                    "episode_id": link.episode_id,
+                }
+                for link in clio.clio3_store.links()
+            ],
+        }
+    return out
 
 
 def save_memory(clio, path: str | Path) -> Path:
@@ -325,6 +372,47 @@ def load_memory(
             span=u["span"],
             episode_id=u["episode_id"],
         )
+
+    if "clio3" in raw:
+        from fgl.clio3.model import MemoryRecord, OpenEntity, Participant, RecordLink
+
+        c3 = raw["clio3"]
+        store = clio.clio3_store
+        for entity in c3.get("entities", []):
+            store._entities[entity["id"]] = OpenEntity(
+                id=entity["id"],
+                name=entity["name"],
+                type=entity.get("type", "entity"),
+                aliases=list(entity.get("aliases", [])),
+                episode_ids=list(entity.get("episode_ids", [])),
+                merged_into=entity.get("merged_into"),
+            )
+        store._next_entity_seq = _next_seq(list(store._entities), "c3e_")
+        for record in c3.get("records", []):
+            store.add_record(
+                MemoryRecord(
+                    id=record["id"],
+                    kind=record["kind"],
+                    type=record["type"],
+                    participants=[
+                        Participant(row["entity_id"], row["role"])
+                        for row in record.get("participants", [])
+                    ],
+                    attributes=dict(record.get("attributes", {})),
+                    episode_id=record["episode_id"],
+                    evidence=record["evidence"],
+                    episode_ts=_undt(record["episode_ts"]),
+                    time_expression=record.get("time_expression"),
+                    valid_time=_uninterval(record.get("valid_time")),
+                    operation=record.get("operation", "assert"),
+                    polarity=record.get("polarity", True),
+                    confidence=record.get("confidence", 0.9),
+                    status=record.get("status", "active"),
+                    supersedes=list(record.get("supersedes", [])),
+                )
+            )
+        for link in c3.get("links", []):
+            store.add_link(RecordLink(**link))
 
     clio.entity_index.rebuild(clio.graph)
     clio.episode_index.rebuild(clio.log)
