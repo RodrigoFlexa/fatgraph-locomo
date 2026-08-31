@@ -137,6 +137,11 @@ class EvidenceItem:
     object_type: str = ""
     t_valid: Interval | None = None
     time_expression: str | None = None
+    # Machine-resolved projection kept separately from the literal temporal
+    # expression.  ``value`` remains the surface form the extractor observed;
+    # this field is the auditable result of applying the temporal resolver to
+    # that expression and its episode timestamp.
+    resolved_value: str | None = None
 
 
 @dataclass

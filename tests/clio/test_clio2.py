@@ -12,12 +12,13 @@ from fgl.clio.config import ClioConfig
 from fgl.clio.facade import Clio
 from fgl.clio.index import EpisodeIndex
 from fgl.clio.ingest.validate import validate_and_bind
-from fgl.clio.types import Episode
-from fgl.clio2.answer import render_answer
+from fgl.clio.types import Episode, Interval
+from fgl.clio2.answer import render_answer, verify_answer
 from fgl.clio2.executor import QueryExecutor
 from fgl.clio2.ledger import FactIndex, SemanticLedger
 from fgl.clio2.model import (
     AnswerType,
+    ExecutionResult,
     QueryConstraints,
     QueryOperator,
     QueryPlan,
@@ -393,6 +394,12 @@ def test_temporal_execution_preserves_source_expression_and_defers_projection():
             )
         ],
     )
+    # Simulate a snapshot written by an older resolver that persisted this
+    # expression as unanchored.  The CLIO2 read model must be rebuildable from
+    # the literal expression and episode timestamp after a resolver upgrade.
+    stale = memory.staging.all()[0]
+    stale.t_valid = Interval(datetime(2023, 10, 20), None)
+    stale.unanchored = True
     _, executor = _executor(memory)
     plan = QueryPlan(
         QueryOperator.TEMPORAL_LOOKUP,
@@ -407,7 +414,112 @@ def test_temporal_execution_preserves_source_expression_and_defers_projection():
     assert result.scalar is None
     assert result.items[0].time_expression == "last weekend"
     assert result.items[0].t_valid.granularity == "week"
+    assert result.items[0].resolved_value == "8 October 2023"
     assert result.candidate_episode_ids[0] == "e1"
+
+
+def test_temporal_verifier_projects_selected_event_instead_of_rejecting_arithmetic():
+    memory = _memory()
+    memory.graph.create_entity("Caroline", "Person")
+    _ingest(
+        memory,
+        "e1",
+        "2023-05-08",
+        "Caroline",
+        "I went to a LGBTQ support group yesterday",
+        [
+            _prop(
+                "Caroline",
+                "attended",
+                "LGBTQ support group",
+                "went to a LGBTQ support group yesterday",
+                "yesterday",
+            )
+        ],
+    )
+    _, executor = _executor(memory)
+    result = executor.execute(
+        "When did Caroline go to the LGBTQ support group?",
+        QueryPlan(
+            QueryOperator.TEMPORAL_LOOKUP,
+            subjects=("Caroline",),
+            relations=("attended",),
+            constraints=QueryConstraints(terms=("LGBTQ", "support", "group")),
+            answer_type=AnswerType.DATE,
+        ),
+    )
+    # The date is derived from the immutable episode timestamp and therefore
+    # does not occur literally in the dialogue text.  This was the regression:
+    # the generic lexical verifier used to delete it and force an abstention.
+    proposed = StructuredAnswer(
+        AnswerType.DATE,
+        ("7 May 2023",),
+        ("e1",),
+    )
+
+    verified = verify_answer(proposed, result, memory, ["e1"])
+
+    assert verified.values == ("7 May 2023",)
+    assert not verified.abstain
+
+
+def test_temporal_verifier_preserves_week_granularity_with_episode_anchor():
+    memory = _memory()
+    memory.graph.create_entity("Melanie", "Person")
+    _ingest(
+        memory,
+        "e1",
+        "2023-10-20",
+        "Melanie",
+        "My family went on a road trip last weekend",
+        [
+            _prop(
+                "family",
+                "practices",
+                "road trip",
+                "went on a road trip last weekend",
+                "last weekend",
+            )
+        ],
+    )
+    _, executor = _executor(memory)
+    result = executor.execute(
+        "When did Melanie's family go on a road trip?",
+        QueryPlan(
+            QueryOperator.TEMPORAL_LOOKUP,
+            subjects=("Melanie",),
+            relations=("practices",),
+            constraints=QueryConstraints(terms=("road", "trip")),
+            answer_type=AnswerType.DATE,
+        ),
+    )
+
+    verified = verify_answer(
+        StructuredAnswer(AnswerType.DATE, ("last weekend",), ("e1",)),
+        result,
+        memory,
+        ["e1"],
+    )
+
+    assert verified.values == ("the weekend before 20 October 2023",)
+    assert not verified.abstain
+
+
+def test_temporal_verifier_does_not_project_an_unselected_event():
+    memory = _memory()
+    result = ExecutionResult(
+        QueryPlan(QueryOperator.TEMPORAL_LOOKUP, answer_type=AnswerType.DATE)
+    )
+
+    verified = verify_answer(
+        StructuredAnswer(AnswerType.DATE, ("7 May 2023",), ("unrelated",)),
+        result,
+        memory,
+        [],
+    )
+
+    assert verified.values == ()
+    assert verified.abstain
 
 
 def test_answer_renderer_humanizes_canonical_identifier_values():

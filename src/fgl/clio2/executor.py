@@ -7,6 +7,7 @@ import re
 from collections import Counter, defaultdict
 from datetime import datetime
 
+from fgl.clio.temporal import resolve_time
 from fgl.clio2.ledger import FactIndex, SemanticLedger, content_tokens, normalized_value
 from fgl.clio2.model import (
     AnswerType,
@@ -73,6 +74,19 @@ _MONTHS = {
         start=1,
     )
 }
+
+
+def _format_temporal_value(interval) -> str | None:
+    """Render one resolved interval without inventing finer precision."""
+
+    if interval is None or interval.start is None:
+        return None
+    start = interval.start
+    if interval.granularity == "year":
+        return str(start.year)
+    if interval.granularity == "month":
+        return start.strftime("%B %Y")
+    return f"{start.day} {start.strftime('%B %Y')}"
 
 
 def _root_token(token: str) -> str:
@@ -542,6 +556,19 @@ class QueryExecutor:
         items = []
         for fact, score in focused:
             interval = fact.source_t_valid
+            # Snapshots persist the literal expression and episode timestamp,
+            # which are the temporal source of truth.  Re-resolving here makes
+            # replay pick up deterministic resolver fixes instead of freezing
+            # an obsolete/unanchored projection into old memory files.
+            if fact.time_expression:
+                refreshed, _ = resolve_time(
+                    fact.time_expression,
+                    fact.episode_ts,
+                    self.memory.catalog[fact.relation],
+                    locale=self.memory.config.temporal.locale,
+                )
+                if refreshed is not None:
+                    interval = refreshed
             date = interval.start or fact.episode_ts
             if fact.time_expression:
                 value = fact.time_expression
@@ -561,6 +588,7 @@ class QueryExecutor:
                     relation=fact.relation,
                     t_valid=interval,
                     time_expression=fact.time_expression,
+                    resolved_value=_format_temporal_value(interval),
                 )
             )
         result.items = items

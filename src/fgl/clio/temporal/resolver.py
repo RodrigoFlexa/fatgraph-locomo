@@ -150,6 +150,9 @@ def _match_ladder(span: str, anchor: datetime) -> tuple[Interval | None, float]:
         if kind == "last":
             prev = _subtract_months(anchor, 1)
             return _month_range(prev.year, prev.month), _CONF_MONTH_DEIXIS
+        if kind == "next":
+            nxt = _subtract_months(anchor, -1)
+            return _month_range(nxt.year, nxt.month), _CONF_MONTH_DEIXIS
         year = anchor.year if month_number <= anchor.month else anchor.year - 1
         return _month_range(year, month_number), _CONF_MONTH_DEIXIS
 

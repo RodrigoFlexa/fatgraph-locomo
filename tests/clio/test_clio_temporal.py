@@ -94,6 +94,16 @@ def test_last_week_on_fast_relation():
     assert interval.end == start + timedelta(days=7)
 
 
+@pytest.mark.parametrize("expr", ["last weekend", "this past weekend"])
+def test_weekend_deixis_is_resolved_without_dateparser(expr):
+    interval, tconf = resolve_time(expr, ANCHOR, FAST)
+    start = _week_start(ANCHOR) - timedelta(days=7)
+    assert interval.start == start
+    assert interval.end == start + timedelta(days=7)
+    assert interval.granularity == "week"
+    assert tconf == 0.85
+
+
 def test_this_week_on_slow_relation_collapses_to_open_start():
     """The melanie fixture's works_at edge starts at the week's Sunday, not
     at the episode date, and never closes on its own (assertion basis for
@@ -110,6 +120,14 @@ def test_last_month_on_fast_relation():
     interval, tconf = resolve_time("last month", ANCHOR, FAST)
     assert interval.start == datetime(2023, 5, 1)
     assert interval.end == datetime(2023, 6, 1)
+    assert interval.granularity == "month"
+    assert tconf == 0.85
+
+
+def test_next_month_preserves_month_granularity():
+    interval, tconf = resolve_time("next month", ANCHOR, FAST)
+    assert interval.start == datetime(2023, 7, 1)
+    assert interval.end == datetime(2023, 8, 1)
     assert interval.granularity == "month"
     assert tconf == 0.85
 
@@ -168,6 +186,7 @@ DURATION_CASES = [
     ("6 months ago", 6, "months"),
     ("one month ago", 1, "months"),
     ("two days ago", 2, "days"),
+    ("two weekends ago", 2, "weeks"),
 ]
 
 

@@ -134,7 +134,9 @@ def match_day_deixis(span: str) -> int | None:
 
 # --- 3. week deixis --------------------------------------------------------- #
 
-_WEEK_LAST_RE = re.compile(r"\blast\s+week(?:end)?\b", re.IGNORECASE)
+_WEEK_LAST_RE = re.compile(
+    r"\b(?:last\s+week(?:end)?|this\s+past\s+weekend)\b", re.IGNORECASE
+)
 _WEEK_THIS_RE = re.compile(r"\bthis\s+week\b", re.IGNORECASE)
 
 
@@ -149,6 +151,7 @@ def match_week_deixis(span: str) -> Literal["last", "this"] | None:
 # --- 4. month deixis --------------------------------------------------------- #
 
 _MONTH_LAST_RE = re.compile(r"\blast\s+month\b", re.IGNORECASE)
+_MONTH_NEXT_RE = re.compile(r"\bnext\s+month\b", re.IGNORECASE)
 _MONTH_BARE_RE = re.compile(rf"\bin\s+({_MONTH_ALTERNATION})\b", re.IGNORECASE)
 
 
@@ -157,6 +160,8 @@ def match_month_deixis(span: str) -> tuple[str, int | None] | None:
     for a bare month name with no year attached."""
     if _MONTH_LAST_RE.search(span):
         return ("last", None)
+    if _MONTH_NEXT_RE.search(span):
+        return ("next", None)
     m = _MONTH_BARE_RE.search(span)
     if m:
         return ("named", MONTHS_EN[m.group(1).lower()])
@@ -176,7 +181,7 @@ def match_year_deixis(span: str) -> bool:
 
 _DURATION_RE = re.compile(
     rf"\b({_NUMBER_ALTERNATION}|\d+)\s+"
-    r"(days?|weeks?|months?|years?)\s+ago\b",
+    r"(days?|weeks?|weekends?|months?|years?)\s+ago\b",
     re.IGNORECASE,
 )
 
@@ -185,6 +190,8 @@ _UNIT_TO_GRANULARITY: dict[str, Granularity] = {
     "days": "day",
     "week": "week",
     "weeks": "week",
+    "weekend": "week",
+    "weekends": "week",
     "month": "month",
     "months": "month",
     "year": "year",

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 
 from fgl.clio2.ledger import content_tokens, normalized_value
 from fgl.clio2.model import (
@@ -78,6 +79,7 @@ def _render_candidates(result: ExecutionResult) -> str:
                 "episode_ids": item.episode_ids,
                 "score": round(item.score, 4),
                 "time_expression": item.time_expression,
+                "resolved_value": item.resolved_value,
                 "valid_start": item.t_valid.start.strftime("%d %B %Y")
                 if item.t_valid and item.t_valid.start
                 else None,
@@ -174,6 +176,97 @@ def _value_supported(value: str, result: ExecutionResult, evidence_text: str) ->
     return len(tokens & evidence_tokens) / len(tokens) >= 0.6
 
 
+_WEEKDAY_NAMES = {
+    "mon": "Monday",
+    "monday": "Monday",
+    "tue": "Tuesday",
+    "tues": "Tuesday",
+    "tuesday": "Tuesday",
+    "wed": "Wednesday",
+    "wednesday": "Wednesday",
+    "thu": "Thursday",
+    "thur": "Thursday",
+    "thurs": "Thursday",
+    "thursday": "Thursday",
+    "fri": "Friday",
+    "friday": "Friday",
+    "sat": "Saturday",
+    "saturday": "Saturday",
+    "sun": "Sunday",
+    "sunday": "Sunday",
+}
+
+
+def _episode_anchor(memory, item):
+    for episode_id in item.episode_ids:
+        try:
+            return memory.log.get(episode_id).ts_ingest
+        except KeyError:
+            continue
+    return None
+
+
+def _selected_temporal_item(answer: StructuredAnswer, result: ExecutionResult):
+    """Use the answerer's evidence choice as event selection.
+
+    Temporal arithmetic is deliberately not delegated to the model.  Once it
+    selects an event by provenance, the typed interval attached to that event
+    is the only legal projection.
+    """
+
+    support = set(answer.support)
+    if support:
+        for item in result.items:
+            if support.intersection(item.episode_ids) and item.resolved_value:
+                return item
+    proposed = {normalized_value(value) for value in answer.values}
+    for item in result.items:
+        candidates = (item.value, item.time_expression, item.resolved_value)
+        if proposed.intersection(
+            normalized_value(value) for value in candidates if value
+        ):
+            return item
+    return None
+
+
+def _project_temporal_value(item, memory) -> str | None:
+    """Render a resolved temporal value at the source expression's grain."""
+
+    resolved = item.resolved_value
+    if not resolved:
+        return None
+    expression = (item.time_expression or "").strip()
+    low = expression.casefold()
+    anchor = _episode_anchor(memory, item)
+    if anchor is None or not expression:
+        return resolved
+    anchor_text = f"{anchor.day} {anchor.strftime('%B %Y')}"
+
+    # LoCoMo asks for the relation to the dated conversation for week-shaped
+    # expressions.  Keeping that anchor preserves the evidence's natural
+    # granularity and avoids pretending that a whole week is one exact day.
+    if re.search(r"\blast\s+week\b", low):
+        return f"the week before {anchor_text}"
+    if re.search(r"\b(?:last\s+weekend|this\s+past\s+weekend)\b", low):
+        return f"the weekend before {anchor_text}"
+    weekends_ago = re.search(
+        r"\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+"
+        r"weekends?\s+ago\b",
+        low,
+    )
+    if weekends_ago:
+        return f"{weekends_ago.group(1)} weekends before {anchor_text}"
+    weekday = re.search(
+        r"\blast\s+(mon(?:day)?|tue(?:s|sday)?|wed(?:nesday)?|"
+        r"thu(?:r|rs|rsday)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)\b",
+        low,
+    )
+    if weekday:
+        name = _WEEKDAY_NAMES.get(weekday.group(1), weekday.group(1).title())
+        return f"the {name} before {anchor_text}"
+    return resolved
+
+
 def verify_answer(
     answer: StructuredAnswer,
     result: ExecutionResult,
@@ -197,6 +290,11 @@ def verify_answer(
     )
     if answer.answer_type in (AnswerType.BOOLEAN, AnswerType.NUMBER):
         values = answer.values[:1]
+    elif answer.answer_type == AnswerType.DATE and not answer.abstain and answer.values:
+        selected = _selected_temporal_item(answer, result)
+        if selected is not None:
+            projected = _project_temporal_value(selected, memory)
+            values = (projected,) if projected else values
     abstain = answer.abstain or not values
     return StructuredAnswer(
         answer.answer_type,
