@@ -25,6 +25,9 @@ OPERATORS:
 - join: compose two explicit relational steps
 - latest: most recent matching fact/event
 - temporal_lookup: return when a matching fact/event occurred
+- duration: answer a "how long" or "how long ago" question
+- frequency: return a stated cadence such as "once or twice a year"; do not count mentions
+- attribute_lookup: project an object's reason, meaning, reminder, use, kind, or topic
 - premise_check: verify a yes/no premise
 - infer: a minimal inference grounded in retrieved evidence
 
@@ -33,6 +36,8 @@ RULES:
 2. Use canonical entity names from candidates when possible.
 3. A plural/list question normally uses enumerate, not lookup.
 4. "How many" uses count_distinct.
+4a. "How often" uses frequency, never count_distinct.
+4b. "How long" uses duration.
 5. "Both" uses intersection.
 6. Put content words needed to distinguish relevant facts in constraints.terms.
 7. object_types may contain only Person, Organization, Place, Activity,
@@ -44,7 +49,7 @@ RULES:
 
 Return only this JSON object:
 {{
-  "operator": "lookup|enumerate|count_distinct|intersection|join|latest|temporal_lookup|premise_check|infer",
+  "operator": "lookup|enumerate|count_distinct|intersection|join|latest|temporal_lookup|duration|frequency|attribute_lookup|premise_check|infer",
   "subjects": ["canonical entity name"],
   "relations": ["canonical_relation"],
   "constraints": {{
@@ -55,7 +60,7 @@ Return only this JSON object:
     "companions": ["entity name"],
     "current_only": false
   }},
-  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "answer_type": "entity|entity_set|number|boolean|date|duration|frequency|text",
   "projection": "object|subject|date|event",
   "confidence": 0.0,
   "rationale": "short plan rationale"

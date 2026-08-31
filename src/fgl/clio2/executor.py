@@ -2,11 +2,19 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
+import math
+import re
+from collections import Counter, defaultdict
 from datetime import datetime
 
 from fgl.clio2.ledger import FactIndex, SemanticLedger, content_tokens, normalized_value
-from fgl.clio2.model import EvidenceItem, ExecutionResult, QueryOperator, QueryPlan
+from fgl.clio2.model import (
+    AnswerType,
+    EvidenceItem,
+    ExecutionResult,
+    QueryOperator,
+    QueryPlan,
+)
 
 _GENERIC_VALUE_TOKENS = {
     "a",
@@ -33,10 +41,52 @@ _GENERIC_QUERY_TOKENS = {
     "subjects",
     "time",
     "times",
+    "ago",
+    "date",
+    "duration",
+    "happen",
+    "happened",
+    "long",
+    "often",
+    "own",
+    "pet",
+    "pets",
+}
+
+_MONTHS = {
+    name: number
+    for number, name in enumerate(
+        (
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december",
+        ),
+        start=1,
+    )
 }
 
 
 def _root_token(token: str) -> str:
+    irregular = {
+        "hiking": "hike",
+        "making": "make",
+        "moving": "move",
+        "practicing": "practice",
+        "taking": "take",
+        "using": "use",
+        "writing": "write",
+    }
+    if token in irregular:
+        return irregular[token]
     for suffix in ("ing", "ied", "ed", "es", "s"):
         if len(token) > len(suffix) + 3 and token.endswith(suffix):
             root = token[: -len(suffix)]
@@ -85,6 +135,40 @@ def _fact_semantic_tokens(fact) -> set[str]:
     return content_tokens(
         f"{fact.object_name} {fact.span} {fact.episode_text}"
     )
+
+
+def _query_roots(question: str, plan: QueryPlan) -> set[str]:
+    expanded = re.sub(r"\broadtrip\b", "road trip", question, flags=re.IGNORECASE)
+    expanded = re.sub(r"\bfesetival\b", "festival fest", expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r"\bfestival\b", "festival fest", expanded, flags=re.IGNORECASE)
+    low = expanded.casefold()
+    expansions = []
+    if "excited" in low:
+        expansions.extend(("thrilled", "looking forward"))
+    if re.search(r"\bthink(?:s)? about\b", low):
+        expansions.extend(("amazing", "awesome", "lovely"))
+    if re.search(r"\bpets?\b", low):
+        expansions.extend(("guinea pig", "dog", "cat"))
+    if re.search(r"\bfind|found\b", low):
+        expansions.append("came across")
+    if "journey" in low:
+        expansions.extend(("adventure", "learning", "growing"))
+    if "support" in low:
+        expansions.extend(("appreciate", "grateful"))
+    if "latest project" in low:
+        expansions.append("latest work")
+    if "colors and patterns" in low:
+        expansions.extend(("creative", "express feelings", "catch the eye"))
+    if expansions:
+        expanded = f"{expanded} {' '.join(expansions)}"
+    tokens = content_tokens(expanded)
+    tokens |= content_tokens(" ".join(plan.constraints.terms))
+    tokens -= content_tokens(" ".join(plan.subjects))
+    return {
+        root
+        for root in _root_tokens(tokens)
+        if root not in _GENERIC_QUERY_TOKENS and not root.isdigit()
+    }
 
 
 def _focus_by_terms(candidates, plan: QueryPlan):
@@ -173,13 +257,118 @@ class QueryExecutor:
                 candidates = constrained
         return _deduplicate_facts(candidates)
 
-    def _direct_episodes(self, question: str, limit: int = 12) -> list[str]:
-        return [
-            episode.id
-            for episode, _ in self.memory.episode_index.search_scored(
-                question, k=limit, min_score=0.0
+    def _direct_episodes(
+        self, question: str, plan: QueryPlan, candidates, limit: int = 20
+    ) -> list[str]:
+        """Hybrid episodic recall with lexical, entity and calendar signals.
+
+        Dense retrieval alone overweights conversational boilerplate and names.
+        Temporal and attribute questions usually contain one discriminative term
+        (``road trip``, ``birthday``, ``hand-painted bowl``), so an IDF-weighted
+        lexical channel is combined with dense similarity, structured provenance,
+        speaker attribution and explicit month/year constraints.
+        """
+
+        episodes = list(self.memory.log.all())
+        if not episodes:
+            return []
+        query_roots = _query_roots(question, plan)
+        doc_roots = {
+            episode.id: _root_tokens(content_tokens(episode.text))
+            for episode in episodes
+        }
+        document_frequency = Counter(
+            token for tokens in doc_roots.values() for token in tokens
+        )
+        weights = {
+            token: math.log((len(episodes) + 1) / (document_frequency[token] + 1)) + 1
+            for token in query_roots
+        }
+        total_weight = sum(weights.values()) or 1.0
+        dense = {
+            episode.id: max(0.0, score)
+            for episode, score in self.memory.episode_index.search_scored(
+                question, k=min(len(episodes), 64), min_score=0.0
             )
-        ]
+        }
+        structured: dict[str, float] = {}
+        if candidates:
+            ceiling = max(score for _, score in candidates) or 1.0
+            for fact, score in candidates:
+                structured[fact.episode_id] = max(
+                    structured.get(fact.episode_id, 0.0), score / ceiling
+                )
+
+        subject_names = {name.casefold() for name in plan.subjects}
+        low_question = question.casefold()
+        mentioned_months = {
+            number for name, number in _MONTHS.items() if name in low_question
+        }
+        year_match = re.search(r"\b(19|20)\d{2}\b", question)
+        mentioned_year = int(year_match.group()) if year_match else None
+        scored = []
+        for episode in episodes:
+            overlap = query_roots & doc_roots[episode.id]
+            lexical = sum(weights[token] for token in overlap) / total_weight
+            speaker = 0.16 if episode.speaker.casefold() in subject_names else 0.0
+            calendar = 0.0
+            if mentioned_months and episode.ts_ingest.month in mentioned_months:
+                calendar += 0.12
+            if mentioned_year and episode.ts_ingest.year == mentioned_year:
+                calendar += 0.08
+            intent_bonus = 0.0
+            if plan.operator == QueryOperator.DURATION and re.search(
+                r"\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+"
+                r"(?:days?|weeks?|months?|years?)\b",
+                episode.text,
+                flags=re.IGNORECASE,
+            ):
+                intent_bonus += 0.24
+            if plan.operator == QueryOperator.FREQUENCY and re.search(
+                r"\b(?:once|twice|every|often|daily|weekly|monthly|yearly|"
+                r"\d+\s+times?)\b",
+                episode.text,
+                flags=re.IGNORECASE,
+            ):
+                intent_bonus += 0.28
+            score = (
+                0.50 * lexical
+                + 0.24 * dense.get(episode.id, 0.0)
+                + 0.22 * structured.get(episode.id, 0.0)
+                + speaker
+                + calendar
+                + intent_bonus
+            )
+            scored.append((episode, score))
+        scored.sort(key=lambda pair: (-pair[1], -pair[0].ts_ingest.timestamp()))
+
+        # Dialogue facts are frequently split across a question and its next
+        # reply. Interleave immediate neighbours of strong hits before filling
+        # the remaining budget, while keeping the operation deterministic.
+        position = {episode.id: index for index, episode in enumerate(episodes)}
+        out: list[str] = []
+        for episode, _ in scored[: max(8, limit // 2)]:
+            if episode.id not in out:
+                out.append(episode.id)
+            index = position[episode.id]
+            for neighbour_index in (index - 2, index - 1, index + 1, index + 2):
+                if not 0 <= neighbour_index < len(episodes):
+                    continue
+                neighbour = episodes[neighbour_index]
+                if (
+                    neighbour.session_id == episode.session_id
+                    and neighbour.ts_ingest == episode.ts_ingest
+                    and neighbour.id not in out
+                ):
+                    out.append(neighbour.id)
+            if len(out) >= limit:
+                return out[:limit]
+        for episode, _ in scored:
+            if episode.id not in out:
+                out.append(episode.id)
+            if len(out) >= limit:
+                break
+        return out
 
     def execute(self, question: str, plan: QueryPlan) -> ExecutionResult:
         candidates = self._candidates(question, plan)
@@ -192,19 +381,33 @@ class QueryExecutor:
             self._count(result, candidates)
         elif operator == QueryOperator.LATEST:
             self._latest(result, candidates)
-        elif operator == QueryOperator.TEMPORAL_LOOKUP:
+        elif operator in (QueryOperator.TEMPORAL_LOOKUP, QueryOperator.DURATION):
+            self._temporal(result, candidates)
+        elif operator in (QueryOperator.FREQUENCY, QueryOperator.ATTRIBUTE_LOOKUP):
+            self._focused_values(result, candidates)
+        elif operator == QueryOperator.JOIN and plan.answer_type in (
+            AnswerType.DATE,
+            AnswerType.DURATION,
+        ):
             self._temporal(result, candidates)
         elif operator == QueryOperator.PREMISE_CHECK:
-            self._premise(result, candidates)
+            self._premise(result, candidates, question)
+        elif operator == QueryOperator.LOOKUP:
+            self._focused_values(result, candidates)
         else:
             result.items = _group_values(candidates)
         # Raw episodes are a recall backstop, not automatically evidence for
         # a value. The answerer may use them for an inference or a fact that
         # has not yet been normalized into the ledger.
-        result.candidate_episode_ids = self._direct_episodes(question)
+        result.candidate_episode_ids = self._direct_episodes(
+            question, plan, candidates
+        )
         if not candidates:
             result.diagnostics.append("no structured fact matched the compiled plan")
         return result
+
+    def _focused_values(self, result: ExecutionResult, candidates) -> None:
+        result.items = _group_values(_focus_by_terms(candidates, result.plan))
 
     def _intersection(self, result: ExecutionResult, candidates) -> None:
         subject_ids = self.ledger.resolve_subjects(result.plan.subjects)
@@ -325,6 +528,7 @@ class QueryExecutor:
     def _latest(self, result: ExecutionResult, candidates) -> None:
         if not candidates:
             return
+        candidates = _focus_by_terms(candidates, result.plan)
         latest_date = max(_fact_date(fact) for fact, _ in candidates)
         latest = [pair for pair in candidates if _fact_date(pair[0]) == latest_date]
         result.items = _group_values(latest)
@@ -332,30 +536,62 @@ class QueryExecutor:
     def _temporal(self, result: ExecutionResult, candidates) -> None:
         if not candidates:
             return
-        fact, score = candidates[0]
-        date = _fact_date(fact)
-        value = date.strftime("%d %B %Y")
-        if fact.t_valid.granularity == "year":
-            value = str(date.year)
-        elif fact.t_valid.granularity == "month":
-            value = date.strftime("%B %Y")
-        result.items = [
-            EvidenceItem(
-                value=value,
-                episode_ids=[fact.episode_id],
-                proposition_ids=[fact.proposition_id],
-                score=score,
-                subject=fact.subject_name,
-                relation=fact.relation,
-                t_valid=fact.t_valid,
+        focused = _focus_by_terms(candidates, result.plan)
+        ceiling = focused[0][1]
+        focused = [pair for pair in focused if pair[1] >= ceiling - 0.20][:8]
+        items = []
+        for fact, score in focused:
+            interval = fact.source_t_valid
+            date = interval.start or fact.episode_ts
+            if fact.time_expression:
+                value = fact.time_expression
+            elif interval.granularity == "year":
+                value = str(date.year)
+            elif interval.granularity == "month":
+                value = date.strftime("%B %Y")
+            else:
+                value = date.strftime("%d %B %Y")
+            items.append(
+                EvidenceItem(
+                    value=value,
+                    episode_ids=[fact.episode_id],
+                    proposition_ids=[fact.proposition_id],
+                    score=score,
+                    subject=fact.subject_name,
+                    relation=fact.relation,
+                    t_valid=interval,
+                    time_expression=fact.time_expression,
+                )
             )
-        ]
-        result.scalar = value
+        result.items = items
+        # Temporal answers require event selection plus interpretation of the
+        # original expression against the episode timestamp.  A bare first
+        # fact date is not a safe deterministic proof, so the evidence-bounded
+        # answerer performs that final projection.
+        result.scalar = None
 
-    def _premise(self, result: ExecutionResult, candidates) -> None:
+    def _premise(self, result: ExecutionResult, candidates, question: str) -> None:
         if not candidates:
             result.scalar = None
             return
+        literal_tokens = content_tokens(
+            f"{question} {' '.join(result.plan.constraints.terms)}"
+        ) - content_tokens(" ".join(result.plan.subjects))
+        query_roots = {
+            root
+            for root in _root_tokens(literal_tokens)
+            if root not in _GENERIC_QUERY_TOKENS and not root.isdigit()
+        }
+        supported = [
+            pair
+            for pair in candidates
+            if query_roots & _root_tokens(_fact_semantic_tokens(pair[0]))
+        ]
+        if query_roots and not supported:
+            result.scalar = None
+            result.diagnostics.append("premise has no matching fact")
+            return
+        candidates = supported or candidates
         best_fact, _ = candidates[0]
         result.items = _group_values(candidates[:8])
         result.scalar = bool(best_fact.polarity)

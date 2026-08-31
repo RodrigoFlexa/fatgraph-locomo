@@ -80,24 +80,29 @@ def run_conversation(
     prompts: PromptLibrary,
     config: ClioConfig,
     limit_questions: int | None = None,
+    preloaded: Clio | None = None,
 ) -> tuple[ConversationResult, Clio]:
-    clio = Clio(catalog, llm, embedder, prompts, config)
+    clio = preloaded or Clio(catalog, llm, embedder, prompts, config)
 
-    t0 = time.monotonic()
-    n_turns = 0
-    for session in conv.sessions:
-        ts = datetime.fromisoformat(session.timestamp)
-        for turn in session.turns:
-            clio.ingest(
-                _turn_text(turn),
-                speaker=turn.speaker,
-                session_id=conv.sample_id,
-                ts=ts,
-                episode_id=turn.dia_id,
-            )
-            n_turns += 1
-        clio.consolidate()  # spec's own "end of session" trigger (section 7)
-    ingest_seconds = time.monotonic() - t0
+    if preloaded is None:
+        t0 = time.monotonic()
+        n_turns = 0
+        for session in conv.sessions:
+            ts = datetime.fromisoformat(session.timestamp)
+            for turn in session.turns:
+                clio.ingest(
+                    _turn_text(turn),
+                    speaker=turn.speaker,
+                    session_id=conv.sample_id,
+                    ts=ts,
+                    episode_id=turn.dia_id,
+                )
+                n_turns += 1
+            clio.consolidate()  # spec's own "end of session" trigger (section 7)
+        ingest_seconds = time.monotonic() - t0
+    else:
+        n_turns = len(clio.log.all())
+        ingest_seconds = 0.0
 
     questions = conv.questions[:limit_questions] if limit_questions else conv.questions
     t0 = time.monotonic()
@@ -187,6 +192,7 @@ def run_benchmark(
     prompts_dir: str | Path | None = None,
     on_conversation_done: Callable[[Conversation, ConversationResult], None] | None = None,
     save_memory_snapshots: bool = True,
+    memory_path: str | Path | None = None,
 ) -> dict:
     """Runs every (or the first ``limit_conversations``) LoCoMo
     conversation through CLIO end to end and writes the results directory
@@ -203,6 +209,8 @@ def run_benchmark(
     conversations: Sequence[Conversation] = load_conversations(data_file)
     if limit_conversations:
         conversations = conversations[:limit_conversations]
+    if memory_path is not None and len(conversations) != 1:
+        raise ValueError("memory_path replay requires exactly one conversation")
 
     out_dir = Path(results_dir) / condition_name
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -211,8 +219,27 @@ def run_benchmark(
     per_conversation: list[dict] = []
     t0 = time.monotonic()
     for conv in conversations:
+        preloaded = None
+        if memory_path is not None:
+            from fgl.clio.persist import load_memory
+
+            preloaded = load_memory(
+                memory_path,
+                catalog,
+                llm=llm,
+                embedder=embedder,
+                prompts=prompts,
+                config=cfg,
+            )
         result, clio = run_conversation(
-            conv, catalog, llm, embedder, prompts, cfg, limit_questions
+            conv,
+            catalog,
+            llm,
+            embedder,
+            prompts,
+            cfg,
+            limit_questions,
+            preloaded=preloaded,
         )
         all_outcomes.extend(result.outcomes)
         all_traces.extend(result.traces)
@@ -254,6 +281,7 @@ def run_benchmark(
             "embedder": type(embedder).__name__,
             "embedder_tag": getattr(embedder, "tag", ""),
             "memory_snapshots": save_memory_snapshots,
+            "replayed_memory": str(memory_path) if memory_path is not None else None,
         },
         "wall_seconds": round(wall_seconds, 1),
     }

@@ -62,6 +62,13 @@ def run_clio2(question: str, memory) -> AgentTrace:
                     "subjects": list(plan.subjects),
                     "relations": list(plan.relations),
                     "answer_type": plan.answer_type.value,
+                    "terms": list(plan.constraints.terms),
+                    "start": plan.constraints.start.isoformat()
+                    if plan.constraints.start
+                    else None,
+                    "end": plan.constraints.end.isoformat()
+                    if plan.constraints.end
+                    else None,
                 },
                 reason=plan.rationale,
             ),
@@ -71,6 +78,7 @@ def run_clio2(question: str, memory) -> AgentTrace:
                     "n_facts": len(result.candidate_facts),
                     "n_values": len(result.items),
                     "diagnostics": result.diagnostics,
+                    "candidate_episodes": result.candidate_episode_ids,
                 },
                 reason="deterministic query algebra",
             ),

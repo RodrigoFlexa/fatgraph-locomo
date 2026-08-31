@@ -649,6 +649,11 @@ def bench(
         "--reader",
         help="Question reader: clio2 (compiled) or agent (legacy movement loop).",
     ),
+    memory: str = typer.Option(
+        "",
+        "--memory",
+        help="Replay one saved memory snapshot instead of ingesting again (requires -n 1).",
+    ),
 ) -> None:
     """Runs the full LoCoMo benchmark through CLIO (ingest -> consolidate
     -> fold -> answer every official question -> score with the same
@@ -690,6 +695,10 @@ def bench(
     llm, embedder = _build_backends(fake, no_cache)
     if reader not in ("clio2", "agent"):
         raise typer.BadParameter("--reader must be clio2 or agent")
+    if memory and limit_conversations != 1:
+        raise typer.BadParameter("--memory requires --limit-conversations 1")
+    if memory and not Path(memory).exists():
+        raise typer.BadParameter(f"memory snapshot not found: {memory}")
     console.print(
         f"[bold]Backend:[/] {'FakeLLM (offline)' if fake else llm.cfg.deployment}"
     )
@@ -724,6 +733,7 @@ def bench(
         condition_name=name,
         on_conversation_done=_on_done,
         config=cfg,
+        memory_path=memory or None,
     )
 
     console.print(f"\n[bold]Wrote:[/] {Path(results_dir) / name}/metrics.json")

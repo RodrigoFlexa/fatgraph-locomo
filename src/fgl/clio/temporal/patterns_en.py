@@ -134,7 +134,7 @@ def match_day_deixis(span: str) -> int | None:
 
 # --- 3. week deixis --------------------------------------------------------- #
 
-_WEEK_LAST_RE = re.compile(r"\blast\s+week\b", re.IGNORECASE)
+_WEEK_LAST_RE = re.compile(r"\blast\s+week(?:end)?\b", re.IGNORECASE)
 _WEEK_THIS_RE = re.compile(r"\bthis\s+week\b", re.IGNORECASE)
 
 

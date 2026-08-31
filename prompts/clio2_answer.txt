@@ -25,10 +25,20 @@ RULES:
 7. Use short canonical values: "necklace", not a sentence explaining it.
 8. Do not add background knowledge. If support is insufficient, abstain.
 9. support contains only episode ids shown above.
+10. For temporal and duration questions, first select the episode describing
+    the requested event. Resolve phrases such as "last weekend", "two weeks
+    ago", and "last year" against that episode's displayed date. Preserve the
+    evidence's natural granularity; do not substitute the date of an unrelated
+    top-ranked fact.
+11. "How often" asks for a stated cadence (for example "once or twice a
+    year"), not the number of retrieved memories.
+12. For attribute_lookup, return the requested property of the named object,
+    not the object itself and not a property of a nearby object.
+13. Convert identifier-like underscores into normal spaces in the answer.
 
 Return only JSON:
 {{
-  "answer_type": "entity|entity_set|number|boolean|date|duration|text",
+  "answer_type": "entity|entity_set|number|boolean|date|duration|frequency|text",
   "values": ["short answer value"],
   "support": ["episode_id"],
   "abstain": false,

@@ -52,12 +52,20 @@ def _parse_date(value: object) -> datetime | None:
 
 def _answer_type(question: str) -> AnswerType:
     low = question.casefold().strip()
+    if low.startswith("how often"):
+        return AnswerType.FREQUENCY
     if low.startswith("how many"):
         return AnswerType.NUMBER
     if low.startswith("when"):
         return AnswerType.DATE
     if low.startswith("how long"):
         return AnswerType.DURATION
+    if re.search(
+        r"\b(remind(?:er|s|ed)? of|symboli[sz]e|reason for|used for|"
+        r"important to|meaning|inspired by|what kind of|what .* about)\b",
+        low,
+    ):
+        return AnswerType.TEXT
     if re.match(r"^(did|does|do|is|are|was|were|has|have|had|can|could)\b", low):
         return AnswerType.BOOLEAN
     if re.search(
@@ -70,12 +78,22 @@ def _answer_type(question: str) -> AnswerType:
 
 def _operator(question: str, answer_type: AnswerType) -> QueryOperator:
     low = question.casefold()
+    if answer_type == AnswerType.FREQUENCY:
+        return QueryOperator.FREQUENCY
+    if answer_type == AnswerType.DURATION:
+        return QueryOperator.DURATION
     if answer_type == AnswerType.NUMBER:
         return QueryOperator.COUNT_DISTINCT
     if answer_type == AnswerType.DATE:
         return QueryOperator.TEMPORAL_LOOKUP
     if answer_type == AnswerType.BOOLEAN:
         return QueryOperator.PREMISE_CHECK
+    if re.search(
+        r"\b(remind(?:er|s|ed)? of|symboli[sz]e|reason for|used for|"
+        r"important to|meaning|inspired by|what kind of|what .* about)\b",
+        low,
+    ):
+        return QueryOperator.ATTRIBUTE_LOOKUP
     if " both " in f" {low} " or re.search(
         r"\b(caroline and melanie|melanie and caroline)\b", low
     ):
@@ -104,18 +122,26 @@ def _relations(question: str, memory) -> tuple[str, ...]:
 def _subjects(question: str, memory) -> tuple[str, ...]:
     low = question.casefold()
     matches = []
-    for entity in memory.graph.all_entities():
-        if entity.merged_into is not None or entity.type != "Person":
-            continue
+    people = [
+        entity
+        for entity in memory.graph.all_entities()
+        if entity.merged_into is None and entity.type == "Person"
+    ]
+    question_words = set(re.findall(r"\b[a-z]{3,}\b", low))
+    for entity in people:
         names = (entity.canonical_name, *entity.aliases)
-        if (
-            any(
+        exact = any(
                 re.search(rf"(?<!\w){re.escape(name.casefold())}(?!\w)", low)
                 for name in names
                 if name.strip()
             )
-            and entity.canonical_name not in matches
-        ):
+        prefix = any(
+            entity.canonical_name.isalpha()
+            and len(word) >= 3
+            and entity.canonical_name.casefold().startswith(word)
+            for word in question_words
+        )
+        if (exact or prefix) and entity.canonical_name not in matches:
             matches.append(entity.canonical_name)
     return tuple(matches)
 
@@ -123,7 +149,9 @@ def _subjects(question: str, memory) -> tuple[str, ...]:
 def _constraints(question: str, subjects: tuple[str, ...]) -> QueryConstraints:
     low = question.casefold()
     object_types: tuple[str, ...] = ()
-    if re.search(r"\b(who|pets?|children|kids|friends|mentors)\b", low):
+    if low.startswith("who ") or re.search(
+        r"\bwhat (?:pets?|children|kids|friends|mentors)\b", low
+    ):
         object_types = ("Person",)
     elif re.search(r"\b(items?|bought|gift|necklace|shoes?|figurines?)\b", low):
         object_types = ("Object",)
@@ -194,6 +222,18 @@ def _coerce_plan(raw: object, fallback: QueryPlan, memory) -> QueryPlan:
         answer_type = AnswerType(raw.get("answer_type", fallback.answer_type.value))
     except ValueError:
         return fallback
+    # These surface forms carry semantics that generic lookup/count plans lose:
+    # "how often" is a stated frequency, "how long" is a duration, and an
+    # attribute question projects a property rather than the object itself.
+    # Keep the compiler model from weakening those deterministic distinctions.
+    specialized = {
+        QueryOperator.FREQUENCY,
+        QueryOperator.DURATION,
+        QueryOperator.ATTRIBUTE_LOOKUP,
+    }
+    if fallback.operator in specialized:
+        operator = fallback.operator
+        answer_type = fallback.answer_type
     subjects = tuple(
         value.strip()
         for value in raw.get("subjects", fallback.subjects)

@@ -78,7 +78,7 @@ class Clio2Config:
     include_staged_facts: bool = True
     #: Actual raw episodes passed to the typed answerer after value coverage
     #: ranking. Unlike CLIO1's metric, this is also the set reported as recall.
-    answer_evidence_limit: int = 16
+    answer_evidence_limit: int = 20
 
 
 @dataclass

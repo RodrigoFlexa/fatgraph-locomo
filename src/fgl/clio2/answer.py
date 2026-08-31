@@ -20,27 +20,31 @@ def _ordered_evidence_ids(result: ExecutionResult, limit: int) -> list[str]:
         for episode_id in item.episode_ids:
             if episode_id not in structured:
                 structured.append(episode_id)
-    direct = [
-        episode_id
-        for episode_id in result.candidate_episode_ids
-        if episode_id not in structured
-    ]
+    raw_direct = list(dict.fromkeys(result.candidate_episode_ids))
 
-    # Reserve part of the evidence budget for direct episodic recall.  The
-    # semantic ledger is precise when extraction succeeded, but long-memory
-    # QA must remain able to recover a fact whose object or relation was not
-    # normalized.  A balanced budget prevents either representation from
-    # starving the other.
-    structured_budget = min(len(structured), max(1, limit // 2))
-    out = structured[:structured_budget]
-    direct_budget = limit - len(out)
-    out.extend(direct[:direct_budget])
-    for episode_id in structured[structured_budget:]:
+    temporal_evidence_first = {
+        QueryOperator.TEMPORAL_LOOKUP,
+        QueryOperator.DURATION,
+    }
+    is_temporal = (
+        result.plan.operator in temporal_evidence_first
+        or result.plan.operator == QueryOperator.JOIN
+        and result.plan.answer_type in (AnswerType.DATE, AnswerType.DURATION)
+    )
+    if is_temporal:
+        return raw_direct[:limit]
+
+    # The reranked episodic channel already includes structured provenance as
+    # one of its signals. Give it most of the context budget, then reserve four
+    # slots for high-confidence ledger support that did not survive reranking.
+    direct_budget = min(len(raw_direct), max(1, (3 * limit) // 4))
+    out = raw_direct[:direct_budget]
+    for episode_id in structured:
         if len(out) >= limit:
             break
         if episode_id not in out:
             out.append(episode_id)
-    for episode_id in result.candidate_episode_ids:
+    for episode_id in raw_direct[direct_budget:]:
         if len(out) >= limit:
             break
         if episode_id not in out:
@@ -73,6 +77,11 @@ def _render_candidates(result: ExecutionResult) -> str:
                 "object_type": item.object_type,
                 "episode_ids": item.episode_ids,
                 "score": round(item.score, 4),
+                "time_expression": item.time_expression,
+                "valid_start": item.t_valid.start.strftime("%d %B %Y")
+                if item.t_valid and item.t_valid.start
+                else None,
+                "granularity": item.t_valid.granularity if item.t_valid else None,
             }
         )
     return json.dumps(rows, indent=2, ensure_ascii=False)
@@ -92,14 +101,14 @@ def _deterministic_answer(result: ExecutionResult) -> StructuredAnswer | None:
         result.scalar, int
     ):
         return StructuredAnswer(AnswerType.NUMBER, (str(result.scalar),), support)
-    if result.plan.operator == QueryOperator.TEMPORAL_LOOKUP and result.scalar:
-        return StructuredAnswer(AnswerType.DATE, (str(result.scalar),), support)
     if result.plan.operator == QueryOperator.PREMISE_CHECK and isinstance(
         result.scalar, bool
     ):
         return StructuredAnswer(
             AnswerType.BOOLEAN, ("Yes" if result.scalar else "No",), support
         )
+    if result.plan.operator == QueryOperator.PREMISE_CHECK and result.scalar is None:
+        return StructuredAnswer(AnswerType.BOOLEAN, (), (), abstain=True)
     if result.plan.operator == QueryOperator.INTERSECTION and result.items:
         return StructuredAnswer(
             AnswerType.ENTITY_SET,
@@ -201,17 +210,19 @@ def verify_answer(
 def render_answer(answer: StructuredAnswer) -> str:
     if answer.abstain or not answer.values:
         return "Not mentioned in the conversation"
+    values = tuple(value.replace("_", " ") for value in answer.values)
     if answer.answer_type in (
         AnswerType.BOOLEAN,
         AnswerType.NUMBER,
         AnswerType.DATE,
         AnswerType.DURATION,
+        AnswerType.FREQUENCY,
         AnswerType.ENTITY,
     ):
-        return answer.values[0]
+        return values[0]
     if answer.answer_type == AnswerType.ENTITY_SET:
-        return ", ".join(answer.values)
-    return "; ".join(answer.values)
+        return ", ".join(values)
+    return "; ".join(values)
 
 
 def answer_query(question: str, result: ExecutionResult, memory):

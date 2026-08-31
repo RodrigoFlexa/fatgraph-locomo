@@ -13,6 +13,7 @@ from fgl.clio.facade import Clio
 from fgl.clio.index import EpisodeIndex
 from fgl.clio.ingest.validate import validate_and_bind
 from fgl.clio.types import Episode
+from fgl.clio2.answer import render_answer
 from fgl.clio2.executor import QueryExecutor
 from fgl.clio2.ledger import FactIndex, SemanticLedger
 from fgl.clio2.model import (
@@ -20,6 +21,7 @@ from fgl.clio2.model import (
     QueryConstraints,
     QueryOperator,
     QueryPlan,
+    StructuredAnswer,
 )
 from fgl.clio2.planner import heuristic_plan
 from fgl.config import LLMConfig
@@ -44,14 +46,14 @@ def _ingest(memory, episode_id, date, speaker, text, propositions):
     )
 
 
-def _prop(subject, relation, object_, span):
+def _prop(subject, relation, object_, span, time_expression=None):
     return {
         "subject": f"new:{subject}",
         "relation": relation,
         "object": f"new:{object_}",
         "operation": "assert",
         "evidence_kind": "literal",
-        "time_expression": None,
+        "time_expression": time_expression,
         "span": span,
     }
 
@@ -332,6 +334,114 @@ def test_heuristic_compiler_produces_a_typed_count_plan():
     assert plan.subjects == ("Melanie",)
     assert plan.relations == ("practices", "attended")
     assert plan.constraints.start == datetime(2023, 1, 1)
+
+
+def test_compiler_distinguishes_frequency_duration_and_attribute_projection():
+    memory = _memory()
+    memory.graph.create_entity("Melanie", "Person")
+
+    frequency = heuristic_plan(
+        "How often does Melanie go to the beach with her kids?", memory
+    )
+    duration = heuristic_plan("How long has Melanie been practicing art?", memory)
+    attribute = heuristic_plan(
+        "What is Melanie's bowl a reminder of?", memory
+    )
+
+    assert (frequency.operator, frequency.answer_type) == (
+        QueryOperator.FREQUENCY,
+        AnswerType.FREQUENCY,
+    )
+    assert (duration.operator, duration.answer_type) == (
+        QueryOperator.DURATION,
+        AnswerType.DURATION,
+    )
+    assert (attribute.operator, attribute.answer_type) == (
+        QueryOperator.ATTRIBUTE_LOOKUP,
+        AnswerType.TEXT,
+    )
+
+
+def test_compiler_resolves_short_nickname_without_typing_kids_as_the_answer():
+    memory = _memory()
+    memory.graph.create_entity("Melanie", "Person")
+
+    plan = heuristic_plan(
+        "What did Mel and her kids paint in their latest project?", memory
+    )
+
+    assert plan.subjects == ("Melanie",)
+    assert plan.constraints.object_types == ()
+
+
+def test_temporal_execution_preserves_source_expression_and_defers_projection():
+    memory = _memory()
+    memory.graph.create_entity("Melanie", "Person")
+    _ingest(
+        memory,
+        "e1",
+        "2023-10-20",
+        "Melanie",
+        "My family went on a road trip last weekend",
+        [
+            _prop(
+                "family",
+                "practices",
+                "road trip",
+                "went on a road trip last weekend",
+                "last weekend",
+            )
+        ],
+    )
+    _, executor = _executor(memory)
+    plan = QueryPlan(
+        QueryOperator.TEMPORAL_LOOKUP,
+        subjects=("Melanie",),
+        relations=("practices",),
+        constraints=QueryConstraints(terms=("road", "trip")),
+        answer_type=AnswerType.DATE,
+    )
+
+    result = executor.execute("When did Melanie's family go on a road trip?", plan)
+
+    assert result.scalar is None
+    assert result.items[0].time_expression == "last weekend"
+    assert result.items[0].t_valid.granularity == "week"
+    assert result.candidate_episode_ids[0] == "e1"
+
+
+def test_answer_renderer_humanizes_canonical_identifier_values():
+    answer = StructuredAnswer(
+        AnswerType.ENTITY_SET,
+        ("exploring_forests", "roasting_marshmallows"),
+    )
+
+    assert render_answer(answer) == "exploring forests, roasting marshmallows"
+
+
+def test_premise_check_abstains_when_only_an_unrelated_pet_fact_exists():
+    memory = _memory()
+    _ingest(
+        memory,
+        "e1",
+        "2023-05-01",
+        "Melanie",
+        "I have a dog named Bailey",
+        [_prop("Melanie", "owns", "Bailey", "a dog named Bailey")],
+    )
+    _, executor = _executor(memory)
+    plan = QueryPlan(
+        QueryOperator.PREMISE_CHECK,
+        subjects=("Melanie",),
+        relations=("owns",),
+        constraints=QueryConstraints(terms=("Oscar", "pet")),
+        answer_type=AnswerType.BOOLEAN,
+    )
+
+    result = executor.execute("Is Oscar Melanie's pet?", plan)
+
+    assert result.scalar is None
+    assert "premise has no matching fact" in result.diagnostics
 
 
 def test_declared_unmapped_alias_is_normalized_into_the_ledger_relation():

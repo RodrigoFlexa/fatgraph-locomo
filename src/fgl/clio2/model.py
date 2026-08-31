@@ -23,6 +23,9 @@ class QueryOperator(str, Enum):
     JOIN = "join"
     LATEST = "latest"
     TEMPORAL_LOOKUP = "temporal_lookup"
+    DURATION = "duration"
+    FREQUENCY = "frequency"
+    ATTRIBUTE_LOOKUP = "attribute_lookup"
     PREMISE_CHECK = "premise_check"
     INFER = "infer"
 
@@ -34,6 +37,7 @@ class AnswerType(str, Enum):
     BOOLEAN = "boolean"
     DATE = "date"
     DURATION = "duration"
+    FREQUENCY = "frequency"
     TEXT = "text"
 
 
@@ -79,10 +83,12 @@ class LedgerFact:
     object_name: str
     object_type: str
     t_valid: Interval
+    source_t_valid: Interval
     t_tx: Interval
     episode_id: str
     episode_ts: datetime
     span: str
+    time_expression: str | None
     episode_text: str
     confidence: float
     polarity: bool
@@ -130,6 +136,7 @@ class EvidenceItem:
     relation: str = ""
     object_type: str = ""
     t_valid: Interval | None = None
+    time_expression: str | None = None
 
 
 @dataclass

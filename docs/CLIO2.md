@@ -77,6 +77,15 @@ fgl clio bench -n 1 --reader agent --name CLIO_AGENT_CONV0
 fgl clio bench -n 1 --reader clio2 --name CLIO2_CONV0
 ```
 
+To evaluate a reader change against an existing snapshot without ingesting the
+419 turns again:
+
+```bash
+fgl clio bench -n 1 --reader clio2 \
+  --memory results/CLIO2_CONV0/memory_conv-26.json \
+  --name CLIO2_TEMPORAL_REPLAY
+```
+
 Programmatically, `clio.ask2(question)` always selects CLIO2. The regular
 `clio.ask(question)` follows `ClioConfig.reader`.
 
@@ -86,4 +95,3 @@ Overall F1 is not enough. Compare per category, especially multi-hop and
 single-hop, and inspect evidence recall separately from answer F1. CLIO2 traces
 have three stable phases (`compile`, `execute`, `verify`), so a failure can be
 assigned to interpretation, ledger recall/algebra, or answer verification.
-
